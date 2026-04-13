@@ -13,6 +13,9 @@ const targets = [
   { url: "http://localhost:3000/axiom", slug: "axiom", recordMs: 6500, preWait: 4000 },
   { url: "http://localhost:3000/pulse", slug: "pulse", recordMs: 6500, preWait: 4000 },
   { url: "http://localhost:3000/aurora", slug: "aurora", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/orbit", slug: "orbit", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/monolith", slug: "monolith", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/atrium", slug: "atrium", recordMs: 6500, preWait: 4000 },
 ];
 
 async function captureVideoAndStill(browser, t) {

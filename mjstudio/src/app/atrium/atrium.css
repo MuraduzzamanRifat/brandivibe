@@ -1,0 +1,61 @@
+/* Atrium — venture capital firm. Scoped to .atrium-root. */
+
+.atrium-root {
+  --atrium-bg: #0a1020;
+  --atrium-bg-2: #0e162b;
+  --atrium-bg-3: #121c37;
+  --atrium-fg: #f1e9d5;
+  --atrium-muted: rgba(241, 233, 213, 0.55);
+  --atrium-faint: rgba(241, 233, 213, 0.14);
+  --atrium-champagne: #e8d49a;
+  --atrium-champagne-bright: #f5e4ad;
+  --atrium-gold: #c9a14a;
+
+  background: var(--atrium-bg);
+  color: var(--atrium-fg);
+  font-family: var(--font-atrium-inter), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+.atrium-root .font-serif {
+  font-family: var(--font-caslon), "Libre Caslon Text", "Playfair Display", Georgia, serif;
+}
+
+.atrium-root :focus-visible {
+  outline: 2px solid var(--atrium-champagne);
+  outline-offset: 3px;
+}
+
+.atrium-root button,
+.atrium-root a,
+.atrium-root [role="button"] {
+  cursor: pointer;
+}
+
+.atrium-root ::selection {
+  background: var(--atrium-champagne);
+  color: #0a1020;
+}
+
+.atrium-root .champagne-ink {
+  background: linear-gradient(135deg, #f5e4ad 0%, #e8d49a 50%, #c9a14a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.atrium-root .champagne-text {
+  color: var(--atrium-champagne);
+}
+
+.atrium-root .serif-italic {
+  font-family: var(--font-caslon), Georgia, serif;
+  font-style: italic;
+}
+
+.atrium-root .hairline-champagne {
+  border-color: rgba(232, 212, 154, 0.18);
+}

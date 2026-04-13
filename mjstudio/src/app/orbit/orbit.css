@@ -1,0 +1,63 @@
+/* Orbit — luxury EV / electric hypercar. Scoped to .orbit-root. */
+
+.orbit-root {
+  --orbit-bg: #05060a;
+  --orbit-bg-2: #0a0c14;
+  --orbit-fg: #f4f4f5;
+  --orbit-muted: rgba(244, 244, 245, 0.5);
+  --orbit-faint: rgba(244, 244, 245, 0.16);
+  --orbit-accent: #84ff6b;
+  --orbit-accent-bright: #a3ff8a;
+  --orbit-accent-deep: #4ade80;
+  --orbit-red: #f43f5e;
+
+  background: var(--orbit-bg);
+  color: var(--orbit-fg);
+  font-family: var(--font-orbit-grotesk), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "ss02";
+}
+
+.orbit-root .font-mono {
+  font-family: var(--font-orbit-mono), ui-monospace, monospace;
+}
+
+.orbit-root :focus-visible {
+  outline: 2px solid var(--orbit-accent);
+  outline-offset: 3px;
+}
+
+.orbit-root button,
+.orbit-root a,
+.orbit-root [role="button"] {
+  cursor: pointer;
+}
+
+.orbit-root ::selection {
+  background: var(--orbit-accent);
+  color: #000;
+}
+
+.orbit-root .acid-text {
+  color: var(--orbit-accent);
+  text-shadow: 0 0 18px rgba(132, 255, 107, 0.35);
+}
+
+.orbit-root .acid-bg {
+  background: var(--orbit-accent);
+  color: #000;
+}
+
+.orbit-root .grid-tech {
+  background-image:
+    linear-gradient(rgba(132, 255, 107, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(132, 255, 107, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.orbit-root .divider-line {
+  border-color: rgba(132, 255, 107, 0.15);
+}
