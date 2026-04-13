@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { RevealLine } from "./SplitText";
+import { LazyVideo } from "./LazyVideo";
 import Link from "next/link";
 
 export function Manifesto() {
@@ -20,7 +21,13 @@ export function Manifesto() {
       ref={ref}
       className="relative py-40 px-6 md:px-12 border-y border-white/5 overflow-hidden"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* atmospheric stock video — Engin Akyurt / Pexels */}
+      <LazyVideo
+        src="/stock/manifesto-bg.mp4"
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.22] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#08080a]/60 to-[#08080a] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1600px]">
         <div className="grid grid-cols-12 gap-8 items-start">
           <div className="col-span-12 md:col-span-2">
             <div className="font-mono text-xs text-white/40 uppercase tracking-widest">

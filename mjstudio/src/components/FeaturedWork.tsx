@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { RevealLine } from "./SplitText";
+import { LazyVideo } from "./LazyVideo";
 
 type Project = {
   num: string;
@@ -101,14 +102,9 @@ export function FeaturedWork() {
                 >
                   {p.video ? (
                     <>
-                      <video
+                      <LazyVideo
                         src={p.video}
                         poster={p.poster ?? undefined}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload="metadata"
                         className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-1000 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />

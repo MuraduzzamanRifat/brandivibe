@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
+import { LazyVideo } from "./LazyVideo";
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -10,14 +11,8 @@ export function Contact() {
   return (
     <section id="contact" className="relative py-32 px-6 border-t border-white/5 overflow-hidden">
       {/* atmospheric stock video — Alex Dos Santos / Pexels */}
-      <video
+      <LazyVideo
         src="/stock/studio-bg.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden
         className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#08080a]/70 to-[#08080a] pointer-events-none" />

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { RevealLine } from "./SplitText";
+import { LazyVideo } from "./LazyVideo";
 
 const services = [
   {
@@ -28,8 +29,14 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-40 px-6 md:px-12 border-t border-white/5">
-      <div className="mx-auto max-w-[1600px]">
+    <section id="services" className="relative py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+      {/* atmospheric stock video — T Honkamies / Pexels */}
+      <LazyVideo
+        src="/stock/services-bg.mp4"
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.22] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#08080a]/70 to-[#08080a] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1600px]">
         <div className="grid grid-cols-12 gap-6 mb-20">
           <div className="col-span-12 md:col-span-3">
             <div className="font-mono text-xs text-white/40 uppercase tracking-widest">
