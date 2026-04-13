@@ -55,11 +55,13 @@ function ServiceDot({
   total: number;
   progress: MotionValue<number>;
 }) {
-  const opacity = useTransform(
-    progress,
-    [(index - 0.3) / total, index / total, (index + 0.7) / total],
-    [0.3, 1, 0.3]
-  );
+  // All input values must be monotonically non-decreasing and clamped to [0, 1]
+  // or Framer Motion's Web Animations API path throws at runtime.
+  const center = index / total;
+  const a = Math.max(0, Math.min(1, center - 0.3 / total));
+  const b = Math.max(a + 0.0001, Math.min(1, center));
+  const c = Math.max(b + 0.0001, Math.min(1, center + 0.7 / total));
+  const opacity = useTransform(progress, [a, b, c], [0.3, 1, 0.3]);
   return (
     <motion.div
       style={{ opacity, background: accent }}
@@ -77,27 +79,35 @@ function ServicePanel({
   index: number;
   progress: MotionValue<number>;
 }) {
-  const localStart = index / services.length;
-  const localEnd = (index + 1) / services.length;
+  const n = services.length;
+  const localStart = index / n;
+  const localEnd = (index + 1) / n;
+
+  // Ensure all useTransform inputs are strictly ascending and within [0, 1].
+  // Framer Motion's Web Animations API path rejects negatives or duplicates.
+  const fadeIn = Math.max(0, localStart - 0.08);
+  const holdStart = Math.min(1, Math.max(fadeIn + 0.0001, localStart + 0.02));
+  const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.05));
+  const fadeOut = Math.min(1, Math.max(holdEnd + 0.0001, localEnd));
 
   const opacity = useTransform(
     progress,
-    [localStart - 0.1, localStart, localEnd - 0.1, localEnd],
+    [fadeIn, holdStart, holdEnd, fadeOut],
     [0, 1, 1, 0]
   );
   const y = useTransform(
     progress,
-    [localStart, localEnd],
+    [holdStart, fadeOut],
     ["40px", "-40px"]
   );
   const numberScale = useTransform(
     progress,
-    [localStart, localStart + 0.1, localEnd - 0.05, localEnd],
+    [holdStart, Math.min(1, holdStart + 0.08), holdEnd, fadeOut],
     [0.85, 1, 1, 1.05]
   );
   const xMin = useTransform(
     progress,
-    [localStart, localEnd],
+    [holdStart, fadeOut],
     ["0%", "-10%"]
   );
 
