@@ -21,7 +21,44 @@ type Metrics = {
   learning: LearningEntry[];
 };
 
-type Tab = "plans" | "queue" | "journal" | "scoreboard";
+type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach";
+
+type OutreachData = {
+  queue: Array<{
+    id: string;
+    prospectId: string;
+    to: string;
+    subject: string;
+    body: string;
+    touch: number;
+    status: string;
+    sendAt: string;
+    sentAt?: string;
+    failReason?: string;
+  }>;
+  stats: {
+    byStatus: { queued: number; sent: number; failed: number; suppressed: number };
+    researched: number;
+    inSequence: number;
+    unsubscribed: number;
+    dayIndex: number;
+    alreadyToday: number;
+    sendingSince?: string;
+  };
+  prospects: Array<{
+    id: string;
+    company: string;
+    domain: string;
+    icpTier: string;
+    email: string;
+    emailConfidence?: number;
+    stage?: number;
+    lastOutcome?: string;
+    nextSendAt?: string;
+    unsubscribed?: boolean;
+    researchConfidence?: number;
+  }>;
+};
 
 export function BrainPanel({ articles }: { articles: Article[] }) {
   const [tab, setTab] = useState<Tab>("plans");
@@ -29,14 +66,16 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
   const [fbQueue, setFbQueue] = useState<FbPost[]>([]);
   const [learning, setLearning] = useState<LearningEntry[]>([]);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
+  const [outreach, setOutreach] = useState<OutreachData | null>(null);
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchAll = useCallback(async () => {
     try {
-      const [qRes, mRes] = await Promise.all([
+      const [qRes, mRes, oRes] = await Promise.all([
         fetch("/api/brain/queue", { cache: "no-store" }),
         fetch("/api/brain/metrics", { cache: "no-store" }),
+        fetch("/api/brain/outreach", { cache: "no-store" }),
       ]);
       if (qRes.ok) {
         const q = (await qRes.json()) as QueueResponse;
@@ -45,6 +84,7 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
         setLearning(q.learning);
       }
       if (mRes.ok) setMetrics((await mRes.json()) as Metrics);
+      if (oRes.ok) setOutreach((await oRes.json()) as OutreachData);
     } catch (e) {
       setError(e instanceof Error ? e.message : "load failed");
     }
@@ -112,7 +152,7 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
       </div>
 
       <div className="flex items-center gap-2 flex-wrap mb-8">
-        {(["plans", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+        {(["plans", "outreach", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -120,8 +160,10 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
           >
             {t === "plans"
               ? "Plans"
+              : t === "outreach"
+              ? `Outreach (${outreach?.stats.inSequence ?? 0})`
               : t === "queue"
-              ? `Queue (${fbQueue.filter((p) => p.status === "queued").length})`
+              ? `FB Queue (${fbQueue.filter((p) => p.status === "queued").length})`
               : t === "journal"
               ? `Journal (${articles.length})`
               : "Scoreboard"}
@@ -254,6 +296,92 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
                       <button onClick={() => rate("article", a.id, "down")} className="btn btn-ghost">👎</button>
                     </div>
                   </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {tab === "outreach" && outreach && (
+        <div>
+          <div className="eyebrow mb-5">Autonomous outbound</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <Stat label="Researched" value={outreach.stats.researched} />
+            <Stat label="In sequence" value={outreach.stats.inSequence} />
+            <Stat label="Queued" value={outreach.stats.byStatus.queued} />
+            <Stat label="Sent (all-time)" value={outreach.stats.byStatus.sent} />
+            <Stat
+              label="Warmup day"
+              value={outreach.stats.dayIndex || "—"}
+            />
+            <Stat label="Sent today" value={outreach.stats.alreadyToday} />
+            <Stat label="Failed" value={outreach.stats.byStatus.failed} />
+            <Stat label="Unsubscribed" value={outreach.stats.unsubscribed} />
+          </div>
+
+          <div className="eyebrow mb-4">In-sequence prospects</div>
+          {outreach.prospects.length === 0 ? (
+            <div className="text-sm text-[var(--brain-muted)] mb-8">
+              No prospects in sequence yet. Run &quot;Run sources&quot; to scrape from TechCrunch,
+              then &quot;Run brain now&quot; to research, draft, and queue emails.
+            </div>
+          ) : (
+            <ul className="space-y-2 mb-10 max-h-[360px] overflow-y-auto pr-2">
+              {outreach.prospects.map((p) => (
+                <li key={p.id} className="panel-2 p-4 flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className={`tier-${p.icpTier}`}>{p.icpTier}</span>
+                      <span className="font-semibold">{p.company}</span>
+                      <span className="mono text-[10px] text-[var(--brain-muted)]">
+                        {p.domain}
+                      </span>
+                    </div>
+                    <div className="mono text-[10px] text-[var(--brain-muted)]">
+                      {p.email} · conf {p.emailConfidence ?? 0} · stage {p.stage ?? 0}/4
+                      {p.lastOutcome && ` · ${p.lastOutcome}`}
+                      {p.unsubscribed && " · UNSUBSCRIBED"}
+                    </div>
+                  </div>
+                  <div className="mono text-[10px] text-[var(--brain-muted)] text-right shrink-0">
+                    {p.nextSendAt ? `next: ${new Date(p.nextSendAt).toLocaleDateString()}` : ""}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          <div className="eyebrow mb-4">Recent outbound queue · {outreach.queue.length} items</div>
+          {outreach.queue.length === 0 ? (
+            <div className="text-sm text-[var(--brain-muted)]">
+              Outbound queue empty. Brain will fill it after research + sequence ticks run.
+            </div>
+          ) : (
+            <ul className="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+              {outreach.queue.map((e) => (
+                <li key={e.id} className="panel-2 p-4">
+                  <div className="flex items-center justify-between mb-2 gap-4">
+                    <div className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--brain-muted)]">
+                      touch {e.touch} · {e.status}
+                      {e.sendAt && ` · scheduled ${new Date(e.sendAt).toLocaleString()}`}
+                    </div>
+                    <div className="mono text-[10px] text-[var(--brain-muted)]">{e.to}</div>
+                  </div>
+                  <div className="font-semibold mb-2">{e.subject}</div>
+                  <details>
+                    <summary className="cursor-pointer text-[var(--brain-muted)] text-sm">
+                      Preview body
+                    </summary>
+                    <pre className="mt-2 whitespace-pre-wrap text-[12px] text-[var(--brain-muted)] font-sans">
+                      {e.body}
+                    </pre>
+                  </details>
+                  {e.failReason && (
+                    <div className="mt-2 text-[11px] text-[var(--brain-danger)]">
+                      Failed: {e.failReason}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>

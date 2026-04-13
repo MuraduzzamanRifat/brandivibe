@@ -68,6 +68,13 @@ export type Prospect = {
   notes?: string;
   source: "seed" | "techcrunch" | "product-hunt" | "crunchbase" | "manual";
   sourceUrl?: string;
+  // Phase 4 outbound fields
+  scraped?: ScrapedSite;
+  deepResearch?: DeepResearch;
+  emailFinder?: EmailFinderResult;
+  sequence?: SequenceState;
+  unsubscribed?: boolean;
+  unsubscribedAt?: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -87,6 +94,15 @@ export type Activity = {
     | "metrics-pulled"
     | "insight-learned"
     | "rated"
+    | "prospect-scraped"
+    | "prospect-researched"
+    | "email-found"
+    | "email-drafted"
+    | "email-sent"
+    | "email-failed"
+    | "email-bounced"
+    | "unsubscribed"
+    | "sequence-advanced"
     | "error";
   timestamp: string;
   description: string;
@@ -95,6 +111,7 @@ export type Activity = {
   articleId?: string;
   fbPostId?: string;
   planId?: string;
+  emailId?: string;
   source?: string;
   model?: string;
   tokens?: number;
@@ -186,6 +203,84 @@ export type LearningEntry = {
   evidence: Record<string, unknown>;
 };
 
+/** Scraper output — raw pages + detected tech stack + found contact info */
+export type ScrapedSite = {
+  fetchedAt: string;
+  homepage: string;
+  about?: string;
+  team?: string;
+  pricing?: string;
+  contact?: string;
+  techStack: string[];
+  designScore: number;
+  foundEmails: string[];
+  foundSocials: { twitter?: string; linkedin?: string; github?: string };
+};
+
+/** Deep-research output — structured observations GPT-4o extracted */
+export type DeepResearch = {
+  realWeaknesses: string[];
+  specificObservation: string;
+  oneSentenceImpact: string;
+  currentPainArea: string;
+  observation1: string;
+  observation2: string;
+  observation3: string;
+  fix1OneLine: string;
+  fix2OneLine: string;
+  fix3OneLine: string;
+  topPriorityObservation: string;
+  fixTimeEstimate: string;
+  conversionMetric: string;
+  industryName: string;
+  techStackSummary: string;
+  currentDesignScore: number;
+  budget: string;
+  decisionMaker: { name: string; role: string; firstName: string };
+  confidence: number;
+  createdAt: string;
+  model: string;
+  tokens: number;
+};
+
+/** Email finder output */
+export type EmailFinderResult = {
+  winner: string;
+  source: "scraped" | "pattern";
+  confidence: number;
+  candidates: Array<{ email: string; score: number; reason: string }>;
+  createdAt: string;
+};
+
+/** Sequence state attached to every prospect */
+export type SequenceState = {
+  stage: 0 | 1 | 2 | 3 | 4;
+  nextSendAt?: string;
+  lastSentAt?: string;
+  lastOutcome?: "sent" | "bounced" | "opened" | "replied" | "stopped" | "unsubscribed";
+  unsubscribeToken?: string;
+};
+
+/** A single email queued to go out via Resend */
+export type OutboundEmail = {
+  id: string;
+  prospectId: string;
+  sequenceTouch: 1 | 2 | 3 | 4;
+  subject: string;
+  body: string;
+  to: string;
+  from: string;
+  replyTo: string;
+  sendAt: string;
+  createdAt: string;
+  status: "queued" | "sent" | "failed" | "bounced" | "suppressed";
+  resendId?: string;
+  sentAt?: string;
+  failReason?: string;
+  model?: string;
+  tokens?: number;
+};
+
 /**
  * DailyRun is the idempotency/resume ledger for the brain cron. Keyed by
  * date (YYYY-MM-DD). Each phase (plan, article, fb-per-post, score) has a
@@ -202,6 +297,9 @@ export type DailyRun = {
     article: "pending" | "done" | "failed" | "skipped";
     fb: Array<"pending" | "done" | "failed">;
     score: "pending" | "done" | "failed";
+    research?: "pending" | "done" | "failed";
+    sequence?: "pending" | "done" | "failed";
+    send?: "pending" | "done" | "failed";
   };
   lastError?: string;
 };
@@ -228,6 +326,13 @@ type BrainData = {
   plans?: Plan[];
   learning?: LearningEntry[];
   runs?: DailyRun[];
+  outboundQueue?: OutboundEmail[];
+  /** Daily send counter keyed by YYYY-MM-DD — used by warmup gate */
+  sendCounts?: Record<string, number>;
+  /** Per-domain last-send timestamp — used by per-domain cap */
+  lastSendByDomain?: Record<string, string>;
+  /** ISO date the sender started sending — used to compute warmup day */
+  sendingSince?: string;
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -246,6 +351,10 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     plans: d?.plans ?? [],
     learning: d?.learning ?? [],
     runs: d?.runs ?? [],
+    outboundQueue: d?.outboundQueue ?? [],
+    sendCounts: d?.sendCounts ?? {},
+    lastSendByDomain: d?.lastSendByDomain ?? {},
+    sendingSince: d?.sendingSince,
   };
 }
 
@@ -347,6 +456,60 @@ export function todayKey(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
+export async function enqueueOutbound(email: OutboundEmail): Promise<void> {
+  const data = await loadBrain();
+  data.outboundQueue = data.outboundQueue ?? [];
+  data.outboundQueue.push(email);
+  if (data.outboundQueue.length > 2000) {
+    data.outboundQueue = data.outboundQueue.slice(-2000);
+  }
+  await saveBrain(data);
+}
+
+export async function updateOutbound(
+  id: string,
+  patch: Partial<OutboundEmail>
+): Promise<void> {
+  const data = await loadBrain();
+  const q = data.outboundQueue ?? [];
+  const idx = q.findIndex((x) => x.id === id);
+  if (idx >= 0) {
+    q[idx] = { ...q[idx], ...patch };
+    await saveBrain(data);
+  }
+}
+
+export async function updateProspectResearch(
+  id: string,
+  patch: Partial<Prospect>
+): Promise<void> {
+  const data = await loadBrain();
+  const p = data.prospects.find((x) => x.id === id);
+  if (p) {
+    Object.assign(p, patch);
+    p.updatedAt = new Date().toISOString();
+    await saveBrain(data);
+  }
+}
+
+export async function markUnsubscribed(prospectId: string): Promise<void> {
+  const data = await loadBrain();
+  const p = data.prospects.find((x) => x.id === prospectId);
+  if (p) {
+    p.unsubscribed = true;
+    p.unsubscribedAt = new Date().toISOString();
+    if (p.sequence) p.sequence.lastOutcome = "unsubscribed";
+    // Suppress all queued outbound for this prospect
+    for (const e of data.outboundQueue ?? []) {
+      if (e.prospectId === prospectId && e.status === "queued") {
+        e.status = "suppressed";
+        e.failReason = "unsubscribed";
+      }
+    }
+    await saveBrain(data);
+  }
+}
+
 export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRun> {
   const data = await loadBrain();
   data.runs = data.runs ?? [];
@@ -361,11 +524,19 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
         article: "pending",
         fb: Array.from({ length: fbSlots }, () => "pending" as const),
         score: "pending",
+        research: "pending",
+        sequence: "pending",
+        send: "pending",
       },
     };
     data.runs.unshift(run);
     if (data.runs.length > 60) data.runs.length = 60;
     await saveBrain(data);
+  } else {
+    // Backfill phases for old runs that predate Phase 4
+    if (!run.phases.research) run.phases.research = "pending";
+    if (!run.phases.sequence) run.phases.sequence = "pending";
+    if (!run.phases.send) run.phases.send = "pending";
   }
   return run;
 }

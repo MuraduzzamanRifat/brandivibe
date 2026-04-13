@@ -3,6 +3,9 @@ import { planToday } from "@/lib/brain/planner";
 import { executeArticle } from "@/lib/brain/executor";
 import { queueOrPublishFbPost } from "@/lib/brain/fb";
 import { scoreYesterday } from "@/lib/brain/scorer";
+import { runResearchTick } from "@/lib/brain/research-tick";
+import { runSequenceTick } from "@/lib/brain/sequence-machine";
+import { runSendTick } from "@/lib/brain/sender";
 import {
   addPlan,
   markPlanExecuted,
@@ -190,6 +193,78 @@ export async function POST(req: Request) {
         r.lastError = msg;
       });
       await logActivity({ type: "error", description: `Scorer failed: ${msg}` });
+    }
+  }
+
+  // ---------------- PHASE 5: RESEARCH (Phase 4) ----------------
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.research !== "done") {
+    try {
+      const researched = await runResearchTick();
+      summary.tokens += researched.tokens;
+      await updateRun(date, (r) => {
+        r.phases.research = "done";
+      });
+      await logActivity({
+        type: "prospect-researched",
+        description: `Research tick: scraped ${researched.scraped}, researched ${researched.researched}, emails found ${researched.emailed}, skipped ${researched.skipped}`,
+        tokens: researched.tokens,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`research: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.research = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Research tick failed: ${msg}` });
+    }
+  }
+
+  // ---------------- PHASE 6: SEQUENCE (Phase 4) ----------------
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.sequence !== "done") {
+    try {
+      const seqSummary = await runSequenceTick();
+      summary.tokens += seqSummary.tokens;
+      await updateRun(date, (r) => {
+        r.phases.sequence = "done";
+      });
+      await logActivity({
+        type: "sequence-advanced",
+        description: `Sequence tick: started ${seqSummary.started}, advanced ${seqSummary.advanced}, completed ${seqSummary.completed}`,
+        tokens: seqSummary.tokens,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`sequence: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.sequence = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Sequence tick failed: ${msg}` });
+    }
+  }
+
+  // ---------------- PHASE 7: SEND (Phase 4) ----------------
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.send !== "done") {
+    try {
+      const sendSummary = await runSendTick();
+      await updateRun(date, (r) => {
+        r.phases.send = "done";
+      });
+      if (sendSummary.sent > 0 || sendSummary.failed > 0) {
+        await logActivity({
+          type: "email-sent",
+          description: `Send tick: ${sendSummary.sent} sent, ${sendSummary.failed} failed (day ${sendSummary.dayIndex}, cap ${sendSummary.warmupCap}, already-sent-today ${sendSummary.alreadySentToday})`,
+        });
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`send: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.send = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Send tick failed: ${msg}` });
     }
   }
 
