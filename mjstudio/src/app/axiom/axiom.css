@@ -1,0 +1,77 @@
+/* Axiom — fintech theme. Scoped to .axiom-root. */
+
+.axiom-root {
+  --axiom-bg: #0a0e1a;
+  --axiom-bg-2: #0f172a;
+  --axiom-fg: #f8fafc;
+  --axiom-muted: #94a3b8;
+  --axiom-faint: rgba(248, 250, 252, 0.4);
+  --axiom-border: rgba(248, 250, 252, 0.08);
+  --axiom-teal: #14b8a6;
+  --axiom-teal-bright: #2dd4bf;
+  --axiom-cream: #fef3c7;
+  --axiom-gold: #d4a017;
+
+  background: var(--axiom-bg);
+  color: var(--axiom-fg);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.axiom-root .font-serif {
+  font-family: var(--font-instrument-serif), "Playfair Display", Georgia, serif;
+}
+
+.axiom-root .font-mono {
+  font-family: var(--font-jbm-axiom), ui-monospace, monospace;
+}
+
+.axiom-root :focus-visible {
+  outline: 2px solid var(--axiom-teal);
+  outline-offset: 3px;
+}
+
+.axiom-root button,
+.axiom-root a,
+.axiom-root [role="button"] {
+  cursor: pointer;
+}
+
+.axiom-root ::selection {
+  background: var(--axiom-teal);
+  color: #000;
+}
+
+.axiom-root .hairline {
+  border: 1px solid var(--axiom-border);
+}
+
+.axiom-root .cream-text {
+  color: var(--axiom-cream);
+}
+
+.axiom-root .serif-italic {
+  font-family: var(--font-instrument-serif), "Playfair Display", Georgia, serif;
+  font-style: italic;
+}
+
+.axiom-root .ticker {
+  font-family: var(--font-jbm-axiom), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.axiom-root .grid-subtle {
+  background-image:
+    linear-gradient(rgba(20, 184, 166, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.axiom-root .fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent);
+  mask-image: linear-gradient(to bottom, black 60%, transparent);
+}

@@ -1,0 +1,72 @@
+/* Pulse — healthcare theme. Scoped to .pulse-root. */
+
+.pulse-root {
+  --pulse-bg: #fafaf7;
+  --pulse-bg-2: #ffffff;
+  --pulse-fg: #1c1917;
+  --pulse-muted: #57534e;
+  --pulse-soft: #78716c;
+  --pulse-faint: rgba(28, 25, 23, 0.08);
+  --pulse-sage: #0d9488;
+  --pulse-sage-bright: #14b8a6;
+  --pulse-mint: #a7f3d0;
+  --pulse-cream: #fef7ed;
+
+  background: var(--pulse-bg);
+  color: var(--pulse-fg);
+  font-family: var(--font-pulse-inter), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv11", "ss01";
+}
+
+.pulse-root .font-serif {
+  font-family: var(--font-pulse-serif), "Playfair Display", Georgia, serif;
+}
+
+.pulse-root :focus-visible {
+  outline: 2px solid var(--pulse-sage);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.pulse-root button,
+.pulse-root a,
+.pulse-root [role="button"] {
+  cursor: pointer;
+}
+
+.pulse-root ::selection {
+  background: #a7f3d0;
+  color: #1c1917;
+}
+
+.pulse-root .card-soft {
+  background: #ffffff;
+  border: 1px solid var(--pulse-faint);
+  box-shadow: 0 1px 2px 0 rgba(28, 25, 23, 0.03), 0 2px 6px -2px rgba(28, 25, 23, 0.05);
+  border-radius: 20px;
+}
+
+.pulse-root .soft-elevate {
+  box-shadow:
+    0 0 0 1px rgba(28, 25, 23, 0.04),
+    0 1px 3px 0 rgba(28, 25, 23, 0.05),
+    0 20px 40px -12px rgba(13, 148, 136, 0.12);
+}
+
+.pulse-root .serif-italic {
+  font-family: var(--font-pulse-serif), "Playfair Display", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.pulse-root .text-pulse-fg { color: var(--pulse-fg); }
+.pulse-root .text-pulse-muted { color: var(--pulse-muted); }
+.pulse-root .text-pulse-soft { color: var(--pulse-soft); }
+.pulse-root .text-pulse-sage { color: var(--pulse-sage); }
+.pulse-root .bg-pulse-bg { background: var(--pulse-bg); }
+.pulse-root .bg-pulse-sage { background: var(--pulse-sage); }
+.pulse-root .border-pulse-faint { border-color: var(--pulse-faint); }

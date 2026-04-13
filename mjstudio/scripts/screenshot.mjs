@@ -1,10 +1,18 @@
+// Captures a looping webm video + still JPG for every demo sub-route on
+// the Brandivibe dev server (localhost:3000). Output goes to mjstudio/public/work/.
+//
+// Usage: (from mjstudio/) `node scripts/screenshot.mjs`
+
 import { chromium } from "playwright";
 import { mkdir, readdir, rename, rm } from "fs/promises";
 import path from "path";
 
 const targets = [
-  { url: "http://localhost:3001/", slug: "helix", recordMs: 6500, preWait: 4000 },
-  { url: "http://localhost:3002/", slug: "neuron", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/helix", slug: "helix", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/neuron", slug: "neuron", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/axiom", slug: "axiom", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/pulse", slug: "pulse", recordMs: 6500, preWait: 4000 },
+  { url: "http://localhost:3000/aurora", slug: "aurora", recordMs: 6500, preWait: 4000 },
 ];
 
 async function captureVideoAndStill(browser, t) {
@@ -18,17 +26,15 @@ async function captureVideoAndStill(browser, t) {
   });
   const page = await ctx.newPage();
 
-  console.log(`→ ${t.url}`);
+  console.log(`\n→ ${t.url}`);
   try {
-    await page.goto(t.url, { waitUntil: "networkidle", timeout: 20000 });
+    await page.goto(t.url, { waitUntil: "networkidle", timeout: 25000 });
   } catch {
-    await page.goto(t.url, { waitUntil: "load", timeout: 20000 });
+    await page.goto(t.url, { waitUntil: "load", timeout: 25000 });
   }
 
-  // wait for 3D scene to fully initialize
   await page.waitForTimeout(t.preWait);
 
-  // capture still image while animation is mid-motion
   const stillPath = path.resolve(`public/work/${t.slug}.jpg`);
   await page.screenshot({
     path: stillPath,
@@ -38,12 +44,10 @@ async function captureVideoAndStill(browser, t) {
   });
   console.log(`  saved still → ${stillPath}`);
 
-  // keep recording for N ms for smooth loop capture
   await page.waitForTimeout(t.recordMs);
 
-  await ctx.close(); // playwright flushes video here
+  await ctx.close();
 
-  // find the written video file and rename
   const files = await readdir(videoDir);
   const webm = files.find((f) => f.endsWith(".webm"));
   if (webm) {
@@ -60,12 +64,15 @@ async function main() {
   const browser = await chromium.launch();
 
   for (const t of targets) {
-    await captureVideoAndStill(browser, t);
+    try {
+      await captureVideoAndStill(browser, t);
+    } catch (e) {
+      console.error(`  failed: ${e.message}`);
+    }
   }
 
   await browser.close();
 
-  // cleanup tmp dir
   await rm(path.resolve("public/work/_tmp"), { recursive: true, force: true }).catch(() => {});
 }
 
