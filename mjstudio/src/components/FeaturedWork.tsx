@@ -36,8 +36,6 @@ export function FeaturedWork() {
             <motion.a
               key={p.name}
               href={p.href}
-              target="_blank"
-              rel="noopener noreferrer"
               data-cursor="text"
               data-cursor-label="VIEW"
               initial={{ opacity: 0, y: 60 }}

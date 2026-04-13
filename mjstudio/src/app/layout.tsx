@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const SITE_URL = "https://mjstudio.com";
+const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "MJ Studio — Premium web experiences for ambitious brands",
+  title: "Brandivibe — Premium web experiences for ambitious brands",
   description:
     "Independent design & engineering practice crafting cinematic websites for crypto, SaaS, and luxury brands. Next.js, WebGL, and obsessive attention to detail.",
   keywords: [
@@ -30,30 +30,30 @@ export const metadata: Metadata = {
     "SaaS landing page",
     "creative web development",
   ],
-  authors: [{ name: "MJ Studio" }],
-  creator: "MJ Studio",
+  authors: [{ name: "Brandivibe" }],
+  creator: "Brandivibe",
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "MJ Studio — Premium web experiences for ambitious brands",
+    title: "Brandivibe — Premium web experiences for ambitious brands",
     description:
       "Independent design & engineering practice crafting cinematic websites for crypto, SaaS, and luxury brands.",
-    siteName: "MJ Studio",
+    siteName: "Brandivibe",
     images: [
       {
         url: "/work/helix.jpg",
         width: 1600,
         height: 1000,
-        alt: "MJ Studio — selected work",
+        alt: "Brandivibe — selected work",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MJ Studio — Premium web experiences for ambitious brands",
+    title: "Brandivibe — Premium web experiences for ambitious brands",
     description:
       "Cinematic websites for crypto, SaaS, and luxury brands. Next.js, WebGL, motion design.",
     images: ["/work/helix.jpg"],

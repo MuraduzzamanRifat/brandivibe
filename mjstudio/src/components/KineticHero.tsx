@@ -28,7 +28,7 @@ export function KineticHero() {
         <div className="mx-auto max-w-[1600px] flex justify-between items-start font-mono text-xs text-white/40 uppercase tracking-widest">
           <RevealLine>
             <div>
-              <div>MJ Studio</div>
+              <div>Brandivibe</div>
               <div className="mt-1">Independent · Remote · Worldwide</div>
             </div>
           </RevealLine>
@@ -75,7 +75,7 @@ export function KineticHero() {
           <div className="col-span-12 md:col-span-5 md:col-start-2">
             <RevealLine delay={0.6}>
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-md text-balance">
-                MJ Studio is an independent premium web design studio
+                Brandivibe is an independent premium web design studio
                 crafting cinematic websites for ambitious crypto, SaaS, and luxury brands.
               </p>
             </RevealLine>

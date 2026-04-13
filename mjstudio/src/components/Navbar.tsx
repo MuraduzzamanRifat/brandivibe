@@ -15,7 +15,7 @@ export function Navbar() {
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-6 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-2 h-2 rounded-full bg-white" />
-          <span className="font-mono text-sm uppercase tracking-widest text-white">MJ · Studio</span>
+          <span className="font-mono text-sm uppercase tracking-widest text-white">Brandivibe</span>
         </Link>
         <nav className="hidden md:flex items-center gap-10 font-mono text-xs uppercase tracking-widest text-white/70">
           <a href="#work" className="hover:text-white transition-colors">Work</a>

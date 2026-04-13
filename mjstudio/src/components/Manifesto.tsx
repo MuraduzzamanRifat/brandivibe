@@ -81,7 +81,7 @@ export function Manifesto() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/posters/mjstudio-manifesto.png"
-                  alt="MJ Studio — Silent Architecture manifesto poster"
+                  alt="Brandivibe — Silent Architecture manifesto poster"
                   className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />

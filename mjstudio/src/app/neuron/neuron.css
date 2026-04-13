@@ -1,0 +1,88 @@
+/* Neuron route theme. Scoped to .neuron-root. */
+
+.neuron-root {
+  --neuron-bg: #fafafa;
+  --neuron-fg: #0a0a0f;
+  --neuron-fg-muted: #525252;
+  --neuron-fg-soft: #737373;
+  --neuron-border: rgba(10, 10, 15, 0.08);
+  --neuron-border-soft: rgba(10, 10, 15, 0.05);
+  --neuron-accent: #0369a1;
+  --neuron-accent-hover: #075985;
+  --neuron-accent-light: #e0f2fe;
+
+  background: var(--neuron-bg);
+  color: var(--neuron-fg);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+}
+
+.neuron-root :focus-visible {
+  outline: 2px solid var(--neuron-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.neuron-root button,
+.neuron-root a,
+.neuron-root [role="button"] {
+  cursor: pointer;
+}
+
+.neuron-root ::selection {
+  background: #bfdbfe;
+  color: #0a0a0f;
+}
+
+.neuron-root .glass {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid rgba(10, 10, 15, 0.06);
+}
+
+.neuron-root .card {
+  background: #ffffff;
+  border: 1px solid var(--neuron-border);
+  box-shadow: 0 1px 2px 0 rgba(10, 10, 15, 0.04), 0 2px 4px 0 rgba(10, 10, 15, 0.02);
+}
+
+.neuron-root .elevated {
+  box-shadow:
+    0 0 0 1px rgba(10, 10, 15, 0.04),
+    0 1px 3px 0 rgba(10, 10, 15, 0.05),
+    0 8px 24px -8px rgba(10, 10, 15, 0.08);
+}
+
+.neuron-root .grid-pattern {
+  background-image:
+    linear-gradient(rgba(10, 10, 15, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 10, 15, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.neuron-root .code-block {
+  background: #fafafa;
+  border: 1px solid var(--neuron-border);
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-feature-settings: "calt" 0;
+}
+
+.neuron-root .k-kw { color: #7c3aed; }
+.neuron-root .k-fn { color: #0369a1; }
+.neuron-root .k-str { color: #059669; }
+.neuron-root .k-num { color: #d97706; }
+.neuron-root .k-com { color: #94a3b8; font-style: italic; }
+.neuron-root .k-var { color: #1e293b; }
+
+/* Compatibility helpers for direct Tailwind class usage that referenced custom color tokens */
+.neuron-root .text-foreground { color: var(--neuron-fg); }
+.neuron-root .text-foreground-muted { color: var(--neuron-fg-muted); }
+.neuron-root .text-foreground-soft { color: var(--neuron-fg-soft); }
+.neuron-root .bg-background { background: var(--neuron-bg); }
+.neuron-root .border-border { border-color: var(--neuron-border); }
+.neuron-root .border-border-soft { border-color: var(--neuron-border-soft); }

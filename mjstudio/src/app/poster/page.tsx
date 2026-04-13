@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "MJ Studio — Manifesto Poster",
+  title: "Brandivibe — Manifesto Poster",
   description:
     "Silent Architecture: a design philosophy expressed as a limited-edition manifesto poster. Plate 001 of 003.",
 };
@@ -18,7 +18,7 @@ export default function PosterPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/posters/mjstudio-manifesto.png"
-          alt="MJ Studio — Silent Architecture manifesto poster. Limited edition 001/003, Q2 2026."
+          alt="Brandivibe — Silent Architecture manifesto poster. Limited edition 001/003, Q2 2026."
           className="w-full h-auto block"
           width={1200}
           height={1600}

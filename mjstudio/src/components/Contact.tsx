@@ -110,11 +110,11 @@ export function Contact() {
         <div className="mt-12 text-center">
           <p className="text-white/40 text-sm mb-2">or reach us directly</p>
           <a
-            href="mailto:hello@mjstudio.com"
+            href="mailto:hello@brandivibe.com"
             className="inline-flex items-center gap-2 text-white hover:text-[#84e1ff] transition-colors"
           >
             <Mail className="w-4 h-4" />
-            hello@mjstudio.com
+            hello@brandivibe.com
           </a>
         </div>
       </div>

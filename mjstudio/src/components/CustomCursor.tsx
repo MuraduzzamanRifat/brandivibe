@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
+  const pathname = usePathname();
+  const onBrandivibeHome = pathname === "/" || pathname === "/poster";
   const [visible, setVisible] = useState(false);
   const [variant, setVariant] = useState<"default" | "link" | "text">("default");
   const [label, setLabel] = useState("");
@@ -62,7 +65,7 @@ export function CustomCursor() {
     };
   }, [x, y]);
 
-  if (!visible) return null;
+  if (!visible || !onBrandivibeHome) return null;
 
   return (
     <>
