@@ -186,6 +186,26 @@ export type LearningEntry = {
   evidence: Record<string, unknown>;
 };
 
+/**
+ * DailyRun is the idempotency/resume ledger for the brain cron. Keyed by
+ * date (YYYY-MM-DD). Each phase (plan, article, fb-per-post, score) has a
+ * status we consult before doing the work so retries never duplicate
+ * LLM/DALL-E spend and a killed request can be resumed from checkpoint.
+ */
+export type DailyRun = {
+  date: string;
+  startedAt: string;
+  updatedAt: string;
+  planId?: string;
+  phases: {
+    plan: "pending" | "done" | "failed";
+    article: "pending" | "done" | "failed" | "skipped";
+    fb: Array<"pending" | "done" | "failed">;
+    score: "pending" | "done" | "failed";
+  };
+  lastError?: string;
+};
+
 export type Draft = {
   id: string;
   prospectId: string;
@@ -207,6 +227,7 @@ type BrainData = {
   fbQueue?: FbPost[];
   plans?: Plan[];
   learning?: LearningEntry[];
+  runs?: DailyRun[];
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -224,6 +245,7 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     fbQueue: d?.fbQueue ?? [],
     plans: d?.plans ?? [],
     learning: d?.learning ?? [],
+    runs: d?.runs ?? [],
   };
 }
 
@@ -319,6 +341,47 @@ export async function logActivity(a: Omit<Activity, "id" | "timestamp"> & { id?:
 export async function loadActivities(limit = 50): Promise<Activity[]> {
   const data = await loadBrain();
   return (data.activities ?? []).slice(0, limit);
+}
+
+export function todayKey(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRun> {
+  const data = await loadBrain();
+  data.runs = data.runs ?? [];
+  let run = data.runs.find((r) => r.date === date);
+  if (!run) {
+    run = {
+      date,
+      startedAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      phases: {
+        plan: "pending",
+        article: "pending",
+        fb: Array.from({ length: fbSlots }, () => "pending" as const),
+        score: "pending",
+      },
+    };
+    data.runs.unshift(run);
+    if (data.runs.length > 60) data.runs.length = 60;
+    await saveBrain(data);
+  }
+  return run;
+}
+
+export async function updateRun(
+  date: string,
+  patch: (r: DailyRun) => void
+): Promise<DailyRun> {
+  const data = await loadBrain();
+  data.runs = data.runs ?? [];
+  const run = data.runs.find((r) => r.date === date);
+  if (!run) throw new Error(`DailyRun ${date} not found`);
+  patch(run);
+  run.updatedAt = new Date().toISOString();
+  await saveBrain(data);
+  return run;
 }
 
 export async function addPlan(plan: Plan): Promise<void> {

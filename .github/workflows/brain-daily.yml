@@ -8,13 +8,48 @@ on:
 jobs:
   tick:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
-      - name: Fire run-daily
+      - name: Tick 1 — plan + execute
+        id: tick1
+        continue-on-error: true
         run: |
           curl -fsS --max-time 540 -X POST \
             https://brandivibe.com/api/brain/run-daily \
             -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response.json
-          echo "--- response ---"
-          cat response.json
+            -o response1.json
+          echo "--- tick 1 ---"
+          cat response1.json
+
+      - name: Wait 30s for any in-flight retry window
+        if: steps.tick1.outcome == 'failure'
+        run: sleep 30
+
+      - name: Tick 2 — resume from checkpoint (idempotent)
+        id: tick2
+        if: steps.tick1.outcome == 'failure'
+        run: |
+          curl -fsS --max-time 540 -X POST \
+            https://brandivibe.com/api/brain/run-daily \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response2.json
+          echo "--- tick 2 (resume) ---"
+          cat response2.json
+
+      - name: Status probe
+        run: |
+          curl -fsS https://brandivibe.com/api/brain/run-daily -o status.json
+          echo "--- run ledger ---"
+          cat status.json
+
+      - name: Fail job if any phase still failed
+        run: |
+          node -e "
+            const s = require('./status.json');
+            const p = s.run.phases;
+            const failed = [p.plan, p.article, p.score, ...p.fb].filter(x => x === 'failed');
+            if (failed.length) {
+              console.error('Phases failed:', failed);
+              process.exit(1);
+            }
+          "
