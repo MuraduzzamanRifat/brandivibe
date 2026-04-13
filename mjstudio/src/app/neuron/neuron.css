@@ -19,6 +19,7 @@
   min-height: 100vh;
   display: block;
   position: relative;
+  overflow-x: hidden;
 }
 
 .neuron-root :focus-visible {
