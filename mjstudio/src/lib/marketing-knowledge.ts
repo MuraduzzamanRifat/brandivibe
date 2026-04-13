@@ -15,6 +15,7 @@ const FILES = [
   "messaging.md",
   "battlecards.md",
   "gtm.md",
+  "sequences.md",
 ];
 
 let cached: string | null = null;
