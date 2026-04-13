@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>MJ Studio — Manifesto Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #f5f5f1;
+    --ink-dim: rgba(245, 245, 241, 0.55);
+    --ink-faint: rgba(245, 245, 241, 0.22);
+    --bg: #0b0b0e;
+    --accent: #d9c29b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: "EB Garamond", serif; }
+  body {
+    width: 1200px;
+    height: 1600px;
+    padding: 72px 80px;
+    position: relative;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* subtle paper grain */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+    opacity: 0.035;
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* grid marks — measurement ritual */
+  .ticks-top, .ticks-bottom {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    height: 6px;
+    pointer-events: none;
+  }
+  .ticks-top { top: 72px; }
+  .ticks-bottom { bottom: 72px; }
+  .ticks-top span, .ticks-bottom span {
+    width: 1px;
+    height: 6px;
+    background: var(--ink-faint);
+  }
+  .ticks-top span:nth-child(6n+1),
+  .ticks-bottom span:nth-child(6n+1) {
+    height: 10px;
+    background: var(--ink-dim);
+  }
+
+  /* top header */
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-top: 30px;
+  }
+  .header .block { display: flex; flex-direction: column; gap: 4px; }
+  .header .block .faint { color: var(--ink-faint); }
+  .header .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* central composition */
+  .center {
+    position: absolute;
+    inset: 260px 80px 340px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .edition-label {
+    font-family: "Space Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .edition-label .rule {
+    display: inline-block;
+    width: 48px;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  h1.headline {
+    font-family: "EB Garamond", serif;
+    font-weight: 500;
+    font-size: 172px;
+    line-height: 0.88;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h1.headline em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  h1.headline .small {
+    display: block;
+    font-size: 96px;
+    font-weight: 400;
+    color: var(--ink-dim);
+    margin-top: 8px;
+  }
+
+  /* mid-line specimen strip */
+  .specimen-row {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 230px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+    padding: 22px 0;
+    border-top: 1px solid var(--ink-faint);
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .specimen-row .cell {
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .specimen-row .cell .label {
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+    display: block;
+    font-size: 8px;
+  }
+  .specimen-row .cell .value {
+    color: var(--ink);
+    font-size: 12px;
+  }
+
+  /* bottom */
+  .footer {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: "Space Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .footer .stamp {
+    border: 1px solid var(--ink-faint);
+    padding: 8px 14px;
+    letter-spacing: 0.28em;
+    font-size: 9px;
+    color: var(--ink-dim);
+  }
+
+  /* diagonal reference mark */
+  .pivot {
+    position: absolute;
+    bottom: 320px;
+    right: 80px;
+    width: 1px;
+    height: 120px;
+    background: var(--ink-faint);
+  }
+  .pivot::before {
+    content: "×";
+    position: absolute;
+    top: -18px;
+    left: -6px;
+    font-family: "Space Mono", monospace;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  /* dot grid — pattern as fingerprint */
+  .dotgrid {
+    position: absolute;
+    top: 260px;
+    right: 80px;
+    width: 160px;
+    height: 160px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    opacity: 0.6;
+  }
+  .dotgrid span {
+    width: 2px;
+    height: 2px;
+    background: var(--ink-faint);
+    border-radius: 50%;
+    margin: auto;
+  }
+  .dotgrid span.gold { background: var(--accent); }
+</style>
+</head>
+<body>
+  <!-- top ticks -->
+  <div class="ticks-top">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- header -->
+  <div class="header">
+    <div class="block">
+      <span><span class="dot"></span>MJ · STUDIO</span>
+      <span class="faint">INDEPENDENT · REMOTE · WORLDWIDE</span>
+    </div>
+    <div class="block" style="text-align:right;">
+      <span>EDITION 001 / 003</span>
+      <span class="faint">Q2 · 2026</span>
+    </div>
+  </div>
+
+  <!-- right dot grid -->
+  <div class="dotgrid" id="dotgrid"></div>
+
+  <!-- central -->
+  <div class="center">
+    <div class="edition-label">
+      <span class="rule"></span>
+      MANIFESTO · 002
+    </div>
+    <h1 class="headline">
+      Taste,<br/>
+      <em>craft</em>,<br/>
+      motion.
+      <span class="small">— the work speaks.</span>
+    </h1>
+  </div>
+
+  <!-- diagonal pivot mark -->
+  <div class="pivot"></div>
+
+  <!-- specimen row -->
+  <div class="specimen-row">
+    <div class="cell"><span class="label">Discipline</span><span class="value">Design & Engineering</span></div>
+    <div class="cell"><span class="label">Stack</span><span class="value">Next · R3F · Motion</span></div>
+    <div class="cell"><span class="label">Delivery</span><span class="value">Six weeks</span></div>
+    <div class="cell"><span class="label">Projects / Q</span><span class="value">Two maximum</span></div>
+  </div>
+
+  <!-- bottom ticks -->
+  <div class="ticks-bottom">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <span>PLATE 001 · SILENT ARCHITECTURE</span>
+    <span class="stamp">PRINTED · MMXXVI</span>
+    <span>COORD 35.6762 / 139.6503</span>
+  </div>
+
+  <script>
+    // populate dot grid, gilding a few
+    const g = document.getElementById("dotgrid");
+    for (let i = 0; i < 144; i++) {
+      const s = document.createElement("span");
+      if ([7, 34, 45, 88, 99, 121].includes(i)) s.classList.add("gold");
+      g.appendChild(s);
+    }
+  </script>
+</body>
+</html>

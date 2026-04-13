@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Neuron — Datasheet Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8;
+    --bg-card: #ffffff;
+    --ink: #08080c;
+    --ink-muted: #525257;
+    --ink-faint: #b4b4bb;
+    --ink-hairline: rgba(8, 8, 12, 0.08);
+    --accent: #0369a1;
+    --accent-pale: #e0f2fe;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); font-family: "Plus Jakarta Sans", sans-serif; }
+  body {
+    width: 1200px;
+    height: 1600px;
+    padding: 80px 80px;
+    position: relative;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01";
+  }
+
+  /* blueprint grid */
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(8, 8, 12, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(8, 8, 12, 0.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+  }
+
+  .topbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--ink-hairline);
+  }
+  .topbar .block .f { color: var(--ink-faint); display: block; margin-top: 6px; }
+  .topbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    color: var(--ink);
+    text-transform: none;
+  }
+  .topbar .logo .dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, var(--accent) 0%, #0ea5e9 100%);
+    position: relative;
+  }
+  .topbar .logo .dot::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    background: var(--bg-card);
+    border-radius: 50%;
+  }
+  .topbar .logo .dot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  /* center */
+  .center {
+    position: absolute;
+    inset: 220px 80px 480px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-label .bar {
+    display: inline-block;
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1.headline {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 600;
+    font-size: 148px;
+    line-height: 0.86;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+  }
+  h1.headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-muted);
+  }
+  h1.headline .caret {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    vertical-align: text-top;
+    margin-left: 8px;
+    transform: translateY(-60px);
+  }
+
+  .subline {
+    margin-top: 40px;
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    font-weight: 400;
+  }
+
+  /* datasheet block */
+  .datasheet {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 220px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--ink-hairline);
+    border-bottom: 1px solid var(--ink-hairline);
+  }
+  .datasheet .col {
+    padding: 28px 24px;
+    border-right: 1px solid var(--ink-hairline);
+  }
+  .datasheet .col:last-child { border-right: 0; }
+  .datasheet .l {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .datasheet .v {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .datasheet .k {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+  }
+
+  /* footer */
+  .footer {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .footer .tag {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+  }
+
+  /* decorative neural dots - top right */
+  .dots {
+    position: absolute;
+    top: 200px;
+    right: 80px;
+    width: 160px;
+    height: 160px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 0;
+  }
+  .dots span {
+    width: 4px;
+    height: 4px;
+    background: var(--ink-hairline);
+    border-radius: 50%;
+    margin: auto;
+  }
+  .dots span.on { background: var(--accent); }
+
+  /* diagonal crosshair */
+  .crosshair {
+    position: absolute;
+    top: 560px;
+    right: 110px;
+    width: 60px;
+    height: 60px;
+  }
+  .crosshair::before, .crosshair::after {
+    content: "";
+    position: absolute;
+    background: var(--ink-faint);
+  }
+  .crosshair::before {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+  .crosshair::after {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .crosshair .c {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+  }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="block">
+      <div class="logo"><span class="dot"></span>Neuron</div>
+    </div>
+    <div class="block" style="text-align:right;">
+      DATASHEET / v2.0
+      <span class="f">SPEC · MMXXVI</span>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <div class="crosshair"><span class="c"></span></div>
+
+  <div class="center">
+    <div class="section-label">
+      <span class="bar"></span>
+      MODEL / FRAMEWORK v2.0
+    </div>
+    <h1 class="headline">
+      Ship in<br/>
+      <em>minutes</em>.<span class="caret"></span>
+    </h1>
+    <p class="subline">
+      The developer-first platform for building, evaluating, and deploying
+      production-grade AI agents. Observability, guardrails, and evals — built in.
+    </p>
+  </div>
+
+  <div class="datasheet">
+    <div class="col">
+      <span class="l">Model</span>
+      <span class="k">Neuron Agent Framework · v2.0</span>
+    </div>
+    <div class="col">
+      <span class="l">p95 latency</span>
+      <span class="v">47ms</span>
+    </div>
+    <div class="col">
+      <span class="l">Eval pass</span>
+      <span class="v">99.2%</span>
+    </div>
+    <div class="col">
+      <span class="l">Uptime</span>
+      <span class="v">99.99%</span>
+    </div>
+    <div class="col">
+      <span class="l">Agents</span>
+      <span class="v">12.4k</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>SPEC · 04 · NEURON</span>
+    <span class="tag">BUILT WITH CRAFT · MJ STUDIO</span>
+    <span>SOC 2 · HIPAA · EDGE</span>
+  </div>
+
+  <script>
+    const d = document.getElementById("dots");
+    const pattern = [3, 10, 11, 18, 24, 25, 32, 38, 45, 48, 52, 55, 56, 60];
+    for (let i = 0; i < 64; i++) {
+      const s = document.createElement("span");
+      if (pattern.includes(i)) s.classList.add("on");
+      d.appendChild(s);
+    }
+  </script>
+</body>
+</html>
