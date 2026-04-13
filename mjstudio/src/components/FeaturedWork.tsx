@@ -4,51 +4,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { RevealLine } from "./SplitText";
 import { LazyVideo } from "./LazyVideo";
+import { demos } from "@/data/demos";
 
-type Project = {
-  num: string;
-  name: string;
-  category: string;
-  description: string;
-  tags: string[];
-  href: string;
-  video: string | null;
-  poster: string | null;
-  gradient: string;
-  year: string;
-  role: string;
-};
-
-const projects: Project[] = [
-  {
-    num: "01",
-    name: "Helix",
-    category: "Crypto · DeFi · Liquid Staking",
-    description:
-      "Institutional-grade DeFi protocol landing with custom WebGL hero, real-time TVL dashboard, and a trust-first security narrative.",
-    tags: ["Next.js", "R3F", "Custom shaders", "Wagmi"],
-    href: "http://localhost:3001",
-    video: "/work/helix.webm",
-    poster: "/work/helix.jpg",
-    gradient: "from-[#fbbf24]/30 via-[#8b5cf6]/15 to-[#0a0a1e]",
-    year: "2026",
-    role: "Design · Build · WebGL",
-  },
-  {
-    num: "02",
-    name: "Neuron",
-    category: "B2B SaaS · AI Platform",
-    description:
-      "AI agent platform with an interactive code playground, 3-tier pricing, subtle neural-network 3D accent, and a restrained editorial rhythm built for enterprise buyers.",
-    tags: ["Next.js", "R3F particles", "Playground", "Stripe"],
-    href: "http://localhost:3002",
-    video: "/work/neuron.webm",
-    poster: "/work/neuron.jpg",
-    gradient: "from-[#e0e7ff]/20 via-[#a78bfa]/15 to-[#0a0a1e]",
-    year: "2026",
-    role: "Design · Build · DX",
-  },
-];
+const projects = demos;
 
 export function FeaturedWork() {
   return (
