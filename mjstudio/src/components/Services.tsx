@@ -1,82 +1,224 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useRef } from "react";
 import { RevealLine } from "./SplitText";
 import { LazyVideo } from "./LazyVideo";
 
-const services = [
+type Service = {
+  num: string;
+  title: string;
+  desc: string;
+  accent: string;
+  bullets: string[];
+};
+
+const services: Service[] = [
   {
     num: "01",
     title: "Marketing sites",
     desc: "Premium landing pages for SaaS, crypto, and luxury brands. Next.js, SEO, CMS, analytics — shipped in 4-6 weeks.",
+    accent: "#84e1ff",
+    bullets: ["Next.js 16 + App Router", "CMS integration", "SEO + OG metadata", "95+ Lighthouse"],
   },
   {
     num: "02",
     title: "3D & WebGL",
     desc: "Cinematic hero scenes, interactive product showcases, particle systems. Built with React Three Fiber and custom shaders.",
+    accent: "#a78bfa",
+    bullets: ["React Three Fiber", "Custom GLSL shaders", "Blender pipelines", "Mobile-optimized"],
   },
   {
     num: "03",
     title: "Motion design",
     desc: "Scroll-driven animations, micro-interactions, page transitions. The details that make a site feel alive.",
+    accent: "#f0abfc",
+    bullets: ["Framer Motion", "Lenis smooth scroll", "GSAP + ScrollTrigger", "Reduced-motion fallbacks"],
   },
   {
     num: "04",
     title: "Full-stack builds",
     desc: "Dashboards, auth flows, payments. TypeScript, Postgres, Stripe, Supabase. Clean code, documented, maintainable.",
+    accent: "#fcd34d",
+    bullets: ["TypeScript everywhere", "Postgres + Drizzle", "Stripe + webhooks", "Clerk / Supabase auth"],
   },
 ];
 
-export function Services() {
+function ServiceDot({
+  accent,
+  index,
+  total,
+  progress,
+}: {
+  accent: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const opacity = useTransform(
+    progress,
+    [(index - 0.3) / total, index / total, (index + 0.7) / total],
+    [0.3, 1, 0.3]
+  );
   return (
-    <section id="services" className="relative py-40 px-6 md:px-12 border-t border-white/5 overflow-hidden">
-      {/* atmospheric stock video — T Honkamies / Pexels */}
-      <LazyVideo
-        src="/stock/services-bg.mp4"
-        className="absolute inset-0 w-full h-full object-cover opacity-[0.22] pointer-events-none"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#08080a]/70 to-[#08080a] pointer-events-none" />
-      <div className="relative mx-auto max-w-[1600px]">
-        <div className="grid grid-cols-12 gap-6 mb-20">
-          <div className="col-span-12 md:col-span-3">
-            <div className="font-mono text-xs text-white/40 uppercase tracking-widest">
-              — Services
-            </div>
-            <div className="mt-2 font-mono text-xs text-white/40">004</div>
-          </div>
-          <div className="col-span-12 md:col-span-9">
-            <RevealLine>
-              <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance">
-                What we build,
-                <br />
-                <span className="italic text-white/60">when the brief says world-class.</span>
-              </h2>
-            </RevealLine>
-          </div>
-        </div>
+    <motion.div
+      style={{ opacity, background: accent }}
+      className="w-8 h-[2px] rounded-full"
+    />
+  );
+}
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-0 border-t border-white/5">
+function ServicePanel({
+  service,
+  index,
+  progress,
+}: {
+  service: Service;
+  index: number;
+  progress: MotionValue<number>;
+}) {
+  const localStart = index / services.length;
+  const localEnd = (index + 1) / services.length;
+
+  const opacity = useTransform(
+    progress,
+    [localStart - 0.1, localStart, localEnd - 0.1, localEnd],
+    [0, 1, 1, 0]
+  );
+  const y = useTransform(
+    progress,
+    [localStart, localEnd],
+    ["40px", "-40px"]
+  );
+  const numberScale = useTransform(
+    progress,
+    [localStart, localStart + 0.1, localEnd - 0.05, localEnd],
+    [0.85, 1, 1, 1.05]
+  );
+  const xMin = useTransform(
+    progress,
+    [localStart, localEnd],
+    ["0%", "-10%"]
+  );
+
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute inset-0 flex items-center justify-center px-6 md:px-16 pointer-events-none"
+    >
+      <div className="mx-auto max-w-[1600px] w-full grid grid-cols-12 gap-8 items-center">
+        {/* massive number */}
+        <motion.div
+          style={{ scale: numberScale, x: xMin }}
+          className="col-span-12 md:col-span-5 origin-left"
+        >
+          <div
+            className="font-mono text-xs uppercase tracking-[0.4em] mb-4"
+            style={{ color: service.accent }}
+          >
+            — Service · {service.num}
+          </div>
+          <div
+            className="font-semibold leading-[0.82] tracking-[-0.05em]"
+            style={{
+              fontSize: "clamp(8rem, 22vw, 28rem)",
+              background: `linear-gradient(180deg, ${service.accent} 0%, rgba(255,255,255,0.4) 100%)`,
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            {service.num}
+          </div>
+        </motion.div>
+
+        {/* title + description */}
+        <motion.div style={{ y }} className="col-span-12 md:col-span-7 md:pl-10">
+          <h3 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
+            {service.title}
+          </h3>
+          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-10 text-balance">
+            {service.desc}
+          </p>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 max-w-lg">
+            {service.bullets.map((b) => (
+              <li
+                key={b}
+                className="font-mono text-xs text-white/50 uppercase tracking-widest flex items-center gap-2"
+              >
+                <span
+                  className="w-1 h-1 rounded-full"
+                  style={{ background: service.accent }}
+                />
+                {b}
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function Services() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
+  const progressBarScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  return (
+    <section
+      id="services"
+      ref={ref}
+      className="relative border-t border-white/5"
+      style={{ height: `${services.length * 100}vh` }}
+    >
+      {/* section label, sits above the pinned area */}
+      <div className="absolute top-8 left-6 md:left-12 z-20 flex items-baseline gap-4 font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
+        <span>— Services</span>
+        <span>004</span>
+        <span className="hidden md:inline">— what we build when the brief says world-class</span>
+      </div>
+
+      {/* progress bar */}
+      <div className="absolute top-8 right-6 md:right-12 z-20 w-32 h-[2px] bg-white/10 origin-left overflow-hidden rounded-full">
+        <motion.div
+          style={{ scaleX: progressBarScaleX }}
+          className="origin-left h-full bg-gradient-to-r from-[#84e1ff] via-[#a78bfa] to-[#fcd34d]"
+        />
+      </div>
+
+      {/* pinned viewport */}
+      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
+        {/* stock video bg */}
+        <LazyVideo
+          src="/stock/services-bg.mp4"
+          className="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#0a0a0f] to-[#08080a] pointer-events-none" />
+
+        {services.map((s, i) => (
+          <ServicePanel
+            key={s.num}
+            service={s}
+            index={i}
+            progress={scrollYProgress}
+          />
+        ))}
+
+        {/* bottom indicator dots */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
           {services.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-              className="md:col-span-6 border-b border-white/5 md:[&:nth-child(odd)]:border-r md:[&:nth-child(odd)]:border-white/5 py-12 px-2 md:px-8 group hover:bg-white/[0.02] transition-colors"
-            >
-              <div className="grid grid-cols-12 gap-4 items-start">
-                <div className="col-span-2 font-mono text-xs text-white/40 uppercase tracking-widest pt-2">
-                  {s.num}
-                </div>
-                <div className="col-span-10">
-                  <h3 className="text-2xl md:text-3xl font-semibold mb-3 tracking-tight">
-                    {s.title}
-                  </h3>
-                  <p className="text-white/60 leading-relaxed">{s.desc}</p>
-                </div>
-              </div>
-            </motion.div>
+            <ServiceDot
+              key={s.num}
+              accent={s.accent}
+              index={i}
+              total={services.length}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
       </div>

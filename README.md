@@ -38,7 +38,7 @@ cd neuron && npm run dev       # http://localhost:3002
 ## Highlights
 
 - **Real WebGL, not stock** — each hero runs a custom R3F scene (glass blob, double helix, neural network)
-- **Self-recorded video loops** — MJ Studio's Featured Work cards play actual video of the live Helix and Neuron sites, captured via Playwright
+- **Self-recorded video loops** — Brandivibe's Featured Work cards play actual video of the live Helix and Neuron sites, captured via Playwright
 - **Museum-grade posters** — each site has a `/poster` route serving a print-quality PNG rendered from HTML via Playwright, one per design philosophy
 - **Accessibility** — every R3F scene respects `prefers-reduced-motion` with static fallbacks
 - **SEO** — full OG / Twitter card metadata with auto-generated images
@@ -50,4 +50,4 @@ Each site deploys as its own Vercel project with the matching subdirectory as ro
 
 ---
 
-Built by **MJ Studio**. [Start a project →](mailto:hello@mjstudio.com)
+Built by **Brandivibe**. [Start a project →](mailto:hello@brandivibe.com)
