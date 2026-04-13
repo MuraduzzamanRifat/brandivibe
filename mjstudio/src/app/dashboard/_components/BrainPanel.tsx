@@ -98,22 +98,35 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
   const todayPlan = plans[0];
 
   return (
-    <div className="mt-8 panel p-6">
-      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-        <div className="flex items-center gap-2 flex-wrap">
-          {(["plans", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`btn ${tab === t ? "btn-primary" : "btn-ghost"}`}
-            >
-              {t === "plans" ? "Plans" : t === "queue" ? `Queue (${fbQueue.filter((p) => p.status === "queued").length})` : t === "journal" ? `Journal (${articles.length})` : "Scoreboard"}
-            </button>
-          ))}
+    <div className="mt-10 panel p-8 md:p-10">
+      <div className="flex items-start justify-between mb-8 flex-wrap gap-6">
+        <div className="flex-1 min-w-[280px]">
+          <div className="eyebrow mb-4">Autonomous brain</div>
+          <h2 className="display text-2xl md:text-3xl">
+            Daily plan, <span className="serif text-[var(--brain-accent)]">execute</span>, learn
+          </h2>
         </div>
         <button onClick={runBrain} className="btn btn-primary" disabled={running}>
           {running ? "Running brain…" : "Run brain now"}
         </button>
+      </div>
+
+      <div className="flex items-center gap-2 flex-wrap mb-8">
+        {(["plans", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            className={`btn ${tab === t ? "btn-primary" : "btn-ghost"}`}
+          >
+            {t === "plans"
+              ? "Plans"
+              : t === "queue"
+              ? `Queue (${fbQueue.filter((p) => p.status === "queued").length})`
+              : t === "journal"
+              ? `Journal (${articles.length})`
+              : "Scoreboard"}
+          </button>
+        ))}
       </div>
 
       {error && (
@@ -250,19 +263,18 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
 
       {tab === "scoreboard" && metrics && (
         <div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-            <Stat label="Articles (30d)" value={metrics.articles} />
+          <div className="eyebrow mb-5">Last 30 days</div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <Stat label="Articles" value={metrics.articles} />
             <Stat label="FB published" value={metrics.fbPublished} />
             <Stat label="Plans executed" value={`${metrics.plansExecuted}/${metrics.plansTotal}`} />
             <Stat label="Avg SEO" value={metrics.avgSeo} />
             <Stat label="Pageviews" value={metrics.totalPageviews} />
             <Stat label="FB reach" value={metrics.totalReach} />
             <Stat label="FB clicks" value={metrics.totalClicks} />
-            <Stat label="Tokens (30d)" value={metrics.tokens} />
+            <Stat label="Tokens spent" value={metrics.tokens} />
           </div>
-          <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-3">
-            Learning insights (most recent {metrics.learning.length})
-          </div>
+          <div className="eyebrow mb-4">Learning insights · {metrics.learning.length}</div>
           {learning.length === 0 ? (
             <div className="text-sm text-[var(--brain-muted)]">No insights yet. Need 24h + metrics to learn.</div>
           ) : (
@@ -283,9 +295,9 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
 
 function Stat({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="border border-white/10 rounded-xl p-3">
-      <div className="mono text-[9px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">{label}</div>
-      <div className="mt-1 text-xl font-semibold tabular-nums">{value}</div>
+    <div className="panel-2 p-5">
+      <div className="mono text-[9px] uppercase tracking-[0.28em] text-[var(--brain-muted)]">{label}</div>
+      <div className="mt-3 stat-value">{typeof value === "number" ? value.toLocaleString() : value}</div>
     </div>
   );
 }

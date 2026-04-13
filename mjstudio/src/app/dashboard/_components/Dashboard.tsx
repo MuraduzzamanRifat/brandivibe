@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo, useCallback } from "react";
+import Link from "next/link";
 import type { Prospect, Draft, Activity, Article } from "@/lib/brain-storage";
 import { ProspectList } from "./ProspectList";
 import { DraftPanel } from "./DraftPanel";
@@ -123,21 +124,24 @@ export function Dashboard() {
   }, [data, activities]);
 
   return (
-    <main className="min-h-screen px-6 md:px-10 py-10">
-      <header className="mx-auto max-w-[1600px] mb-8">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <div className="mono text-[10px] uppercase tracking-[0.3em] text-[var(--brain-muted)] mb-2">
-              — Brandivibe · Internal
-            </div>
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
-              Dashboard
+    <main className="min-h-screen px-6 md:px-10 py-16 md:py-20">
+      <header className="mx-auto max-w-[1600px] mb-12">
+        <div className="flex items-start justify-between mb-10 gap-8 flex-wrap">
+          <div className="max-w-2xl">
+            <div className="eyebrow mb-5">Brandivibe · Internal</div>
+            <h1 className="display text-5xl md:text-6xl lg:text-7xl">
+              Sales brain <span className="serif text-[var(--brain-accent)]">console</span>
             </h1>
+            <p className="mt-5 text-[15px] leading-relaxed text-[var(--brain-muted)] max-w-xl">
+              The autonomous system that plans, publishes and learns so the
+              studio stays focused on shipping. Everything on this page is
+              real execution against real APIs.
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <a href="/" className="btn btn-ghost">
-              ← Brandivibe home
-            </a>
+          <div className="flex items-center gap-3 flex-wrap">
+            <Link href="/" className="btn btn-ghost">
+              ← Home
+            </Link>
             <button
               onClick={runSource}
               className="btn btn-ghost"
@@ -241,10 +245,13 @@ export function Dashboard() {
         <ActivityFeed activities={activities} />
       </div>
 
-      <footer className="mx-auto max-w-[1600px] mt-16 pt-6 border-t border-[var(--brain-border)]">
-        <div className="flex items-center justify-between mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">
-          <span>Brandivibe · AI Sales Brain · v0.1</span>
-          <span>GPT-4o · Grounded on /marketing</span>
+      <footer className="mx-auto max-w-[1600px] mt-20">
+        <div className="divider mb-6" />
+        <div className="flex items-center justify-between flex-wrap gap-3 mono text-[10px] uppercase tracking-[0.28em] text-[var(--brain-muted)]">
+          <span>Brandivibe · Sales brain</span>
+          <span className="serif normal-case tracking-normal text-[13px] text-[var(--brain-muted)]">
+            Grounded on <span className="text-[var(--brain-accent)]">/marketing</span> · powered by GPT-4o &amp; DALL-E 3
+          </span>
         </div>
       </footer>
     </main>
@@ -254,46 +261,54 @@ export function Dashboard() {
 function ActivityFeed({ activities }: { activities: Activity[] }) {
   if (activities.length === 0) {
     return (
-      <div className="panel p-6">
-        <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-3">
-          Activity feed
-        </div>
-        <div className="text-sm text-[var(--brain-muted)]">
-          No activity yet. Click &quot;Run sources&quot; to fetch real prospects from TechCrunch.
+      <div className="panel p-8 md:p-10">
+        <div className="eyebrow mb-4">Activity feed</div>
+        <div className="text-[15px] text-[var(--brain-muted)]">
+          No activity yet. Click <span className="text-white/80">Run sources</span> to fetch real prospects from TechCrunch.
         </div>
       </div>
     );
   }
   const colorFor = (t: Activity["type"]) => {
     switch (t) {
-      case "prospect-added": return "var(--brain-accent)";
-      case "draft-generated": return "#84e1ff";
-      case "error": return "var(--brain-danger)";
-      case "prospect-skipped": return "var(--brain-muted)";
-      default: return "var(--brain-muted)";
+      case "prospect-added":
+      case "article-published":
+      case "insight-learned":
+        return "var(--brain-success)";
+      case "draft-generated":
+      case "plan-generated":
+      case "fb-published":
+        return "var(--brain-accent)";
+      case "fb-queued":
+      case "metrics-pulled":
+        return "var(--brain-accent-2)";
+      case "error":
+        return "var(--brain-danger)";
+      default:
+        return "var(--brain-muted)";
     }
   };
   return (
-    <div className="panel p-6">
-      <div className="flex items-center justify-between mb-4">
-        <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">
-          Activity feed · real AI execution log
-        </div>
+    <div className="panel p-8 md:p-10">
+      <div className="flex items-center justify-between mb-6">
+        <div className="eyebrow">Activity feed · real execution log</div>
         <div className="mono text-[10px] text-[var(--brain-muted)]">{activities.length} events</div>
       </div>
-      <ul className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
+      <ul className="space-y-3 max-h-[440px] overflow-y-auto pr-2">
         {activities.map((a) => (
-          <li key={a.id} className="flex gap-3 text-sm">
+          <li key={a.id} className="flex gap-4 text-sm group">
             <span
-              className="mt-1.5 inline-block w-1.5 h-1.5 rounded-full shrink-0"
-              style={{ background: colorFor(a.type) }}
+              className="mt-[7px] inline-block w-[6px] h-[6px] rounded-full shrink-0 pulse"
+              style={{ background: colorFor(a.type), boxShadow: `0 0 12px ${colorFor(a.type)}` }}
             />
             <div className="flex-1 min-w-0">
-              <div className="text-[var(--brain-fg)] truncate">{a.description}</div>
-              <div className="mono text-[10px] text-[var(--brain-muted)] mt-0.5">
+              <div className="text-[var(--brain-ink)] text-[14px] leading-snug truncate group-hover:whitespace-normal">
+                {a.description}
+              </div>
+              <div className="mono text-[10px] text-[var(--brain-muted)] mt-1 tracking-wider">
                 {new Date(a.timestamp).toLocaleString()}
                 {a.model && <> · {a.model}</>}
-                {a.tokens ? <> · {a.tokens} tokens</> : null}
+                {a.tokens ? <> · {a.tokens.toLocaleString()} tok</> : null}
               </div>
             </div>
           </li>
@@ -313,16 +328,12 @@ function StatCard({
   accent?: "A";
 }) {
   return (
-    <div className="panel p-5">
-      <div className="mono text-[9px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">
+    <div className="panel-2 p-5 md:p-6">
+      <div className="mono text-[9px] uppercase tracking-[0.28em] text-[var(--brain-muted)]">
         {label}
       </div>
-      <div
-        className={`mt-2 text-3xl font-semibold tabular-nums ${
-          accent === "A" ? "tier-A" : ""
-        }`}
-      >
-        {value}
+      <div className={`mt-3 stat-value ${accent === "A" ? "text-[#86e5ff]" : ""}`}>
+        {value.toLocaleString()}
       </div>
     </div>
   );
