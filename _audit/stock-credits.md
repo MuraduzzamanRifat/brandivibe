@@ -34,3 +34,38 @@ https://www.pexels.com/license/
 ## mjstudio/process-bg.mp4
 - By **Chandresh Uike** on Pexels
 - Source: https://www.pexels.com/video/animated-abstract-blue-glowing-line-particles-wave-dark-background-abstract-pattern-futuristic-hi-tech-particles-background-28561463/
+
+
+# Section video attributions (Pexels)
+
+## helix/stock/section-bg.mp4
+- Video by **Dan Cristian Pădureț** on Pexels
+- Source: https://www.pexels.com/video/yellow-ink-flows-in-different-directions-in-slow-motion-3051359/
+
+## neuron/stock/section-bg.mp4
+- Video by **Nicola Narracci** on Pexels
+- Source: https://www.pexels.com/video/abstract-blue-digital-dots-background-35304434/
+
+## axiom/stock/section-bg.mp4
+- Video by **Alex Dos Santos** on Pexels
+- Source: https://www.pexels.com/video/moody-black-and-white-abstract-patterns-36305000/
+
+## pulse/stock/section-bg.mp4
+- Video by **Poolside Creative** on Pexels
+- Source: https://www.pexels.com/video/slow-motion-video-of-water-ripples-of-the-swimming-pool-6167679/
+
+## aurora/stock/section-bg.mp4
+- Video by **Dan Cristian Pădureț** on Pexels
+- Source: https://www.pexels.com/video/digital-abstract-art-5561376/
+
+## orbit/stock/section-bg.mp4
+- Video by **Chandresh Uike** on Pexels
+- Source: https://www.pexels.com/video/dynamic-green-light-streaks-motion-background-34645529/
+
+## monolith/stock/section-bg.mp4
+- Video by **TREEDEO.ST** on Pexels
+- Source: https://www.pexels.com/video/3d-rendering-of-a-concrete-building-6076828/
+
+## atrium/stock/section-bg.mp4
+- Video by **Dan Cristian Pădureț** on Pexels
+- Source: https://www.pexels.com/video/digital-abstract-art-5561376/

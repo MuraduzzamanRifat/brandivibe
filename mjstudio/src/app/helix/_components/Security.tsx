@@ -49,7 +49,18 @@ const features = [
 
 export function Security() {
   return (
-    <section id="security" className="relative py-32 px-6 md:px-8 border-t border-[#fbbf24]/10">
+    <section id="security" className="relative py-32 px-6 md:px-8 border-t border-[#fbbf24]/10 overflow-hidden">
+      <video
+        src="/helix/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1c] via-[#0a0f1c]/70 to-[#0a0f1c] pointer-events-none" />
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

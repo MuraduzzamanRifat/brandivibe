@@ -38,8 +38,19 @@ const features = [
 
 export function Features() {
   return (
-    <section id="providers" className="relative py-32 px-6 bg-white border-t border-pulse-faint">
-      <div className="mx-auto max-w-6xl">
+    <section id="providers" className="relative py-32 px-6 bg-white border-t border-pulse-faint overflow-hidden">
+      <video
+        src="/pulse/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.18] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-white/55 to-white pointer-events-none" />
+      <div className="relative mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

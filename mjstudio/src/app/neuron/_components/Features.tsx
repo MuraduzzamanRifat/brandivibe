@@ -45,8 +45,19 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="py-32 px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
+    <section id="features" className="py-32 px-6 lg:px-8 relative overflow-hidden">
+      <video
+        src="/neuron/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.14] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#fafafa] via-[#fafafa]/70 to-[#fafafa] pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

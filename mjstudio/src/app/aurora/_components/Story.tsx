@@ -31,8 +31,19 @@ const chapters = [
 
 export function Story() {
   return (
-    <section id="story" className="relative py-40 px-8 md:px-12 border-t border-[#d4a017]/10">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="story" className="relative py-40 px-8 md:px-12 border-t border-[#d4a017]/10 overflow-hidden">
+      <video
+        src="/aurora/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.15] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#07060a] via-[#07060a]/65 to-[#07060a] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1400px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -15,8 +15,19 @@ const companies = [
 
 export function Portfolio() {
   return (
-    <section id="portfolio" className="relative py-32 px-8 md:px-12 border-t hairline-champagne">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="portfolio" className="relative py-32 px-8 md:px-12 border-t hairline-champagne overflow-hidden">
+      <video
+        src="/atrium/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.13] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1020] via-[#0a1020]/70 to-[#0a1020] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1400px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

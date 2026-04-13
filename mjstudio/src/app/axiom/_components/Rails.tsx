@@ -36,8 +36,19 @@ const rails = [
 
 export function Rails() {
   return (
-    <section id="rails" className="relative py-32 px-6 md:px-10 border-t border-white/5">
-      <div className="mx-auto max-w-[1400px]">
+    <section id="rails" className="relative py-32 px-6 md:px-10 border-t border-white/5 overflow-hidden">
+      <video
+        src="/axiom/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.15] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e1a] via-[#0a0e1a]/70 to-[#0a0e1a] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1400px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

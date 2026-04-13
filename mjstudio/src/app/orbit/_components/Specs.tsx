@@ -31,8 +31,19 @@ const specs = [
 
 export function Specs() {
   return (
-    <section id="performance" className="relative py-32 px-6 md:px-10 border-t divider-line">
-      <div className="mx-auto max-w-[1600px]">
+    <section id="performance" className="relative py-32 px-6 md:px-10 border-t divider-line overflow-hidden">
+      <video
+        src="/orbit/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.16] pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05060a] via-[#05060a]/70 to-[#05060a] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1600px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

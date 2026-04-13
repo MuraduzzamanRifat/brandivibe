@@ -39,8 +39,19 @@ const works = [
 
 export function Works() {
   return (
-    <section id="works" className="relative py-32 px-6 md:px-12 border-t border-[#1a1a1a]/10 bg-[#f1efea]">
-      <div className="mx-auto max-w-[1600px]">
+    <section id="works" className="relative py-32 px-6 md:px-12 border-t border-[#1a1a1a]/10 bg-[#f1efea] overflow-hidden">
+      <video
+        src="/monolith/stock/section-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.18] mix-blend-multiply pointer-events-none"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#f1efea] via-[#f1efea]/60 to-[#f1efea] pointer-events-none" />
+      <div className="relative mx-auto max-w-[1600px]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
