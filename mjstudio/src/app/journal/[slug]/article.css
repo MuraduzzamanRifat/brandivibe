@@ -1,0 +1,59 @@
+.journal-article .prose {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.82);
+}
+.journal-article .prose > * + * { margin-top: 1.25em; }
+.journal-article .prose h1 {
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-top: 2.5em;
+  color: white;
+}
+.journal-article .prose h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin-top: 2em;
+  color: white;
+}
+.journal-article .prose h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.75em;
+  color: white;
+}
+.journal-article .prose p { color: rgba(255, 255, 255, 0.75); }
+.journal-article .prose a {
+  color: #84e1ff;
+  text-decoration: underline;
+  text-decoration-color: rgba(132, 225, 255, 0.3);
+  text-underline-offset: 3px;
+}
+.journal-article .prose a:hover { text-decoration-color: #84e1ff; }
+.journal-article .prose ul,
+.journal-article .prose ol { padding-left: 1.5em; }
+.journal-article .prose ul li { list-style: disc; }
+.journal-article .prose ol li { list-style: decimal; }
+.journal-article .prose blockquote {
+  border-left: 2px solid #84e1ff;
+  padding-left: 1.25em;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+.journal-article .prose code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+.journal-article .prose pre {
+  background: #0d0d10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25em;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+.journal-article .prose pre code { background: transparent; padding: 0; }
+.journal-article .prose strong { color: white; font-weight: 600; }

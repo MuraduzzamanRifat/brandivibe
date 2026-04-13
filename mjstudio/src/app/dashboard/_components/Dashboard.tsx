@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect, useState, useMemo, useCallback } from "react";
-import type { Prospect, Draft, Activity } from "@/lib/brain-storage";
+import type { Prospect, Draft, Activity, Article } from "@/lib/brain-storage";
 import { ProspectList } from "./ProspectList";
 import { DraftPanel } from "./DraftPanel";
+import { BrainPanel } from "./BrainPanel";
 
 type BrainPayload = {
   prospects: Prospect[];
   drafts: Draft[];
+  articles?: Article[];
   seeded?: number;
 };
 
@@ -229,6 +231,10 @@ export function Dashboard() {
             </div>
           )}
         </section>
+      </div>
+
+      <div className="mx-auto max-w-[1600px]">
+        <BrainPanel articles={data?.articles ?? []} />
       </div>
 
       <div className="mx-auto max-w-[1600px] mt-8">

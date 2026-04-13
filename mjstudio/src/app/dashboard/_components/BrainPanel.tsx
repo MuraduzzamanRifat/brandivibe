@@ -1,0 +1,291 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+import type { Article, FbPost, Plan, LearningEntry } from "@/lib/brain-storage";
+
+type QueueResponse = { fbQueue: FbPost[]; plans: Plan[]; learning: LearningEntry[] };
+
+type Metrics = {
+  window: string;
+  tokens: number;
+  articles: number;
+  fbPublished: number;
+  fbQueued: number;
+  plansExecuted: number;
+  plansTotal: number;
+  avgSeo: number;
+  totalPageviews: number;
+  totalReach: number;
+  totalClicks: number;
+  insights: number;
+  learning: LearningEntry[];
+};
+
+type Tab = "plans" | "queue" | "journal" | "scoreboard";
+
+export function BrainPanel({ articles }: { articles: Article[] }) {
+  const [tab, setTab] = useState<Tab>("plans");
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [fbQueue, setFbQueue] = useState<FbPost[]>([]);
+  const [learning, setLearning] = useState<LearningEntry[]>([]);
+  const [metrics, setMetrics] = useState<Metrics | null>(null);
+  const [running, setRunning] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchAll = useCallback(async () => {
+    try {
+      const [qRes, mRes] = await Promise.all([
+        fetch("/api/brain/queue", { cache: "no-store" }),
+        fetch("/api/brain/metrics", { cache: "no-store" }),
+      ]);
+      if (qRes.ok) {
+        const q = (await qRes.json()) as QueueResponse;
+        setPlans(q.plans);
+        setFbQueue(q.fbQueue);
+        setLearning(q.learning);
+      }
+      if (mRes.ok) setMetrics((await mRes.json()) as Metrics);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "load failed");
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchAll();
+  }, [fetchAll]);
+
+  async function runBrain() {
+    setRunning(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/brain/run-daily", { method: "POST" });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
+      await fetchAll();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "run failed");
+    } finally {
+      setRunning(false);
+    }
+  }
+
+  async function queueAction(id: string, action: "approve" | "reject") {
+    try {
+      await fetch("/api/brain/queue", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, action }),
+      });
+      await fetchAll();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "queue action failed");
+    }
+  }
+
+  async function rate(kind: "article" | "fbPost" | "plan", id: string, vote: "up" | "down") {
+    try {
+      await fetch("/api/brain/rate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ kind, id, vote }),
+      });
+      await fetchAll();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "rate failed");
+    }
+  }
+
+  const todayPlan = plans[0];
+
+  return (
+    <div className="mt-8 panel p-6">
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+        <div className="flex items-center gap-2 flex-wrap">
+          {(["plans", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`btn ${tab === t ? "btn-primary" : "btn-ghost"}`}
+            >
+              {t === "plans" ? "Plans" : t === "queue" ? `Queue (${fbQueue.filter((p) => p.status === "queued").length})` : t === "journal" ? `Journal (${articles.length})` : "Scoreboard"}
+            </button>
+          ))}
+        </div>
+        <button onClick={runBrain} className="btn btn-primary" disabled={running}>
+          {running ? "Running brain…" : "Run brain now"}
+        </button>
+      </div>
+
+      {error && (
+        <div className="mb-4 text-sm text-[var(--brain-danger)]">{error}</div>
+      )}
+
+      {tab === "plans" && (
+        <div>
+          {!todayPlan ? (
+            <div className="text-sm text-[var(--brain-muted)]">
+              No plan yet. Click &quot;Run brain now&quot; to generate today&apos;s plan, article, and FB queue.
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <div>
+                <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-2">
+                  Today&apos;s article ({todayPlan.date})
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{todayPlan.article.title}</h3>
+                <p className="text-sm text-[var(--brain-muted)] mb-3">{todayPlan.article.excerpt}</p>
+                <div className="text-xs text-[var(--brain-muted)] mb-3">
+                  primary: <b className="text-white">{todayPlan.article.primaryKeyword}</b> ·{" "}
+                  {todayPlan.article.secondaryKeywords?.join(", ")}
+                </div>
+                <details className="text-sm">
+                  <summary className="cursor-pointer text-[var(--brain-muted)]">Outline</summary>
+                  <ul className="mt-2 pl-5 list-disc text-sm text-[var(--brain-muted)] space-y-1">
+                    {todayPlan.article.outline?.map((o: string, i: number) => <li key={i}>{o}</li>)}
+                  </ul>
+                </details>
+                <div className="mt-3 flex gap-2">
+                  <button onClick={() => rate("plan", todayPlan.id, "up")} className="btn btn-ghost">👍</button>
+                  <button onClick={() => rate("plan", todayPlan.id, "down")} className="btn btn-ghost">👎</button>
+                </div>
+              </div>
+
+              <div>
+                <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-2">
+                  FB posts ({todayPlan.fbPosts?.length ?? 0})
+                </div>
+                <ul className="space-y-3">
+                  {todayPlan.fbPosts?.map((p, i: number) => (
+                    <li key={i} className="text-sm border-l-2 border-white/10 pl-3">
+                      {p.body}
+                      <div className="text-[10px] text-[var(--brain-muted)] mt-1">
+                        {p.hashtags?.join(" ")}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-2">
+                  Lead-gen actions
+                </div>
+                <ul className="space-y-3">
+                  {todayPlan.leadGen?.map((a, i: number) => (
+                    <li key={i} className="text-sm border-l-2 border-white/10 pl-3">
+                      <div className="mono text-[10px] text-[var(--brain-muted)]">{a.kind} → {a.target}</div>
+                      <div className="whitespace-pre-wrap">{a.script}</div>
+                      <div className="text-[10px] text-[var(--brain-muted)] mt-1 italic">Why: {a.rationale}</div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {tab === "queue" && (
+        <div>
+          {fbQueue.length === 0 ? (
+            <div className="text-sm text-[var(--brain-muted)]">Queue empty.</div>
+          ) : (
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {fbQueue.map((p) => (
+                <li key={p.id} className="border border-white/10 rounded-2xl p-4">
+                  <div className="mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-muted)] mb-2">
+                    {p.status} · {new Date(p.createdAt).toLocaleString()}
+                  </div>
+                  {p.imageUrl && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={p.imageUrl} alt="" className="w-full rounded mb-3 border border-white/5" />
+                  )}
+                  <div className="text-sm whitespace-pre-wrap mb-3">{p.body}</div>
+                  <div className="flex gap-2 flex-wrap">
+                    {p.status === "queued" && (
+                      <>
+                        <button onClick={() => queueAction(p.id, "approve")} className="btn btn-primary">Approve</button>
+                        <button onClick={() => queueAction(p.id, "reject")} className="btn btn-ghost">Reject</button>
+                      </>
+                    )}
+                    <button onClick={() => rate("fbPost", p.id, "up")} className="btn btn-ghost">👍</button>
+                    <button onClick={() => rate("fbPost", p.id, "down")} className="btn btn-ghost">👎</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {tab === "journal" && (
+        <div>
+          {articles.length === 0 ? (
+            <div className="text-sm text-[var(--brain-muted)]">No articles published yet.</div>
+          ) : (
+            <ul className="space-y-3">
+              {articles.map((a) => (
+                <li key={a.id} className="border border-white/10 rounded-2xl p-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <a href={`/journal/${a.slug}`} target="_blank" rel="noopener" className="font-semibold hover:text-[#84e1ff]">
+                        {a.title}
+                      </a>
+                      <div className="text-xs text-[var(--brain-muted)] mt-1">
+                        SEO {a.seoScore}/100 · {a.wordCount} words ·{" "}
+                        {a.metrics ? `${a.metrics.pageviews} views` : "no traffic data"}
+                      </div>
+                    </div>
+                    <div className="flex gap-1">
+                      <button onClick={() => rate("article", a.id, "up")} className="btn btn-ghost">👍</button>
+                      <button onClick={() => rate("article", a.id, "down")} className="btn btn-ghost">👎</button>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {tab === "scoreboard" && metrics && (
+        <div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            <Stat label="Articles (30d)" value={metrics.articles} />
+            <Stat label="FB published" value={metrics.fbPublished} />
+            <Stat label="Plans executed" value={`${metrics.plansExecuted}/${metrics.plansTotal}`} />
+            <Stat label="Avg SEO" value={metrics.avgSeo} />
+            <Stat label="Pageviews" value={metrics.totalPageviews} />
+            <Stat label="FB reach" value={metrics.totalReach} />
+            <Stat label="FB clicks" value={metrics.totalClicks} />
+            <Stat label="Tokens (30d)" value={metrics.tokens} />
+          </div>
+          <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-3">
+            Learning insights (most recent {metrics.learning.length})
+          </div>
+          {learning.length === 0 ? (
+            <div className="text-sm text-[var(--brain-muted)]">No insights yet. Need 24h + metrics to learn.</div>
+          ) : (
+            <ul className="space-y-2">
+              {learning.map((l) => (
+                <li key={l.id} className="text-sm border-l-2 border-[#84e1ff]/40 pl-3">
+                  <div>{l.insight}</div>
+                  <div className="text-[10px] text-[var(--brain-muted)]">{l.date} · signal: {l.signal}</div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="border border-white/10 rounded-xl p-3">
+      <div className="mono text-[9px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">{label}</div>
+      <div className="mt-1 text-xl font-semibold tabular-nums">{value}</div>
+    </div>
+  );
+}
