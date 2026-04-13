@@ -1,7 +1,24 @@
 import { NextResponse } from "next/server";
 import { getOpenAI, MODELS } from "@/lib/openai";
 import { loadMarketingKnowledge } from "@/lib/marketing-knowledge";
-import { loadBrain, addDraft, type Draft } from "@/lib/brain-storage";
+import { loadBrain, addDraft, logActivity, type Draft } from "@/lib/brain-storage";
+
+// Simple in-memory rate limit: MAX_PER_HOUR draft generations per process.
+// Since /dashboard has no auth (per user request), this caps credit burn.
+const MAX_PER_HOUR = 20;
+const draftTimestamps: number[] = [];
+function checkRateLimit(): { ok: boolean; remaining: number; resetInSec: number } {
+  const now = Date.now();
+  const cutoff = now - 60 * 60 * 1000;
+  while (draftTimestamps.length && draftTimestamps[0] < cutoff) draftTimestamps.shift();
+  const remaining = Math.max(0, MAX_PER_HOUR - draftTimestamps.length);
+  if (draftTimestamps.length >= MAX_PER_HOUR) {
+    const resetInSec = Math.ceil((draftTimestamps[0] + 60 * 60 * 1000 - now) / 1000);
+    return { ok: false, remaining: 0, resetInSec };
+  }
+  draftTimestamps.push(now);
+  return { ok: true, remaining: remaining - 1, resetInSec: 0 };
+}
 
 /**
  * POST /api/ai-brain/draft
@@ -34,6 +51,16 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { error: "prospectId is required" },
       { status: 400 }
+    );
+  }
+
+  const limit = checkRateLimit();
+  if (!limit.ok) {
+    return NextResponse.json(
+      {
+        error: `Rate limit: ${MAX_PER_HOUR} drafts/hour. Retry in ${limit.resetInSec}s.`,
+      },
+      { status: 429 }
     );
   }
 
@@ -143,6 +170,14 @@ Return strict JSON only.`;
   };
 
   await addDraft(draft);
+  await logActivity({
+    type: "draft-generated",
+    description: `Drafted ${variant} email for ${prospect.company}: "${draft.subject}"`,
+    prospectId: prospect.id,
+    draftId: draft.id,
+    model: draft.model,
+    tokens: draft.tokensUsed,
+  });
 
   return NextResponse.json({ draft });
 }

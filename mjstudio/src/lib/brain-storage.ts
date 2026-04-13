@@ -64,8 +64,27 @@ export type Prospect = {
   estimatedBudget: string;
   status: ProspectStatus;
   notes?: string;
+  source: "seed" | "techcrunch" | "product-hunt" | "crunchbase" | "manual";
+  sourceUrl?: string;
   createdAt: string;
   updatedAt: string;
+};
+
+export type Activity = {
+  id: string;
+  type:
+    | "source-run"
+    | "prospect-added"
+    | "prospect-skipped"
+    | "draft-generated"
+    | "error";
+  timestamp: string;
+  description: string;
+  prospectId?: string;
+  draftId?: string;
+  source?: string;
+  model?: string;
+  tokens?: number;
 };
 
 export type Draft = {
@@ -84,6 +103,7 @@ export type Draft = {
 type BrainData = {
   prospects: Prospect[];
   drafts: Draft[];
+  activities?: Activity[];
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -97,9 +117,11 @@ export async function loadBrain(): Promise<BrainData> {
   await ensureDataDir();
   try {
     const raw = await readFile(FILE, "utf8");
-    return JSON.parse(raw) as BrainData;
+    const parsed = JSON.parse(raw) as BrainData;
+    if (!parsed.activities) parsed.activities = [];
+    return parsed;
   } catch {
-    return { prospects: [], drafts: [] };
+    return { prospects: [], drafts: [], activities: [] };
   }
 }
 
@@ -129,6 +151,31 @@ export async function addDraft(d: Draft): Promise<void> {
     p.updatedAt = new Date().toISOString();
   }
   await saveBrain(data);
+}
+
+export async function logActivity(a: Omit<Activity, "id" | "timestamp"> & { id?: string; timestamp?: string }): Promise<Activity> {
+  const data = await loadBrain();
+  const activity: Activity = {
+    id: a.id ?? `act_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    timestamp: a.timestamp ?? new Date().toISOString(),
+    type: a.type,
+    description: a.description,
+    prospectId: a.prospectId,
+    draftId: a.draftId,
+    source: a.source,
+    model: a.model,
+    tokens: a.tokens,
+  };
+  data.activities = data.activities ?? [];
+  data.activities.unshift(activity);
+  if (data.activities.length > 500) data.activities.length = 500;
+  await saveBrain(data);
+  return activity;
+}
+
+export async function loadActivities(limit = 50): Promise<Activity[]> {
+  const data = await loadBrain();
+  return (data.activities ?? []).slice(0, limit);
 }
 
 export async function seedIfEmpty(seeds: Prospect[]): Promise<number> {

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import "./ai-brain.css";
+import "./dashboard.css";
 
 export const metadata: Metadata = {
-  title: "AI Brain · Brandivibe",
+  title: "Dashboard · Brandivibe",
   description:
     "Internal sales operations dashboard for the Brandivibe AI outreach system.",
   robots: { index: false, follow: false },
 };
 
-export default function AiBrainLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
