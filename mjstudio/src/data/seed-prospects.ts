@@ -1,0 +1,266 @@
+import type { Prospect } from "@/lib/brain-storage";
+
+/**
+ * 10 realistic seed prospects — all fictional but named and detailed enough
+ * to exercise the AI drafting pipeline during development. They map 1:1 to
+ * the 8 Brandivibe demos so every best-fit path gets tested.
+ *
+ * These are NOT real companies. Do not email these addresses.
+ */
+
+const now = new Date().toISOString();
+
+export const SEED_PROSPECTS: Prospect[] = [
+  {
+    id: "seed-01",
+    company: "Lattice Protocol",
+    domain: "latticeprotocol.fi",
+    founder: "Marcus Chen",
+    role: "CEO & Co-founder",
+    email: "marcus@latticeprotocol.fi",
+    linkedin: "linkedin.com/in/marcuschen-lattice",
+    industry: "crypto",
+    stage: "Seed",
+    recentFunding: {
+      amount: "$4.2M",
+      date: "2026-03-18",
+      round: "Seed",
+    },
+    trigger:
+      "Announced seed round led by Paradigm 16 days ago. TGE scheduled for Q3. Current site is a Notion landing page with a wallet connect button.",
+    icpTier: "A",
+    icpScore: 8,
+    bestFitDemo: "helix",
+    brandWeakness:
+      "Entire site is a single Notion page with no 3D, no motion, no security audit narrative. Looks like a hobby project, not a $4.2M raise.",
+    estimatedBudget: "$60K-$80K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-02",
+    company: "Synapse Labs",
+    domain: "synapse-ai.dev",
+    founder: "Priya Nair",
+    role: "Founder & CTO",
+    email: "priya@synapse-ai.dev",
+    linkedin: "linkedin.com/in/priyanair",
+    industry: "ai",
+    stage: "Series A",
+    recentFunding: {
+      amount: "$12M",
+      date: "2026-04-02",
+      round: "Series A",
+    },
+    trigger:
+      "Series A led by a16z 2 days ago. Launching agent platform on Product Hunt in 5 weeks. Current marketing site is a seed-era Framer template.",
+    icpTier: "A",
+    icpScore: 9,
+    bestFitDemo: "neuron",
+    brandWeakness:
+      "Framer template with a stock 3D blob hero. The page hero doesn't mention 'agents' anywhere — their core product. Mobile viewport breaks below 400px.",
+    estimatedBudget: "$75K-$90K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-03",
+    company: "Mintrail",
+    domain: "mintrail.com",
+    founder: "Adeola Okonkwo",
+    role: "Co-founder",
+    email: "adeola@mintrail.com",
+    industry: "fintech",
+    stage: "Seed",
+    recentFunding: {
+      amount: "$6.5M",
+      date: "2026-03-09",
+      round: "Seed extension",
+    },
+    trigger:
+      "Cross-border payments API serving African SMEs. Recent YC W26 batch. Their launch landing page is the YC default template.",
+    icpTier: "A",
+    icpScore: 8,
+    bestFitDemo: "axiom",
+    brandWeakness:
+      "YC template site. No mention of the 34 countries they support, no FX ticker, no security posture narrative.",
+    estimatedBudget: "$45K-$65K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-04",
+    company: "Welllink Health",
+    domain: "welllink.health",
+    founder: "Dr. Sarah Kim",
+    role: "CEO & Chief Medical Officer",
+    email: "sarah@welllink.health",
+    industry: "healthcare",
+    stage: "Series A",
+    recentFunding: {
+      amount: "$18M",
+      date: "2026-02-20",
+      round: "Series A",
+    },
+    trigger:
+      "FDA De Novo clearance just granted for their AI triage system. Currently on a WordPress site with stock photo hero. HIPAA messaging buried in footer.",
+    icpTier: "A",
+    icpScore: 9,
+    bestFitDemo: "pulse",
+    brandWeakness:
+      "WordPress. Stock doctor images. 'Patient portal' button links to a Cerner login page that doesn't match the brand. Desperate for a calming, clinical rebrand.",
+    estimatedBudget: "$70K-$90K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-05",
+    company: "Orre Horlogerie",
+    domain: "orre.watch",
+    founder: "Lena Gustafsson",
+    role: "Founder & Creative Director",
+    email: "lena@orre.watch",
+    industry: "luxury",
+    stage: "Bootstrapped",
+    trigger:
+      "Independent Swedish watchmaker. Launching flagship 24-piece collection in 4 months. Currently using a Shopify default theme with product shots on white.",
+    icpTier: "C",
+    icpScore: 7,
+    bestFitDemo: "aurora",
+    brandWeakness:
+      "Shopify theme. No story, no heritage, no cinematic product presentation. Products look like Amazon listings.",
+    estimatedBudget: "$50K-$75K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-06",
+    company: "Valence Motors",
+    domain: "valence.auto",
+    founder: "Raphael Ortiz",
+    role: "CEO & Head of Design",
+    email: "raphael@valence.auto",
+    industry: "ev",
+    stage: "Series B",
+    recentFunding: {
+      amount: "$32M",
+      date: "2026-01-12",
+      round: "Series B",
+    },
+    trigger:
+      "Boutique electric hypercar, 42 units/year production. Currently on a placeholder site saying 'Coming 2027' — reservations open but no product page.",
+    icpTier: "A",
+    icpScore: 9,
+    bestFitDemo: "orbit",
+    brandWeakness:
+      "Placeholder landing. Reservations form submits to a Typeform. No telemetry, no engineering story, no brand atmosphere.",
+    estimatedBudget: "$80K-$100K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-07",
+    company: "Courtyard Atelier",
+    domain: "courtyard-atelier.com",
+    founder: "Takumi Ishida",
+    role: "Principal Architect",
+    email: "takumi@courtyard-atelier.com",
+    industry: "architecture",
+    stage: "Established",
+    trigger:
+      "Boutique architecture studio, 14 people, Tokyo + Lisbon. Just completed a cultural center in Porto. Currently on a Squarespace that doesn't showcase project photography well.",
+    icpTier: "C",
+    icpScore: 7,
+    bestFitDemo: "monolith",
+    brandWeakness:
+      "Squarespace with a stretched hero image. Projects live behind a dropdown nav. No philosophy, no timeline, no editorial treatment.",
+    estimatedBudget: "$40K-$55K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-08",
+    company: "Nortower Ventures",
+    domain: "nortower.vc",
+    founder: "Elena Park",
+    role: "Founding Partner",
+    email: "elena@nortower.vc",
+    industry: "vc",
+    stage: "Fund II",
+    recentFunding: {
+      amount: "$180M",
+      date: "2026-03-01",
+      round: "Fund II close",
+    },
+    trigger:
+      "Just closed Fund II at $180M. Investing in climate + fintech. Current site is a single-page Webflow with a team grid, no thesis, no portfolio table.",
+    icpTier: "A",
+    icpScore: 9,
+    bestFitDemo: "atrium",
+    brandWeakness:
+      "Single-page Webflow. No thesis document, no portfolio breakdown, no 'submit a deck' workflow. LPs google them and find nothing.",
+    estimatedBudget: "$60K-$90K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-09",
+    company: "Parallax Compute",
+    domain: "parallax.cloud",
+    founder: "Jon Rehberg",
+    role: "Co-founder & CTO",
+    email: "jon@parallax.cloud",
+    industry: "saas",
+    stage: "Series A",
+    recentFunding: {
+      amount: "$14M",
+      date: "2026-02-28",
+      round: "Series A",
+    },
+    trigger:
+      "Series A led by Accel 6 weeks ago. Edge compute for AI inference. Current marketing site looks exactly like a Vercel clone — not differentiated.",
+    icpTier: "A",
+    icpScore: 8,
+    bestFitDemo: "neuron",
+    brandWeakness:
+      "Clearly cloned a Vercel landing page. Same Geist font, same layout, same blue accent. Looks unoriginal to technical buyers who notice.",
+    estimatedBudget: "$55K-$75K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+  {
+    id: "seed-10",
+    company: "Helix Finance",
+    domain: "helixfinance.xyz",
+    founder: "Ngozi Okafor",
+    role: "CEO",
+    email: "ngozi@helixfinance.xyz",
+    industry: "crypto",
+    stage: "Seed",
+    recentFunding: {
+      amount: "$8M",
+      date: "2026-01-22",
+      round: "Seed",
+    },
+    trigger:
+      "Liquid staking protocol (ironically — same vertical as our Helix demo). Seed led by Delphi. Approaching mainnet launch in 8 weeks.",
+    icpTier: "A",
+    icpScore: 10,
+    bestFitDemo: "helix",
+    brandWeakness:
+      "Currently redirects to a Gitbook documentation site. No brand surface, no trust story, no institutional narrative — critical for TVL inflows.",
+    estimatedBudget: "$65K-$85K",
+    status: "new",
+    createdAt: now,
+    updatedAt: now,
+  },
+];

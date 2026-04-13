@@ -1,0 +1,125 @@
+/* AI Brain admin dashboard — scoped to .brain-root */
+
+.brain-root {
+  --brain-bg: #05060a;
+  --brain-bg-2: #0a0c14;
+  --brain-bg-3: #11141f;
+  --brain-fg: #e5e7eb;
+  --brain-muted: #8a8d96;
+  --brain-faint: rgba(229, 231, 235, 0.1);
+  --brain-border: rgba(229, 231, 235, 0.08);
+  --brain-accent: #84e1ff;
+  --brain-accent-2: #a78bfa;
+  --brain-success: #4ade80;
+  --brain-warning: #fbbf24;
+  --brain-danger: #f87171;
+
+  background: var(--brain-bg);
+  color: var(--brain-fg);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "ss01";
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.brain-root .mono {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+.brain-root :focus-visible {
+  outline: 2px solid var(--brain-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+.brain-root button,
+.brain-root a,
+.brain-root [role="button"] {
+  cursor: pointer;
+}
+
+.brain-root ::selection {
+  background: var(--brain-accent);
+  color: #000;
+}
+
+.brain-root .hairline {
+  border: 1px solid var(--brain-border);
+}
+
+.brain-root .panel {
+  background: var(--brain-bg-2);
+  border: 1px solid var(--brain-border);
+  border-radius: 12px;
+}
+
+.brain-root .panel-2 {
+  background: var(--brain-bg-3);
+  border: 1px solid var(--brain-border);
+  border-radius: 8px;
+}
+
+.brain-root .tier-A { color: var(--brain-success); }
+.brain-root .tier-B { color: var(--brain-accent); }
+.brain-root .tier-C { color: var(--brain-warning); }
+.brain-root .tier-D { color: var(--brain-danger); }
+
+.brain-root .status-new { color: var(--brain-muted); }
+.brain-root .status-researched { color: var(--brain-accent); }
+.brain-root .status-drafted { color: var(--brain-accent-2); }
+.brain-root .status-approved { color: var(--brain-success); }
+.brain-root .status-sent { color: var(--brain-success); }
+.brain-root .status-replied { color: var(--brain-warning); }
+
+.brain-root .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 150ms ease-out;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  border: 1px solid transparent;
+}
+
+.brain-root .btn-primary {
+  background: var(--brain-accent);
+  color: #000;
+}
+.brain-root .btn-primary:hover {
+  background: #a5e8ff;
+}
+.brain-root .btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.brain-root .btn-ghost {
+  background: transparent;
+  color: var(--brain-fg);
+  border-color: var(--brain-border);
+}
+.brain-root .btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.brain-root .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--brain-border);
+  border-radius: 999px;
+  font-size: 10px;
+  font-family: var(--font-geist-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brain-muted);
+  background: rgba(255, 255, 255, 0.02);
+}
