@@ -25,7 +25,7 @@ export function Navbar() {
         </nav>
         <a
           href="#submit"
-          className="hidden md:inline-flex items-center gap-3 px-5 py-2.5 border border-[#e8d49a]/60 text-[#e8d49a] text-[11px] tracking-[0.2em] uppercase hover:bg-[#e8d49a]/10 transition-colors"
+          className="hidden md:inline-flex items-center gap-3 px-5 py-2.5 min-h-[44px] border border-[#e8d49a]/60 text-[#e8d49a] text-[11px] tracking-[0.2em] uppercase hover:bg-[#e8d49a]/10 transition-colors"
         >
           Submit a deck
         </a>

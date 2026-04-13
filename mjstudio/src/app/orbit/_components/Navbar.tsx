@@ -25,7 +25,7 @@ export function Navbar() {
         </nav>
         <a
           href="#reserve"
-          className="inline-flex items-center gap-3 px-5 py-2.5 bg-[#84ff6b] text-black font-semibold text-xs tracking-[0.2em] uppercase hover:bg-[#a3ff8a] transition-colors"
+          className="inline-flex items-center gap-3 px-5 py-2.5 min-h-[44px] bg-[#84ff6b] text-black font-semibold text-xs tracking-[0.2em] uppercase hover:bg-[#a3ff8a] transition-colors"
         >
           Reserve
         </a>

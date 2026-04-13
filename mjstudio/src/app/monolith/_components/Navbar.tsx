@@ -23,7 +23,7 @@ export function Navbar() {
         </nav>
         <a
           href="#contact"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#1a1a1a] text-[#1a1a1a] text-xs uppercase tracking-[0.2em] hover:bg-[#1a1a1a] hover:text-[#f1efea] transition-colors"
+          className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] border border-[#1a1a1a] text-[#1a1a1a] text-xs uppercase tracking-[0.2em] hover:bg-[#1a1a1a] hover:text-[#f1efea] transition-colors"
         >
           Begin a project
         </a>

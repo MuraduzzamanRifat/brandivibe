@@ -52,7 +52,7 @@ export function Contact() {
                 required
                 type="text"
                 placeholder="Jane Doe"
-                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/30"
+                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
               />
             </div>
             <div>
@@ -61,7 +61,7 @@ export function Contact() {
                 required
                 type="email"
                 placeholder="jane@company.com"
-                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/30"
+                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
               />
             </div>
           </div>
@@ -70,7 +70,7 @@ export function Contact() {
             <input
               type="text"
               placeholder="Acme Inc."
-              className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/30"
+              className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
             />
           </div>
           <div>
@@ -94,7 +94,7 @@ export function Contact() {
               required
               rows={4}
               placeholder="We're building…"
-              className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/30 resize-none"
+              className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50 resize-none"
             />
           </div>
           <button

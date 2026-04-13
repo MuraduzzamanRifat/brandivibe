@@ -28,7 +28,7 @@ export function Navbar() {
         </nav>
         <a
           href="#app"
-          className="relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-black font-medium text-sm hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] transition-shadow"
+          className="relative inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full bg-gradient-to-br from-[#fbbf24] to-[#f59e0b] text-black font-medium text-sm hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] transition-shadow"
         >
           Launch app
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-black animate-pulse" />

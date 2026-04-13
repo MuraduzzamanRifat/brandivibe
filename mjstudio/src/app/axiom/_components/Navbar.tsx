@@ -25,7 +25,7 @@ export function Navbar() {
         </nav>
         <a
           href="#book"
-          className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#14b8a6] text-[#0a0e1a] font-medium text-sm hover:bg-[#2dd4bf] transition-colors"
+          className="group inline-flex items-center gap-3 px-5 py-2.5 min-h-[44px] rounded-full bg-[#14b8a6] text-[#0a0e1a] font-medium text-sm hover:bg-[#2dd4bf] transition-colors"
         >
           Request access
           <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0a0e1a] group-hover:scale-150 transition-transform" />

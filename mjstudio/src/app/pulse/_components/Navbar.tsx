@@ -27,7 +27,7 @@ export function Navbar() {
           </nav>
           <a
             href="#book"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d9488] text-white text-sm font-medium hover:bg-[#0f766e] transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 min-h-[44px] rounded-full bg-[#0d9488] text-white text-sm font-medium hover:bg-[#0f766e] transition-colors"
           >
             Book a demo
             <ArrowRight className="w-3.5 h-3.5" />
