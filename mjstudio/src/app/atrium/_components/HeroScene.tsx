@@ -2,16 +2,21 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
-function GoldSphere() {
+function GoldSphere({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (ref.current) {
       const t = clock.getElapsedTime();
-      ref.current.rotation.y = t * 0.1;
-      ref.current.rotation.x = Math.sin(t * 0.2) * 0.08;
+      const s = scroll.current;
+      ref.current.rotation.y = t * 0.1 + s * Math.PI * 0.6;
+      ref.current.rotation.x = Math.sin(t * 0.2) * 0.08 + s * 0.25;
+      ref.current.position.y = s * -0.5;
+      ref.current.scale.setScalar(2.1 - s * 0.2);
     }
   });
   return (
@@ -32,11 +37,13 @@ function GoldSphere() {
   );
 }
 
-function OrbitRings() {
+function OrbitRings({ scroll }: { scroll: MutableRefObject<number> }) {
   const g = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (g.current) {
-      g.current.rotation.z = clock.getElapsedTime() * 0.08;
+      const s = scroll.current;
+      g.current.rotation.z = clock.getElapsedTime() * 0.08 + s * Math.PI * 0.3;
+      g.current.rotation.x = s * 0.5;
     }
   });
   return (
@@ -53,6 +60,7 @@ function OrbitRings() {
 
 export function HeroScene() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -66,16 +74,20 @@ export function HeroScene() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={2} color="#f5e4ad" />
-        <directionalLight position={[-5, -3, -5]} intensity={1} color="#c9a14a" />
-        <pointLight position={[0, 0, 4]} intensity={2.2} color="#e8d49a" distance={12} />
-        <GoldSphere />
-        <OrbitRings />
-        <Environment preset="sunset" />
-        <fog attach="fog" args={["#0a1020", 5, 14]} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.3} />
+            <directionalLight position={[5, 5, 5]} intensity={2} color="#f5e4ad" />
+            <directionalLight position={[-5, -3, -5]} intensity={1} color="#c9a14a" />
+            <pointLight position={[0, 0, 4]} intensity={2.2} color="#e8d49a" distance={12} />
+            <GoldSphere scroll={scrollFactor} />
+            <OrbitRings scroll={scrollFactor} />
+            <Environment preset="sunset" />
+            <fog attach="fog" args={["#0a1020", 5, 14]} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

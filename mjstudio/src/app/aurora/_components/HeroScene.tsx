@@ -2,16 +2,20 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Float, Environment } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
-function GoldOrb() {
+function GoldOrb({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (ref.current) {
       const t = clock.getElapsedTime();
-      ref.current.rotation.y = t * 0.18;
-      ref.current.rotation.x = Math.sin(t * 0.3) * 0.18;
+      const s = scroll.current;
+      ref.current.rotation.y = t * 0.18 + s * Math.PI * 0.7;
+      ref.current.rotation.x = Math.sin(t * 0.3) * 0.18 + s * 0.3;
+      ref.current.position.y = s * -0.6;
     }
   });
   return (
@@ -57,6 +61,7 @@ function Rings() {
 
 export function HeroScene() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -70,16 +75,20 @@ export function HeroScene() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.25} />
-        <directionalLight position={[5, 5, 5]} intensity={2.2} color="#fef3c7" />
-        <directionalLight position={[-5, -3, -5]} intensity={1} color="#d4a017" />
-        <pointLight position={[0, 0, 4]} intensity={2.5} color="#f5c542" distance={12} />
-        <GoldOrb />
-        <Rings />
-        <Environment preset="sunset" />
-        <fog attach="fog" args={["#07060a", 5, 14]} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.25} />
+            <directionalLight position={[5, 5, 5]} intensity={2.2} color="#fef3c7" />
+            <directionalLight position={[-5, -3, -5]} intensity={1} color="#d4a017" />
+            <pointLight position={[0, 0, 4]} intensity={2.5} color="#f5c542" distance={12} />
+            <GoldOrb scroll={scrollFactor} />
+            <Rings />
+            <Environment preset="sunset" />
+            <fog attach="fog" args={["#07060a", 5, 14]} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

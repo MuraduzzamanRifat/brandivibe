@@ -2,16 +2,20 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Float } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
-function DataSlab() {
+function DataSlab({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Mesh>(null);
   useFrame(({ clock }) => {
     if (ref.current) {
       const t = clock.getElapsedTime();
-      ref.current.rotation.y = t * 0.25;
-      ref.current.rotation.x = Math.sin(t * 0.4) * 0.2;
+      const s = scroll.current;
+      ref.current.rotation.y = t * 0.25 + s * Math.PI * 0.6;
+      ref.current.rotation.x = Math.sin(t * 0.4) * 0.2 + s * 0.25;
+      ref.current.position.z = -s * 1.2;
     }
   });
   return (
@@ -52,6 +56,7 @@ function RingPulse() {
 
 export function HeroScene() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -65,16 +70,20 @@ export function HeroScene() {
 
   return (
     <div className="absolute inset-0">
-      <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={1.5} color="#fef3c7" />
-        <directionalLight position={[-5, -3, -5]} intensity={0.9} color="#14b8a6" />
-        <pointLight position={[0, 0, 4]} intensity={2} color="#2dd4bf" distance={12} />
-        <DataSlab />
-        <RingPulse />
-        <Environment preset="studio" />
-        <fog attach="fog" args={["#0a0e1a", 6, 16]} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas camera={{ position: [0, 0, 6], fov: 40 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.4} />
+            <directionalLight position={[5, 5, 5]} intensity={1.5} color="#fef3c7" />
+            <directionalLight position={[-5, -3, -5]} intensity={0.9} color="#14b8a6" />
+            <pointLight position={[0, 0, 4]} intensity={2} color="#2dd4bf" distance={12} />
+            <DataSlab scroll={scrollFactor} />
+            <RingPulse />
+            <Environment preset="studio" />
+            <fog attach="fog" args={["#0a0e1a", 6, 16]} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

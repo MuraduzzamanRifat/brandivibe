@@ -1,15 +1,20 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
-function StandingForm() {
+function StandingForm({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (ref.current) {
       const t = clock.getElapsedTime();
-      ref.current.rotation.y = t * 0.12;
+      const s = scroll.current;
+      ref.current.rotation.y = t * 0.12 + s * Math.PI * 0.5;
+      ref.current.position.y = s * -0.4;
+      ref.current.scale.setScalar(1 - s * 0.08);
     }
   });
 
@@ -41,6 +46,7 @@ function StandingForm() {
 
 export function HeroScene() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -52,12 +58,16 @@ export function HeroScene() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [2.5, 0, 6], fov: 38 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[5, 8, 5]} intensity={1.8} color="#ffffff" castShadow />
-        <directionalLight position={[-5, 3, -3]} intensity={0.5} color="#fef3c7" />
-        <StandingForm />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas camera={{ position: [2.5, 0, 6], fov: 38 }} dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.6} />
+            <directionalLight position={[5, 8, 5]} intensity={1.8} color="#ffffff" castShadow />
+            <directionalLight position={[-5, 3, -3]} intensity={0.5} color="#fef3c7" />
+            <StandingForm scroll={scrollFactor} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

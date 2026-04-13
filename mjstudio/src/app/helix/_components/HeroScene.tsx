@@ -8,8 +8,10 @@ import {
   Sparkles,
   Trail,
 } from "@react-three/drei";
-import { useRef, useState, useEffect, useMemo } from "react";
+import { useRef, useState, useEffect, useMemo, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
 function HelixStrand({
   phase = 0,
@@ -113,21 +115,26 @@ function CenterOrb() {
   );
 }
 
-function CameraRig() {
+function CameraRig({ scroll }: { scroll: MutableRefObject<number> }) {
   useFrame(({ camera, clock }) => {
     const t = clock.getElapsedTime() * 0.15;
+    const s = scroll.current;
     camera.position.x = Math.sin(t) * 0.6;
-    camera.position.y = Math.cos(t * 0.8) * 0.4;
+    camera.position.y = Math.cos(t * 0.8) * 0.4 + s * 1.5;
+    camera.position.z = 7 + s * 3; // pull camera back as user scrolls
     camera.lookAt(0, 0, 0);
   });
   return null;
 }
 
-function HelixGroup() {
+function HelixGroup({ scroll }: { scroll: MutableRefObject<number> }) {
   const group = useRef<THREE.Group>(null);
   useFrame(({ clock }) => {
     if (group.current) {
-      group.current.rotation.y = clock.getElapsedTime() * 0.12;
+      const s = scroll.current;
+      group.current.rotation.y = clock.getElapsedTime() * 0.12 + s * Math.PI;
+      group.current.rotation.x = s * 0.3;
+      group.current.scale.setScalar(1 - s * 0.1);
     }
   });
   return (
@@ -144,6 +151,7 @@ function HelixGroup() {
 
 export function HeroScene() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -158,22 +166,26 @@ export function HeroScene() {
 
   return (
     <div className="absolute inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 7], fov: 45 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <color attach="background" args={["#0a0f1c"]} />
-        <ambientLight intensity={0.2} />
-        <directionalLight position={[5, 5, 5]} intensity={1.8} color="#fef3c7" />
-        <directionalLight position={[-5, -3, -5]} intensity={1} color="#8b5cf6" />
-        <pointLight position={[0, 0, 4]} intensity={3} color="#fbbf24" distance={12} />
-        <pointLight position={[0, 3, -3]} intensity={1.5} color="#fcd34d" />
-        <HelixGroup />
-        <CameraRig />
-        <Environment preset="city" />
-        <fog attach="fog" args={["#0a0f1c", 7, 18]} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas
+          camera={{ position: [0, 0, 7], fov: 45 }}
+          dpr={[1, 2]}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <Suspense fallback={null}>
+            <color attach="background" args={["#0a0f1c"]} />
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[5, 5, 5]} intensity={1.8} color="#fef3c7" />
+            <directionalLight position={[-5, -3, -5]} intensity={1} color="#8b5cf6" />
+            <pointLight position={[0, 0, 4]} intensity={3} color="#fbbf24" distance={12} />
+            <pointLight position={[0, 3, -3]} intensity={1.5} color="#fcd34d" />
+            <HelixGroup scroll={scrollFactor} />
+            <CameraRig scroll={scrollFactor} />
+            <Environment preset="city" />
+            <fog attach="fog" args={["#0a0f1c", 7, 18]} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

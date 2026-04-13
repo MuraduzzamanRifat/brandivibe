@@ -1,10 +1,12 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useMemo, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "@/components/SceneErrorBoundary";
+import { useScrollFactor } from "@/components/useScrollFactor";
 
-function Network() {
+function Network({ scroll }: { scroll: MutableRefObject<number> }) {
   const pointsRef = useRef<THREE.Points>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
   const nodeCount = 36;
@@ -60,8 +62,15 @@ function Network() {
         lp.needsUpdate = true;
       }
 
-      pointsRef.current.rotation.y = t * 0.04;
-      if (linesRef.current) linesRef.current.rotation.y = t * 0.04;
+      const s = scroll.current;
+      pointsRef.current.rotation.y = t * 0.04 + s * Math.PI * 0.4;
+      pointsRef.current.rotation.x = s * 0.25;
+      pointsRef.current.scale.setScalar(1 + s * 0.15);
+      if (linesRef.current) {
+        linesRef.current.rotation.y = t * 0.04 + s * Math.PI * 0.4;
+        linesRef.current.rotation.x = s * 0.25;
+        linesRef.current.scale.setScalar(1 + s * 0.15);
+      }
     }
   });
 
@@ -99,6 +108,7 @@ function Network() {
 
 export function NeuralField() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -109,10 +119,14 @@ export function NeuralField() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]}>
-        <ambientLight intensity={1} />
-        <Network />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]}>
+          <Suspense fallback={null}>
+            <ambientLight intensity={1} />
+            <Network scroll={scrollFactor} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

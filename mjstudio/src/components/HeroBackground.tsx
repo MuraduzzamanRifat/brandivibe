@@ -2,27 +2,32 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Float, MeshDistortMaterial } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense, MutableRefObject } from "react";
 import * as THREE from "three";
+import { SceneErrorBoundary } from "./SceneErrorBoundary";
+import { useScrollFactor } from "./useScrollFactor";
 
-function GlassBlob() {
+function GlassBlob({ scroll }: { scroll: MutableRefObject<number> }) {
   const ref = useRef<THREE.Mesh>(null);
   const ref2 = useRef<THREE.Mesh>(null);
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
+    const s = scroll.current; // 0..1 as user scrolls
     if (ref.current) {
-      ref.current.rotation.y = t * 0.12;
-      ref.current.rotation.x = Math.sin(t * 0.3) * 0.15;
+      ref.current.rotation.y = t * 0.12 + s * Math.PI * 0.7;
+      ref.current.rotation.x = Math.sin(t * 0.3) * 0.15 + s * 0.3;
+      ref.current.position.y = s * -0.8;
     }
     if (ref2.current) {
-      ref2.current.rotation.y = -t * 0.08;
+      ref2.current.rotation.y = -t * 0.08 - s * Math.PI * 0.5;
       ref2.current.rotation.z = Math.cos(t * 0.2) * 0.1;
+      ref2.current.scale.setScalar(1 + s * 0.2);
     }
   });
 
   return (
-    <group>
+    <>
       <Float speed={0.8} rotationIntensity={0.3} floatIntensity={0.4}>
         <mesh ref={ref} position={[1.2, -0.3, 0]} scale={2.1}>
           <icosahedronGeometry args={[1, 5]} />
@@ -48,15 +53,17 @@ function GlassBlob() {
           />
         </mesh>
       </Float>
-    </group>
+    </>
   );
 }
 
-function CameraDrift() {
+function CameraDrift({ scroll }: { scroll: MutableRefObject<number> }) {
   useFrame(({ camera, clock }) => {
     const t = clock.getElapsedTime() * 0.08;
+    const s = scroll.current;
     camera.position.x = Math.sin(t) * 0.25;
-    camera.position.y = Math.cos(t * 0.7) * 0.15;
+    camera.position.y = Math.cos(t * 0.7) * 0.15 + s * 0.4;
+    camera.position.z = 5 + s * 2; // pull camera back as user scrolls
     camera.lookAt(0, 0, 0);
   });
   return null;
@@ -64,6 +71,7 @@ function CameraDrift() {
 
 export function HeroBackground() {
   const [reduced, setReduced] = useState(false);
+  const scrollFactor = useScrollFactor(900);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -81,20 +89,24 @@ export function HeroBackground() {
 
   return (
     <div className="absolute inset-0">
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
-        dpr={[1, 2]}
-        gl={{ antialias: true, alpha: true }}
-      >
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={1.6} color="#84e1ff" />
-        <directionalLight position={[-5, -3, -5]} intensity={1.2} color="#a78bfa" />
-        <pointLight position={[2, 0, 3]} intensity={2} color="#84e1ff" distance={10} />
-        <GlassBlob />
-        <CameraDrift />
-        <Environment preset="night" />
-        <fog attach="fog" args={["#08080a", 4, 14]} />
-      </Canvas>
+      <SceneErrorBoundary>
+        <Canvas
+          camera={{ position: [0, 0, 5], fov: 45 }}
+          dpr={[1, 2]}
+          gl={{ antialias: true, alpha: true }}
+        >
+          <Suspense fallback={null}>
+            <ambientLight intensity={0.3} />
+            <directionalLight position={[5, 5, 5]} intensity={1.6} color="#84e1ff" />
+            <directionalLight position={[-5, -3, -5]} intensity={1.2} color="#a78bfa" />
+            <pointLight position={[2, 0, 3]} intensity={2} color="#84e1ff" distance={10} />
+            <GlassBlob scroll={scrollFactor} />
+            <CameraDrift scroll={scrollFactor} />
+            <Environment preset="night" />
+            <fog attach="fog" args={["#08080a", 4, 14]} />
+          </Suspense>
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }
