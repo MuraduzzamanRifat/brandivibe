@@ -18,6 +18,7 @@ const els = {
   selState: $("selState"),
   inpState: $("inpState"),
   inpCity: $("inpCity"),
+  cityList: $("cityList"),
   btnOpenMaps: $("btnOpenMaps"),
 
   btnScrape: $("btnScrape"),
@@ -71,15 +72,46 @@ function updateStateField() {
       opt.textContent = st;
       els.selState.appendChild(opt);
     }
-    els.selState.style.display = "";
-    els.inpState.style.display = "none";
+    els.selState.classList.remove("hidden-input");
+    els.inpState.classList.add("hidden-input");
   } else if (country) {
     // Free-text for other countries
-    els.selState.style.display = "none";
-    els.inpState.style.display = "";
+    els.selState.classList.add("hidden-input");
+    els.inpState.classList.remove("hidden-input");
   } else {
-    els.selState.style.display = "";
-    els.inpState.style.display = "none";
+    els.selState.classList.remove("hidden-input");
+    els.inpState.classList.add("hidden-input");
+  }
+}
+
+/**
+ * Rebuild the city datalist based on the current country + state selection.
+ * Falls back up the hierarchy:
+ *   1. Exact "Country|State" match in CITIES_BY_STATE_KEY
+ *   2. Country-level list in CITIES_BY_COUNTRY
+ *   3. Empty list — the user types freely, no suggestions
+ * The input always stays a free-text <input>, so any city works even if
+ * it's not in the suggestion list.
+ */
+function updateCityList() {
+  if (!els.cityList) return;
+  const country = els.selCountry.value;
+  const state = els.selState.value || els.inpState.value;
+
+  let cities = [];
+  if (country && state) {
+    const key = `${country}|${state}`;
+    cities = CITIES_BY_STATE_KEY[key] || [];
+  }
+  if (cities.length === 0 && country) {
+    cities = CITIES_BY_COUNTRY[country] || [];
+  }
+
+  els.cityList.innerHTML = "";
+  for (const city of cities) {
+    const opt = document.createElement("option");
+    opt.value = city;
+    els.cityList.appendChild(opt);
   }
 }
 
@@ -106,6 +138,7 @@ function setStatus(text, mode = "idle") {
 async function init() {
   populateDropdowns();
   updateStateField();
+  updateCityList();
   updateOpenMapsButton();
 
   // Restore lifetime synced count
@@ -131,6 +164,7 @@ async function init() {
       }
     }
     if (last.city) els.inpCity.value = last.city;
+    updateCityList();
     updateOpenMapsButton();
   });
 
@@ -153,14 +187,17 @@ els.selCategory.addEventListener("change", () => {
 });
 els.selCountry.addEventListener("change", () => {
   updateStateField();
+  updateCityList();
   updateOpenMapsButton();
   saveFormState();
 });
 els.selState.addEventListener("change", () => {
+  updateCityList();
   updateOpenMapsButton();
   saveFormState();
 });
 els.inpState.addEventListener("input", () => {
+  updateCityList();
   updateOpenMapsButton();
   saveFormState();
 });

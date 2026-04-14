@@ -463,6 +463,10 @@ body {
   color: var(--ink);
 }
 
+.field .hidden-input {
+  display: none;
+}
+
 .btn-open-maps {
   margin-top: 4px;
   font-size: 11px;

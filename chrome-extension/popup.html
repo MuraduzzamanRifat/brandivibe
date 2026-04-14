@@ -32,30 +32,37 @@
     <!-- ─────────── Targeting form ─────────── -->
     <section class="form-section">
       <div class="field">
-        <label>Industry / Category</label>
-        <select id="selCategory">
+        <label for="selCategory">Industry / Category</label>
+        <select id="selCategory" aria-label="Industry or category">
           <option value="">— pick a business type —</option>
         </select>
       </div>
 
       <div class="field">
-        <label>Country</label>
-        <select id="selCountry">
+        <label for="selCountry">Country</label>
+        <select id="selCountry" aria-label="Country">
           <option value="">— pick a country —</option>
         </select>
       </div>
 
       <div class="field">
-        <label>State / Region</label>
-        <select id="selState">
+        <label for="selState">State / Region</label>
+        <select id="selState" aria-label="State or region">
           <option value="">— pick a state —</option>
         </select>
-        <input type="text" id="inpState" placeholder="Type state / region" style="display:none;" />
+        <input type="text" id="inpState" class="hidden-input" placeholder="Type state / region" />
       </div>
 
       <div class="field">
         <label>City</label>
-        <input type="text" id="inpCity" placeholder="e.g. Austin" />
+        <input
+          type="text"
+          id="inpCity"
+          list="cityList"
+          placeholder="Type or pick a city"
+          autocomplete="off"
+        />
+        <datalist id="cityList"></datalist>
       </div>
 
       <button type="button" class="btn btn-ghost btn-open-maps" id="btnOpenMaps" disabled>
