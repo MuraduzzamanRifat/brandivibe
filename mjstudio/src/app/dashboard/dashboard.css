@@ -576,3 +576,136 @@
   color: var(--brain-muted);
   font-family: var(--font-geist-mono), monospace;
 }
+
+/* ─────────── System status indicator ─────────── */
+.brain-root .system-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  background: rgba(74, 222, 128, 0.06);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--brain-success);
+  white-space: nowrap;
+}
+.brain-root .system-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--brain-success);
+  box-shadow: 0 0 10px var(--brain-success);
+  animation: brain-pulse 2.4s ease-in-out infinite;
+}
+.brain-root .system-status-idle {
+  border-color: var(--brain-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--brain-muted);
+}
+.brain-root .system-status-idle::before {
+  background: var(--brain-muted);
+  box-shadow: none;
+  animation: none;
+}
+
+/* ─────────── Workflow stepper ─────────── */
+.brain-root .stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--brain-border);
+}
+.brain-root .step-node {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+.brain-root .step-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(134, 229, 255, 0.14), rgba(134, 229, 255, 0.04));
+  border: 1px solid rgba(134, 229, 255, 0.22);
+  color: var(--brain-accent);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  flex-shrink: 0;
+  box-shadow: 0 0 20px -8px rgba(134, 229, 255, 0.5);
+}
+.brain-root .step-main {
+  min-width: 0;
+  flex: 1;
+}
+.brain-root .step-label {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--brain-muted);
+  margin-bottom: 2px;
+}
+.brain-root .step-title {
+  font-size: 14px;
+  color: var(--brain-ink);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.brain-root .step-line {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(134, 229, 255, 0.4), rgba(134, 229, 255, 0.1));
+  margin: 0 12px;
+}
+.brain-root .step-inactive .step-icon {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--brain-border);
+  color: var(--brain-muted);
+  box-shadow: none;
+}
+
+/* Delta chip for KPI cards */
+.brain-root .delta-up {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  color: var(--brain-success);
+  letter-spacing: 0.04em;
+}
+.brain-root .delta-down {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  color: var(--brain-danger);
+  letter-spacing: 0.04em;
+}
+.brain-root .delta-neutral {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  color: var(--brain-muted);
+  letter-spacing: 0.04em;
+}

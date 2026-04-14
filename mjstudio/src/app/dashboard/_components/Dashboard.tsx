@@ -2,7 +2,15 @@
 
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import type { Prospect, Draft, Activity, Article } from "@/lib/brain-storage";
+import type {
+  Prospect,
+  Draft,
+  Activity,
+  Article,
+  GmapsLead,
+  CrmContact,
+  CrmEmail,
+} from "@/lib/brain-storage";
 import { ProspectList } from "./ProspectList";
 import { DraftPanel } from "./DraftPanel";
 import { BrainPanel } from "./BrainPanel";
@@ -11,6 +19,9 @@ type BrainPayload = {
   prospects: Prospect[];
   drafts: Draft[];
   articles?: Article[];
+  gmapsLeads?: GmapsLead[];
+  crmContacts?: CrmContact[];
+  crmEmails?: CrmEmail[];
   seeded?: number;
 };
 
@@ -112,30 +123,49 @@ export function Dashboard() {
   const stats = useMemo(() => {
     if (!data) return null;
     const p = data.prospects;
-    const real = p.filter((x) => x.source && x.source !== "seed").length;
+    const contacts = data.crmContacts ?? [];
+    const emails = data.crmEmails ?? [];
+    const leads = data.gmapsLeads ?? [];
+
+    const sentActivityCount = activities.filter(
+      (a) => a.type === "email-sent" || a.type === "crm-email-sent"
+    ).length;
+
     return {
-      total: p.length,
-      real,
+      totalLeads: p.length + leads.length + contacts.length,
       tierA: p.filter((x) => x.icpTier === "A").length,
-      drafted: p.filter((x) => x.status === "drafted").length,
-      drafts: data.drafts.length,
+      emailsSent: emails.filter((e) => e.status === "sent").length + sentActivityCount,
+      replies: contacts.filter((c) => c.status === "replied").length,
+      bookings: contacts.filter((c) => c.status === "booked" || c.status === "closed-won").length,
       tokens: activities.reduce((sum, a) => sum + (a.tokens ?? 0), 0),
     };
   }, [data, activities]);
+
+  const systemActive = useMemo(() => {
+    if (!activities || activities.length === 0) return false;
+    const latest = activities[0];
+    const ageMs = Date.now() - new Date(latest.timestamp).getTime();
+    return ageMs < 24 * 60 * 60 * 1000;
+  }, [activities]);
 
   return (
     <main className="min-h-screen px-6 md:px-10 py-16 md:py-20">
       <header className="mx-auto max-w-[1600px] mb-12">
         <div className="flex items-start justify-between mb-10 gap-8 flex-wrap">
           <div className="max-w-2xl">
-            <div className="eyebrow mb-5">Brandivibe · Internal</div>
+            <div className="flex items-center gap-3 mb-5 flex-wrap">
+              <div className="eyebrow">Brandivibe · Internal</div>
+              <span className={systemActive ? "system-status" : "system-status system-status-idle"}>
+                {systemActive ? "System active" : "System idle"}
+              </span>
+            </div>
             <h1 className="display text-5xl md:text-6xl lg:text-7xl">
               Sales brain <span className="serif text-[var(--brain-accent)]">console</span>
             </h1>
             <p className="mt-5 text-[15px] leading-relaxed text-[var(--brain-muted)] max-w-xl">
-              The autonomous system that plans, publishes and learns so the
-              studio stays focused on shipping. Everything on this page is
-              real execution against real APIs.
+              Centralized control where the AI brain plans, executes, and
+              learns from sales activities. Decision-making, task execution,
+              and system feedback &mdash; not a chart dashboard.
             </p>
           </div>
           <div className="flex items-center gap-3 flex-wrap">
@@ -143,6 +173,7 @@ export function Dashboard() {
               ← Home
             </Link>
             <button
+              type="button"
               onClick={runSource}
               className="btn btn-ghost"
               disabled={sourcing}
@@ -150,6 +181,7 @@ export function Dashboard() {
               {sourcing ? "Sourcing…" : "Run sources"}
             </button>
             <button
+              type="button"
               onClick={fetchBrain}
               className="btn btn-ghost"
               disabled={isLoading}
@@ -160,12 +192,12 @@ export function Dashboard() {
         </div>
 
         {stats && (
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
-            <StatCard label="Total prospects" value={stats.total} />
-            <StatCard label="Real (scraped)" value={stats.real} />
-            <StatCard label="Tier A" value={stats.tierA} accent="A" />
-            <StatCard label="Drafted" value={stats.drafted} />
-            <StatCard label="Drafts (all)" value={stats.drafts} />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            <StatCard label="Total leads" value={stats.totalLeads} />
+            <StatCard label="Tier A qualified" value={stats.tierA} accent="A" />
+            <StatCard label="Emails sent" value={stats.emailsSent} />
+            <StatCard label="Replies" value={stats.replies} />
+            <StatCard label="Bookings" value={stats.bookings} />
             <StatCard label="Tokens spent" value={stats.tokens} />
           </div>
         )}

@@ -256,6 +256,33 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
 
       {tab === "plans" && (
         <div>
+          {/* Workflow stepper — shows system flow at the top of the Plans tab */}
+          <div className="stepper mb-6">
+            <div className={`step-node ${todayPlan ? "" : "step-inactive"}`}>
+              <div className="step-icon">01</div>
+              <div className="step-main">
+                <div className="step-label">Lead acquisition</div>
+                <div className="step-title">Scrape + research prospects</div>
+              </div>
+            </div>
+            <div className="step-line" />
+            <div className={`step-node ${todayPlan?.fbPosts?.length ? "" : "step-inactive"}`}>
+              <div className="step-icon">02</div>
+              <div className="step-main">
+                <div className="step-label">Outreach execution</div>
+                <div className="step-title">Drafts + cold sequence</div>
+              </div>
+            </div>
+            <div className="step-line" />
+            <div className={`step-node ${todayPlan?.article?.title ? "" : "step-inactive"}`}>
+              <div className="step-icon">03</div>
+              <div className="step-main">
+                <div className="step-label">Content publishing</div>
+                <div className="step-title">SEO article + journal</div>
+              </div>
+            </div>
+          </div>
+
           {!todayPlan ? (
             <div className="text-sm text-[var(--brain-muted)]">
               No plan yet. Click &quot;Run brain now&quot; to generate today&apos;s plan, article, and FB queue.
