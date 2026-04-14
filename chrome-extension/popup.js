@@ -317,8 +317,19 @@ els.btnOpenMaps.addEventListener("click", async () => {
   const query = parts.join(" ");
   const url = `https://www.google.com/maps/search/${encodeURIComponent(query)}/`;
 
+  // Set auto-scrape flag so content.js auto-runs on page load (no second click needed)
+  await new Promise((resolve) => {
+    chrome.storage.local.set(
+      { pendingAutoScrape: { query, timestamp: Date.now() } },
+      resolve
+    );
+  });
+
   await chrome.tabs.create({ url, active: true });
-  setStatus("Google Maps opened — wait for results then re-click the extension icon.", "active");
+  setStatus(
+    "Google Maps opening — auto-scrape will run in a few seconds. Watch the overlay on the Maps page.",
+    "success"
+  );
 });
 
 // ─────────── Scrape button ───────────
