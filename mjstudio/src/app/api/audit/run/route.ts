@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { scrapeWebsite } from "@/lib/brain/scraper/website";
 import { researchProspect } from "@/lib/brain/deep-research";
 import { sendTransactional } from "@/lib/brain/transactional";
+import { renderAuditReportHtml } from "@/lib/brain/email-templates/audit-report";
 import {
   upsertProspect,
   logActivity,
@@ -244,12 +245,32 @@ export async function POST(req: Request) {
     tokens: research.tokens,
   });
 
-  // 5. Send the report via Resend transactional
+  // 5. Send the report via Resend transactional — branded HTML + plaintext fallback
   const reportText = formatReport(prospectShim.company, domain, research);
+  const reportHtml = renderAuditReportHtml({
+    company: prospectShim.company,
+    domain,
+    designScore: research.currentDesignScore,
+    industryName: research.industryName,
+    techStackSummary: research.techStackSummary,
+    specificObservation: research.specificObservation,
+    observations: [
+      { title: research.observation1, fix: research.fix1OneLine },
+      { title: research.observation2, fix: research.fix2OneLine },
+      { title: research.observation3, fix: research.fix3OneLine },
+    ],
+    topPriority: research.topPriorityObservation,
+    weaknesses: research.realWeaknesses,
+    recipientFirstName: research.decisionMaker?.firstName || "",
+    closestDemoSlug: prospectShim.bestFitDemo,
+  });
+  const subject = `${prospectShim.company} scored ${research.currentDesignScore}/10 — here's what we'd fix`;
   const emailResult = await sendTransactional({
     to: email,
-    subject: `Your homepage audit — ${domain}`,
+    subject,
     text: reportText,
+    html: reportHtml,
+    fromName: "Muraduzzaman at Brandivibe",
   });
 
   if (!emailResult.ok) {

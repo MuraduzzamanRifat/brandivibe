@@ -18,12 +18,15 @@ export async function sendTransactional(params: {
   text: string;
   html?: string;
   replyTo?: string;
+  fromName?: string;
 }): Promise<TransactionalResult> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return { ok: false, error: "RESEND_API_KEY not set" };
 
-  const from = process.env.RESEND_FROM_EMAIL || "hello@send.brandivibe.site";
-  const replyTo = params.replyTo || process.env.RESEND_REPLY_TO || from;
+  const fromEmail = process.env.RESEND_FROM_EMAIL || "hello@send.brandivibe.site";
+  const displayName = params.fromName || "Muraduzzaman at Brandivibe";
+  const from = `${displayName} <${fromEmail}>`;
+  const replyTo = params.replyTo || process.env.RESEND_REPLY_TO || fromEmail;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
