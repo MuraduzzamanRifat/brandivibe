@@ -103,6 +103,7 @@ export type Activity = {
     | "email-bounced"
     | "unsubscribed"
     | "sequence-advanced"
+    | "gmaps-leads-ingested"
     | "error";
   timestamp: string;
   description: string;
@@ -283,6 +284,29 @@ export type SequenceState = {
   unsubscribeToken?: string;
 };
 
+/** A lead scraped from Google Maps via the Brandivibe Chrome extension */
+export type GmapsLead = {
+  id: string;
+  /** Google's place_id if we can extract it, else hash of name+address */
+  placeId?: string;
+  name: string;
+  address?: string;
+  phone?: string;
+  website?: string;
+  category?: string;
+  rating?: number;
+  reviewCount?: number;
+  lat?: number;
+  lng?: number;
+  hours?: string;
+  query: string;
+  scrapedAt: string;
+  source: "gmaps-extension";
+  /** When the user converted this to a Prospect via the dashboard */
+  convertedToProspect?: boolean;
+  convertedProspectId?: string;
+};
+
 /** A single email queued to go out via Resend */
 export type OutboundEmail = {
   id: string;
@@ -355,6 +379,8 @@ type BrainData = {
   lastSendByDomain?: Record<string, string>;
   /** ISO date the sender started sending — used to compute warmup day */
   sendingSince?: string;
+  /** Google Maps leads scraped via the Brandivibe Chrome extension */
+  gmapsLeads?: GmapsLead[];
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -377,6 +403,7 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     sendCounts: d?.sendCounts ?? {},
     lastSendByDomain: d?.lastSendByDomain ?? {},
     sendingSince: d?.sendingSince,
+    gmapsLeads: d?.gmapsLeads ?? [],
   };
 }
 
@@ -512,6 +539,44 @@ export async function updateProspectResearch(
     p.updatedAt = new Date().toISOString();
     await saveBrain(data);
   }
+}
+
+export async function ingestGmapsLeads(
+  leads: GmapsLead[]
+): Promise<{ added: number; deduped: number }> {
+  if (!Array.isArray(leads) || leads.length === 0) return { added: 0, deduped: 0 };
+  const data = await loadBrain();
+  data.gmapsLeads = data.gmapsLeads ?? [];
+  const existingKeys = new Set(
+    data.gmapsLeads.map((l) => l.placeId || `${l.name}|${l.address ?? ""}`.toLowerCase())
+  );
+  let added = 0;
+  let deduped = 0;
+  for (const l of leads) {
+    const key = (l.placeId || `${l.name}|${l.address ?? ""}`).toLowerCase();
+    if (existingKeys.has(key)) {
+      deduped++;
+      continue;
+    }
+    existingKeys.add(key);
+    data.gmapsLeads.push({
+      ...l,
+      id: l.id || `gm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      source: "gmaps-extension",
+      scrapedAt: l.scrapedAt || new Date().toISOString(),
+    });
+    added++;
+  }
+  if (data.gmapsLeads.length > 50_000) {
+    data.gmapsLeads = data.gmapsLeads.slice(-50_000);
+  }
+  await saveBrain(data);
+  return { added, deduped };
+}
+
+export async function listGmapsLeads(limit = 500): Promise<GmapsLead[]> {
+  const data = await loadBrain();
+  return (data.gmapsLeads ?? []).slice(-limit).reverse();
 }
 
 export async function markUnsubscribed(prospectId: string): Promise<void> {

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Brandivibe Maps Scraper</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+<div class="root">
+
+  <!-- Animated gradient mesh background -->
+  <div class="mesh">
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-violet"></div>
+    <div class="orb orb-deep"></div>
+  </div>
+
+  <main class="content">
+
+    <header class="header">
+      <div class="eyebrow">
+        <span class="dash"></span>
+        BRANDIVIBE &middot; MAPS SCRAPER
+      </div>
+      <h1 class="title">
+        Pull leads from <em>Maps</em>
+      </h1>
+    </header>
+
+    <!-- Stats strip -->
+    <div class="stats" id="statsRow">
+      <div class="stat">
+        <div class="stat-label">Found on page</div>
+        <div class="stat-value" id="statFound">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Synced total</div>
+        <div class="stat-value" id="statSynced">0</div>
+      </div>
+    </div>
+
+    <!-- Action panel -->
+    <div class="actions">
+      <button class="btn btn-primary" id="btnScrape">
+        <span class="btn-icon">◆</span>
+        <span id="btnScrapeLabel">Scrape this page</span>
+      </button>
+
+      <button class="btn btn-ghost" id="btnSync" disabled>
+        Send to dashboard
+      </button>
+    </div>
+
+    <!-- Status line -->
+    <div class="status" id="status">
+      <span class="dot"></span>
+      <span id="statusText">Open Google Maps to begin</span>
+    </div>
+
+    <!-- Results preview -->
+    <div class="preview" id="preview"></div>
+
+    <footer class="footer">
+      <a href="https://brandivibe.com/dashboard" target="_blank" rel="noopener">
+        Open dashboard →
+      </a>
+    </footer>
+
+  </main>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

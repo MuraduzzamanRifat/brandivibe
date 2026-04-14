@@ -21,7 +21,22 @@ type Metrics = {
   learning: LearningEntry[];
 };
 
-type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach";
+type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads";
+
+type GmapsLead = {
+  id: string;
+  placeId?: string;
+  name: string;
+  address?: string;
+  phone?: string;
+  website?: string;
+  category?: string;
+  rating?: number;
+  reviewCount?: number;
+  hours?: string;
+  query: string;
+  scrapedAt: string;
+};
 
 type OutreachData = {
   queue: Array<{
@@ -67,15 +82,17 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
   const [learning, setLearning] = useState<LearningEntry[]>([]);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
   const [outreach, setOutreach] = useState<OutreachData | null>(null);
+  const [gmapsLeads, setGmapsLeads] = useState<GmapsLead[]>([]);
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchAll = useCallback(async () => {
     try {
-      const [qRes, mRes, oRes] = await Promise.all([
+      const [qRes, mRes, oRes, lRes] = await Promise.all([
         fetch("/api/brain/queue", { cache: "no-store" }),
         fetch("/api/brain/metrics", { cache: "no-store" }),
         fetch("/api/brain/outreach", { cache: "no-store" }),
+        fetch("/api/leads", { cache: "no-store" }),
       ]);
       if (qRes.ok) {
         const q = (await qRes.json()) as QueueResponse;
@@ -85,6 +102,10 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
       }
       if (mRes.ok) setMetrics((await mRes.json()) as Metrics);
       if (oRes.ok) setOutreach((await oRes.json()) as OutreachData);
+      if (lRes.ok) {
+        const l = (await lRes.json()) as { leads: GmapsLead[] };
+        setGmapsLeads(l.leads ?? []);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "load failed");
     }
@@ -152,7 +173,7 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
       </div>
 
       <div className="flex items-center gap-2 flex-wrap mb-8">
-        {(["plans", "outreach", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+        {(["plans", "outreach", "leads", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
@@ -162,6 +183,8 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
               ? "Plans"
               : t === "outreach"
               ? `Outreach (${outreach?.stats.inSequence ?? 0})`
+              : t === "leads"
+              ? `Maps Leads (${gmapsLeads.length})`
               : t === "queue"
               ? `FB Queue (${fbQueue.filter((p) => p.status === "queued").length})`
               : t === "journal"
@@ -385,6 +408,97 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
                 </li>
               ))}
             </ul>
+          )}
+        </div>
+      )}
+
+      {tab === "leads" && (
+        <div>
+          <div className="eyebrow mb-5">Google Maps · scraped via Brandivibe extension</div>
+
+          {gmapsLeads.length === 0 ? (
+            <div className="panel-2 p-8">
+              <div className="text-[15px] text-[var(--brain-muted)] mb-4">
+                No leads scraped yet. Install the Chrome extension from{" "}
+                <code className="text-[var(--brain-accent)]">chrome-extension/</code> in the repo, then scrape any Google Maps search to populate this list.
+              </div>
+              <div className="mono text-[10px] uppercase tracking-[0.25em] text-[var(--brain-muted)]">
+                Quick install
+              </div>
+              <ol className="mt-2 text-sm text-[var(--brain-muted)] space-y-1.5 pl-5 list-decimal">
+                <li>Open <code>chrome://extensions</code></li>
+                <li>Toggle Developer mode on (top right)</li>
+                <li>Click &quot;Load unpacked&quot; → select the <code>chrome-extension/</code> folder</li>
+                <li>Right-click the extension icon → Inspect popup → console → run{" "}
+                  <code className="block mt-1 text-[10px]">chrome.storage.local.set(&#123; ingestSecret: &quot;YOUR_BRAIN_CRON_SECRET&quot; &#125;)</code>
+                </li>
+                <li>Search Google Maps, click the extension icon, hit &quot;Scrape this page&quot;</li>
+              </ol>
+            </div>
+          ) : (
+            <>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <Stat label="Total leads" value={gmapsLeads.length} />
+                <Stat
+                  label="With website"
+                  value={gmapsLeads.filter((l) => l.website).length}
+                />
+                <Stat
+                  label="With phone"
+                  value={gmapsLeads.filter((l) => l.phone).length}
+                />
+                <Stat
+                  label="Unique queries"
+                  value={new Set(gmapsLeads.map((l) => l.query)).size}
+                />
+              </div>
+
+              <ul className="space-y-2 max-h-[600px] overflow-y-auto pr-2">
+                {gmapsLeads.map((l) => (
+                  <li key={l.id} className="panel-2 p-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <span className="font-semibold text-[var(--brain-ink)]">{l.name}</span>
+                          {typeof l.rating === "number" && (
+                            <span className="mono text-[10px] text-[var(--brain-accent)]">
+                              ★ {l.rating.toFixed(1)} {l.reviewCount ? `(${l.reviewCount.toLocaleString()})` : ""}
+                            </span>
+                          )}
+                          {l.category && (
+                            <span className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--brain-muted)]">
+                              {l.category}
+                            </span>
+                          )}
+                        </div>
+                        {l.address && (
+                          <div className="text-[12px] text-[var(--brain-muted)] mb-1">{l.address}</div>
+                        )}
+                        <div className="flex items-center gap-3 mono text-[10px] text-[var(--brain-muted)] flex-wrap">
+                          {l.phone && <span>{l.phone}</span>}
+                          {l.website && (
+                            <a
+                              href={l.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[var(--brain-accent)] truncate max-w-[300px]"
+                            >
+                              {l.website.replace(/^https?:\/\/(www\.)?/, "")}
+                            </a>
+                          )}
+                          {l.hours && <span>{l.hours}</span>}
+                        </div>
+                      </div>
+                      <div className="text-right shrink-0 mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-muted)]">
+                        {l.query}
+                        <br />
+                        {new Date(l.scrapedAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </div>
       )}
