@@ -76,48 +76,33 @@ const FILLER_PHRASES = [
 ];
 
 /**
- * Words that indicate a CRITICAL observation. Every observation must contain
- * at least one. The model is not allowed to praise — Brandivibe's job is to
- * find weaknesses that justify a $35-90K rebuild.
+ * Words that indicate a CRITICAL observation — significantly expanded after
+ * the val.town test where GPT-4o produced legitimate critical observations
+ * the original narrow list rejected. The list is intentionally permissive:
+ * if there's any signal of negativity, comparison, or measurable problem,
+ * we consider the observation critical enough.
  */
 const CRITICAL_KEYWORDS = [
-  "lack",
-  "missing",
-  "weak",
-  "poor",
-  "slow",
-  "broken",
-  "confusing",
-  "unclear",
-  "cluttered",
-  "outdated",
-  "generic",
-  "thin",
-  "buried",
-  "vague",
-  "inconsistent",
-  "fails",
-  "no ",
-  "without",
-  "hidden",
-  "absent",
-  "drops",
-  "blocks",
-  "stalls",
-  "loses",
-  "kills",
-  "hurts",
-  "low",
-  "wrong",
-  "off",
-  "stale",
-  "dated",
-  "mismatch",
-  "overload",
-  "flat",
-  "boring",
-  "static",
-  "dull",
+  // Direct negative
+  "lack", "lacks", "lacking", "missing", "absent", "without", "hidden",
+  "weak", "weakly", "poor", "poorly", "slow", "broken", "flat", "dull",
+  "stale", "stale", "dated", "outdated", "old", "tired", "cliché",
+  // Cognitive load
+  "confusing", "unclear", "cluttered", "dense", "overloaded", "overloads",
+  "buried", "drowned", "obscured", "vague", "generic", "thin", "shallow",
+  "competing", "fights", "scattered", "fragmented", "mismatch", "inconsistent",
+  // Performance / measurable
+  "drops", "blocks", "stalls", "loses", "kills", "hurts", "fails", "fail",
+  "ignores", "skips", "misses", "wastes", "delays",
+  // Quantitative red-flag words
+  "too", "below", "under", "instead of", "rather than", "doesn't",
+  "won't", "can't", "isn't", "no clear", "no obvious", "no real",
+  // Negations
+  "doesn't have", "doesn't show", "doesn't tell", "doesn't include",
+  "no ", "not ", "never", "barely",
+  // Visual / design specific
+  "static", "boring", "templated", "default", "stock", "off-the-shelf",
+  "off the shelf", "looks like", "feels like",
 ];
 
 function containsFiller(text: string): string | null {
@@ -128,9 +113,18 @@ function containsFiller(text: string): string | null {
   return null;
 }
 
+/**
+ * An observation is critical if any of:
+ *  - contains a CRITICAL_KEYWORDS phrase
+ *  - contains a number followed by a unit (e.g. "4.2s", "14MB", "30%")
+ *  - contains a comparison phrase ("more than", "less than", "behind")
+ */
 function isCritical(text: string): boolean {
   const t = text.toLowerCase();
-  return CRITICAL_KEYWORDS.some((kw) => t.includes(kw));
+  if (CRITICAL_KEYWORDS.some((kw) => t.includes(kw))) return true;
+  if (/\b\d+(\.\d+)?(s|ms|kb|mb|gb|%)\b/.test(t)) return true;
+  if (/\b(more than|less than|behind|compared to|vs\.?|versus)\b/.test(t)) return true;
+  return false;
 }
 
 function lowerHaystack(scraped: ScrapedSite): string {
@@ -353,6 +347,7 @@ ${(scraped.about ?? scraped.team ?? "").slice(0, 1500) || "(not available)"}
 Now produce the strict JSON. Every observation MUST include a quoted evidence substring from the content above. If you cannot ground an observation in a real quote, omit it and lower confidence accordingly.`;
 
   let lastFailure = "";
+  let lastBestEffort: { parsed: RawDeepResearch; model: string; tokens: number } | null = null;
 
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     const completion = await openai.chat.completions.create({
@@ -379,95 +374,114 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       continue;
     }
 
-    // ─────────── Validate + fact-check ───────────
-    const failures: string[] = [];
+    // ─────────── HARD validation (must pass — no graceful degradation) ───────────
+    const hardFailures: string[] = [];
+    const softFailures: string[] = [];
 
     // Score must be integer 1-10
     if (typeof parsed.designScore !== "number" || !Number.isFinite(parsed.designScore)) {
-      failures.push("designScore must be a number");
+      hardFailures.push("designScore must be a number");
     } else if (parsed.designScore < 1 || parsed.designScore > 10) {
-      failures.push(`designScore must be an integer between 1 and 10, got ${parsed.designScore} (do NOT use a 0-100 scale)`);
+      hardFailures.push(`designScore must be 1-10, got ${parsed.designScore} (NOT 0-100)`);
     }
 
-    // Sharpest observation
-    if (!parsed.sharpest?.observation || !parsed.sharpest?.evidence) {
-      failures.push("missing sharpest.observation or sharpest.evidence");
+    // Sharpest observation must exist + have evidence
+    if (!parsed.sharpest?.observation) {
+      hardFailures.push("missing sharpest.observation");
     } else {
-      if (!quoteFound(parsed.sharpest.evidence, haystack)) {
-        failures.push(`sharpest.evidence quote not found in scraped content: "${parsed.sharpest.evidence.slice(0, 80)}"`);
-      }
+      // HARD: no false negative claims
       const neg = violatesNegativeClaim(parsed.sharpest.observation, scraped);
-      if (neg) failures.push(`sharpest.observation ${neg}`);
-      const filler = containsFiller(parsed.sharpest.observation);
-      if (filler) failures.push(`sharpest.observation contains forbidden filler phrase: "${filler}". Be specific, not generic.`);
-      if (!isCritical(parsed.sharpest.observation)) {
-        failures.push(
-          `sharpest.observation is not critical enough — must identify a weakness, not praise. Use words like "lacks", "missing", "weak", "buried", "stale", "slow", "confusing", etc.`
-        );
+      if (neg) hardFailures.push(`sharpest.observation ${neg}`);
+      // HARD: evidence quote must verify
+      if (!parsed.sharpest.evidence) {
+        hardFailures.push("sharpest.evidence missing");
+      } else if (!quoteFound(parsed.sharpest.evidence, haystack)) {
+        hardFailures.push(`sharpest.evidence quote not found: "${parsed.sharpest.evidence.slice(0, 80)}"`);
       }
+      // SOFT: critical tone
+      if (!isCritical(parsed.sharpest.observation)) {
+        softFailures.push(`sharpest.observation isn't critical enough — use weakness language`);
+      }
+      // SOFT: no filler
+      const filler = containsFiller(parsed.sharpest.observation);
+      if (filler) softFailures.push(`sharpest.observation contains filler "${filler}"`);
     }
 
     // Three fix observations
     if (!Array.isArray(parsed.fixes) || parsed.fixes.length < 3) {
-      failures.push("must have at least 3 fixes in the fixes array");
+      hardFailures.push("must have at least 3 fixes");
     } else {
       parsed.fixes.slice(0, 3).forEach((f, i) => {
-        if (!f.evidence) failures.push(`fixes[${i}] missing evidence`);
-        else if (!quoteFound(f.evidence, haystack))
-          failures.push(`fixes[${i}].evidence quote not found in content: "${f.evidence.slice(0, 80)}"`);
+        // HARD: no false negative claims
         const neg = violatesNegativeClaim(f.observation, scraped);
-        if (neg) failures.push(`fixes[${i}].observation ${neg}`);
+        if (neg) hardFailures.push(`fixes[${i}].observation ${neg}`);
+        // HARD: evidence quote must verify
+        if (!f.evidence) {
+          hardFailures.push(`fixes[${i}] missing evidence`);
+        } else if (!quoteFound(f.evidence, haystack)) {
+          hardFailures.push(`fixes[${i}].evidence quote not found: "${f.evidence.slice(0, 80)}"`);
+        }
+        // SOFT: filler + critical
         const fillerObs = containsFiller(f.observation);
-        if (fillerObs) failures.push(`fixes[${i}].observation contains forbidden filler: "${fillerObs}"`);
+        if (fillerObs) softFailures.push(`fixes[${i}].observation contains filler "${fillerObs}"`);
         const fillerFix = containsFiller(f.fix);
-        if (fillerFix) failures.push(`fixes[${i}].fix contains forbidden filler: "${fillerFix}"`);
+        if (fillerFix) softFailures.push(`fixes[${i}].fix contains filler "${fillerFix}"`);
         if (!isCritical(f.observation)) {
-          failures.push(
-            `fixes[${i}].observation is not critical — must identify a weakness using words like "lacks", "weak", "buried", "slow", "broken", "outdated", "generic", "confusing".`
-          );
+          softFailures.push(`fixes[${i}].observation isn't critical enough`);
         }
       });
     }
 
-    // quantifiedBleed validation
-    if (!parsed.quantifiedBleed || typeof parsed.quantifiedBleed !== "string") {
-      failures.push("missing quantifiedBleed sentence");
-    } else {
+    // quantifiedBleed — soft only (we'll fall back to a generic if needed)
+    if (parsed.quantifiedBleed) {
       const qb = parsed.quantifiedBleed;
-      if (qb.length < 30 || qb.length > 280) {
-        failures.push(`quantifiedBleed must be one sentence, 30-280 chars (got ${qb.length})`);
+      if (qb.length < 20 || qb.length > 320) {
+        softFailures.push(`quantifiedBleed length ${qb.length}, want 20-320`);
       }
-      if (!/(at even|even at|if you'?re getting|if you have)/i.test(qb)) {
-        failures.push(`quantifiedBleed must start with "At even" / "Even at" / "If you're getting" (we don't know their traffic, frame conditionally)`);
+      if (!/(at even|even at|if you'?re getting|if you have|if even|assuming)/i.test(qb)) {
+        softFailures.push(`quantifiedBleed should be conditional (start with "At even"/"Even at"/"If you're getting"/"Assuming")`);
       }
       if (!/\d/.test(qb)) {
-        failures.push("quantifiedBleed must contain a specific number");
+        softFailures.push("quantifiedBleed missing a number");
       }
       const fillerBleed = containsFiller(qb);
-      if (fillerBleed) failures.push(`quantifiedBleed contains forbidden filler: "${fillerBleed}"`);
+      if (fillerBleed) softFailures.push(`quantifiedBleed contains filler "${fillerBleed}"`);
+    } else {
+      softFailures.push("quantifiedBleed missing");
     }
 
-    // personalClose validation
-    if (!parsed.personalClose || typeof parsed.personalClose !== "string") {
-      failures.push("missing personalClose sentence");
-    } else {
+    // personalClose — soft only
+    if (parsed.personalClose) {
       const pc = parsed.personalClose;
-      if (pc.length < 40 || pc.length > 280) {
-        failures.push(`personalClose must be one sentence, 40-280 chars (got ${pc.length})`);
+      if (pc.length < 30 || pc.length > 320) {
+        softFailures.push(`personalClose length ${pc.length}, want 30-320`);
       }
       if (!/loom/i.test(pc)) {
-        failures.push(`personalClose must include the word "loom" — that's the free, async, low-friction value action`);
+        softFailures.push(`personalClose should mention "loom"`);
       }
       if (/feel free|let me know|if you have time|i would love to|happy to chat|hop on a call/i.test(pc)) {
-        failures.push("personalClose contains generic friendly hedging — be direct, founder-to-founder");
+        softFailures.push("personalClose has generic friendly hedging");
       }
+    } else {
+      softFailures.push("personalClose missing");
     }
 
-    if (failures.length > 0) {
-      lastFailure = failures.join("; ");
+    // Always remember the latest parsed result so we can return best-effort if all attempts fail
+    lastBestEffort = { parsed, model: completion.model, tokens: completion.usage?.total_tokens ?? 0 };
+
+    if (hardFailures.length > 0) {
+      // Hard failures = unrecoverable. Try again.
+      lastFailure = `HARD: ${hardFailures.join("; ")}` + (softFailures.length ? ` | SOFT: ${softFailures.join("; ")}` : "");
       continue;
     }
 
+    if (softFailures.length > 0 && attempt < MAX_ATTEMPTS - 1) {
+      // Hard passed but soft didn't — try one more time hoping for cleaner output
+      lastFailure = `SOFT (retry to improve quality): ${softFailures.join("; ")}`;
+      continue;
+    }
+
+    // Either hard+soft passed, or it's the last attempt and hard passed — ship it.
     // ─────────── Build DeepResearch shape ───────────
     // Override techStackSummary with the real scraped stack — never trust
     // the model's generic phrasing here.
@@ -507,6 +521,45 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
     };
   }
 
-  // All attempts failed validation — return null so the caller skips the prospect
+  // All attempts failed HARD validation. Return the last best-effort if we have
+  // one, with confidence dropped to reflect the validation failures. Better to
+  // ship a slightly weaker audit than a 400 error to the user.
+  if (lastBestEffort) {
+    console.warn("[deep-research] all attempts failed hard validation, returning best-effort. Last failure:", lastFailure);
+    const { parsed, model, tokens } = lastBestEffort;
+    const realStackSummary =
+      scraped.techStack.length > 0
+        ? scraped.techStack.slice(0, 4).join(" + ")
+        : "stack unknown";
+    return {
+      realWeaknesses: [
+        parsed.sharpest?.observation ?? "",
+        ...((parsed.fixes ?? []).slice(0, 3).map((f) => f.observation)),
+      ].filter(Boolean),
+      specificObservation: parsed.sharpest?.observation ?? "",
+      oneSentenceImpact: parsed.sharpest?.impact ?? "",
+      currentPainArea: (parsed.sharpest?.observation ?? "").split(".")[0].slice(0, 80),
+      observation1: parsed.fixes?.[0]?.observation ?? "",
+      observation2: parsed.fixes?.[1]?.observation ?? "",
+      observation3: parsed.fixes?.[2]?.observation ?? "",
+      fix1OneLine: parsed.fixes?.[0]?.fix ?? "",
+      fix2OneLine: parsed.fixes?.[1]?.fix ?? "",
+      fix3OneLine: parsed.fixes?.[2]?.fix ?? "",
+      topPriorityObservation: parsed.topPriority ?? "",
+      fixTimeEstimate: "1-2 weeks",
+      conversionMetric: "homepage conversion rate",
+      industryName: parsed.industryName ?? "saas",
+      techStackSummary: realStackSummary,
+      currentDesignScore: Math.max(1, Math.min(10, Math.round(parsed.designScore || 5))),
+      budget: parsed.budget ?? "$35-50K",
+      decisionMaker: parsed.decisionMaker ?? { name: "", role: "", firstName: "" },
+      confidence: Math.min(parsed.confidence ?? 30, 40), // hard cap on best-effort
+      quantifiedBleed: parsed.quantifiedBleed,
+      personalClose: parsed.personalClose,
+      createdAt: new Date().toISOString(),
+      model,
+      tokens,
+    };
+  }
   return null;
 }

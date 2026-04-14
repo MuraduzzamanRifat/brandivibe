@@ -213,12 +213,15 @@ export async function POST(req: Request) {
     updatedAt: new Date().toISOString(),
   };
 
-  // 3. Deep research
+  // 3. Deep research — with two-tier validation (hard rules + soft rules + best-effort fallback)
   const research = await researchProspect(prospectShim, scraped);
   if (!research) {
     return NextResponse.json(
-      { error: "Could not produce audit — the page content looks too thin to analyze." },
-      { status: 400 }
+      {
+        error:
+          "We could not produce a confident audit for this site after 3 attempts. The page may be too thin (mostly images / JS-rendered) for our scraper to analyze. Try the audit again in a moment, or pick a different page.",
+      },
+      { status: 422 }
     );
   }
 
