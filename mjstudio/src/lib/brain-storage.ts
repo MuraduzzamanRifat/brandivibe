@@ -104,6 +104,9 @@ export type Activity = {
     | "unsubscribed"
     | "sequence-advanced"
     | "gmaps-leads-ingested"
+    | "crm-contact-added"
+    | "crm-email-sent"
+    | "crm-template-edited"
     | "error";
   timestamp: string;
   description: string;
@@ -308,6 +311,78 @@ export type GmapsLead = {
   convertedProspectId?: string;
 };
 
+/**
+ * CRM layer — unified contacts, editable email templates, and a history
+ * of manually-sent emails. Sits alongside the autonomous Phase 4 pipeline:
+ * contacts can come from gmaps leads, techcrunch prospects, audit requests,
+ * or be added manually. Templates are fully editable — the user can create,
+ * modify, and delete their own on top of the seed set.
+ */
+
+export type EmailTemplate = {
+  id: string;
+  name: string;
+  category: "cold" | "followup" | "loom" | "breakup" | "audit" | "custom";
+  subject: string;
+  body: string;
+  /** If true, this template came from the seed set — still fully editable */
+  isSystem: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CrmContactStatus =
+  | "new"
+  | "contacted"
+  | "replied"
+  | "booked"
+  | "closed-won"
+  | "closed-lost"
+  | "unsubscribed";
+
+export type CrmContactSource =
+  | "gmaps"
+  | "techcrunch"
+  | "audit"
+  | "manual"
+  | "imported";
+
+export type CrmContact = {
+  id: string;
+  name: string;
+  email: string;
+  company?: string;
+  website?: string;
+  location?: string;
+  status: CrmContactStatus;
+  source: CrmContactSource;
+  /** Free-text notes the user can add */
+  notes?: string;
+  /** Reference back to the original record (prospect id, gmaps lead id, etc) */
+  sourceRefId?: string;
+  /** Deep research snippet if available from the Phase 4 pipeline */
+  observation?: string;
+  tags?: string[];
+  lastContactedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CrmEmail = {
+  id: string;
+  contactId: string;
+  templateId?: string;
+  from: string;
+  to: string;
+  subject: string;
+  body: string;
+  status: "draft" | "sent" | "failed";
+  resendId?: string;
+  failReason?: string;
+  sentAt?: string;
+  createdAt: string;
+};
+
 /** A single email queued to go out via Resend */
 export type OutboundEmail = {
   id: string;
@@ -382,6 +457,10 @@ type BrainData = {
   sendingSince?: string;
   /** Google Maps leads scraped via the Brandivibe Chrome extension */
   gmapsLeads?: GmapsLead[];
+  /** CRM layer — see types above */
+  crmContacts?: CrmContact[];
+  emailTemplates?: EmailTemplate[];
+  crmEmails?: CrmEmail[];
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -405,6 +484,9 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     lastSendByDomain: d?.lastSendByDomain ?? {},
     sendingSince: d?.sendingSince,
     gmapsLeads: d?.gmapsLeads ?? [],
+    crmContacts: d?.crmContacts ?? [],
+    emailTemplates: d?.emailTemplates ?? [],
+    crmEmails: d?.crmEmails ?? [],
   };
 }
 
@@ -583,6 +665,200 @@ export async function ingestGmapsLeads(
 export async function listGmapsLeads(limit = 500): Promise<GmapsLead[]> {
   const data = await loadBrain();
   return (data.gmapsLeads ?? []).slice(-limit).reverse();
+}
+
+// ─────────────── CRM: Contacts ───────────────
+
+export async function listCrmContacts(): Promise<CrmContact[]> {
+  const data = await loadBrain();
+  return (data.crmContacts ?? []).slice().reverse();
+}
+
+export async function upsertCrmContact(c: Partial<CrmContact> & { email: string; name: string }): Promise<CrmContact> {
+  const data = await loadBrain();
+  data.crmContacts = data.crmContacts ?? [];
+  const now = new Date().toISOString();
+  const emailLower = c.email.toLowerCase();
+  const existing = data.crmContacts.find((x) => x.email.toLowerCase() === emailLower);
+  if (existing) {
+    Object.assign(existing, c, { email: emailLower, updatedAt: now });
+    await saveBrain(data);
+    return existing;
+  }
+  const contact: CrmContact = {
+    id: c.id || `crm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    name: c.name,
+    email: emailLower,
+    company: c.company,
+    website: c.website,
+    location: c.location,
+    status: c.status ?? "new",
+    source: c.source ?? "manual",
+    notes: c.notes,
+    sourceRefId: c.sourceRefId,
+    observation: c.observation,
+    tags: c.tags,
+    lastContactedAt: c.lastContactedAt,
+    createdAt: now,
+    updatedAt: now,
+  };
+  data.crmContacts.push(contact);
+  await saveBrain(data);
+  return contact;
+}
+
+export async function patchCrmContact(id: string, patch: Partial<CrmContact>): Promise<CrmContact | null> {
+  const data = await loadBrain();
+  const contact = (data.crmContacts ?? []).find((c) => c.id === id);
+  if (!contact) return null;
+  Object.assign(contact, patch, { updatedAt: new Date().toISOString() });
+  await saveBrain(data);
+  return contact;
+}
+
+export async function deleteCrmContact(id: string): Promise<boolean> {
+  const data = await loadBrain();
+  const before = (data.crmContacts ?? []).length;
+  data.crmContacts = (data.crmContacts ?? []).filter((c) => c.id !== id);
+  if (data.crmContacts.length === before) return false;
+  await saveBrain(data);
+  return true;
+}
+
+/**
+ * Import contacts from the existing data sources (gmaps leads, prospects,
+ * audit requests) and dedupe them by email. Never overwrites a manually
+ * edited contact.
+ */
+export async function syncCrmContactsFromSources(): Promise<{ added: number; skipped: number }> {
+  const data = await loadBrain();
+  data.crmContacts = data.crmContacts ?? [];
+  const existing = new Set(data.crmContacts.map((c) => c.email.toLowerCase()));
+  let added = 0;
+  let skipped = 0;
+
+  // 1. From gmaps leads — they always have email after our Phase 4 enrichment
+  for (const lead of data.gmapsLeads ?? []) {
+    if (!lead.email) continue;
+    if (existing.has(lead.email.toLowerCase())) { skipped++; continue; }
+    const contact: CrmContact = {
+      id: `crm_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      name: lead.name,
+      email: lead.email.toLowerCase(),
+      website: lead.website,
+      location: lead.location,
+      status: "new",
+      source: "gmaps",
+      sourceRefId: lead.id,
+      createdAt: lead.scrapedAt,
+      updatedAt: lead.scrapedAt,
+    };
+    data.crmContacts.push(contact);
+    existing.add(contact.email);
+    added++;
+  }
+
+  // 2. From prospects — only those with emails (from email-finder or audit)
+  for (const p of data.prospects) {
+    const email = (p.emailFinder?.winner || p.email || "").toLowerCase();
+    if (!email) continue;
+    if (existing.has(email)) { skipped++; continue; }
+    const contact: CrmContact = {
+      id: `crm_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`,
+      name: p.founder || p.company,
+      email,
+      company: p.company,
+      website: p.domain,
+      status: "new",
+      source: p.source === "manual" ? "audit" : "techcrunch",
+      sourceRefId: p.id,
+      observation: p.deepResearch?.specificObservation,
+      createdAt: p.createdAt,
+      updatedAt: p.updatedAt,
+    };
+    data.crmContacts.push(contact);
+    existing.add(email);
+    added++;
+  }
+
+  await saveBrain(data);
+  return { added, skipped };
+}
+
+// ─────────────── CRM: Templates ───────────────
+
+export async function listEmailTemplates(): Promise<EmailTemplate[]> {
+  const data = await loadBrain();
+  return (data.emailTemplates ?? []).slice().sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export async function upsertEmailTemplate(t: Partial<EmailTemplate> & { name: string; subject: string; body: string }): Promise<EmailTemplate> {
+  const data = await loadBrain();
+  data.emailTemplates = data.emailTemplates ?? [];
+  const now = new Date().toISOString();
+  if (t.id) {
+    const existing = data.emailTemplates.find((x) => x.id === t.id);
+    if (existing) {
+      Object.assign(existing, t, { updatedAt: now });
+      await saveBrain(data);
+      return existing;
+    }
+  }
+  const template: EmailTemplate = {
+    id: t.id || `tpl_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    name: t.name,
+    category: t.category ?? "custom",
+    subject: t.subject,
+    body: t.body,
+    isSystem: t.isSystem ?? false,
+    createdAt: now,
+    updatedAt: now,
+  };
+  data.emailTemplates.push(template);
+  await saveBrain(data);
+  return template;
+}
+
+export async function deleteEmailTemplate(id: string): Promise<boolean> {
+  const data = await loadBrain();
+  const before = (data.emailTemplates ?? []).length;
+  data.emailTemplates = (data.emailTemplates ?? []).filter((t) => t.id !== id);
+  if (data.emailTemplates.length === before) return false;
+  await saveBrain(data);
+  return true;
+}
+
+/** Seed the template collection with the default set if empty. */
+export async function seedTemplatesIfEmpty(seeds: EmailTemplate[]): Promise<number> {
+  const data = await loadBrain();
+  if ((data.emailTemplates ?? []).length > 0) return 0;
+  data.emailTemplates = seeds;
+  await saveBrain(data);
+  return seeds.length;
+}
+
+// ─────────────── CRM: Sent emails history ───────────────
+
+export async function addCrmEmail(email: CrmEmail): Promise<void> {
+  const data = await loadBrain();
+  data.crmEmails = data.crmEmails ?? [];
+  data.crmEmails.unshift(email);
+  if (data.crmEmails.length > 5000) data.crmEmails = data.crmEmails.slice(0, 5000);
+  // Bump contact status + lastContactedAt when a send succeeds
+  if (email.status === "sent") {
+    const contact = (data.crmContacts ?? []).find((c) => c.id === email.contactId);
+    if (contact) {
+      contact.lastContactedAt = email.sentAt || new Date().toISOString();
+      if (contact.status === "new") contact.status = "contacted";
+      contact.updatedAt = new Date().toISOString();
+    }
+  }
+  await saveBrain(data);
+}
+
+export async function listCrmEmailsForContact(contactId: string): Promise<CrmEmail[]> {
+  const data = await loadBrain();
+  return (data.crmEmails ?? []).filter((e) => e.contactId === contactId);
 }
 
 export async function markUnsubscribed(prospectId: string): Promise<void> {

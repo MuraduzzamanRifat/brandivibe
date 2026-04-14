@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Article, FbPost, Plan, LearningEntry } from "@/lib/brain-storage";
+import { CrmPanel } from "./CrmPanel";
 
 type QueueResponse = { fbQueue: FbPost[]; plans: Plan[]; learning: LearningEntry[] };
 
@@ -21,7 +22,7 @@ type Metrics = {
   learning: LearningEntry[];
 };
 
-type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads";
+type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads" | "crm";
 
 type GmapsLead = {
   id: string;
@@ -169,14 +170,17 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
       </div>
 
       <div className="flex items-center gap-2 flex-wrap mb-8">
-        {(["plans", "outreach", "leads", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+        {(["plans", "crm", "outreach", "leads", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
           <button
             key={t}
+            type="button"
             onClick={() => setTab(t)}
             className={`btn ${tab === t ? "btn-primary" : "btn-ghost"}`}
           >
             {t === "plans"
               ? "Plans"
+              : t === "crm"
+              ? "CRM"
               : t === "outreach"
               ? `Outreach (${outreach?.stats.inSequence ?? 0})`
               : t === "leads"
@@ -189,6 +193,8 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
           </button>
         ))}
       </div>
+
+      {tab === "crm" && <CrmPanel />}
 
       {error && (
         <div className="mb-4 text-sm text-[var(--brain-danger)]">{error}</div>
