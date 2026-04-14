@@ -3,6 +3,7 @@ import { scrapeWebsite } from "@/lib/brain/scraper/website";
 import { researchProspect } from "@/lib/brain/deep-research";
 import { sendTransactional } from "@/lib/brain/transactional";
 import { renderAuditReportHtml } from "@/lib/brain/email-templates/audit-report";
+import { checkIcpFilter } from "@/lib/brain/icp-filter";
 import {
   upsertProspect,
   logActivity,
@@ -181,6 +182,12 @@ export async function POST(req: Request) {
 
   const domain = extractDomain(url);
   if (!domain) return NextResponse.json({ error: "Could not parse domain" }, { status: 400 });
+
+  // 0. ICP pre-flight — refuse mega-brands BEFORE burning credits
+  const icp = checkIcpFilter(domain);
+  if (!icp.ok) {
+    return NextResponse.json({ error: icp.message }, { status: 400 });
+  }
 
   // 1. Scrape
   const scraped = await scrapeWebsite(url);

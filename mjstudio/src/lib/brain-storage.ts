@@ -215,6 +215,25 @@ export type ScrapedSite = {
   designScore: number;
   foundEmails: string[];
   foundSocials: { twitter?: string; linkedin?: string; github?: string };
+  /** Structured page signals used for grounded deep research + fact-checking */
+  structure: {
+    title: string;
+    metaDescription: string;
+    h1: string[];
+    h2: string[];
+    h3: string[];
+    navLinks: Array<{ text: string; href: string }>;
+    buttons: string[];
+    footerLinks: string[];
+    hasContact: boolean;
+    hasPricing: boolean;
+    hasTeam: boolean;
+    hasBlog: boolean;
+    hasCareers: boolean;
+    hasLogin: boolean;
+  };
+  /** The full unstripped HTML of the homepage — searched by fact-checker */
+  rawHomepage: string;
 };
 
 /** Deep-research output — structured observations GPT-4o extracted */
