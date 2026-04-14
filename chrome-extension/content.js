@@ -101,18 +101,24 @@
   // ─────────── Click-mode extractors ───────────
 
   /**
-   * Wait for the detail pane to fully render after clicking a place anchor.
-   * The key signal is an H1 inside [role="main"] with non-empty text.
-   * Returns the detail pane element, or null on timeout.
+   * Wait for the detail pane to fully render AFTER clicking a new place.
+   * Tracks the last-known h1 text so we only return when it CHANGES —
+   * this prevents returning the stale pane from the previous iteration.
    */
-  async function waitForDetailPane(maxMs = 5000) {
+  let lastDetailH1 = "";
+
+  async function waitForDetailPane(maxMs = 6000) {
     const start = Date.now();
     while (Date.now() - start < maxMs) {
       const main = document.querySelector('[role="main"]');
-      const h1 = main?.querySelector("h1");
-      if (h1 && (h1.textContent || "").trim().length > 0) {
-        // Extra settle — website link sometimes appears ~150ms after h1
-        await sleep(250);
+      const h1 =
+        main?.querySelector('h1') ||
+        main?.querySelector('[role="heading"][aria-level="1"]');
+      const text = h1 ? (h1.textContent || "").trim() : "";
+      if (text && text !== lastDetailH1) {
+        lastDetailH1 = text;
+        // Extra settle — website link sometimes appears ~250ms after h1
+        await sleep(350);
         return main;
       }
       await sleep(120);
@@ -121,44 +127,82 @@
   }
 
   /**
-   * Extract name / website / location from the detail pane using Google's
-   * stable data-item-id attributes. Returns null if name or website missing.
-   *
-   * Key selectors:
-   *   Name     — h1 (first one inside [role="main"])
-   *   Website  — a[data-item-id="authority"]  (href is the real business URL)
-   *   Address  — button[data-item-id="address"] or [data-item-id="address"]
+   * Extract name / website / location from the detail pane.
+   * Uses a cascade of strategies — broadest net wins. Google changes
+   * their internal data-item-id values occasionally, so the fallback is:
+   * "any <a> inside [role='main'] with an external http(s) href that
+   * isn't google / youtube / an image."
    */
   function extractFromDetailPane(main) {
     if (!main) return null;
 
-    const nameEl = main.querySelector("h1");
+    // ─── NAME ───
+    const nameEl =
+      main.querySelector("h1") ||
+      main.querySelector('[role="heading"][aria-level="1"]') ||
+      main.querySelector('[role="main"] h1');
     const name = nameEl ? (nameEl.textContent || "").trim() : "";
-    if (!name) return null;
+    if (!name) {
+      log("skip · no h1 name");
+      return null;
+    }
 
-    // Website — try multiple strategies
+    // ─── WEBSITE ─── cascade of strategies
     let website = "";
-    const websiteSelectors = [
-      'a[data-item-id="authority"]',
-      'a[data-item-id^="authority"]',
-      'a[aria-label^="Website"]',
-      'a[data-value="Website"]',
+
+    const strategies = [
+      // 1. Google's historical stable selector
+      () => main.querySelector('a[data-item-id="authority"]'),
+      () => main.querySelector('a[data-item-id^="authority"]'),
+      // 2. Aria-label based (common)
+      () => main.querySelector('a[aria-label^="Website" i]'),
+      () => main.querySelector('a[aria-label*="Website:" i]'),
+      // 3. Data-value / data-tooltip
+      () => main.querySelector('a[data-value="Website" i]'),
+      () => main.querySelector('a[data-tooltip*="website" i]'),
+      // 4. Jsaction containing "website"
+      () => main.querySelector('a[jsaction*="website"]'),
     ];
-    for (const sel of websiteSelectors) {
-      const el = main.querySelector(sel);
-      if (el && el.href && el.href.startsWith("http") && !el.href.includes("google.com")) {
-        website = el.href;
+
+    for (const strat of strategies) {
+      try {
+        const el = strat();
+        if (el && el.href && el.href.startsWith("http") && !el.href.includes("google.com")) {
+          website = el.href;
+          break;
+        }
+      } catch {}
+    }
+
+    // 5. Broadest net — any external https anchor in the detail pane
+    if (!website) {
+      const anchors = main.querySelectorAll("a[href]");
+      for (const a of anchors) {
+        const u = a.href;
+        if (!u || !u.startsWith("http")) continue;
+        if (u.includes("google.com")) continue;
+        if (u.includes("googleusercontent.com")) continue;
+        if (u.includes("goo.gl") || u.includes("g.co")) continue;
+        if (u.includes("youtube.com") || u.includes("youtu.be")) continue;
+        if (/\.(jpg|jpeg|png|gif|svg|webp|ico|pdf)(\?|$)/i.test(u)) continue;
+        website = u;
         break;
       }
     }
-    if (!website) return null;
 
-    // Address — multiple strategies
+    if (!website) {
+      log("skip · no website found for", name);
+      return null;
+    }
+
+    // ─── ADDRESS ─── multiple strategies
     let address = "";
     const addressSelectors = [
       'button[data-item-id="address"]',
       '[data-item-id="address"]',
-      'button[aria-label^="Address"]',
+      'button[aria-label^="Address" i]',
+      '[aria-label^="Address" i]',
+      'button[data-tooltip*="address" i]',
     ];
     for (const sel of addressSelectors) {
       const el = main.querySelector(sel);
@@ -170,6 +214,7 @@
       }
     }
 
+    log("+ extracted", name, "·", website);
     return { name, website, location: address };
   }
 
@@ -206,6 +251,10 @@
 
   async function scrapeMapsClickMode(sentWebsites, onProgress) {
     log("click mode scrape starting");
+
+    // Reset the detail-pane h1 tracker so iterations across scrapes don't
+    // get polluted by the last business name from a previous run
+    lastDetailH1 = "";
 
     const panel = findResultsPanel();
     if (!panel) {
