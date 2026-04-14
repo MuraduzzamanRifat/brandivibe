@@ -29,7 +29,44 @@
       </h1>
     </header>
 
-    <!-- Stats strip -->
+    <!-- ─────────── Targeting form ─────────── -->
+    <section class="form-section">
+      <div class="field">
+        <label>Industry / Category</label>
+        <select id="selCategory">
+          <option value="">— pick a business type —</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Country</label>
+        <select id="selCountry">
+          <option value="">— pick a country —</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>State / Region</label>
+        <select id="selState">
+          <option value="">— pick a state —</option>
+        </select>
+        <input type="text" id="inpState" placeholder="Type state / region" style="display:none;" />
+      </div>
+
+      <div class="field">
+        <label>City</label>
+        <input type="text" id="inpCity" placeholder="e.g. Austin" />
+      </div>
+
+      <button type="button" class="btn btn-ghost btn-open-maps" id="btnOpenMaps" disabled>
+        <span class="btn-icon">→</span>
+        Open Google Maps with this search
+      </button>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ─────────── Stats strip ─────────── -->
     <div class="stats" id="statsRow">
       <div class="stat">
         <div class="stat-label">With website</div>
@@ -41,7 +78,7 @@
       </div>
     </div>
 
-    <!-- Action panel -->
+    <!-- ─────────── Actions ─────────── -->
     <div class="actions">
       <button type="button" class="btn btn-primary" id="btnScrape">
         <span class="btn-icon">◆</span>
@@ -56,7 +93,7 @@
     <!-- Status line -->
     <div class="status" id="status">
       <span class="dot"></span>
-      <span id="statusText">Open Google Maps to begin</span>
+      <span id="statusText">Fill the form above to start</span>
     </div>
 
     <!-- Results preview -->
@@ -66,11 +103,13 @@
       <a href="https://brandivibe.com/dashboard" target="_blank" rel="noopener">
         Open dashboard →
       </a>
+      <a href="#" id="btnResetDedupe" class="footer-secondary">Reset dedupe history</a>
     </footer>
 
   </main>
 </div>
 
+<script src="data.js"></script>
 <script src="popup.js"></script>
 </body>
 </html>

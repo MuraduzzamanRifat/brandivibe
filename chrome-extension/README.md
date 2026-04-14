@@ -1,6 +1,13 @@
-# Brandivibe Maps Lead Scraper
+# Brandivibe Maps Lead Scraper (v1.1)
 
-Chrome extension that scrapes Google Maps business listings into the Brandivibe sales brain. Premium WebGL-style popup, real-time sync to `brandivibe.com/dashboard`.
+Chrome extension that scrapes Google Maps business listings into the Brandivibe sales brain. Premium WebGL-style popup with built-in targeting (category + country + state + city), automatic dedupe across sessions, and real-time sync to `brandivibe.com/dashboard`.
+
+## What's new in 1.1
+
+- **Targeting form** — pick an industry (70+ categories), a country (200+), a state/region, and a city. The extension builds a Google Maps search URL and opens it for you.
+- **Cross-session dedupe** — the extension remembers every website it has already sent to the dashboard (up to 10,000). Re-scraping the same area skips businesses you've already pulled.
+- **Reset dedupe** — one-click footer link to wipe the history if you want to re-scrape.
+- **Remembered form state** — last category / country / state / city persists between popup opens.
 
 ## What it does
 

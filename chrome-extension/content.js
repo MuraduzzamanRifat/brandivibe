@@ -140,7 +140,7 @@
 
   // ─────────── Main scrape ───────────
 
-  async function scrapeMaps() {
+  async function scrapeMaps(sentWebsites) {
     log("scrape requested");
     const panel = findResultsPanel();
     if (!panel) {
@@ -157,13 +157,23 @@
     const anchors = Array.from(panel.querySelectorAll('a[href*="/maps/place/"]'));
     log("anchors found:", anchors.length);
 
+    const dedupeSet = new Set(
+      (Array.isArray(sentWebsites) ? sentWebsites : []).map((u) => (u || "").toLowerCase())
+    );
+
     const seen = new Set();
     const leads = [];
     let droppedNoWebsite = 0;
+    let duplicates = 0;
     for (const a of anchors) {
       const card = extractCard(a);
       if (!card) {
         droppedNoWebsite++;
+        continue;
+      }
+      const websiteLower = card.website.toLowerCase();
+      if (dedupeSet.has(websiteLower)) {
+        duplicates++;
         continue;
       }
       const key = `${card.name}|${card.website}`.toLowerCase();
@@ -172,13 +182,14 @@
       leads.push(card);
     }
 
-    log("extracted leads with website:", leads.length, "dropped (no website):", droppedNoWebsite);
+    log("extracted leads:", leads.length, "dropped (no website):", droppedNoWebsite, "duplicates skipped:", duplicates);
 
     return {
       ok: true,
       query: readQuery(),
       leads,
       droppedNoWebsite,
+      duplicates,
     };
   }
 
@@ -186,7 +197,7 @@
 
   chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     if (msg?.action === "scrapeMaps") {
-      scrapeMaps()
+      scrapeMaps(msg.sentWebsites)
         .then((result) => sendResponse(result))
         .catch((err) =>
           sendResponse({ ok: false, error: String(err?.message || err) })
@@ -195,5 +206,5 @@
     }
   });
 
-  log("content script loaded (v2 narrow: name + website + location)");
+  log("content script loaded (v3: name + website + location + dedupe)");
 })();

@@ -1,15 +1,25 @@
-/* Brandivibe Maps Scraper — popup controller
-   ─────────────────────────────────────────────
-   Orchestrates the user flow:
-     1. User clicks "Scrape this page" → message content script → returns leads
-     2. Preview leads in the popup, enable "Send to dashboard"
-     3. User clicks "Send to dashboard" → message background → POST to API
-     4. Show success / error in status line
+/* Brandivibe Maps Scraper — popup controller v2
+   ───────────────────────────────────────────────
+   Adds:
+   - Category / Country / State / City form that builds a Google Maps
+     search URL and opens it in a new tab
+   - Dedupe history via chrome.storage.local (sentWebsites)
+   - Reset dedupe button in the footer
+
+   Imports BUSINESS_CATEGORIES, COUNTRIES, STATES_BY_COUNTRY from data.js
+   (loaded as a separate <script> before this file in popup.html).
 */
 
 const $ = (id) => document.getElementById(id);
 
 const els = {
+  selCategory: $("selCategory"),
+  selCountry: $("selCountry"),
+  selState: $("selState"),
+  inpState: $("inpState"),
+  inpCity: $("inpCity"),
+  btnOpenMaps: $("btnOpenMaps"),
+
   btnScrape: $("btnScrape"),
   btnScrapeLabel: $("btnScrapeLabel"),
   btnSync: $("btnSync"),
@@ -18,10 +28,68 @@ const els = {
   preview: $("preview"),
   statFound: $("statFound"),
   statSynced: $("statSynced"),
+
+  btnResetDedupe: $("btnResetDedupe"),
 };
 
 let scrapedLeads = [];
 let scrapeQuery = "";
+
+// ─────────── Populate dropdowns ───────────
+
+function populateDropdowns() {
+  // Categories
+  for (const cat of BUSINESS_CATEGORIES) {
+    const opt = document.createElement("option");
+    opt.value = cat;
+    opt.textContent = cat;
+    els.selCategory.appendChild(opt);
+  }
+
+  // Countries
+  for (const country of COUNTRIES) {
+    const opt = document.createElement("option");
+    opt.value = country;
+    opt.textContent = country;
+    els.selCountry.appendChild(opt);
+  }
+}
+
+function updateStateField() {
+  const country = els.selCountry.value;
+  const states = STATES_BY_COUNTRY[country];
+
+  // Clear current state dropdown + text
+  els.selState.innerHTML = '<option value="">— pick a state —</option>';
+  els.inpState.value = "";
+
+  if (states) {
+    // Use dropdown for known countries
+    for (const st of states) {
+      const opt = document.createElement("option");
+      opt.value = st;
+      opt.textContent = st;
+      els.selState.appendChild(opt);
+    }
+    els.selState.style.display = "";
+    els.inpState.style.display = "none";
+  } else if (country) {
+    // Free-text for other countries
+    els.selState.style.display = "none";
+    els.inpState.style.display = "";
+  } else {
+    els.selState.style.display = "";
+    els.inpState.style.display = "none";
+  }
+}
+
+function updateOpenMapsButton() {
+  const ready =
+    els.selCategory.value &&
+    els.selCountry.value &&
+    els.inpCity.value.trim();
+  els.btnOpenMaps.disabled = !ready;
+}
 
 // ─────────── Status helpers ───────────
 
@@ -33,25 +101,101 @@ function setStatus(text, mode = "idle") {
   if (mode === "error") els.status.classList.add("is-error");
 }
 
-// ─────────── Restore last sync count from storage ───────────
+// ─────────── Init ───────────
 
-chrome.storage.local.get(["lifetimeSynced"], (result) => {
-  const n = result.lifetimeSynced || 0;
-  els.statSynced.textContent = n.toLocaleString();
+async function init() {
+  populateDropdowns();
+  updateStateField();
+  updateOpenMapsButton();
+
+  // Restore lifetime synced count
+  chrome.storage.local.get(["lifetimeSynced"], (result) => {
+    const n = result.lifetimeSynced || 0;
+    els.statSynced.textContent = n.toLocaleString();
+  });
+
+  // Restore last form selection
+  chrome.storage.local.get(["lastForm"], (result) => {
+    const last = result.lastForm;
+    if (!last) return;
+    if (last.category) els.selCategory.value = last.category;
+    if (last.country) {
+      els.selCountry.value = last.country;
+      updateStateField();
+      if (last.state) {
+        if (STATES_BY_COUNTRY[last.country]) {
+          els.selState.value = last.state;
+        } else {
+          els.inpState.value = last.state;
+        }
+      }
+    }
+    if (last.city) els.inpCity.value = last.city;
+    updateOpenMapsButton();
+  });
+
+  // Check if current tab is a Maps page
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tab?.url && /^https:\/\/(www\.)?google\.com\/maps/.test(tab.url)) {
+    setStatus("Ready. Click Scrape this page.", "active");
+    els.btnScrape.disabled = false;
+  } else {
+    setStatus("Fill the form, open Maps, then scrape.", "idle");
+    els.btnScrape.disabled = true;
+  }
+}
+
+// ─────────── Form handlers ───────────
+
+els.selCategory.addEventListener("change", () => {
+  updateOpenMapsButton();
+  saveFormState();
+});
+els.selCountry.addEventListener("change", () => {
+  updateStateField();
+  updateOpenMapsButton();
+  saveFormState();
+});
+els.selState.addEventListener("change", () => {
+  updateOpenMapsButton();
+  saveFormState();
+});
+els.inpState.addEventListener("input", () => {
+  updateOpenMapsButton();
+  saveFormState();
+});
+els.inpCity.addEventListener("input", () => {
+  updateOpenMapsButton();
+  saveFormState();
 });
 
-// ─────────── Detect if we're on Google Maps ───────────
+function saveFormState() {
+  chrome.storage.local.set({
+    lastForm: {
+      category: els.selCategory.value,
+      country: els.selCountry.value,
+      state: els.selState.value || els.inpState.value,
+      city: els.inpCity.value,
+    },
+  });
+}
 
-(async () => {
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  if (!tab?.url || !/^https:\/\/(www\.)?google\.com\/maps/.test(tab.url)) {
-    setStatus("Open Google Maps to begin", "idle");
-    els.btnScrape.disabled = true;
-    return;
-  }
-  setStatus("Ready. Search for businesses, then click scrape.", "active");
-  els.btnScrape.disabled = false;
-})();
+// ─────────── Open Maps with search ───────────
+
+els.btnOpenMaps.addEventListener("click", async () => {
+  const parts = [
+    els.selCategory.value,
+    els.inpCity.value.trim(),
+    els.selState.value || els.inpState.value,
+    els.selCountry.value,
+  ].filter(Boolean);
+
+  const query = parts.join(" ");
+  const url = `https://www.google.com/maps/search/${encodeURIComponent(query)}/`;
+
+  await chrome.tabs.create({ url, active: true });
+  setStatus("Google Maps opened — wait for results then re-click the extension icon.", "active");
+});
 
 // ─────────── Scrape button ───────────
 
@@ -64,7 +208,15 @@ els.btnScrape.addEventListener("click", async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab?.id) throw new Error("No active tab");
 
-    const response = await chrome.tabs.sendMessage(tab.id, { action: "scrapeMaps" });
+    // Pull dedupe list from storage, pass to content script
+    const stored = await chrome.storage.local.get(["sentWebsites"]);
+    const sentList = Array.isArray(stored.sentWebsites) ? stored.sentWebsites : [];
+
+    const response = await chrome.tabs.sendMessage(tab.id, {
+      action: "scrapeMaps",
+      sentWebsites: sentList,
+    });
+
     if (!response?.ok) {
       throw new Error(response?.error || "Scrape returned no data");
     }
@@ -72,14 +224,23 @@ els.btnScrape.addEventListener("click", async () => {
     scrapedLeads = response.leads || [];
     scrapeQuery = response.query || "";
 
+    const duplicates = response.duplicates ?? 0;
+    const noWebsite = response.droppedNoWebsite ?? 0;
+
     els.statFound.textContent = scrapedLeads.length.toLocaleString();
     renderPreview(scrapedLeads);
 
     if (scrapedLeads.length === 0) {
-      setStatus("No leads found. Scroll the results panel and try again.", "error");
+      setStatus(
+        `No new leads (${duplicates} duplicates, ${noWebsite} without website).`,
+        "error"
+      );
       els.btnSync.disabled = true;
     } else {
-      setStatus(`Scraped ${scrapedLeads.length} leads. Ready to sync.`, "success");
+      setStatus(
+        `Scraped ${scrapedLeads.length} new leads${duplicates > 0 ? ` (${duplicates} dedup skipped)` : ""}. Ready to sync.`,
+        "success"
+      );
       els.btnSync.disabled = false;
     }
   } catch (err) {
@@ -125,7 +286,18 @@ els.btnSync.addEventListener("click", async () => {
       els.statSynced.textContent = newTotal.toLocaleString();
     });
 
-    // Clear the local scrape so the user can capture another page
+    // Track the websites we just sent so we don't re-send them later
+    const sentUrls = scrapedLeads.map((l) => (l.website || "").toLowerCase()).filter(Boolean);
+    if (sentUrls.length > 0) {
+      chrome.storage.local.get(["sentWebsites"], (result) => {
+        const existing = new Set(Array.isArray(result.sentWebsites) ? result.sentWebsites : []);
+        for (const u of sentUrls) existing.add(u);
+        // Cap at 10k URLs to prevent unbounded growth
+        const next = Array.from(existing).slice(-10000);
+        chrome.storage.local.set({ sentWebsites: next });
+      });
+    }
+
     scrapedLeads = [];
     setTimeout(() => {
       els.statFound.textContent = "0";
@@ -137,6 +309,16 @@ els.btnSync.addEventListener("click", async () => {
     setStatus(`Sync failed: ${err.message || err}`, "error");
     els.btnSync.disabled = false;
   }
+});
+
+// ─────────── Reset dedupe history ───────────
+
+els.btnResetDedupe.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (!confirm("Reset dedupe history? Previously-scraped businesses will be scrapable again.")) return;
+  chrome.storage.local.remove(["sentWebsites"], () => {
+    setStatus("Dedupe history cleared.", "success");
+  });
 });
 
 // ─────────── Preview renderer ───────────
@@ -157,7 +339,7 @@ function renderPreview(leads) {
     `;
     li.querySelector("strong").textContent = lead.name;
     const meta = [
-      lead.website ? new URL(lead.website).hostname.replace(/^www\./, "") : "",
+      lead.website ? safeHostname(lead.website) : "",
       lead.location,
     ]
       .filter(Boolean)
@@ -168,3 +350,15 @@ function renderPreview(leads) {
   els.preview.innerHTML = "";
   els.preview.appendChild(ul);
 }
+
+function safeHostname(url) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
+
+// ─────────── Go ───────────
+
+init();
