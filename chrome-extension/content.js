@@ -1,21 +1,21 @@
-/* Brandivibe Maps Scraper — content script v3 (auto-scrape + overlay)
+/* Brandivibe Maps Scraper — content script v5 (click-into-detail)
    ─────────────────────────────────────────────────────────────────────
-   Runs inside google.com/maps tabs. Two modes:
+   Two scraping modes, click mode is the default:
 
-   1. MANUAL: popup sends a scrapeMaps message → this script scrapes and
-      returns leads.
-   2. AUTO: popup sets chrome.storage.local.pendingAutoScrape before
-      opening the Maps tab. This script reads that flag on page load,
-      waits 4s for Maps results to render, auto-scrolls, scrapes,
-      forwards the batch to background.js which POSTs to the dashboard,
-      and shows an on-page overlay with live progress.
+   1. CLICK MODE (default, reliable):
+      Phase 1 — scroll the feed to load all place anchors into memory
+      Phase 2 — for each place, click the anchor to open the detail pane,
+                scrape structured data (name, website, address) from the
+                pane using stable Google data-item-id selectors, go back
+      Partial-save on CAPTCHA detection so you never lose collected work.
 
-   Scroll v3 fixes the "not loading more results" bug:
-   - Uses scrollIntoView({ block:'end' }) on the LAST visible card to
-     trigger Google's IntersectionObserver lazy-load
-   - Also dispatches a scroll event on the feed panel
-   - Detects the "end of the list" marker for early exit
-   - 40 max rounds (was 14), 1200ms between rounds (was 900ms)
+   2. LIST MODE (fallback, fast but misses button-style links):
+      Scroll + parse-in-place — the old v1.4 logic. Kept as a kill-switch
+      behind chrome.storage.local.useListMode = true if Google redesigns
+      the detail pane and click mode breaks.
+
+   Auto-scrape on page load still triggered via pendingAutoScrape flag.
+   On-page overlay shows live two-phase progress.
 */
 
 (() => {
@@ -40,19 +40,13 @@
   }
 
   function findEndMarker() {
-    // Google shows "You've reached the end of the list." at the bottom
-    // of fully loaded results. Search the feed for that text.
     const feed = findResultsPanel();
     if (!feed) return false;
     const text = feed.textContent || "";
     return /you['']?ve reached the end/i.test(text);
   }
 
-  /**
-   * Scroll v3 — uses scrollIntoView on the last card to trigger Google's
-   * IntersectionObserver lazy-load. Detects the end-of-list marker.
-   * Reports progress via the onProgress callback each round.
-   */
+  /** Scroll the feed until no new cards load for N rounds. */
   async function scrollResults(panel, onProgress, maxRounds = 40) {
     let lastCount = 0;
     let stableRounds = 0;
@@ -62,10 +56,8 @@
     for (let i = 0; i < maxRounds; i++) {
       const items = panel.querySelectorAll('a[href*="/maps/place/"]');
       const count = items.length;
-
       if (onProgress) onProgress(count);
 
-      // Early stop: no new items for N rounds
       if (count === lastCount) {
         stableRounds++;
         if (stableRounds >= STABLE_BEFORE_STOP) break;
@@ -74,13 +66,8 @@
       }
       lastCount = count;
 
-      // Early stop: Google says we've reached the end
-      if (findEndMarker()) {
-        log("end marker detected, stopping scroll");
-        break;
-      }
+      if (findEndMarker()) break;
 
-      // Trigger Google's lazy-load three different ways
       if (items.length > 0) {
         try {
           items[items.length - 1].scrollIntoView({
@@ -97,6 +84,244 @@
     return lastCount;
   }
 
+  /** Detect if Google has throttled us. Check for captcha + unusual traffic. */
+  function detectThrottle() {
+    if (document.querySelector('iframe[title*="recaptcha" i]')) return true;
+    const body = document.body?.innerText || "";
+    if (/unusual traffic|automated queries|your computer or network/i.test(body)) return true;
+    return false;
+  }
+
+  function readQuery() {
+    const input = document.querySelector('input#searchboxinput, input[aria-label*="Search"]');
+    if (input && input.value) return input.value;
+    return document.title.replace(" - Google Maps", "").trim();
+  }
+
+  // ─────────── Click-mode extractors ───────────
+
+  /**
+   * Wait for the detail pane to fully render after clicking a place anchor.
+   * The key signal is an H1 inside [role="main"] with non-empty text.
+   * Returns the detail pane element, or null on timeout.
+   */
+  async function waitForDetailPane(maxMs = 5000) {
+    const start = Date.now();
+    while (Date.now() - start < maxMs) {
+      const main = document.querySelector('[role="main"]');
+      const h1 = main?.querySelector("h1");
+      if (h1 && (h1.textContent || "").trim().length > 0) {
+        // Extra settle — website link sometimes appears ~150ms after h1
+        await sleep(250);
+        return main;
+      }
+      await sleep(120);
+    }
+    return null;
+  }
+
+  /**
+   * Extract name / website / location from the detail pane using Google's
+   * stable data-item-id attributes. Returns null if name or website missing.
+   *
+   * Key selectors:
+   *   Name     — h1 (first one inside [role="main"])
+   *   Website  — a[data-item-id="authority"]  (href is the real business URL)
+   *   Address  — button[data-item-id="address"] or [data-item-id="address"]
+   */
+  function extractFromDetailPane(main) {
+    if (!main) return null;
+
+    const nameEl = main.querySelector("h1");
+    const name = nameEl ? (nameEl.textContent || "").trim() : "";
+    if (!name) return null;
+
+    // Website — try multiple strategies
+    let website = "";
+    const websiteSelectors = [
+      'a[data-item-id="authority"]',
+      'a[data-item-id^="authority"]',
+      'a[aria-label^="Website"]',
+      'a[data-value="Website"]',
+    ];
+    for (const sel of websiteSelectors) {
+      const el = main.querySelector(sel);
+      if (el && el.href && el.href.startsWith("http") && !el.href.includes("google.com")) {
+        website = el.href;
+        break;
+      }
+    }
+    if (!website) return null;
+
+    // Address — multiple strategies
+    let address = "";
+    const addressSelectors = [
+      'button[data-item-id="address"]',
+      '[data-item-id="address"]',
+      'button[aria-label^="Address"]',
+    ];
+    for (const sel of addressSelectors) {
+      const el = main.querySelector(sel);
+      if (el) {
+        address = (el.textContent || el.getAttribute("aria-label") || "")
+          .replace(/^Address:\s*/i, "")
+          .trim();
+        if (address) break;
+      }
+    }
+
+    return { name, website, location: address };
+  }
+
+  /** Go back to the list view after viewing a detail. */
+  async function goBackToList(maxMs = 3000) {
+    // Strategy 1: history.back() — works in Maps SPA
+    try {
+      history.back();
+    } catch {}
+
+    const start = Date.now();
+    while (Date.now() - start < maxMs) {
+      const feed = document.querySelector('[role="feed"]');
+      if (feed) {
+        await sleep(200); // settle
+        return true;
+      }
+      await sleep(100);
+    }
+
+    // Strategy 2: click the back button by aria-label
+    const backBtn = document.querySelector(
+      'button[aria-label*="Back" i], button[jsaction*="pane.back"]'
+    );
+    if (backBtn) {
+      backBtn.click();
+      await sleep(500);
+      return true;
+    }
+    return false;
+  }
+
+  // ─────────── CLICK MODE — main scraper ───────────
+
+  async function scrapeMapsClickMode(sentWebsites, onProgress) {
+    log("click mode scrape starting");
+
+    const panel = findResultsPanel();
+    if (!panel) {
+      return { ok: false, error: "No results panel found. Run a Maps search first." };
+    }
+
+    // PHASE 1 — scroll to load all cards
+    if (onProgress) onProgress({ phase: 1, message: "Loading results · 0" });
+    await scrollResults(panel, (count) => {
+      if (onProgress) onProgress({ phase: 1, message: `Loading results · ${count}` });
+    });
+
+    // Collect place URLs (deduped by URL)
+    const anchors = Array.from(panel.querySelectorAll('a[href*="/maps/place/"]'));
+    const placeUrls = Array.from(new Set(anchors.map((a) => a.href)));
+    const total = placeUrls.length;
+
+    log("collected", total, "place URLs");
+
+    if (total === 0) {
+      return { ok: true, query: readQuery(), leads: [], duplicates: 0, droppedNoWebsite: 0 };
+    }
+
+    // PHASE 2 — click into each
+    const dedupeSet = new Set(
+      (Array.isArray(sentWebsites) ? sentWebsites : []).map((u) => (u || "").toLowerCase())
+    );
+    const leads = [];
+    let duplicates = 0;
+    let droppedNoWebsite = 0;
+    let throttled = false;
+
+    for (let i = 0; i < placeUrls.length; i++) {
+      if (onProgress) {
+        onProgress({
+          phase: 2,
+          message: `Scraping ${i + 1} / ${total} · ${leads.length} saved`,
+        });
+      }
+
+      // Detect throttle before each click
+      if (detectThrottle()) {
+        log("throttle detected, stopping early");
+        throttled = true;
+        break;
+      }
+
+      // Re-query for the anchor (the feed may have re-rendered)
+      const url = placeUrls[i];
+      const escaped = url.replace(/"/g, '\\"');
+      const anchor = document.querySelector(`a[href="${escaped}"]`);
+      if (!anchor) {
+        log("anchor missing for", url);
+        droppedNoWebsite++;
+        continue;
+      }
+
+      // Click it
+      try {
+        anchor.scrollIntoView({ block: "center" });
+        await sleep(150);
+        anchor.click();
+      } catch (err) {
+        log("click failed", err);
+        droppedNoWebsite++;
+        continue;
+      }
+
+      // Wait for detail pane
+      const main = await waitForDetailPane(5000);
+      if (!main) {
+        log("detail pane never loaded");
+        await goBackToList();
+        droppedNoWebsite++;
+        continue;
+      }
+
+      // Extract structured data
+      const lead = extractFromDetailPane(main);
+      if (!lead) {
+        // No website — business isn't sendable
+        droppedNoWebsite++;
+        await goBackToList();
+        continue;
+      }
+
+      // Dedupe against previously-sent websites
+      const websiteLower = lead.website.toLowerCase();
+      if (dedupeSet.has(websiteLower)) {
+        duplicates++;
+        await goBackToList();
+        continue;
+      }
+
+      dedupeSet.add(websiteLower);
+      leads.push(lead);
+      log("+", lead.name, lead.website);
+
+      // Go back for the next iteration
+      await goBackToList();
+      await sleep(300); // tiny cadence — less robot-like
+    }
+
+    return {
+      ok: true,
+      query: readQuery(),
+      leads,
+      duplicates,
+      droppedNoWebsite,
+      throttled,
+      total,
+    };
+  }
+
+  // ─────────── LIST MODE — fallback (old v1.4 logic) ───────────
+
   function findCardContainer(anchor) {
     let card = anchor;
     for (let i = 0; i < 6 && card.parentElement; i++) {
@@ -109,11 +334,9 @@
   function extractCard(anchor) {
     const card = findCardContainer(anchor);
     const ariaLabel = anchor.getAttribute("aria-label") || "";
-
     const name = ariaLabel.trim() || anchor.textContent.trim().split("\n")[0].trim();
     if (!name) return null;
 
-    // Website (mandatory for email enrichment)
     let website = "";
     const links = card.querySelectorAll("a[href]");
     for (const a of links) {
@@ -127,13 +350,8 @@
     }
     if (!website) return null;
 
-    // Location from card text
     const text = (card.innerText || card.textContent || "").trim();
-    const lines = text
-      .split("\n")
-      .map((l) => l.trim())
-      .filter(Boolean);
-
+    const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
     let location = "";
     for (const line of lines) {
       if (line === name) continue;
@@ -144,14 +362,77 @@
         break;
       }
     }
-
     return { name, website, location };
   }
 
-  function readQuery() {
-    const input = document.querySelector('input#searchboxinput, input[aria-label*="Search"]');
-    if (input && input.value) return input.value;
-    return document.title.replace(" - Google Maps", "").trim();
+  async function scrapeMapsListMode(sentWebsites, onProgress) {
+    log("list mode scrape starting (fallback)");
+    const panel = findResultsPanel();
+    if (!panel) {
+      return { ok: false, error: "No results panel found." };
+    }
+
+    if (onProgress) onProgress({ phase: 1, message: "Loading results · 0" });
+    await scrollResults(panel, (count) => {
+      if (onProgress) onProgress({ phase: 1, message: `Loading results · ${count}` });
+    });
+
+    const anchors = Array.from(panel.querySelectorAll('a[href*="/maps/place/"]'));
+    const dedupeSet = new Set(
+      (Array.isArray(sentWebsites) ? sentWebsites : []).map((u) => (u || "").toLowerCase())
+    );
+    const seen = new Set();
+    const leads = [];
+    let droppedNoWebsite = 0;
+    let duplicates = 0;
+
+    for (const a of anchors) {
+      const card = extractCard(a);
+      if (!card) {
+        droppedNoWebsite++;
+        continue;
+      }
+      const websiteLower = card.website.toLowerCase();
+      if (dedupeSet.has(websiteLower)) {
+        duplicates++;
+        continue;
+      }
+      const key = `${card.name}|${card.website}`.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      leads.push(card);
+    }
+
+    return {
+      ok: true,
+      query: readQuery(),
+      leads,
+      duplicates,
+      droppedNoWebsite,
+      throttled: false,
+      total: anchors.length,
+    };
+  }
+
+  // ─────────── Router: click mode default, list mode fallback ───────────
+
+  async function scrapeMaps(sentWebsites, { withOverlay = false } = {}) {
+    const stored = await new Promise((resolve) =>
+      chrome.storage.local.get(["useListMode"], resolve)
+    );
+    const useListMode = !!stored.useListMode;
+
+    const onProgress = withOverlay
+      ? (p) => {
+          if (p.phase === 1) showOverlay(p.message, "active");
+          else if (p.phase === 2) showOverlay(p.message, "active");
+        }
+      : null;
+
+    if (useListMode) {
+      return scrapeMapsListMode(sentWebsites, onProgress);
+    }
+    return scrapeMapsClickMode(sentWebsites, onProgress);
   }
 
   // ─────────── On-page overlay ───────────
@@ -170,7 +451,7 @@
           "right:20px",
           "z-index:2147483647",
           "min-width:260px",
-          "max-width:340px",
+          "max-width:360px",
           "padding:14px 18px",
           "background:linear-gradient(180deg,rgba(11,13,22,0.96),rgba(10,12,18,0.96))",
           "border:1px solid rgba(134,229,255,0.25)",
@@ -180,8 +461,8 @@
           "font-family:-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif",
           "font-size:13px",
           "line-height:1.45",
-          "backdrop-filter:blur(16px)",
           "-webkit-backdrop-filter:blur(16px)",
+          "backdrop-filter:blur(16px)",
           "pointer-events:none",
         ].join(";")
       );
@@ -217,97 +498,24 @@
       .replace(/'/g, "&#39;");
   }
 
-  // ─────────── Main scrape ───────────
-
-  async function scrapeMaps(sentWebsites, { withOverlay = false } = {}) {
-    log("scrape requested");
-    const panel = findResultsPanel();
-    if (!panel) {
-      if (withOverlay) showOverlay("No results panel found. Run a Maps search first.", "error");
-      return {
-        ok: false,
-        error:
-          "No results panel found. Make sure you're on a search results page (not a single business detail).",
-      };
-    }
-
-    if (withOverlay) showOverlay("Scraping Maps · 0 found");
-
-    const finalCount = await scrollResults(panel, (count) => {
-      if (withOverlay) showOverlay(`Scraping Maps · ${count} found`);
-    });
-
-    log("scrolled to", finalCount, "results");
-
-    const anchors = Array.from(panel.querySelectorAll('a[href*="/maps/place/"]'));
-
-    const dedupeSet = new Set(
-      (Array.isArray(sentWebsites) ? sentWebsites : []).map((u) => (u || "").toLowerCase())
-    );
-
-    const seen = new Set();
-    const leads = [];
-    let droppedNoWebsite = 0;
-    let duplicates = 0;
-    for (const a of anchors) {
-      const card = extractCard(a);
-      if (!card) {
-        droppedNoWebsite++;
-        continue;
-      }
-      const websiteLower = card.website.toLowerCase();
-      if (dedupeSet.has(websiteLower)) {
-        duplicates++;
-        continue;
-      }
-      const key = `${card.name}|${card.website}`.toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      leads.push(card);
-    }
-
-    log(
-      "extracted leads:",
-      leads.length,
-      "dropped (no website):",
-      droppedNoWebsite,
-      "duplicates skipped:",
-      duplicates
-    );
-
-    if (withOverlay) {
-      showOverlay(`Scraped ${leads.length} new · syncing to dashboard…`, "active");
-    }
-
-    return {
-      ok: true,
-      query: readQuery(),
-      leads,
-      droppedNoWebsite,
-      duplicates,
-    };
-  }
-
   // ─────────── Auto-scrape on page load ───────────
 
   async function checkAutoScrape() {
-    const stored = await chrome.storage.local.get(["pendingAutoScrape", "sentWebsites"]);
+    const stored = await new Promise((resolve) =>
+      chrome.storage.local.get(["pendingAutoScrape", "sentWebsites"], resolve)
+    );
     const flag = stored.pendingAutoScrape;
     if (!flag || !flag.timestamp) return;
 
-    // Only trigger if the flag is fresh (< 3 minutes old)
     const age = Date.now() - flag.timestamp;
     if (age > 3 * 60 * 1000) {
       chrome.storage.local.remove(["pendingAutoScrape"]);
       return;
     }
 
-    log("auto-scrape flag detected, waiting 4s for Maps to render…");
+    log("auto-scrape flag detected, waiting 4s for Maps to render");
     showOverlay("Maps loaded · waiting for results to render…");
-
-    // Clear flag immediately so a page reload doesn't re-trigger
     chrome.storage.local.remove(["pendingAutoScrape"]);
-
     await sleep(4000);
 
     const sentWebsites = Array.isArray(stored.sentWebsites) ? stored.sentWebsites : [];
@@ -320,15 +528,14 @@
     }
 
     if (result.leads.length === 0) {
-      showOverlay(
-        `No new leads (${result.duplicates ?? 0} dedup, ${result.droppedNoWebsite ?? 0} without website)`,
-        "error"
-      );
+      const detail = result.throttled
+        ? "Google throttled us"
+        : `No new leads (${result.duplicates ?? 0} dedup, ${result.droppedNoWebsite ?? 0} no website)`;
+      showOverlay(detail, "error");
       hideOverlay(6000);
       return;
     }
 
-    // Forward to background.js to POST
     showOverlay(`Sending ${result.leads.length} leads to dashboard…`);
     try {
       const syncResult = await chrome.runtime.sendMessage({
@@ -341,13 +548,14 @@
         hideOverlay(8000);
         return;
       }
+      const throttleNote = result.throttled ? " (stopped early — Google throttled)" : "";
       showOverlay(
-        `✓ ${syncResult.added} with email · ${syncResult.droppedNoEmail || 0} dropped`,
+        `✓ ${syncResult.added} with email · ${syncResult.droppedNoEmail || 0} dropped${throttleNote}`,
         "success"
       );
-      hideOverlay(8000);
+      hideOverlay(10000);
 
-      // Update sent websites cache
+      // Update dedupe cache
       const existing = new Set(sentWebsites);
       for (const l of result.leads) existing.add((l.website || "").toLowerCase());
       chrome.storage.local.set({ sentWebsites: Array.from(existing).slice(-10000) });
@@ -373,9 +581,8 @@
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => checkAutoScrape(), { once: true });
   } else {
-    // Already loaded — Maps SPA loads content lazily so give it a tick
     setTimeout(() => checkAutoScrape(), 500);
   }
 
-  log("content script loaded v3 (auto-scrape + overlay + better scroll)");
+  log("content script v5 loaded (click mode default, list mode fallback)");
 })();
