@@ -97,7 +97,10 @@ els.btnScrape.addEventListener("click", async () => {
 els.btnSync.addEventListener("click", async () => {
   if (scrapedLeads.length === 0) return;
   els.btnSync.disabled = true;
-  setStatus(`Syncing ${scrapedLeads.length} leads to dashboard…`, "active");
+  setStatus(
+    `Server is scraping ${scrapedLeads.length} websites for emails… (10-60s)`,
+    "active"
+  );
 
   try {
     const response = await chrome.runtime.sendMessage({
@@ -111,7 +114,7 @@ els.btnSync.addEventListener("click", async () => {
     }
 
     setStatus(
-      `Synced. +${response.added} new, ${response.deduped} dedup`,
+      `+${response.added} with email · ${response.droppedNoEmail || 0} dropped no-email · ${response.deduped || 0} dedup`,
       "success"
     );
 
@@ -128,7 +131,7 @@ els.btnSync.addEventListener("click", async () => {
       els.statFound.textContent = "0";
       els.preview.innerHTML = "";
       setStatus("Ready for next scrape.", "active");
-    }, 2400);
+    }, 3500);
   } catch (err) {
     console.error("[Brandivibe] sync failed:", err);
     setStatus(`Sync failed: ${err.message || err}`, "error");
@@ -148,12 +151,17 @@ function renderPreview(leads) {
   for (const lead of leads.slice(0, 30)) {
     const li = document.createElement("li");
     li.className = "preview-item";
-    const meta = [lead.category, lead.address].filter(Boolean).join(" · ");
     li.innerHTML = `
       <strong></strong>
       <small></small>
     `;
     li.querySelector("strong").textContent = lead.name;
+    const meta = [
+      lead.website ? new URL(lead.website).hostname.replace(/^www\./, "") : "",
+      lead.location,
+    ]
+      .filter(Boolean)
+      .join(" · ");
     li.querySelector("small").textContent = meta || "—";
     ul.appendChild(li);
   }

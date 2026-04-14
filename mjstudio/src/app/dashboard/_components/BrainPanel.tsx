@@ -25,15 +25,11 @@ type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads";
 
 type GmapsLead = {
   id: string;
-  placeId?: string;
   name: string;
-  address?: string;
-  phone?: string;
-  website?: string;
-  category?: string;
-  rating?: number;
-  reviewCount?: number;
-  hours?: string;
+  email: string;
+  website: string;
+  location: string;
+  altEmails?: string[];
   query: string;
   scrapedAt: string;
 };
@@ -437,15 +433,21 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <Stat label="Total leads" value={gmapsLeads.length} />
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                <Stat label="Leads w/ email" value={gmapsLeads.length} />
                 <Stat
-                  label="With website"
-                  value={gmapsLeads.filter((l) => l.website).length}
-                />
-                <Stat
-                  label="With phone"
-                  value={gmapsLeads.filter((l) => l.phone).length}
+                  label="Unique domains"
+                  value={
+                    new Set(
+                      gmapsLeads.map((l) => {
+                        try {
+                          return new URL(l.website).hostname.replace(/^www\./, "");
+                        } catch {
+                          return l.website;
+                        }
+                      })
+                    ).size
+                  }
                 />
                 <Stat
                   label="Unique queries"
@@ -458,36 +460,35 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
                   <li key={l.id} className="panel-2 p-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <span className="font-semibold text-[var(--brain-ink)]">{l.name}</span>
-                          {typeof l.rating === "number" && (
-                            <span className="mono text-[10px] text-[var(--brain-accent)]">
-                              ★ {l.rating.toFixed(1)} {l.reviewCount ? `(${l.reviewCount.toLocaleString()})` : ""}
-                            </span>
-                          )}
-                          {l.category && (
-                            <span className="mono text-[10px] uppercase tracking-[0.2em] text-[var(--brain-muted)]">
-                              {l.category}
-                            </span>
-                          )}
+                        <div className="font-semibold text-[var(--brain-ink)] mb-1">
+                          {l.name}
                         </div>
-                        {l.address && (
-                          <div className="text-[12px] text-[var(--brain-muted)] mb-1">{l.address}</div>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <a
+                            href={`mailto:${l.email}`}
+                            className="text-[var(--brain-accent)] text-[13px]"
+                          >
+                            {l.email}
+                          </a>
+                          <a
+                            href={l.website}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mono text-[10px] text-[var(--brain-muted)] truncate max-w-[300px] hover:text-[var(--brain-accent)]"
+                          >
+                            {l.website.replace(/^https?:\/\/(www\.)?/, "")}
+                          </a>
+                        </div>
+                        {l.location && (
+                          <div className="text-[11px] text-[var(--brain-muted)] mt-1">
+                            {l.location}
+                          </div>
                         )}
-                        <div className="flex items-center gap-3 mono text-[10px] text-[var(--brain-muted)] flex-wrap">
-                          {l.phone && <span>{l.phone}</span>}
-                          {l.website && (
-                            <a
-                              href={l.website}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-[var(--brain-accent)] truncate max-w-[300px]"
-                            >
-                              {l.website.replace(/^https?:\/\/(www\.)?/, "")}
-                            </a>
-                          )}
-                          {l.hours && <span>{l.hours}</span>}
-                        </div>
+                        {l.altEmails && l.altEmails.length > 0 && (
+                          <div className="mono text-[10px] text-[var(--brain-muted)] mt-1">
+                            +{l.altEmails.length} alt email{l.altEmails.length === 1 ? "" : "s"}
+                          </div>
+                        )}
                       </div>
                       <div className="text-right shrink-0 mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-muted)]">
                         {l.query}

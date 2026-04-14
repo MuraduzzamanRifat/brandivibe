@@ -284,21 +284,22 @@ export type SequenceState = {
   unsubscribeToken?: string;
 };
 
-/** A lead scraped from Google Maps via the Brandivibe Chrome extension */
+/**
+ * A lead scraped from Google Maps via the Brandivibe Chrome extension.
+ *
+ * Only 4 fields are stored: name, email (required, enriched server-side from
+ * the website during ingestion), website, location. Leads without an email
+ * are DROPPED at ingest time — they're not stored.
+ */
 export type GmapsLead = {
   id: string;
-  /** Google's place_id if we can extract it, else hash of name+address */
-  placeId?: string;
   name: string;
-  address?: string;
-  phone?: string;
-  website?: string;
-  category?: string;
-  rating?: number;
-  reviewCount?: number;
-  lat?: number;
-  lng?: number;
-  hours?: string;
+  email: string;
+  website: string;
+  location: string;
+  /** Other emails found on the same site, kept for fallback */
+  altEmails?: string[];
+  /** The Maps search query that surfaced this lead */
   query: string;
   scrapedAt: string;
   source: "gmaps-extension";
@@ -547,13 +548,18 @@ export async function ingestGmapsLeads(
   if (!Array.isArray(leads) || leads.length === 0) return { added: 0, deduped: 0 };
   const data = await loadBrain();
   data.gmapsLeads = data.gmapsLeads ?? [];
+  // Dedupe primarily by email (the unique key per business contact)
   const existingKeys = new Set(
-    data.gmapsLeads.map((l) => l.placeId || `${l.name}|${l.address ?? ""}`.toLowerCase())
+    data.gmapsLeads.map((l) => l.email.toLowerCase())
   );
   let added = 0;
   let deduped = 0;
   for (const l of leads) {
-    const key = (l.placeId || `${l.name}|${l.address ?? ""}`).toLowerCase();
+    if (!l.email) {
+      deduped++;
+      continue;
+    }
+    const key = l.email.toLowerCase();
     if (existingKeys.has(key)) {
       deduped++;
       continue;

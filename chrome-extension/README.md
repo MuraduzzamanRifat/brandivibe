@@ -64,18 +64,27 @@ That's it. The extension is now wired to your live dashboard.
 
 ## What gets scraped per lead
 
-| Field | Always present | Notes |
+Only **4 fields**. Email is mandatory — leads without an email are dropped, never stored.
+
+| Field | Required | Where it comes from |
 |---|---|---|
-| `name` | ✓ | Business name |
-| `placeId` | usually | Google's permanent ID for the business |
-| `address` | usually | Street address |
-| `phone` | sometimes | International or national format |
-| `website` | sometimes | The business's actual URL (not Google's) |
-| `category` | usually | "Marketing agency", "Restaurant", etc |
-| `rating` | usually | 1.0 – 5.0 |
-| `reviewCount` | usually | Total Google reviews |
-| `lat` / `lng` | usually | From the place URL fragment |
-| `hours` | sometimes | "Open until 9pm", "Closed", etc |
+| `name` | ✓ mandatory | Business name from the Maps card aria-label |
+| `email` | ✓ **mandatory** | Server-side: scraped from the business website's homepage / about / team / pricing / contact pages |
+| `website` | ✓ mandatory | First non-google.com `<a>` in the Maps card |
+| `location` | optional | Address line from the Maps card |
+
+### How email collection works
+
+Google Maps **never** exposes business emails in listings. So:
+
+1. The extension scrapes the Maps page for **name + website + location**
+2. POSTs the batch to `brandivibe.com/api/leads/ingest`
+3. The server visits each website using the existing Phase 4 scraper
+4. Pulls emails from the live HTML (looks at `mailto:` links, footers, `/contact`, `/about`, `/team`, `/privacy`)
+5. **Drops any lead with zero emails found** — they're not stored
+6. Leads with at least 1 email are saved to `brain.gmapsLeads` with the highest-confidence email as the primary, others as `altEmails`
+
+Realistic hit rate: ~30–60% of Maps businesses have a discoverable email on their site. Small businesses + restaurants are lower; tech/agency/professional services are higher.
 
 ## Resilience to Google DOM changes
 

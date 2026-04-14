@@ -1,19 +1,24 @@
-/* Brandivibe Maps Scraper — content script
-   ─────────────────────────────────────────────
+/* Brandivibe Maps Scraper — content script (v2, narrow)
+   ─────────────────────────────────────────────────────
    Runs inside google.com/maps tabs. Listens for "scrapeMaps" messages
-   from the popup, then scrolls the results panel and parses every
-   business card from the live DOM.
+   from the popup, scrolls the results panel, and parses every business
+   card from the live DOM.
 
-   Why a content script (not headless scraping or the Maps API):
-   - Uses the user's real Chrome session, real cookies, real IP
-   - Google can't fingerprint headless behavior because there is none
-   - Free, no proxies, no captcha solving, no API costs
-   - Works for any search query the user types in Maps
+   Fields collected per business (only 4):
+     - name      (mandatory — drop if missing)
+     - website   (mandatory — drop if missing, server needs it for email enrichment)
+     - location  (address, optional)
 
-   The selector strategy is RESILIENT to Google's DOM updates:
-     - We don't rely on css class names (those churn weekly)
-     - We use ARIA roles + jsaction patterns + data-result-index attrs
-     - We extract from aria-label fallback when text is hidden
+   Email is intentionally NOT scraped here. Google Maps doesn't expose
+   business emails in the listing card. Instead, the server-side ingest
+   endpoint takes the website URL we send and runs its own scraper to
+   extract emails from the live HTML before storing the lead.
+
+   Selector strategy — resilient to Google's CSS class churn:
+     - role="feed" element for the results panel
+     - a[href*="/maps/place/"] for individual business cards
+     - aria-label for business names
+     - first non-google.com <a href> in the card for the website
 */
 
 (() => {
@@ -27,10 +32,8 @@
 
   /** Find the scrollable results panel (the left column of search results). */
   function findResultsPanel() {
-    // Most resilient: the role="feed" element inside the side panel
     const feed = document.querySelector('[role="feed"]');
     if (feed) return feed;
-    // Fallbacks
     const panels = document.querySelectorAll(
       'div[aria-label*="Results"], div[role="main"]'
     );
@@ -41,7 +44,7 @@
   }
 
   /** Scroll the results panel down until no new items are loaded for N rounds. */
-  async function scrollResults(panel, maxRounds = 12) {
+  async function scrollResults(panel, maxRounds = 14) {
     let lastCount = 0;
     let stableRounds = 0;
     for (let i = 0; i < maxRounds; i++) {
@@ -60,133 +63,79 @@
     return lastCount;
   }
 
-  /** Extract a place_id from a Google Maps place URL. */
-  function placeIdFromUrl(url) {
-    if (!url) return undefined;
-    const m = url.match(/!1s([^!]+)!/);
-    return m ? m[1] : undefined;
-  }
-
-  /** Extract lat/lng from a Google Maps place URL. */
-  function latLngFromUrl(url) {
-    if (!url) return {};
-    const m = url.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
-    if (!m) return {};
-    return { lat: parseFloat(m[1]), lng: parseFloat(m[2]) };
-  }
-
-  /** Parse a number with optional comma. "1,234" -> 1234 */
-  function parseNum(s) {
-    if (!s) return undefined;
-    const n = parseFloat(String(s).replace(/[,(]/g, ""));
-    return Number.isFinite(n) ? n : undefined;
-  }
-
-  /** Extract a business card from a single anchor element. */
-  function extractCard(anchor) {
-    // The result card is the parent container with ARIA label
+  /** Walk up from the anchor to find the enclosing card container. */
+  function findCardContainer(anchor) {
     let card = anchor;
     for (let i = 0; i < 6 && card.parentElement; i++) {
       card = card.parentElement;
       if (card.getAttribute("jsaction") || card.getAttribute("role") === "article") break;
     }
+    return card;
+  }
 
-    const href = anchor.href || "";
+  /**
+   * Extract the 4 fields we need from a single business card.
+   * Returns null if mandatory fields (name, website) are missing.
+   */
+  function extractCard(anchor) {
+    const card = findCardContainer(anchor);
     const ariaLabel = anchor.getAttribute("aria-label") || "";
-    const placeId = placeIdFromUrl(href);
-    const { lat, lng } = latLngFromUrl(href);
 
-    // Name: from aria-label OR from the first line
+    // ─── name (mandatory) ───
     const name = ariaLabel.trim() || anchor.textContent.trim().split("\n")[0].trim();
     if (!name) return null;
 
-    // Get the parent card text content for further parsing
-    const text = card.innerText || card.textContent || "";
-
-    // Rating + review count: pattern like "4.8(123)" or "4.8 stars 123 Reviews"
-    let rating, reviewCount;
-    const ratingMatch = text.match(/(\d\.\d)\s*(?:\(([\d,]+)\)|stars?[\s\S]{0,20}?([\d,]+)\s*review)/i);
-    if (ratingMatch) {
-      rating = parseFloat(ratingMatch[1]);
-      reviewCount = parseNum(ratingMatch[2] || ratingMatch[3]);
-    }
-
-    // Category: usually the first short word/phrase before the address
-    let category;
-    const lines = text.split("\n").map((l) => l.trim()).filter(Boolean);
-    // The category line is short, no digits, comes after the name+rating
-    for (const line of lines) {
-      if (line === name) continue;
-      if (/^\d/.test(line)) continue;
-      if (line.length > 0 && line.length < 60 && !/[·•]/.test(line) && !/(Open|Closed|Closes|Opens)/i.test(line)) {
-        category = line;
-        break;
-      }
-    }
-
-    // Address: line containing a digit (street number) or comma
-    let address;
-    for (const line of lines) {
-      if (line === name || line === category) continue;
-      if (/\d/.test(line) && line.length > 5 && line.length < 200) {
-        address = line.replace(/^[·•]\s*/, "").trim();
-        break;
-      }
-    }
-
-    // Phone: pattern that matches international + national formats
-    let phone;
-    const phoneMatch = text.match(/(\+?\d[\d\s\-().]{7,18}\d)/);
-    if (phoneMatch) {
-      const candidate = phoneMatch[1].replace(/[^\d+\-() ]/g, "").trim();
-      // Don't catch ratings or review counts
-      if (!/^\d\.\d/.test(candidate)) phone = candidate;
-    }
-
-    // Website: an <a> with a non-google href inside the card
-    let website;
+    // ─── website (mandatory) ───
+    // The first <a> inside the card whose href is NOT google.com is the business website
+    let website = "";
     const links = card.querySelectorAll('a[href]');
     for (const a of links) {
       const u = a.href;
-      if (!u) continue;
+      if (!u || !u.startsWith("http")) continue;
       if (u.includes("google.com")) continue;
-      if (u.startsWith("http")) {
-        website = u;
-        break;
-      }
+      if (u.includes("googleusercontent.com")) continue;
+      // Skip image / asset URLs
+      if (/\.(jpg|jpeg|png|gif|svg|webp|ico)(\?|$)/i.test(u)) continue;
+      website = u;
+      break;
     }
+    if (!website) return null;
 
-    // Hours: line containing "Open" / "Closed" / "Closes" / "Opens"
-    let hours;
+    // ─── location (optional, helpful) ───
+    // Address heuristic: text line containing a digit + comma OR street suffixes
+    const text = (card.innerText || card.textContent || "").trim();
+    const lines = text
+      .split("\n")
+      .map((l) => l.trim())
+      .filter(Boolean);
+
+    let location = "";
     for (const line of lines) {
-      if (/(open|closed|closes|opens|24 hours)/i.test(line) && line.length < 100) {
-        hours = line;
+      if (line === name) continue;
+      // Skip rating-like lines: "4.8(123)" / "4.5 stars"
+      if (/^\d\.\d/.test(line)) continue;
+      // Skip phone-like lines (mostly digits)
+      if (/^[\d\s().+-]+$/.test(line)) continue;
+      // Look for an address signal: digit + comma, or street word
+      if (
+        /\d/.test(line) &&
+        line.length > 5 &&
+        line.length < 200 &&
+        /[a-z]/i.test(line)
+      ) {
+        location = line.replace(/^[·•]\s*/, "").trim();
         break;
       }
     }
 
-    return {
-      placeId,
-      name,
-      address,
-      phone,
-      website,
-      category,
-      rating,
-      reviewCount,
-      lat,
-      lng,
-      hours,
-    };
+    return { name, website, location };
   }
 
   /** Read the current search query from the search box. */
   function readQuery() {
     const input = document.querySelector('input#searchboxinput, input[aria-label*="Search"]');
     if (input && input.value) return input.value;
-    // Fallback: the page title often contains "Query - Google Maps"
-    const title = document.title.replace(" - Google Maps", "").trim();
-    return title;
+    return document.title.replace(" - Google Maps", "").trim();
   }
 
   // ─────────── Main scrape ───────────
@@ -197,11 +146,12 @@
     if (!panel) {
       return {
         ok: false,
-        error: "No results panel found. Make sure you're on a search results page (not a single business detail).",
+        error:
+          "No results panel found. Make sure you're on a search results page (not a single business detail).",
       };
     }
 
-    const finalCount = await scrollResults(panel, 12);
+    const finalCount = await scrollResults(panel, 14);
     log("scrolled to", finalCount, "results");
 
     const anchors = Array.from(panel.querySelectorAll('a[href*="/maps/place/"]'));
@@ -209,21 +159,26 @@
 
     const seen = new Set();
     const leads = [];
+    let droppedNoWebsite = 0;
     for (const a of anchors) {
       const card = extractCard(a);
-      if (!card) continue;
-      const key = card.placeId || `${card.name}|${card.address || ""}`;
+      if (!card) {
+        droppedNoWebsite++;
+        continue;
+      }
+      const key = `${card.name}|${card.website}`.toLowerCase();
       if (seen.has(key)) continue;
       seen.add(key);
       leads.push(card);
     }
 
-    log("extracted leads:", leads.length);
+    log("extracted leads with website:", leads.length, "dropped (no website):", droppedNoWebsite);
 
     return {
       ok: true,
       query: readQuery(),
       leads,
+      droppedNoWebsite,
     };
   }
 
@@ -233,10 +188,12 @@
     if (msg?.action === "scrapeMaps") {
       scrapeMaps()
         .then((result) => sendResponse(result))
-        .catch((err) => sendResponse({ ok: false, error: String(err?.message || err) }));
+        .catch((err) =>
+          sendResponse({ ok: false, error: String(err?.message || err) })
+        );
       return true; // async response
     }
   });
 
-  log("content script loaded");
+  log("content script loaded (v2 narrow: name + website + location)");
 })();
