@@ -45,6 +45,92 @@ type RawDeepResearch = {
 
 const MAX_ATTEMPTS = 3;
 
+/**
+ * Filler phrases that signal lazy, generic GPT output. If any appear in
+ * an observation or fix, the response is rejected and re-prompted. Tighten
+ * this list whenever you see another generic phrase slip through.
+ */
+const FILLER_PHRASES = [
+  "could benefit from",
+  "modern tech stack",
+  "scalable solutions",
+  "scalable web application",
+  "user experience",
+  "user-friendly",
+  "more comprehensive",
+  "more detailed",
+  "more case studies",
+  "engaging content",
+  "robust",
+  "leverage",
+  "seamless",
+  "cutting-edge",
+  "industry-leading",
+  "state-of-the-art",
+  "next-generation",
+  "best-in-class",
+  "world-class",
+  "innovative solutions",
+];
+
+/**
+ * Words that indicate a CRITICAL observation. Every observation must contain
+ * at least one. The model is not allowed to praise — Brandivibe's job is to
+ * find weaknesses that justify a $35-90K rebuild.
+ */
+const CRITICAL_KEYWORDS = [
+  "lack",
+  "missing",
+  "weak",
+  "poor",
+  "slow",
+  "broken",
+  "confusing",
+  "unclear",
+  "cluttered",
+  "outdated",
+  "generic",
+  "thin",
+  "buried",
+  "vague",
+  "inconsistent",
+  "fails",
+  "no ",
+  "without",
+  "hidden",
+  "absent",
+  "drops",
+  "blocks",
+  "stalls",
+  "loses",
+  "kills",
+  "hurts",
+  "low",
+  "wrong",
+  "off",
+  "stale",
+  "dated",
+  "mismatch",
+  "overload",
+  "flat",
+  "boring",
+  "static",
+  "dull",
+];
+
+function containsFiller(text: string): string | null {
+  const t = text.toLowerCase();
+  for (const phrase of FILLER_PHRASES) {
+    if (t.includes(phrase)) return phrase;
+  }
+  return null;
+}
+
+function isCritical(text: string): boolean {
+  const t = text.toLowerCase();
+  return CRITICAL_KEYWORDS.some((kw) => t.includes(kw));
+}
+
 function lowerHaystack(scraped: ScrapedSite): string {
   return (
     (scraped.rawHomepage || "") +
@@ -142,21 +228,39 @@ export async function researchProspect(
   if (s.hasLogin) knownFacts.push("This site HAS a login / dashboard area (suggests an existing product).");
   if (knownFacts.length === 0) knownFacts.push("(no facts pre-confirmed)");
 
-  const system = `You are the Brandivibe research analyst. You analyze a prospect's live website and produce structured observations the cold outbound drafter will use.
+  const system = `You are the Brandivibe research analyst. Your job is to identify SHARP WEAKNESSES on a prospect's live homepage that justify a $35-90K rebuild. You are NOT a friendly UX consultant. You are NOT here to praise. Your output funds a sales call.
 
 ABSOLUTE RULES (violation = your response is rejected and you are re-prompted):
 
-1. EVERY observation must include an "evidence" field that is a 6-30 word VERBATIM substring from the scraped content shown below. Not paraphrased. Not invented. Quoted.
+1. designScore is an INTEGER between 1 and 10. Not 0-100. Not a percentage. Just 1 to 10.
+   1 = unprofessional / WordPress template
+   3 = generic SaaS, dated
+   5 = decent founder-built homepage, no design system
+   7 = polished, professional, room to sharpen
+   9 = best-in-class, almost nothing to fix
+   10 = museum piece
 
-2. NEVER claim something is "missing", "lacking", "absent", or "without" if the structured signals or the boolean flags below say it exists. The scraper already verified these facts.
+2. Every observation must be CRITICAL — identify a weakness using words like:
+   "lacks", "missing", "buried", "weak", "slow", "confusing", "generic", "stale", "outdated", "thin", "broken", "fails", "hidden", "vague", "cluttered", "flat", "static".
+   Praise is rejected. "Effectively communicates" / "Strong messaging" / "Clear value prop" — all REJECTED.
 
-3. NEVER tell the prospect what tech stack they use ("you use Next.js"). They already know. The scraper detected stack only so you understand the technical level — never repeat it back to them.
+3. EVERY observation must include an "evidence" field — a 6-30 word VERBATIM substring from the scraped content. Not paraphrased. Not invented. Quoted from real text on the page.
 
-4. Observations must be SPECIFIC and SHARP. "Your homepage could be stronger" is rejected. "The hero video autoplay pushes LCP to 4.2s on mobile" is accepted (if you can quote evidence).
+4. FORBIDDEN FILLER PHRASES — using any of these gets you rejected:
+   "could benefit from", "modern tech stack", "scalable", "user experience", "user-friendly",
+   "more comprehensive", "more case studies", "more detailed", "engaging", "robust",
+   "leverage", "seamless", "cutting-edge", "innovative", "best-in-class", "world-class".
+   Be SPECIFIC. Quote the actual element. Name the actual problem.
 
-5. If the page is from a mega-brand (Stripe, Vercel, Linear, Figma, Notion, Apple, Google, etc), set confidence to 20 or below — these are not real prospects.
+5. NEVER claim something is missing if the KNOWN FACTS below confirm it exists.
 
-6. If you cannot find sharp, specific, evidenced observations, set confidence to 30 or below. The drafter will skip the prospect rather than send generic sludge.
+6. NEVER tell the prospect what tech stack they use back to them. They built the site. Use stack info to calibrate your tone, never quote it.
+
+7. techStackSummary in your response is IGNORED — the scraper provides the real value. Output a placeholder; we override it.
+
+8. If the page is from a mega-brand (Stripe, Vercel, Linear, Figma, Notion, Apple, Google, etc), set confidence to 20 or below.
+
+9. If you cannot find sharp, specific, critical, evidenced observations, set confidence to 30 or below — better to skip than ship generic sludge.
 
 KNOWN FACTS ABOUT THIS SITE (the scraper already verified these — do not contradict):
 ${knownFacts.map((f) => `- ${f}`).join("\n")}
@@ -252,9 +356,17 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       continue;
     }
 
-    // ─────────── Fact-check ───────────
+    // ─────────── Validate + fact-check ───────────
     const failures: string[] = [];
 
+    // Score must be integer 1-10
+    if (typeof parsed.designScore !== "number" || !Number.isFinite(parsed.designScore)) {
+      failures.push("designScore must be a number");
+    } else if (parsed.designScore < 1 || parsed.designScore > 10) {
+      failures.push(`designScore must be an integer between 1 and 10, got ${parsed.designScore} (do NOT use a 0-100 scale)`);
+    }
+
+    // Sharpest observation
     if (!parsed.sharpest?.observation || !parsed.sharpest?.evidence) {
       failures.push("missing sharpest.observation or sharpest.evidence");
     } else {
@@ -263,8 +375,16 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       }
       const neg = violatesNegativeClaim(parsed.sharpest.observation, scraped);
       if (neg) failures.push(`sharpest.observation ${neg}`);
+      const filler = containsFiller(parsed.sharpest.observation);
+      if (filler) failures.push(`sharpest.observation contains forbidden filler phrase: "${filler}". Be specific, not generic.`);
+      if (!isCritical(parsed.sharpest.observation)) {
+        failures.push(
+          `sharpest.observation is not critical enough — must identify a weakness, not praise. Use words like "lacks", "missing", "weak", "buried", "stale", "slow", "confusing", etc.`
+        );
+      }
     }
 
+    // Three fix observations
     if (!Array.isArray(parsed.fixes) || parsed.fixes.length < 3) {
       failures.push("must have at least 3 fixes in the fixes array");
     } else {
@@ -274,6 +394,15 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
           failures.push(`fixes[${i}].evidence quote not found in content: "${f.evidence.slice(0, 80)}"`);
         const neg = violatesNegativeClaim(f.observation, scraped);
         if (neg) failures.push(`fixes[${i}].observation ${neg}`);
+        const fillerObs = containsFiller(f.observation);
+        if (fillerObs) failures.push(`fixes[${i}].observation contains forbidden filler: "${fillerObs}"`);
+        const fillerFix = containsFiller(f.fix);
+        if (fillerFix) failures.push(`fixes[${i}].fix contains forbidden filler: "${fillerFix}"`);
+        if (!isCritical(f.observation)) {
+          failures.push(
+            `fixes[${i}].observation is not critical — must identify a weakness using words like "lacks", "weak", "buried", "slow", "broken", "outdated", "generic", "confusing".`
+          );
+        }
       });
     }
 
@@ -283,6 +412,13 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
     }
 
     // ─────────── Build DeepResearch shape ───────────
+    // Override techStackSummary with the real scraped stack — never trust
+    // the model's generic phrasing here.
+    const realStackSummary =
+      scraped.techStack.length > 0
+        ? scraped.techStack.slice(0, 4).join(" + ")
+        : "stack unknown";
+
     return {
       realWeaknesses: [
         parsed.sharpest.observation,
@@ -301,8 +437,8 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       fixTimeEstimate: "1-2 weeks",
       conversionMetric: "homepage conversion rate",
       industryName: parsed.industryName,
-      techStackSummary: parsed.techStackSummary,
-      currentDesignScore: parsed.designScore,
+      techStackSummary: realStackSummary,
+      currentDesignScore: Math.max(1, Math.min(10, Math.round(parsed.designScore))),
       budget: parsed.budget,
       decisionMaker: parsed.decisionMaker ?? { name: "", role: "", firstName: "" },
       confidence: parsed.confidence,
