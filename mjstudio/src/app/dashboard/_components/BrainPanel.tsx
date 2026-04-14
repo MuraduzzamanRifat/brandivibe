@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Article, FbPost, Plan, LearningEntry } from "@/lib/brain-storage";
 import { CrmPanel } from "./CrmPanel";
+import { CommandPalette } from "./CommandPalette";
 
 type QueueResponse = { fbQueue: FbPost[]; plans: Plan[]; learning: LearningEntry[] };
 
@@ -82,6 +83,21 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
   const [gmapsLeads, setGmapsLeads] = useState<GmapsLead[]>([]);
   const [running, setRunning] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const [crmSelectedId, setCrmSelectedId] = useState<string | null>(null);
+  const [crmNewContactToken, setCrmNewContactToken] = useState(0);
+
+  // Global keyboard shortcut: Cmd/Ctrl+K opens the command palette
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setPaletteOpen((o) => !o);
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
 
   const fetchAll = useCallback(async () => {
     try {
@@ -164,9 +180,19 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
             Daily plan, <span className="serif text-[var(--brain-accent)]">execute</span>, learn
           </h2>
         </div>
-        <button onClick={runBrain} className="btn btn-primary" disabled={running}>
-          {running ? "Running brain…" : "Run brain now"}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPaletteOpen(true)}
+            className="btn btn-ghost"
+            title="Command palette"
+          >
+            Search · <span className="kbd">⌘</span> <span className="kbd">K</span>
+          </button>
+          <button type="button" onClick={runBrain} className="btn btn-primary" disabled={running}>
+            {running ? "Running brain…" : "Run brain now"}
+          </button>
+        </div>
       </div>
 
       <div className="flex items-center gap-2 flex-wrap mb-8">
@@ -194,7 +220,35 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
         ))}
       </div>
 
-      {tab === "crm" && <CrmPanel />}
+      {tab === "crm" && (
+        <CrmPanel
+          externalSelectedId={crmSelectedId}
+          externalNewContactToken={crmNewContactToken}
+        />
+      )}
+
+      <CommandPalette
+        open={paletteOpen}
+        onClose={() => setPaletteOpen(false)}
+        onNavigate={(t) => setTab(t as Tab)}
+        onSelectContact={(id) => {
+          setTab("crm");
+          setCrmSelectedId(id);
+        }}
+        onAction={(a) => {
+          if (a === "run-brain") runBrain();
+          else if (a === "sync-crm") {
+            setTab("crm");
+            fetch("/api/crm/contacts?sync=1", { method: "POST" }).then(fetchAll);
+          } else if (a === "new-contact") {
+            setTab("crm");
+            setCrmNewContactToken((t) => t + 1);
+          } else if (a === "run-sources") {
+            // No direct handler available here — open CRM tab and rely on manual click
+            setTab("leads");
+          }
+        }}
+      />
 
       {error && (
         <div className="mb-4 text-sm text-[var(--brain-danger)]">{error}</div>

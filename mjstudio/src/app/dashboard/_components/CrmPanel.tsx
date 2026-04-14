@@ -27,7 +27,14 @@ type ContactWithMeta = CrmContact & { sentCount: number };
 
 type Filter = "all" | CrmContactStatus;
 
-export function CrmPanel() {
+type CrmPanelProps = {
+  /** Parent-controlled contact ID. When this changes, CrmPanel selects it. */
+  externalSelectedId?: string | null;
+  /** Parent trigger for the "new contact" modal (driven by command palette) */
+  externalNewContactToken?: number;
+};
+
+export function CrmPanel({ externalSelectedId, externalNewContactToken }: CrmPanelProps = {}) {
   const [contacts, setContacts] = useState<ContactWithMeta[]>([]);
   const [templates, setTemplates] = useState<EmailTemplate[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -42,6 +49,30 @@ export function CrmPanel() {
   const [successFlash, setSuccessFlash] = useState<string | null>(null);
   const [editingTpl, setEditingTpl] = useState<EmailTemplate | null>(null);
   const [newContactOpen, setNewContactOpen] = useState(false);
+  const [loadingContacts, setLoadingContacts] = useState(true);
+  const [focusMode, setFocusMode] = useState(false);
+
+  // React to external contact selection from the command palette
+  useEffect(() => {
+    if (externalSelectedId) setSelectedId(externalSelectedId);
+  }, [externalSelectedId]);
+
+  // React to external "new contact" trigger from the command palette
+  useEffect(() => {
+    if (externalNewContactToken && externalNewContactToken > 0) setNewContactOpen(true);
+  }, [externalNewContactToken]);
+
+  // Keyboard: Escape exits focus mode
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && focusMode) {
+        e.preventDefault();
+        setFocusMode(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [focusMode]);
 
   // ─────────── Loaders ───────────
 
@@ -52,6 +83,8 @@ export function CrmPanel() {
       setContacts(json.contacts ?? []);
     } catch (e) {
       setError(e instanceof Error ? e.message : "load failed");
+    } finally {
+      setLoadingContacts(false);
     }
   }, []);
 
@@ -296,9 +329,15 @@ export function CrmPanel() {
         <div className="mb-4 text-sm text-[var(--brain-success)]">{successFlash}</div>
       )}
 
-      <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr_260px] gap-4">
+      <div
+        className={
+          focusMode
+            ? "grid grid-cols-1 gap-4"
+            : "grid grid-cols-1 lg:grid-cols-[300px_1fr_260px] gap-4"
+        }
+      >
         {/* ─── Contact list ─── */}
-        <aside className="panel-2 p-4 max-h-[760px] overflow-y-auto">
+        {!focusMode && <aside className="panel-2 p-4 max-h-[760px] overflow-y-auto">
           <input
             type="text"
             value={searchQ}
@@ -321,39 +360,66 @@ export function CrmPanel() {
           <div className="mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-muted)] mb-2">
             {filtered.length} of {contacts.length}
           </div>
-          <ul className="space-y-1.5">
-            {filtered.map((c) => (
-              <li key={c.id}>
-                <button
-                  type="button"
-                  onClick={() => setSelectedId(c.id)}
-                  className={`w-full text-left p-3 rounded-xl border transition-colors ${
-                    selectedId === c.id
-                      ? "bg-[var(--brain-accent)]/10 border-[var(--brain-accent)]/50"
-                      : "border-[var(--brain-border)] hover:border-[var(--brain-border-strong)]"
-                  }`}
-                >
-                  <div className="text-[13px] font-semibold text-[var(--brain-ink)] truncate">
-                    {c.name}
-                  </div>
-                  <div className="mono text-[10px] text-[var(--brain-muted)] truncate">
-                    {c.email}
-                  </div>
-                  <div className="flex items-center gap-2 mt-1 mono text-[9px] text-[var(--brain-muted)]">
-                    <span className="uppercase tracking-wider">{c.status}</span>
-                    {c.sentCount > 0 && (
-                      <span className="text-[var(--brain-accent)]">
-                        {c.sentCount} sent
-                      </span>
-                    )}
-                    <span className="opacity-60">·</span>
-                    <span className="opacity-60">{c.source}</span>
-                  </div>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </aside>
+          {loadingContacts ? (
+            <ul className="space-y-2">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <li key={i} className="p-3 rounded-xl border border-[var(--brain-border)]">
+                  <div className="skeleton skeleton-line-lg" style={{ width: "70%" }} />
+                  <div className="skeleton skeleton-line" style={{ width: "90%" }} />
+                  <div className="skeleton skeleton-line" style={{ width: "40%" }} />
+                </li>
+              ))}
+            </ul>
+          ) : contacts.length === 0 ? (
+            <div className="py-10 text-center">
+              <div className="text-3xl mb-3 opacity-30">◉</div>
+              <div className="text-[13px] text-[var(--brain-muted)] mb-3">
+                No contacts yet.
+              </div>
+              <button
+                type="button"
+                onClick={syncFromSources}
+                className="btn btn-ghost text-[11px] py-1.5 px-3"
+              >
+                Sync from sources
+              </button>
+            </div>
+          ) : (
+            <ul className="space-y-1.5">
+              {filtered.map((c) => (
+                <li key={c.id}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(c.id)}
+                    className={`w-full text-left p-3 rounded-xl border transition-colors ${
+                      selectedId === c.id
+                        ? "bg-[var(--brain-accent)]/10 border-[var(--brain-accent)]/50"
+                        : "border-[var(--brain-border)] hover:border-[var(--brain-border-strong)]"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="text-[13px] font-semibold text-[var(--brain-ink)] truncate flex-1 min-w-0">
+                        {c.name}
+                      </div>
+                      <span className={`status-pill status-${c.status}`}>{c.status}</span>
+                    </div>
+                    <div className="mono text-[10px] text-[var(--brain-muted)] truncate mb-1">
+                      {c.email}
+                    </div>
+                    <div className="flex items-center gap-2 mono text-[9px] text-[var(--brain-muted)]">
+                      {c.sentCount > 0 && (
+                        <span className="text-[var(--brain-accent)]">
+                          {c.sentCount} sent
+                        </span>
+                      )}
+                      <span className="opacity-60">{c.source}</span>
+                    </div>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </aside>}
 
         {/* ─── Compose pane ─── */}
         <section className="panel-2 p-6">
@@ -363,9 +429,14 @@ export function CrmPanel() {
             </div>
           ) : (
             <>
-              <div className="flex items-start justify-between gap-4 mb-5">
-                <div className="min-w-0">
-                  <div className="text-xl font-semibold">{selected.name}</div>
+              <div className="flex items-start justify-between gap-4 mb-5 flex-wrap">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <div className="text-xl font-semibold">{selected.name}</div>
+                    <span className={`status-pill status-${selected.status}`}>
+                      {selected.status}
+                    </span>
+                  </div>
                   <div className="mono text-[11px] text-[var(--brain-muted)]">
                     {selected.email}
                     {selected.company && <> &middot; {selected.company}</>}
@@ -386,31 +457,42 @@ export function CrmPanel() {
                     </div>
                   )}
                 </div>
-                <select
-                  value={selected.status}
-                  onChange={(e) =>
-                    patchContact(selected.id, {
-                      status: e.target.value as CrmContactStatus,
-                    })
-                  }
-                  className="text-xs bg-transparent border border-[var(--brain-border)] rounded-lg px-3 py-2"
-                >
-                  {(
-                    [
-                      "new",
-                      "contacted",
-                      "replied",
-                      "booked",
-                      "closed-won",
-                      "closed-lost",
-                      "unsubscribed",
-                    ] as CrmContactStatus[]
-                  ).map((s) => (
-                    <option key={s} value={s} className="bg-black">
-                      {s}
-                    </option>
-                  ))}
-                </select>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => setFocusMode((f) => !f)}
+                    className="btn btn-ghost text-[11px] py-1.5 px-3"
+                    title="Toggle focus mode (Esc to exit)"
+                  >
+                    {focusMode ? "Exit focus" : "Focus ⌃"}
+                  </button>
+                  <select
+                    aria-label="Contact status"
+                    value={selected.status}
+                    onChange={(e) =>
+                      patchContact(selected.id, {
+                        status: e.target.value as CrmContactStatus,
+                      })
+                    }
+                    className="text-xs px-3 py-2"
+                  >
+                    {(
+                      [
+                        "new",
+                        "contacted",
+                        "replied",
+                        "booked",
+                        "closed-won",
+                        "closed-lost",
+                        "unsubscribed",
+                      ] as CrmContactStatus[]
+                    ).map((s) => (
+                      <option key={s} value={s} className="bg-black">
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
 
               {selected.observation && (
@@ -512,7 +594,7 @@ export function CrmPanel() {
         </section>
 
         {/* ─── History column ─── */}
-        <aside className="panel-2 p-4 max-h-[760px] overflow-y-auto">
+        {!focusMode && <aside className="panel-2 p-4 max-h-[760px] overflow-y-auto">
           <div className="mono text-[9px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-3">
             Send history
           </div>
@@ -548,7 +630,7 @@ export function CrmPanel() {
               ))}
             </ul>
           )}
-        </aside>
+        </aside>}
       </div>
 
       {/* ─── Template editor modal ─── */}
@@ -630,9 +712,10 @@ function TemplateEditorModal({
               Category
             </label>
             <select
+              aria-label="Template category"
               value={category}
               onChange={(e) => setCategory(e.target.value as EmailTemplate["category"])}
-              className="text-sm bg-transparent border border-[var(--brain-border)] rounded-lg px-3 py-2"
+              className="text-sm px-3 py-2"
             >
               {(["cold", "followup", "loom", "breakup", "audit", "custom"] as const).map((c) => (
                 <option key={c} value={c} className="bg-black">
@@ -660,6 +743,8 @@ function TemplateEditorModal({
               Body
             </label>
             <textarea
+              aria-label="Template body"
+              placeholder="Hi {{firstName}}, ..."
               value={body}
               onChange={(e) => setBody(e.target.value)}
               rows={14}
