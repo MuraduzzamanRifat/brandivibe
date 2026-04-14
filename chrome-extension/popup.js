@@ -1,13 +1,15 @@
-/* Brandivibe Maps Scraper — popup controller v2
+/* Brandivibe Maps Scraper — popup controller v3
    ───────────────────────────────────────────────
-   Adds:
-   - Category / Country / State / City form that builds a Google Maps
-     search URL and opens it in a new tab
-   - Dedupe history via chrome.storage.local (sentWebsites)
-   - Reset dedupe button in the footer
+   Fully auto-populated form via countriesnow.space API:
+   - Industry: bundled static list (data.js)
+   - Country: bundled static list (data.js)
+   - State: fetched from API on country change, cached locally
+   - City: fetched from API on state change, cached locally
 
-   Imports BUSINESS_CATEGORIES, COUNTRIES, STATES_BY_COUNTRY from data.js
-   (loaded as a separate <script> before this file in popup.html).
+   Every dropdown is a real <select> — no more free-text fallback.
+   Caching in chrome.storage.local avoids re-fetching known countries.
+
+   API: https://countriesnow.space — free, no key, unlimited.
 */
 
 const $ = (id) => document.getElementById(id);
@@ -16,9 +18,7 @@ const els = {
   selCategory: $("selCategory"),
   selCountry: $("selCountry"),
   selState: $("selState"),
-  inpState: $("inpState"),
-  inpCity: $("inpCity"),
-  cityList: $("cityList"),
+  selCity: $("selCity"),
   btnOpenMaps: $("btnOpenMaps"),
 
   btnScrape: $("btnScrape"),
@@ -36,18 +36,109 @@ const els = {
 let scrapedLeads = [];
 let scrapeQuery = "";
 
-// ─────────── Populate dropdowns ───────────
+const API_BASE = "https://countriesnow.space/api/v0.1";
+const CACHE_KEY_STATES = "statesCache";
+const CACHE_KEY_CITIES = "citiesCache";
 
-function populateDropdowns() {
-  // Categories
+// ─────────── Cache helpers ───────────
+
+async function getCache(key) {
+  return new Promise((resolve) => {
+    chrome.storage.local.get([key], (res) => resolve(res[key] || {}));
+  });
+}
+
+async function setCache(key, value) {
+  return new Promise((resolve) => {
+    chrome.storage.local.set({ [key]: value }, resolve);
+  });
+}
+
+// ─────────── API fetchers ───────────
+
+async function fetchStatesForCountry(country) {
+  if (!country) return [];
+
+  // Check cache first
+  const cache = await getCache(CACHE_KEY_STATES);
+  if (cache[country]) {
+    return cache[country];
+  }
+
+  // Fall back to bundled static data if available
+  if (typeof STATES_BY_COUNTRY !== "undefined" && STATES_BY_COUNTRY[country]) {
+    const states = STATES_BY_COUNTRY[country];
+    cache[country] = states;
+    await setCache(CACHE_KEY_STATES, cache);
+    return states;
+  }
+
+  // Fetch from API
+  try {
+    const res = await fetch(`${API_BASE}/countries/states`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country }),
+    });
+    if (!res.ok) throw new Error(`states ${res.status}`);
+    const json = await res.json();
+    const statesArr = (json?.data?.states || []).map((s) => s.name).filter(Boolean);
+    cache[country] = statesArr;
+    await setCache(CACHE_KEY_STATES, cache);
+    return statesArr;
+  } catch (err) {
+    console.error("[Brandivibe] fetchStates failed:", err);
+    return [];
+  }
+}
+
+async function fetchCitiesForState(country, state) {
+  if (!country || !state) return [];
+
+  const cacheKey = `${country}|${state}`;
+
+  // Check cache first
+  const cache = await getCache(CACHE_KEY_CITIES);
+  if (cache[cacheKey]) {
+    return cache[cacheKey];
+  }
+
+  // Fall back to bundled static data
+  if (typeof CITIES_BY_STATE_KEY !== "undefined" && CITIES_BY_STATE_KEY[cacheKey]) {
+    const cities = CITIES_BY_STATE_KEY[cacheKey];
+    cache[cacheKey] = cities;
+    await setCache(CACHE_KEY_CITIES, cache);
+    return cities;
+  }
+
+  // Fetch from API
+  try {
+    const res = await fetch(`${API_BASE}/countries/state/cities`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ country, state }),
+    });
+    if (!res.ok) throw new Error(`cities ${res.status}`);
+    const json = await res.json();
+    const citiesArr = (json?.data || []).filter(Boolean);
+    cache[cacheKey] = citiesArr;
+    await setCache(CACHE_KEY_CITIES, cache);
+    return citiesArr;
+  } catch (err) {
+    console.error("[Brandivibe] fetchCities failed:", err);
+    return [];
+  }
+}
+
+// ─────────── Dropdown populators ───────────
+
+function populateStaticDropdowns() {
   for (const cat of BUSINESS_CATEGORIES) {
     const opt = document.createElement("option");
     opt.value = cat;
     opt.textContent = cat;
     els.selCategory.appendChild(opt);
   }
-
-  // Countries
   for (const country of COUNTRIES) {
     const opt = document.createElement("option");
     opt.value = country;
@@ -56,62 +147,67 @@ function populateDropdowns() {
   }
 }
 
-function updateStateField() {
-  const country = els.selCountry.value;
-  const states = STATES_BY_COUNTRY[country];
-
-  // Clear current state dropdown + text
-  els.selState.innerHTML = '<option value="">— pick a state —</option>';
-  els.inpState.value = "";
-
-  if (states) {
-    // Use dropdown for known countries
-    for (const st of states) {
-      const opt = document.createElement("option");
-      opt.value = st;
-      opt.textContent = st;
-      els.selState.appendChild(opt);
-    }
-    els.selState.classList.remove("hidden-input");
-    els.inpState.classList.add("hidden-input");
-  } else if (country) {
-    // Free-text for other countries
-    els.selState.classList.add("hidden-input");
-    els.inpState.classList.remove("hidden-input");
-  } else {
-    els.selState.classList.remove("hidden-input");
-    els.inpState.classList.add("hidden-input");
+function fillSelect(selectEl, items, placeholder) {
+  selectEl.innerHTML = "";
+  const blank = document.createElement("option");
+  blank.value = "";
+  blank.textContent = placeholder;
+  selectEl.appendChild(blank);
+  for (const item of items) {
+    const opt = document.createElement("option");
+    opt.value = item;
+    opt.textContent = item;
+    selectEl.appendChild(opt);
   }
 }
 
-/**
- * Rebuild the city datalist based on the current country + state selection.
- * Falls back up the hierarchy:
- *   1. Exact "Country|State" match in CITIES_BY_STATE_KEY
- *   2. Country-level list in CITIES_BY_COUNTRY
- *   3. Empty list — the user types freely, no suggestions
- * The input always stays a free-text <input>, so any city works even if
- * it's not in the suggestion list.
- */
-function updateCityList() {
-  if (!els.cityList) return;
+async function loadStatesForSelectedCountry() {
   const country = els.selCountry.value;
-  const state = els.selState.value || els.inpState.value;
-
-  let cities = [];
-  if (country && state) {
-    const key = `${country}|${state}`;
-    cities = CITIES_BY_STATE_KEY[key] || [];
-  }
-  if (cities.length === 0 && country) {
-    cities = CITIES_BY_COUNTRY[country] || [];
+  if (!country) {
+    fillSelect(els.selState, [], "— pick a country first —");
+    els.selState.disabled = true;
+    fillSelect(els.selCity, [], "— pick a state first —");
+    els.selCity.disabled = true;
+    return;
   }
 
-  els.cityList.innerHTML = "";
-  for (const city of cities) {
-    const opt = document.createElement("option");
-    opt.value = city;
-    els.cityList.appendChild(opt);
+  fillSelect(els.selState, [], "Loading states…");
+  els.selState.disabled = true;
+
+  const states = await fetchStatesForCountry(country);
+
+  if (states.length === 0) {
+    fillSelect(els.selState, [], "No states found for this country");
+    els.selState.disabled = true;
+  } else {
+    fillSelect(els.selState, states, "— pick a state —");
+    els.selState.disabled = false;
+  }
+
+  fillSelect(els.selCity, [], "— pick a state first —");
+  els.selCity.disabled = true;
+}
+
+async function loadCitiesForSelectedState() {
+  const country = els.selCountry.value;
+  const state = els.selState.value;
+  if (!country || !state) {
+    fillSelect(els.selCity, [], "— pick a state first —");
+    els.selCity.disabled = true;
+    return;
+  }
+
+  fillSelect(els.selCity, [], "Loading cities…");
+  els.selCity.disabled = true;
+
+  const cities = await fetchCitiesForState(country, state);
+
+  if (cities.length === 0) {
+    fillSelect(els.selCity, [], "No cities found");
+    els.selCity.disabled = true;
+  } else {
+    fillSelect(els.selCity, cities, "— pick a city —");
+    els.selCity.disabled = false;
   }
 }
 
@@ -119,7 +215,7 @@ function updateOpenMapsButton() {
   const ready =
     els.selCategory.value &&
     els.selCountry.value &&
-    els.inpCity.value.trim();
+    els.selCity.value;
   els.btnOpenMaps.disabled = !ready;
 }
 
@@ -136,39 +232,33 @@ function setStatus(text, mode = "idle") {
 // ─────────── Init ───────────
 
 async function init() {
-  populateDropdowns();
-  updateStateField();
-  updateCityList();
+  populateStaticDropdowns();
   updateOpenMapsButton();
 
-  // Restore lifetime synced count
   chrome.storage.local.get(["lifetimeSynced"], (result) => {
     const n = result.lifetimeSynced || 0;
     els.statSynced.textContent = n.toLocaleString();
   });
 
-  // Restore last form selection
-  chrome.storage.local.get(["lastForm"], (result) => {
+  // Restore last form state — fetch cascading data as we go
+  chrome.storage.local.get(["lastForm"], async (result) => {
     const last = result.lastForm;
     if (!last) return;
     if (last.category) els.selCategory.value = last.category;
     if (last.country) {
       els.selCountry.value = last.country;
-      updateStateField();
+      await loadStatesForSelectedCountry();
       if (last.state) {
-        if (STATES_BY_COUNTRY[last.country]) {
-          els.selState.value = last.state;
-        } else {
-          els.inpState.value = last.state;
+        els.selState.value = last.state;
+        await loadCitiesForSelectedState();
+        if (last.city) {
+          els.selCity.value = last.city;
         }
       }
     }
-    if (last.city) els.inpCity.value = last.city;
-    updateCityList();
     updateOpenMapsButton();
   });
 
-  // Check if current tab is a Maps page
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (tab?.url && /^https:\/\/(www\.)?google\.com\/maps/.test(tab.url)) {
     setStatus("Ready. Click Scrape this page.", "active");
@@ -185,23 +275,20 @@ els.selCategory.addEventListener("change", () => {
   updateOpenMapsButton();
   saveFormState();
 });
-els.selCountry.addEventListener("change", () => {
-  updateStateField();
-  updateCityList();
+
+els.selCountry.addEventListener("change", async () => {
+  await loadStatesForSelectedCountry();
   updateOpenMapsButton();
   saveFormState();
 });
-els.selState.addEventListener("change", () => {
-  updateCityList();
+
+els.selState.addEventListener("change", async () => {
+  await loadCitiesForSelectedState();
   updateOpenMapsButton();
   saveFormState();
 });
-els.inpState.addEventListener("input", () => {
-  updateCityList();
-  updateOpenMapsButton();
-  saveFormState();
-});
-els.inpCity.addEventListener("input", () => {
+
+els.selCity.addEventListener("change", () => {
   updateOpenMapsButton();
   saveFormState();
 });
@@ -211,8 +298,8 @@ function saveFormState() {
     lastForm: {
       category: els.selCategory.value,
       country: els.selCountry.value,
-      state: els.selState.value || els.inpState.value,
-      city: els.inpCity.value,
+      state: els.selState.value,
+      city: els.selCity.value,
     },
   });
 }
@@ -222,8 +309,8 @@ function saveFormState() {
 els.btnOpenMaps.addEventListener("click", async () => {
   const parts = [
     els.selCategory.value,
-    els.inpCity.value.trim(),
-    els.selState.value || els.inpState.value,
+    els.selCity.value,
+    els.selState.value,
     els.selCountry.value,
   ].filter(Boolean);
 
@@ -245,7 +332,6 @@ els.btnScrape.addEventListener("click", async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab?.id) throw new Error("No active tab");
 
-    // Pull dedupe list from storage, pass to content script
     const stored = await chrome.storage.local.get(["sentWebsites"]);
     const sentList = Array.isArray(stored.sentWebsites) ? stored.sentWebsites : [];
 
@@ -316,20 +402,17 @@ els.btnSync.addEventListener("click", async () => {
       "success"
     );
 
-    // Bump lifetime counter
     chrome.storage.local.get(["lifetimeSynced"], (result) => {
       const newTotal = (result.lifetimeSynced || 0) + (response.added || 0);
       chrome.storage.local.set({ lifetimeSynced: newTotal });
       els.statSynced.textContent = newTotal.toLocaleString();
     });
 
-    // Track the websites we just sent so we don't re-send them later
     const sentUrls = scrapedLeads.map((l) => (l.website || "").toLowerCase()).filter(Boolean);
     if (sentUrls.length > 0) {
       chrome.storage.local.get(["sentWebsites"], (result) => {
         const existing = new Set(Array.isArray(result.sentWebsites) ? result.sentWebsites : []);
         for (const u of sentUrls) existing.add(u);
-        // Cap at 10k URLs to prevent unbounded growth
         const next = Array.from(existing).slice(-10000);
         chrome.storage.local.set({ sentWebsites: next });
       });
@@ -348,7 +431,7 @@ els.btnSync.addEventListener("click", async () => {
   }
 });
 
-// ─────────── Reset dedupe history ───────────
+// ─────────── Reset dedupe ───────────
 
 els.btnResetDedupe.addEventListener("click", (e) => {
   e.preventDefault();
@@ -370,10 +453,7 @@ function renderPreview(leads) {
   for (const lead of leads.slice(0, 30)) {
     const li = document.createElement("li");
     li.className = "preview-item";
-    li.innerHTML = `
-      <strong></strong>
-      <small></small>
-    `;
+    li.innerHTML = `<strong></strong><small></small>`;
     li.querySelector("strong").textContent = lead.name;
     const meta = [
       lead.website ? safeHostname(lead.website) : "",
@@ -395,7 +475,5 @@ function safeHostname(url) {
     return url;
   }
 }
-
-// ─────────── Go ───────────
 
 init();

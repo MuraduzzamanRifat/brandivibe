@@ -47,22 +47,16 @@
 
       <div class="field">
         <label for="selState">State / Region</label>
-        <select id="selState" aria-label="State or region">
-          <option value="">— pick a state —</option>
+        <select id="selState" aria-label="State or region" disabled>
+          <option value="">— pick a country first —</option>
         </select>
-        <input type="text" id="inpState" class="hidden-input" placeholder="Type state / region" />
       </div>
 
       <div class="field">
-        <label>City</label>
-        <input
-          type="text"
-          id="inpCity"
-          list="cityList"
-          placeholder="Type or pick a city"
-          autocomplete="off"
-        />
-        <datalist id="cityList"></datalist>
+        <label for="selCity">City</label>
+        <select id="selCity" aria-label="City" disabled>
+          <option value="">— pick a state first —</option>
+        </select>
       </div>
 
       <button type="button" class="btn btn-ghost btn-open-maps" id="btnOpenMaps" disabled>
