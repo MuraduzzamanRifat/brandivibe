@@ -257,6 +257,9 @@ export type DeepResearch = {
   budget: string;
   decisionMaker: { name: string; role: string; firstName: string };
   confidence: number;
+  /** Phase 4 hook upgrades — quantified loss-aversion line + 1-sentence personal note */
+  quantifiedBleed?: string;
+  personalClose?: string;
   createdAt: string;
   model: string;
   tokens: number;

@@ -41,6 +41,8 @@ type RawDeepResearch = {
   budget: string;
   decisionMaker: { name: string; role: string; firstName: string };
   confidence: number;
+  quantifiedBleed: string;
+  personalClose: string;
 };
 
 const MAX_ATTEMPTS = 3;
@@ -287,8 +289,29 @@ Return STRICT JSON with this exact shape (no markdown fences, no prose):
   "techStackSummary": string,
   "budget": string,
   "decisionMaker": { "name": string, "role": string, "firstName": string },
-  "confidence": number
-}`;
+  "confidence": number,
+  "quantifiedBleed": string,
+  "personalClose": string
+}
+
+quantifiedBleed RULES (this is the loss-aversion line in the email):
+- Must be ONE sentence.
+- Must be framed CONDITIONALLY — start with "At even" or "Even at" or "If you're getting" because we don't know their actual traffic.
+- Must reference a specific number AND tie it to the topPriority weakness.
+- Format: "At even {realistic-low-traffic-estimate}, {topPriority-issue} is dropping ~{plausible-loss-percent}% of {audience-type} before they {goal}."
+- Examples (do NOT copy verbatim — adapt to the actual issue):
+   "At even 500 monthly visitors, the buried pricing CTA is dropping ~30% of warm leads before they see what it costs."
+   "Even at 1,000 visitors a month, the 14MB hero video is bouncing ~40% of mobile traffic before LCP fires."
+   "If you're getting 800 founders a month, the dense above-the-fold copy is losing ~25% before they ever scroll."
+- Forbidden: "could lose", "may impact", "potentially affects" — be direct.
+
+personalClose RULES (the 1-sentence sign-off line in the email):
+- Must be ONE sentence.
+- Must reference the topPriority weakness specifically by name or detail.
+- Must offer a free, asynchronous, low-friction value action.
+- Format: "I think {specific-topPriority-thing} is your single biggest issue — happy to record a 5-min loom walking through how I'd fix it if you reply 'loom'."
+- Voice: founder-to-founder, direct, no hedging.
+- Forbidden: "feel free", "let me know", "if you have time", "I would love to" — generic friendly bullshit. Direct only.`;
 
   const user = `PROSPECT
 Company: ${prospect.company}
@@ -406,6 +429,40 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       });
     }
 
+    // quantifiedBleed validation
+    if (!parsed.quantifiedBleed || typeof parsed.quantifiedBleed !== "string") {
+      failures.push("missing quantifiedBleed sentence");
+    } else {
+      const qb = parsed.quantifiedBleed;
+      if (qb.length < 30 || qb.length > 280) {
+        failures.push(`quantifiedBleed must be one sentence, 30-280 chars (got ${qb.length})`);
+      }
+      if (!/(at even|even at|if you'?re getting|if you have)/i.test(qb)) {
+        failures.push(`quantifiedBleed must start with "At even" / "Even at" / "If you're getting" (we don't know their traffic, frame conditionally)`);
+      }
+      if (!/\d/.test(qb)) {
+        failures.push("quantifiedBleed must contain a specific number");
+      }
+      const fillerBleed = containsFiller(qb);
+      if (fillerBleed) failures.push(`quantifiedBleed contains forbidden filler: "${fillerBleed}"`);
+    }
+
+    // personalClose validation
+    if (!parsed.personalClose || typeof parsed.personalClose !== "string") {
+      failures.push("missing personalClose sentence");
+    } else {
+      const pc = parsed.personalClose;
+      if (pc.length < 40 || pc.length > 280) {
+        failures.push(`personalClose must be one sentence, 40-280 chars (got ${pc.length})`);
+      }
+      if (!/loom/i.test(pc)) {
+        failures.push(`personalClose must include the word "loom" — that's the free, async, low-friction value action`);
+      }
+      if (/feel free|let me know|if you have time|i would love to|happy to chat|hop on a call/i.test(pc)) {
+        failures.push("personalClose contains generic friendly hedging — be direct, founder-to-founder");
+      }
+    }
+
     if (failures.length > 0) {
       lastFailure = failures.join("; ");
       continue;
@@ -442,6 +499,8 @@ Now produce the strict JSON. Every observation MUST include a quoted evidence su
       budget: parsed.budget,
       decisionMaker: parsed.decisionMaker ?? { name: "", role: "", firstName: "" },
       confidence: parsed.confidence,
+      quantifiedBleed: parsed.quantifiedBleed,
+      personalClose: parsed.personalClose,
       createdAt: new Date().toISOString(),
       model: completion.model,
       tokens: completion.usage?.total_tokens ?? 0,

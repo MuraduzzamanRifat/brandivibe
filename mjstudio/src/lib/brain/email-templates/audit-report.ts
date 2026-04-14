@@ -30,6 +30,9 @@ type AuditReportData = {
   weaknesses: string[];
   recipientFirstName?: string;
   closestDemoSlug?: string;
+  /** Phase 4 hook upgrades */
+  quantifiedBleed?: string;
+  personalClose?: string;
 };
 
 const C = {
@@ -90,7 +93,7 @@ ${escapeHtml(d.company)} scored ${d.designScore}/10. The sharpest observation, t
     </table>
   </td></tr>
 
-  <!-- ─────────── HERO CARD (gradient mesh) ─────────── -->
+  <!-- ─────────── HERO CARD: sharpest observation FIRST ─────────── -->
   <tr><td>
     <!--[if mso]>
     <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:640px;height:auto;">
@@ -107,43 +110,38 @@ ${escapeHtml(d.company)} scored ${d.designScore}/10. The sharpest observation, t
       border-radius:28px;
       border:1px solid ${C.border};
     ">
-      <tr><td style="padding:56px 44px 52px;">
+      <tr><td style="padding:56px 44px 48px;">
 
-        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:3.4px;color:${C.accent};font-weight:700;margin-bottom:24px;">
-          The audit is in
+        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:3.4px;color:${C.accent};font-weight:700;margin-bottom:18px;">
+          ${escapeHtml(d.company)} &middot; ${escapeHtml(d.domain)}
         </div>
 
-        <div style="font-family:Georgia,'Times New Roman',serif;font-size:42px;line-height:1.04;letter-spacing:-1.2px;color:${C.ink};font-weight:400;">
-          ${escapeHtml(d.company)}
-        </div>
-        <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:${C.muted};letter-spacing:0.4px;margin-top:6px;">
-          ${escapeHtml(d.domain)}
+        <!-- THE SHARPEST OBSERVATION IS NOW THE HERO LINE -->
+        <div style="font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.18;letter-spacing:-0.6px;color:${C.ink};font-weight:400;font-style:italic;">
+          &ldquo;${escapeHtml(d.specificObservation)}&rdquo;
         </div>
 
-        <div style="height:36px;line-height:36px;font-size:0;">&nbsp;</div>
+        ${
+          d.quantifiedBleed
+            ? `<div style="margin-top:24px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;color:${C.champagne};letter-spacing:0.1px;">
+          ${escapeHtml(d.quantifiedBleed)}
+        </div>`
+            : ""
+        }
 
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <!-- Score becomes a small stat strip below -->
+        <div style="height:32px;line-height:32px;font-size:0;">&nbsp;</div>
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border-top:1px solid ${C.borderStrong};">
           <tr>
-            <td valign="bottom" style="padding-bottom:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:2.6px;color:${C.muted};font-weight:600;">
-              Design score
+            <td valign="middle" style="padding-top:18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:${C.muted};letter-spacing:0.3px;line-height:1.5;">
+              <span style="color:${C.muted};text-transform:uppercase;letter-spacing:2px;font-size:9px;font-weight:600;">Design score</span><br />
+              <span style="color:${scoreColor};font-family:Georgia,serif;font-style:italic;font-size:32px;letter-spacing:-1px;">${d.designScore}</span><span style="color:${C.muted};font-size:14px;">&thinsp;/&thinsp;10</span>
             </td>
-            <td align="right" valign="bottom" style="padding-bottom:6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:9px;text-transform:uppercase;letter-spacing:2.6px;color:${C.muted};font-weight:600;">
-              ${escapeHtml(d.industryName)} &middot; ${escapeHtml(d.techStackSummary)}
+            <td align="right" valign="middle" style="padding-top:18px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;color:${C.muted};text-transform:uppercase;letter-spacing:2px;font-weight:600;line-height:1.6;">
+              ${escapeHtml(d.industryName)}<br />
+              <span style="text-transform:none;letter-spacing:0.3px;font-weight:400;font-size:11px;">${escapeHtml(d.techStackSummary)}</span>
             </td>
           </tr>
-          <tr><td colspan="2" style="border-top:1px solid ${C.borderStrong};padding-top:14px;">
-            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-              <tr>
-                <td valign="baseline" style="font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:88px;line-height:0.95;color:${scoreColor};font-weight:400;letter-spacing:-3px;">
-                  ${d.designScore}
-                  <span style="font-size:32px;color:${C.muted};font-style:normal;letter-spacing:-1px;">&thinsp;/&thinsp;10</span>
-                </td>
-                <td valign="bottom" align="right" style="padding-bottom:14px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;color:${C.muted};line-height:1.6;max-width:200px;">
-                  ${scoreReadout(d.designScore)}
-                </td>
-              </tr>
-            </table>
-          </td></tr>
         </table>
 
       </td></tr>
@@ -152,25 +150,6 @@ ${escapeHtml(d.company)} scored ${d.designScore}/10. The sharpest observation, t
     </v:textbox>
     </v:rect>
     <![endif]-->
-  </td></tr>
-
-  <tr><td style="height:36px;line-height:36px;font-size:0;">&nbsp;</td></tr>
-
-  <!-- ─────────── SHARPEST OBSERVATION ─────────── -->
-  <tr><td bgcolor="${C.surface}" style="
-    background-color:${C.surface};
-    background-image:linear-gradient(180deg, ${C.surface} 0%, ${C.surfaceLight} 100%);
-    border:1px solid ${C.border};
-    border-left:3px solid ${C.accent};
-    border-radius:24px;
-    padding:42px 40px;
-  ">
-    <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:3.2px;color:${C.accent};font-weight:700;margin-bottom:18px;">
-      The sharpest observation
-    </div>
-    <div style="font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1.38;color:${C.ink};font-style:italic;letter-spacing:-0.3px;">
-      &ldquo;${escapeHtml(d.specificObservation)}&rdquo;
-    </div>
   </td></tr>
 
   <tr><td style="height:36px;line-height:36px;font-size:0;">&nbsp;</td></tr>
@@ -241,59 +220,68 @@ ${escapeHtml(d.company)} scored ${d.designScore}/10. The sharpest observation, t
 
   <tr><td style="height:56px;line-height:56px;font-size:0;">&nbsp;</td></tr>
 
-  <!-- ─────────── CTA CARD ─────────── -->
+  <!-- ─────────── CTA CARD: free loom ask ─────────── -->
   <tr><td bgcolor="${C.surface}" style="
     background-color:${C.surface};
     background-image:
-      radial-gradient(ellipse 70% 80% at 50% 0%, rgba(134,229,255,0.18), transparent 65%),
+      radial-gradient(ellipse 70% 80% at 50% 0%, rgba(134,229,255,0.22), transparent 65%),
       linear-gradient(180deg, ${C.surface} 0%, ${C.bg} 100%);
     border:1px solid ${C.border};
     border-radius:28px;
-    padding:56px 40px 52px;
+    padding:52px 40px 48px;
     text-align:center;
   ">
-    <div style="font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:1.18;color:${C.ink};letter-spacing:-0.6px;font-weight:400;">
-      Want this <em style="color:${C.accent};font-style:italic;">fixed</em>?
+    <div style="font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.2;color:${C.ink};letter-spacing:-0.5px;font-weight:400;">
+      Reply &ldquo;<em style="color:${C.accent};font-style:italic;">loom</em>&rdquo; and I&rsquo;ll record a 5-min walkthrough
     </div>
-    <div style="font-family:Georgia,serif;font-size:15px;line-height:1.65;color:${C.muted};margin:18px auto 32px;max-width:440px;">
-      ${greeting}Brandivibe rebuilds founder homepages in 6 weeks for $35&ndash;90K. One designer, production Next.js codebase you own, no retainer.
+    <div style="font-family:Georgia,serif;font-size:14px;line-height:1.65;color:${C.muted};margin:16px auto 30px;max-width:460px;">
+      ${greeting}I&rsquo;ll show you exactly how I&rsquo;d fix the top issue on ${escapeHtml(d.domain)} &mdash; specific changes, before/after, no pitch. Free, async, in your inbox within 48 hours.
     </div>
 
     <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center">
-      <tr><td bgcolor="${C.accent}" style="
-        background-color:${C.accent};
-        background-image:linear-gradient(180deg, #b9f0ff 0%, ${C.accent} 60%, ${C.accentDeep} 100%);
-        border-radius:100px;
-        padding:0;
-      ">
-        <a href="https://brandivibe.com/${escapeHtml(demo)}" style="
-          display:inline-block;
-          padding:18px 36px;
-          font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
-          font-size:13px;
-          font-weight:700;
-          color:#04121a;
-          text-decoration:none;
-          letter-spacing:0.4px;
-          text-transform:uppercase;
-        ">See the ${escapeHtml(demo)} demo &nbsp;→</a>
+      <tr><td style="padding:0 8px;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+          <tr><td bgcolor="${C.accent}" style="
+            background-color:${C.accent};
+            background-image:linear-gradient(180deg, #b9f0ff 0%, ${C.accent} 60%, ${C.accentDeep} 100%);
+            border-radius:100px;
+          ">
+            <a href="mailto:hello@send.brandivibe.site?subject=loom%20%E2%80%94%20${encodeURIComponent(d.domain)}&body=loom" style="
+              display:inline-block;
+              padding:18px 32px;
+              font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+              font-size:13px;
+              font-weight:700;
+              color:#04121a;
+              text-decoration:none;
+              letter-spacing:0.4px;
+              text-transform:uppercase;
+            ">Reply &ldquo;loom&rdquo; &nbsp;→</a>
+          </td></tr>
+        </table>
       </td></tr>
     </table>
 
-    <div style="margin-top:18px;">
-      <a href="https://brandivibe.com/#contact" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:${C.muted};text-decoration:underline;letter-spacing:0.3px;">
-        or start a conversation
+    <div style="margin-top:20px;">
+      <a href="https://brandivibe.com/${escapeHtml(demo)}" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:${C.muted};text-decoration:underline;letter-spacing:0.3px;">
+        or see what we&rsquo;d rebuild this into
       </a>
     </div>
   </td></tr>
 
   <tr><td style="height:48px;line-height:48px;font-size:0;">&nbsp;</td></tr>
 
-  <!-- ─────────── SIGNATURE ─────────── -->
+  <!-- ─────────── PERSONAL CLOSE ─────────── -->
   <tr><td style="padding:0 12px;">
-    <div style="font-family:Georgia,serif;font-size:16px;line-height:1.65;color:${C.ink};">
-      If any of this is useful, reply to this email and I&rsquo;ll walk you through it on a 15-minute call. <em style="color:${C.muted};">No slides, no pitch deck.</em>
-    </div>
+    ${
+      d.personalClose
+        ? `<div style="font-family:Georgia,serif;font-size:17px;line-height:1.65;color:${C.ink};font-style:italic;">
+      &mdash; ${escapeHtml(d.personalClose)}
+    </div>`
+        : `<div style="font-family:Georgia,serif;font-size:16px;line-height:1.65;color:${C.ink};">
+      I think the top issue above is the single biggest thing &mdash; happy to record a loom walking through how I&rsquo;d fix it. Just reply &ldquo;loom&rdquo;.
+    </div>`
+    }
     <div style="margin-top:28px;font-family:Georgia,serif;font-size:18px;color:${C.ink};font-style:italic;">
       Muraduzzaman
     </div>
