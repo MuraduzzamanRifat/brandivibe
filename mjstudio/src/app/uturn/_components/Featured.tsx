@@ -41,6 +41,15 @@ const PRODUCTS: Product[] = [
     status: "In stock",
     swatch: "swatch-deep-plum",
   },
+  {
+    slug: "faro-coat",
+    num: "004",
+    name: "Faro Coat",
+    category: "Outerwear · 04",
+    price: "€1,480",
+    status: "8 of 30 left",
+    swatch: "swatch-forest",
+  },
 ];
 
 /**
@@ -71,7 +80,7 @@ export function Featured() {
               className="font-serif font-light tracking-[-0.015em] leading-[0.92] text-[var(--uturn-ink)]"
               style={{ fontSize: "clamp(2.25rem, 5vw, 5rem)" }}
             >
-              Three from the release.
+              Four from the release.
             </h2>
           </div>
           <a
@@ -82,7 +91,7 @@ export function Featured() {
           </a>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {PRODUCTS.map((p, i) => (
             <motion.div
               key={p.num}

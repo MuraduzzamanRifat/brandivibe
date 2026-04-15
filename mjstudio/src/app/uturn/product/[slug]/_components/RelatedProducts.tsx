@@ -6,7 +6,8 @@ import { ArrowUpRight } from "lucide-react";
 import type { Product } from "../products";
 
 export function RelatedProducts({ products }: { products: Product[] }) {
-  if (products.length === 0) return null;
+  const shown = products.slice(0, 3);
+  if (shown.length === 0) return null;
 
   return (
     <section className="relative py-20 md:py-28 border-t border-[var(--uturn-hairline)] bg-[var(--uturn-bg-deep)]">
@@ -39,7 +40,7 @@ export function RelatedProducts({ products }: { products: Product[] }) {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-          {products.map((p, i) => (
+          {shown.map((p, i) => (
             <motion.div
               key={p.slug}
               initial={{ opacity: 0, y: 40 }}

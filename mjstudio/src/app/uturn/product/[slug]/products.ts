@@ -1,12 +1,11 @@
 /**
- * Catalog for UTurn product pages. Hardcoded here to match the three
- * products shown in Featured.tsx on the shop homepage. Media paths point
- * to local stock files — drop Pexels-downloaded videos into
- * `mjstudio/public/uturn/stock/<slug>/*.mp4` and the PDP picks them up.
- *
- * Every field is original content for a made-up capsule atelier; no
- * product names, prices, or copy are borrowed from real brands.
+ * UTurn capsule catalog — Release 04.
+ * All media now uses Pexels CDN images (type: "image").
+ * Drop your own images into public/uturn/stock/<slug>/ to override.
  */
+
+const PX = (id: number, w = 900, h = 1120) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w}&h=${h}&dpr=2`;
 
 export type ProductMedia = {
   type: "video" | "image";
@@ -66,30 +65,10 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     swatch: "swatch-slate",
     media: [
-      {
-        type: "video",
-        src: "/uturn/stock/ishi-overshirt/hero.mp4",
-        poster: "/uturn/stock/ishi-overshirt/hero.jpg",
-        label: "Studio light",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/ishi-overshirt/detail-1.mp4",
-        poster: "/uturn/stock/ishi-overshirt/detail-1.jpg",
-        label: "Stitch detail",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/ishi-overshirt/detail-2.mp4",
-        poster: "/uturn/stock/ishi-overshirt/detail-2.jpg",
-        label: "Lining",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/ishi-overshirt/worn.mp4",
-        poster: "/uturn/stock/ishi-overshirt/worn.jpg",
-        label: "On body",
-      },
+      { type: "image", src: PX(2220316), label: "Studio light" },
+      { type: "image", src: PX(1536619), label: "Stitch detail" },
+      { type: "image", src: PX(2897531), label: "Lining" },
+      { type: "image", src: PX(1043474), label: "On body" },
     ],
     variants: [
       { id: "ash", label: "Ash slate", swatchClass: "swatch-slate", inStock: true },
@@ -123,6 +102,7 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     madeIn: "Porto, Portugal · Atelier III",
   },
+
   "atelier-bag-no-7": {
     slug: "atelier-bag-no-7",
     num: "002",
@@ -140,30 +120,10 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     swatch: "swatch-warm-clay",
     media: [
-      {
-        type: "video",
-        src: "/uturn/stock/atelier-bag-no-7/hero.mp4",
-        poster: "/uturn/stock/atelier-bag-no-7/hero.jpg",
-        label: "Studio light",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/atelier-bag-no-7/detail-1.mp4",
-        poster: "/uturn/stock/atelier-bag-no-7/detail-1.jpg",
-        label: "Edge paint",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/atelier-bag-no-7/detail-2.mp4",
-        poster: "/uturn/stock/atelier-bag-no-7/detail-2.jpg",
-        label: "Hardware",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/atelier-bag-no-7/worn.mp4",
-        poster: "/uturn/stock/atelier-bag-no-7/worn.jpg",
-        label: "On shoulder",
-      },
+      { type: "image", src: PX(1152077), label: "Studio light" },
+      { type: "image", src: PX(3659098), label: "Edge paint" },
+      { type: "image", src: PX(2905238), label: "Hardware" },
+      { type: "image", src: PX(1152076), label: "On shoulder" },
     ],
     variants: [
       { id: "chestnut", label: "Chestnut", swatchClass: "swatch-warm-clay", inStock: true },
@@ -195,6 +155,7 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     madeIn: "Porto, Portugal · Atelier I",
   },
+
   "midnight-object": {
     slug: "midnight-object",
     num: "003",
@@ -212,30 +173,10 @@ export const PRODUCTS: Record<string, Product> = {
     ],
     swatch: "swatch-deep-plum",
     media: [
-      {
-        type: "video",
-        src: "/uturn/stock/midnight-object/hero.mp4",
-        poster: "/uturn/stock/midnight-object/hero.jpg",
-        label: "On desk",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/midnight-object/detail-1.mp4",
-        poster: "/uturn/stock/midnight-object/detail-1.jpg",
-        label: "Sand finish",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/midnight-object/detail-2.mp4",
-        poster: "/uturn/stock/midnight-object/detail-2.jpg",
-        label: "Weight",
-      },
-      {
-        type: "video",
-        src: "/uturn/stock/midnight-object/in-hand.mp4",
-        poster: "/uturn/stock/midnight-object/in-hand.jpg",
-        label: "In hand",
-      },
+      { type: "image", src: PX(1037995), label: "On desk" },
+      { type: "image", src: PX(3944405), label: "Sand finish" },
+      { type: "image", src: PX(3823488), label: "Weight" },
+      { type: "image", src: PX(3736979), label: "In hand" },
     ],
     variants: [
       { id: "midnight", label: "Midnight bronze", swatchClass: "swatch-deep-plum", inStock: true },
@@ -264,5 +205,60 @@ export const PRODUCTS: Record<string, Product> = {
       "Free rework at the foundry for the first five years",
     ],
     madeIn: "Sintra, Portugal · Foundry II",
+  },
+
+  "faro-coat": {
+    slug: "faro-coat",
+    num: "004",
+    name: "Faro Coat",
+    category: "Outerwear",
+    price: "€1,480",
+    priceNum: 1480,
+    status: "8 of 30 remaining",
+    shortDescription:
+      "A double-faced merino overcoat, unlined and unstructured. Woven in the Alentejo and finished with hand-felled hems.",
+    longDescription: [
+      "The Faro Coat starts with a double-faced merino cloth woven at a small mill in the Alentejo plains — two layers of wool bonded together, no lining needed, no padding, no interlining. It stands on its own.",
+      "The hem is hand-felled, each stitch placed the same distance apart by the same pair of hands. The back vent is cut on a slight bias so it falls open when you move rather than gaping when you stand. Small things, but the coat knows them.",
+      "It comes in two weights. The 480g is for travelling. The 620g is for staying.",
+    ],
+    swatch: "swatch-forest",
+    media: [
+      { type: "image", src: PX(996329), label: "Studio light" },
+      { type: "image", src: PX(1536619), label: "Cloth weight" },
+      { type: "image", src: PX(3622608), label: "Felled hem" },
+      { type: "image", src: PX(2220317), label: "On body" },
+    ],
+    variants: [
+      { id: "forest", label: "Pine forest", swatchClass: "swatch-forest", inStock: true },
+      { id: "slate", label: "Ash slate", swatchClass: "swatch-slate", inStock: true },
+      { id: "sand", label: "Warm sand", swatchClass: "swatch-sand", inStock: false },
+    ],
+    sizes: [
+      { id: "s", label: "S", inStock: true },
+      { id: "m", label: "M", inStock: true },
+      { id: "l", label: "L", inStock: true },
+      { id: "xl", label: "XL", inStock: true },
+    ],
+    materials: [
+      { label: "Cloth", value: "Double-faced merino wool, 480g or 620g/m²" },
+      { label: "Lining", value: "None — self-finishing interior" },
+      { label: "Buttons", value: "Horn, hand-sewn, 22mm" },
+      { label: "Hem", value: "Hand-felled, 7mm stitch pitch" },
+      { label: "Origin", value: "Alentejo, Portugal" },
+    ],
+    shipping: [
+      "Ships within 7 working days",
+      "Complimentary worldwide express (48h Europe, 72h rest of world)",
+      "Garment bag included — no box, no waste",
+      "Signed card from the person who made it",
+    ],
+    care: [
+      "Dry clean only — the double face is sensitive to mechanical agitation",
+      "Hang after each wear, allow 24h to breathe before storing",
+      "Brush with a soft clothes brush along the grain",
+      "Re-blocking and any repairs done free for members, at cost for everyone else",
+    ],
+    madeIn: "Alentejo, Portugal · Mill Weave IV",
   },
 };
