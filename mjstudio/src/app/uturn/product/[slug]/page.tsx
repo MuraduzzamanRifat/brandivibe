@@ -9,11 +9,9 @@ import { ProductDetails } from "./_components/ProductDetails";
 import { RelatedProducts } from "./_components/RelatedProducts";
 import { PRODUCTS, type Product } from "./products";
 
-type Params = { params: Promise<{ slug: string }> };
+export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  return Object.keys(PRODUCTS).map((slug) => ({ slug }));
-}
+type Params = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Params) {
   const { slug } = await params;
