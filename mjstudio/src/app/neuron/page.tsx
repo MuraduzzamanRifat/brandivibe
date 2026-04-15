@@ -1,5 +1,6 @@
 import { Navbar } from "./_components/Navbar";
 import { Hero } from "./_components/Hero";
+import { Loader } from "./_components/Loader";
 import { LogoBar } from "./_components/LogoBar";
 import { Features } from "./_components/Features";
 import { CodeDemo } from "./_components/CodeDemo";
@@ -11,6 +12,7 @@ import { LenisProvider } from "./_components/LenisProvider";
 export default function NeuronPage() {
   return (
     <LenisProvider>
+      <Loader />
       <Navbar />
       <main className="relative neuron-main">
         <Hero />

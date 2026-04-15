@@ -9,6 +9,7 @@
   --mono-faint: rgba(26, 26, 26, 0.1);
   --mono-concrete: #c9c5bf;
   --mono-accent: #1a1a1a;
+  --mono-red: #ff3d00;
 
   background: var(--mono-bg);
   color: var(--mono-fg);
@@ -62,4 +63,17 @@
 .monolith-root .serif-italic {
   font-family: var(--font-cormorant), Georgia, serif;
   font-style: italic;
+}
+
+.monolith-root .mono-marquee {
+  animation: mono-marquee 45s linear infinite;
+}
+
+@keyframes mono-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }

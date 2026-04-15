@@ -1,52 +1,61 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section id="book" className="relative py-40 px-8 md:px-12 border-t border-[#d4a017]/10 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80rem] h-[80rem] rounded-full bg-[#d4a017]/6 blur-[160px] pointer-events-none" />
+    <section
+      id="write"
+      className="relative py-48 px-8 md:px-12 border-t border-[#d4a017]/10 overflow-hidden"
+    >
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70rem] h-[70rem] rounded-full bg-[#d4a017]/[0.04] blur-[160px] pointer-events-none" />
 
-      <div className="relative mx-auto max-w-5xl text-center">
+      <div className="relative mx-auto max-w-5xl">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1 }}
+          viewport={{ once: true, margin: "-120px" }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex items-center gap-4 justify-center mb-10">
-            <div className="w-12 h-px bg-[#d4a017]/60" />
-            <span className="text-[10px] tracking-[0.4em] uppercase text-[#fde68a]">
-              — An invitation · Finale
-            </span>
-            <div className="w-12 h-px bg-[#d4a017]/60" />
+          <div className="flex items-center gap-4 mb-10 font-mono text-[9px] uppercase tracking-[0.5em] text-[var(--aurora-muted)]">
+            <span className="w-10 h-px bg-[var(--aurora-gold)]/60" />
+            By invitation
           </div>
-          <h2 className="font-serif text-5xl md:text-8xl lg:text-9xl font-normal tracking-tight leading-[0.95] text-balance">
-            By private
+          <h2
+            className="font-serif font-light tracking-[-0.02em] leading-[0.92] text-balance"
+            style={{ fontSize: "clamp(3rem, 7vw, 8rem)" }}
+          >
+            We work with ten brands
             <br />
-            <span className="serif-italic gold-ink">viewing only.</span>
+            <span className="italic text-white/55">a year.</span>
           </h2>
-          <p className="mt-10 text-base md:text-lg text-white/50 max-w-xl mx-auto leading-relaxed">
-            87 pieces. 87 invitations. If you receive one, you&apos;ll be hosted
-            by our atelier director at a city of your choosing — Geneva, London,
-            Tokyo, or New York — for an unhurried afternoon with the movement.
-          </p>
-          <div className="mt-14 flex flex-col sm:flex-row gap-5 justify-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 1, delay: 0.25 }}
+            className="mt-12 text-white/50 font-light text-base md:text-lg max-w-xl leading-relaxed"
+          >
+            If that sounds like how you want to work, write to us in your own
+            words. No form, no calendar link, no funnel — one message from you,
+            one reply from us.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="mt-14"
+          >
             <a
-              href="#"
-              className="group inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-br from-[#fde68a] via-[#f5c542] to-[#d4a017] text-black font-medium tracking-wider text-sm hover:shadow-[0_0_60px_rgba(212,160,23,0.35)] transition-all"
+              href="mailto:hello@aurora.studio"
+              className="group inline-flex items-center gap-4 font-serif italic text-2xl md:text-3xl text-[var(--aurora-champagne)] border-b border-[var(--aurora-gold)]/30 pb-2 hover:border-[var(--aurora-champagne)] transition-colors"
             >
-              REQUEST AN INVITATION
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              hello@aurora.studio
+              <ArrowUpRight className="w-5 h-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-full border border-[#d4a017]/50 text-[#fde68a] font-medium tracking-wider text-sm hover:bg-[#d4a017]/5 transition-colors"
-            >
-              READ THE CATALOGUE
-            </a>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

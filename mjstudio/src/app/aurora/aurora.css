@@ -61,6 +61,11 @@
   border-color: rgba(212, 160, 23, 0.22);
 }
 
+.aurora-root .writing-vertical {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
 .aurora-root .grain::after {
   content: "";
   position: absolute;

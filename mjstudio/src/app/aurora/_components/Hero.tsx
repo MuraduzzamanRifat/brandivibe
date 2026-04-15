@@ -1,89 +1,84 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { HeroScene } from "./HeroScene";
+import { LOADER_EXIT_AT_SEC } from "./Loader";
+
+const HANDOFF_OVERLAP = 0.3;
 
 export function Hero() {
+  const reduced = useReducedMotion();
+  const HERO_START = reduced ? 0 : Math.max(0, LOADER_EXIT_AT_SEC - HANDOFF_OVERLAP);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-24 grain">
-      <HeroScene />
+    <section className="relative min-h-[100svh] flex items-center overflow-hidden grain">
+      <div className="absolute inset-0 opacity-35 pointer-events-none">
+        <HeroScene />
+      </div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_50%,transparent_0%,rgba(7,6,10,0.75)_70%,var(--aurora-bg)_100%)] pointer-events-none" />
 
-      {/* vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_50%,transparent,rgba(7,6,10,0.85))] pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-[30vh] bg-gradient-to-b from-transparent to-[#07060a] pointer-events-none" />
-
-      <div className="relative mx-auto max-w-[1600px] px-8 md:px-12 w-full">
-        {/* small label */}
+      <div className="relative mx-auto max-w-[1600px] w-full px-6 md:px-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex items-center gap-4 mb-16"
+          transition={{ duration: 1, delay: HERO_START }}
+          className="flex items-center gap-4 mb-16 font-mono text-[9px] uppercase tracking-[0.5em] text-[var(--aurora-muted)]"
         >
-          <div className="w-16 h-px bg-[#d4a017]/60" />
-          <span className="text-[10px] tracking-[0.4em] uppercase text-[#fde68a]">
-            Est. MCMLXXI · Geneva · Swiss made
-          </span>
+          <span className="w-10 h-px bg-[var(--aurora-gold)]/60" />
+          Studio · MMXXVI
         </motion.div>
 
-        {/* headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif font-normal tracking-[-0.025em] leading-[0.88] text-balance max-w-6xl"
-          style={{ fontSize: "clamp(4.5rem, 13vw, 19rem)" }}
+        <h1
+          className="font-serif font-light leading-[0.92] tracking-[-0.02em] text-[var(--aurora-fg-white)] max-w-6xl"
+          style={{ fontSize: "clamp(3.5rem, 9.5vw, 11rem)" }}
         >
-          Forever,
-          <br />
-          <span className="serif-italic gold-ink">in gold.</span>
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.3 }}
-          className="mt-16 grid grid-cols-12 gap-6"
-        >
-          <div className="col-span-12 md:col-span-5 md:col-start-2">
-            <p className="text-base md:text-lg text-white/55 leading-relaxed text-balance font-light">
-              The Aurora Chronograph Héritage — hand-finished in our Geneva atelier,
-              limited to 87 pieces worldwide. Movement: AU.2026 calibre with
-              108-hour power reserve. Case: 18k rose gold, 39mm.
-            </p>
-          </div>
-          <div className="col-span-12 md:col-span-4 md:col-start-8 flex items-end justify-end gap-6">
-            <a
-              href="#book"
-              className="group inline-flex items-center gap-3 pb-2 border-b border-[#d4a017]/60 text-[11px] tracking-[0.3em] uppercase text-[#fde68a] hover:text-[#f5c542] hover:border-[#f5c542] transition-colors"
+          <span className="block overflow-hidden">
+            <motion.span
+              initial={{ y: "110%" }}
+              animate={{ y: "0%" }}
+              transition={{
+                duration: 1.4,
+                delay: HERO_START + 0.15,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="inline-block"
             >
-              Request a viewing
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-        </motion.div>
+              Interfaces for
+            </motion.span>
+          </span>
+          <span className="block overflow-hidden">
+            <motion.span
+              initial={{ y: "110%" }}
+              animate={{ y: "0%" }}
+              transition={{
+                duration: 1.4,
+                delay: HERO_START + 0.3,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="inline-block italic gold-ink"
+            >
+              work that hasn&apos;t happened yet.
+            </motion.span>
+          </span>
+        </h1>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 2 }}
-          className="absolute bottom-10 left-8 md:left-12 text-[9px] tracking-[0.4em] uppercase text-white/30"
+          transition={{ duration: 1.2, delay: HERO_START + 1.1 }}
+          className="mt-20 flex items-center justify-between flex-wrap gap-8"
         >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-px bg-white/20" />
-            Scroll for the story
+          <a
+            href="#approach"
+            className="group inline-flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.4em] text-[var(--aurora-champagne)] pb-2 border-b border-[var(--aurora-gold)]/40 hover:border-[var(--aurora-gold)] transition-colors"
+          >
+            Begin a conversation
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+          <div className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--aurora-muted)] text-right">
+            Ten clients a year
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 2.1 }}
-          className="absolute bottom-10 right-8 md:right-12 text-[9px] tracking-[0.4em] uppercase text-right text-white/30"
-        >
-          <div>Ref. AU26 / 087</div>
-          <div className="mt-1">Limited edition</div>
         </motion.div>
       </div>
     </section>

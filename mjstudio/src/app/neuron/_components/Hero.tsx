@@ -1,110 +1,164 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { NeuralField } from "./NeuralField";
+import { LOADER_EXIT_AT_SEC } from "./Loader";
+
+const HANDOFF_OVERLAP = 0.25;
+const CINEMATIC_EASE = [0.22, 1, 0.36, 1] as const;
+const POP_EASE = [0.34, 1.56, 0.64, 1] as const;
 
 export function Hero() {
+  const reduced = useReducedMotion();
+  const HERO_START = reduced ? 0 : Math.max(0, LOADER_EXIT_AT_SEC - HANDOFF_OVERLAP);
+
   return (
-    <section className="relative pt-40 pb-32 px-6 lg:px-8 overflow-hidden">
-      {/* subtle grid + 3D accent */}
-      <div className="absolute inset-0 grid-pattern opacity-60 pointer-events-none" />
-      <div className="absolute inset-0 opacity-40 pointer-events-none">
-        <NeuralField />
+    <section className="relative min-h-[100svh] overflow-hidden bg-[#fff9e6] pt-28 pb-16 px-6 lg:px-10">
+      <div className="absolute inset-0 grid-pattern opacity-35 pointer-events-none" />
+
+      <div className="absolute inset-0 pointer-events-none">
+        <NeuralField intensity={0.85} />
       </div>
-      <div className="absolute inset-x-0 top-0 h-[90vh] bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none" />
 
-      <div className="relative mx-auto max-w-5xl text-center">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_0%,rgba(255,249,230,0.65)_85%)] pointer-events-none" />
+
+      <div className="relative mx-auto max-w-[1600px]">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: -14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[rgba(10,10,15,0.08)] shadow-[0_1px_2px_0_rgba(10,10,15,0.04)] mb-10"
+          transition={{ duration: 0.7, delay: HERO_START, ease: POP_EASE }}
+          className="mb-10"
         >
-          <Sparkles className="w-3.5 h-3.5 text-[#0369a1]" />
-          <span className="text-xs font-medium text-foreground-muted">
-            Launched — Agent Framework v2.0
-          </span>
-          <div className="w-px h-3 bg-[rgba(10,10,15,0.1)]" />
-          <a href="#" className="text-xs text-[#0369a1] hover:underline">
-            Read more →
-          </a>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border-2 border-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]">
+            <span className="w-2 h-2 rounded-full bg-[#06d6a0] animate-pulse" />
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em]">
+              Live · point, scroll, feel
+            </span>
+          </div>
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl md:text-7xl lg:text-[5.5rem] font-semibold tracking-[-0.04em] leading-[0.95] text-balance"
-        >
-          Ship AI agents in <br className="hidden md:block" />
-          <span className="italic font-light text-foreground-muted">minutes</span>, not months.
-        </motion.h1>
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-12 lg:col-span-8">
+            <h1
+              className="font-black tracking-[-0.03em] leading-[0.84] text-black"
+              style={{ fontSize: "clamp(3.5rem, 10vw, 11rem)" }}
+            >
+              <span className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{
+                    duration: 1.3,
+                    delay: HERO_START + 0.15,
+                    ease: CINEMATIC_EASE,
+                  }}
+                  className="inline-block"
+                >
+                  Agents with
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{
+                    duration: 1.3,
+                    delay: HERO_START + 0.3,
+                    ease: CINEMATIC_EASE,
+                  }}
+                  className="inline-block"
+                >
+                  a{" "}
+                  <span className="relative inline-block">
+                    <span className="relative z-10 italic text-white mix-blend-difference px-1">
+                      pulse
+                    </span>
+                  </span>
+                  .
+                </motion.span>
+              </span>
+            </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.55 }}
-          className="mt-8 text-lg md:text-xl text-foreground-muted max-w-2xl mx-auto leading-relaxed"
-        >
-          The developer-first AI agents platform for building, evaluating, and deploying
-          production-grade agents. Observability, guardrails, and evals — built in.
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 1,
+                delay: HERO_START + 0.85,
+                ease: CINEMATIC_EASE,
+              }}
+              className="mt-10 text-lg md:text-2xl max-w-xl text-black/70 leading-snug font-medium"
+            >
+              Move the cursor. Scroll. Watch the network react. This isn&apos;t
+              decoration — it&apos;s the product learning what attention feels like.
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-12 flex flex-col sm:flex-row gap-3 justify-center items-center"
-        >
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#0a0a0f] text-white font-medium hover:bg-[#1a1a1f] transition-all"
-          >
-            Start building free
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </a>
-          <a
-            href="#code"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-[rgba(10,10,15,0.1)] text-foreground font-medium hover:bg-white transition-colors"
-          >
-            View playground
-          </a>
-        </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.7,
+                delay: HERO_START + 1.05,
+                ease: POP_EASE,
+              }}
+              className="mt-12 flex flex-wrap gap-4 items-center"
+            >
+              <a
+                href="#start"
+                className="group inline-flex items-center gap-3 px-7 py-4 bg-black text-white border-2 border-black rounded-full font-bold uppercase text-sm tracking-wide shadow-[6px_6px_0_0_rgba(239,71,111,1)] hover:shadow-[10px_10px_0_0_rgba(239,71,111,1)] hover:-translate-x-1 hover:-translate-y-1 transition-[transform,box-shadow] duration-300"
+              >
+                Start building — free
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="#playground"
+                className="font-mono text-xs uppercase tracking-[0.2em] font-bold text-black/70 border-b-2 border-black/30 pb-1 hover:text-black hover:border-black transition-colors"
+              >
+                Open playground →
+              </a>
+            </motion.div>
+          </div>
+
+          <div className="col-span-12 lg:col-span-4 flex flex-col justify-end gap-4 mt-12 lg:mt-0">
+            {[
+              { k: "p95 latency", v: "47ms", bg: "#06d6a0", rot: "-rotate-2" },
+              { k: "eval pass", v: "99.2%", bg: "#ffd166", rot: "rotate-1" },
+              { k: "agents shipped", v: "12.4k", bg: "#ef476f", rot: "-rotate-1", fg: "text-white" },
+            ].map((s, i) => (
+              <motion.div
+                key={s.k}
+                initial={{ opacity: 0, x: 40, y: 10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{
+                  duration: 0.65,
+                  delay: HERO_START + 0.35 + i * 0.09,
+                  ease: POP_EASE,
+                }}
+                className={`${s.rot} p-5 border-4 border-black rounded-2xl shadow-[6px_6px_0_0_rgba(0,0,0,1)] hover:rotate-0 hover:-translate-y-1 transition-[transform,box-shadow] duration-300 ${s.fg ?? "text-black"}`}
+                style={{ background: s.bg }}
+              >
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] font-bold opacity-80">
+                  {s.k}
+                </div>
+                <div className="mt-1 text-4xl font-black tabular-nums tracking-tight">
+                  {s.v}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-6 text-xs text-foreground-soft"
+          transition={{ duration: 1, delay: HERO_START + 1.8 }}
+          className="mt-20 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.25em] text-black/50"
         >
-          Free tier · No credit card · 10,000 agent runs/month
+          <span className="w-8 h-px bg-black/40" />
+          Scroll to change the network&apos;s mind
         </motion.div>
       </div>
-
-      {/* floating metric chips */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.9 }}
-        className="relative mx-auto max-w-5xl mt-24 grid grid-cols-2 md:grid-cols-4 gap-4"
-      >
-        {[
-          { k: "p95 latency", v: "47ms" },
-          { k: "Eval pass rate", v: "99.2%" },
-          { k: "Uptime", v: "99.99%" },
-          { k: "Agents deployed", v: "12.4k" },
-        ].map((s) => (
-          <div key={s.k} className="card rounded-2xl p-5">
-            <div className="text-xs text-foreground-soft font-mono uppercase tracking-wider">
-              {s.k}
-            </div>
-            <div className="mt-2 text-3xl font-semibold tracking-tight tabular-nums">
-              {s.v}
-            </div>
-          </div>
-        ))}
-      </motion.div>
     </section>
   );
 }

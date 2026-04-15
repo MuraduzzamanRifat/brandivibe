@@ -64,6 +64,42 @@
   font-weight: 400;
 }
 
+.pulse-root .pulse-obys-bg {
+  background: #fde8d4;
+  color: #1c1917;
+}
+
+.pulse-root .pulse-cursor-none,
+.pulse-root .pulse-cursor-none * {
+  cursor: none;
+}
+
+/*
+ * Paper-stack layering. Each .pulse-sheet is a sticky container that pins
+ * itself at the top of the viewport while the next sheet scrolls up over it.
+ * Higher z-index on later sheets means they cover earlier ones.
+ */
+.pulse-root .pulse-sheet {
+  position: sticky;
+  top: 0;
+}
+.pulse-root .pulse-sheet-1 { z-index: 1; }
+.pulse-root .pulse-sheet-2 {
+  z-index: 2;
+  background: #e8f2ea;
+  box-shadow: 0 -30px 60px -20px rgba(28, 25, 23, 0.18);
+}
+.pulse-root .pulse-sheet-3 {
+  z-index: 3;
+  background: #f0d8e8;
+  box-shadow: 0 -30px 60px -20px rgba(28, 25, 23, 0.22);
+}
+.pulse-root .pulse-sheet-4 {
+  z-index: 4;
+  background: #fbcfc0;
+  box-shadow: 0 -30px 60px -20px rgba(28, 25, 23, 0.26);
+}
+
 .pulse-root .text-pulse-fg { color: var(--pulse-fg); }
 .pulse-root .text-pulse-muted { color: var(--pulse-muted); }
 .pulse-root .text-pulse-soft { color: var(--pulse-soft); }
