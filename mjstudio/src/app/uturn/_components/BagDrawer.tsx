@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
+import Link from "next/link";
 import { useCart } from "./CartContext";
 
 export function BagDrawer() {
@@ -168,13 +169,14 @@ export function BagDrawer() {
                 <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--uturn-ink-soft)]">
                   Free worldwide shipping · taxes at checkout
                 </p>
-                <button
-                  type="button"
-                  className="group relative w-full py-4 bg-[var(--uturn-ink)] text-[var(--uturn-bg)] font-mono text-[11px] uppercase tracking-[0.35em] overflow-hidden"
+                <Link
+                  href="/uturn/checkout"
+                  onClick={() => setBagOpen(false)}
+                  className="group relative block w-full py-4 bg-[var(--uturn-ink)] text-[var(--uturn-bg)] font-mono text-[11px] uppercase tracking-[0.35em] text-center overflow-hidden"
                 >
                   <span className="relative z-10">Proceed to checkout</span>
                   <div className="absolute inset-0 bg-[var(--uturn-accent)] origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out" />
-                </button>
+                </Link>
                 <button
                   type="button"
                   onClick={() => setBagOpen(false)}
