@@ -8,10 +8,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const brain = await loadBrain();
   const articles = brain.articles ?? [];
 
+  const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${SITE}/`, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95 },
-    { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${SITE}/`, changeFrequency: "weekly", priority: 1, lastModified: now },
+    { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
+    { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9, lastModified: now },
     ...DEMOS.map((d) => ({
       url: `${SITE}/${d}`,
       changeFrequency: "monthly" as const,

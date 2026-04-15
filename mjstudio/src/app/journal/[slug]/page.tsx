@@ -42,9 +42,58 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const { frontmatter, html } = article;
+  const brain = await loadBrain();
+  const meta = (brain.articles ?? []).find((a) => a.slug === slug);
+
+  const articleSchema = meta
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: frontmatter.title,
+        description: frontmatter.excerpt,
+        datePublished: frontmatter.publishedAt,
+        dateModified: frontmatter.publishedAt,
+        author: {
+          "@type": "Organization",
+          name: "Brandivibe",
+          url: "https://brandivibe.com",
+        },
+        publisher: {
+          "@type": "Organization",
+          "@id": "https://brandivibe.com/#organization",
+          name: "Brandivibe",
+          url: "https://brandivibe.com",
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `https://brandivibe.com/journal/${slug}`,
+        },
+        ...(frontmatter.heroImage && {
+          image: {
+            "@type": "ImageObject",
+            url: frontmatter.heroImage.startsWith("http")
+              ? frontmatter.heroImage
+              : `https://brandivibe.com${frontmatter.heroImage}`,
+          },
+        }),
+        keywords: meta.secondaryKeywords?.join(", "),
+        wordCount: meta.wordCount,
+        articleSection: "Website conversion & design",
+        about: {
+          "@type": "Thing",
+          name: meta.primaryKeyword,
+        },
+      }
+    : null;
 
   return (
     <main className="min-h-screen bg-[#08080a] text-white">
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
       <article className="journal-article mx-auto max-w-3xl px-6 md:px-10 py-24">
         <header className="mb-12">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#84e1ff] mb-4">
