@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { Article, FbPost, Plan, LearningEntry } from "@/lib/brain-storage";
 import { CrmPanel } from "./CrmPanel";
+import { BlastPanel } from "./BlastPanel";
 import { CommandPalette } from "./CommandPalette";
 
 type QueueResponse = { fbQueue: FbPost[]; plans: Plan[]; learning: LearningEntry[] };
@@ -23,7 +24,7 @@ type Metrics = {
   learning: LearningEntry[];
 };
 
-type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads" | "crm";
+type Tab = "plans" | "queue" | "journal" | "scoreboard" | "outreach" | "leads" | "crm" | "blast";
 
 type GmapsLead = {
   id: string;
@@ -196,7 +197,7 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
       </div>
 
       <div className="flex items-center gap-2 flex-wrap mb-8">
-        {(["plans", "crm", "outreach", "leads", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
+        {(["plans", "crm", "blast", "outreach", "leads", "queue", "journal", "scoreboard"] as Tab[]).map((t) => (
           <button
             key={t}
             type="button"
@@ -207,6 +208,8 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
               ? "Plans"
               : t === "crm"
               ? "CRM"
+              : t === "blast"
+              ? "Blast"
               : t === "outreach"
               ? `Outreach (${outreach?.stats.inSequence ?? 0})`
               : t === "leads"
@@ -226,6 +229,8 @@ export function BrainPanel({ articles }: { articles: Article[] }) {
           externalNewContactToken={crmNewContactToken}
         />
       )}
+
+      {tab === "blast" && <BlastPanel />}
 
       <CommandPalette
         open={paletteOpen}

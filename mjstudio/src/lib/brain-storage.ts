@@ -422,8 +422,76 @@ export type DailyRun = {
     research?: "pending" | "done" | "failed";
     sequence?: "pending" | "done" | "failed";
     send?: "pending" | "done" | "failed";
+    blast?: "pending" | "done" | "failed";
   };
   lastError?: string;
+};
+
+/**
+ * Cold-email blast campaign config. The 500K-row email list itself lives in
+ * a sibling file (data/blast-list.txt + GitHub mirror), NOT in brain.json —
+ * only this small pointer is stored here so saves stay fast.
+ */
+export type BlastConfig = {
+  /** Random ID assigned at upload time — used in activity logs */
+  id: string;
+  /** True when a list has been uploaded and is ready to send */
+  active: boolean;
+  /** "running" sends on each tick · "paused" skips ticks · "done" hit end */
+  status: "idle" | "running" | "paused" | "done";
+  /** Total lines in the list file */
+  totalRows: number;
+  /** Cursor — next row index to send (0-based) */
+  sentCount: number;
+  /** Max emails to send per day */
+  dailyCap: number;
+  /** YYYY-MM-DD → number sent that day, used to enforce dailyCap */
+  sentByDay: Record<string, number>;
+  /** Email template ID to use for every blast send */
+  templateId?: string;
+  /** Cached SHA of the list file in GitHub for resume-after-redeploy */
+  listSha?: string;
+  /** ISO timestamp of the last successful tick */
+  lastTickAt?: string;
+  /** Filename the user uploaded (for display only) */
+  filename?: string;
+  /** ISO timestamp the list was uploaded */
+  uploadedAt?: string;
+  /**
+   * Aggregate event counters. Incremented by aggregateBlastEvents() which
+   * reads from the data/blast-events.jsonl append-only log and advances
+   * eventsAggregated. Webhook handlers ONLY append to the JSONL — never
+   * touch these counters directly — so concurrent webhooks can't race.
+   */
+  metrics?: {
+    delivered: number;
+    bounced: number;
+    complained: number;
+    opened: number;
+    clicked: number;
+    unsubscribed: number;
+    /** Unique-recipient counters (de-duped across multiple events per email) */
+    uniqueOpened: number;
+    uniqueClicked: number;
+  };
+  /** Number of JSONL events already rolled into `metrics`. Aggregation cursor. */
+  eventsAggregated?: number;
+  /** ISO timestamp of the last metrics aggregation pass */
+  metricsUpdatedAt?: string;
+  /**
+   * Auto-ramp warmup mode. When true, the effective daily cap starts at 25
+   * on day 1 and grows by 25 each day until it reaches `dailyCap`. Tick
+   * time references `warmupStartedAt` for day calculation. Separately, if
+   * bounce rate > 8% or complaint rate > 0.5%, the tick auto-pauses the
+   * campaign regardless of this flag.
+   */
+  warmupEnabled?: boolean;
+  /** ISO timestamp when warmup ramp started (usually == uploadedAt) */
+  warmupStartedAt?: string;
+  /** ISO timestamp of the last auto-pause by the circuit breaker */
+  circuitBreakerTrippedAt?: string;
+  /** Reason for the circuit breaker trip (e.g. "bounce rate 11.2%") */
+  circuitBreakerReason?: string;
 };
 
 export type Draft = {
@@ -461,6 +529,8 @@ type BrainData = {
   crmContacts?: CrmContact[];
   emailTemplates?: EmailTemplate[];
   crmEmails?: CrmEmail[];
+  /** Cold-email blast campaign — small pointer only; list lives in sibling file */
+  blastConfig?: BlastConfig;
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -487,7 +557,32 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     crmContacts: d?.crmContacts ?? [],
     emailTemplates: d?.emailTemplates ?? [],
     crmEmails: d?.crmEmails ?? [],
+    blastConfig: d?.blastConfig,
   };
+}
+
+// ─────────── Blast config accessors ───────────
+
+export async function getBlastConfig(): Promise<BlastConfig | undefined> {
+  const data = await loadBrain();
+  return data.blastConfig;
+}
+
+export async function setBlastConfig(patch: Partial<BlastConfig>): Promise<BlastConfig> {
+  const data = await loadBrain();
+  const current: BlastConfig = data.blastConfig ?? {
+    id: `blast_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+    active: false,
+    status: "idle",
+    totalRows: 0,
+    sentCount: 0,
+    dailyCap: 500,
+    sentByDay: {},
+  };
+  const next: BlastConfig = { ...current, ...patch };
+  data.blastConfig = next;
+  await saveBrain(data);
+  return next;
 }
 
 async function ensureDataDir() {
@@ -587,6 +682,9 @@ export async function loadActivities(limit = 50): Promise<Activity[]> {
 export function todayKey(): string {
   return new Date().toISOString().slice(0, 10);
 }
+
+/** Strict RFC-ish email validation regex — shared across CRM + blast ingestion. */
+export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function enqueueOutbound(email: OutboundEmail): Promise<void> {
   const data = await loadBrain();
@@ -705,6 +803,57 @@ export async function upsertCrmContact(c: Partial<CrmContact> & { email: string;
   data.crmContacts.push(contact);
   await saveBrain(data);
   return contact;
+}
+
+/**
+ * Bulk upsert — ONE loadBrain() + ONE saveBrain() for the whole batch.
+ * Use this for any import path larger than a handful of rows; the per-row
+ * upsertCrmContact is 1 file read + 1 file write + 1 GitHub push EACH,
+ * which collapses at N > ~20.
+ */
+export async function upsertCrmContactsBulk(
+  rows: Array<Partial<CrmContact> & { email: string; name: string }>
+): Promise<{ added: number; updated: number }> {
+  const data = await loadBrain();
+  data.crmContacts = data.crmContacts ?? [];
+  const now = new Date().toISOString();
+  const byEmail = new Map<string, CrmContact>();
+  for (const c of data.crmContacts) byEmail.set(c.email.toLowerCase(), c);
+
+  let added = 0;
+  let updated = 0;
+  for (const row of rows) {
+    const emailLower = row.email.toLowerCase();
+    const existing = byEmail.get(emailLower);
+    if (existing) {
+      Object.assign(existing, row, { email: emailLower, updatedAt: now });
+      updated++;
+      continue;
+    }
+    const contact: CrmContact = {
+      id: row.id || `crm_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
+      name: row.name,
+      email: emailLower,
+      company: row.company,
+      website: row.website,
+      location: row.location,
+      status: row.status ?? "new",
+      source: row.source ?? "manual",
+      notes: row.notes,
+      sourceRefId: row.sourceRefId,
+      observation: row.observation,
+      tags: row.tags,
+      lastContactedAt: row.lastContactedAt,
+      createdAt: now,
+      updatedAt: now,
+    };
+    data.crmContacts.push(contact);
+    byEmail.set(emailLower, contact);
+    added++;
+  }
+
+  await saveBrain(data);
+  return { added, updated };
 }
 
 export async function patchCrmContact(id: string, patch: Partial<CrmContact>): Promise<CrmContact | null> {

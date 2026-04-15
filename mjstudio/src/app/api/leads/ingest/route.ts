@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ingestGmapsLeads, logActivity, type GmapsLead } from "@/lib/brain-storage";
 import { scrapeWebsite } from "@/lib/brain/scraper/website";
+import { authorizedCron } from "@/lib/brain/auth";
 
 /**
  * POST /api/leads/ingest
@@ -34,9 +35,7 @@ export function OPTIONS() {
 }
 
 function authorized(req: Request): boolean {
-  const secret = process.env.BRAIN_CRON_SECRET;
-  if (!secret) return true; // dev mode
-  return req.headers.get("x-leads-secret") === secret;
+  return authorizedCron(req, "x-leads-secret");
 }
 
 type RawLead = {

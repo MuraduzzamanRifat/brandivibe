@@ -6,6 +6,8 @@ import { scoreYesterday } from "@/lib/brain/scorer";
 import { runResearchTick } from "@/lib/brain/research-tick";
 import { runSequenceTick } from "@/lib/brain/sequence-machine";
 import { runSendTick } from "@/lib/brain/sender";
+import { runBlastTick } from "@/lib/brain/blast";
+import { authorizedCron } from "@/lib/brain/auth";
 import {
   addPlan,
   markPlanExecuted,
@@ -35,14 +37,8 @@ export const dynamic = "force-dynamic";
 
 const FB_SLOTS = 3;
 
-function authorized(req: Request): boolean {
-  const secret = process.env.BRAIN_CRON_SECRET;
-  if (!secret) return true;
-  return req.headers.get("x-brain-secret") === secret;
-}
-
 export async function POST(req: Request) {
-  if (!authorized(req)) {
+  if (!authorizedCron(req)) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
@@ -265,6 +261,30 @@ export async function POST(req: Request) {
         r.lastError = msg;
       });
       await logActivity({ type: "error", description: `Send tick failed: ${msg}` });
+    }
+  }
+
+  // ---------------- PHASE 8: BLAST (cold-email drip) ----------------
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.blast !== "done") {
+    try {
+      const blastSummary = await runBlastTick();
+      await updateRun(date, (r) => {
+        r.phases.blast = "done";
+      });
+      if (blastSummary.ran) {
+        await logActivity({
+          type: "email-sent",
+          description: `Blast tick: ${blastSummary.sent} sent, ${blastSummary.failed} failed (${blastSummary.totalSent}/${blastSummary.totalRows} total)`,
+        });
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`blast: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.blast = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Blast tick failed: ${msg}` });
     }
   }
 

@@ -7,6 +7,7 @@ import type {
   EmailTemplate,
   CrmContactStatus,
 } from "@/lib/brain-storage";
+import { EMAIL_RE } from "@/lib/brain-storage";
 
 /**
  * CRM Panel — unified contact datastore + manual email composer with fully
@@ -49,6 +50,7 @@ export function CrmPanel({ externalSelectedId, externalNewContactToken }: CrmPan
   const [successFlash, setSuccessFlash] = useState<string | null>(null);
   const [editingTpl, setEditingTpl] = useState<EmailTemplate | null>(null);
   const [newContactOpen, setNewContactOpen] = useState(false);
+  const [bulkOpen, setBulkOpen] = useState(false);
   const [loadingContacts, setLoadingContacts] = useState(true);
   const [focusMode, setFocusMode] = useState(false);
 
@@ -230,6 +232,26 @@ export function CrmPanel({ externalSelectedId, externalNewContactToken }: CrmPan
     }
   }
 
+  async function bulkImport(rows: Array<Record<string, string>>) {
+    try {
+      const res = await fetch("/api/crm/contacts/bulk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rows }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error ?? "import failed");
+      setSuccessFlash(
+        `+${json.added} new · ${json.updated} updated · ${json.invalid} invalid`
+      );
+      await fetchContacts();
+      setBulkOpen(false);
+      setTimeout(() => setSuccessFlash(null), 4000);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "import failed");
+    }
+  }
+
   // ─────────── Template merge ───────────
 
   const selected = useMemo(
@@ -294,6 +316,13 @@ export function CrmPanel({ externalSelectedId, externalNewContactToken }: CrmPan
             onClick={() => setNewContactOpen(true)}
           >
             + New contact
+          </button>
+          <button
+            type="button"
+            className="btn btn-ghost"
+            onClick={() => setBulkOpen(true)}
+          >
+            ⇪ Bulk import
           </button>
           <button
             type="button"
@@ -650,6 +679,19 @@ export function CrmPanel({ externalSelectedId, externalNewContactToken }: CrmPan
           onClose={() => setNewContactOpen(false)}
         />
       )}
+
+      {/* ─── Bulk import modal ─── */}
+      {bulkOpen && (
+        <BulkImportModal
+          onImport={bulkImport}
+          onBulkUploadComplete={(msg) => {
+            setSuccessFlash(msg);
+            setBulkOpen(false);
+            setTimeout(() => setSuccessFlash(null), 6000);
+          }}
+          onClose={() => setBulkOpen(false)}
+        />
+      )}
     </div>
   );
 }
@@ -881,6 +923,409 @@ function NewContactModal({
           >
             Create
           </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────── Bulk import modal ───────────
+
+const BULK_HEADERS = ["name", "email", "company", "website", "location", "notes"] as const;
+type BulkRow = Record<(typeof BULK_HEADERS)[number], string>;
+
+/**
+ * Parse pasted CSV/TSV. Rules:
+ * - Auto-detect tab vs comma based on the first non-empty line
+ * - First line is treated as a header IF it contains "email" (case-insensitive)
+ *   and at least one other known column. Otherwise we assume positional order:
+ *   name, email, company, website, location, notes
+ * - Quoted CSV fields supported (basic — handles "a, b" but not escaped quotes)
+ * - Empty lines skipped
+ */
+function parseBulk(text: string): { rows: BulkRow[]; warnings: string[] } {
+  const warnings: string[] = [];
+  const lines = text
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter(Boolean);
+  if (lines.length === 0) return { rows: [], warnings };
+
+  const sep = lines[0].includes("\t") ? "\t" : ",";
+
+  function splitLine(line: string): string[] {
+    if (sep === "\t") return line.split("\t").map((c) => c.trim());
+    // Basic CSV split that respects double-quoted fields
+    const out: string[] = [];
+    let cur = "";
+    let inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        inQ = !inQ;
+        continue;
+      }
+      if (ch === "," && !inQ) {
+        out.push(cur.trim());
+        cur = "";
+        continue;
+      }
+      cur += ch;
+    }
+    out.push(cur.trim());
+    return out;
+  }
+
+  const firstCells = splitLine(lines[0]).map((c) => c.toLowerCase());
+  const looksLikeHeader =
+    firstCells.includes("email") &&
+    firstCells.some((c) => c !== "email" && (BULK_HEADERS as readonly string[]).includes(c));
+
+  let header: string[];
+  let dataLines: string[];
+  if (looksLikeHeader) {
+    header = firstCells;
+    dataLines = lines.slice(1);
+  } else {
+    header = [...BULK_HEADERS];
+    dataLines = lines;
+  }
+
+  const colIdx: Partial<Record<(typeof BULK_HEADERS)[number], number>> = {};
+  for (const key of BULK_HEADERS) {
+    const idx = header.indexOf(key);
+    if (idx !== -1) colIdx[key] = idx;
+  }
+
+  if (colIdx.email === undefined) {
+    // Fall back to positional even though we thought it was a header
+    BULK_HEADERS.forEach((k, i) => {
+      colIdx[k] = i;
+    });
+  }
+
+  const rows: BulkRow[] = [];
+  for (const line of dataLines) {
+    const cells = splitLine(line);
+    const row: BulkRow = {
+      name: "",
+      email: "",
+      company: "",
+      website: "",
+      location: "",
+      notes: "",
+    };
+    for (const key of BULK_HEADERS) {
+      const i = colIdx[key];
+      if (i !== undefined && cells[i] !== undefined) row[key] = cells[i];
+    }
+    rows.push(row);
+  }
+
+  const withEmail = rows.filter((r) => r.email.includes("@")).length;
+  if (withEmail < rows.length) {
+    warnings.push(`${rows.length - withEmail} row(s) missing a valid email — will be dropped`);
+  }
+
+  return { rows, warnings };
+}
+
+/**
+ * Cheap sniff of a dropped file: reads the first 64KB as text and checks
+ * whether most lines are JUST an email. Bulk mode kicks in for files larger
+ * than 1 MB OR with an extrapolated row count > 5000, because those are too
+ * big to route through the brain.json CRM store regardless of shape.
+ */
+async function sniffFile(
+  file: File
+): Promise<{ mode: "crm" | "bulk"; estimatedRows: number; emailOnly: boolean }> {
+  const head = await file.slice(0, 64 * 1024).text();
+  const lines = head.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
+  const emailOnlyCount = lines.filter((l) => EMAIL_RE.test(l)).length;
+  const looksEmailOnly = lines.length > 0 && emailOnlyCount / lines.length > 0.8;
+
+  // If the whole file fits in the 64KB sample, no extrapolation needed.
+  const fullyRead = file.size <= head.length;
+  const avgLineBytes = head.length / Math.max(1, lines.length);
+  const rawEstimate = fullyRead
+    ? lines.length
+    : Math.floor(file.size / Math.max(1, avgLineBytes));
+  // Clamp so extrapolation can never be LESS than what we already observed.
+  const estimatedRows = Math.max(rawEstimate, lines.length);
+
+  const mode: "crm" | "bulk" =
+    looksEmailOnly && (file.size > 1024 * 1024 || estimatedRows > 5000) ? "bulk" : "crm";
+
+  return { mode, estimatedRows, emailOnly: looksEmailOnly };
+}
+
+type BlastStatusPeek = {
+  config: { totalRows: number; sentCount: number; filename?: string } | null;
+};
+
+function BulkImportModal({
+  onImport,
+  onBulkUploadComplete,
+  onClose,
+}: {
+  onImport: (rows: BulkRow[]) => Promise<void>;
+  onBulkUploadComplete: (msg: string) => void;
+  onClose: () => void;
+}) {
+  const [text, setText] = useState("");
+  const [importing, setImporting] = useState(false);
+
+  // Bulk-mode state — set when the dropped file is a huge email-only list
+  const [bulkFile, setBulkFile] = useState<File | null>(null);
+  const [bulkInfo, setBulkInfo] = useState<{ mode: "crm" | "bulk"; estimatedRows: number } | null>(null);
+  const [bulkUploading, setBulkUploading] = useState(false);
+  const [existingBlast, setExistingBlast] = useState<BlastStatusPeek["config"] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch current blast status once so we can warn if the upload overwrites
+  useEffect(() => {
+    fetch("/api/blast/status", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((j: BlastStatusPeek) => setExistingBlast(j.config))
+      .catch(() => {});
+  }, []);
+
+  const parsed = useMemo(() => parseBulk(text), [text]);
+  const validRows = useMemo(
+    () => parsed.rows.filter((r) => r.name.trim() && r.email.includes("@")),
+    [parsed.rows]
+  );
+
+  async function onFile(file: File) {
+    setError(null);
+    // Sniff the file first — if it looks like a big email-only list, flip
+    // into bulk mode and skip the in-browser parse (15MB textarea is painful)
+    const info = await sniffFile(file);
+    if (info.mode === "bulk") {
+      setBulkFile(file);
+      setBulkInfo(info);
+      setText(""); // clear CRM-path state
+      return;
+    }
+    // Small CRM-sized file — read it into the textarea for the existing flow
+    const reader = new FileReader();
+    reader.onload = () => {
+      setText(String(reader.result ?? ""));
+    };
+    reader.readAsText(file);
+    setBulkFile(null);
+    setBulkInfo(null);
+  }
+
+  async function submit() {
+    if (validRows.length === 0) return;
+    setImporting(true);
+    try {
+      await onImport(validRows);
+    } finally {
+      setImporting(false);
+    }
+  }
+
+  async function submitBulk() {
+    if (!bulkFile) return;
+    if (
+      existingBlast &&
+      existingBlast.totalRows > 0 &&
+      !confirm(
+        `You already have an active blast campaign (${existingBlast.totalRows.toLocaleString()} emails, ${existingBlast.sentCount.toLocaleString()} sent). Uploading this file will REPLACE it and reset progress. Continue?`
+      )
+    ) {
+      return;
+    }
+    setBulkUploading(true);
+    setError(null);
+    try {
+      const fd = new FormData();
+      fd.append("file", bulkFile);
+      // Default cap + warmup on — user can tune in the Blast tab after upload
+      fd.append("dailyCap", "500");
+      fd.append("warmupEnabled", "true");
+      const res = await fetch("/api/blast/upload", { method: "POST", body: fd });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error ?? "upload failed");
+      onBulkUploadComplete(
+        `${json.config.totalRows.toLocaleString()} emails loaded into the Blast campaign. Pick a template in the Blast tab to start sending.`
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "upload failed");
+    } finally {
+      setBulkUploading(false);
+    }
+  }
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-6"
+      onClick={onClose}
+    >
+      <div
+        className="panel max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-start justify-between mb-6">
+          <div>
+            <div className="eyebrow mb-2">Bulk import</div>
+            <h3 className="display text-2xl">Paste rows or drop a CSV</h3>
+          </div>
+          <button type="button" onClick={onClose} className="btn btn-ghost">
+            Close
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          {error && (
+            <div className="p-3 rounded-lg border border-[var(--brain-danger)]/30 bg-[var(--brain-danger)]/5 text-sm text-[var(--brain-danger)]">
+              {error}
+            </div>
+          )}
+
+          {/* ─── BULK BRANCH: big email-only list → blast ─── */}
+          {bulkFile && bulkInfo ? (
+            <>
+              <div className="p-4 rounded-lg border border-[var(--brain-accent)]/30 bg-[var(--brain-accent)]/5">
+                <div className="mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-accent)] mb-2">
+                  Bulk list detected
+                </div>
+                <div className="text-sm text-[var(--brain-ink)] leading-relaxed">
+                  <strong>{bulkFile.name}</strong>
+                  <br />
+                  <span className="mono text-[11px] text-[var(--brain-muted)]">
+                    ~{bulkInfo.estimatedRows.toLocaleString()} rows · {(bulkFile.size / 1024 / 1024).toFixed(1)} MB
+                  </span>
+                </div>
+                <div className="mono text-[10px] text-[var(--brain-muted)] mt-3 leading-relaxed">
+                  Lists this size don&apos;t fit in CRM contacts (they would blow up the
+                  GitHub-synced brain.json). They&apos;ll be routed to your Blast campaign
+                  instead — daily drip sending with warmup ramp, per-email tracking, and
+                  the same Resend sender. After upload, go to the Blast tab to pick a
+                  template and the campaign starts on the next tick.
+                </div>
+              </div>
+
+              {existingBlast && existingBlast.totalRows > 0 && (
+                <div className="p-3 rounded-lg border border-[#f59e0b]/30 bg-[#f59e0b]/5 text-xs text-[var(--brain-ink)]">
+                  ⚠ An active blast already exists (
+                  <strong>{existingBlast.totalRows.toLocaleString()}</strong> emails,{" "}
+                  <strong>{existingBlast.sentCount.toLocaleString()}</strong> sent
+                  {existingBlast.filename ? ` · ${existingBlast.filename}` : ""}).
+                  Uploading will replace it and reset progress.
+                </div>
+              )}
+
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--brain-border)]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setBulkFile(null);
+                    setBulkInfo(null);
+                  }}
+                  className="btn btn-ghost"
+                >
+                  ← Back
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={bulkUploading}
+                  onClick={submitBulk}
+                >
+                  {bulkUploading
+                    ? "Uploading…"
+                    : `Upload ${bulkInfo.estimatedRows.toLocaleString()} to Blast`}
+                </button>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* ─── CRM BRANCH: small full-detail contacts ─── */}
+              <div className="mono text-[10px] uppercase tracking-[0.18em] text-[var(--brain-muted)] leading-relaxed">
+                Format:{" "}
+                <span className="text-[var(--brain-accent)]">name, email, company, website, location, notes</span>
+                <br />
+                Tab- or comma-separated. First row can be a header. One contact per line.
+                <br />
+                <span className="text-[var(--brain-accent)]">
+                  Drop a huge email-only file and it routes to Blast automatically.
+                </span>
+              </div>
+
+              <div>
+                <label className="mono text-[9px] uppercase tracking-[0.25em] text-[var(--brain-muted)] mb-1 block">
+                  Paste rows
+                </label>
+                <textarea
+                  aria-label="Bulk paste"
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  rows={12}
+                  placeholder={`name,email,company,website,location\nJane Doe,jane@acme.com,Acme,acme.com,Berlin\nJohn Smith,john@beta.io,Beta,beta.io,NYC`}
+                  className="w-full font-[ui-monospace,monospace] text-[12px] leading-[1.55]"
+                />
+              </div>
+
+              <div className="flex items-center gap-3">
+                <label className="btn btn-ghost cursor-pointer" htmlFor="bulk-file">
+                  ⬆ Upload file
+                </label>
+                <input
+                  id="bulk-file"
+                  type="file"
+                  accept=".csv,.tsv,.txt,text/csv,text/plain"
+                  className="hidden"
+                  onChange={(e) => {
+                    const f = e.target.files?.[0];
+                    if (f) void onFile(f);
+                  }}
+                />
+                <span className="mono text-[10px] text-[var(--brain-muted)]">
+                  {parsed.rows.length} parsed ·{" "}
+                  <span className="text-[var(--brain-accent)]">{validRows.length} valid</span>
+                  {parsed.warnings.length > 0 && (
+                    <span className="text-[var(--brain-danger)]"> · {parsed.warnings[0]}</span>
+                  )}
+                </span>
+              </div>
+
+              {validRows.length > 0 && (
+                <div className="border border-[var(--brain-border)] rounded-lg overflow-hidden">
+                  <div className="mono text-[9px] uppercase tracking-[0.2em] text-[var(--brain-muted)] px-3 py-2 border-b border-[var(--brain-border)] bg-white/[0.02]">
+                    Preview · first 5
+                  </div>
+                  <div className="divide-y divide-[var(--brain-border)]">
+                    {validRows.slice(0, 5).map((r, i) => (
+                      <div key={i} className="px-3 py-2 text-xs flex items-baseline gap-3">
+                        <strong className="text-[var(--brain-ink)] truncate max-w-[140px]">{r.name}</strong>
+                        <span className="text-[var(--brain-accent)] truncate max-w-[200px]">{r.email}</span>
+                        <span className="text-[var(--brain-muted)] truncate">{r.company || r.website}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center justify-end gap-3 pt-4 border-t border-[var(--brain-border)]">
+                <button type="button" onClick={onClose} className="btn btn-ghost">
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={validRows.length === 0 || importing}
+                  onClick={submit}
+                >
+                  {importing
+                    ? "Importing…"
+                    : `Import ${validRows.length} contact${validRows.length === 1 ? "" : "s"}`}
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

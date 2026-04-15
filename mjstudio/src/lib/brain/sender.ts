@@ -34,7 +34,7 @@ function daysBetween(a: string, b: string): number {
   return Math.floor((new Date(a).getTime() - new Date(b).getTime()) / 86_400_000);
 }
 
-type ResendSendBody = {
+export type ResendSendBody = {
   from: string;
   to: string[];
   subject: string;
@@ -45,7 +45,7 @@ type ResendSendBody = {
 
 type ResendResponse = { id?: string; error?: { message?: string; name?: string } };
 
-async function resendSend(body: ResendSendBody): Promise<{ ok: boolean; id?: string; error?: string }> {
+export async function resendSend(body: ResendSendBody): Promise<{ ok: boolean; id?: string; error?: string }> {
   const key = process.env.RESEND_API_KEY;
   if (!key) return { ok: false, error: "RESEND_API_KEY not set" };
   const res = await fetch("https://api.resend.com/emails", {

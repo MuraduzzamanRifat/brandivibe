@@ -1,0 +1,42 @@
+name: Brandivibe blast daily tick
+
+on:
+  schedule:
+    # 11:00 UTC = 7am EST / 12pm UK / 1pm CET — before most recipients open inbox
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Blast tick — send daily batch
+        id: tick
+        run: |
+          curl -fsS --max-time 540 -X POST \
+            https://brandivibe.com/api/blast/tick \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          echo "--- blast tick ---"
+          cat response.json
+
+      - name: Status probe
+        run: |
+          curl -fsS https://brandivibe.com/api/blast/status -o status.json
+          echo "--- blast status ---"
+          cat status.json
+
+      - name: Fail job if tick errored
+        run: |
+          node -e "
+            const r = require('./response.json');
+            if (r.ok === false) {
+              console.error('Blast tick failed:', r.error || 'unknown');
+              process.exit(1);
+            }
+            if (r.summary && r.summary.failed > r.summary.sent) {
+              console.error('More sends failed than succeeded:', r.summary);
+              process.exit(1);
+            }
+          "
