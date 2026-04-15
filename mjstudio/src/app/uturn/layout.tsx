@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./uturn.css";
+import { UiProviders } from "./_components/UiProviders";
 
 const serif = Cormorant_Garamond({
   variable: "--font-uturn-serif",
@@ -29,7 +30,7 @@ export default function UturnLayout({
       className={`${serif.variable} ${sans.variable} uturn-root`}
       data-theme="uturn"
     >
-      {children}
+      <UiProviders>{children}</UiProviders>
     </div>
   );
 }

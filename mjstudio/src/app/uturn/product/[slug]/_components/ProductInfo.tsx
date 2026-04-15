@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Heart, ArrowUpRight } from "lucide-react";
 import type { Product } from "../products";
+import { useCart } from "../../../_components/CartContext";
 
 export function ProductInfo({ product }: { product: Product }) {
+  const { addItem } = useCart();
   const firstInStockVariant = product.variants.find((v) => v.inStock) ?? product.variants[0];
   const firstInStockSize = product.sizes.find((s) => s.inStock) ?? product.sizes[0];
   const [variant, setVariant] = useState(firstInStockVariant.id);
@@ -16,7 +18,19 @@ export function ProductInfo({ product }: { product: Product }) {
 
   async function addToBag() {
     setAdding(true);
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((r) => setTimeout(r, 500));
+    const selectedVariant = product.variants.find((v) => v.id === variant) ?? firstInStockVariant;
+    const selectedSize = product.sizes.find((s) => s.id === size) ?? firstInStockSize;
+    addItem({
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      priceNum: product.priceNum,
+      variant: selectedVariant.id,
+      variantLabel: selectedVariant.label,
+      size: selectedSize.label,
+      swatch: product.swatch,
+    });
     setAdding(false);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
