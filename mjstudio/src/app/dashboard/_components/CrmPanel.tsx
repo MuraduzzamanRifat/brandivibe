@@ -7,7 +7,7 @@ import type {
   EmailTemplate,
   CrmContactStatus,
 } from "@/lib/brain-storage";
-import { EMAIL_RE } from "@/lib/brain-storage";
+import { EMAIL_RE } from "@/lib/validators";
 
 /**
  * CRM Panel — unified contact datastore + manual email composer with fully
