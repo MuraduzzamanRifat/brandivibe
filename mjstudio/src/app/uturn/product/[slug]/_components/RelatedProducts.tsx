@@ -56,6 +56,12 @@ export function RelatedProducts({ products }: { products: Product[] }) {
                 <div
                   className={`relative aspect-[4/5] overflow-hidden ${p.swatch}`}
                 >
+                  {p.media[0] && (
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                      style={{ backgroundImage: `url(${p.media[0].src})` }}
+                    />
+                  )}
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_55%,transparent_35%,rgba(15,14,12,0.5)_100%)] pointer-events-none" />
                   <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.7)]">
                     {p.num}

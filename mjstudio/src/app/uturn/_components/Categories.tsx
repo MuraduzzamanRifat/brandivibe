@@ -2,6 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+
+const PX = (id: number) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&h=1060&dpr=2`;
 
 type Category = {
   num: string;
@@ -9,6 +13,8 @@ type Category = {
   count: string;
   hint: string;
   swatch: string;
+  image: string;
+  href: string;
 };
 
 const CATEGORIES: Category[] = [
@@ -18,6 +24,8 @@ const CATEGORIES: Category[] = [
     count: "12 pieces",
     hint: "coats, overshirts, workwear",
     swatch: "swatch-slate",
+    image: PX(2220316),
+    href: "/uturn/product/ishi-overshirt",
   },
   {
     num: "02",
@@ -25,6 +33,8 @@ const CATEGORIES: Category[] = [
     count: "8 pieces",
     hint: "bags, belts, small goods",
     swatch: "swatch-warm-clay",
+    image: PX(1152077),
+    href: "/uturn/product/atelier-bag-no-7",
   },
   {
     num: "03",
@@ -32,6 +42,8 @@ const CATEGORIES: Category[] = [
     count: "14 pieces",
     hint: "for the desk and the hand",
     swatch: "swatch-sand",
+    image: PX(1037995),
+    href: "/uturn/product/midnight-object",
   },
   {
     num: "04",
@@ -39,14 +51,11 @@ const CATEGORIES: Category[] = [
     count: "member access",
     hint: "past releases, rewrought",
     swatch: "swatch-forest",
+    image: PX(996329),
+    href: "/uturn#featured",
   },
 ];
 
-/**
- * Section 2 — Category Gate. Four quiet tiles with no price and no product
- * shots. The point isn't to sell yet; it's to let the visitor self-select a
- * lane. Hover shifts the tile up and reveals the arrow — no labels, no CTAs.
- */
 export function Categories() {
   return (
     <section
@@ -84,9 +93,8 @@ export function Categories() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
           {CATEGORIES.map((c, i) => (
-            <motion.a
+            <motion.div
               key={c.num}
-              href={`#${c.name.toLowerCase()}`}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -95,34 +103,41 @@ export function Categories() {
                 delay: i * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative flex flex-col"
             >
-              <div
-                className={`relative aspect-[3/4] overflow-hidden ${c.swatch}`}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,transparent_30%,rgba(15,14,12,0.55)_100%)] pointer-events-none" />
-                <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.7)]">
-                  {c.num} / 04
-                </div>
-                <div className="absolute top-5 right-5 text-[rgba(243,239,230,0.7)] opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-                <div className="absolute bottom-5 left-5 right-5">
-                  <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-[rgba(243,239,230,0.55)]">
-                    {c.count}
-                  </div>
+              <Link href={c.href} className="group relative flex flex-col">
+                <div className={`relative aspect-[3/4] overflow-hidden ${c.swatch}`}>
+                  {/* Pexels photo */}
                   <div
-                    className="mt-1 font-serif text-[var(--uturn-bg)] leading-[0.95]"
-                    style={{ fontSize: "clamp(2rem, 3.2vw, 3rem)" }}
-                  >
-                    {c.name}
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${c.image})` }}
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,transparent_30%,rgba(15,14,12,0.6)_100%)] pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,14,12,0.7)] via-transparent to-transparent pointer-events-none" />
+
+                  <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.7)]">
+                    {c.num} / 04
+                  </div>
+                  <div className="absolute top-5 right-5 text-[rgba(243,239,230,0.7)] opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-[rgba(243,239,230,0.55)]">
+                      {c.count}
+                    </div>
+                    <div
+                      className="mt-1 font-serif text-[var(--uturn-bg)] leading-[0.95]"
+                      style={{ fontSize: "clamp(2rem, 3.2vw, 3rem)" }}
+                    >
+                      {c.name}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--uturn-ink-muted)] group-hover:text-[var(--uturn-accent)] transition-colors">
-                {c.hint}
-              </div>
-            </motion.a>
+                <div className="mt-4 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--uturn-ink-muted)] group-hover:text-[var(--uturn-accent)] transition-colors">
+                  {c.hint}
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
+const PX = (id: number) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&dpr=2`;
+
 type Product = {
   slug: string;
   num: string;
@@ -11,6 +14,7 @@ type Product = {
   price: string;
   status: string;
   swatch: string;
+  heroImage: string;
 };
 
 const PRODUCTS: Product[] = [
@@ -22,6 +26,7 @@ const PRODUCTS: Product[] = [
     price: "€720",
     status: "12 of 50 left",
     swatch: "swatch-slate",
+    heroImage: PX(2220316),
   },
   {
     slug: "atelier-bag-no-7",
@@ -31,6 +36,7 @@ const PRODUCTS: Product[] = [
     price: "€880",
     status: "Made to order",
     swatch: "swatch-warm-clay",
+    heroImage: PX(1152077),
   },
   {
     slug: "midnight-object",
@@ -40,6 +46,7 @@ const PRODUCTS: Product[] = [
     price: "€140",
     status: "In stock",
     swatch: "swatch-deep-plum",
+    heroImage: PX(1037995),
   },
   {
     slug: "faro-coat",
@@ -49,14 +56,10 @@ const PRODUCTS: Product[] = [
     price: "€1,480",
     status: "8 of 30 left",
     swatch: "swatch-forest",
+    heroImage: PX(996329),
   },
 ];
 
-/**
- * Section 6 — Featured / curated portfolio. Three products, editorial grid,
- * no reviews row or "you may also like". Prices are visible because this is
- * ecommerce, but each card reads like a magazine plate, not a product tile.
- */
 export function Featured() {
   return (
     <section
@@ -104,38 +107,43 @@ export function Featured() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-            <Link href={`/uturn/product/${p.slug}`} className="group flex flex-col">
-              <div
-                className={`relative aspect-[4/5] overflow-hidden ${p.swatch}`}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_55%,transparent_35%,rgba(15,14,12,0.5)_100%)] pointer-events-none" />
-                <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.7)]">
-                  {p.num}
-                </div>
-                <div className="absolute top-5 right-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.55)]">
-                  {p.category}
-                </div>
-                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-                  <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-[rgba(243,239,230,0.55)]">
-                    {p.status}
+              <Link href={`/uturn/product/${p.slug}`} className="group flex flex-col">
+                <div className={`relative aspect-[4/5] overflow-hidden ${p.swatch}`}>
+                  {/* Pexels photo */}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                    style={{ backgroundImage: `url(${p.heroImage})` }}
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_55%,transparent_35%,rgba(15,14,12,0.55)_100%)] pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(15,14,12,0.6)] via-transparent to-transparent pointer-events-none" />
+
+                  <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.7)]">
+                    {p.num}
                   </div>
-                  <div className="font-serif italic text-[var(--uturn-bg)] text-3xl group-hover:text-[var(--uturn-accent-warm)] transition-colors duration-500">
-                    {p.price}
+                  <div className="absolute top-5 right-5 font-mono text-[9px] uppercase tracking-[0.3em] text-[rgba(243,239,230,0.55)]">
+                    {p.category}
+                  </div>
+                  <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                    <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-[rgba(243,239,230,0.55)]">
+                      {p.status}
+                    </div>
+                    <div className="font-serif italic text-[var(--uturn-bg)] text-3xl group-hover:text-[var(--uturn-accent-warm)] transition-colors duration-500">
+                      {p.price}
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="mt-5 flex items-start justify-between gap-4">
-                <h3
-                  className="font-serif leading-[1.05] text-[var(--uturn-ink)]"
-                  style={{ fontSize: "clamp(1.25rem, 2vw, 1.75rem)" }}
-                >
-                  {p.name}
-                </h3>
-                <div className="shrink-0 font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--uturn-ink-soft)] pt-2">
-                  View →
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <h3
+                    className="font-serif leading-[1.05] text-[var(--uturn-ink)]"
+                    style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.6rem)" }}
+                  >
+                    {p.name}
+                  </h3>
+                  <div className="shrink-0 font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--uturn-ink-soft)] pt-2 group-hover:text-[var(--uturn-accent)] transition-colors">
+                    View →
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
             </motion.div>
           ))}
         </div>

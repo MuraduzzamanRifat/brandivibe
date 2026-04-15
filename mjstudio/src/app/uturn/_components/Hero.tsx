@@ -8,19 +8,27 @@ const HANDOFF_OVERLAP = 0.25;
 const LINE_ONE = ["Small", "runs."];
 const LINE_TWO = ["Slow", "fashion."];
 
+const HERO_IMG =
+  "https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&dpr=2";
+
 export function Hero() {
   const reduced = useReducedMotion();
   const HERO_START = reduced ? 0 : Math.max(0, LOADER_EXIT_AT_SEC - HANDOFF_OVERLAP);
 
   return (
     <section className="relative min-h-[100svh] flex items-end overflow-hidden grain">
-      {/* Full-bleed ambient swatch. Two layered gradients for depth without imagery. */}
-      <div className="absolute inset-0 swatch-deep-plum" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_40%,rgba(166,75,42,0.25)_0%,transparent_65%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(15,14,12,0.45)] via-transparent to-[rgba(15,14,12,0.85)] pointer-events-none" />
+      {/* Pexels hero image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${HERO_IMG})` }}
+      />
+      {/* Dark overlay for text legibility */}
+      <div className="absolute inset-0 bg-[rgba(15,14,12,0.55)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(15,14,12,0.3)] via-transparent to-[rgba(15,14,12,0.9)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_40%,rgba(166,75,42,0.15)_0%,transparent_65%)] pointer-events-none" />
 
       <div className="relative mx-auto max-w-[1800px] w-full px-6 md:px-10 pb-16 md:pb-20 pt-36">
-        {/* Top row — collection tag / shipping line (balance + rhythm, not content) */}
+        {/* Top row */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,7 +44,7 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* Headline — 2 lines, word-mask reveal, all serif italic */}
+        {/* Headline */}
         <h1
           className="font-serif font-light leading-[0.88] tracking-[-0.025em] text-[var(--uturn-bg)]"
           style={{ fontSize: "clamp(4rem, 14vw, 18rem)" }}
@@ -79,7 +87,7 @@ export function Hero() {
           </div>
         </h1>
 
-        {/* Bottom row — single-line positioning + one soft CTA (no hard ask yet) */}
+        {/* Bottom row */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

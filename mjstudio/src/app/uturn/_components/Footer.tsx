@@ -1,17 +1,37 @@
 "use client";
 
+import Link from "next/link";
+
 const COLUMNS = [
   {
     label: "Shop",
-    items: ["Outerwear", "Leather", "Objects", "Archive", "Gift cards"],
+    items: [
+      { label: "Outerwear", href: "/uturn/product/ishi-overshirt" },
+      { label: "Leather", href: "/uturn/product/atelier-bag-no-7" },
+      { label: "Objects", href: "/uturn/product/midnight-object" },
+      { label: "Archive", href: "/uturn#shop" },
+      { label: "Gift cards", href: "/uturn#shop" },
+    ],
   },
   {
     label: "Atelier",
-    items: ["The practice", "Repairs forever", "Members", "Press", "Journal"],
+    items: [
+      { label: "The practice", href: "/uturn#story" },
+      { label: "Repairs forever", href: "/uturn#story" },
+      { label: "Members", href: "/uturn" },
+      { label: "Press", href: "mailto:press@uturn.co" },
+      { label: "Journal", href: "/uturn#story" },
+    ],
   },
   {
     label: "Help",
-    items: ["Shipping", "Returns", "Size", "Care", "Contact"],
+    items: [
+      { label: "Shipping", href: "/uturn/product/ishi-overshirt#story" },
+      { label: "Returns", href: "/uturn/product/ishi-overshirt#story" },
+      { label: "Size guide", href: "/uturn/product/ishi-overshirt#story" },
+      { label: "Care", href: "/uturn/product/ishi-overshirt#story" },
+      { label: "Contact", href: "mailto:hello@uturn.co" },
+    ],
   },
 ];
 
@@ -21,9 +41,13 @@ export function Footer() {
       <div className="mx-auto max-w-[1800px] px-6 md:px-10 py-20 md:py-24">
         <div className="grid grid-cols-12 gap-10 md:gap-6 pb-16 border-b border-[var(--uturn-hairline)]">
           <div className="col-span-12 md:col-span-5">
-            <div className="font-serif italic text-[var(--uturn-ink)] leading-[0.9]" style={{ fontSize: "clamp(3.5rem, 7vw, 8rem)" }}>
+            <Link
+              href="/uturn"
+              className="font-serif italic text-[var(--uturn-ink)] leading-[0.9]"
+              style={{ fontSize: "clamp(3.5rem, 7vw, 8rem)" }}
+            >
               UTurn
-            </div>
+            </Link>
             <div className="mt-4 font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--uturn-ink-soft)]">
               Capsule atelier · est. 2019 · Lisbon / Kyoto
             </div>
@@ -42,13 +66,13 @@ export function Footer() {
                 </div>
                 <ul className="space-y-3">
                   {col.items.map((item) => (
-                    <li key={item}>
-                      <a
-                        href="#"
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
                         className="font-serif text-[var(--uturn-ink)] text-base md:text-lg hover:text-[var(--uturn-accent)] transition-colors"
                       >
-                        {item}
-                      </a>
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -66,18 +90,23 @@ export function Footer() {
             </span>
           </div>
           <div className="font-mono text-[9px] uppercase tracking-[0.3em] text-[var(--uturn-ink-soft)] flex gap-6">
-            <a href="#" className="hover:text-[var(--uturn-ink)]">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[var(--uturn-ink)] transition-colors"
+            >
               Instagram
             </a>
-            <a href="#" className="hover:text-[var(--uturn-ink)]">
+            <Link href="/uturn" className="hover:text-[var(--uturn-ink)] transition-colors">
               Newsletter
-            </a>
-            <a href="#" className="hover:text-[var(--uturn-ink)]">
+            </Link>
+            <Link href="/uturn" className="hover:text-[var(--uturn-ink)] transition-colors">
               Privacy
-            </a>
-            <a href="#" className="hover:text-[var(--uturn-ink)]">
+            </Link>
+            <Link href="/uturn" className="hover:text-[var(--uturn-ink)] transition-colors">
               Terms
-            </a>
+            </Link>
           </div>
         </div>
       </div>
