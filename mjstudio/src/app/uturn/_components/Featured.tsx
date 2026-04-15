@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 type Product = {
+  slug: string;
   num: string;
   name: string;
   category: string;
@@ -13,6 +15,7 @@ type Product = {
 
 const PRODUCTS: Product[] = [
   {
+    slug: "ishi-overshirt",
     num: "001",
     name: "Ishi Overshirt",
     category: "Outerwear · 04",
@@ -21,6 +24,7 @@ const PRODUCTS: Product[] = [
     swatch: "swatch-slate",
   },
   {
+    slug: "atelier-bag-no-7",
     num: "002",
     name: "Atelier Bag No. 7",
     category: "Leather · 04",
@@ -29,6 +33,7 @@ const PRODUCTS: Product[] = [
     swatch: "swatch-warm-clay",
   },
   {
+    slug: "midnight-object",
     num: "003",
     name: "Midnight Object",
     category: "Objects · 04",
@@ -79,9 +84,8 @@ export function Featured() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
           {PRODUCTS.map((p, i) => (
-            <motion.a
+            <motion.div
               key={p.num}
-              href="#"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -90,8 +94,8 @@ export function Featured() {
                 delay: i * 0.08,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group flex flex-col"
             >
+            <Link href={`/uturn/product/${p.slug}`} className="group flex flex-col">
               <div
                 className={`relative aspect-[4/5] overflow-hidden ${p.swatch}`}
               >
@@ -122,7 +126,8 @@ export function Featured() {
                   View →
                 </div>
               </div>
-            </motion.a>
+            </Link>
+            </motion.div>
           ))}
         </div>
       </div>
