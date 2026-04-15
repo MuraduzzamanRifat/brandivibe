@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useCart } from "../../../_components/CartContext";
-
-const ORDER_NUM = `UT-04-${Math.floor(10000 + Math.random() * 90000)}`;
 
 const STEPS = [
   {
@@ -37,6 +35,11 @@ const STEPS = [
 export function OrderSuccess() {
   const { items, total, setBagOpen } = useCart();
   const cleared = useRef(false);
+  const [orderNum, setOrderNum] = useState("UT-04-……");
+
+  useEffect(() => {
+    setOrderNum(`UT-04-${Math.floor(10000 + Math.random() * 90000)}`);
+  }, []);
 
   useEffect(() => {
     if (!cleared.current) {
@@ -73,7 +76,7 @@ export function OrderSuccess() {
         </div>
 
         <div className="font-mono text-[9px] uppercase tracking-[0.4em] text-[var(--uturn-accent)] mb-4">
-          Order confirmed · {ORDER_NUM}
+          Order confirmed · {orderNum}
         </div>
 
         <h1
