@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { loadBrain } from "@/lib/brain-storage";
 
 const SITE = "https://brandivibe.com";
-const DEMOS = ["helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium"];
+const DEMOS = ["helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium", "uturn"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const brain = await loadBrain();

@@ -136,4 +136,18 @@ export const demos: Demo[] = [
     year: "2026",
     role: "Design · Build · WebGL",
   },
+  {
+    num: "09",
+    name: "UTurn Store",
+    category: "Ecommerce · Capsule Atelier",
+    description:
+      "A luxury-conversion homepage for a capsule clothing brand — 8-section controlled funnel, delayed selling, cream + ink + burnt-sienna palette, Cormorant italic headlines, four seasonal releases of fifty pieces each.",
+    tags: ["Next.js", "Conversion funnel", "Editorial", "Framer Motion"],
+    href: "/uturn",
+    video: "/work/uturn.webm",
+    poster: "/work/uturn.jpg",
+    gradient: "from-[#a64b2a]/20 via-[#f3efe6]/10 to-[#0f0e0c]",
+    year: "2026",
+    role: "Design · Build · Conversion",
+  },
 ];

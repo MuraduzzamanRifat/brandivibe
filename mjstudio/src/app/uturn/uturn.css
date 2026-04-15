@@ -1,0 +1,105 @@
+/* UTurn Store — capsule atelier theme. Scoped to .uturn-root.
+   Principles: cream base, ink type, single muted-burnt accent, no gradients
+   in body copy, hairlines everywhere, serif for headlines, sans for labels. */
+
+.uturn-root {
+  --uturn-bg: #f3efe6;
+  --uturn-bg-deep: #e8e2d2;
+  --uturn-bg-ink: #0f0e0c;
+  --uturn-ink: #0f0e0c;
+  --uturn-ink-muted: #4a4640;
+  --uturn-ink-soft: #857f73;
+  --uturn-accent: #a64b2a;
+  --uturn-accent-warm: #c06a43;
+  --uturn-hairline: rgba(15, 14, 12, 0.12);
+  --uturn-hairline-soft: rgba(15, 14, 12, 0.06);
+
+  background: var(--uturn-bg);
+  color: var(--uturn-ink);
+  font-family: var(--font-uturn-sans), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+
+.uturn-root .font-serif {
+  font-family: var(--font-uturn-serif), "Cormorant Garamond", Georgia, serif;
+}
+
+.uturn-root .serif-italic {
+  font-family: var(--font-uturn-serif), Georgia, serif;
+  font-style: italic;
+}
+
+.uturn-root :focus-visible {
+  outline: 1px solid var(--uturn-ink);
+  outline-offset: 3px;
+}
+
+.uturn-root button,
+.uturn-root a,
+.uturn-root [role="button"] {
+  cursor: pointer;
+}
+
+.uturn-root ::selection {
+  background: var(--uturn-ink);
+  color: var(--uturn-bg);
+}
+
+.uturn-root .hairline {
+  border-top: 1px solid var(--uturn-hairline);
+}
+.uturn-root .hairline-b {
+  border-bottom: 1px solid var(--uturn-hairline);
+}
+
+.uturn-root .grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(15, 14, 12, 0.05) 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(15, 14, 12, 0.04) 1px, transparent 2px);
+  background-size: 28px 28px, 36px 36px;
+}
+
+.uturn-root .text-accent {
+  color: var(--uturn-accent);
+}
+.uturn-root .bg-ink {
+  background: var(--uturn-ink);
+  color: var(--uturn-bg);
+}
+.uturn-root .link-underline {
+  position: relative;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--uturn-ink);
+  transition: border-color 240ms ease, color 240ms ease;
+}
+.uturn-root .link-underline:hover {
+  color: var(--uturn-accent);
+  border-bottom-color: var(--uturn-accent);
+}
+
+/* Swatch utility for generated category/collection blocks */
+.uturn-root .swatch-deep-plum {
+  background: linear-gradient(155deg, #2a1418 0%, #3d1e22 50%, #1a0b0e 100%);
+}
+.uturn-root .swatch-warm-clay {
+  background: linear-gradient(150deg, #c4896b 0%, #a36b48 55%, #6e4328 100%);
+}
+.uturn-root .swatch-slate {
+  background: linear-gradient(165deg, #3a3a3a 0%, #222222 55%, #0e0e0e 100%);
+}
+.uturn-root .swatch-sand {
+  background: linear-gradient(150deg, #d9cfb8 0%, #b8ab8c 55%, #7d7056 100%);
+}
+.uturn-root .swatch-forest {
+  background: linear-gradient(160deg, #2c3a2a 0%, #1e2820 55%, #0f140f 100%);
+}
