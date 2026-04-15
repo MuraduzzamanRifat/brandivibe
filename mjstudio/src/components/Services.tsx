@@ -80,6 +80,7 @@ function ServicePanel({
   progress: MotionValue<number>;
 }) {
   const n = services.length;
+  const isLast = index === n - 1;
   const localStart = index / n;
   const localEnd = (index + 1) / n;
 
@@ -90,25 +91,27 @@ function ServicePanel({
   const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.05));
   const fadeOut = Math.min(1, Math.max(holdEnd + 0.0001, localEnd));
 
+  // Last panel never fades out — the pinned viewport would otherwise show
+  // ~20vh of empty background between the final service and the next section.
   const opacity = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    [0, 1, 1, 0]
+    isLast ? [0, 1, 1, 1] : [0, 1, 1, 0]
   );
   const y = useTransform(
     progress,
-    [holdStart, fadeOut],
-    ["40px", "-40px"]
+    isLast ? [fadeIn, holdStart, fadeOut] : [holdStart, fadeOut],
+    isLast ? ["40px", "0px", "0px"] : ["40px", "-40px"]
   );
   const numberScale = useTransform(
     progress,
     [holdStart, Math.min(1, holdStart + 0.08), holdEnd, fadeOut],
-    [0.85, 1, 1, 1.05]
+    isLast ? [0.85, 1, 1, 1] : [0.85, 1, 1, 1.05]
   );
   const xMin = useTransform(
     progress,
     [holdStart, fadeOut],
-    ["0%", "-10%"]
+    isLast ? ["0%", "0%"] : ["0%", "-10%"]
   );
 
   return (

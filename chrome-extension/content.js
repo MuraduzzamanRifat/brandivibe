@@ -101,149 +101,193 @@
   // ─────────── Click-mode extractors ───────────
 
   /**
-   * Wait for the detail pane to fully render AFTER clicking a new place.
-   * Tracks the last-known h1 text so we only return when it CHANGES —
-   * this prevents returning the stale pane from the previous iteration.
+   * Wait for the detail pane after clicking. Two-phase wait:
+   *   Phase A — URL changes to a /maps/place/ that differs from prevUrl
+   *   Phase B — h1 element exists with non-empty text
+   * URL change is atomic with SPA navigation, so it's far more reliable
+   * than tracking text content (which can desync across iterations).
    */
-  let lastDetailH1 = "";
-
-  async function waitForDetailPane(maxMs = 6000) {
+  async function waitForDetailPane(prevUrl, maxMs = 7000) {
     const start = Date.now();
+
+    // Phase A: URL must change
     while (Date.now() - start < maxMs) {
-      const main = document.querySelector('[role="main"]');
-      const h1 =
-        main?.querySelector('h1') ||
-        main?.querySelector('[role="heading"][aria-level="1"]');
-      const text = h1 ? (h1.textContent || "").trim() : "";
-      if (text && text !== lastDetailH1) {
-        lastDetailH1 = text;
-        // Extra settle — website link sometimes appears ~250ms after h1
-        await sleep(350);
-        return main;
+      if (
+        location.href !== prevUrl &&
+        /\/maps\/place\//.test(location.href)
+      ) {
+        break;
       }
-      await sleep(120);
+      await sleep(80);
     }
+
+    if (location.href === prevUrl) {
+      log("waitForDetailPane: url never changed");
+      return null;
+    }
+
+    // Phase B: h1 must populate
+    while (Date.now() - start < maxMs) {
+      const h1 = document.querySelector(
+        'div[role="main"] h1, [role="dialog"] h1, h1.DUwDvf'
+      );
+      const text = h1 ? (h1.textContent || "").trim() : "";
+      if (text) {
+        await sleep(400); // settle — action buttons render slightly after h1
+        return h1;
+      }
+      await sleep(100);
+    }
+
+    log("waitForDetailPane: h1 never populated");
     return null;
   }
 
   /**
-   * Extract name / website / location from the detail pane.
-   * Uses a cascade of strategies — broadest net wins. Google changes
-   * their internal data-item-id values occasionally, so the fallback is:
-   * "any <a> inside [role='main'] with an external http(s) href that
-   * isn't google / youtube / an image."
+   * Extract name / website / phone / location for the currently-active
+   * detail pane. Uses DOCUMENT-wide selectors because Maps' active detail
+   * pane is the only one mounted at a time, and the website link can live
+   * in a sibling region from the h1's [role="main"] parent.
    */
-  function extractFromDetailPane(main) {
-    if (!main) return null;
-
-    // ─── NAME ───
-    const nameEl =
-      main.querySelector("h1") ||
-      main.querySelector('[role="heading"][aria-level="1"]') ||
-      main.querySelector('[role="main"] h1');
-    const name = nameEl ? (nameEl.textContent || "").trim() : "";
+  function extractCurrentDetail(h1El) {
+    const name = h1El ? (h1El.textContent || "").trim() : "";
     if (!name) {
       log("skip · no h1 name");
       return null;
     }
 
-    // ─── WEBSITE ─── cascade of strategies
+    // ─── WEBSITE ─── cascade of strategies, document-wide
     let website = "";
 
-    const strategies = [
-      // 1. Google's historical stable selector
-      () => main.querySelector('a[data-item-id="authority"]'),
-      () => main.querySelector('a[data-item-id^="authority"]'),
-      // 2. Aria-label based (common)
-      () => main.querySelector('a[aria-label^="Website" i]'),
-      () => main.querySelector('a[aria-label*="Website:" i]'),
-      // 3. Data-value / data-tooltip
-      () => main.querySelector('a[data-value="Website" i]'),
-      () => main.querySelector('a[data-tooltip*="website" i]'),
-      // 4. Jsaction containing "website"
-      () => main.querySelector('a[jsaction*="website"]'),
+    const websiteSelectors = [
+      'a[data-item-id="authority"]',
+      'a[data-item-id^="authority"]',
+      'a[aria-label^="Website" i]',
+      'a[aria-label*="Website:" i]',
+      'a[data-value="Website" i]',
+      'a[data-tooltip*="ebsite" i]',
+      'a[jsaction*="website"]',
     ];
 
-    for (const strat of strategies) {
-      try {
-        const el = strat();
-        if (el && el.href && el.href.startsWith("http") && !el.href.includes("google.com")) {
-          website = el.href;
-          break;
-        }
-      } catch {}
-    }
-
-    // 5. Broadest net — any external https anchor in the detail pane
-    if (!website) {
-      const anchors = main.querySelectorAll("a[href]");
-      for (const a of anchors) {
-        const u = a.href;
-        if (!u || !u.startsWith("http")) continue;
+    for (const sel of websiteSelectors) {
+      const els = document.querySelectorAll(sel);
+      for (const el of els) {
+        const u = el.href || "";
+        if (!u.startsWith("http")) continue;
         if (u.includes("google.com")) continue;
-        if (u.includes("googleusercontent.com")) continue;
-        if (u.includes("goo.gl") || u.includes("g.co")) continue;
-        if (u.includes("youtube.com") || u.includes("youtu.be")) continue;
-        if (/\.(jpg|jpeg|png|gif|svg|webp|ico|pdf)(\?|$)/i.test(u)) continue;
+        if (u.includes("googleusercontent")) continue;
         website = u;
         break;
       }
+      if (website) break;
     }
 
+    // Final fallback: any external https anchor inside the pane that owns h1
     if (!website) {
-      log("skip · no website found for", name);
-      return null;
+      let pane = h1El;
+      for (let i = 0; i < 8 && pane?.parentElement; i++) {
+        pane = pane.parentElement;
+        const role = pane.getAttribute && pane.getAttribute("role");
+        if (role === "main" || role === "dialog" || role === "region") break;
+      }
+      if (pane) {
+        const anchors = pane.querySelectorAll("a[href]");
+        for (const a of anchors) {
+          const u = a.href || "";
+          if (!u.startsWith("http")) continue;
+          if (u.includes("google.")) continue;
+          if (u.includes("googleusercontent")) continue;
+          if (u.includes("ggpht.com") || u.includes("gstatic")) continue;
+          if (u.includes("youtu")) continue;
+          if (/\.(jpg|jpeg|png|gif|svg|webp|ico|pdf)(\?|$)/i.test(u)) continue;
+          website = u;
+          break;
+        }
+      }
     }
 
-    // ─── ADDRESS ─── multiple strategies
+    // ─── PHONE ───
+    let phone = "";
+    const phoneSelectors = [
+      'button[data-item-id^="phone"]',
+      '[data-item-id^="phone:tel"]',
+      'button[aria-label^="Phone" i]',
+      '[aria-label^="Phone:" i]',
+    ];
+    for (const sel of phoneSelectors) {
+      const el = document.querySelector(sel);
+      if (el) {
+        const raw = el.getAttribute("aria-label") || el.textContent || "";
+        phone = raw.replace(/^Phone:?\s*/i, "").trim();
+        if (phone) break;
+      }
+    }
+
+    // ─── ADDRESS ───
     let address = "";
     const addressSelectors = [
       'button[data-item-id="address"]',
       '[data-item-id="address"]',
       'button[aria-label^="Address" i]',
-      '[aria-label^="Address" i]',
-      'button[data-tooltip*="address" i]',
+      '[aria-label^="Address:" i]',
     ];
     for (const sel of addressSelectors) {
-      const el = main.querySelector(sel);
+      const el = document.querySelector(sel);
       if (el) {
-        address = (el.textContent || el.getAttribute("aria-label") || "")
-          .replace(/^Address:\s*/i, "")
-          .trim();
+        const raw = el.getAttribute("aria-label") || el.textContent || "";
+        address = raw.replace(/^Address:?\s*/i, "").trim();
         if (address) break;
       }
     }
 
-    log("+ extracted", name, "·", website);
-    return { name, website, location: address };
+    if (!website) {
+      log("skip · no website ·", name, "(phone:", phone || "—", ")");
+      return null;
+    }
+
+    log("+ extracted", name, "·", website, phone ? "·" + phone : "");
+    return { name, website, location: address, phone };
   }
 
-  /** Go back to the list view after viewing a detail. */
-  async function goBackToList(maxMs = 3000) {
-    // Strategy 1: history.back() — works in Maps SPA
-    try {
-      history.back();
-    } catch {}
+  /**
+   * Go back to the list view after viewing a detail.
+   * Wait for the URL to leave /maps/place/ (or revert to /maps/search).
+   * Just checking for [role="feed"] is unreliable — in click mode the feed
+   * never unmounts, it stays in the DOM behind the detail pane.
+   */
+  async function goBackToList(maxMs = 4000) {
+    const beforeUrl = location.href;
+
+    // Strategy 1: click the X / back button on the detail pane
+    const closeBtn = document.querySelector(
+      'button[jsaction*="pane.placeActions.back"], ' +
+        'button[aria-label="Close" i], ' +
+        'button[jsaction*="pane.back"], ' +
+        'button[aria-label*="Back" i]'
+    );
+    if (closeBtn) {
+      try {
+        closeBtn.click();
+      } catch {}
+    } else {
+      // Strategy 2: history.back()
+      try {
+        history.back();
+      } catch {}
+    }
 
     const start = Date.now();
     while (Date.now() - start < maxMs) {
-      const feed = document.querySelector('[role="feed"]');
-      if (feed) {
-        await sleep(200); // settle
+      // Success when URL has changed AND we're not on a place page anymore
+      // OR feed exists and is scrollable (search results visible)
+      if (location.href !== beforeUrl) {
+        await sleep(250);
         return true;
       }
       await sleep(100);
     }
 
-    // Strategy 2: click the back button by aria-label
-    const backBtn = document.querySelector(
-      'button[aria-label*="Back" i], button[jsaction*="pane.back"]'
-    );
-    if (backBtn) {
-      backBtn.click();
-      await sleep(500);
-      return true;
-    }
+    log("goBackToList: no URL change in", maxMs, "ms");
     return false;
   }
 
@@ -251,10 +295,6 @@
 
   async function scrapeMapsClickMode(sentWebsites, onProgress) {
     log("click mode scrape starting");
-
-    // Reset the detail-pane h1 tracker so iterations across scrapes don't
-    // get polluted by the last business name from a previous run
-    lastDetailH1 = "";
 
     const panel = findResultsPanel();
     if (!panel) {
@@ -312,6 +352,9 @@
         continue;
       }
 
+      // Snapshot URL BEFORE clicking — used to detect SPA navigation
+      const prevUrl = location.href;
+
       // Click it
       try {
         anchor.scrollIntoView({ block: "center" });
@@ -323,17 +366,17 @@
         continue;
       }
 
-      // Wait for detail pane
-      const main = await waitForDetailPane(5000);
-      if (!main) {
-        log("detail pane never loaded");
+      // Wait for detail pane (URL change + h1 populate)
+      const h1El = await waitForDetailPane(prevUrl, 7000);
+      if (!h1El) {
+        log("iter", i + 1, "· detail pane never loaded");
         await goBackToList();
         droppedNoWebsite++;
         continue;
       }
 
-      // Extract structured data
-      const lead = extractFromDetailPane(main);
+      // Extract structured data using document-wide selectors
+      const lead = extractCurrentDetail(h1El);
       if (!lead) {
         // No website — business isn't sendable
         droppedNoWebsite++;
