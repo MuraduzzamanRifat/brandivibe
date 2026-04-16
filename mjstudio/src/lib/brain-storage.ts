@@ -599,27 +599,40 @@ async function loadFromDisk(): Promise<BrainData> {
   }
 }
 
+// Cache TTL: re-read from disk/GitHub after this many ms so that a second
+// Koyeb instance that wrote brain.json doesn't leave this instance serving
+// stale data indefinitely. 30s is a reasonable trade-off — fast enough that
+// stale state doesn't accumulate, slow enough not to hammer GitHub API.
+const CACHE_TTL_MS = 30_000;
+let memCacheAt = 0;
+
 export async function loadBrain(): Promise<BrainData> {
-  if (memCache) return memCache;
+  const age = Date.now() - memCacheAt;
+  if (memCache && age < CACHE_TTL_MS) return memCache;
   if (isGithubStorageEnabled()) {
     try {
       const pulled = await pullBrainJson();
       if (pulled) {
         memCache = ensureShape(pulled.data as Partial<BrainData>);
         memSha = pulled.sha;
+        memCacheAt = Date.now();
         return memCache;
       }
     } catch (err) {
       console.error("[brain] GitHub pull failed, falling back to disk:", err);
+      // If we have a stale cache, return it rather than crashing
+      if (memCache) return memCache;
     }
   }
   memCache = await loadFromDisk();
+  memCacheAt = Date.now();
   return memCache;
 }
 
 export async function saveBrain(data: BrainData): Promise<void> {
   const shaped = ensureShape(data);
   memCache = shaped;
+  memCacheAt = Date.now(); // mark cache as fresh — we just wrote this data
   await ensureDataDir();
   await writeFile(FILE, JSON.stringify(shaped, null, 2), "utf8");
   if (isGithubStorageEnabled()) {

@@ -47,8 +47,16 @@ function rateLimit(ip: string): { ok: boolean; retryInSec: number } {
 }
 
 function ipOf(req: Request): string {
+  // Koyeb's load balancer appends the real client IP at the END of
+  // X-Forwarded-For. Taking [0] (the leftmost) lets an attacker spoof any IP
+  // by setting the header themselves. Taking the last entry is safe because
+  // Koyeb controls it — the client cannot append to a header that the proxy
+  // overwrites on ingress.
   const xff = req.headers.get("x-forwarded-for");
-  if (xff) return xff.split(",")[0].trim();
+  if (xff) {
+    const parts = xff.split(",").map((s) => s.trim()).filter(Boolean);
+    return parts[parts.length - 1] ?? "unknown";
+  }
   return req.headers.get("x-real-ip") || "unknown";
 }
 

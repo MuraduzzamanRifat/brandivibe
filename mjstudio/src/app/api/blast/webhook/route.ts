@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { recordBlastEvent, type BlastEventKind } from "@/lib/brain/blast";
+import { recordBlastEvent, aggregateBlastEvents, type BlastEventKind } from "@/lib/brain/blast";
 
 /**
  * POST /api/blast/webhook?key=<BLAST_WEBHOOK_SECRET>
@@ -91,6 +91,17 @@ export async function POST(req: Request) {
     at: body.created_at ?? new Date().toISOString(),
     messageId: body.data?.email_id,
   });
+
+  // Aggregate immediately so metrics are flushed into brain.json (GitHub-synced)
+  // on every event. Without this, any events received between the last lazy
+  // aggregation and a Koyeb redeploy are permanently lost because
+  // blast-events.jsonl lives on the ephemeral local filesystem.
+  try {
+    await aggregateBlastEvents();
+  } catch (err) {
+    // Non-fatal — event is already appended; aggregation will retry on next poll
+    console.error("[blast/webhook] aggregation failed:", err);
+  }
 
   return NextResponse.json({ ok: true });
 }
