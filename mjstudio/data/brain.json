@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304914662_om6zvc",
+      "timestamp": "2026-04-16T02:01:54.662Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"This Khosla-backed autonomous pod startup just raised $170M — now it's aiming fo\" — The company, Glydways, is too large and advanced for Brandivibe's target project size given their recent $170M funding round and plans to raise an additional $250M.",
+      "source": "techcrunch",
+      "tokens": 819
+    },
+    {
       "id": "act_1776304910530_j9h8ph",
       "timestamp": "2026-04-16T02:01:50.530Z",
       "type": "prospect-added",
