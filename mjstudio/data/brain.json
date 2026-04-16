@@ -1,7 +1,16 @@
 {
   "prospects": [],
   "drafts": [],
-  "activities": [],
+  "activities": [
+    {
+      "id": "act_1776304881224_cpcxjr",
+      "timestamp": "2026-04-16T02:01:21.224Z",
+      "type": "plan-generated",
+      "description": "Planned \"Unlock Revenue Growth with Premium Web Design for Startups\" + 3 FB posts + 3 lead-gen actions",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 5938
+    }
+  ],
   "articles": [],
   "fbQueue": [],
   "plans": [
