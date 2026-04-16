@@ -35,7 +35,24 @@
       "publishedAt": "2026-04-16T02:01:22.448Z"
     }
   ],
-  "fbQueue": [],
+  "fbQueue": [
+    {
+      "id": "fb_1776304890090_2lu7kg",
+      "status": "queued",
+      "body": "Your startup's website can make or break your brand. Discover how premium web design builds trust and boosts revenue. #WebDesign #StartupGrowth #3DDesign\n\nhttps://brandivibe.com/journal/premium-web-design-startups\n\nWebDesign StartupGrowth 3DDesign BrandTrust DigitalTransformation",
+      "imagePrompt": "modern office with large monitor showing website design",
+      "imageUrl": "https://images.pexels.com/photos/5552789/pexels-photo-5552789.jpeg?auto=compress&cs=tinysrgb&h=350",
+      "articleSlug": "premium-web-design-startups",
+      "hashtags": [
+        "WebDesign",
+        "StartupGrowth",
+        "3DDesign",
+        "BrandTrust",
+        "DigitalTransformation"
+      ],
+      "createdAt": "2026-04-16T02:01:30.090Z"
+    }
+  ],
   "plans": [
     {
       "id": "plan_1776304879520",
