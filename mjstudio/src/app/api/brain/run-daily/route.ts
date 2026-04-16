@@ -18,6 +18,7 @@ import {
   updateRun,
   todayKey,
   loadBrain,
+  bustBrainCache,
 } from "@/lib/brain-storage";
 
 /**
@@ -90,9 +91,10 @@ export async function POST(req: Request) {
     }
   }
 
-  // Load the plan attached to today's run for subsequent phases.
+  // Bust cache so we read the freshly written plan from GitHub, then load once.
+  bustBrainCache();
+  const todayRun = await getOrCreateRun(date, FB_SLOTS);
   const { plans } = await loadBrain();
-  const todayRun = (await getOrCreateRun(date, FB_SLOTS));
   const plan = (plans ?? []).find((p) => p.id === todayRun.planId);
   if (!plan) {
     return NextResponse.json(

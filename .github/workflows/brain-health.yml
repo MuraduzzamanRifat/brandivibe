@@ -1,0 +1,46 @@
+name: Brandivibe brain health check
+
+on:
+  schedule:
+    # Every 6 hours: 01:00, 07:00, 13:00, 19:00 UTC
+    - cron: "0 1,7,13,19 * * *"
+  workflow_dispatch:
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Run health check
+        id: health
+        continue-on-error: true
+        run: |
+          curl -fsS --max-time 55 -X POST \
+            https://brandivibe.com/api/brain/health \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o health.json
+          echo "--- health report ---"
+          cat health.json
+
+      - name: Evaluate result
+        run: |
+          node -e "
+            const fs = require('fs');
+            if (!fs.existsSync('health.json')) {
+              console.error('Health endpoint unreachable — Koyeb may be down or BRAIN_CRON_SECRET is wrong');
+              process.exit(1);
+            }
+            const r = JSON.parse(fs.readFileSync('health.json', 'utf8'));
+            console.log('healthy:', r.ok);
+            if (r.report) {
+              console.log('findings:', r.report.findings.length);
+              console.log('auto-fixed:', r.report.autoFixed);
+              console.log('email sent:', r.report.emailSent);
+              const criticals = (r.report.findings || []).filter(f => f.severity === 'critical' && !f.autoFixed);
+              if (criticals.length) {
+                console.error('Unresolved critical issues:', JSON.stringify(criticals.map(f => f.code)));
+                // Don't fail the workflow — email already sent by the health endpoint
+              }
+            }
+            console.log('Health check complete');
+          "

@@ -1,6 +1,6 @@
 import {
   loadBrain,
-  enqueueOutbound,
+  saveBrain,
   logActivity,
   type LeadGenAction,
   type Prospect,
@@ -171,17 +171,18 @@ export async function executeLeadGenActions(
     return summary;
   }
 
-  let sendWindowOffset = 0; // stagger sends across days
+  // Collect all emails and mutations in-memory, then do ONE saveBrain.
+  const pendingEmails: OutboundEmail[] = [];
+  const pendingLogs: Array<Parameters<typeof logActivity>[0]> = [];
+  let sendWindowOffset = 0;
 
   for (const action of emailActions) {
     summary.actionsProcessed++;
 
-    // Score and rank prospects against this action's target description
     const ranked = eligible
       .map((p) => ({ prospect: p, score: scoreMatch(p, action.target) }))
       .filter((x) => x.score >= 1)
       .sort((a, b) => {
-        // Primary: match score; secondary: tier A before B
         if (b.score !== a.score) return b.score - a.score;
         return a.prospect.icpTier === "A" ? -1 : 1;
       })
@@ -199,7 +200,6 @@ export async function executeLeadGenActions(
           continue;
         }
 
-        // Ensure unsubscribe link is present (legal requirement)
         const finalBody = /unsubscribe|opt.out/i.test(body)
           ? body
           : `${body}\n\n---\nTo unsubscribe: ${unsubscribeUrl(prospect.id)}`;
@@ -220,11 +220,18 @@ export async function executeLeadGenActions(
           tokens: 0,
         };
 
-        await enqueueOutbound(email);
-        summary.emailsQueued++;
-        sendWindowOffset++; // stagger each email by one send window
+        pendingEmails.push(email);
 
-        await logActivity({
+        // CRITICAL: advance sequence stage so sequence-machine (Phase 7) doesn't
+        // see stage=0 and queue a duplicate touch-1.
+        prospect.sequence = prospect.sequence ?? { stage: 0 };
+        prospect.sequence.stage = 1;
+        prospect.sequence.nextSendAt = nextSendWindow(sendWindowOffset);
+
+        summary.emailsQueued++;
+        sendWindowOffset++;
+
+        pendingLogs.push({
           type: "email-queued",
           description: `Lead-gen queued touch 1 for ${prospect.company} (${prospect.emailFinder!.winner}): "${subject}"`,
           prospectId: prospect.id,
@@ -233,13 +240,29 @@ export async function executeLeadGenActions(
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
         summary.errors.push(`${prospect.company}: ${msg}`);
-        await logActivity({
+        pendingLogs.push({
           type: "error",
           description: `Lead-gen executor failed for ${prospect.company}: ${msg}`,
           prospectId: prospect.id,
         });
       }
     }
+  }
+
+  if (pendingEmails.length > 0) {
+    // Single brain save: push all emails + updated sequence states at once.
+    brain.outboundQueue = brain.outboundQueue ?? [];
+    brain.outboundQueue.push(...pendingEmails);
+    if (brain.outboundQueue.length > 2000) {
+      brain.outboundQueue = brain.outboundQueue.slice(-2000);
+    }
+    await saveBrain(brain);
+  }
+
+  // Log activities after the save (each logActivity does its own load+save;
+  // doing these last keeps them from racing with the bulk save above).
+  for (const log of pendingLogs) {
+    await logActivity(log);
   }
 
   return summary;

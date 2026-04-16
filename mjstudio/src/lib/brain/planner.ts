@@ -57,7 +57,12 @@ export async function planToday(): Promise<Plan> {
     "Why premium design attracts premium clients — how your website acts as a price anchor and ICP filter simultaneously",
     "Website as a competitive advantage — treating the homepage as a strategic asset, not a brochure, in competitive markets",
   ];
-  const angleIndex = new Date().getDay() % CONTENT_ANGLES.length; // rotate by day
+  // Use day-of-year so all 10 angles are visited before repeating. getDay()
+  // only returns 0-6 and would skip angles 7-9 entirely.
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / 86_400_000);
+  const angleIndex = dayOfYear % CONTENT_ANGLES.length;
   const todayAngle = CONTENT_ANGLES[angleIndex];
 
   const system = `You are the Brandivibe AI Sales Brain — a senior content strategist and conversion-focused copywriter specializing in luxury digital services and high-ticket web design ($35K–$90K). Brandivibe is a solo premium 3D web design studio run by Muraduzzaman, targeting Seed to Series B founders.
@@ -157,8 +162,11 @@ Return strict JSON with this shape — no markdown fences, no prose:
 
   let { parsed, tokens, model } = await callModel();
 
-  if (!parsed.article?.slug) {
-    parsed.article.slug = slugify(parsed.article.title);
+  if (!parsed.article) {
+    throw new Error("Planner: GPT returned no article object — response malformed");
+  }
+  if (!parsed.article.slug) {
+    parsed.article.slug = slugify(parsed.article.title ?? "untitled");
   }
 
   const seo = scoreSEO({
@@ -175,7 +183,8 @@ Return strict JSON with this shape — no markdown fences, no prose:
     parsed = retry.parsed;
     tokens += retry.tokens;
     model = retry.model;
-    if (!parsed.article?.slug) parsed.article.slug = slugify(parsed.article.title);
+    if (!parsed.article) throw new Error("Planner retry: GPT returned no article object");
+    if (!parsed.article.slug) parsed.article.slug = slugify(parsed.article.title ?? "untitled");
   }
 
   const plan: Plan = {

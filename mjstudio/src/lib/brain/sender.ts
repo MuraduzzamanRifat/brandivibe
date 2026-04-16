@@ -1,7 +1,6 @@
 import {
   loadBrain,
   saveBrain,
-  updateOutbound,
   logActivity,
   type OutboundEmail,
 } from "../brain-storage";
@@ -117,12 +116,20 @@ export async function runSendTick(): Promise<SendTickSummary> {
   const toAttempt = queue.slice(0, remainingToday);
   summary.attempted = toAttempt.length;
 
+  // Track send results so we can log activities after the single saveBrain call.
+  type SendResult = { email: OutboundEmail; ok: boolean; resendId?: string; error?: string };
+  const sendResults: SendResult[] = [];
+
   for (const email of toAttempt) {
     const prospect = brain.prospects.find((p) => p.id === email.prospectId);
+    const queueIdx = (brain.outboundQueue ?? []).findIndex((e) => e.id === email.id);
 
-    // Unsubscribed → suppress
+    // Unsubscribed → suppress in-place, no network call
     if (prospect?.unsubscribed) {
-      await updateOutbound(email.id, { status: "suppressed", failReason: "prospect unsubscribed" });
+      if (queueIdx >= 0) {
+        brain.outboundQueue![queueIdx].status = "suppressed";
+        brain.outboundQueue![queueIdx].failReason = "prospect unsubscribed";
+      }
       summary.suppressed++;
       continue;
     }
@@ -133,9 +140,8 @@ export async function runSendTick(): Promise<SendTickSummary> {
     if (lastSent) {
       const hoursSince = (now.getTime() - new Date(lastSent).getTime()) / 3_600_000;
       if (hoursSince < 72) {
-        // Push it out by 24h
         const newSendAt = new Date(now.getTime() + 24 * 3_600_000).toISOString();
-        await updateOutbound(email.id, { sendAt: newSendAt });
+        if (queueIdx >= 0) brain.outboundQueue![queueIdx].sendAt = newSendAt;
         continue;
       }
     }
@@ -154,28 +160,45 @@ export async function runSendTick(): Promise<SendTickSummary> {
     });
 
     if (result.ok) {
-      await updateOutbound(email.id, {
-        status: "sent",
-        resendId: result.id,
-        sentAt: new Date().toISOString(),
-      });
-      summary.sent++;
-      // Bump counters
-      const fresh = await loadBrain();
-      fresh.sendCounts = fresh.sendCounts ?? {};
-      fresh.sendCounts[todayStr] = (fresh.sendCounts[todayStr] ?? 0) + 1;
-      fresh.lastSendByDomain = fresh.lastSendByDomain ?? {};
-      fresh.lastSendByDomain[dom] = new Date().toISOString();
-      // Update prospect sequence state
-      const p = fresh.prospects.find((x) => x.id === email.prospectId);
-      if (p) {
-        p.sequence = p.sequence ?? { stage: 0 };
-        p.sequence.stage = email.sequenceTouch as 1 | 2 | 3 | 4;
-        p.sequence.lastSentAt = new Date().toISOString();
-        p.sequence.lastOutcome = "sent";
-        p.sequence.nextSendAt = nextTouchDate(email.sequenceTouch);
+      // Mutate in the already-loaded brain — no extra loadBrain needed
+      if (queueIdx >= 0) {
+        brain.outboundQueue![queueIdx].status = "sent";
+        brain.outboundQueue![queueIdx].resendId = result.id;
+        brain.outboundQueue![queueIdx].sentAt = new Date().toISOString();
       }
-      await saveBrain(fresh);
+      brain.sendCounts = brain.sendCounts ?? {};
+      brain.sendCounts[todayStr] = (brain.sendCounts[todayStr] ?? 0) + 1;
+      brain.lastSendByDomain = brain.lastSendByDomain ?? {};
+      brain.lastSendByDomain[dom] = new Date().toISOString();
+      if (prospect) {
+        prospect.sequence = prospect.sequence ?? { stage: 0 };
+        prospect.sequence.stage = email.sequenceTouch as 1 | 2 | 3 | 4;
+        prospect.sequence.lastSentAt = new Date().toISOString();
+        prospect.sequence.lastOutcome = "sent";
+        prospect.sequence.nextSendAt = nextTouchDate(email.sequenceTouch);
+      }
+      summary.sent++;
+    } else {
+      if (queueIdx >= 0) {
+        brain.outboundQueue![queueIdx].status = "failed";
+        brain.outboundQueue![queueIdx].failReason = result.error;
+      }
+      summary.failed++;
+      summary.errors.push(`${email.to}: ${result.error}`);
+    }
+
+    sendResults.push({ email, ok: result.ok, resendId: result.id, error: result.error });
+  }
+
+  // Single save for all mutations in this tick
+  if (sendResults.length > 0) {
+    await saveBrain(brain);
+  }
+
+  // Activity logs AFTER the save (logActivity does its own load+save each time,
+  // which is acceptable for audit trail purposes — there are at most ~50/day)
+  for (const { email, ok, error } of sendResults) {
+    if (ok) {
       await logActivity({
         type: "email-sent",
         description: `Sent touch ${email.sequenceTouch} to ${email.to}: "${email.subject}"`,
@@ -183,15 +206,9 @@ export async function runSendTick(): Promise<SendTickSummary> {
         emailId: email.id,
       });
     } else {
-      await updateOutbound(email.id, {
-        status: "failed",
-        failReason: result.error,
-      });
-      summary.failed++;
-      summary.errors.push(`${email.to}: ${result.error}`);
       await logActivity({
         type: "email-failed",
-        description: `Send failed for ${email.to}: ${result.error}`,
+        description: `Send failed for ${email.to}: ${error}`,
         prospectId: email.prospectId,
         emailId: email.id,
       });

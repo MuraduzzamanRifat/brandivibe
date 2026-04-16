@@ -14,22 +14,21 @@ jobs:
         id: tick1
         continue-on-error: true
         run: |
-          curl -fsS --max-time 540 -X POST \
+          curl -fsS --max-time 310 -X POST \
             https://brandivibe.com/api/brain/run-daily \
             -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
             -o response1.json
           echo "--- tick 1 ---"
           cat response1.json
 
-      - name: Wait 30s for any in-flight retry window
-        if: steps.tick1.outcome == 'failure'
+      - name: Wait 30s before tick 2
         run: sleep 30
 
-      - name: Tick 2 — resume from checkpoint (idempotent)
+      - name: Tick 2 — resume from checkpoint (idempotent, always run)
         id: tick2
-        if: steps.tick1.outcome == 'failure'
+        continue-on-error: true
         run: |
-          curl -fsS --max-time 540 -X POST \
+          curl -fsS --max-time 310 -X POST \
             https://brandivibe.com/api/brain/run-daily \
             -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
             -o response2.json

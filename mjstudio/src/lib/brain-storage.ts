@@ -636,7 +636,6 @@ export async function loadBrain(): Promise<BrainData> {
 export async function saveBrain(data: BrainData): Promise<void> {
   const shaped = ensureShape(data);
   memCache = shaped;
-  memCacheAt = Date.now(); // mark cache as fresh — we just wrote this data
   await ensureDataDir();
   await writeFile(FILE, JSON.stringify(shaped, null, 2), "utf8");
   if (isGithubStorageEnabled()) {
@@ -646,6 +645,16 @@ export async function saveBrain(data: BrainData): Promise<void> {
       console.error("[brain] GitHub push failed:", err);
     }
   }
+  // Mark cache fresh AFTER write is confirmed so a second Koyeb instance that
+  // reads GitHub before our push completes won't race against our in-memory copy.
+  memCacheAt = Date.now();
+}
+
+/** Force the next loadBrain() to re-fetch from GitHub instead of using the
+ *  in-process cache. Call this immediately after any write that another code
+ *  path (e.g. GitHub Actions trigger) might need to observe. */
+export function bustBrainCache(): void {
+  memCacheAt = 0;
 }
 
 export async function upsertProspect(p: Prospect): Promise<void> {
@@ -1064,6 +1073,7 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
         research: "pending",
         sequence: "pending",
         send: "pending",
+        blast: "pending",
       },
     };
     data.runs.unshift(run);
@@ -1071,11 +1081,14 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
     await saveBrain(data);
   } else {
     // Backfill phases for old runs that predate later phases
-    if (!run.phases.source) run.phases.source = "pending";
-    if (!run.phases.leadgen) run.phases.leadgen = "pending";
-    if (!run.phases.research) run.phases.research = "pending";
-    if (!run.phases.sequence) run.phases.sequence = "pending";
-    if (!run.phases.send) run.phases.send = "pending";
+    let needsSave = false;
+    if (!run.phases.source) { run.phases.source = "pending"; needsSave = true; }
+    if (!run.phases.leadgen) { run.phases.leadgen = "pending"; needsSave = true; }
+    if (!run.phases.research) { run.phases.research = "pending"; needsSave = true; }
+    if (!run.phases.sequence) { run.phases.sequence = "pending"; needsSave = true; }
+    if (!run.phases.send) { run.phases.send = "pending"; needsSave = true; }
+    if (!run.phases.blast) { run.phases.blast = "pending"; needsSave = true; }
+    if (needsSave) await saveBrain(data);
   }
   return run;
 }

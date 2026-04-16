@@ -89,7 +89,9 @@ export async function executeArticle(spec: ArticleSpec): Promise<Article> {
 
   const mdx = buildMdx(spec, publishedAt, photoCredit);
 
-  if (isGithubStorageEnabled() && heroBuffer) {
+  if (isGithubStorageEnabled()) {
+    // Always commit the MDX. Only commit the image if we have one — a missing
+    // Pexels image must not silently block the article from going live.
     await commitArticle(spec.slug, mdx, heroBuffer);
   }
 
