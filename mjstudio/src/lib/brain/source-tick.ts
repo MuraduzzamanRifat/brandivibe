@@ -36,12 +36,6 @@ export async function runSourceTick(): Promise<SourceTickSummary> {
   const articles = await fetchTechCrunchArticles();
   summary.sourced = articles.length;
 
-  await logActivity({
-    type: "source-run",
-    description: `Fetched ${articles.length} trigger articles from TechCrunch`,
-    source: "techcrunch",
-  });
-
   const brain = await loadBrain();
   const seenUrls = new Set(
     brain.prospects.map((p) => p.sourceUrl).filter(Boolean) as string[]

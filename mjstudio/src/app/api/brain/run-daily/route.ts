@@ -81,6 +81,7 @@ export async function POST(req: Request) {
         r.lastError = msg;
       });
       await logActivity({ type: "error", description: `Planner failed: ${msg}` });
+      summary.phases.plan = "failed";
       return NextResponse.json(
         { ok: false, summary, durationMs: Date.now() - started },
         { status: 500 }
@@ -242,7 +243,7 @@ export async function POST(req: Request) {
     }
   }
 
-  // ---------------- PHASE 6: SEQUENCE (Phase 4) ----------------
+  // ---------------- PHASE 7: SEQUENCE ----------------
   if ((await getOrCreateRun(date, FB_SLOTS)).phases.sequence !== "done") {
     try {
       const seqSummary = await runSequenceTick();
@@ -330,6 +331,7 @@ export async function POST(req: Request) {
  */
 export async function GET() {
   const date = todayKey();
-  const run = await getOrCreateRun(date, FB_SLOTS);
+  const { runs } = await loadBrain();
+  const run = (runs ?? []).find((r) => r.date === date) ?? null;
   return NextResponse.json({ run });
 }
