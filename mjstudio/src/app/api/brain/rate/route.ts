@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { rateItem, logActivity } from "@/lib/brain-storage";
 
+export const dynamic = "force-dynamic";
+
 /**
  * POST /api/brain/rate { kind: "article"|"fbPost"|"draft"|"plan", id, vote: "up"|"down" }
  * Manual human-in-the-loop signal for self-learning.

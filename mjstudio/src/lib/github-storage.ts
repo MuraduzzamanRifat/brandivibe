@@ -46,10 +46,18 @@ type FileGetResult = {
   sha: string;
 } | null;
 
+// 10 s for reads, 20 s for writes — GitHub API is usually fast but can stall
+const READ_TIMEOUT_MS = 10_000;
+const WRITE_TIMEOUT_MS = 20_000;
+
 export async function getFile(path: string): Promise<FileGetResult> {
   const { repo, token, branch } = cfg();
   const url = `${API}/repos/${repo}/contents/${encodeURIComponent(path)}?ref=${branch}`;
-  const res = await fetch(url, { headers: headers(token), cache: "no-store" });
+  const res = await fetch(url, {
+    headers: headers(token),
+    cache: "no-store",
+    signal: AbortSignal.timeout(READ_TIMEOUT_MS),
+  });
   if (res.status === 404) return null;
   if (!res.ok) throw new Error(`GitHub getFile ${path} ${res.status}: ${await res.text()}`);
   const json = (await res.json()) as { content: string; encoding: string; sha: string };
@@ -85,6 +93,7 @@ export async function putFile(
     method: "PUT",
     headers: { ...headers(token), "Content-Type": "application/json" },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(WRITE_TIMEOUT_MS),
   });
   if (!res.ok) throw new Error(`GitHub putFile ${path} ${res.status}: ${await res.text()}`);
   const json = (await res.json()) as { content: { sha: string } };

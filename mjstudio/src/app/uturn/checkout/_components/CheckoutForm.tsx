@@ -46,6 +46,7 @@ function Field({
   half,
   pattern,
   maxLength,
+  required,
 }: {
   label: string;
   name: keyof FormData;
@@ -56,6 +57,7 @@ function Field({
   half?: boolean;
   pattern?: string;
   maxLength?: number;
+  required?: boolean;
 }) {
   return (
     <div className={half ? "col-span-1" : "col-span-2"}>
@@ -68,6 +70,7 @@ function Field({
         placeholder={placeholder}
         pattern={pattern}
         maxLength={maxLength}
+        required={required}
         onChange={(e) => onChange(name, e.target.value)}
         className="w-full bg-transparent border border-[var(--uturn-hairline)] px-4 py-3.5 font-light text-[var(--uturn-ink)] placeholder:text-[var(--uturn-ink-soft)] focus:outline-none focus:border-[var(--uturn-ink)] transition-colors text-sm"
       />
@@ -76,7 +79,7 @@ function Field({
 }
 
 export function CheckoutForm() {
-  const { items, total, count } = useCart();
+  const { items, total, count, clearCart } = useCart();
   const router = useRouter();
   const [placing, setPlacing] = useState(false);
   const [summaryOpen, setSummaryOpen] = useState(false);
@@ -117,6 +120,7 @@ export function CheckoutForm() {
     e.preventDefault();
     setPlacing(true);
     await new Promise((r) => setTimeout(r, 1400));
+    clearCart(); // clear bag before navigating so success page shows the snapshot via items prop
     router.push("/uturn/checkout/success");
   }
 
@@ -149,7 +153,7 @@ export function CheckoutForm() {
         <span>/</span>
         <span
           className="cursor-pointer hover:text-[var(--uturn-ink)] transition-colors"
-          onClick={() => history.back()}
+          onClick={() => router.back()}
         >
           Bag
         </span>
@@ -187,7 +191,7 @@ export function CheckoutForm() {
           <section>
             <SectionTitle num="01" label="Contact" />
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <Field label="Email address" name="email" type="email" placeholder="you@example.com" value={form.email} onChange={set} />
+              <Field label="Email address" name="email" type="email" placeholder="you@example.com" value={form.email} onChange={set} required />
             </div>
           </section>
 
@@ -195,12 +199,12 @@ export function CheckoutForm() {
           <section>
             <SectionTitle num="02" label="Shipping address" />
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <Field label="First name" name="firstName" placeholder="Émile" value={form.firstName} onChange={set} half />
-              <Field label="Last name" name="lastName" placeholder="Renard" value={form.lastName} onChange={set} half />
-              <Field label="Address" name="address" placeholder="12 Rue de la Paix" value={form.address} onChange={set} />
+              <Field label="First name" name="firstName" placeholder="Émile" value={form.firstName} onChange={set} half required />
+              <Field label="Last name" name="lastName" placeholder="Renard" value={form.lastName} onChange={set} half required />
+              <Field label="Address" name="address" placeholder="12 Rue de la Paix" value={form.address} onChange={set} required />
               <Field label="Apartment, suite, etc. (optional)" name="apartment" placeholder="Apt 4B" value={form.apartment} onChange={set} />
-              <Field label="City" name="city" placeholder="London" value={form.city} onChange={set} half />
-              <Field label="Postal code" name="postalCode" placeholder="EC1A 1BB" value={form.postalCode} onChange={set} half />
+              <Field label="City" name="city" placeholder="London" value={form.city} onChange={set} half required />
+              <Field label="Postal code" name="postalCode" placeholder="EC1A 1BB" value={form.postalCode} onChange={set} half required />
 
               {/* Country select */}
               <div className="col-span-2">
@@ -238,6 +242,7 @@ export function CheckoutForm() {
                   placeholder="4242 4242 4242 4242"
                   onChange={(e) => set("cardNumber", formatCard(e.target.value))}
                   maxLength={19}
+                  required
                   className="w-full bg-transparent border border-[var(--uturn-hairline)] px-4 py-3.5 font-light text-[var(--uturn-ink)] placeholder:text-[var(--uturn-ink-soft)] focus:outline-none focus:border-[var(--uturn-ink)] transition-colors text-sm tracking-widest"
                 />
               </div>
@@ -251,6 +256,7 @@ export function CheckoutForm() {
                   placeholder="MM / YY"
                   onChange={(e) => set("expiry", formatExpiry(e.target.value))}
                   maxLength={7}
+                  required
                   className="w-full bg-transparent border border-[var(--uturn-hairline)] px-4 py-3.5 font-light text-[var(--uturn-ink)] placeholder:text-[var(--uturn-ink-soft)] focus:outline-none focus:border-[var(--uturn-ink)] transition-colors text-sm"
                 />
               </div>
@@ -264,10 +270,11 @@ export function CheckoutForm() {
                   placeholder="•••"
                   onChange={(e) => set("cvv", e.target.value.replace(/\D/g, "").slice(0, 4))}
                   maxLength={4}
+                  required
                   className="w-full bg-transparent border border-[var(--uturn-hairline)] px-4 py-3.5 font-light text-[var(--uturn-ink)] placeholder:text-[var(--uturn-ink-soft)] focus:outline-none focus:border-[var(--uturn-ink)] transition-colors text-sm"
                 />
               </div>
-              <Field label="Name on card" name="nameOnCard" placeholder="Émile Renard" value={form.nameOnCard} onChange={set} />
+              <Field label="Name on card" name="nameOnCard" placeholder="Émile Renard" value={form.nameOnCard} onChange={set} required />
             </div>
           </section>
 

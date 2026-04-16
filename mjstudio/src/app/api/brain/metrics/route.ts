@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { loadBrain } from "@/lib/brain-storage";
 
+export const dynamic = "force-dynamic";
+
 /**
  * GET /api/brain/metrics
  * 30-day rollup: tokens spent, articles published, FB posts, avg SEO,

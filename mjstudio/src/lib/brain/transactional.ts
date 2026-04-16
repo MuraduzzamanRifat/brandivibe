@@ -42,6 +42,7 @@ export async function sendTransactional(params: {
       html: params.html,
       reply_to: replyTo,
     }),
+    signal: AbortSignal.timeout(15_000), // Resend is fast; 15 s is generous
   });
 
   const json = (await res.json().catch(() => ({}))) as ResendResponse;

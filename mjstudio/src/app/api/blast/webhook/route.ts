@@ -44,7 +44,12 @@ const TYPE_MAP: Record<string, BlastEventKind> = {
 
 function authorized(req: Request): boolean {
   const secret = process.env.BLAST_WEBHOOK_SECRET;
-  if (!secret) return true; // dev mode — no key required
+  if (!secret) {
+    // In production a missing secret is a misconfiguration — deny to prevent
+    // forged events from corrupting blast metrics and the circuit breaker.
+    if (process.env.NODE_ENV === "production") return false;
+    return true; // local dev: allow through without a key
+  }
   const url = new URL(req.url);
   const provided = url.searchParams.get("key") ?? req.headers.get("x-webhook-key");
   return provided === secret;

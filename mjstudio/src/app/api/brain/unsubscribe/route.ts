@@ -12,7 +12,13 @@ import { markUnsubscribed, logActivity } from "@/lib/brain-storage";
  */
 
 function verify(prospectId: string, sig: string): boolean {
-  const secret = process.env.BRAIN_CRON_SECRET || "fallback-secret";
+  const secret = process.env.BRAIN_CRON_SECRET;
+  if (!secret) {
+    // Without a secret we cannot verify signatures — reject all unsubscribe attempts.
+    // The prospect can reply "stop" to be removed manually.
+    console.error("[unsubscribe] BRAIN_CRON_SECRET not set — cannot verify signature");
+    return false;
+  }
   const expected = createHmac("sha256", secret).update(prospectId).digest("hex").slice(0, 16);
   return expected === sig;
 }

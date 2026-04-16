@@ -25,6 +25,7 @@ type CartCtx = {
   addItem: (item: Omit<CartItem, "qty">) => void;
   removeItem: (slug: string, variant: string, size: string) => void;
   updateQty: (slug: string, variant: string, size: string, qty: number) => void;
+  clearCart: () => void;
   total: number;
   count: number;
   bagOpen: boolean;
@@ -90,6 +91,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     []
   );
 
+  const clearCart = useCallback(() => {
+    setItems([]);
+    setBagOpen(false);
+  }, []);
+
   const total = items.reduce((sum, i) => sum + i.priceNum * i.qty, 0);
   const count = items.reduce((sum, i) => sum + i.qty, 0);
 
@@ -100,6 +106,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         addItem,
         removeItem,
         updateQty,
+        clearCart,
         total,
         count,
         bagOpen,

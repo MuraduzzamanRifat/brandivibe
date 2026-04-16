@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { loadBrain, updateFbPost, logActivity } from "@/lib/brain-storage";
 import { approveQueuedFbPost } from "@/lib/brain/fb";
 
+export const dynamic = "force-dynamic";
+
 /**
  * GET /api/brain/queue — returns fbQueue + plans
  * POST /api/brain/queue { id, action: "approve" | "reject" }

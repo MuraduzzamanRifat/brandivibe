@@ -3,6 +3,9 @@ import { getOpenAI, MODELS } from "@/lib/openai";
 import { loadMarketingKnowledge } from "@/lib/marketing-knowledge";
 import { loadBrain, addDraft, logActivity, type Draft } from "@/lib/brain-storage";
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
+
 // Simple in-memory rate limit: MAX_PER_HOUR draft generations per process.
 // Since /dashboard has no auth (per user request), this caps credit burn.
 const MAX_PER_HOUR = 20;

@@ -10,7 +10,11 @@ export function getOpenAI(): OpenAI {
       "OPENAI_API_KEY is not set. Add it to mjstudio/.env.local."
     );
   }
-  client = new OpenAI({ apiKey: key });
+  client = new OpenAI({
+    apiKey: key,
+    timeout: 45_000, // 45 s — tight enough to recover within Koyeb's 300 s maxDuration
+    maxRetries: 2,   // retry transient 5xx / network errors automatically
+  });
   return client;
 }
 
