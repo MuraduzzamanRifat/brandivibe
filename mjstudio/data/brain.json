@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304923473_cs0g67",
+      "timestamp": "2026-04-16T02:02:03.473Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Anthropic shrugs off VC funding offers valuing it at $800B+, for now\" — Anthropic is valued at $800B, which is far too large for Brandivibe's target market.",
+      "source": "techcrunch",
+      "tokens": 744
+    },
+    {
       "id": "act_1776304919895_6lmf2f",
       "timestamp": "2026-04-16T02:01:59.895Z",
       "type": "prospect-skipped",
