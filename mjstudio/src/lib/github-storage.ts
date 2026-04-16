@@ -52,7 +52,7 @@ const WRITE_TIMEOUT_MS = 20_000;
 
 export async function getFile(path: string): Promise<FileGetResult> {
   const { repo, token, branch } = cfg();
-  const url = `${API}/repos/${repo}/contents/${encodeURIComponent(path)}?ref=${branch}`;
+  const url = `${API}/repos/${repo}/contents/${path.split("/").map(encodeURIComponent).join("/")}?ref=${branch}`;
   const res = await fetch(url, {
     headers: headers(token),
     cache: "no-store",
@@ -79,7 +79,7 @@ export async function putFile(
   sha?: string
 ): Promise<{ sha: string }> {
   const { repo, token, branch } = cfg();
-  const url = `${API}/repos/${repo}/contents/${encodeURIComponent(path)}`;
+  const url = `${API}/repos/${repo}/contents/${path.split("/").map(encodeURIComponent).join("/")}`;
   const base64 = Buffer.isBuffer(content)
     ? content.toString("base64")
     : Buffer.from(content, "utf8").toString("base64");
