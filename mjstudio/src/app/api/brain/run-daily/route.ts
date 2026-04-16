@@ -3,6 +3,7 @@ import { planToday } from "@/lib/brain/planner";
 import { executeArticle } from "@/lib/brain/executor";
 import { queueOrPublishFbPost } from "@/lib/brain/fb";
 import { scoreYesterday } from "@/lib/brain/scorer";
+import { runSourceTick } from "@/lib/brain/source-tick";
 import { runResearchTick } from "@/lib/brain/research-tick";
 import { runSequenceTick } from "@/lib/brain/sequence-machine";
 import { runSendTick } from "@/lib/brain/sender";
@@ -192,7 +193,32 @@ export async function POST(req: Request) {
     }
   }
 
-  // ---------------- PHASE 5: RESEARCH (Phase 4) ----------------
+  // ---------------- PHASE 5: SOURCE (TechCrunch → new prospects) ----------------
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.source !== "done") {
+    try {
+      const sourced = await runSourceTick();
+      summary.tokens += sourced.tokens;
+      await updateRun(date, (r) => {
+        r.phases.source = "done";
+      });
+      await logActivity({
+        type: "source-run",
+        description: `Source tick: ${sourced.sourced} articles fetched, ${sourced.extracted} new prospects added, ${sourced.alreadyKnown} already known`,
+        tokens: sourced.tokens,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`source: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.source = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Source tick failed: ${msg}` });
+      // Non-fatal — continue to research existing prospects
+    }
+  }
+
+  // ---------------- PHASE 6: RESEARCH ----------------
   if ((await getOrCreateRun(date, FB_SLOTS)).phases.research !== "done") {
     try {
       const researched = await runResearchTick();

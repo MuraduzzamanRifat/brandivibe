@@ -419,6 +419,7 @@ export type DailyRun = {
     article: "pending" | "done" | "failed" | "skipped";
     fb: Array<"pending" | "done" | "failed">;
     score: "pending" | "done" | "failed";
+    source?: "pending" | "done" | "failed";
     research?: "pending" | "done" | "failed";
     sequence?: "pending" | "done" | "failed";
     send?: "pending" | "done" | "failed";
@@ -1055,6 +1056,7 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
         article: "pending",
         fb: Array.from({ length: fbSlots }, () => "pending" as const),
         score: "pending",
+        source: "pending",
         research: "pending",
         sequence: "pending",
         send: "pending",
@@ -1064,7 +1066,8 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
     if (data.runs.length > 60) data.runs.length = 60;
     await saveBrain(data);
   } else {
-    // Backfill phases for old runs that predate Phase 4
+    // Backfill phases for old runs that predate later phases
+    if (!run.phases.source) run.phases.source = "pending";
     if (!run.phases.research) run.phases.research = "pending";
     if (!run.phases.sequence) run.phases.sequence = "pending";
     if (!run.phases.send) run.phases.send = "pending";

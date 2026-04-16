@@ -42,14 +42,15 @@ jobs:
           echo "--- run ledger ---"
           cat status.json
 
-      - name: Fail job if any phase still failed
+      - name: Fail job if any critical phase still failed
         run: |
           node -e "
             const s = require('./status.json');
             const p = s.run.phases;
-            const failed = [p.plan, p.article, p.score, ...p.fb].filter(x => x === 'failed');
+            const failed = [p.plan, p.article, p.score, p.source, p.research, p.sequence, p.send, ...p.fb].filter(x => x === 'failed');
             if (failed.length) {
               console.error('Phases failed:', failed);
               process.exit(1);
             }
+            console.log('All phases OK:', JSON.stringify(p));
           "
