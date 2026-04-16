@@ -21,7 +21,7 @@ export function Navbar() {
           <a href="#work" className="hover:text-white transition-colors">Work</a>
           <a href="#services" className="hover:text-white transition-colors">Services</a>
           <a href="#process" className="hover:text-white transition-colors">Process</a>
-          <Link href="/journal" className="hover:text-white transition-colors">Blog</Link>
+          <Link href="/journal" className="hover:text-white transition-colors">Journal</Link>
         </nav>
         <MagneticButton
           href="#contact"

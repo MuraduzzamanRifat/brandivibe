@@ -5,12 +5,12 @@ import { loadBrain } from "@/lib/brain-storage";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog — Website conversion & design · Brandivibe",
+  title: "Journal — Website conversion & design · Brandivibe",
   description:
     "Essays on high-conversion websites for Seed–Series B founders. Design scores, real teardowns, and the thinking behind elite web experiences.",
   alternates: { canonical: "/journal" },
   openGraph: {
-    title: "Brandivibe Blog — Website conversion & design",
+    title: "Brandivibe Journal — Website conversion & design",
     description:
       "Real analysis on what makes founder websites convert. New piece every day.",
     url: "/journal",
@@ -53,7 +53,7 @@ export default async function JournalIndex() {
         {/* Page title */}
         <div className="mb-16 md:mb-20">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#84e1ff] mb-4">
-            — The Brandivibe Blog
+            — The Brandivibe Journal
           </div>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-6 text-balance">
             Notes on elite<br className="hidden md:block" /> website conversion
