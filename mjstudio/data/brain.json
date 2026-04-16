@@ -328,6 +328,7 @@
   "outboundQueue": [],
   "sendCounts": {},
   "lastSendByDomain": {},
+  "sendingSince": "2026-04-16",
   "gmapsLeads": [],
   "crmContacts": [],
   "emailTemplates": [],
