@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304919895_6lmf2f",
+      "timestamp": "2026-04-16T02:01:59.895Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Accel raises $5B to back late-stage bets\" — Accel is a venture capital firm, not a potential client for web design services.",
+      "source": "techcrunch",
+      "tokens": 742
+    },
+    {
       "id": "act_1776304914662_om6zvc",
       "timestamp": "2026-04-16T02:01:54.662Z",
       "type": "prospect-skipped",
