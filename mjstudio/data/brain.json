@@ -3,6 +3,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304905612_sk7pyh",
+      "timestamp": "2026-04-16T02:01:45.612Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Hightouch reaches $100M ARR fueled by marketing tools powered by AI\" — The company has reached $100M ARR, which suggests a stage and size likely beyond the typical ICP for $35-90K projects.",
+      "source": "techcrunch",
+      "tokens": 758
+    },
+    {
       "id": "act_1776304897888_vegq5b",
       "timestamp": "2026-04-16T02:01:37.889Z",
       "type": "fb-queued",
