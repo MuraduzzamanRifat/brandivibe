@@ -107,6 +107,8 @@ export type Activity = {
     | "crm-contact-added"
     | "crm-email-sent"
     | "crm-template-edited"
+    | "email-queued"
+    | "lead-gen-skipped"
     | "error";
   timestamp: string;
   description: string;
@@ -420,6 +422,7 @@ export type DailyRun = {
     fb: Array<"pending" | "done" | "failed">;
     score: "pending" | "done" | "failed";
     source?: "pending" | "done" | "failed";
+    leadgen?: "pending" | "done" | "failed";
     research?: "pending" | "done" | "failed";
     sequence?: "pending" | "done" | "failed";
     send?: "pending" | "done" | "failed";
@@ -1057,6 +1060,7 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
         fb: Array.from({ length: fbSlots }, () => "pending" as const),
         score: "pending",
         source: "pending",
+        leadgen: "pending",
         research: "pending",
         sequence: "pending",
         send: "pending",
@@ -1068,6 +1072,7 @@ export async function getOrCreateRun(date: string, fbSlots = 3): Promise<DailyRu
   } else {
     // Backfill phases for old runs that predate later phases
     if (!run.phases.source) run.phases.source = "pending";
+    if (!run.phases.leadgen) run.phases.leadgen = "pending";
     if (!run.phases.research) run.phases.research = "pending";
     if (!run.phases.sequence) run.phases.sequence = "pending";
     if (!run.phases.send) run.phases.send = "pending";

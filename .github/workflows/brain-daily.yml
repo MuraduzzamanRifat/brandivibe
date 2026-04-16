@@ -51,7 +51,7 @@ jobs:
               process.exit(1);
             }
             const p = s.run.phases;
-            const scalar = { plan: p.plan, article: p.article, score: p.score, source: p.source, research: p.research, sequence: p.sequence, send: p.send, blast: p.blast };
+            const scalar = { plan: p.plan, article: p.article, score: p.score, source: p.source, leadgen: p.leadgen, research: p.research, sequence: p.sequence, send: p.send, blast: p.blast };
             const failed = Object.fromEntries(Object.entries(scalar).filter(([,v]) => v === 'failed'));
             const fbFailed = (p.fb || []).reduce((acc, v, i) => { if (v === 'failed') acc['fb[' + i + ']'] = v; return acc; }, {});
             const allFailed = Object.assign({}, failed, fbFailed);

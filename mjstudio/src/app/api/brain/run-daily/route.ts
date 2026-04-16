@@ -4,6 +4,7 @@ import { executeArticle } from "@/lib/brain/executor";
 import { queueOrPublishFbPost } from "@/lib/brain/fb";
 import { scoreYesterday } from "@/lib/brain/scorer";
 import { runSourceTick } from "@/lib/brain/source-tick";
+import { executeLeadGenActions } from "@/lib/brain/lead-gen-executor";
 import { runResearchTick } from "@/lib/brain/research-tick";
 import { runSequenceTick } from "@/lib/brain/sequence-machine";
 import { runSendTick } from "@/lib/brain/sender";
@@ -219,7 +220,39 @@ export async function POST(req: Request) {
     }
   }
 
-  // ---------------- PHASE 6: RESEARCH ----------------
+  // ---------------- PHASE 6: LEAD-GEN EXECUTION ----------------
+  // Execute the plan's lead-gen actions against real prospects — personalize
+  // templates, match by ICP keywords, enqueue outbound emails automatically.
+  if ((await getOrCreateRun(date, FB_SLOTS)).phases.leadgen !== "done") {
+    try {
+      const lgSummary = await executeLeadGenActions(plan.leadGen ?? []);
+      await updateRun(date, (r) => {
+        r.phases.leadgen = "done";
+      });
+      if (lgSummary.emailsQueued > 0) {
+        await logActivity({
+          type: "email-queued",
+          description: `Lead-gen executor: ${lgSummary.actionsProcessed} actions → ${lgSummary.prospectsMatched} prospects matched → ${lgSummary.emailsQueued} emails queued`,
+        });
+      } else {
+        await logActivity({
+          type: "lead-gen-skipped",
+          description: `Lead-gen executor: ${lgSummary.actionsProcessed} actions processed, 0 emails queued (${lgSummary.skipped} skipped — prospects may lack email/research yet)`,
+        });
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      summary.errors.push(`leadgen: ${msg}`);
+      await updateRun(date, (r) => {
+        r.phases.leadgen = "failed";
+        r.lastError = msg;
+      });
+      await logActivity({ type: "error", description: `Lead-gen executor failed: ${msg}` });
+      // Non-fatal — continue to research
+    }
+  }
+
+  // ---------------- PHASE 7: RESEARCH ----------------
   if ((await getOrCreateRun(date, FB_SLOTS)).phases.research !== "done") {
     try {
       const researched = await runResearchTick();

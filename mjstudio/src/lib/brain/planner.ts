@@ -97,7 +97,14 @@ HARD RULES
 4. The article must reference the primary keyword in the title, first 100 words, and 2–3 H2 headings.
 5. Include at least ONE markdown table that adds analytical clarity (comparison, checklist, metric breakdown, etc.)
 6. Each FB post is ≤ 280 characters of body, with 5–8 punchy hashtags and a specific DALL-E image prompt. Voice: direct, no emoji spam, founder-to-founder.
-7. Lead-gen scripts must be personalized templates with clear variables like {firstName} {company} {trigger}, not generic.
+7. Lead-gen scripts MUST be machine-executable templates that will be auto-sent by the executor. Rules:
+   - Start with "Subject: <subject max 60 chars>" on line 1
+   - Use ONLY these exact merge slots: {firstName} {company} {domain} {trigger} {brandWeakness} {demoUrl} {demoSlug} {industry} {unsubUrl}
+   - Body: 60-100 words. Touch 1 = short, direct, one specific observation, one CTA
+   - Must end with: "To opt out: {unsubUrl}"
+   - Sign off: "Muraduzzaman\nBrandivibe — brandivibe.com"
+   - "target" field: keyword-rich phrase (e.g. "saas series-a funding ai startup") so the executor can match real prospects by industry/stage/trigger
+   - NEVER use placeholder brackets like [Company] or <insert>. Only the exact merge slots above.
 8. Ground every piece in lessons learned from prior performance when available.
 9. heroImagePrompt must describe a photorealistic or high-fidelity 3D render of a premium web design scene — no cartoon, no flat illustration.
 
