@@ -21,12 +21,10 @@ type PexelsResponse = {
   photos: PexelsPhoto[];
 };
 
-async function fetchPexelsHero(query: string): Promise<{ buffer: Buffer; credit: string; creditUrl: string }> {
+async function fetchPexelsHero(query: string): Promise<{ imageUrl: string; credit: string; creditUrl: string }> {
   const key = process.env.PEXELS_API_KEY;
   if (!key) throw new Error("PEXELS_API_KEY not set");
 
-  // Use the primary keyword / image prompt as search query — strip art-direction
-  // words so we get clean editorial photography
   const cleanQuery = query
     .replace(/\b(3d render|cinematic|photorealistic|high.end|editorial|magazine|aesthetic|no text|overlay|lighting|composition)\b/gi, "")
     .trim()
@@ -43,19 +41,16 @@ async function fetchPexelsHero(query: string): Promise<{ buffer: Buffer; credit:
   const photo = data.photos?.[0];
   if (!photo) throw new Error(`No Pexels results for query: "${cleanQuery}"`);
 
-  // Download the large2x version (1880px wide — good for hero)
-  const imgRes = await fetch(photo.src.large2x, { signal: AbortSignal.timeout(20_000) });
-  if (!imgRes.ok) throw new Error(`Pexels image download failed: ${imgRes.status}`);
-  const arrayBuffer = await imgRes.arrayBuffer();
-
+  // Use the Pexels CDN URL directly — permanent, free to hotlink with attribution.
+  // No need to download and commit the image to GitHub.
   return {
-    buffer: Buffer.from(arrayBuffer),
+    imageUrl: photo.src.large2x,
     credit: photo.photographer,
     creditUrl: photo.photographer_url,
   };
 }
 
-function buildMdx(spec: ArticleSpec, publishedAt: string, photoCredit?: { name: string; url: string }): string {
+function buildMdx(spec: ArticleSpec, publishedAt: string, heroImageUrl?: string, photoCredit?: { name: string; url: string }): string {
   const fm = [
     "---",
     `title: ${JSON.stringify(spec.title)}`,
@@ -63,7 +58,7 @@ function buildMdx(spec: ArticleSpec, publishedAt: string, photoCredit?: { name: 
     `excerpt: ${JSON.stringify(spec.excerpt)}`,
     `primaryKeyword: ${JSON.stringify(spec.primaryKeyword)}`,
     `secondaryKeywords: ${JSON.stringify(spec.secondaryKeywords)}`,
-    `heroImage: /journal/${spec.slug}-hero.jpg`,
+    heroImageUrl ? `heroImage: ${JSON.stringify(heroImageUrl)}` : "",
     photoCredit ? `heroCredit: ${JSON.stringify(photoCredit.name)}` : "",
     photoCredit ? `heroCreditUrl: ${JSON.stringify(photoCredit.url)}` : "",
     `publishedAt: ${publishedAt}`,
@@ -76,23 +71,23 @@ function buildMdx(spec: ArticleSpec, publishedAt: string, photoCredit?: { name: 
 export async function executeArticle(spec: ArticleSpec): Promise<Article> {
   const publishedAt = new Date().toISOString();
 
-  let heroBuffer: Buffer | null = null;
+  let heroImageUrl: string | undefined;
   let photoCredit: { name: string; url: string } | undefined;
 
   try {
     const pexels = await fetchPexelsHero(spec.heroImagePrompt || spec.primaryKeyword);
-    heroBuffer = pexels.buffer;
+    heroImageUrl = pexels.imageUrl;
     photoCredit = { name: pexels.credit, url: pexels.creditUrl };
   } catch (err) {
     console.error("[executor] Pexels fetch failed, skipping image:", err);
   }
 
-  const mdx = buildMdx(spec, publishedAt, photoCredit);
+  const mdx = buildMdx(spec, publishedAt, heroImageUrl, photoCredit);
 
   if (isGithubStorageEnabled()) {
-    // Always commit the MDX. Only commit the image if we have one — a missing
-    // Pexels image must not silently block the article from going live.
-    await commitArticle(spec.slug, mdx, heroBuffer);
+    // Commit MDX only — hero image is served from Pexels CDN directly,
+    // no need to download and re-commit binary files to GitHub.
+    await commitArticle(spec.slug, mdx, null);
   }
 
   const seo = scoreSEO({
@@ -110,7 +105,7 @@ export async function executeArticle(spec: ArticleSpec): Promise<Article> {
     excerpt: spec.excerpt,
     primaryKeyword: spec.primaryKeyword,
     secondaryKeywords: spec.secondaryKeywords,
-    heroImage: `/journal/${spec.slug}-hero.jpg`,
+    heroImage: heroImageUrl || "",
     seoScore: seo.score,
     wordCount,
     publishedAt,
