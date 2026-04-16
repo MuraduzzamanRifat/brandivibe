@@ -31,6 +31,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304925274_91nd50",
+      "timestamp": "2026-04-16T02:02:05.274Z",
+      "type": "source-run",
+      "description": "Source tick: 5 articles fetched, 1 new prospects added, 0 already known",
+      "tokens": 3876
+    },
+    {
       "id": "act_1776304923473_cs0g67",
       "timestamp": "2026-04-16T02:02:03.473Z",
       "type": "prospect-skipped",
