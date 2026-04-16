@@ -1,14 +1,12 @@
-import { getOpenAI } from "../openai";
 import { addFbPost, updateFbPost, type FbPost, type FbPostSpec } from "../brain-storage";
 
 /**
  * Facebook executor. For each FbPostSpec from the planner:
- *   1. Generate a DALL-E image
+ *   1. Fetch a relevant image from Pexels (free)
  *   2. If FACEBOOK_ACCESS_TOKEN is present, POST to Graph API /PAGE_ID/photos
  *   3. Otherwise push to the brain's fbQueue for manual approval
  *
- * When the env vars appear later, the same flow auto-publishes. No code
- * change needed.
+ * Requires: PEXELS_API_KEY env var (free at pexels.com/api)
  */
 
 function fbEnv() {
@@ -18,23 +16,37 @@ function fbEnv() {
   };
 }
 
-type DalleResponse = {
-  data: Array<{ url?: string; b64_json?: string }>;
+type PexelsPhoto = {
+  src: { square: string; medium: string };
+  photographer: string;
 };
 
-async function generateImage(prompt: string): Promise<string> {
-  const openai = getOpenAI();
-  const res = (await openai.images.generate({
-    model: "dall-e-3",
-    prompt: `${prompt}. Eye-catching social media format, 1:1 square, bold composition, founder-audience aesthetic, no text overlay.`,
-    size: "1024x1024",
-    quality: "standard",
-    response_format: "b64_json",
-    n: 1,
-  })) as unknown as DalleResponse;
-  const b64 = res.data[0]?.b64_json;
-  if (!b64) throw new Error("DALL-E returned no image");
-  return `data:image/png;base64,${b64}`;
+type PexelsResponse = {
+  photos: PexelsPhoto[];
+};
+
+async function fetchImage(prompt: string): Promise<string> {
+  const key = process.env.PEXELS_API_KEY;
+  if (!key) throw new Error("PEXELS_API_KEY not set");
+
+  const cleanQuery = prompt
+    .replace(/\b(social media|square|composition|aesthetic|format|overlay|bold|eye.catching)\b/gi, "")
+    .trim()
+    .slice(0, 100);
+
+  const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanQuery)}&per_page=3&orientation=square`;
+  const res = await fetch(url, {
+    headers: { Authorization: key },
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!res.ok) throw new Error(`Pexels API ${res.status}`);
+
+  const data = (await res.json()) as PexelsResponse;
+  const photo = data.photos?.[0];
+  if (!photo) throw new Error(`No Pexels results for: "${cleanQuery}"`);
+
+  // Return the medium square URL (640px) — good for FB posts
+  return photo.src.medium;
 }
 
 function formatPost(spec: FbPostSpec): string {
@@ -70,9 +82,9 @@ export async function queueOrPublishFbPost(spec: FbPostSpec): Promise<FbPost> {
 
   let imageUrl: string | undefined;
   try {
-    imageUrl = await generateImage(spec.imagePrompt);
+    imageUrl = await fetchImage(spec.imagePrompt);
   } catch (err) {
-    console.error("[fb] image generation failed:", err);
+    console.error("[fb] Pexels image fetch failed:", err);
   }
 
   const body = formatPost(spec);

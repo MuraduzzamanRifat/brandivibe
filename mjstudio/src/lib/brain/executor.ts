@@ -1,34 +1,61 @@
-import { getOpenAI } from "../openai";
 import { commitArticle, isGithubStorageEnabled } from "../github-storage";
 import { addArticle, type Article, type ArticleSpec } from "../brain-storage";
 import { scoreSEO } from "./seo";
 
 /**
- * Article executor. Takes a planner ArticleSpec, generates a DALL-E hero
- * image, commits the MDX + PNG to the GitHub repo, and records the Article
- * in brain.json.
+ * Article executor. Takes a planner ArticleSpec, fetches a hero image from
+ * Pexels (free, no generation cost), commits the MDX + PNG to the GitHub
+ * repo, and records the Article in brain.json.
+ *
+ * Requires: PEXELS_API_KEY env var (free at pexels.com/api)
  */
 
-type DalleResponse = {
-  data: Array<{ url?: string; b64_json?: string }>;
+type PexelsPhoto = {
+  src: { original: string; large2x: string };
+  photographer: string;
+  photographer_url: string;
+  url: string;
 };
 
-async function generateHero(prompt: string): Promise<Buffer> {
-  const openai = getOpenAI();
-  const res = (await openai.images.generate({
-    model: "dall-e-3",
-    prompt: `${prompt}. High-end editorial magazine aesthetic, cinematic lighting, rich detail, no text overlay.`,
-    size: "1792x1024",
-    quality: "hd",
-    response_format: "b64_json",
-    n: 1,
-  })) as unknown as DalleResponse;
-  const b64 = res.data[0]?.b64_json;
-  if (!b64) throw new Error("DALL-E returned no image");
-  return Buffer.from(b64, "base64");
+type PexelsResponse = {
+  photos: PexelsPhoto[];
+};
+
+async function fetchPexelsHero(query: string): Promise<{ buffer: Buffer; credit: string; creditUrl: string }> {
+  const key = process.env.PEXELS_API_KEY;
+  if (!key) throw new Error("PEXELS_API_KEY not set");
+
+  // Use the primary keyword / image prompt as search query — strip art-direction
+  // words so we get clean editorial photography
+  const cleanQuery = query
+    .replace(/\b(3d render|cinematic|photorealistic|high.end|editorial|magazine|aesthetic|no text|overlay|lighting|composition)\b/gi, "")
+    .trim()
+    .slice(0, 100);
+
+  const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanQuery)}&per_page=5&orientation=landscape`;
+  const res = await fetch(url, {
+    headers: { Authorization: key },
+    signal: AbortSignal.timeout(15_000),
+  });
+  if (!res.ok) throw new Error(`Pexels API ${res.status}: ${await res.text()}`);
+
+  const data = (await res.json()) as PexelsResponse;
+  const photo = data.photos?.[0];
+  if (!photo) throw new Error(`No Pexels results for query: "${cleanQuery}"`);
+
+  // Download the large2x version (1880px wide — good for hero)
+  const imgRes = await fetch(photo.src.large2x, { signal: AbortSignal.timeout(20_000) });
+  if (!imgRes.ok) throw new Error(`Pexels image download failed: ${imgRes.status}`);
+  const arrayBuffer = await imgRes.arrayBuffer();
+
+  return {
+    buffer: Buffer.from(arrayBuffer),
+    credit: photo.photographer,
+    creditUrl: photo.photographer_url,
+  };
 }
 
-function buildMdx(spec: ArticleSpec, publishedAt: string): string {
+function buildMdx(spec: ArticleSpec, publishedAt: string, photoCredit?: { name: string; url: string }): string {
   const fm = [
     "---",
     `title: ${JSON.stringify(spec.title)}`,
@@ -36,27 +63,34 @@ function buildMdx(spec: ArticleSpec, publishedAt: string): string {
     `excerpt: ${JSON.stringify(spec.excerpt)}`,
     `primaryKeyword: ${JSON.stringify(spec.primaryKeyword)}`,
     `secondaryKeywords: ${JSON.stringify(spec.secondaryKeywords)}`,
-    `heroImage: /journal/${spec.slug}-hero.png`,
+    `heroImage: /journal/${spec.slug}-hero.jpg`,
+    photoCredit ? `heroCredit: ${JSON.stringify(photoCredit.name)}` : "",
+    photoCredit ? `heroCreditUrl: ${JSON.stringify(photoCredit.url)}` : "",
     `publishedAt: ${publishedAt}`,
     "---",
     "",
-  ].join("\n");
+  ].filter(Boolean).join("\n");
   return fm + spec.body.trim() + "\n";
 }
 
 export async function executeArticle(spec: ArticleSpec): Promise<Article> {
   const publishedAt = new Date().toISOString();
-  const mdx = buildMdx(spec, publishedAt);
 
-  let heroPng: Buffer | null = null;
+  let heroBuffer: Buffer | null = null;
+  let photoCredit: { name: string; url: string } | undefined;
+
   try {
-    heroPng = await generateHero(spec.heroImagePrompt);
+    const pexels = await fetchPexelsHero(spec.heroImagePrompt || spec.primaryKeyword);
+    heroBuffer = pexels.buffer;
+    photoCredit = { name: pexels.credit, url: pexels.creditUrl };
   } catch (err) {
-    console.error("[executor] DALL-E failed, skipping image:", err);
+    console.error("[executor] Pexels fetch failed, skipping image:", err);
   }
 
-  if (isGithubStorageEnabled() && heroPng) {
-    await commitArticle(spec.slug, mdx, heroPng);
+  const mdx = buildMdx(spec, publishedAt, photoCredit);
+
+  if (isGithubStorageEnabled() && heroBuffer) {
+    await commitArticle(spec.slug, mdx, heroBuffer);
   }
 
   const seo = scoreSEO({
@@ -74,7 +108,7 @@ export async function executeArticle(spec: ArticleSpec): Promise<Article> {
     excerpt: spec.excerpt,
     primaryKeyword: spec.primaryKeyword,
     secondaryKeywords: spec.secondaryKeywords,
-    heroImage: `/journal/${spec.slug}-hero.png`,
+    heroImage: `/journal/${spec.slug}-hero.jpg`,
     seoScore: seo.score,
     wordCount,
     publishedAt,

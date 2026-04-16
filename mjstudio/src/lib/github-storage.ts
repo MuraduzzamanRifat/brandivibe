@@ -118,11 +118,11 @@ export async function pushBrainJson(data: unknown, sha: string | undefined): Pro
   return res.sha;
 }
 
-export async function commitArticle(slug: string, mdx: string, imagePng: Buffer): Promise<void> {
+export async function commitArticle(slug: string, mdx: string, imageBuffer: Buffer): Promise<void> {
   const mdxPath = `mjstudio/content/journal/${slug}.mdx`;
-  const imgPath = `mjstudio/public/journal/${slug}-hero.png`;
+  const imgPath = `mjstudio/public/journal/${slug}-hero.jpg`;
   const existingMdx = await getFile(mdxPath);
   const existingImg = await getFile(imgPath);
   await putFile(mdxPath, mdx, `journal: publish ${slug}`, existingMdx?.sha);
-  await putFile(imgPath, imagePng, `journal: hero image for ${slug}`, existingImg?.sha);
+  await putFile(imgPath, imageBuffer, `journal: hero image for ${slug}`, existingImg?.sha);
 }
