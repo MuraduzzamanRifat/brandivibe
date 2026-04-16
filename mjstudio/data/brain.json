@@ -31,6 +31,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776304930142_wcgayr",
+      "timestamp": "2026-04-16T02:02:10.142Z",
+      "type": "prospect-skipped",
+      "description": "Could not scrape gizmo.com (404 or network failure)",
+      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
+    },
+    {
       "id": "act_1776304928623_40tev3",
       "timestamp": "2026-04-16T02:02:08.623Z",
       "type": "lead-gen-skipped",
