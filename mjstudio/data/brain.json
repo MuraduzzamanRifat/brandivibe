@@ -450,13 +450,13 @@
     {
       "date": "2026-04-17",
       "startedAt": "2026-04-17T14:16:56.727Z",
-      "updatedAt": "2026-04-17T14:17:53.766Z",
+      "updatedAt": "2026-04-17T14:17:57.890Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
-          "pending",
+          "done",
           "pending"
         ],
         "score": "pending",
