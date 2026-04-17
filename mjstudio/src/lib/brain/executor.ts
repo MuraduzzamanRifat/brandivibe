@@ -1,5 +1,5 @@
 import { commitArticle, isGithubStorageEnabled } from "../github-storage";
-import { addArticle, type Article, type ArticleSpec } from "../brain-storage";
+import { addArticle, loadBrain, type Article, type ArticleSpec } from "../brain-storage";
 import { scoreSEO } from "./seo";
 
 /**
@@ -21,32 +21,44 @@ type PexelsResponse = {
   photos: PexelsPhoto[];
 };
 
-async function fetchPexelsHero(query: string): Promise<{ imageUrl: string; credit: string; creditUrl: string }> {
-  const key = process.env.PEXELS_API_KEY;
+async function fetchPexelsHero(
+  query: string,
+  usedImageUrls: Set<string>
+): Promise<{ imageUrl: string; credit: string; creditUrl: string }> {
+  const key: string | undefined = process.env.PEXELS_API_KEY;
   if (!key) throw new Error("PEXELS_API_KEY not set");
+  const authHeader = key; // narrowed for closures
 
   const cleanQuery = query
     .replace(/\b(3d render|cinematic|photorealistic|high.end|editorial|magazine|aesthetic|no text|overlay|lighting|composition)\b/gi, "")
     .trim()
     .slice(0, 100);
 
-  const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanQuery)}&per_page=5&orientation=landscape`;
-  const res = await fetch(url, {
-    headers: { Authorization: key },
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!res.ok) throw new Error(`Pexels API ${res.status}: ${await res.text()}`);
+  // Fetch a wide pool of candidates (30) across 2 pages so we have many
+  // unique photos to choose from — prevents back-to-back duplicates.
+  async function fetchPage(page: number): Promise<PexelsPhoto[]> {
+    const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanQuery)}&per_page=15&page=${page}&orientation=landscape`;
+    const res = await fetch(url, {
+      headers: { Authorization: authHeader },
+      signal: AbortSignal.timeout(15_000),
+    });
+    if (!res.ok) throw new Error(`Pexels API ${res.status}: ${await res.text()}`);
+    const data = (await res.json()) as PexelsResponse;
+    return data.photos ?? [];
+  }
 
-  const data = (await res.json()) as PexelsResponse;
-  const photo = data.photos?.[0];
-  if (!photo) throw new Error(`No Pexels results for query: "${cleanQuery}"`);
+  const pool = [...(await fetchPage(1)), ...(await fetchPage(2).catch(() => []))];
+  if (pool.length === 0) throw new Error(`No Pexels results for query: "${cleanQuery}"`);
 
-  // Use the Pexels CDN URL directly — permanent, free to hotlink with attribution.
-  // No need to download and commit the image to GitHub.
+  // Prefer photos we haven't used before; fall back to random if all used.
+  const unused = pool.filter((p) => !usedImageUrls.has(p.src.large2x));
+  const candidates = unused.length > 0 ? unused : pool;
+  const picked = candidates[Math.floor(Math.random() * candidates.length)];
+
   return {
-    imageUrl: photo.src.large2x,
-    credit: photo.photographer,
-    creditUrl: photo.photographer_url,
+    imageUrl: picked.src.large2x,
+    credit: picked.photographer,
+    creditUrl: picked.photographer_url,
   };
 }
 
@@ -71,11 +83,22 @@ function buildMdx(spec: ArticleSpec, publishedAt: string, heroImageUrl?: string,
 export async function executeArticle(spec: ArticleSpec): Promise<Article> {
   const publishedAt = new Date().toISOString();
 
+  // Collect all previously-used hero image URLs so we don't pick one again.
+  const brain = await loadBrain();
+  const usedImageUrls = new Set(
+    (brain.articles ?? [])
+      .map((a) => a.heroImage)
+      .filter((u): u is string => Boolean(u))
+  );
+
   let heroImageUrl: string | undefined;
   let photoCredit: { name: string; url: string } | undefined;
 
   try {
-    const pexels = await fetchPexelsHero(spec.heroImagePrompt || spec.primaryKeyword);
+    const pexels = await fetchPexelsHero(
+      spec.heroImagePrompt || spec.primaryKeyword,
+      usedImageUrls
+    );
     heroImageUrl = pexels.imageUrl;
     photoCredit = { name: pexels.credit, url: pexels.creditUrl };
   } catch (err) {

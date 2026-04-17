@@ -35,7 +35,11 @@ export async function planToday(angleOverride?: number): Promise<Plan> {
   const knowledge = await loadMarketingKnowledge();
   const brain = await loadBrain();
 
-  const recentTitles = (brain.articles ?? []).slice(0, 14).map((a) => a.title);
+  // Pass ALL published titles (up to 50) so the planner never duplicates an
+  // existing article. Backfill can run many articles in sequence so we need
+  // to cast a wider net than just the last 14.
+  const recentTitles = (brain.articles ?? []).slice(0, 50).map((a) => a.title);
+  const recentSlugs = (brain.articles ?? []).slice(0, 50).map((a) => a.slug);
   const recentLearning = (brain.learning ?? []).slice(0, 10).map((l) => l.insight);
   const topPerformers = (brain.articles ?? [])
     .filter((a) => a.metrics)
@@ -150,7 +154,9 @@ ${knowledge}
 END KNOWLEDGE
 
 HARD RULES
-1. Topic must be NEW — do not repeat any of these recent titles: ${JSON.stringify(recentTitles)}
+1. Topic must be COMPLETELY NEW — do not repeat or paraphrase any of these already-published titles or slugs. Pick a genuinely different angle and topic:
+ALREADY PUBLISHED TITLES: ${JSON.stringify(recentTitles)}
+ALREADY PUBLISHED SLUGS: ${JSON.stringify(recentSlugs)}
 2. Primary keyword must have buyer intent ("premium web design for startups", "startup landing page conversion", "SaaS homepage that converts", "3D website design ROI", etc.)
 3. Article body must be valid Markdown (GitHub-flavored). Use one # H1, then ## H2 and ### H3. Include at least 3 internal links to Brandivibe demos (format: [anchor text](/demo-slug)) and 2 external authoritative links to REAL pages (Google research, NNGroup, Baymard, etc.).
 4. The article must reference the primary keyword in the title, first 100 words, and 2–3 H2 headings.
@@ -197,16 +203,24 @@ Return strict JSON with this shape — no markdown fences, no prose:
   const user = `Generate today's plan. Date: ${today()}.`;
 
   async function callModel(extraSystem?: string): Promise<{ parsed: PlannerOutput; tokens: number; model: string }> {
+    // GPT-4o supports up to 16K output tokens. Default is 4096 which truncates
+    // a 2000-word article when combined with FB posts + lead-gen actions.
+    // Raising this is the #1 fix for short articles.
     const completion = await openai.chat.completions.create({
       model: MODELS.QUALITY,
       response_format: { type: "json_object" },
       temperature: 0.85,
+      max_tokens: 16_000,
       messages: [
         { role: "system", content: extraSystem ? `${system}\n\n${extraSystem}` : system },
         { role: "user", content: user },
       ],
     });
     const content = completion.choices[0]?.message?.content ?? "{}";
+    const finishReason = completion.choices[0]?.finish_reason;
+    if (finishReason === "length") {
+      console.error("[planner] GPT response truncated — article will be short");
+    }
     const parsed = JSON.parse(content) as PlannerOutput;
     return {
       parsed,
@@ -223,6 +237,12 @@ Return strict JSON with this shape — no markdown fences, no prose:
   if (!parsed.article.slug) {
     parsed.article.slug = slugify(parsed.article.title ?? "untitled");
   }
+  // Enforce slug uniqueness even if GPT ignored the hard rule
+  const publishedSlugSet = new Set(recentSlugs);
+  if (publishedSlugSet.has(parsed.article.slug)) {
+    const suffix = Math.random().toString(36).slice(2, 6);
+    parsed.article.slug = `${parsed.article.slug}-${suffix}`;
+  }
 
   const seo = scoreSEO({
     title: parsed.article.title,
@@ -231,9 +251,16 @@ Return strict JSON with this shape — no markdown fences, no prose:
     primaryKeyword: parsed.article.primaryKeyword,
   });
 
-  if (seo.score < 75) {
+  const bodyWords = (parsed.article.body ?? "").split(/\s+/).filter(Boolean).length;
+
+  // Retry if SEO score < 75 OR if article is shorter than 1500 words
+  // (often a truncation issue — the prompt requires 1800-2500).
+  if (seo.score < 75 || bodyWords < 1500) {
+    const lengthIssue = bodyWords < 1500
+      ? `\n- CRITICAL: Article body is only ${bodyWords} words. It MUST be 1800-2500 words. Write a genuinely long-form article with deep sections, multiple examples, analysis, and original insights. DO NOT truncate.`
+      : "";
     const retry = await callModel(
-      `The first draft scored ${seo.score}/100 on SEO. Fix these issues and return the WHOLE plan again:\n${seo.fixes.map((f) => `- ${f}`).join("\n")}`
+      `The first draft scored ${seo.score}/100 on SEO. Fix these issues and return the WHOLE plan again:\n${seo.fixes.map((f) => `- ${f}`).join("\n")}${lengthIssue}`
     );
     parsed = retry.parsed;
     tokens += retry.tokens;
