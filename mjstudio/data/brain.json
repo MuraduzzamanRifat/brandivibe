@@ -532,7 +532,7 @@
     {
       "date": "2026-04-17",
       "startedAt": "2026-04-17T14:16:56.727Z",
-      "updatedAt": "2026-04-17T14:18:06.735Z",
+      "updatedAt": "2026-04-17T14:18:39.612Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -542,7 +542,7 @@
           "done"
         ],
         "score": "done",
-        "source": "pending",
+        "source": "done",
         "leadgen": "pending",
         "research": "pending",
         "sequence": "pending",
