@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776462068278_7d4cuc",
+      "timestamp": "2026-04-17T21:41:08.278Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a large venture capital firm, which is outside of the size and type suitable for Brandivibe's service offerings.",
+      "source": "techcrunch",
+      "tokens": 762
+    },
+    {
       "id": "act_1776462062750_kflpft",
       "timestamp": "2026-04-17T21:41:02.750Z",
       "type": "prospect-skipped",
