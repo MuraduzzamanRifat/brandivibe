@@ -30,7 +30,7 @@ function today(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
-export async function planToday(): Promise<Plan> {
+export async function planToday(angleOverride?: number): Promise<Plan> {
   const openai = getOpenAI();
   const knowledge = await loadMarketingKnowledge();
   const brain = await loadBrain();
@@ -62,7 +62,7 @@ export async function planToday(): Promise<Plan> {
   const now = new Date();
   const startOfYear = new Date(now.getFullYear(), 0, 0);
   const dayOfYear = Math.floor((now.getTime() - startOfYear.getTime()) / 86_400_000);
-  const angleIndex = dayOfYear % CONTENT_ANGLES.length;
+  const angleIndex = (angleOverride ?? dayOfYear) % CONTENT_ANGLES.length;
   const todayAngle = CONTENT_ANGLES[angleIndex];
 
   const system = `You are Muraduzzaman's ghostwriter — a senior strategist who has personally built and sold premium web projects. You write from lived experience, not textbook knowledge. Your voice is direct, opinionated, and occasionally blunt. You have strong views about what works and what doesn't in web design, and you're not afraid to say so.

@@ -1,0 +1,66 @@
+name: Brandivibe brain backfill (one-shot)
+
+# Manual one-shot workflow to backfill multiple articles.
+# Runs three sequential POSTs to /api/brain/backfill covering all 10 content
+# angles. Each POST generates up to 4 articles within Koyeb's 300s limit.
+#
+# Trigger: Actions tab → Brandivibe brain backfill → Run workflow.
+# Safe to re-run — planner skips already-published titles.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Batch 1 — angles 0-3
+        id: batch1
+        run: |
+          curl -fsS --max-time 310 -X POST \
+            https://brandivibe.com/api/brain/backfill \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"count":4,"startAngle":0}' \
+            -o batch1.json
+          echo "--- batch 1 ---"
+          cat batch1.json
+
+      - name: Batch 2 — angles 4-6
+        run: |
+          curl -fsS --max-time 310 -X POST \
+            https://brandivibe.com/api/brain/backfill \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"count":3,"startAngle":4}' \
+            -o batch2.json
+          echo "--- batch 2 ---"
+          cat batch2.json
+
+      - name: Batch 3 — angles 7-9
+        run: |
+          curl -fsS --max-time 310 -X POST \
+            https://brandivibe.com/api/brain/backfill \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{"count":3,"startAngle":7}' \
+            -o batch3.json
+          echo "--- batch 3 ---"
+          cat batch3.json
+
+      - name: Summary
+        run: |
+          node -e "
+            const b1 = require('./batch1.json');
+            const b2 = require('./batch2.json');
+            const b3 = require('./batch3.json');
+            const total = (b1.generated || 0) + (b2.generated || 0) + (b3.generated || 0);
+            const errs = [...(b1.errors || []), ...(b2.errors || []), ...(b3.errors || [])];
+            console.log('Total generated:', total);
+            console.log('Total articles now:', b3.totalArticlesNow);
+            if (errs.length) {
+              console.error('Errors:', JSON.stringify(errs, null, 2));
+            }
+            if (total < 8) process.exit(1);
+          "
