@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776462072906_51vozo",
+      "timestamp": "2026-04-17T21:41:12.906Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — Factory is valued at $1.5B, which is too large for our target project sizes ($35-90K).",
+      "source": "techcrunch",
+      "tokens": 757
+    },
+    {
       "id": "act_1776462068278_7d4cuc",
       "timestamp": "2026-04-17T21:41:08.278Z",
       "type": "prospect-skipped",
