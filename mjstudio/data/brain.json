@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776452400245_gcipgl",
+      "timestamp": "2026-04-17T19:00:00.245Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the media and entertainment industry, which is outside the web design studio's target industries.",
+      "source": "techcrunch",
+      "tokens": 717
+    },
+    {
       "id": "act_1776452396318_36tsxt",
       "timestamp": "2026-04-17T18:59:56.318Z",
       "type": "prospect-skipped",
