@@ -1,7 +1,26 @@
 import { getOpenAI, MODELS } from "../openai";
 import { loadMarketingKnowledge } from "../marketing-knowledge";
 import { loadBrain, type Plan, type ArticleSpec, type FbPostSpec, type LeadGenAction } from "../brain-storage";
-import { scoreSEO } from "./seo";
+import { scoreSEO, wordCount } from "./seo";
+
+// Rotate through 10 content angles based on day-of-year so every angle gets
+// covered before repeating. Keeps the blog strategically diverse.
+const CONTENT_ANGLES = [
+  "ROI of premium web design — quantify revenue impact, conversion lift, and payback period for founders who invest in elite design",
+  "First impressions & brand perception — how visitors judge credibility in milliseconds and what that costs founders in lost pipeline",
+  "Conversion psychology & UX — the behavioral science behind high-converting layouts, whitespace, motion, and trust signals",
+  "Case-study-style transformation — before/after of a real or hypothetical brand that redesigned and what changed in their numbers",
+  "Basic vs 3D immersive websites — side-by-side comparison of static sites vs interactive 3D experiences and the business case for each",
+  "Future of web design — where the industry is heading (WebGL, AI personalization, spatial computing) and why early movers win",
+  "Design → trust → revenue — the causal chain from visual quality to perceived credibility to willingness to pay",
+  "Mistakes cheap websites make — specific technical and design failures that signal low status and repel premium buyers",
+  "Why premium design attracts premium clients — how your website acts as a price anchor and ICP filter simultaneously",
+  "Website as a competitive advantage — treating the homepage as a strategic asset, not a brochure, in competitive markets",
+] as const;
+
+// Minimum article body length — below this we re-prompt. Spec requires
+// 1800-2500 words; 1800 is the hard floor.
+const MIN_ARTICLE_WORDS = 1800;
 
 /**
  * Autonomous planner. Reads marketing knowledge + recent learning + recently
@@ -47,20 +66,6 @@ export async function planToday(angleOverride?: number): Promise<Plan> {
     .slice(0, 5)
     .map((a) => ({ title: a.title, pageviews: a.metrics?.pageviews ?? 0, rating: a.rating }));
 
-  // Rotate through 10 content angles based on day-of-year so every angle gets
-  // covered before repeating. Keeps the blog strategically diverse.
-  const CONTENT_ANGLES = [
-    "ROI of premium web design — quantify revenue impact, conversion lift, and payback period for founders who invest in elite design",
-    "First impressions & brand perception — how visitors judge credibility in milliseconds and what that costs founders in lost pipeline",
-    "Conversion psychology & UX — the behavioral science behind high-converting layouts, whitespace, motion, and trust signals",
-    "Case-study-style transformation — before/after of a real or hypothetical brand that redesigned and what changed in their numbers",
-    "Basic vs 3D immersive websites — side-by-side comparison of static sites vs interactive 3D experiences and the business case for each",
-    "Future of web design — where the industry is heading (WebGL, AI personalization, spatial computing) and why early movers win",
-    "Design → trust → revenue — the causal chain from visual quality to perceived credibility to willingness to pay",
-    "Mistakes cheap websites make — specific technical and design failures that signal low status and repel premium buyers",
-    "Why premium design attracts premium clients — how your website acts as a price anchor and ICP filter simultaneously",
-    "Website as a competitive advantage — treating the homepage as a strategic asset, not a brochure, in competitive markets",
-  ];
   // Use day-of-year so all 10 angles are visited before repeating. getDay()
   // only returns 0-6 and would skip angles 7-9 entirely.
   const now = new Date();
@@ -237,12 +242,6 @@ Return strict JSON with this shape — no markdown fences, no prose:
   if (!parsed.article.slug) {
     parsed.article.slug = slugify(parsed.article.title ?? "untitled");
   }
-  // Enforce slug uniqueness even if GPT ignored the hard rule
-  const publishedSlugSet = new Set(recentSlugs);
-  if (publishedSlugSet.has(parsed.article.slug)) {
-    const suffix = Math.random().toString(36).slice(2, 6);
-    parsed.article.slug = `${parsed.article.slug}-${suffix}`;
-  }
 
   const seo = scoreSEO({
     title: parsed.article.title,
@@ -251,12 +250,11 @@ Return strict JSON with this shape — no markdown fences, no prose:
     primaryKeyword: parsed.article.primaryKeyword,
   });
 
-  const bodyWords = (parsed.article.body ?? "").split(/\s+/).filter(Boolean).length;
+  const bodyWords = wordCount(parsed.article.body ?? "");
 
-  // Retry if SEO score < 75 OR if article is shorter than 1500 words
-  // (often a truncation issue — the prompt requires 1800-2500).
-  if (seo.score < 75 || bodyWords < 1500) {
-    const lengthIssue = bodyWords < 1500
+  // Retry if SEO score < 75 OR article is shorter than the hard minimum.
+  if (seo.score < 75 || bodyWords < MIN_ARTICLE_WORDS) {
+    const lengthIssue = bodyWords < MIN_ARTICLE_WORDS
       ? `\n- CRITICAL: Article body is only ${bodyWords} words. It MUST be 1800-2500 words. Write a genuinely long-form article with deep sections, multiple examples, analysis, and original insights. DO NOT truncate.`
       : "";
     const retry = await callModel(
@@ -267,6 +265,14 @@ Return strict JSON with this shape — no markdown fences, no prose:
     model = retry.model;
     if (!parsed.article) throw new Error("Planner retry: GPT returned no article object");
     if (!parsed.article.slug) parsed.article.slug = slugify(parsed.article.title ?? "untitled");
+  }
+
+  // Enforce slug uniqueness AFTER any retry — a retried draft can still
+  // collide with an existing published slug.
+  const publishedSlugSet = new Set(recentSlugs);
+  if (publishedSlugSet.has(parsed.article.slug)) {
+    const suffix = Math.random().toString(36).slice(2, 6);
+    parsed.article.slug = `${parsed.article.slug}-${suffix}`;
   }
 
   const plan: Plan = {

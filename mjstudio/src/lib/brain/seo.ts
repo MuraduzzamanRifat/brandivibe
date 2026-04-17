@@ -35,7 +35,7 @@ function countKeyword(text: string, keyword: string): number {
   return (text.match(re) || []).length;
 }
 
-function wordCount(text: string): number {
+export function wordCount(text: string): number {
   return text.split(/\s+/).filter(Boolean).length;
 }
 

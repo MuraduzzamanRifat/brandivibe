@@ -1,6 +1,6 @@
 import { commitArticle, isGithubStorageEnabled } from "../github-storage";
 import { addArticle, loadBrain, type Article, type ArticleSpec } from "../brain-storage";
-import { scoreSEO } from "./seo";
+import { scoreSEO, wordCount } from "./seo";
 
 /**
  * Article executor. Takes a planner ArticleSpec, fetches a hero image from
@@ -25,9 +25,8 @@ async function fetchPexelsHero(
   query: string,
   usedImageUrls: Set<string>
 ): Promise<{ imageUrl: string; credit: string; creditUrl: string }> {
-  const key: string | undefined = process.env.PEXELS_API_KEY;
+  const key = process.env.PEXELS_API_KEY;
   if (!key) throw new Error("PEXELS_API_KEY not set");
-  const authHeader = key; // narrowed for closures
 
   const cleanQuery = query
     .replace(/\b(3d render|cinematic|photorealistic|high.end|editorial|magazine|aesthetic|no text|overlay|lighting|composition)\b/gi, "")
@@ -39,7 +38,7 @@ async function fetchPexelsHero(
   async function fetchPage(page: number): Promise<PexelsPhoto[]> {
     const url = `https://api.pexels.com/v1/search?query=${encodeURIComponent(cleanQuery)}&per_page=15&page=${page}&orientation=landscape`;
     const res = await fetch(url, {
-      headers: { Authorization: authHeader },
+      headers: { Authorization: key! },
       signal: AbortSignal.timeout(15_000),
     });
     if (!res.ok) throw new Error(`Pexels API ${res.status}: ${await res.text()}`);
@@ -47,7 +46,8 @@ async function fetchPexelsHero(
     return data.photos ?? [];
   }
 
-  const pool = [...(await fetchPage(1)), ...(await fetchPage(2).catch(() => []))];
+  const [page1, page2] = await Promise.all([fetchPage(1), fetchPage(2).catch(() => [])]);
+  const pool = [...page1, ...page2];
   if (pool.length === 0) throw new Error(`No Pexels results for query: "${cleanQuery}"`);
 
   // Prefer photos we haven't used before; fall back to random if all used.
@@ -83,7 +83,6 @@ function buildMdx(spec: ArticleSpec, publishedAt: string, heroImageUrl?: string,
 export async function executeArticle(spec: ArticleSpec): Promise<Article> {
   const publishedAt = new Date().toISOString();
 
-  // Collect all previously-used hero image URLs so we don't pick one again.
   const brain = await loadBrain();
   const usedImageUrls = new Set(
     (brain.articles ?? [])
@@ -119,7 +118,7 @@ export async function executeArticle(spec: ArticleSpec): Promise<Article> {
     body: spec.body,
     primaryKeyword: spec.primaryKeyword,
   });
-  const wordCount = spec.body.split(/\s+/).filter(Boolean).length;
+  const words = wordCount(spec.body);
 
   const article: Article = {
     id: `art_${Date.now()}`,
@@ -130,7 +129,7 @@ export async function executeArticle(spec: ArticleSpec): Promise<Article> {
     secondaryKeywords: spec.secondaryKeywords,
     heroImage: heroImageUrl || "",
     seoScore: seo.score,
-    wordCount,
+    wordCount: words,
     publishedAt,
   };
 
