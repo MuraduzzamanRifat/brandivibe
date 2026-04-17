@@ -2,30 +2,25 @@
   "prospects": [
     {
       "id": "tc_aHR0cHM6Ly90ZWNo",
-      "company": "Gizmo",
-      "domain": "gizmo.com",
+      "company": "Luma",
+      "domain": "luma.com",
       "founder": "",
       "role": "",
       "email": "",
       "industry": "ai",
-      "stage": "Series A",
-      "recentFunding": {
-        "amount": "$22M",
-        "date": "2026-04-15",
-        "round": "Series A"
-      },
-      "trigger": "Gizmo recently secured $22 million in Series A funding.",
-      "icpTier": "A",
-      "icpScore": 8,
-      "bestFitDemo": "neuron",
-      "brandWeakness": "The current brand may struggle to differentiate as it scales with 13 million users.",
-      "estimatedBudget": "$50-75K",
+      "stage": "",
+      "trigger": "Luma is expanding with a new AI-powered production studio for high-profile media projects.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "aurora",
+      "brandWeakness": "The brand launch lacks a detailed visual identity for their AI-focused initiative online.",
+      "estimatedBudget": "$35-50K",
       "status": "new",
-      "notes": "Having attracted a substantial user base and funding round, Gizmo likely requires a robust design overhaul to support its scaling operations.",
+      "notes": "Luma's new project suggests interest in digital enhancements and visual storytelling, fitting for advanced web solutions.",
       "source": "techcrunch",
-      "sourceUrl": "https://techcrunch.com/2026/04/15/ai-learning-app-gizmo-levels-up-with-13m-users-and-a-22m-investment/",
-      "createdAt": "2026-04-16T02:01:49.164Z",
-      "updatedAt": "2026-04-16T02:01:49.164Z"
+      "sourceUrl": "https://techcrunch.com/2026/04/16/luma-launches-ai-powered-production-studio-with-faith-focused-wonder-project/",
+      "createdAt": "2026-04-17T20:01:03.372Z",
+      "updatedAt": "2026-04-17T20:01:03.372Z"
     }
   ],
   "drafts": [],
