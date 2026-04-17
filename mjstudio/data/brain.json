@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776469107851_tzo6ox",
+      "timestamp": "2026-04-17T23:38:27.851Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too large and well-funded, likely exceeding Brandivibe's typical project size.",
+      "source": "techcrunch",
+      "tokens": 771
+    },
+    {
       "id": "act_1776465508908_1b3gpk",
       "timestamp": "2026-04-17T22:38:28.908Z",
       "type": "prospect-skipped",
