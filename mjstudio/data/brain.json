@@ -410,10 +410,10 @@
     {
       "date": "2026-04-17",
       "startedAt": "2026-04-17T14:16:56.727Z",
-      "updatedAt": "2026-04-17T14:17:42.612Z",
+      "updatedAt": "2026-04-17T14:17:49.062Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
