@@ -31,6 +31,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435524667_2vzm4v",
+      "timestamp": "2026-04-17T14:18:44.667Z",
+      "type": "lead-gen-skipped",
+      "description": "Lead-gen executor: 0 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
+    },
+    {
       "id": "act_1776435522353_4hi1dd",
       "timestamp": "2026-04-17T14:18:42.353Z",
       "type": "lead-gen-skipped",
