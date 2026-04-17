@@ -173,6 +173,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776456093947_hszylu",
+      "timestamp": "2026-04-17T20:01:33.947Z",
+      "type": "prospect-researched",
+      "description": "Hourly research: 1 prospects researched, 1 emails found",
+      "tokens": 2369
+    },
+    {
       "id": "act_1776456090847_k2v81j",
       "timestamp": "2026-04-17T20:01:30.847Z",
       "type": "email-found",
