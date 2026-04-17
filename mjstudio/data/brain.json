@@ -26,6 +26,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776456090847_k2v81j",
+      "timestamp": "2026-04-17T20:01:30.847Z",
+      "type": "email-found",
+      "description": "Best email for Luma: alex.johnson@luma.com (pattern, conf 35)",
+      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
+    },
+    {
       "id": "act_1776456089487_rj942u",
       "timestamp": "2026-04-17T20:01:29.487Z",
       "type": "prospect-researched",
