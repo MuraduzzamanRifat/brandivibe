@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776452381912_qqjxqg",
+      "timestamp": "2026-04-17T18:59:41.913Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is too large and advanced for our target project budget range.",
+      "source": "techcrunch",
+      "tokens": 766
+    },
+    {
       "id": "act_1776447331770_vahxcn",
       "timestamp": "2026-04-17T17:35:31.770Z",
       "type": "article-published",
