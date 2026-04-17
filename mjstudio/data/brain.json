@@ -31,6 +31,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435532309_840l26",
+      "timestamp": "2026-04-17T14:18:52.309Z",
+      "type": "sequence-advanced",
+      "description": "Sequence tick: started 0, advanced 0, completed 0",
+      "tokens": 0
+    },
+    {
       "id": "act_1776435529858_rsn33c",
       "timestamp": "2026-04-17T14:18:49.858Z",
       "type": "prospect-researched",
