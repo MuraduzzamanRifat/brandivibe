@@ -31,6 +31,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435529858_rsn33c",
+      "timestamp": "2026-04-17T14:18:49.858Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 1",
+      "tokens": 0
+    },
+    {
       "id": "act_1776435527203_y98b1j",
       "timestamp": "2026-04-17T14:18:47.203Z",
       "type": "prospect-skipped",
