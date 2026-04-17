@@ -565,7 +565,7 @@
     {
       "date": "2026-04-17",
       "startedAt": "2026-04-17T14:16:56.727Z",
-      "updatedAt": "2026-04-17T14:18:48.382Z",
+      "updatedAt": "2026-04-17T14:18:50.878Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -578,7 +578,7 @@
         "source": "done",
         "leadgen": "done",
         "research": "done",
-        "sequence": "pending",
+        "sequence": "done",
         "send": "pending",
         "blast": "pending"
       },
