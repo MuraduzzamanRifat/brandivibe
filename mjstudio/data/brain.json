@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776469112151_d8pf2o",
+      "timestamp": "2026-04-17T23:38:32.151Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large, well-established AI company, likely with an internal design team and resources beyond Brandivibe's project range.",
+      "source": "techcrunch",
+      "tokens": 732
+    },
+    {
       "id": "act_1776469107851_tzo6ox",
       "timestamp": "2026-04-17T23:38:27.851Z",
       "type": "prospect-skipped",
