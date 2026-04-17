@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776465508908_1b3gpk",
+      "timestamp": "2026-04-17T22:38:28.908Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company is too large (unicorn status at $1.5B valuation) for typical project budgets at Brandivibe.",
+      "source": "techcrunch",
+      "tokens": 770
+    },
+    {
       "id": "act_1776465504957_y93ht4",
       "timestamp": "2026-04-17T22:38:24.957Z",
       "type": "prospect-skipped",
