@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776465500436_d6std1",
+      "timestamp": "2026-04-17T22:38:20.436Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop has raised $95M in a Series C round, indicating they are beyond the scale typically targeted by Brandivibe. Additionally, their AI focus suggests they likely have significant internal resources for web design.",
+      "source": "techcrunch",
+      "tokens": 822
+    },
+    {
       "id": "act_1776465495650_no4ek7",
       "timestamp": "2026-04-17T22:38:15.650Z",
       "type": "prospect-skipped",
