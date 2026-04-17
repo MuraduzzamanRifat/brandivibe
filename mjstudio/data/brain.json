@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435492478_uardde",
+      "timestamp": "2026-04-17T14:18:12.478Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Company is too large and potentially too advanced for the project budget, having raised $95M Series C.",
+      "source": "techcrunch",
+      "tokens": 797
+    },
+    {
       "id": "act_1776435483021_nuus47",
       "timestamp": "2026-04-17T14:18:03.021Z",
       "type": "fb-queued",
