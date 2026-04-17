@@ -31,6 +31,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435522353_4hi1dd",
+      "timestamp": "2026-04-17T14:18:42.353Z",
+      "type": "lead-gen-skipped",
+      "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
+    },
+    {
       "id": "act_1776435520918_myqmvh",
       "timestamp": "2026-04-17T14:18:40.918Z",
       "type": "source-run",
