@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435497719_gqmfe8",
+      "timestamp": "2026-04-17T14:18:17.719Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, not a company in need of web design services.",
+      "source": "techcrunch",
+      "tokens": 832
+    },
+    {
       "id": "act_1776435492478_uardde",
       "timestamp": "2026-04-17T14:18:12.478Z",
       "type": "prospect-skipped",
