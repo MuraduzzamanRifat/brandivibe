@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776469124215_qiwfrl",
+      "timestamp": "2026-04-17T23:38:44.215Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company is too large and likely has an internal team for web design; enterprise-scale with $1.5B valuation.",
+      "source": "techcrunch",
+      "tokens": 782
+    },
+    {
       "id": "act_1776469119854_gp0ox7",
       "timestamp": "2026-04-17T23:38:39.854Z",
       "type": "prospect-skipped",
