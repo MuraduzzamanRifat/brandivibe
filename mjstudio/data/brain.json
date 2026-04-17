@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435514407_zh9dze",
+      "timestamp": "2026-04-17T14:18:34.407Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Slash, a Ramp competitor founded by teenagers, raises $100M at $1.4B valuation\" — Slash is too large and well-funded with a $1.4B valuation and $300 million in revenue, beyond the scope of Brandivibe's typical project budget.",
+      "source": "techcrunch",
+      "tokens": 806
+    },
+    {
       "id": "act_1776435510174_u5w7te",
       "timestamp": "2026-04-17T14:18:30.174Z",
       "type": "prospect-skipped",
