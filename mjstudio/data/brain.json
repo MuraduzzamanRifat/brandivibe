@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776469115703_izgkdv",
+      "timestamp": "2026-04-17T23:38:35.703Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is a Series C company and likely has advanced internal teams for web design needs.",
+      "source": "techcrunch",
+      "tokens": 771
+    },
+    {
       "id": "act_1776469112151_d8pf2o",
       "timestamp": "2026-04-17T23:38:32.151Z",
       "type": "prospect-skipped",
