@@ -26,6 +26,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776456064754_h8crba",
+      "timestamp": "2026-04-17T20:01:04.754Z",
+      "type": "prospect-added",
+      "description": "Added Luma (B-tier, ai) — Luma is expanding with a new AI-powered production studio for high-profile media projects.",
+      "prospectId": "tc_aHR0cHM6Ly90ZWNo",
+      "source": "techcrunch",
+      "tokens": 764
+    },
+    {
       "id": "act_1776456058356_m4kles",
       "timestamp": "2026-04-17T20:00:58.356Z",
       "type": "prospect-skipped",
