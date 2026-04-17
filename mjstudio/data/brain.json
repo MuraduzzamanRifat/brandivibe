@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435510174_u5w7te",
+      "timestamp": "2026-04-17T14:18:30.174Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Upscale AI is too large with a $2B valuation, which exceeds the target company size for Brandivibe's typical project budget.",
+      "source": "techcrunch",
+      "tokens": 745
+    },
+    {
       "id": "act_1776435506058_ucrk2l",
       "timestamp": "2026-04-17T14:18:26.058Z",
       "type": "prospect-skipped",
