@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776469119854_gp0ox7",
+      "timestamp": "2026-04-17T23:38:39.854Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, which is not a fit for Brandivibe's target type of company (startups or growing companies looking for web design services).",
+      "source": "techcrunch",
+      "tokens": 829
+    },
+    {
       "id": "act_1776469115703_izgkdv",
       "timestamp": "2026-04-17T23:38:35.703Z",
       "type": "prospect-skipped",
