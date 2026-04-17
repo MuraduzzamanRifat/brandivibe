@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776456049624_i7g9cz",
+      "timestamp": "2026-04-17T20:00:49.624Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company, Loop, is in a Stage C funding round, which is typically beyond our target range of startups at early funding stages like Seed or Series A.",
+      "source": "techcrunch",
+      "tokens": 828
+    },
+    {
       "id": "act_1776456044942_lkxrdc",
       "timestamp": "2026-04-17T20:00:44.942Z",
       "type": "prospect-skipped",
