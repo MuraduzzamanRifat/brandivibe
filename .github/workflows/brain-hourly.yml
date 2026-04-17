@@ -1,0 +1,30 @@
+name: Brandivibe brain hourly tick
+
+# Runs every hour to keep the brain active 24/7:
+#  - Sources new TechCrunch prospects
+#  - Queues lead-gen emails from today's plan
+#  - Deep-researches scraped prospects
+#  - Advances multi-touch email sequences
+#  - Sends queued emails (respecting warmup cap)
+#  - Processes cold-email blast drip
+#
+# Does NOT run plan/article/fb/score — those are daily (brain-daily.yml).
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # every hour on the hour
+  workflow_dispatch:
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Hourly tick
+        run: |
+          curl -fsS --max-time 310 -X POST \
+            https://brandivibe.com/api/brain/tick-hourly \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          echo "--- hourly tick ---"
+          cat response.json
