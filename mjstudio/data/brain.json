@@ -26,6 +26,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776456068445_9eukes",
+      "timestamp": "2026-04-17T20:01:08.445Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Company is too large, valued at $2B, which is outside our target small to mid-sized company range.",
+      "source": "techcrunch",
+      "tokens": 750
+    },
+    {
       "id": "act_1776456064754_h8crba",
       "timestamp": "2026-04-17T20:01:04.754Z",
       "type": "prospect-added",
