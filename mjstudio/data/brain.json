@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435518175_8hbbcs",
+      "timestamp": "2026-04-17T14:18:38.175Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Two Americans sentenced for helping North Korea steal $5 million in fake IT work\" — The article is about a criminal case and does not describe a company fit for premium web design services.",
+      "source": "techcrunch",
+      "tokens": 732
+    },
+    {
       "id": "act_1776435514407_zh9dze",
       "timestamp": "2026-04-17T14:18:34.407Z",
       "type": "prospect-skipped",
