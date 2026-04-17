@@ -572,7 +572,7 @@
     {
       "date": "2026-04-17",
       "startedAt": "2026-04-17T14:16:56.727Z",
-      "updatedAt": "2026-04-17T14:18:53.269Z",
+      "updatedAt": "2026-04-17T14:18:54.588Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -587,7 +587,7 @@
         "research": "done",
         "sequence": "done",
         "send": "done",
-        "blast": "pending"
+        "blast": "done"
       },
       "planId": "plan_1776435461033"
     },
