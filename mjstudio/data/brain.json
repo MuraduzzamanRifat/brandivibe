@@ -31,6 +31,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776435506058_ucrk2l",
+      "timestamp": "2026-04-17T14:18:26.058Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the AI-powered film production industry, which is misaligned with Brandivibe's preferred sectors (crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc).",
+      "source": "techcrunch",
+      "tokens": 780
+    },
+    {
       "id": "act_1776435501994_uuntjz",
       "timestamp": "2026-04-17T14:18:21.994Z",
       "type": "prospect-skipped",
