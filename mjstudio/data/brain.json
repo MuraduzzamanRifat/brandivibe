@@ -168,6 +168,33 @@
         ],
         "createdAt": "2026-04-17T20:01:30.847Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly93d3cu",
+      "company": "rtrvr.ai",
+      "domain": "rtrvr.ai",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Series A",
+      "recentFunding": {
+        "amount": "$5 million",
+        "date": "2025-03-01",
+        "round": "Series A"
+      },
+      "trigger": "Recently launched AI Subroutines, a new feature that uses automation scripts inside the browser tab.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "axon",
+      "brandWeakness": "The brand's current web design lacks a vibrant, modern aesthetic that matches the innovative nature of their product.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The company appears focused on innovation in automation and browser capabilities, which provides an opportunity for enhancing the user experience through strategic design improvements.",
+      "source": "hackernews",
+      "sourceUrl": "https://www.rtrvr.ai/blog/ai-subroutines-zero-token-deterministic-automation",
+      "createdAt": "2026-04-18T05:06:20.685Z",
+      "updatedAt": "2026-04-18T05:06:20.685Z"
     }
   ],
   "drafts": [],
