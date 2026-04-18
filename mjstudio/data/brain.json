@@ -918,6 +918,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520668635_k6190z",
+      "timestamp": "2026-04-18T13:57:48.635Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — The article describes a GitHub project for a podcast ad blocker, which appears to be an open-source tool and likely not a commercial company or startup suitable for a premium web design project.",
+      "source": "hackernews",
+      "tokens": 844
+    },
+    {
       "id": "act_1776520663394_4k6x7n",
       "timestamp": "2026-04-18T13:57:43.394Z",
       "type": "prospect-skipped",
