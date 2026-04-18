@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776530395764_yjemq1",
+      "timestamp": "2026-04-18T16:39:55.764Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source project, not a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 821
+    },
+    {
       "id": "act_1776530391825_1q59nz",
       "timestamp": "2026-04-18T16:39:51.825Z",
       "type": "prospect-skipped",
