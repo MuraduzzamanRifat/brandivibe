@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555278435_1377e6",
+      "timestamp": "2026-04-18T23:34:38.435Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article describes a technical project related to 'OCI MicroVMs for Proxmox VE', which appears to be an open-source or personal project rather than a business entity. This does not align with Brandivibe's target clients who are typically established companies or startups in specific industries.",
+      "source": "hackernews",
+      "tokens": 723
+    },
+    {
       "id": "act_1776555274157_d0od8e",
       "timestamp": "2026-04-18T23:34:34.157Z",
       "type": "prospect-skipped",
