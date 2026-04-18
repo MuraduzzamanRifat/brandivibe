@@ -200,6 +200,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488812063_hab1es",
+      "timestamp": "2026-04-18T05:06:52.063Z",
+      "type": "prospect-scraped",
+      "description": "Scraped rtrvr.ai — tech: next.js, tailwind, google-analytics, google-fonts, react · design 6/10 · 2 emails found",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu"
+    },
+    {
       "id": "act_1776488808528_gb1lks",
       "timestamp": "2026-04-18T05:06:48.528Z",
       "type": "source-run",
