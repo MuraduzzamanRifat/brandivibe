@@ -86,9 +86,14 @@ function ServicePanel({
 
   // Ensure all useTransform inputs are strictly ascending and within [0, 1].
   // Framer Motion's Web Animations API path rejects negatives or duplicates.
-  const fadeIn = Math.max(0, localStart - 0.08);
-  const holdStart = Math.min(1, Math.max(fadeIn + 0.0001, localStart + 0.02));
-  const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.05));
+  //
+  // Overlap tuning: fadeIn starts 0.03 BEFORE the panel's own window so the
+  // next panel appears just as the previous one is leaving. Any larger
+  // (e.g. 0.08) at compressed scroll heights caused 2+ panels to render at
+  // ~50% opacity simultaneously, which visually blended their text.
+  const fadeIn = Math.max(0, localStart - 0.03);
+  const holdStart = Math.min(1, Math.max(fadeIn + 0.0001, localStart + 0.01));
+  const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.03));
   const fadeOut = Math.min(1, Math.max(holdEnd + 0.0001, localEnd));
 
   // Last panel never fades out — the pinned viewport would otherwise show
