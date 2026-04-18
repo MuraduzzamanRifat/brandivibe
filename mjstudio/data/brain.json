@@ -446,6 +446,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488826341_grfj0g",
+      "timestamp": "2026-04-18T05:07:06.341Z",
+      "type": "prospect-researched",
+      "description": "Hourly research: 1 prospects researched, 1 emails found",
+      "tokens": 3819
+    },
+    {
       "id": "act_1776488822959_jkegt5",
       "timestamp": "2026-04-18T05:07:02.959Z",
       "type": "email-found",
