@@ -2,10 +2,50 @@ import {
   loadBrain,
   enqueueOutbound,
   logActivity,
+  updateProspectResearch,
   type OutboundEmail,
   type Prospect,
 } from "../brain-storage";
 import { draftTouch } from "./email-drafter-v2";
+
+/**
+ * Phase 3 smart-timing thresholds.
+ *   - If the recipient clicked, we can advance in ENGAGED_DAYS (fast nudge).
+ *   - If they opened but didn't click, advance in OPENED_DAYS.
+ *   - If no opens at all, advance in COLD_DAYS (longer gap, different angle).
+ * These apply as floors — nextSendAt is still honored if it's later.
+ */
+const ENGAGED_DAYS_FLOOR = 2;
+const OPENED_DAYS_FLOOR = 3;
+const COLD_DAYS_FLOOR = 5;
+
+function lastSentEmailFor(prospectId: string, queue: OutboundEmail[]): OutboundEmail | undefined {
+  return queue
+    .filter((e) => e.prospectId === prospectId && (e.status === "sent" || e.status === "bounced"))
+    .sort((a, b) => {
+      const ta = a.sentAt ? new Date(a.sentAt).getTime() : 0;
+      const tb = b.sentAt ? new Date(b.sentAt).getTime() : 0;
+      return tb - ta;
+    })[0];
+}
+
+function daysSince(iso?: string): number {
+  if (!iso) return 0;
+  return (Date.now() - new Date(iso).getTime()) / 86_400_000;
+}
+
+/** Decide if this prospect is ready to advance, based on the last email's
+ *  engagement metrics. Returns a floor-days value the current gap must exceed. */
+function readyToAdvance(lastEmail: OutboundEmail | undefined): { ready: boolean; reason: string } {
+  if (!lastEmail || !lastEmail.sentAt) return { ready: false, reason: "no send yet" };
+  const days = daysSince(lastEmail.sentAt);
+  const opens = lastEmail.metrics?.opens ?? 0;
+  const clicks = lastEmail.metrics?.clicks ?? 0;
+  if (clicks > 0 && days >= ENGAGED_DAYS_FLOOR) return { ready: true, reason: "clicked+engaged" };
+  if (opens > 0 && days >= OPENED_DAYS_FLOOR) return { ready: true, reason: "opened" };
+  if (opens === 0 && days >= COLD_DAYS_FLOOR) return { ready: true, reason: "cold-bump" };
+  return { ready: false, reason: `only ${days.toFixed(1)}d since send, opens=${opens} clicks=${clicks}` };
+}
 
 /**
  * Advances every prospect through the 4-touch cold outbound sequence.
@@ -141,8 +181,34 @@ export async function runSequenceTick(): Promise<SequenceTickSummary> {
     if (seq.lastOutcome === "replied" || seq.lastOutcome === "unsubscribed" || seq.lastOutcome === "stopped") {
       continue;
     }
-    if (!seq.nextSendAt) continue;
-    if (new Date(seq.nextSendAt).getTime() > now) continue;
+
+    const lastEmail = lastSentEmailFor(prospect.id, brain.outboundQueue ?? []);
+
+    // Bounce → mark lost, stop advancing.
+    if (lastEmail?.metrics?.bounced) {
+      await updateProspectResearch(prospect.id, { status: "lost" });
+      summary.skipped++;
+      await logActivity({
+        type: "email-bounced",
+        description: `${prospect.company} last touch bounced — stopping sequence`,
+        prospectId: prospect.id,
+      });
+      continue;
+    }
+
+    // Smart timing: advance based on engagement signal, not a fixed cadence.
+    const gate = readyToAdvance(lastEmail);
+    if (!gate.ready) {
+      // Fall back to the hardcoded nextSendAt gate if we have one
+      if (!seq.nextSendAt) {
+        summary.skipped++;
+        continue;
+      }
+      if (new Date(seq.nextSendAt).getTime() > now) {
+        summary.skipped++;
+        continue;
+      }
+    }
 
     const nextTouch = (seq.stage + 1) as 1 | 2 | 3 | 4;
     const r = await queueEmailForTouch(prospect, nextTouch, 0, from, replyTo);

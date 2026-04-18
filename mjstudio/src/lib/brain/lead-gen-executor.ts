@@ -88,6 +88,9 @@ function personalize(script: string, prospect: Prospect): string {
     "your homepage conversion rate";
 
   const unsubUrl = unsubscribeUrl(prospect.id);
+  // Tracked booking link — routes through /api/brain/book so we capture
+  // click intent before redirecting to Cal.com / Calendly.
+  const bookingUrl = `https://brandivibe.com/api/brain/book?p=${encodeURIComponent(prospect.id)}`;
 
   return script
     .replace(/\{firstName\}/gi, firstName)
@@ -99,7 +102,8 @@ function personalize(script: string, prospect: Prospect): string {
     .replace(/\{demoUrl\}/gi, `https://brandivibe.com/${prospect.bestFitDemo}`)
     .replace(/\{industry\}/gi, prospect.industry)
     .replace(/\{unsubUrl\}/gi, unsubUrl)
-    .replace(/\{unsubscribeUrl\}/gi, unsubUrl);
+    .replace(/\{unsubscribeUrl\}/gi, unsubUrl)
+    .replace(/\{bookingUrl\}/gi, bookingUrl);
 }
 
 function extractSubjectAndBody(script: string): { subject: string; body: string } {

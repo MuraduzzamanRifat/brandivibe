@@ -170,7 +170,8 @@ ALREADY PUBLISHED SLUGS: ${JSON.stringify(recentSlugs)}
 7. Each FB post is ≤ 280 characters of body, with 5–8 hashtags and a Pexels photo search query (e.g. "founder working on laptop in modern office"). Voice: direct, no emoji spam, founder-to-founder.
 8. Lead-gen scripts MUST be machine-executable templates auto-sent by the executor:
    - Start with "Subject: <subject max 60 chars>" on line 1
-   - Use ONLY these merge slots: {firstName} {company} {domain} {trigger} {brandWeakness} {demoUrl} {demoSlug} {industry} {unsubUrl}
+   - Use ONLY these merge slots: {firstName} {company} {domain} {trigger} {brandWeakness} {demoUrl} {demoSlug} {industry} {unsubUrl} {bookingUrl}
+   - PREFER a {bookingUrl} CTA over asking for a reply — it's a tracked link to a Cal.com booking. Example CTA: "If this resonates, grab 15 mins: {bookingUrl}"
    - Body: 60-100 words. Touch 1 = short, direct, one specific observation, one CTA
    - Must end with: "To opt out: {unsubUrl}"
    - Sign off: "Muraduzzaman\\nBrandivibe — brandivibe.com"
