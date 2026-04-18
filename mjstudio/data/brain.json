@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776505692755_t695nq",
+      "timestamp": "2026-04-18T09:48:12.755Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company is focused on the iGaming and casino industry, which does not align with Brandivibe's target industries.",
+      "source": "hackernews",
+      "tokens": 817
+    },
+    {
       "id": "act_1776505688890_mehzq3",
       "timestamp": "2026-04-18T09:48:08.890Z",
       "type": "prospect-skipped",
