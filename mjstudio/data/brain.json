@@ -918,6 +918,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520675008_g4vvz6",
+      "timestamp": "2026-04-18T13:57:55.008Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Link Shortener – Itlinks.me\" — The company operates as a link shortener service, which falls outside of Brandivibe's target niche focusing on premium web design for industries like crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, and vc.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776520668635_k6190z",
       "timestamp": "2026-04-18T13:57:48.635Z",
       "type": "prospect-skipped",
