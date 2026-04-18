@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776544580484_9hw8l1",
+      "timestamp": "2026-04-18T20:36:20.484Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source Gradle plugin project, not a company. Brandivibe's ICP focuses on providing web design for companies/projects with substantial funding.",
+      "source": "hackernews",
+      "tokens": 845
+    },
+    {
       "id": "act_1776544576616_8cja5s",
       "timestamp": "2026-04-18T20:36:16.617Z",
       "type": "prospect-skipped",
