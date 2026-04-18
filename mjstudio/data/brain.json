@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512039742_exfkk9",
+      "timestamp": "2026-04-18T11:33:59.742Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — Podads is an open-source tool hosted on GitHub, indicating it is not a commercial venture likely to engage in a significant web design project.",
+      "source": "hackernews",
+      "tokens": 850
+    },
+    {
       "id": "act_1776512035152_lrfz9a",
       "timestamp": "2026-04-18T11:33:55.152Z",
       "type": "prospect-skipped",
