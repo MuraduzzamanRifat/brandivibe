@@ -918,6 +918,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520679879_73u6c5",
+      "timestamp": "2026-04-18T13:57:59.879Z",
+      "type": "source-run",
+      "description": "Source tick: 29 articles fetched, 1 new prospects added, 1 already known",
+      "tokens": 6165
+    },
+    {
       "id": "act_1776520675008_g4vvz6",
       "timestamp": "2026-04-18T13:57:55.008Z",
       "type": "prospect-skipped",
