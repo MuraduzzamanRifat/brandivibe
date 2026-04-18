@@ -1146,6 +1146,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776541246371_gr8ofq",
+      "timestamp": "2026-04-18T19:40:46.371Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which is a software tool and not a company. Thus, it's not within the ICP for web design projects.",
+      "source": "hackernews",
+      "tokens": 657
+    },
+    {
       "id": "act_1776541242810_1rje0t",
       "timestamp": "2026-04-18T19:40:42.810Z",
       "type": "prospect-skipped",
