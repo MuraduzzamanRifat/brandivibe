@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776508801380_13x2xr",
+      "timestamp": "2026-04-18T10:40:01.380Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The article describes a browser extension product, not a company, and it's targeted towards individual Twitter users rather than businesses, which doesn't align with Brandivibe's ICP focused on premium web design projects.",
+      "source": "hackernews",
+      "tokens": 731
+    },
+    {
       "id": "act_1776508796610_9kpcdt",
       "timestamp": "2026-04-18T10:39:56.610Z",
       "type": "prospect-skipped",
