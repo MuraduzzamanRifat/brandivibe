@@ -666,6 +666,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502248777_62xnx4",
+      "timestamp": "2026-04-18T08:50:48.777Z",
+      "type": "prospect-added",
+      "description": "Added TokensAI via hackernews (B-tier, ai) — TokensAI recently launched their platform for minting AI usage tokens.",
+      "prospectId": "tc_aHR0cHM6Ly90b2tl",
+      "source": "hackernews",
+      "tokens": 702
+    },
+    {
       "id": "act_1776502242648_j6vl3w",
       "timestamp": "2026-04-18T08:50:42.648Z",
       "type": "prospect-skipped",
