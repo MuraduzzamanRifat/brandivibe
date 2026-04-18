@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776530368279_p4ajn8",
+      "timestamp": "2026-04-18T16:39:28.279Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The article is about a GitHub project, not a commercial company.",
+      "source": "hackernews",
+      "tokens": 670
+    },
+    {
       "id": "act_1776530363643_cc4v1q",
       "timestamp": "2026-04-18T16:39:23.643Z",
       "type": "error",
