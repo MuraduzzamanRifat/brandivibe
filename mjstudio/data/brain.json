@@ -200,6 +200,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488786367_0mnys9",
+      "timestamp": "2026-04-18T05:06:26.367Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"External admission gate for GitHub Actions before execution\" — The article describes a project rather than a company, and lacks specific company details or a defined business stage.",
+      "source": "hackernews",
+      "tokens": 762
+    },
+    {
       "id": "act_1776488782218_rc4tp9",
       "timestamp": "2026-04-18T05:06:22.218Z",
       "type": "prospect-added",
