@@ -2,6 +2,7 @@ import { loadBrain, updateProspectResearch, logActivity, type Prospect } from ".
 import { scrapeWebsite } from "./scraper/website";
 import { researchProspect } from "./deep-research";
 import { findEmail } from "./email-finder";
+import { detectPremiumDesign } from "./premium-detect";
 
 /**
  * The research phase of each daily brain tick.
@@ -73,6 +74,26 @@ export async function runResearchTick(): Promise<ResearchTickSummary> {
           description: `Scraped ${prospect.domain} — tech: ${scraped.techStack.join(", ") || "(none detected)"} · design ${scraped.designScore}/10 · ${scraped.foundEmails.length} emails found`,
           prospectId: prospect.id,
         });
+      }
+
+      // GATE: If the site is already premium-designed, Brandivibe should not
+      // pitch this prospect. Mark as lost and skip deep-research + email-find
+      // to save tokens. Only runs once — already-lost prospects are excluded
+      // by the "researched" filter above, and we set status=lost before save.
+      const premium = detectPremiumDesign(scraped);
+      if (premium.isPremium) {
+        await updateProspectResearch(prospect.id, {
+          scraped,
+          status: "lost",
+          notes: `Auto-skipped: ${premium.reasons.join("; ")}`,
+        });
+        summary.skipped++;
+        await logActivity({
+          type: "prospect-skipped",
+          description: `Skipped ${prospect.company} — already premium (${premium.reasons[0] ?? "unknown"})`,
+          prospectId: prospect.id,
+        });
+        continue;
       }
 
       // 2. Deep research if not done

@@ -159,6 +159,7 @@ export async function executeLeadGenActions(
       p.emailFinder?.winner &&
       p.deepResearch &&
       !p.unsubscribed &&
+      p.status !== "lost" && // excludes premium-already sites marked by research tick
       (!p.sequence || p.sequence.stage === 0) &&
       !alreadyQueued.has(p.id)
   );

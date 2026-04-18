@@ -235,6 +235,12 @@ function withScheme(domain: string, path = "/"): string {
 }
 
 function heuristicDesignScore(rawHtml: string, stack: string[]): number {
+  // Score is an objective design-quality indicator (1-10). It's intentionally
+  // BIASED HIGHER for premium-stack sites (Three.js, GSAP, Framer) because
+  // those sites ARE higher-quality on average. The "should we pitch them"
+  // decision is separate — see premium-detect.ts, which rejects prospects
+  // whose score is too high OR who use premium animation stacks. Do not try
+  // to invert this scoring to exclude premium sites — that's the filter's job.
   let score = 5;
   if (stack.includes("next.js") || stack.includes("react")) score += 1;
   if (stack.includes("webflow")) score += 1;
@@ -244,7 +250,7 @@ function heuristicDesignScore(rawHtml: string, stack: string[]): number {
   if (/font-display:\s*swap/i.test(rawHtml)) score += 0.5;
   if (/<picture|srcset=/.test(rawHtml)) score += 0.5;
   if (rawHtml.length < 15_000) score -= 1;
-  if (/framer-motion|gsap|threejs|three\.js|@react-three/i.test(rawHtml)) score += 1;
+  if (/framer-motion|gsap|threejs|three\.js|@react-three/i.test(rawHtml)) score += 2;
   return Math.max(1, Math.min(10, Math.round(score)));
 }
 
