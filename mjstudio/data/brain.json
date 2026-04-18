@@ -1202,6 +1202,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548149698_dpt1h3",
+      "timestamp": "2026-04-18T21:35:49.698Z",
+      "type": "email-found",
+      "description": "Best email for MechCloud: sales@mechcloud.io (scraped, conf 95)",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo"
+    },
+    {
       "id": "act_1776548147459_6qzfw0",
       "timestamp": "2026-04-18T21:35:47.459Z",
       "type": "prospect-researched",
