@@ -103,28 +103,19 @@ function ServicePanel({
     [fadeIn, holdStart, holdEnd, fadeOut],
     isLast ? [0, 1, 1, 1] : [0, 1, 1, 0]
   );
-  // Dramatic vertical motion — panels slide up through the viewport as you
-  // scroll. ~100vh of travel so the motion reads as active scroll movement,
-  // not just a cross-fade in place.
+  // Vertical parallax — both columns slide up together through the viewport
+  // so the section feels ACTIVELY moving on scroll, not a cross-fade in place.
+  // Kept small enough (80px range) that panels stay inside their grid cells
+  // — larger offsets dislocated content at compressed scroll heights.
   const y = useTransform(
     progress,
     isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? ["60vh", "0vh", "0vh"] : ["60vh", "0vh", "0vh", "-60vh"]
+    isLast ? ["80px", "0px", "0px"] : ["80px", "0px", "0px", "-80px"]
   );
   const numberScale = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? [0.6, 1, 1, 1] : [0.6, 1, 1, 1.15]
-  );
-  const xMin = useTransform(
-    progress,
-    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? ["-15%", "0%", "0%"] : ["-15%", "0%", "0%", "15%"]
-  );
-  const rightSideX = useTransform(
-    progress,
-    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? ["15%", "0%", "0%"] : ["15%", "0%", "0%", "-15%"]
+    isLast ? [0.85, 1, 1, 1] : [0.85, 1, 1, 1.08]
   );
 
   return (
@@ -135,7 +126,7 @@ function ServicePanel({
       <div className="mx-auto max-w-[1600px] w-full grid grid-cols-12 gap-8 items-center">
         {/* massive number */}
         <motion.div
-          style={{ scale: numberScale, x: xMin }}
+          style={{ scale: numberScale, y }}
           className="col-span-12 md:col-span-5 origin-left"
         >
           <div
@@ -159,7 +150,7 @@ function ServicePanel({
         </motion.div>
 
         {/* title + description */}
-        <motion.div style={{ y, x: rightSideX }} className="col-span-12 md:col-span-7 md:pl-10">
+        <motion.div style={{ y }} className="col-span-12 md:col-span-7 md:pl-10">
           <h3 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
             {service.title}
           </h3>
