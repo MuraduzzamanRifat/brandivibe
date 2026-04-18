@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512044513_lf8dab",
+      "timestamp": "2026-04-18T11:34:04.513Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — PodWarden is focused on open-source self-hosted apps, likely targeting developers and tech enthusiasts, not fitting Brandivibe's luxury market focus.",
+      "source": "hackernews",
+      "tokens": 695
+    },
+    {
       "id": "act_1776512039742_exfkk9",
       "timestamp": "2026-04-18T11:33:59.742Z",
       "type": "prospect-skipped",
