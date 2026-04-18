@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551675160_99lgdo",
+      "timestamp": "2026-04-18T22:34:35.160Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built a tool that reads 2000 health studies a day so you dont have to\" — The article does not provide enough information to determine the company details, stage, or industry.",
+      "source": "hackernews",
+      "tokens": 643
+    },
+    {
       "id": "act_1776551670994_wyvg2j",
       "timestamp": "2026-04-18T22:34:30.994Z",
       "type": "prospect-skipped",
