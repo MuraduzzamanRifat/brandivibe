@@ -918,6 +918,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520663394_4k6x7n",
+      "timestamp": "2026-04-18T13:57:43.394Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Chlibc – A ptrace-based tool to hot-swap glibc and interp in user-space\" — The company described in the article develops a specialized open-source tool for Linux systems, which suggests a focus on software development and potentially open-source contributions, not fitting the commercial web design target for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 864
+    },
+    {
       "id": "act_1776520658541_xdclse",
       "timestamp": "2026-04-18T13:57:38.541Z",
       "type": "prospect-added",
