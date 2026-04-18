@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776526611581_rrj3am",
+      "timestamp": "2026-04-18T15:36:51.581Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Great Apps\" — The article lacks sufficient information about the company, its industry, size, or funding to determine an ICP fit.",
+      "source": "hackernews",
+      "tokens": 639
+    },
+    {
       "id": "act_1776526606452_816j17",
       "timestamp": "2026-04-18T15:36:46.452Z",
       "type": "error",
