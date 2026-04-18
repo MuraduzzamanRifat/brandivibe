@@ -441,6 +441,28 @@
         ],
         "createdAt": "2026-04-18T05:07:02.959Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9jb2d2",
+      "company": "Cogveo",
+      "domain": "cogveo.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "",
+      "trigger": "Launch of AI agents to run Python on files indicates growth and potential need for an enhanced digital presence.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "No specific brand elements discussed, indicating potential for a stronger brand identity.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The company could leverage Brandivibe's design services to stand out in the competitive AI sector.",
+      "source": "hackernews",
+      "sourceUrl": "https://cogveo.com",
+      "createdAt": "2026-04-18T07:07:01.001Z",
+      "updatedAt": "2026-04-18T07:07:01.001Z"
     }
   ],
   "drafts": [],
