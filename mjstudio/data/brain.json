@@ -1124,6 +1124,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776538313908_omh5ma",
+      "timestamp": "2026-04-18T18:51:53.908Z",
+      "type": "prospect-added",
+      "description": "Added MDV via hackernews (C-tier, saas) — The launch and active development of MDV as a tool indicates a potential need for branding and design services.",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo",
+      "source": "hackernews",
+      "tokens": 737
+    },
+    {
       "id": "act_1776538306394_uveert",
       "timestamp": "2026-04-18T18:51:46.394Z",
       "type": "prospect-skipped",
