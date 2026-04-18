@@ -1102,6 +1102,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523183851_mrno1j",
+      "timestamp": "2026-04-18T14:39:43.851Z",
+      "type": "email-queued",
+      "description": "Lead-gen queued touch 1 for Readox (contact@readox.ai): \"Your Startup Deserves Better\"",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
+    },
+    {
       "id": "act_1776523182790_n1mzqp",
       "timestamp": "2026-04-18T14:39:42.790Z",
       "type": "email-queued",
