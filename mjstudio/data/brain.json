@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523164958_3mfzf6",
+      "timestamp": "2026-04-18T14:39:24.958Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A site for stopping work slop\" — Insufficient information about the company, industry, or stage provided in the article; unclear if it's a business entity or a personal project.",
+      "source": "hackernews",
+      "tokens": 751
+    },
+    {
       "id": "act_1776523160553_tb5jd7",
       "timestamp": "2026-04-18T14:39:20.553Z",
       "type": "prospect-skipped",
