@@ -200,6 +200,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488822959_jkegt5",
+      "timestamp": "2026-04-18T05:07:02.959Z",
+      "type": "email-found",
+      "description": "Best email for rtrvr.ai: support@rtrvr.ai (scraped, conf 95)",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu"
+    },
+    {
       "id": "act_1776488821414_6ulkte",
       "timestamp": "2026-04-18T05:07:01.415Z",
       "type": "prospect-researched",
