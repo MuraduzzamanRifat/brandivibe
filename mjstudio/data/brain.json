@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523147002_4y04xw",
+      "timestamp": "2026-04-18T14:39:07.002Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses the App Store and general AI trends, but does not mention a specific company or startup that would match the ICP criteria for Brandivibe.",
+      "source": "techcrunch",
+      "tokens": 702
+    },
+    {
       "id": "act_1776523142015_sqh2mo",
       "timestamp": "2026-04-18T14:39:02.015Z",
       "type": "error",
