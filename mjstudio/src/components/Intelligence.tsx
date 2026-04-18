@@ -198,7 +198,7 @@ export function Intelligence() {
   return (
     <section
       id="intelligence"
-      className="relative border-t border-white/5 py-14 md:py-20 px-6 md:px-12 overflow-hidden"
+      className="relative py-10 md:py-16 px-6 md:px-12 overflow-hidden"
     >
       {/* background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] rounded-full bg-gradient-to-br from-[#84e1ff]/[0.04] via-[#a78bfa]/[0.03] to-transparent blur-3xl pointer-events-none" />

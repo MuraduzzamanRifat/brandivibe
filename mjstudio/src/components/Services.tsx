@@ -80,7 +80,6 @@ function ServicePanel({
   progress: MotionValue<number>;
 }) {
   const n = services.length;
-  const isLast = index === n - 1;
   const localStart = index / n;
   const localEnd = (index + 1) / n;
 
@@ -96,12 +95,14 @@ function ServicePanel({
   const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.03));
   const fadeOut = Math.min(1, Math.max(holdEnd + 0.0001, localEnd));
 
-  // Last panel never fades out — the pinned viewport would otherwise show
-  // ~20vh of empty background between the final service and the next section.
+  // All panels fade out at the end of their slot (including the last one).
+  // We used to hold the last panel visible to avoid ~20vh of empty background,
+  // but that caused a ~500px "dead scroll" gap before the next section
+  // started. Fading it out lets the next section come into view immediately.
   const opacity = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? [0, 1, 1, 1] : [0, 1, 1, 0]
+    [0, 1, 1, 0]
   );
   // Vertical parallax — both columns slide up together through the viewport
   // so the section feels ACTIVELY moving on scroll, not a cross-fade in place.
@@ -109,13 +110,13 @@ function ServicePanel({
   // — larger offsets dislocated content at compressed scroll heights.
   const y = useTransform(
     progress,
-    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? ["80px", "0px", "0px"] : ["80px", "0px", "0px", "-80px"]
+    [fadeIn, holdStart, holdEnd, fadeOut],
+    ["80px", "0px", "0px", "-80px"]
   );
   const numberScale = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    isLast ? [0.85, 1, 1, 1] : [0.85, 1, 1, 1.08]
+    [0.85, 1, 1, 1.08]
   );
 
   return (
