@@ -1098,6 +1098,20 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520711586_etak1w",
+      "timestamp": "2026-04-18T13:58:31.586Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
+      "tokens": 3350
+    },
+    {
+      "id": "act_1776520710638_b70esr",
+      "timestamp": "2026-04-18T13:58:30.638Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
+      "tokens": 3255
+    },
+    {
       "id": "act_1776520706018_q6o3n7",
       "timestamp": "2026-04-18T13:58:26.018Z",
       "type": "email-found",
@@ -2978,7 +2992,7 @@
     {
       "date": "2026-04-18",
       "startedAt": "2026-04-18T13:55:53.296Z",
-      "updatedAt": "2026-04-18T13:58:29.411Z",
+      "updatedAt": "2026-04-18T13:58:29.557Z",
       "phases": {
         "plan": "done",
         "article": "done",
