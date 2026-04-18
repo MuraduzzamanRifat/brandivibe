@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776530403791_zixo6j",
+      "timestamp": "2026-04-18T16:40:03.791Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is an open-source project on GitHub, suggesting it may not align with the premium web design studio's ICP, particularly regarding budgetary constraints.",
+      "source": "hackernews",
+      "tokens": 707
+    },
+    {
       "id": "act_1776530399645_crap8v",
       "timestamp": "2026-04-18T16:39:59.645Z",
       "type": "prospect-skipped",
