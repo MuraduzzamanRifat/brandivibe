@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776526647440_rnn894",
+      "timestamp": "2026-04-18T15:37:27.440Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal or hobby project, not a company.",
+      "source": "hackernews",
+      "tokens": 698
+    },
+    {
       "id": "act_1776526643086_sknt6l",
       "timestamp": "2026-04-18T15:37:23.086Z",
       "type": "prospect-skipped",
