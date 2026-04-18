@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523156104_ec9x8a",
+      "timestamp": "2026-04-18T14:39:16.104Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company operates in the iGaming space, which is not part of the targeted industries such as SaaS, Fintech, AI, Healthcare, Luxury, EV, Architecture, or VC.",
+      "source": "hackernews",
+      "tokens": 818
+    },
+    {
       "id": "act_1776523151175_vjxwvz",
       "timestamp": "2026-04-18T14:39:11.175Z",
       "type": "prospect-skipped",
