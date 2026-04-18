@@ -1202,6 +1202,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548147459_6qzfw0",
+      "timestamp": "2026-04-18T21:35:47.459Z",
+      "type": "prospect-researched",
+      "description": "Researched MechCloud: Lacks clear call-to-action buttons on the homepage.",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 2944
+    },
+    {
       "id": "act_1776548133166_gb4xlj",
       "timestamp": "2026-04-18T21:35:33.166Z",
       "type": "prospect-scraped",
