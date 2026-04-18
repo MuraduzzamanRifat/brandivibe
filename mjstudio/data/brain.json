@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776544576616_8cja5s",
+      "timestamp": "2026-04-18T20:36:16.617Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which suggests the company is more focused on open-source software development rather than being a potential client for web design services. There are no indications of commercial operations, funding, or a company structure.",
+      "source": "hackernews",
+      "tokens": 714
+    },
+    {
       "id": "act_1776544572607_c8fnxm",
       "timestamp": "2026-04-18T20:36:12.607Z",
       "type": "prospect-skipped",
