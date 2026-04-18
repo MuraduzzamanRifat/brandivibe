@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548104784_rmnhi5",
+      "timestamp": "2026-04-18T21:35:04.784Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company is a software project on GitHub, not a business entity suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 681
+    },
+    {
       "id": "act_1776548101215_o7kg2i",
       "timestamp": "2026-04-18T21:35:01.215Z",
       "type": "prospect-skipped",
