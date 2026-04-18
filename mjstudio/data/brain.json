@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488776545_w10qdh",
+      "timestamp": "2026-04-18T05:06:16.545Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Seamless – Content-addressed computation caching for Python and bash\" — The company appears to be an individual project in bioinformatics rather than a scalable business. It lacks commercial structure, funding stage, and clear industry alignment with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 862
+    },
+    {
       "id": "act_1776488771801_lsb2or",
       "timestamp": "2026-04-18T05:06:11.801Z",
       "type": "error",
