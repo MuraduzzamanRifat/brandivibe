@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776505676668_gcl79w",
+      "timestamp": "2026-04-18T09:47:56.668Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The company is focused on providing a catalog of self-hosted apps, which likely requires a robust technical infrastructure rather than premium web design services. It doesn't fit our focus on bespoke design needs.",
+      "source": "hackernews",
+      "tokens": 743
+    },
+    {
       "id": "act_1776505671811_trf5th",
       "timestamp": "2026-04-18T09:47:51.811Z",
       "type": "prospect-skipped",
