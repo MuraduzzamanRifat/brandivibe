@@ -111,28 +111,32 @@ function ServicePanel({
   const holdEnd = Math.min(1, Math.max(holdStart + 0.0001, localEnd - 0.03));
   const fadeOut = Math.min(1, Math.max(holdEnd + 0.0001, localEnd));
 
-  // All panels fade out at the end of their slot (including the last one).
-  // We used to hold the last panel visible to avoid ~20vh of empty background,
-  // but that caused a ~500px "dead scroll" gap before the next section
-  // started. Fading it out lets the next section come into view immediately.
   const opacity = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
     [0, 1, 1, 0]
   );
-  // Vertical parallax — both columns slide up together through the viewport
-  // so the section feels ACTIVELY moving on scroll, not a cross-fade in place.
-  // Kept small enough (80px range) that panels stay inside their grid cells
-  // — larger offsets dislocated content at compressed scroll heights.
-  const y = useTransform(
+  // Continuous vertical parallax — content keeps drifting upward even during
+  // the hold period, so the section feels actively moving on every scroll pixel.
+  // The old transform held y=0 during hold, which made content feel frozen.
+  //
+  // Number travels at a SLOWER rate than the title/description (parallax depth),
+  // producing a layered-speed effect where the foreground copy rushes past the
+  // background number.
+  const numberY = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    ["80px", "0px", "0px", "-80px"]
+    ["60px", "20px", "-20px", "-60px"]
+  );
+  const contentY = useTransform(
+    progress,
+    [fadeIn, holdStart, holdEnd, fadeOut],
+    ["120px", "40px", "-40px", "-120px"]
   );
   const numberScale = useTransform(
     progress,
     [fadeIn, holdStart, holdEnd, fadeOut],
-    [0.85, 1, 1, 1.08]
+    [0.82, 0.96, 1.04, 1.18]
   );
 
   return (
@@ -143,7 +147,7 @@ function ServicePanel({
       <div className="mx-auto max-w-[1600px] w-full grid grid-cols-12 gap-8 items-center">
         {/* massive number */}
         <motion.div
-          style={{ scale: numberScale, y }}
+          style={{ scale: numberScale, y: numberY }}
           className="col-span-12 md:col-span-5 origin-left"
         >
           <div
@@ -167,7 +171,7 @@ function ServicePanel({
         </motion.div>
 
         {/* title + description */}
-        <motion.div style={{ y }} className="col-span-12 md:col-span-7 md:pl-10">
+        <motion.div style={{ y: contentY }} className="col-span-12 md:col-span-7 md:pl-10">
           <h3 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
             {service.title}
           </h3>
