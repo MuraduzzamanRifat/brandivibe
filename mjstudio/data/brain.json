@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776505688890_mehzq3",
+      "timestamp": "2026-04-18T09:48:08.890Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I made a calculator that works over disjoint sets of intervals\" — The article discusses a personal project unrelated to any company or business entity, making it not applicable for a web design studio's ICP.",
+      "source": "hackernews",
+      "tokens": 762
+    },
+    {
       "id": "act_1776505685266_p3s0cq",
       "timestamp": "2026-04-18T09:48:05.266Z",
       "type": "prospect-skipped",
