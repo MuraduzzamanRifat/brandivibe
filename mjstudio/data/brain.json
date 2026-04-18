@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512030812_hv57kf",
+      "timestamp": "2026-04-18T11:33:50.812Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large and advanced AI company not fitting the SMB criteria of Brandivibe's ICP.",
+      "source": "techcrunch",
+      "tokens": 732
+    },
+    {
       "id": "act_1776512024436_kq1mp4",
       "timestamp": "2026-04-18T11:33:44.436Z",
       "type": "error",
