@@ -1202,6 +1202,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548117413_tnv3ck",
+      "timestamp": "2026-04-18T21:35:17.413Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TTS.ai\" — The article provides no information about the TTS.ai company's industry, funding stage, or other necessary details to assess ICP fit.",
+      "source": "hackernews",
+      "tokens": 682
+    },
+    {
       "id": "act_1776548112531_aou438",
       "timestamp": "2026-04-18T21:35:12.531Z",
       "type": "prospect-added",
