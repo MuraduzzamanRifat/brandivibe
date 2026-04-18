@@ -918,6 +918,19 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520687867_9syyw0",
+      "timestamp": "2026-04-18T13:58:07.867Z",
+      "type": "prospect-scraped",
+      "description": "Scraped readox.ai — tech: astro, tailwind, google-analytics · design 5/10 · 1 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
+    },
+    {
+      "id": "act_1776520687024_v9tpei",
+      "timestamp": "2026-04-18T13:58:07.024Z",
+      "type": "lead-gen-skipped",
+      "description": "Lead-gen executor: 2 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
+    },
+    {
       "id": "act_1776520684244_6pxkbr",
       "timestamp": "2026-04-18T13:58:04.244Z",
       "type": "lead-gen-skipped",
