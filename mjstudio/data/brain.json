@@ -468,6 +468,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496052779_evzg23",
+      "timestamp": "2026-04-18T07:07:32.780Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pyra – a Python toolchain experiment inspired by uv and Bun\" — The article describes an open-source project rather than a company, and there's no indication of a business model, funding stage, or industry focus.",
+      "source": "hackernews",
+      "tokens": 855
+    },
+    {
       "id": "act_1776496047268_lue9f3",
       "timestamp": "2026-04-18T07:07:27.268Z",
       "type": "prospect-skipped",
