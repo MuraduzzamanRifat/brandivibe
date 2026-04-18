@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776530391825_1q59nz",
+      "timestamp": "2026-04-18T16:39:51.825Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal project rather than a business entity. It doesn't provide information about a company, its stage, or industry, which is necessary to evaluate fit with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 721
+    },
+    {
       "id": "act_1776530383443_8b1du8",
       "timestamp": "2026-04-18T16:39:43.443Z",
       "type": "prospect-skipped",
