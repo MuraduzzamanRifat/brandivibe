@@ -896,6 +896,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520603673_t3mglc",
+      "timestamp": "2026-04-18T13:56:43.673Z",
+      "type": "article-published",
+      "description": "Published \"Why Premium Web Design for Startups Separates the Best from the Rest\" (SEO 45/100, 478 words)"
+    },
+    {
       "id": "act_1776520594360_0d4xzq",
       "timestamp": "2026-04-18T13:56:34.360Z",
       "type": "plan-generated",
