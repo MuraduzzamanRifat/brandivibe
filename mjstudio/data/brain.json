@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776478948221_gyxz8k",
+      "timestamp": "2026-04-18T02:22:28.221Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a well-established company likely beyond the early stage suitable for Brandivibe's ICP.",
+      "source": "techcrunch",
+      "tokens": 734
+    },
+    {
       "id": "act_1776478944063_ldz1go",
       "timestamp": "2026-04-18T02:22:24.063Z",
       "type": "prospect-skipped",
