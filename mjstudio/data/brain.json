@@ -1102,6 +1102,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523184949_vohyh6",
+      "timestamp": "2026-04-18T14:39:44.949Z",
+      "type": "email-queued",
+      "description": "Hourly leadgen: 2 new emails queued (2 prospects matched)"
+    },
+    {
       "id": "act_1776523183851_mrno1j",
       "timestamp": "2026-04-18T14:39:43.851Z",
       "type": "email-queued",
