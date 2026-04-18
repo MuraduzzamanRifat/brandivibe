@@ -8,6 +8,7 @@ import {
   Radar,
   Mail,
   Users,
+  Target,
 } from "lucide-react";
 import { RevealLine } from "./SplitText";
 
@@ -79,6 +80,16 @@ const capabilities: Capability[] = [
     metricValue: "47",
     metricUnit: "",
     accent: "#86efac",
+  },
+  {
+    icon: Target,
+    title: "Creative Ads",
+    description:
+      "Writes Google, Meta, and LinkedIn ad copy. A/B tests variants, pauses losers, scales winners — no agency retainer needed.",
+    metricLabel: "Active variants",
+    metricValue: "32",
+    metricUnit: "",
+    accent: "#fb923c",
   },
 ];
 
