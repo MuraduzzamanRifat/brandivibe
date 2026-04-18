@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555274157_d0od8e",
+      "timestamp": "2026-04-18T23:34:34.157Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Reliably Incorrect – explore LLM reliability with data visualizations\" — The article does not provide details about a company suitable for web design services. It focuses on LLM reliability with data visualizations, not a business or startup.",
+      "source": "hackernews",
+      "tokens": 658
+    },
+    {
       "id": "act_1776555270482_z2bcqn",
       "timestamp": "2026-04-18T23:34:30.482Z",
       "type": "prospect-skipped",
