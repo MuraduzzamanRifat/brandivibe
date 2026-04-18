@@ -79,7 +79,7 @@ export function Process() {
           <div className="mx-auto max-w-[1600px] flex items-end justify-between">
             <div>
               <div className="font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
-                — Process · 005
+                — Process · 006
               </div>
               <h2 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance max-w-3xl">
                 From kickoff to launch,

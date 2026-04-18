@@ -20,6 +20,7 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-10 font-mono text-xs uppercase tracking-widest text-white/70">
           <a href="#work" className="hover:text-white transition-colors">Work</a>
           <a href="#services" className="hover:text-white transition-colors">Services</a>
+          <a href="#intelligence" className="hover:text-white transition-colors">AI Brain</a>
           <a href="#process" className="hover:text-white transition-colors">Process</a>
           <Link href="/journal" className="hover:text-white transition-colors">Journal</Link>
         </nav>
