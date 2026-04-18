@@ -844,7 +844,7 @@
   "fbQueue": [
     {
       "id": "fb_1776435480737_diuhlp",
-      "status": "queued",
+      "status": "published",
       "body": "Your website is a digital handshake. Is it firm or limp? Discover the perils of cheap design and how it affects perception. 👉 brandivibe.com/cheap-websites-kill-premium-opportunities #FirstImpressions #WebDesign #Brandivibe\n\nhttps://brandivibe.com/journal/cheap-websites-kill-premium-opportunities\n\n#FirstImpressions #WebDesign #Brandivibe",
       "imagePrompt": "modern workspace with premium laptop",
       "imageUrl": "https://images.pexels.com/photos/11982694/pexels-photo-11982694.jpeg?auto=compress&cs=tinysrgb&h=350",
@@ -854,7 +854,8 @@
         "#WebDesign",
         "#Brandivibe"
       ],
-      "createdAt": "2026-04-17T14:18:00.737Z"
+      "createdAt": "2026-04-17T14:18:00.737Z",
+      "publishedAt": "2026-04-18T03:31:08.965Z"
     },
     {
       "id": "fb_1776435476666_zxgggp",
