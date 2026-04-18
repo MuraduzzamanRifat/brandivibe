@@ -666,6 +666,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502260176_2omiii",
+      "timestamp": "2026-04-18T08:51:00.176Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The article does not provide enough information to determine if PodWarden is in the appropriate stage or industry that fits Brandivibe's ICP. Additionally, no clear indicator of recent funding or specific details on the company's operations are provided.",
+      "source": "hackernews",
+      "tokens": 707
+    },
+    {
       "id": "act_1776502255958_2jrjzg",
       "timestamp": "2026-04-18T08:50:55.958Z",
       "type": "prospect-skipped",
