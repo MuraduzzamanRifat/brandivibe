@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551670994_wyvg2j",
+      "timestamp": "2026-04-18T22:34:30.994Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Immediate Mediation WebAuthn on Django\" — The article is about a Django package, not a company that fits our target ICP. It's focused on developers and software tools.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776551667132_4bigjy",
       "timestamp": "2026-04-18T22:34:27.132Z",
       "type": "prospect-skipped",
