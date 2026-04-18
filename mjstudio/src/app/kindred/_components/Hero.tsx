@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen px-6 md:px-10 pt-10 pb-16 overflow-hidden">
       <nav className="relative flex items-center justify-between mb-24 md:mb-32 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--ink)]/70">
-        <Link href="/demos" className="hover:text-[var(--ink)]">← All demos</Link>
+        <Link href="/portfolio" className="hover:text-[var(--ink)]">← Portfolio</Link>
         <div className="text-xl tracking-[0.4em] kindred-serif not-italic font-normal text-[var(--ink)]">
           Kindred
         </div>

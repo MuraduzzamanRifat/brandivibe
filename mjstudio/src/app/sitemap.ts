@@ -2,7 +2,10 @@ import type { MetadataRoute } from "next";
 import { loadBrain } from "@/lib/brain-storage";
 
 const SITE = "https://brandivibe.com";
-const DEMOS = ["helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium", "uturn"];
+const PORTFOLIO_SLUGS = [
+  "helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium",
+  "uturn", "kindred", "ironwood", "terroir",
+];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const brain = await loadBrain();
@@ -11,9 +14,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1, lastModified: now },
+    { url: `${SITE}/portfolio`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9, lastModified: now },
-    ...DEMOS.map((d) => ({
+    ...PORTFOLIO_SLUGS.map((d) => ({
       url: `${SITE}/${d}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,

@@ -36,7 +36,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen px-6 md:px-10 pt-8 pb-16 overflow-hidden flex flex-col">
       <nav className="relative flex items-center justify-between mb-12 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--mute)]">
-        <Link href="/demos" className="hover:text-[var(--ink)]">← All demos</Link>
+        <Link href="/portfolio" className="hover:text-[var(--ink)]">← Portfolio</Link>
         <div className="ironwood-display text-xl text-[var(--ink)]">IRONWOOD</div>
         <div className="flex gap-6">
           <span className="hidden md:inline">Drop 07</span>

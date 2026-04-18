@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative min-h-screen px-6 md:px-10 pt-10 pb-16 overflow-hidden">
       <nav className="relative flex items-center justify-between mb-20 md:mb-28 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--mute)]">
-        <Link href="/demos" className="hover:text-[var(--ink)]">← All demos</Link>
+        <Link href="/portfolio" className="hover:text-[var(--ink)]">← Portfolio</Link>
         <div className="terroir-serif text-xl tracking-wider text-[var(--forest)]">
           Terroir
         </div>

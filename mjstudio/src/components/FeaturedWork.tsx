@@ -7,7 +7,7 @@ import { RevealLine } from "./SplitText";
 import { LazyVideo } from "./LazyVideo";
 import { demos } from "@/data/demos";
 
-// Only the first 6 demos appear on the homepage; the rest live behind /demos.
+// Only the first 6 projects appear on the homepage; the rest live behind /portfolio.
 const HOMEPAGE_DEMO_COUNT = 6;
 const projects = demos.filter((d) => !d.comingSoon).slice(0, HOMEPAGE_DEMO_COUNT);
 
@@ -128,14 +128,14 @@ export function FeaturedWork() {
                 More in the index
               </div>
               <div className="text-2xl md:text-3xl font-semibold tracking-tight">
-                {demos.length} total demos — landing pages, websites, and Shopify stores.
+                {demos.length} projects in the portfolio — landing pages, websites, and Shopify stores.
               </div>
             </div>
             <Link
-              href="/demos"
+              href="/portfolio"
               className="shrink-0 inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors font-medium"
             >
-              View all demos <ArrowRight className="w-4 h-4" />
+              View full portfolio <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         )}

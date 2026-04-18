@@ -42,13 +42,13 @@ export default function DemosPage() {
       <div className="mx-auto max-w-7xl px-6 md:px-10 py-16 md:py-24">
         <div className="mb-12 md:mb-16">
           <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#84e1ff] mb-4">
-            — Demos & Case Studies
+            — Portfolio & Case Studies
           </div>
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tight mb-6 text-balance">
             Selected work.
           </h1>
           <p className="text-lg md:text-xl text-white/55 max-w-2xl text-balance">
-            Every demo is a working, hand-built Next.js site — landing pages, content-heavy websites,
+            Every project is a working, hand-built Next.js site — landing pages, content-heavy websites,
             and Shopify storefronts. Click through to experience them live.
           </p>
         </div>

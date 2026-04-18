@@ -16,7 +16,7 @@ export type Demo = {
   name: string;
   /** Short positioning line (shown in cards) */
   category: string;
-  /** Internal classification for the /demos filter tabs */
+  /** Internal classification for the /portfolio filter tabs */
   kind: DemoKind;
   description: string;
   tags: string[];
