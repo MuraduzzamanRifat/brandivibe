@@ -1146,6 +1146,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776541242810_1rje0t",
+      "timestamp": "2026-04-18T19:40:42.810Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic operates primarily in the AI research industry, which involves substantial resources and technical endeavors likely beyond the premium web design studio scope.",
+      "source": "techcrunch",
+      "tokens": 784
+    },
+    {
       "id": "act_1776541238172_zn730t",
       "timestamp": "2026-04-18T19:40:38.172Z",
       "type": "prospect-skipped",
