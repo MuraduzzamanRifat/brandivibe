@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776505680864_rtn9bc",
+      "timestamp": "2026-04-18T09:48:00.864Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Nilbox – Run OpenClaw without exposing your API tokens\" — The article does not provide enough information about Nilbox being a company or having a business model that fits the premium web design market.",
+      "source": "hackernews",
+      "tokens": 821
+    },
+    {
       "id": "act_1776505676668_gcl79w",
       "timestamp": "2026-04-18T09:47:56.668Z",
       "type": "prospect-skipped",
