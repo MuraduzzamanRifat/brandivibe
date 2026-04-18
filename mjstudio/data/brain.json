@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551663325_1u9v4g",
+      "timestamp": "2026-04-18T22:34:23.325Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Anya – Offline static malware analysis (Rust)\" — The company focuses on static malware analysis, which is a niche area not aligned with Brandivibe's web design services.",
+      "source": "hackernews",
+      "tokens": 642
+    },
+    {
       "id": "act_1776551658518_14fqrx",
       "timestamp": "2026-04-18T22:34:18.518Z",
       "type": "error",
