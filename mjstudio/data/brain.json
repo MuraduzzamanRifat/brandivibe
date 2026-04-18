@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776533781864_58s1kl",
+      "timestamp": "2026-04-18T17:36:21.864Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The article describes StegoForge as an open-source project on GitHub rather than a company, indicating it is not in the appropriate stage or structure to fit our target market.",
+      "source": "hackernews",
+      "tokens": 688
+    },
+    {
       "id": "act_1776533777538_kpqxb2",
       "timestamp": "2026-04-18T17:36:17.538Z",
       "type": "prospect-skipped",
