@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776508787385_t38rpw",
+      "timestamp": "2026-04-18T10:39:47.385Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The article does not provide information about a specific company, its stage, or relevant funding details.",
+      "source": "hackernews",
+      "tokens": 654
+    },
+    {
       "id": "act_1776508783734_dsyf5m",
       "timestamp": "2026-04-18T10:39:43.734Z",
       "type": "prospect-skipped",
