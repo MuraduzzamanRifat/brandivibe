@@ -124,7 +124,7 @@ Description: ${article.description}`;
     estimatedBudget: parsed.estimatedBudget ?? "",
     status: "new",
     notes: parsed.notes,
-    source: "techcrunch",
+    source: article.source,
     sourceUrl: article.link,
     createdAt: now,
     updatedAt: now,

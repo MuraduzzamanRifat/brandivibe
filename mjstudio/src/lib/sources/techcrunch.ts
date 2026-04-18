@@ -10,7 +10,7 @@ export type RawArticle = {
   link: string;
   pubDate: string;
   creator: string;
-  source: "techcrunch";
+  source: "techcrunch" | "producthunt" | "hackernews" | "betalist";
 };
 
 const FEED_URL = "https://techcrunch.com/feed/";

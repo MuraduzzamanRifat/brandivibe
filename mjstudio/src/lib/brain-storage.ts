@@ -66,7 +66,7 @@ export type Prospect = {
   estimatedBudget: string;
   status: ProspectStatus;
   notes?: string;
-  source: "seed" | "techcrunch" | "product-hunt" | "crunchbase" | "manual";
+  source: "seed" | "techcrunch" | "producthunt" | "hackernews" | "betalist" | "crunchbase" | "manual";
   sourceUrl?: string;
   // Phase 4 outbound fields
   scraped?: ScrapedSite;
