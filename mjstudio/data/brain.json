@@ -1202,6 +1202,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548133166_gb4xlj",
+      "timestamp": "2026-04-18T21:35:33.166Z",
+      "type": "prospect-scraped",
+      "description": "Scraped mechcloud.io — tech: astro, vue, tailwind, cloudflare, google-fonts · design 5/10 · 2 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo"
+    },
+    {
       "id": "act_1776548128711_hg56q9",
       "timestamp": "2026-04-18T21:35:28.711Z",
       "type": "prospect-skipped",
