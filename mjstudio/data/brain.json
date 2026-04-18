@@ -468,6 +468,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496080023_ev2pqz",
+      "timestamp": "2026-04-18T07:08:00.023Z",
+      "type": "prospect-researched",
+      "description": "Researched Cogveo: The homepage lacks a clear and engaging call to action.",
+      "prospectId": "tc_aHR0cHM6Ly9jb2d2",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 2769
+    },
+    {
       "id": "act_1776496062013_2tigiy",
       "timestamp": "2026-04-18T07:07:42.013Z",
       "type": "prospect-scraped",
