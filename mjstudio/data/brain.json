@@ -1365,6 +1365,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551698686_nsom89",
+      "timestamp": "2026-04-18T22:34:58.686Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776551694704_o2ajpx",
       "timestamp": "2026-04-18T22:34:54.704Z",
       "type": "prospect-skipped",
