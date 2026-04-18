@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512057607_ywsnjs",
+      "timestamp": "2026-04-18T11:34:17.607Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — The company is a community platform with no mentioned revenue model, which does not align with our target for premium web design services.",
+      "source": "hackernews",
+      "tokens": 708
+    },
+    {
       "id": "act_1776512053476_8oy7j8",
       "timestamp": "2026-04-18T11:34:13.476Z",
       "type": "prospect-skipped",
