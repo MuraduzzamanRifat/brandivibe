@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555266852_xq88lp",
+      "timestamp": "2026-04-18T23:34:26.852Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The company described is not a fit due to inadequate information and lack of relevance to Brandivibe's target industries such as luxury brands, fintech, or saas.",
+      "source": "hackernews",
+      "tokens": 654
+    },
+    {
       "id": "act_1776555262773_zse8ty",
       "timestamp": "2026-04-18T23:34:22.773Z",
       "type": "prospect-skipped",
