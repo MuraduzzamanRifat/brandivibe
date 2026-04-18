@@ -918,6 +918,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520658541_xdclse",
+      "timestamp": "2026-04-18T13:57:38.541Z",
+      "type": "prospect-added",
+      "description": "Added Readox via hackernews (B-tier, saas) — Readox is likely looking to expand its SaaS platform, providing an opportunity for web design enhancement.",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk",
+      "source": "hackernews",
+      "tokens": 826
+    },
+    {
       "id": "act_1776520651344_oc7xoe",
       "timestamp": "2026-04-18T13:57:31.344Z",
       "type": "prospect-skipped",
