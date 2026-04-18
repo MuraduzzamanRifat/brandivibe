@@ -173,6 +173,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776483071917_q2oi3x",
+      "timestamp": "2026-04-18T03:31:11.917Z",
+      "type": "fb-published",
+      "description": "Approved queued FB post fb_1776435480737_diuhlp"
+    },
+    {
       "id": "act_1776478960751_7ln5p6",
       "timestamp": "2026-04-18T02:22:40.751Z",
       "type": "prospect-skipped",
