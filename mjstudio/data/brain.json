@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776505671811_trf5th",
+      "timestamp": "2026-04-18T09:47:51.811Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article does not describe a company but rather a personal project using AI for Garmin data processing.",
+      "source": "hackernews",
+      "tokens": 781
+    },
+    {
       "id": "act_1776505667475_iog2d9",
       "timestamp": "2026-04-18T09:47:47.475Z",
       "type": "prospect-skipped",
