@@ -2573,10 +2573,10 @@
     {
       "date": "2026-04-18",
       "startedAt": "2026-04-18T13:55:53.296Z",
-      "updatedAt": "2026-04-18T13:56:32.228Z",
+      "updatedAt": "2026-04-18T13:56:41.509Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
