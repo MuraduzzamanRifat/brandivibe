@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776517279539_hyrbeu",
+      "timestamp": "2026-04-18T13:01:19.539Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Agentic Dev – AI dev-tools news, curated daily by Claude\" — Agentic Dev is a news publication, not a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 667
+    },
+    {
       "id": "act_1776517274937_sr80mo",
       "timestamp": "2026-04-18T13:01:14.937Z",
       "type": "prospect-skipped",
