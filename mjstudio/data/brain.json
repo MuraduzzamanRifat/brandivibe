@@ -896,6 +896,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776508774616_b6q2l3",
+      "timestamp": "2026-04-18T10:39:34.616Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776505697919_t5vlfq",
       "timestamp": "2026-04-18T09:48:17.919Z",
       "type": "prospect-skipped",
