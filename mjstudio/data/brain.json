@@ -666,6 +666,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502279991_winq47",
+      "timestamp": "2026-04-18T08:51:19.991Z",
+      "type": "prospect-researched",
+      "description": "Researched Small: The homepage lacks clear CTAs, making it difficult for users to take action.",
+      "prospectId": "tc_aHR0cHM6Ly9nZXRz",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 2097
+    },
+    {
       "id": "act_1776502264591_bpro6u",
       "timestamp": "2026-04-18T08:51:04.591Z",
       "type": "prospect-scraped",
