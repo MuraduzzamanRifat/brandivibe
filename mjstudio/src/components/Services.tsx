@@ -103,20 +103,28 @@ function ServicePanel({
     [fadeIn, holdStart, holdEnd, fadeOut],
     isLast ? [0, 1, 1, 1] : [0, 1, 1, 0]
   );
+  // Dramatic vertical motion — panels slide up through the viewport as you
+  // scroll. ~100vh of travel so the motion reads as active scroll movement,
+  // not just a cross-fade in place.
   const y = useTransform(
     progress,
-    isLast ? [fadeIn, holdStart, fadeOut] : [holdStart, fadeOut],
-    isLast ? ["40px", "0px", "0px"] : ["40px", "-40px"]
+    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
+    isLast ? ["60vh", "0vh", "0vh"] : ["60vh", "0vh", "0vh", "-60vh"]
   );
   const numberScale = useTransform(
     progress,
-    [holdStart, Math.min(1, holdStart + 0.08), holdEnd, fadeOut],
-    isLast ? [0.85, 1, 1, 1] : [0.85, 1, 1, 1.05]
+    [fadeIn, holdStart, holdEnd, fadeOut],
+    isLast ? [0.6, 1, 1, 1] : [0.6, 1, 1, 1.15]
   );
   const xMin = useTransform(
     progress,
-    [holdStart, fadeOut],
-    isLast ? ["0%", "0%"] : ["0%", "-10%"]
+    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
+    isLast ? ["-15%", "0%", "0%"] : ["-15%", "0%", "0%", "15%"]
+  );
+  const rightSideX = useTransform(
+    progress,
+    isLast ? [fadeIn, holdStart, fadeOut] : [fadeIn, holdStart, holdEnd, fadeOut],
+    isLast ? ["15%", "0%", "0%"] : ["15%", "0%", "0%", "-15%"]
   );
 
   return (
@@ -151,7 +159,7 @@ function ServicePanel({
         </motion.div>
 
         {/* title + description */}
-        <motion.div style={{ y }} className="col-span-12 md:col-span-7 md:pl-10">
+        <motion.div style={{ y, x: rightSideX }} className="col-span-12 md:col-span-7 md:pl-10">
           <h3 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
             {service.title}
           </h3>
@@ -192,7 +200,7 @@ export function Services() {
       id="services"
       ref={ref}
       className="relative border-t border-white/5"
-      style={{ height: `${services.length * 55}vh` }}
+      style={{ height: `${services.length * 70}vh` }}
     >
       {/* section label, sits above the pinned area */}
       <div className="absolute top-8 left-6 md:left-12 z-20 flex items-baseline gap-4 font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
