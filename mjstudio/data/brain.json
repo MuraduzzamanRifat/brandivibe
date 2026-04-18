@@ -1124,6 +1124,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776538318366_x8b0n4",
+      "timestamp": "2026-04-18T18:51:58.366Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The article describes an open-source Go library project, not a commercial company seeking web design services, nor about a company launching a product or raising funds.",
+      "source": "hackernews",
+      "tokens": 695
+    },
+    {
       "id": "act_1776538313908_omh5ma",
       "timestamp": "2026-04-18T18:51:53.908Z",
       "type": "prospect-added",
