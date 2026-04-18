@@ -64,7 +64,7 @@ export function Process() {
       id="process"
       ref={ref}
       className="relative border-t border-white/5"
-      style={{ height: `${steps.length * 50}vh` }}
+      style={{ height: `${steps.length * 45}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
         {/* atmospheric bg */}

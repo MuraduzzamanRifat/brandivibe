@@ -200,7 +200,7 @@ export function Services() {
       id="services"
       ref={ref}
       className="relative border-t border-white/5"
-      style={{ height: `${services.length * 70}vh` }}
+      style={{ height: `${services.length * 60}vh` }}
     >
       {/* section label, sits above the pinned area */}
       <div className="absolute top-8 left-6 md:left-12 z-20 flex items-baseline gap-4 font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">

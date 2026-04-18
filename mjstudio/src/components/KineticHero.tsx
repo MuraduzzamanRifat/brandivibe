@@ -48,18 +48,18 @@ export function KineticHero() {
       >
         <div className="mx-auto max-w-[1600px]">
           <h1 className="text-[14vw] md:text-[12vw] leading-[0.85] font-semibold tracking-[-0.04em]">
-            <SplitText as="span">We design</SplitText>
+            <SplitText as="span">Websites that</SplitText>
             <br />
             <SplitText as="span" delay={0.15} className="italic text-white/70">
-              websites
+              close
             </SplitText>{" "}
             <SplitText as="span" delay={0.35}>
-              that
+              $100K
             </SplitText>
             <br />
             <span className="gradient-text">
               <SplitText as="span" delay={0.55}>
-                clients remember.
+                deals on sight.
               </SplitText>
             </span>
           </h1>
@@ -75,8 +75,8 @@ export function KineticHero() {
           <div className="col-span-12 md:col-span-5 md:col-start-2">
             <RevealLine delay={0.6}>
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-md text-balance">
-                Brandivibe is an independent premium web design studio
-                crafting cinematic websites for ambitious crypto, SaaS, and luxury brands.
+                Your website is your first impression, your price anchor, and your best salesperson.
+                We build the one that turns $15K visitors into $90K clients.
               </p>
             </RevealLine>
           </div>
@@ -86,7 +86,7 @@ export function KineticHero() {
                 href="#contact"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium"
               >
-                Start a project <ArrowRight className="w-4 h-4" />
+                Claim a free site audit <ArrowRight className="w-4 h-4" />
               </MagneticButton>
             </RevealLine>
             <RevealLine delay={0.9}>
@@ -116,8 +116,8 @@ export function KineticHero() {
         style={{ opacity }}
         className="absolute bottom-10 right-6 md:right-12 font-mono text-xs text-white/40 uppercase tracking-widest text-right"
       >
-        <div>Est. 2024</div>
-        <div>50+ shipped</div>
+        <div>$15K – $90K builds</div>
+        <div>6-week delivery</div>
       </motion.div>
     </section>
   );

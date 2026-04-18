@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { Loader } from "@/components/Loader";
 import { KineticHero } from "@/components/KineticHero";
 import { Manifesto } from "@/components/Manifesto";
 import { FeaturedWork } from "@/components/FeaturedWork";
@@ -10,6 +11,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <Loader />
       <Navbar />
       <main className="relative">
         <KineticHero />

@@ -144,8 +144,10 @@ export const demos: Demo[] = [
       "A luxury-conversion homepage for a capsule clothing brand — 8-section controlled funnel, delayed selling, cream + ink + burnt-sienna palette, Cormorant italic headlines, four seasonal releases of fifty pieces each.",
     tags: ["Next.js", "Conversion funnel", "Editorial", "Framer Motion"],
     href: "/uturn",
-    video: "/work/uturn.webm",
-    poster: "/work/uturn.jpg",
+    // Webm not generated yet — run `node scripts/screenshot-sections.mjs`
+    // while dev server is running to capture. Until then, fallback text shows.
+    video: null,
+    poster: null,
     gradient: "from-[#a64b2a]/20 via-[#f3efe6]/10 to-[#0f0e0c]",
     year: "2026",
     role: "Design · Build · Conversion",
