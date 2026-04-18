@@ -1155,6 +1155,69 @@
   "sendingSince": "2026-04-16",
   "gmapsLeads": [],
   "crmContacts": [],
-  "emailTemplates": [],
-  "crmEmails": []
+  "emailTemplates": [
+    {
+      "id": "tpl-cold-observation",
+      "name": "Cold opener — specific observation",
+      "category": "cold",
+      "isSystem": true,
+      "subject": "two things I'd fix on {{domain}}",
+      "body": "{{firstName}},\n\nI was looking at {{website}} and noticed {{observation}}.\n\nI run Brandivibe — a solo studio that rebuilds founder homepages in 6 weeks for $35–90K. Not pitching yet, just curious: is that on your \"fine for now\" pile or actively bugging you?\n\nOne-line answer is plenty.\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    },
+    {
+      "id": "tpl-value-drop",
+      "name": "Value drop — three observations",
+      "category": "followup",
+      "isSystem": true,
+      "subject": "3 things I'd fix on {{domain}}",
+      "body": "{{firstName}} — no reply needed, just sharing.\n\nI spent 20 minutes on {{website}} this morning. Three things worth fixing:\n\n1. [observation 1 — customize me]\n2. [observation 2 — customize me]\n3. [observation 3 — customize me]\n\nThe one I'd fix first is the hero. It's a 1–2 day lift and probably moves your conversion more than anything else on the site.\n\nbrandivibe.com/neuron is what a {{company}}-stage rebuild looks like at the $35–90K tier. Worth 15 min of poking around even if you don't end up working with me.\n\nMuraduzzaman\nBrandivibe",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    },
+    {
+      "id": "tpl-loom-offer",
+      "name": "Free loom walkthrough offer",
+      "category": "loom",
+      "isSystem": true,
+      "subject": "{{company}} — 5-min loom walkthrough?",
+      "body": "{{firstName}},\n\nI'll record a 5-minute loom walking through exactly how I'd fix the top issue on {{website}} — specific changes, before/after, no pitch. Free, async, in your inbox within 48 hours.\n\nInterested? Reply \"loom\" and I'll get it recorded by end of week.\n\nOr if you'd rather talk live: {{calendly}}\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    },
+    {
+      "id": "tpl-quick-followup",
+      "name": "Quick follow-up — still there?",
+      "category": "followup",
+      "isSystem": true,
+      "subject": "re: {{domain}}",
+      "body": "{{firstName}},\n\nFollowing up on my note from earlier — did my email make it through the filter or did I completely miss the mark on what you're focused on right now?\n\nEither answer is useful. One line is plenty.\n\nMuraduzzaman\nBrandivibe",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    },
+    {
+      "id": "tpl-breakup",
+      "name": "Breakup — closing the loop",
+      "category": "breakup",
+      "isSystem": true,
+      "subject": "closing the loop on {{company}}",
+      "body": "{{firstName}},\n\nClosing this thread — I've got a standard 4-touch rule and this is touch 4.\n\nIf \"not interested\" → one-line reply stops me forever, no hard feelings.\nIf \"not now\" → I'll circle back next quarter.\nIf I just caught you on a bad week → {{calendly}}\n\nEither way, good luck with {{company}}.\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    },
+    {
+      "id": "tpl-audit-recipient",
+      "name": "Audit recipient — warm follow-up",
+      "category": "audit",
+      "isSystem": true,
+      "subject": "the loom for {{domain}}",
+      "body": "{{firstName}},\n\nThanks for running the audit on {{website}} — I saw the report fire in my inbox this morning.\n\nIf you want me to actually record that 5-minute loom I offered at the bottom of the audit, just reply \"loom\" and I'll have it in your inbox within 48 hours. No pitch, no slides, just the top priority from your report walked through with screenshots of how I'd fix it.\n\nOr grab 15 min: {{calendly}}\n\nMuraduzzaman\nBrandivibe",
+      "createdAt": "2026-04-18T03:28:54.004Z",
+      "updatedAt": "2026-04-18T03:28:54.004Z"
+    }
+  ],
+  "crmEmails": [],
+  "experiments": [],
+  "plannerOverrides": []
 }
