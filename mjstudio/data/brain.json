@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776517265230_v21po4",
+      "timestamp": "2026-04-18T13:01:05.230Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes an individual's project rather than a company, making it unsuitable for a premium web design studio's services.",
+      "source": "hackernews",
+      "tokens": 786
+    },
+    {
       "id": "act_1776517259557_4dxdmz",
       "timestamp": "2026-04-18T13:00:59.557Z",
       "type": "error",
