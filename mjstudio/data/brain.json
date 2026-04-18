@@ -173,6 +173,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776478960751_7ln5p6",
+      "timestamp": "2026-04-18T02:22:40.751Z",
+      "type": "prospect-skipped",
+      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company, Factory, has reached a $1.5B valuation, indicating it's too large and advanced for Brandivibe's typical project size targeting startups.",
+      "source": "techcrunch",
+      "tokens": 790
+    },
+    {
       "id": "act_1776478956819_7h7qzh",
       "timestamp": "2026-04-18T02:22:36.819Z",
       "type": "prospect-skipped",
