@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512061316_7xggzj",
+      "timestamp": "2026-04-18T11:34:21.316Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"codeburn-rs; CodeBurn but 600x faster in Rust [view coding token usage]\" — The article is about an open-source project, not a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 649
+    },
+    {
       "id": "act_1776512057607_ywsnjs",
       "timestamp": "2026-04-18T11:34:17.607Z",
       "type": "prospect-skipped",
