@@ -200,6 +200,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488806966_vhd9ub",
+      "timestamp": "2026-04-18T05:06:46.966Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The article describes a browser extension for downloading media from Twitter, which indicates that it is a product-based business rather than a service-based business that would engage with web design services. This does not fit Brandivibe’s ICP, which targets companies looking for premium web design services.",
+      "source": "hackernews",
+      "tokens": 716
+    },
+    {
       "id": "act_1776488803560_rh8uw1",
       "timestamp": "2026-04-18T05:06:43.560Z",
       "type": "prospect-skipped",
