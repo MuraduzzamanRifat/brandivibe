@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551667132_4bigjy",
+      "timestamp": "2026-04-18T22:34:27.132Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"JSON-logic-path – JSON logic with jsonpath multi-value resolution\" — The article is about a Python implementation, which suggests it's a tech tool, not a business with a need for premium web design services.",
+      "source": "hackernews",
+      "tokens": 760
+    },
+    {
       "id": "act_1776551663325_1u9v4g",
       "timestamp": "2026-04-18T22:34:23.325Z",
       "type": "prospect-skipped",
