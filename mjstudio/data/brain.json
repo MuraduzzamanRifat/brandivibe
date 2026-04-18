@@ -468,6 +468,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496081892_eh963p",
+      "timestamp": "2026-04-18T07:08:01.892Z",
+      "type": "email-found",
+      "description": "Best email for Cogveo: founder@cogveo.com (scraped, conf 95)",
+      "prospectId": "tc_aHR0cHM6Ly9jb2d2"
+    },
+    {
       "id": "act_1776496080023_ev2pqz",
       "timestamp": "2026-04-18T07:08:00.023Z",
       "type": "prospect-researched",
