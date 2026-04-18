@@ -200,6 +200,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488791342_7bwfoe",
+      "timestamp": "2026-04-18T05:06:31.342Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Realtime Voice AI on ESP32 with Cloudflare Durable Objects\" — The company appears to be an individual or a project leveraging Cloudflare for voice AI, which is not a fit for a premium web design service.",
+      "source": "hackernews",
+      "tokens": 783
+    },
+    {
       "id": "act_1776488786367_0mnys9",
       "timestamp": "2026-04-18T05:06:26.367Z",
       "type": "prospect-skipped",
