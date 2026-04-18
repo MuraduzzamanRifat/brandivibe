@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776517289186_kl81g9",
+      "timestamp": "2026-04-18T13:01:29.186Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Ricci Flow – AI Web Scraper\" — The article describes a Chrome extension, not a company with web design needs.",
+      "source": "hackernews",
+      "tokens": 702
+    },
+    {
       "id": "act_1776517284769_1gx9er",
       "timestamp": "2026-04-18T13:01:24.769Z",
       "type": "prospect-skipped",
