@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776538287736_uv07g1",
+      "timestamp": "2026-04-18T18:51:27.736Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company described is not clearly a commercial venture but rather a project hosted on GitHub, lacking information on funding stage, size, or industry alignment with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 710
+    },
+    {
       "id": "act_1776538283117_n5dm8x",
       "timestamp": "2026-04-18T18:51:23.117Z",
       "type": "prospect-skipped",
