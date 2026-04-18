@@ -446,6 +446,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496012070_yfycbi",
+      "timestamp": "2026-04-18T07:06:52.070Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A site for stopping work slop\" — The article does not provide sufficient information about a specific company's stage, industry, or funding to determine ICP fit.",
+      "source": "hackernews",
+      "tokens": 750
+    },
+    {
       "id": "act_1776496007751_nuqkdd",
       "timestamp": "2026-04-18T07:06:47.751Z",
       "type": "error",
