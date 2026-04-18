@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776508809745_vti6l2",
+      "timestamp": "2026-04-18T10:40:09.745Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes a personal project using AI for analyzing Garmin data, not a company or business in an industry relevant to Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 781
+    },
+    {
       "id": "act_1776508805740_0w70vw",
       "timestamp": "2026-04-18T10:40:05.740Z",
       "type": "prospect-skipped",
