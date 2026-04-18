@@ -617,6 +617,28 @@
         ],
         "createdAt": "2026-04-18T07:08:01.892Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9nZXRz",
+      "company": "Small",
+      "domain": "getsmall.xyz",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Seed",
+      "trigger": "Small has recently launched and might need a strong web presence to attract users and creators.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "Their current branding is minimal and might lack differentiation from other writing platforms.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The use of x402 for payment integration suggests a modern, tech-savvy approach but branding doesn't stand out yet.",
+      "source": "hackernews",
+      "sourceUrl": "https://getsmall.xyz/",
+      "createdAt": "2026-04-18T08:50:26.082Z",
+      "updatedAt": "2026-04-18T08:50:26.082Z"
     }
   ],
   "drafts": [],
