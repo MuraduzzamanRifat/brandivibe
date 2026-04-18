@@ -200,6 +200,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488821414_6ulkte",
+      "timestamp": "2026-04-18T05:07:01.415Z",
+      "type": "prospect-researched",
+      "description": "Researched rtrvr.ai: The homepage lacks a clear, concise value proposition above the fold.",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 3819
+    },
+    {
       "id": "act_1776488812063_hab1es",
       "timestamp": "2026-04-18T05:06:52.063Z",
       "type": "prospect-scraped",
