@@ -1146,6 +1146,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776541238172_zn730t",
+      "timestamp": "2026-04-18T19:40:38.172Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The company is a small open-source project, likely not a business with a budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 692
+    },
+    {
       "id": "act_1776541234250_azlo2l",
       "timestamp": "2026-04-18T19:40:34.250Z",
       "type": "prospect-added",
