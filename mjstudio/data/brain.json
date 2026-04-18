@@ -1140,7 +1140,36 @@
       "source": "hackernews",
       "sourceUrl": "https://gotskillz.tech/",
       "createdAt": "2026-04-18T19:40:32.077Z",
-      "updatedAt": "2026-04-18T19:40:32.077Z"
+      "updatedAt": "2026-04-18T19:41:09.474Z",
+      "scraped": {
+        "fetchedAt": "2026-04-18T19:41:05.151Z",
+        "homepage": "Got Skillz?",
+        "about": "Got Skillz?",
+        "team": "Got Skillz?",
+        "pricing": "Got Skillz?",
+        "contact": "Got Skillz?",
+        "techStack": [],
+        "designScore": 4,
+        "foundEmails": [],
+        "foundSocials": {},
+        "structure": {
+          "title": "Got Skillz?",
+          "metaDescription": "",
+          "h1": [],
+          "h2": [],
+          "h3": [],
+          "navLinks": [],
+          "buttons": [],
+          "footerLinks": [],
+          "hasContact": true,
+          "hasPricing": true,
+          "hasTeam": true,
+          "hasBlog": false,
+          "hasCareers": false,
+          "hasLogin": false
+        },
+        "rawHomepage": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/vite.svg\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Got Skillz?</title>\n    <script type=\"module\" crossorigin src=\"/assets/index-B_iggxJY.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-5Gm09WQ0.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
+      }
     }
   ],
   "drafts": [],
