@@ -199,6 +199,9 @@ export type Plan = {
   tokens: number;
   executed: boolean;
   rating?: "up" | "down";
+  /** Which CONTENT_ANGLES index this plan used (0-9). Stored so downstream
+   *  consumers (lead-gen executor, aggregator) can attribute outcomes. */
+  angleIndex?: number;
 };
 
 export type LearningEntry = {
@@ -403,6 +406,28 @@ export type OutboundEmail = {
   failReason?: string;
   model?: string;
   tokens?: number;
+  /** Metadata attached at queue time — lets the aggregator bucket performance
+   *  by dimension without having to re-derive it from prospect/plan state. */
+  meta?: {
+    plannerAngle?: number;     // index into CONTENT_ANGLES (0-9)
+    industry?: string;         // prospect.industry at time of send
+    icpTier?: "A" | "B" | "C" | "D";
+    subjectStyle?: "question" | "stat" | "direct" | "curiosity" | "other";
+    leadGenKind?: string;      // e.g. "outbound-email" from plan.leadGen
+  };
+  /** Engagement metrics populated by Resend webhook events */
+  metrics?: {
+    opens: number;
+    firstOpenedAt?: string;
+    clicks: number;
+    firstClickedAt?: string;
+    bounced?: boolean;
+    bouncedAt?: string;
+    complained?: boolean;
+    complainedAt?: string;
+    replied?: boolean;
+    repliedAt?: string;
+  };
 };
 
 /**

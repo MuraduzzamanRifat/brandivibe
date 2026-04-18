@@ -284,6 +284,7 @@ Return strict JSON with this shape — no markdown fences, no prose:
     model,
     tokens,
     executed: false,
+    angleIndex,
   };
 
   return plan;

@@ -227,7 +227,7 @@ export async function POST(req: Request) {
   // templates, match by ICP keywords, enqueue outbound emails automatically.
   if ((await getOrCreateRun(date, FB_SLOTS)).phases.leadgen !== "done") {
     try {
-      const lgSummary = await executeLeadGenActions(plan.leadGen ?? []);
+      const lgSummary = await executeLeadGenActions(plan.leadGen ?? [], { plannerAngle: plan.angleIndex });
       await updateRun(date, (r) => {
         r.phases.leadgen = "done";
       });

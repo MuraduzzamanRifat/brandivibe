@@ -6,6 +6,7 @@ import {
   type Prospect,
   type OutboundEmail,
 } from "../brain-storage";
+import { classifySubjectStyle } from "./learning/aggregator";
 import { createHmac } from "crypto";
 
 /**
@@ -127,7 +128,8 @@ export type LeadGenExecSummary = {
 };
 
 export async function executeLeadGenActions(
-  actions: LeadGenAction[]
+  actions: LeadGenAction[],
+  opts: { plannerAngle?: number } = {}
 ): Promise<LeadGenExecSummary> {
   const summary: LeadGenExecSummary = {
     actionsProcessed: 0,
@@ -219,6 +221,13 @@ export async function executeLeadGenActions(
           status: "queued",
           model: "lead-gen-template",
           tokens: 0,
+          meta: {
+            plannerAngle: opts.plannerAngle,
+            industry: prospect.industry,
+            icpTier: prospect.icpTier,
+            subjectStyle: classifySubjectStyle(subject),
+            leadGenKind: action.kind,
+          },
         };
 
         pendingEmails.push(email);

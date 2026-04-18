@@ -72,7 +72,7 @@ export async function POST(req: Request) {
     const todayDate = new Date().toISOString().slice(0, 10);
     const todayPlan = (brain.plans ?? []).find((p) => p.date === todayDate);
     if (todayPlan?.leadGen?.length) {
-      const lgSummary = await executeLeadGenActions(todayPlan.leadGen);
+      const lgSummary = await executeLeadGenActions(todayPlan.leadGen, { plannerAngle: todayPlan.angleIndex });
       summary.leadgen = lgSummary;
       if (lgSummary.emailsQueued > 0) {
         await logActivity({
