@@ -44,29 +44,45 @@ const services: Service[] = [
   },
 ];
 
-function ServiceDot({
-  accent,
+function StepperItem({
+  service,
   index,
   total,
   progress,
 }: {
-  accent: string;
+  service: Service;
   index: number;
   total: number;
   progress: MotionValue<number>;
 }) {
   // All input values must be monotonically non-decreasing and clamped to [0, 1]
   // or Framer Motion's Web Animations API path throws at runtime.
-  const center = index / total;
-  const a = Math.max(0, Math.min(1, center - 0.3 / total));
-  const b = Math.max(a + 0.0001, Math.min(1, center));
-  const c = Math.max(b + 0.0001, Math.min(1, center + 0.7 / total));
-  const opacity = useTransform(progress, [a, b, c], [0.3, 1, 0.3]);
+  const localStart = index / total;
+  const localEnd = (index + 1) / total;
+  const a = Math.max(0, localStart - 0.02);
+  const b = Math.max(a + 0.0001, Math.min(1, localStart + 0.02));
+  const c = Math.max(b + 0.0001, Math.min(1, localEnd - 0.02));
+  const d = Math.max(c + 0.0001, Math.min(1, localEnd));
+  const opacity = useTransform(progress, [a, b, c, d], [0.3, 1, 1, 0.3]);
+  const barScaleX = useTransform(progress, [a, b, c, d], [0, 1, 1, 1]);
+  const labelOpacity = useTransform(progress, [a, b, c, d], [0, 1, 1, 0.4]);
+
   return (
-    <motion.div
-      style={{ opacity, background: accent }}
-      className="w-8 h-[2px] rounded-full"
-    />
+    <motion.div style={{ opacity }} className="flex-1 min-w-0">
+      <div className="relative h-[2px] bg-white/10 overflow-hidden rounded-full">
+        <motion.div
+          style={{ scaleX: barScaleX, background: service.accent }}
+          className="absolute inset-0 origin-left h-full"
+        />
+      </div>
+      <motion.div
+        style={{ opacity: labelOpacity }}
+        className="mt-3 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60"
+      >
+        <span style={{ color: service.accent }}>{service.num}</span>
+        <span className="truncate">{service.title}</span>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -185,8 +201,6 @@ export function Services() {
     offset: ["start start", "end end"],
   });
 
-  const progressBarScaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
     <section
       id="services"
@@ -194,24 +208,13 @@ export function Services() {
       className="relative border-t border-white/5"
       style={{ height: `${services.length * 45}vh` }}
     >
-      {/* section label, sits above the pinned area */}
       <div className="absolute top-8 left-6 md:left-12 z-20 flex items-baseline gap-4 font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
         <span>— Services</span>
         <span>004</span>
         <span className="hidden md:inline">— what we build when the brief says world-class</span>
       </div>
 
-      {/* progress bar */}
-      <div className="absolute top-8 right-6 md:right-12 z-20 w-32 h-[2px] bg-white/10 origin-left overflow-hidden rounded-full">
-        <motion.div
-          style={{ scaleX: progressBarScaleX }}
-          className="origin-left h-full bg-gradient-to-r from-[#84e1ff] via-[#a78bfa] to-[#fcd34d]"
-        />
-      </div>
-
-      {/* pinned viewport */}
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        {/* stock video bg */}
         <LazyVideo
           src="/stock/services-bg.mp4"
           className="absolute inset-0 w-full h-full object-cover opacity-[0.12] pointer-events-none"
@@ -227,17 +230,21 @@ export function Services() {
           />
         ))}
 
-        {/* bottom indicator dots */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-          {services.map((s, i) => (
-            <ServiceDot
-              key={s.num}
-              accent={s.accent}
-              index={i}
-              total={services.length}
-              progress={scrollYProgress}
-            />
-          ))}
+        {/* Progress stepper — full-width bar with numbered labels per service,
+            replaces the previous 4-dot indicator. Highlights the active service
+            so users always know where they are in the sequence. */}
+        <div className="absolute bottom-10 left-6 md:left-12 right-6 md:right-12 z-10">
+          <div className="mx-auto max-w-[1600px] flex gap-4 md:gap-6">
+            {services.map((s, i) => (
+              <StepperItem
+                key={s.num}
+                service={s}
+                index={i}
+                total={services.length}
+                progress={scrollYProgress}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
