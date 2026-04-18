@@ -2,6 +2,7 @@ import { getOpenAI, MODELS } from "../openai";
 import { loadMarketingKnowledge } from "../marketing-knowledge";
 import { loadBrain, type Plan, type ArticleSpec, type FbPostSpec, type LeadGenAction } from "../brain-storage";
 import { scoreSEO, wordCount } from "./seo";
+import { loadActivePlannerOverrides } from "./autonomy";
 
 // Rotate through 10 content angles based on day-of-year so every angle gets
 // covered before repeating. Keeps the blog strategically diverse.
@@ -53,6 +54,7 @@ export async function planToday(angleOverride?: number): Promise<Plan> {
   const openai = getOpenAI();
   const knowledge = await loadMarketingKnowledge();
   const brain = await loadBrain();
+  const autonomyOverrides = await loadActivePlannerOverrides();
 
   // Pass ALL published titles (up to 50) so the planner never duplicates an
   // existing article. Backfill can run many articles in sequence so we need
@@ -181,7 +183,7 @@ ALREADY PUBLISHED SLUGS: ${JSON.stringify(recentSlugs)}
 10. heroImagePrompt must be a Pexels search query for editorial photography (e.g. "startup founder reviewing website design on monitor", "clean modern workspace with premium laptop"). No renders, no illustrations.
 
 PRIOR LEARNING (most recent first)
-${recentLearning.length ? recentLearning.map((l, i) => `${i + 1}. ${l}`).join("\n") : "(no data yet — first run)"}
+${recentLearning.length ? recentLearning.map((l, i) => `${i + 1}. ${l}`).join("\n") : "(no data yet — first run)"}${autonomyOverrides}
 
 TOP PERFORMING ARTICLES
 ${topPerformers.length ? JSON.stringify(topPerformers, null, 2) : "(no traffic data yet)"}

@@ -212,6 +212,60 @@ export type LearningEntry = {
   evidence: Record<string, unknown>;
 };
 
+/**
+ * Autonomy: A/B experiment on a single dimension of the outbound pipeline.
+ * The proposer creates these after the weekly digest identifies performance
+ * deltas; the scorer closes them after the window, declares a winner, and
+ * writes the winning pattern into plannerOverrides so the brain biases
+ * toward it on the next planner run.
+ *
+ * Variants are plain strings because different dimensions need different
+ * semantics: for "angleIndex" the variant is "0".."9", for "subjectStyle"
+ * it's "question" | "stat" | "direct" | "curiosity" | "other", etc.
+ */
+export type ExperimentDimension = "angleIndex" | "subjectStyle" | "leadGenKind";
+
+export type Experiment = {
+  id: string;
+  dimension: ExperimentDimension;
+  variantA: string;
+  variantB: string;
+  /** ISO date window the experiment is active. Sends outside the window
+   *  are not tagged and don't count toward the result. */
+  startedAt: string;
+  endsAt: string;
+  status: "running" | "decided" | "inconclusive" | "cancelled";
+  /** Minimum total sends across both variants before the scorer will
+   *  even attempt to declare a winner. Below this, mark inconclusive. */
+  minSamples: number;
+  winner?: "A" | "B";
+  decidedAt?: string;
+  /** Snapshots at decision time — kept for the audit trail */
+  decision?: {
+    variantAStats: { sent: number; opens: number; clicks: number; replies: number; replyRate: number };
+    variantBStats: { sent: number; opens: number; clicks: number; replies: number; replyRate: number };
+    rationale: string;
+    applied: boolean; // did we write to plannerOverrides (autonomy on) or just record
+  };
+  createdBy: "proposer" | "manual";
+};
+
+/**
+ * Overrides applied by the autonomy loop. Planner reads these on every run
+ * and appends them as a high-priority section to the system prompt so the
+ * model biases toward patterns proven to work. Zero overrides = pure
+ * default behavior.
+ */
+export type PlannerOverride = {
+  id: string;
+  experimentId: string;
+  dimension: ExperimentDimension;
+  preferValue: string;
+  appliedAt: string;
+  /** Optional expiry — after this date the override is archived. */
+  expiresAt?: string;
+};
+
 /** Scraper output — raw pages + detected tech stack + found contact info */
 export type ScrapedSite = {
   fetchedAt: string;
@@ -414,6 +468,9 @@ export type OutboundEmail = {
     icpTier?: "A" | "B" | "C" | "D";
     subjectStyle?: "question" | "stat" | "direct" | "curiosity" | "other";
     leadGenKind?: string;      // e.g. "outbound-email" from plan.leadGen
+    /** Autonomy: which experiment this email is part of, and which arm */
+    experimentId?: string;
+    experimentVariant?: "A" | "B";
   };
   /** Engagement metrics populated by Resend webhook events */
   metrics?: {
@@ -560,6 +617,10 @@ type BrainData = {
   crmEmails?: CrmEmail[];
   /** Cold-email blast campaign — small pointer only; list lives in sibling file */
   blastConfig?: BlastConfig;
+  /** Autonomy: running + historical A/B experiments */
+  experiments?: Experiment[];
+  /** Autonomy: active planner prompt overrides driven by experiment winners */
+  plannerOverrides?: PlannerOverride[];
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -587,6 +648,8 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     emailTemplates: d?.emailTemplates ?? [],
     crmEmails: d?.crmEmails ?? [],
     blastConfig: d?.blastConfig,
+    experiments: d?.experiments ?? [],
+    plannerOverrides: d?.plannerOverrides ?? [],
   };
 }
 

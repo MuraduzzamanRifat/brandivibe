@@ -1,5 +1,6 @@
 import { aggregate, type LearningSnapshot, type Rates } from "./aggregator";
 import { loadBrain, addLearning, logActivity } from "../../brain-storage";
+import { proposeExperiments, scoreExperiments } from "../autonomy";
 
 /**
  * Weekly learning digest. Aggregates the last 7 days of outbound email
@@ -92,6 +93,21 @@ export async function runLearningDigest(): Promise<DigestSummary> {
     type: "insight-learned",
     description: `Weekly digest: ${snapshot.overall.sent} sends analyzed, ${insightsWritten} insights written (${snapshot.topPerformers.length} winners, ${snapshot.underPerformers.length} losers)`,
   });
+
+  // Autonomy: score any closed experiments, then propose new ones. Runs
+  // AFTER the digest so scoring can use the same data we just summarized.
+  try {
+    const scored = await scoreExperiments();
+    if (scored.decided + scored.inconclusive > 0) {
+      await logActivity({
+        type: "insight-learned",
+        description: `Autonomy scored ${scored.decided} decided, ${scored.inconclusive} inconclusive (${scored.overridesApplied} overrides applied)`,
+      });
+    }
+    await proposeExperiments();
+  } catch (err) {
+    console.error("[digest] autonomy step failed:", err);
+  }
 
   return {
     ran: true,

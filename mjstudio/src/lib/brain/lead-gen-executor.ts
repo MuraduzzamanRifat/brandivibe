@@ -7,6 +7,7 @@ import {
   type OutboundEmail,
 } from "../brain-storage";
 import { classifySubjectStyle } from "./learning/aggregator";
+import { pickExperimentVariant } from "./autonomy";
 import { createHmac } from "crypto";
 
 /**
@@ -211,6 +212,15 @@ export async function executeLeadGenActions(
           ? body
           : `${body}\n\n---\nTo unsubscribe: ${unsubscribeUrl(prospect.id)}`;
 
+        // If an angle experiment is active, tag this email with its variant
+        // so the scorer can attribute the outcome. Only applies when the
+        // prospect's current angle would be observed — we don't reroute
+        // content based on the experiment, we only LABEL the result.
+        const angleExp = await pickExperimentVariant("angleIndex", prospect.id);
+        const subjectExp = await pickExperimentVariant("subjectStyle", prospect.id);
+        // Only one experiment per email — angle takes priority if both exist
+        const activeExp = angleExp ?? subjectExp;
+
         const email: OutboundEmail = {
           id: `out_lg_${Date.now()}_${Math.random().toString(36).slice(2, 8)}_t1`,
           prospectId: prospect.id,
@@ -231,6 +241,8 @@ export async function executeLeadGenActions(
             icpTier: prospect.icpTier,
             subjectStyle: classifySubjectStyle(subject),
             leadGenKind: action.kind,
+            experimentId: activeExp?.experimentId,
+            experimentVariant: activeExp?.variant,
           },
         };
 
