@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523151175_vjxwvz",
+      "timestamp": "2026-04-18T14:39:11.175Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Great Apps\" — The article provides no information about the company other than its name and a link. No data on industry, stage, or any business triggers are available.",
+      "source": "hackernews",
+      "tokens": 647
+    },
+    {
       "id": "act_1776523147002_4y04xw",
       "timestamp": "2026-04-18T14:39:07.002Z",
       "type": "prospect-skipped",
