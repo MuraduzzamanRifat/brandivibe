@@ -639,6 +639,28 @@
       "sourceUrl": "https://getsmall.xyz/",
       "createdAt": "2026-04-18T08:50:26.082Z",
       "updatedAt": "2026-04-18T08:50:26.082Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly90b2tl",
+      "company": "TokensAI",
+      "domain": "tokensai.dev",
+      "founder": "SowjanyaY",
+      "role": "Founder",
+      "email": "",
+      "industry": "ai",
+      "stage": "",
+      "trigger": "TokensAI recently launched their platform for minting AI usage tokens.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "Their current branding on the website appears basic and lacks visual impact.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "TokensAI is positioned in the AI industry, offering a niche service related to tokenized AI usage, which may require a sophisticated web presence to attract customers.",
+      "source": "hackernews",
+      "sourceUrl": "https://tokensai.dev",
+      "createdAt": "2026-04-18T08:50:46.896Z",
+      "updatedAt": "2026-04-18T08:50:46.896Z"
     }
   ],
   "drafts": [],
