@@ -1202,6 +1202,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548122176_ekcn4h",
+      "timestamp": "2026-04-18T21:35:22.176Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is likely out of ICP as it seems too large and is expanding through major partnerships such as with Tinder.",
+      "source": "techcrunch",
+      "tokens": 781
+    },
+    {
       "id": "act_1776548117413_tnv3ck",
       "timestamp": "2026-04-18T21:35:17.413Z",
       "type": "prospect-skipped",
