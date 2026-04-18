@@ -644,6 +644,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502242648_j6vl3w",
+      "timestamp": "2026-04-18T08:50:42.648Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is Series C and outside the typical budget range for projects within Brandivibe's scope.",
+      "source": "techcrunch",
+      "tokens": 799
+    },
+    {
       "id": "act_1776502238456_v6yf9i",
       "timestamp": "2026-04-18T08:50:38.456Z",
       "type": "prospect-skipped",
