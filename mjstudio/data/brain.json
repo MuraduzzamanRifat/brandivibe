@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523174145_gr2b8m",
+      "timestamp": "2026-04-18T14:39:34.145Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World appears to be a large-scale project with existing infrastructure and partnerships, likely requiring services beyond the project size threshold of $35-90K.",
+      "source": "techcrunch",
+      "tokens": 807
+    },
+    {
       "id": "act_1776523169094_pnt5bg",
       "timestamp": "2026-04-18T14:39:29.094Z",
       "type": "prospect-skipped",
