@@ -740,6 +740,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502290228_jhjw72",
+      "timestamp": "2026-04-18T08:51:30.228Z",
+      "type": "prospect-researched",
+      "description": "Researched TokensAI: The homepage lacks a clear and compelling call-to-action.",
+      "prospectId": "tc_aHR0cHM6Ly90b2tl",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 2267
+    },
+    {
       "id": "act_1776502284040_qvioaj",
       "timestamp": "2026-04-18T08:51:24.040Z",
       "type": "prospect-scraped",
