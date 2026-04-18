@@ -666,6 +666,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502264591_bpro6u",
+      "timestamp": "2026-04-18T08:51:04.591Z",
+      "type": "prospect-scraped",
+      "description": "Scraped getsmall.xyz — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9nZXRz"
+    },
+    {
       "id": "act_1776502261976_55m77c",
       "timestamp": "2026-04-18T08:51:01.976Z",
       "type": "source-run",
