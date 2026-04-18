@@ -2613,13 +2613,13 @@
     {
       "date": "2026-04-18",
       "startedAt": "2026-04-18T13:55:53.296Z",
-      "updatedAt": "2026-04-18T13:56:46.532Z",
+      "updatedAt": "2026-04-18T13:56:53.391Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
-          "pending",
+          "done",
           "pending"
         ],
         "score": "pending",
