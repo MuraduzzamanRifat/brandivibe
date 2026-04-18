@@ -912,9 +912,9 @@
       "source": "hackernews",
       "sourceUrl": "https://readox.ai/",
       "createdAt": "2026-04-18T13:57:35.870Z",
-      "updatedAt": "2026-04-18T13:58:27.167Z",
+      "updatedAt": "2026-04-18T13:58:27.540Z",
       "scraped": {
-        "fetchedAt": "2026-04-18T13:58:07.866Z",
+        "fetchedAt": "2026-04-18T13:58:10.128Z",
         "homepage": "Readox - Read Aloud Text to Speech for Web Pages & PDFs Readox Pricing FAQ Blog Install for Chrome Pricing FAQ Blog Install for Chrome Read aloud web pages and PDFs Read web pages, PDFs, and selected text aloud with word-by-word highlighting, OCR, and premium English voices that run on your device with unlimited premium voice usage. Install for Chrome See pricing &rarr; example.com/articles/science-of-listening Home Articles Science of Listening The Science of Listening How audio transforms the way we learn and retain information Dr. Sarah Chen Feb 5, 2026 &middot; 8 min read The human brain processes spoken language faster than written text. This efficiency is one reason why audiobooks and text-to-speech tools have seen such rapid growth in recent years. Listening lets you absorb information while commuting, exercising, or doing household tasks — turning dead time into learning time. Research from the University of Waterloo found that participants who listened to content while following along with highlighted text showed 28% better retention compared to reading alone... S The human brain processes spoken language faster than written text. This efficiency is one reason why audiobooks and text-to-speech tools have seen such rapid growth in recent years. Listening lets you absorb information while commuting, exercising, or doing household tasks. 0:00 -0:14 Cove 1x Text-to-Speech Read any page, PDF, or text selection aloud. Select text and press play, or read the entire page. Premium English Voices 28 natural-sounding English voices that run on your device, with unlimited premium voice usage and private-by-default playback. Word Highlighting Follow along word-by-word in the transcript as you listen. Click any word to seek. OCR for Images Extract text from images, screenshots, and scanned PDFs. Runs on your device — no uploads, no limits. AI Summarization Get brief summaries of any page or selection before listening. Toggle summarize mode on or off. Keyboard Shortcuts Control playback without leaving the page. Configurable shortcuts for play, pause, and stop. Works right on the page Select text, press play, and follow along with word-by-word highlighting — without leaving the page. example.com/articles/science-of-listening Home Articles Science of Listening The Science of Listening How audio transforms the way we learn and retain information Dr. Sarah Chen Feb 5, 2026 &middot; 8 min read The human brain processes spoken language faster than written text. This efficiency is one reason why audiobooks and text-to-speech tools have seen such rapid growth in recent years. Listening lets you absorb information while commuting, exercising, or doing household tasks — turning dead time into learning time. Research from the University of Waterloo found that participants who listened to content while following along with highlighted text showed 28% better retention compared to reading alone... This efficiency is one reason why au... 0:00 -0:07 1x This efficiency is one reason why audiobooks and text-to-speech tools have seen such rapid growth in recent years. How it works 1 Install the extension Add Readox to Chrome. Free to start, no account required. 2 Select text or open the sidepanel Highlight text on any page or PDF, or open the sidepanel to read the entire document. 3 Press play and listen Hear the text read aloud with word-by-word highlighting in the transcript. Simple pricing Start free. Readox Pro is tied to your Google account, so checkout happens inside the extension after sign-in. Every plan includes read-aloud for web pages and PDFs, OCR, word-by-word highlighting, and keyboard shortcuts. Web pages and PDFs Selected text and full-page reading OCR for images Word-by-word highlighting Keyboard shortcuts Monthly Annual Save 33% Free A real free plan for everyday reading. $0 Use browser voices to read web pages, PDFs, and selected text in Chrome. Install for Chrome Includes ✓ Browser voices ✓ Unlimited reading ✓ No account required Best for trying Readox, light listening, and reading with built-in browser voices. Best for daily listening Pro Premium English voices that run on your device. $ 6 /mo $72/year, billed annually Save 33% Everything in Free, plus premium English voices, 100 AI summaries, and up to 10 library collections. Install for Chrome to upgrade Pro checkout starts inside the extension after sign-in. Use the Google account you want tied to billing and Pro access. Unlock ✓ 28 premium English voices ✓ Unlimited premium voice usage ✓ Premium voices run on your device ✓ 100 AI summaries ✓ Create up to 10 library collections Best for focused reading, premium listening, and making Readox part of your daily workflow. &copy; 2026 Readox. All rights reserved. Pricing FAQ Blog What's New Privacy Terms Contact llms.txt",
         "pricing": "Readox Pricing - Text to Speech for Web Pages & PDFs Readox Pricing FAQ Blog Install for Chrome Pricing FAQ Blog Install for Chrome Simple pricing Start free. Readox Pro is tied to your Google account, so checkout happens inside the extension after sign-in. Every plan includes read-aloud for web pages and PDFs, OCR, word-by-word highlighting, and keyboard shortcuts. Web pages and PDFs Selected text and full-page reading OCR for images Word-by-word highlighting Keyboard shortcuts Monthly Annual Save 33% Free A real free plan for everyday reading. $0 Use browser voices to read web pages, PDFs, and selected text in Chrome. Install for Chrome Includes ✓ Browser voices ✓ Unlimited reading ✓ No account required Best for trying Readox, light listening, and reading with built-in browser voices. Best for daily listening Pro Premium English voices that run on your device. $ 6 /mo $72/year, billed annually Save 33% Everything in Free, plus premium English voices, 100 AI summaries, and up to 10 library collections. Install for Chrome to upgrade Pro checkout starts inside the extension after sign-in. Use the Google account you want tied to billing and Pro access. Unlock ✓ 28 premium English voices ✓ Unlimited premium voice usage ✓ Premium voices run on your device ✓ 100 AI summaries ✓ Create up to 10 library collections Best for focused reading, premium listening, and making Readox part of your daily workflow. &copy; 2026 Readox. All rights reserved. Pricing FAQ Blog What's New Privacy Terms Contact llms.txt",
         "techStack": [
@@ -1002,20 +1002,20 @@
       },
       "deepResearch": {
         "realWeaknesses": [
-          "Duplicate H1 headings create confusion and dilute SEO impact.",
-          "Pricing information is buried within the extension checkout process.",
-          "Homepage lacks engaging visuals, making it feel static and uninspiring.",
-          "The call-to-action for Chrome installation is not visually distinct."
+          "Duplicate H1 headings create confusion and dilute SEO effectiveness.",
+          "Visually flat hero section fails to capture attention.",
+          "Pricing options lack detailed context and benefits.",
+          "Repetitive CTAs lead to user fatigue and reduced engagement."
         ],
-        "specificObservation": "Duplicate H1 headings create confusion and dilute SEO impact.",
-        "oneSentenceImpact": "Reduces clarity and weakens search engine optimization effectiveness.",
-        "currentPainArea": "Duplicate H1 headings create confusion and dilute SEO impact",
-        "observation1": "Pricing information is buried within the extension checkout process.",
-        "observation2": "Homepage lacks engaging visuals, making it feel static and uninspiring.",
-        "observation3": "The call-to-action for Chrome installation is not visually distinct.",
-        "fix1OneLine": "Make pricing details more prominent on the homepage.",
-        "fix2OneLine": "Incorporate dynamic visuals or interactive elements to enhance engagement.",
-        "fix3OneLine": "Enhance the CTA button's design to make it stand out more.",
+        "specificObservation": "Duplicate H1 headings create confusion and dilute SEO effectiveness.",
+        "oneSentenceImpact": "Reduces clarity and SEO ranking potential, affecting discoverability.",
+        "currentPainArea": "Duplicate H1 headings create confusion and dilute SEO effectiveness",
+        "observation1": "Visually flat hero section fails to capture attention.",
+        "observation2": "Pricing options lack detailed context and benefits.",
+        "observation3": "Repetitive CTAs lead to user fatigue and reduced engagement.",
+        "fix1OneLine": "Enhance visual hierarchy and add dynamic elements to engage users.",
+        "fix2OneLine": "Provide clear comparisons and benefits for each pricing tier.",
+        "fix3OneLine": "Diversify CTA language and placement to maintain interest.",
         "topPriorityObservation": "Duplicate H1 headings",
         "fixTimeEstimate": "1-2 weeks",
         "conversionMetric": "homepage conversion rate",
@@ -1025,15 +1025,15 @@
         "budget": "$35-90K",
         "decisionMaker": {
           "name": "Dr. Sarah Chen",
-          "role": "Founder",
+          "role": "Content Specialist",
           "firstName": "Sarah"
         },
-        "confidence": 40,
-        "quantifiedBleed": "If you're getting 500 visitors a month, duplicate H1 headings are dropping ~20% of organic search traffic before they engage.",
+        "confidence": 30,
+        "quantifiedBleed": "At even 500 monthly visitors, duplicate H1 headings are dropping ~20% of search traffic before they engage.",
         "personalClose": "I think duplicate H1 headings are your single biggest issue — happy to record a 5-min loom walking through how I'd fix it if you reply 'loom'.",
-        "createdAt": "2026-04-18T13:58:22.982Z",
+        "createdAt": "2026-04-18T13:58:24.510Z",
         "model": "gpt-4o-2024-08-06",
-        "tokens": 3255
+        "tokens": 3350
       },
       "emailFinder": {
         "winner": "contact@readox.ai",
@@ -1091,7 +1091,7 @@
             "reason": "first-last — rare"
           }
         ],
-        "createdAt": "2026-04-18T13:58:25.076Z"
+        "createdAt": "2026-04-18T13:58:26.018Z"
       }
     }
   ],
@@ -2978,7 +2978,7 @@
     {
       "date": "2026-04-18",
       "startedAt": "2026-04-18T13:55:53.296Z",
-      "updatedAt": "2026-04-18T13:58:05.484Z",
+      "updatedAt": "2026-04-18T13:58:29.411Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -2990,7 +2990,7 @@
         "score": "done",
         "source": "done",
         "leadgen": "done",
-        "research": "pending",
+        "research": "done",
         "sequence": "pending",
         "send": "pending",
         "blast": "pending"
