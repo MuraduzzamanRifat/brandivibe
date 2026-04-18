@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776530378386_vo7rrh",
+      "timestamp": "2026-04-18T16:39:38.386Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is a large-scale project led by Sam Altman with significant funding, likely exceeding the size and budget constraints of Brandivibe's ICP.",
+      "source": "techcrunch",
+      "tokens": 785
+    },
+    {
       "id": "act_1776530374065_rwamkd",
       "timestamp": "2026-04-18T16:39:34.065Z",
       "type": "prospect-skipped",
