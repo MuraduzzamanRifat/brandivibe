@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776533768029_y6qt3e",
+      "timestamp": "2026-04-18T17:36:08.029Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Free Email Signature Builder\" — The article describes a free email signature builder service which does not align with Brandivibe's target for premium web design projects.",
+      "source": "hackernews",
+      "tokens": 712
+    },
+    {
       "id": "act_1776533762903_zk5uxr",
       "timestamp": "2026-04-18T17:36:02.903Z",
       "type": "prospect-skipped",
