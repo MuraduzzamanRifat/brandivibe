@@ -1,0 +1,15 @@
+.kindred {
+  --bg: #f5efe6;
+  --ink: #1a0f0a;
+  --rose: #d4a48f;
+  --sand: #e6d8c3;
+  --cream: #faf3e8;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.kindred-serif {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+}

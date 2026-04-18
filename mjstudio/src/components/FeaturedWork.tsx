@@ -1,12 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { RevealLine } from "./SplitText";
 import { LazyVideo } from "./LazyVideo";
 import { demos } from "@/data/demos";
 
-const projects = demos;
+// Only the first 6 demos appear on the homepage; the rest live behind /demos.
+const HOMEPAGE_DEMO_COUNT = 6;
+const projects = demos.filter((d) => !d.comingSoon).slice(0, HOMEPAGE_DEMO_COUNT);
 
 export function FeaturedWork() {
   return (
@@ -111,6 +114,31 @@ export function FeaturedWork() {
             </motion.a>
           ))}
         </div>
+
+        {demos.length > HOMEPAGE_DEMO_COUNT && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mt-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-10 border-t border-white/5"
+          >
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 mb-2">
+                More in the index
+              </div>
+              <div className="text-2xl md:text-3xl font-semibold tracking-tight">
+                {demos.length} total demos — landing pages, websites, and Shopify stores.
+              </div>
+            </div>
+            <Link
+              href="/demos"
+              className="shrink-0 inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/20 hover:border-white/50 hover:bg-white/5 transition-colors font-medium"
+            >
+              View all demos <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -1,0 +1,15 @@
+.terroir {
+  --bg: #f5e6c8;
+  --cream: #faf0dc;
+  --ink: #14110e;
+  --forest: #2f4a3a;
+  --clay: #8b4a2b;
+  --mute: #6a5f50;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.terroir-serif {
+  font-family: "Playfair Display", Georgia, serif;
+}

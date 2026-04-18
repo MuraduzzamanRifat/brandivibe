@@ -1,0 +1,16 @@
+.ironwood {
+  --bg: #0a0a0a;
+  --ink: #f4f4f0;
+  --acid: #d9f055;
+  --steel: #1a1a1a;
+  --mute: #6a6a66;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.ironwood-display {
+  font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
