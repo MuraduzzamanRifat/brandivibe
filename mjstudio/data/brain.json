@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776508779409_alhl8x",
+      "timestamp": "2026-04-18T10:39:39.409Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — The company is likely focused on bargain community content and not an ideal target for premium web design services, suggesting a lower budget range.",
+      "source": "hackernews",
+      "tokens": 687
+    },
+    {
       "id": "act_1776508774616_b6q2l3",
       "timestamp": "2026-04-18T10:39:34.616Z",
       "type": "error",
