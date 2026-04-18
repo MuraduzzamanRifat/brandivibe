@@ -468,6 +468,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496062013_2tigiy",
+      "timestamp": "2026-04-18T07:07:42.013Z",
+      "type": "prospect-scraped",
+      "description": "Scraped cogveo.com — tech: (none detected) · design 5/10 · 1 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9jb2d2"
+    },
+    {
       "id": "act_1776496059268_yqyp8g",
       "timestamp": "2026-04-18T07:07:39.268Z",
       "type": "source-run",
