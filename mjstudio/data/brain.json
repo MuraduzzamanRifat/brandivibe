@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776533777538_kpqxb2",
+      "timestamp": "2026-04-18T17:36:17.538Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The article describes an open-source project rather than a company, which does not fit the ICP criteria for project size or industry.",
+      "source": "hackernews",
+      "tokens": 674
+    },
+    {
       "id": "act_1776533773698_brd9pb",
       "timestamp": "2026-04-18T17:36:13.698Z",
       "type": "prospect-skipped",
