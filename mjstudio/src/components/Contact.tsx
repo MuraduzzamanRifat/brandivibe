@@ -38,7 +38,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-20 md:py-24 px-6 border-t border-white/5 overflow-hidden">
+    <section id="contact" className="relative py-14 md:py-16 px-6 border-t border-white/5 overflow-hidden">
       {/* atmospheric stock video — Alex Dos Santos / Pexels */}
       <LazyVideo
         src="/stock/studio-bg.mp4"

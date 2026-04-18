@@ -10,10 +10,10 @@ const projects = demos;
 
 export function FeaturedWork() {
   return (
-    <section id="work" className="relative py-40 px-6 md:px-12 border-t border-white/5">
+    <section id="work" className="relative py-24 md:py-28 px-6 md:px-12 border-t border-white/5">
       <div className="mx-auto max-w-[1600px]">
         {/* section label */}
-        <div className="grid grid-cols-12 gap-6 mb-20">
+        <div className="grid grid-cols-12 gap-6 mb-12">
           <div className="col-span-12 md:col-span-3">
             <div className="font-mono text-xs text-white/40 uppercase tracking-widest">
               — Selected Work
@@ -31,7 +31,7 @@ export function FeaturedWork() {
           </div>
         </div>
 
-        <div className="space-y-32">
+        <div className="space-y-20">
           {projects.map((p, i) => (
             <motion.a
               key={p.name}
