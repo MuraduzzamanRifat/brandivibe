@@ -1098,6 +1098,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776523169094_pnt5bg",
+      "timestamp": "2026-04-18T14:39:29.094Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The company appears to be an individual project rather than a business at a relevant stage for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 663
+    },
+    {
       "id": "act_1776523164958_3mfzf6",
       "timestamp": "2026-04-18T14:39:24.958Z",
       "type": "prospect-skipped",
