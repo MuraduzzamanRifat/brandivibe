@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776544572607_c8fnxm",
+      "timestamp": "2026-04-18T20:36:12.607Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"We Started a Playtest of Our Visual Novel about the Mysterious Shop\" — The company is in the gaming industry, which is not within the ICP for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 755
+    },
+    {
       "id": "act_1776544568225_1awrjg",
       "timestamp": "2026-04-18T20:36:08.225Z",
       "type": "prospect-skipped",
