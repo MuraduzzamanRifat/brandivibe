@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776520651344_oc7xoe",
+      "timestamp": "2026-04-18T13:57:31.344Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The company appears to be an individual creating a personal project rather than a business. This doesn't fit our ICP, which targets established companies.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776520647052_vflkuo",
       "timestamp": "2026-04-18T13:57:27.052Z",
       "type": "prospect-skipped",
