@@ -740,6 +740,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502284040_qvioaj",
+      "timestamp": "2026-04-18T08:51:24.040Z",
+      "type": "prospect-scraped",
+      "description": "Scraped tokensai.dev — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly90b2tl"
+    },
+    {
       "id": "act_1776502279991_winq47",
       "timestamp": "2026-04-18T08:51:19.991Z",
       "type": "prospect-researched",
