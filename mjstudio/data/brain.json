@@ -200,6 +200,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776488782218_rc4tp9",
+      "timestamp": "2026-04-18T05:06:22.218Z",
+      "type": "prospect-added",
+      "description": "Added rtrvr.ai via hackernews (B-tier, saas) — Recently launched AI Subroutines, a new feature that uses automation scripts inside the browser tab.",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu",
+      "source": "hackernews",
+      "tokens": 904
+    },
+    {
       "id": "act_1776488776545_w10qdh",
       "timestamp": "2026-04-18T05:06:16.545Z",
       "type": "prospect-skipped",
