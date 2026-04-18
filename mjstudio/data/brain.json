@@ -1092,6 +1092,10 @@
           }
         ],
         "createdAt": "2026-04-18T13:58:26.018Z"
+      },
+      "sequence": {
+        "stage": 1,
+        "nextSendAt": "2026-04-21T13:00:00.000Z"
       }
     }
   ],
@@ -3127,7 +3131,52 @@
       "planId": "plan_1776304879520"
     }
   ],
-  "outboundQueue": [],
+  "outboundQueue": [
+    {
+      "id": "out_lg_1776523180618_6gr7f0_t1",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk",
+      "sequenceTouch": 1,
+      "subject": "Is Your Website Attracting Premium Clients?",
+      "body": "Hi Sarah,\n\nIf your site isn't serving as a price anchor and filtering clients effectively, it's time for an upgrade. Check our [Helix demo](https://brandivibe.com/neuron) for ideas.\n\nTo opt out: https://brandivibe.com/api/brain/unsubscribe?p=tc_aHR0cHM6Ly9yZWFk&s=a78d96648822a4ae\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "to": "contact@readox.ai",
+      "from": "send@brandivibe.site",
+      "replyTo": "send@brandivibe.site",
+      "sendAt": "2026-04-21T13:00:00.000Z",
+      "createdAt": "2026-04-18T14:39:40.618Z",
+      "status": "queued",
+      "model": "lead-gen-template",
+      "tokens": 0,
+      "meta": {
+        "plannerAngle": 8,
+        "industry": "saas",
+        "icpTier": "B",
+        "subjectStyle": "question",
+        "leadGenKind": "outbound-email"
+      }
+    },
+    {
+      "id": "out_lg_1776523180618_n0dwz1_t1",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk",
+      "sequenceTouch": 1,
+      "subject": "Your Startup Deserves Better",
+      "body": "Hi Sarah,\n\nDoes your current design attract the right investors? Our [Axiom] page could be your blueprint.\n\nTo opt out: https://brandivibe.com/api/brain/unsubscribe?p=tc_aHR0cHM6Ly9yZWFk&s=a78d96648822a4ae\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "to": "contact@readox.ai",
+      "from": "send@brandivibe.site",
+      "replyTo": "send@brandivibe.site",
+      "sendAt": "2026-04-21T13:00:00.000Z",
+      "createdAt": "2026-04-18T14:39:40.618Z",
+      "status": "queued",
+      "model": "lead-gen-template",
+      "tokens": 0,
+      "meta": {
+        "plannerAngle": 8,
+        "industry": "saas",
+        "icpTier": "B",
+        "subjectStyle": "other",
+        "leadGenKind": "outbound-email"
+      }
+    }
+  ],
   "sendCounts": {},
   "lastSendByDomain": {},
   "sendingSince": "2026-04-16",
