@@ -1170,6 +1170,33 @@
         },
         "rawHomepage": "<!doctype html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"/vite.svg\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <title>Got Skillz?</title>\n    <script type=\"module\" crossorigin src=\"/assets/index-B_iggxJY.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-5Gm09WQ0.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>\n"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9tZWNo",
+      "company": "MechCloud",
+      "domain": "mechcloud.io",
+      "founder": "koyadume",
+      "role": "Founder",
+      "email": "",
+      "industry": "saas",
+      "stage": "Seed",
+      "recentFunding": {
+        "amount": "Undisclosed",
+        "date": "2025-12-01",
+        "round": "Seed"
+      },
+      "trigger": "They recently developed an innovative solution for cloud infrastructure management.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "helix",
+      "brandWeakness": "Their current brand messaging is highly technical and may not appeal to non-technical stakeholders.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "MechCloud offers a new approach to cloud management by eliminating the Terraform state file, indicating early-stage innovation in SaaS.",
+      "source": "hackernews",
+      "sourceUrl": "https://mechcloud.io",
+      "createdAt": "2026-04-18T21:35:10.388Z",
+      "updatedAt": "2026-04-18T21:35:10.388Z"
     }
   ],
   "drafts": [],
