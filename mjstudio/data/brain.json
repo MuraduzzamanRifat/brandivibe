@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551685828_t5m8vr",
+      "timestamp": "2026-04-18T22:34:45.828Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes Pyinc, which appears to be an open-source project on GitHub rather than a company in the target industries like crypto, saas, fintech, ai, etc.",
+      "source": "hackernews",
+      "tokens": 683
+    },
+    {
       "id": "act_1776551679089_3hkek1",
       "timestamp": "2026-04-18T22:34:39.089Z",
       "type": "prospect-skipped",
