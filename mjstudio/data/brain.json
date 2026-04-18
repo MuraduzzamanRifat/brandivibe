@@ -1097,6 +1097,28 @@
         "stage": 1,
         "nextSendAt": "2026-04-21T13:00:00.000Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9naXRo",
+      "company": "MDV",
+      "domain": "github.com/drasimwagan/mdv",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Bootstrap",
+      "trigger": "The launch and active development of MDV as a tool indicates a potential need for branding and design services.",
+      "icpTier": "C",
+      "icpScore": 5,
+      "bestFitDemo": "axiom",
+      "brandWeakness": "The GitHub page lacks a strong visual identity and cohesive branding.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "MDV is in the early stage with a high potential for design improvements as they expand their offering.",
+      "source": "hackernews",
+      "sourceUrl": "https://github.com/drasimwagan/mdv",
+      "createdAt": "2026-04-18T18:51:51.730Z",
+      "updatedAt": "2026-04-18T18:51:51.730Z"
     }
   ],
   "drafts": [],
