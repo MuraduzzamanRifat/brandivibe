@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776526623102_8eysrc",
+      "timestamp": "2026-04-18T15:37:03.102Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built a hiring platform where you can't list your skills\" — Insufficient information about the company's stage, funding, or brand that would suggest it is a medium to large company or in growth stage, typically aligning with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 750
+    },
+    {
       "id": "act_1776526617581_5oj1wk",
       "timestamp": "2026-04-18T15:36:57.581Z",
       "type": "prospect-skipped",
