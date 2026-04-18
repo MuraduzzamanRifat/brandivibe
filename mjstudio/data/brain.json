@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776526627460_0og574",
+      "timestamp": "2026-04-18T15:37:07.460Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is focused on markdown tools, which is more technical and less aligned with premium web design needs.",
+      "source": "hackernews",
+      "tokens": 690
+    },
+    {
       "id": "act_1776526623102_8eysrc",
       "timestamp": "2026-04-18T15:37:03.102Z",
       "type": "prospect-skipped",
