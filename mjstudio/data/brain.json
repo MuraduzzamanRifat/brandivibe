@@ -468,6 +468,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496022846_d4spfr",
+      "timestamp": "2026-04-18T07:07:02.846Z",
+      "type": "prospect-added",
+      "description": "Added Cogveo via hackernews (B-tier, ai) — Launch of AI agents to run Python on files indicates growth and potential need for an enhanced digital presence.",
+      "prospectId": "tc_aHR0cHM6Ly9jb2d2",
+      "source": "hackernews",
+      "tokens": 722
+    },
+    {
       "id": "act_1776496016228_gy74zu",
       "timestamp": "2026-04-18T07:06:56.228Z",
       "type": "prospect-skipped",
