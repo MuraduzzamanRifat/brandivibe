@@ -468,6 +468,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496026169_odv7sh",
+      "timestamp": "2026-04-18T07:07:06.169Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is a browser extension, likely operating with a low budget and does not match the premium web design needs.",
+      "source": "hackernews",
+      "tokens": 727
+    },
+    {
       "id": "act_1776496022846_d4spfr",
       "timestamp": "2026-04-18T07:07:02.846Z",
       "type": "prospect-added",
