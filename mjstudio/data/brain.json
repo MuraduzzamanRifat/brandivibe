@@ -1102,6 +1102,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776538306394_uveert",
+      "timestamp": "2026-04-18T18:51:46.394Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Rapid-MLX – Run local LLMs on Mac, 2-3x faster than alternatives\" — The article is focused on running local LLMs on Macs which implies a technology or open-source project focus rather than a commercial enterprise eligible for web design services.",
+      "source": "hackernews",
+      "tokens": 678
+    },
+    {
       "id": "act_1776538301607_h4p2fp",
       "timestamp": "2026-04-18T18:51:41.607Z",
       "type": "prospect-skipped",
