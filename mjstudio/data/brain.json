@@ -1146,6 +1146,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776541251083_vgyc3q",
+      "timestamp": "2026-04-18T19:40:51.083Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article focuses on a technical implementation for Proxmox VE, which is not related to the design studio's target markets in luxury, saas, ai, etc.",
+      "source": "hackernews",
+      "tokens": 675
+    },
+    {
       "id": "act_1776541246371_gr8ofq",
       "timestamp": "2026-04-18T19:40:46.371Z",
       "type": "prospect-skipped",
