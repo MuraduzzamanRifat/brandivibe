@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776517284769_1gx9er",
+      "timestamp": "2026-04-18T13:01:24.769Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is focused on a utility software tool for Twitter, which does not align with Brandivibe's premium web design services target audience. It's not in the correct industry or size for our ICP.",
+      "source": "hackernews",
+      "tokens": 762
+    },
+    {
       "id": "act_1776517279539_hyrbeu",
       "timestamp": "2026-04-18T13:01:19.539Z",
       "type": "prospect-skipped",
