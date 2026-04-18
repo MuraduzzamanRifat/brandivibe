@@ -468,6 +468,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776496047268_lue9f3",
+      "timestamp": "2026-04-18T07:07:27.268Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Jean2 – An Open-Source Agent You Assemble Like Lego\" — The article describes an open-source project, not a company. It's being developed on GitHub without any information about commercialization, funding, or team structure.",
+      "source": "hackernews",
+      "tokens": 681
+    },
+    {
       "id": "act_1776496033152_a9uear",
       "timestamp": "2026-04-18T07:07:13.152Z",
       "type": "prospect-skipped",
