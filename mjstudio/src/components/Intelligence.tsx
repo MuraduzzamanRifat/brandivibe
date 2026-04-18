@@ -198,14 +198,14 @@ export function Intelligence() {
   return (
     <section
       id="intelligence"
-      className="relative border-t border-white/5 py-24 md:py-32 px-6 md:px-12 overflow-hidden"
+      className="relative border-t border-white/5 py-14 md:py-20 px-6 md:px-12 overflow-hidden"
     >
       {/* background accent */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] rounded-full bg-gradient-to-br from-[#84e1ff]/[0.04] via-[#a78bfa]/[0.03] to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative mx-auto max-w-[1600px]">
         {/* section label */}
-        <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16">
+        <div className="grid grid-cols-12 gap-6 mb-10 md:mb-12">
           <div className="col-span-12 md:col-span-4">
             <div className="font-mono text-xs text-white/40 uppercase tracking-[0.3em]">
               — Intelligence Layer
@@ -244,7 +244,7 @@ export function Intelligence() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-16 md:mt-24 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-8 md:p-10 rounded-3xl border border-white/10 bg-white/[0.02]"
+          className="mt-12 md:mt-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-8 md:p-10 rounded-3xl border border-white/10 bg-white/[0.02]"
         >
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#84e1ff] mb-3">

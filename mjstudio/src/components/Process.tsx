@@ -64,7 +64,7 @@ export function Process() {
       id="process"
       ref={ref}
       className="relative border-t border-white/5"
-      style={{ height: `${steps.length * 45}vh` }}
+      style={{ height: `${steps.length * 40}vh` }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
         {/* atmospheric bg */}
@@ -75,7 +75,7 @@ export function Process() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#08080a] via-[#0a0a0f] to-[#08080a] pointer-events-none" />
 
         {/* section header */}
-        <div className="relative z-10 pt-28 pb-6 px-6 md:px-12">
+        <div className="relative z-10 pt-16 pb-4 px-6 md:px-12">
           <div className="mx-auto max-w-[1600px] flex items-end justify-between">
             <div>
               <div className="font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
@@ -109,7 +109,7 @@ export function Process() {
         </div>
 
         {/* bottom progress bar */}
-        <div className="relative z-10 pb-10 px-6 md:px-12">
+        <div className="relative z-10 pb-6 px-6 md:px-12">
           <div className="mx-auto max-w-[1600px]">
             <div className="relative h-[2px] bg-white/10 rounded-full overflow-hidden">
               <motion.div
