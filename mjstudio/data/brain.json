@@ -1202,6 +1202,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548112531_aou438",
+      "timestamp": "2026-04-18T21:35:12.531Z",
+      "type": "prospect-added",
+      "description": "Added MechCloud via hackernews (B-tier, saas) — They recently developed an innovative solution for cloud infrastructure management.",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo",
+      "source": "hackernews",
+      "tokens": 869
+    },
+    {
       "id": "act_1776548104784_rmnhi5",
       "timestamp": "2026-04-18T21:35:04.784Z",
       "type": "prospect-skipped",
