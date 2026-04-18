@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555253760_h1carq",
+      "timestamp": "2026-04-18T23:34:13.760Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company is open-source and offers a free personal management application, indicating it may not have the budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 709
+    },
+    {
       "id": "act_1776555248533_xtu7or",
       "timestamp": "2026-04-18T23:34:08.533Z",
       "type": "error",
