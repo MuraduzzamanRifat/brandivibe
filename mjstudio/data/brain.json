@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548097363_ygms7d",
+      "timestamp": "2026-04-18T21:34:57.363Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The article provides insufficient information about the company, its stage, industry, or any financial data that would allow for a fit assessment.",
+      "source": "hackernews",
+      "tokens": 653
+    },
+    {
       "id": "act_1776548093351_t0eebs",
       "timestamp": "2026-04-18T21:34:53.351Z",
       "type": "prospect-skipped",
