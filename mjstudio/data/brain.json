@@ -1146,6 +1146,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776541255154_j42x4y",
+      "timestamp": "2026-04-18T19:40:55.154Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TTS.ai\" — The article lacks sufficient detail about TTS.ai regarding its industry, stage, funding, and business needs.",
+      "source": "hackernews",
+      "tokens": 658
+    },
+    {
       "id": "act_1776541251083_vgyc3q",
       "timestamp": "2026-04-18T19:40:51.083Z",
       "type": "prospect-skipped",
