@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555270482_z2bcqn",
+      "timestamp": "2026-04-18T23:34:30.482Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes a GitHub project, which is likely open-source software rather than a commercial company. It thus does not match the ICP criteria focused on premium web design clients.",
+      "source": "hackernews",
+      "tokens": 657
+    },
+    {
       "id": "act_1776555266852_xq88lp",
       "timestamp": "2026-04-18T23:34:26.852Z",
       "type": "prospect-skipped",
