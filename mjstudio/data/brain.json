@@ -896,6 +896,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776512053476_8oy7j8",
+      "timestamp": "2026-04-18T11:34:13.476Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company is in the iGaming industry, which is not part of our target ICP industries.",
+      "source": "hackernews",
+      "tokens": 761
+    },
+    {
       "id": "act_1776512049467_xwb2c0",
       "timestamp": "2026-04-18T11:34:09.467Z",
       "type": "prospect-skipped",
