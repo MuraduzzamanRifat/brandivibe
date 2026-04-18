@@ -1175,6 +1175,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776548101215_o7kg2i",
+      "timestamp": "2026-04-18T21:35:01.215Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Trained a 12M transformer on an ML framework we built from scratch\" — The company is a student project, not a business with a budget for premium web design.",
+      "source": "hackernews",
+      "tokens": 763
+    },
+    {
       "id": "act_1776548097363_ygms7d",
       "timestamp": "2026-04-18T21:34:57.363Z",
       "type": "prospect-skipped",
