@@ -12,6 +12,11 @@ import {
 } from "lucide-react";
 import { RevealLine } from "./SplitText";
 
+const TICKER_MIN_MS = 2500;
+const TICKER_JITTER_MS = 2000;
+const INT_JITTER = 2;
+const FLOAT_JITTER = 0.3;
+
 /**
  * Intelligence section — pitches the AI backend that ships with every
  * Brandivibe build. Key differentiator: clients don't just get a website,
@@ -95,24 +100,23 @@ const capabilities: Capability[] = [
 
 function PulseDot({ color }: { color: string }) {
   return (
-    <div className="relative flex items-center">
-      <motion.span
-        animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
-        className="absolute w-1.5 h-1.5 rounded-full"
+    <span className="relative inline-flex w-1.5 h-1.5">
+      <span
+        className="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping"
         style={{ background: color }}
       />
       <span
-        className="relative w-1.5 h-1.5 rounded-full"
+        className="relative inline-flex w-full h-full rounded-full"
         style={{ background: color }}
       />
-    </div>
+    </span>
   );
 }
 
 function LiveTicker({ value, unit }: { value: string; unit: string }) {
-  // Animate the numeric value so each visit feels "live" — increments/decrements
-  // slightly around the base value. Avoids stale-looking static numbers.
+  // Jitters the displayed number each cycle so cards feel "live" instead of
+  // static marketing copy. Uses a dedup guard so identical consecutive values
+  // don't trigger redundant React reconciliations.
   const reduced = useReducedMotion();
   const [displayed, setDisplayed] = useState(value);
   useEffect(() => {
@@ -121,10 +125,11 @@ function LiveTicker({ value, unit }: { value: string; unit: string }) {
     if (isNaN(base)) return;
     const isInt = !value.includes(".");
     const interval = setInterval(() => {
-      const jitter = (Math.random() - 0.5) * (isInt ? 2 : 0.3);
+      const jitter = (Math.random() - 0.5) * (isInt ? INT_JITTER : FLOAT_JITTER);
       const next = Math.max(0, base + jitter);
-      setDisplayed(isInt ? Math.round(next).toString() : next.toFixed(1));
-    }, 2500 + Math.random() * 2000);
+      const formatted = isInt ? Math.round(next).toString() : next.toFixed(1);
+      setDisplayed((prev) => (prev === formatted ? prev : formatted));
+    }, TICKER_MIN_MS + Math.random() * TICKER_JITTER_MS);
     return () => clearInterval(interval);
   }, [value, reduced]);
   return (
@@ -135,8 +140,8 @@ function LiveTicker({ value, unit }: { value: string; unit: string }) {
   );
 }
 
-function CapabilityCard({ c, index }: { c: Capability; index: number }) {
-  const Icon = c.icon;
+function CapabilityCard({ capability, index }: { capability: Capability; index: number }) {
+  const Icon = capability.icon;
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -149,43 +154,40 @@ function CapabilityCard({ c, index }: { c: Capability; index: number }) {
       }}
       className="group relative rounded-3xl border border-white/8 bg-white/[0.015] p-8 md:p-10 overflow-hidden hover:border-white/20 transition-colors"
     >
-      {/* accent glow on hover */}
       <div
         className="absolute -top-24 -right-24 w-56 h-56 rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"
-        style={{ background: c.accent }}
+        style={{ background: capability.accent }}
       />
 
-      {/* top row: icon + live indicator */}
       <div className="flex items-center justify-between mb-8 relative">
         <div
           className="w-12 h-12 rounded-2xl grid place-items-center border border-white/10"
-          style={{ background: `${c.accent}10` }}
+          style={{ background: `${capability.accent}10` }}
         >
-          <Icon className="w-5 h-5" style={{ color: c.accent }} />
+          <Icon className="w-5 h-5" style={{ color: capability.accent }} />
         </div>
         <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-          <PulseDot color={c.accent} />
+          <PulseDot color={capability.accent} />
           Live
         </div>
       </div>
 
       <h3 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4 text-balance">
-        {c.title}
+        {capability.title}
       </h3>
       <p className="text-white/55 leading-relaxed text-[15px] md:text-base mb-10 text-balance">
-        {c.description}
+        {capability.description}
       </p>
 
-      {/* animated metric at the bottom */}
       <div className="pt-6 border-t border-white/5 flex items-baseline justify-between">
         <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-          {c.metricLabel}
+          {capability.metricLabel}
         </div>
         <div
           className="text-2xl md:text-3xl font-semibold tabular-nums"
-          style={{ color: c.accent }}
+          style={{ color: capability.accent }}
         >
-          <LiveTicker value={c.metricValue} unit={c.metricUnit} />
+          <LiveTicker value={capability.metricValue} unit={capability.metricUnit} />
         </div>
       </div>
     </motion.div>
@@ -232,7 +234,7 @@ export function Intelligence() {
         {/* capability grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {capabilities.map((c, i) => (
-            <CapabilityCard key={c.title} c={c} index={i} />
+            <CapabilityCard key={c.title} capability={c} index={i} />
           ))}
         </div>
 

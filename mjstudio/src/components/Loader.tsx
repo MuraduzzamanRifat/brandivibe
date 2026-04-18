@@ -23,29 +23,30 @@ import { useEffect, useState } from "react";
  */
 
 const COUNT_DURATION = 1.6;
-const HOLD_AFTER_COUNT = 0.25;
+const POST_COUNT_HOLD = 0.25;
 const EXIT_DURATION = 0.9;
 const SESSION_KEY = "bv_loader_seen";
 
 const BRAND = "BRANDIVIBE".split("");
+
+function markSeen() {
+  if (typeof window !== "undefined") sessionStorage.setItem(SESSION_KEY, "1");
+}
 
 export function Loader() {
   const reduced = useReducedMotion();
   const [phase, setPhase] = useState<"counting" | "exiting" | "done">("counting");
   const count = useMotionValue(0);
   const rounded = useTransform(count, (v) => Math.floor(v).toString().padStart(3, "0"));
-  const sweep = useMotionValue(0);
-  const sweepX = useTransform(sweep, [0, 1], ["-100%", "100%"]);
 
   useEffect(() => {
-    // Skip loader if already seen this session OR reduced motion is preferred
     if (typeof window !== "undefined" && sessionStorage.getItem(SESSION_KEY)) {
       setPhase("done");
       return;
     }
     if (reduced) {
       setPhase("done");
-      sessionStorage.setItem(SESSION_KEY, "1");
+      markSeen();
       return;
     }
 
@@ -53,30 +54,25 @@ export function Loader() {
       duration: COUNT_DURATION,
       ease: [0.6, 0.05, 0.2, 1],
     });
-    const s = animate(sweep, 1, {
-      duration: COUNT_DURATION + HOLD_AFTER_COUNT,
-      ease: [0.6, 0.05, 0.2, 1],
-    });
 
     const exitTimer = setTimeout(
       () => setPhase("exiting"),
-      (COUNT_DURATION + HOLD_AFTER_COUNT) * 1000
+      (COUNT_DURATION + POST_COUNT_HOLD) * 1000
     );
     const doneTimer = setTimeout(
       () => {
         setPhase("done");
-        sessionStorage.setItem(SESSION_KEY, "1");
+        markSeen();
       },
-      (COUNT_DURATION + HOLD_AFTER_COUNT + EXIT_DURATION) * 1000
+      (COUNT_DURATION + POST_COUNT_HOLD + EXIT_DURATION) * 1000
     );
 
     return () => {
       c.stop();
-      s.stop();
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
     };
-  }, [count, sweep, reduced]);
+  }, [count, reduced]);
 
   return (
     <AnimatePresence>
@@ -118,10 +114,14 @@ export function Loader() {
                 </motion.span>
               ))}
             </div>
-            {/* Sweeping gradient bar under the wordmark */}
             <div className="mt-10 relative h-[2px] w-[60vw] md:w-[48vw] bg-white/5 overflow-hidden rounded-full">
               <motion.div
-                style={{ x: sweepX }}
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
+                transition={{
+                  duration: COUNT_DURATION + POST_COUNT_HOLD,
+                  ease: [0.6, 0.05, 0.2, 1],
+                }}
                 className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white to-transparent"
               />
             </div>
