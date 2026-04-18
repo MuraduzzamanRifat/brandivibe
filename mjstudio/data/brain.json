@@ -666,6 +666,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776502252341_eoix6u",
+      "timestamp": "2026-04-18T08:50:52.341Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I made a calculator that works over disjoint sets of intervals\" — The article describes a personal project related to interval arithmetic with no indication of a company, funding, team, or commercial application. It appears to be an individual effort without a business context.",
+      "source": "hackernews",
+      "tokens": 800
+    },
+    {
       "id": "act_1776502248777_62xnx4",
       "timestamp": "2026-04-18T08:50:48.777Z",
       "type": "prospect-added",
