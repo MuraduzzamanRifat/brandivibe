@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776551679089_3hkek1",
+      "timestamp": "2026-04-18T22:34:39.089Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"WebGL Liminal Space\" — The article describes a personal project or hobby game rather than a company, suggesting it does not align with Brandivibe's target market.",
+      "source": "hackernews",
+      "tokens": 768
+    },
+    {
       "id": "act_1776551675160_99lgdo",
       "timestamp": "2026-04-18T22:34:35.160Z",
       "type": "prospect-skipped",
