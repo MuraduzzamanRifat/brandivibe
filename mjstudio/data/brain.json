@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776555262773_zse8ty",
+      "timestamp": "2026-04-18T23:34:22.773Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A Roman fable about a PHP suite that exposed 100 tables in 3 days\" — The article is metaphorical and does not provide information about a specific company that meets the ICP criteria.",
+      "source": "hackernews",
+      "tokens": 710
+    },
+    {
       "id": "act_1776555258220_5oyh3w",
       "timestamp": "2026-04-18T23:34:18.220Z",
       "type": "prospect-skipped",
