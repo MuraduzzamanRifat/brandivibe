@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641726205_dsoniq",
+      "timestamp": "2026-04-19T23:35:26.205Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Newsmaps.io a map of how news topics are covered by different countries\" — The article lacks sufficient information about the company's industry, funding, or stage to determine if they match Brandivibe's ICP requirements.",
+      "source": "hackernews",
+      "tokens": 690
+    },
+    {
       "id": "act_1776641721115_9z5xft",
       "timestamp": "2026-04-19T23:35:21.115Z",
       "type": "prospect-skipped",
@@ -5619,12 +5627,6 @@
       "timestamp": "2026-04-17T17:34:12.291Z",
       "type": "article-published",
       "description": "Backfill: \"Why Your $3M Seed Deck Matters Less Than Premium Web Design for Startups\" (angle 1, SEO 70)"
-    },
-    {
-      "id": "act_1776447211631_jpwz11",
-      "timestamp": "2026-04-17T17:33:31.631Z",
-      "type": "article-published",
-      "description": "Backfill: \"3D Website Design ROI: Why Your Site's Worth More Than Your Deck\" (angle 0, SEO 53)"
     }
   ],
   "articles": [
