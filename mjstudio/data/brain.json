@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634546247_w77tiu",
+      "timestamp": "2026-04-19T21:35:46.247Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"LiteMarkup: Markdown parser with TypeScript AST, <3KB, no deps\" — LiteMarkup appears to be a technical project rather than a company, with a focus on Markdown parsing technology, making it a poor fit for Brandivibe's premium web design services.",
+      "source": "hackernews",
+      "tokens": 679
+    },
+    {
       "id": "act_1776634541731_7zjiqx",
       "timestamp": "2026-04-19T21:35:41.731Z",
       "type": "prospect-skipped",
@@ -5451,14 +5459,6 @@
       "description": "Skipped \"Accel raises $5B to back late-stage bets\" — Accel is a venture capital firm, not a potential client for web design services.",
       "source": "techcrunch",
       "tokens": 742
-    },
-    {
-      "id": "act_1776304914662_om6zvc",
-      "timestamp": "2026-04-16T02:01:54.662Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"This Khosla-backed autonomous pod startup just raised $170M — now it's aiming fo\" — The company, Glydways, is too large and advanced for Brandivibe's target project size given their recent $170M funding round and plans to raise an additional $250M.",
-      "source": "techcrunch",
-      "tokens": 819
     }
   ],
   "articles": [
