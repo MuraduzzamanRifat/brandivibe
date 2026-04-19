@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616795183_adz6qb",
+      "timestamp": "2026-04-19T16:39:55.183Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"FFmpeg API Cloud – Run FFmpeg over HTTP\" — The company is in the initial development phase and targets a niche developer audience with a specific technical solution, which may not align with Brandivibe's target for larger premium web design projects.",
+      "source": "hackernews",
+      "tokens": 852
+    },
+    {
       "id": "act_1776616790675_kzod2r",
       "timestamp": "2026-04-19T16:39:50.675Z",
       "type": "prospect-skipped",
