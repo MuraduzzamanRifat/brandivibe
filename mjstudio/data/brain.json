@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631070717_dayawn",
+      "timestamp": "2026-04-19T20:37:50.717Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company 'World' appears to be too large and well-funded, likely well beyond the premium web design studio's target project size.",
+      "source": "techcrunch",
+      "tokens": 781
+    },
+    {
       "id": "act_1776631065237_f9pxhu",
       "timestamp": "2026-04-19T20:37:45.237Z",
       "type": "prospect-skipped",
@@ -5447,14 +5455,6 @@
       "timestamp": "2026-04-16T02:01:29.001Z",
       "type": "article-published",
       "description": "Published \"Unlock Revenue Growth with Premium Web Design for Startups\" (SEO 55/100, 462 words)"
-    },
-    {
-      "id": "act_1776304881224_cpcxjr",
-      "timestamp": "2026-04-16T02:01:21.224Z",
-      "type": "plan-generated",
-      "description": "Planned \"Unlock Revenue Growth with Premium Web Design for Startups\" + 3 FB posts + 3 lead-gen actions",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 5938
     }
   ],
   "articles": [
