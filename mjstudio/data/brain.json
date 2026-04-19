@@ -1539,6 +1539,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606889101_f7nuih",
+      "timestamp": "2026-04-19T13:54:49.101Z",
+      "type": "article-published",
+      "description": "Published \"Why Your Startup Homepage is a Strategic Advantage\" (SEO 40/100, 561 words)"
+    },
+    {
       "id": "act_1776606878692_sqsxxx",
       "timestamp": "2026-04-19T13:54:38.692Z",
       "type": "plan-generated",
