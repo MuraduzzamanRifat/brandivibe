@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776598487143_gvszf9",
+      "timestamp": "2026-04-19T11:34:47.143Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"DevToolBox – 88 client-side developer tools, no tracking, 9 languages\" — The article describes a product offering developer tools rather than a B2B company seeking premium web design services.",
+      "source": "hackernews",
+      "tokens": 692
+    },
+    {
       "id": "act_1776598482994_erph9l",
       "timestamp": "2026-04-19T11:34:42.994Z",
       "type": "prospect-skipped",
