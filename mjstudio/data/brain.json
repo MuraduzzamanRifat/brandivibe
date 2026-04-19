@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631079305_pc45ji",
+      "timestamp": "2026-04-19T20:37:59.305Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776631073279_jd9yey",
       "timestamp": "2026-04-19T20:37:53.279Z",
       "type": "source-run",
@@ -5450,12 +5457,6 @@
       "timestamp": "2026-04-16T02:01:35.132Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Is your website a competitive advantage? Learn how a premium design can differen"
-    },
-    {
-      "id": "act_1776304892398_pmr8ek",
-      "timestamp": "2026-04-16T02:01:32.398Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Your startup's website can make or break your brand. Discover how premium web de"
     }
   ],
   "articles": [
