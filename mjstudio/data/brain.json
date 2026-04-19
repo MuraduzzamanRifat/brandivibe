@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641758383_pkn1i6",
+      "timestamp": "2026-04-19T23:35:58.383Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776641750935_wea083",
       "timestamp": "2026-04-19T23:35:50.935Z",
       "type": "prospect-skipped",
@@ -5625,14 +5632,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company's valuation at $1.5B places it beyond the typical SMB stage suitable for Brandivibe's premium web design projects.",
       "source": "techcrunch",
       "tokens": 796
-    },
-    {
-      "id": "act_1776452391117_y1br5z",
-      "timestamp": "2026-04-17T18:59:51.117Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia Capital is a large venture capital firm, outside the scope of a premium web design studio targeting startups and mid-sized companies.",
-      "source": "techcrunch",
-      "tokens": 834
     }
   ],
   "articles": [
