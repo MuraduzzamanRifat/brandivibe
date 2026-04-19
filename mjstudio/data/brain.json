@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776627669838_o7cwbw",
+      "timestamp": "2026-04-19T19:41:09.838Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Faceoff – A terminal UI for following NHL games\" — The company is a personal or small open-source project, not a funded startup or growing company in a relevant industry.",
+      "source": "hackernews",
+      "tokens": 781
+    },
+    {
       "id": "act_1776627664446_4qcrql",
       "timestamp": "2026-04-19T19:41:04.446Z",
       "type": "error",
