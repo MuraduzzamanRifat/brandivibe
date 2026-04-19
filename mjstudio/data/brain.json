@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634576038_veavwz",
+      "timestamp": "2026-04-19T21:36:16.038Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776634571231_1yqscs",
       "timestamp": "2026-04-19T21:36:11.231Z",
       "type": "prospect-skipped",
@@ -5456,13 +5463,6 @@
       "type": "prospect-researched",
       "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 1",
       "tokens": 0
-    },
-    {
-      "id": "act_1776304930142_wcgayr",
-      "timestamp": "2026-04-16T02:02:10.142Z",
-      "type": "prospect-skipped",
-      "description": "Could not scrape gizmo.com (404 or network failure)",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
     }
   ],
   "articles": [
