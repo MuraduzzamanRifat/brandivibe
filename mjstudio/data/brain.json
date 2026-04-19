@@ -1510,6 +1510,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595140215_mhohfv",
+      "timestamp": "2026-04-19T10:39:00.215Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Backlit Keyboard API for Python\" — The company is a small open-source project related to software development tools, which doesn't fit our target industries or business maturity stage.",
+      "source": "hackernews",
+      "tokens": 805
+    },
+    {
       "id": "act_1776595135247_t1y84b",
       "timestamp": "2026-04-19T10:38:55.247Z",
       "type": "prospect-added",
