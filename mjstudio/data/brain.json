@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631065237_f9pxhu",
+      "timestamp": "2026-04-19T20:37:45.237Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Libredesk – self-hosted, single-binary Intercom/Zendesk alternative\" — Libredesk is an open-source project without clear commercial revenue model or stage, not suitable for premium web design studio services.",
+      "source": "hackernews",
+      "tokens": 885
+    },
+    {
       "id": "act_1776631060609_qn5jdc",
       "timestamp": "2026-04-19T20:37:40.610Z",
       "type": "prospect-skipped",
