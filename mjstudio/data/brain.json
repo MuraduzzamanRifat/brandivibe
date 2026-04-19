@@ -1539,6 +1539,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606895347_x0ire0",
+      "timestamp": "2026-04-19T13:54:55.347Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Your homepage is your startup's first point of contact. Is it a strategic advant"
+    },
+    {
       "id": "act_1776606889101_f7nuih",
       "timestamp": "2026-04-19T13:54:49.101Z",
       "type": "article-published",
