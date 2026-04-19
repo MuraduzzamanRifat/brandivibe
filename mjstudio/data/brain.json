@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583124108_gkg3if",
+      "timestamp": "2026-04-19T07:18:44.108Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"5-translation RAG matrix fixing LLM religious hallucinations\" — The article is about an open-source project on GitHub, not a funded company or startup.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776583119825_5b99am",
       "timestamp": "2026-04-19T07:18:39.825Z",
       "type": "prospect-skipped",
