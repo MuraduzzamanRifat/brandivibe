@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634559554_55br1a",
+      "timestamp": "2026-04-19T21:35:59.554Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"YouDeserveNow, Justifications for Treating Yourself\" — The company, YouDeserveNow, is based on a novelty AI concept that lacks scalability and is unlikely to require a premium web design studio's services.",
+      "source": "hackernews",
+      "tokens": 757
+    },
+    {
       "id": "act_1776634554983_mihzig",
       "timestamp": "2026-04-19T21:35:54.983Z",
       "type": "prospect-skipped",
@@ -5452,13 +5460,6 @@
       "timestamp": "2026-04-16T02:02:05.954Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
-    },
-    {
-      "id": "act_1776304925274_91nd50",
-      "timestamp": "2026-04-16T02:02:05.274Z",
-      "type": "source-run",
-      "description": "Source tick: 5 articles fetched, 1 new prospects added, 0 already known",
-      "tokens": 3876
     }
   ],
   "articles": [
