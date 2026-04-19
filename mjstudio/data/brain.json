@@ -1593,6 +1593,28 @@
         },
         "rawHomepage": "<!doctype html>\r\n<html lang=\"en\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>Infrawise</title>\r\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\">\r\n    <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\">\r\n    <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/favicon-16x16.png\">\r\n    <link rel=\"manifest\" href=\"/site.webmanifest\">\r\n    <script type=\"module\" crossorigin src=\"/assets/index-Celheu4l.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-CBogsl-d.css\">\n  </head>\r\n\r\n  <body>\r\n    <div id=\"root\"></div>\r\n\r\r\n  </body>\r\n</html>\r\n"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9zb3Vy",
+      "company": "Bridge",
+      "domain": "sourcebridge.ai",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "",
+      "trigger": "The company is focused on bridging AI code generation and human understanding, signaling a need for user-centric design solutions.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "pulse",
+      "brandWeakness": "The current online presence lacks detailed information and a significant brand story.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The project type aligns with Brandivibe's capability to offer high-value design services for AI companies aiming to simplify complex concepts.",
+      "source": "hackernews",
+      "sourceUrl": "https://sourcebridge.ai",
+      "createdAt": "2026-04-19T20:37:18.996Z",
+      "updatedAt": "2026-04-19T20:37:18.996Z"
     }
   ],
   "drafts": [],
