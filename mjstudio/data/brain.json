@@ -527,7 +527,7 @@
       "source": "hackernews",
       "sourceUrl": "https://getsmall.xyz/",
       "createdAt": "2026-04-18T08:50:26.082Z",
-      "updatedAt": "2026-04-19T13:00:55.152Z",
+      "updatedAt": "2026-04-19T13:56:22.339Z",
       "scraped": {
         "fetchedAt": "2026-04-18T08:51:04.591Z",
         "homepage": "Small Small Small Small stories that think big Eriks Reks (eriks) · Apr 17, 2026 · $ 1.00 USDC · 1 Rangeley, Wilhelm Reich, and Shrek My dad&#x27;s family has been going to Rangeley, ME since the mid 1960s after my grandfather&#x27;s friend convinced him to buy some land near one of the lakes and build a house for himself a top a little hill overlooking Long... cartoons childrens-books rangeley-maine shrek wilhelm-reich william-steig Pete Mertz (trezm) · Apr 17, 2026 · $ 0.01 USDC · 0 The Start of Something Small You&#x27;ve made your way to Small, a simple writing platform for sharing your ideas and getting compensated directly from your readers. Small leverages the [x402](https://www.x402.org/) protocol supported by Coinbase,...",
@@ -1546,6 +1546,14 @@
   ],
   "drafts": [],
   "activities": [
+    {
+      "id": "act_1776606981893_fzlwrt",
+      "timestamp": "2026-04-19T13:56:21.893Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is too large and established for boutique web design projects ($35-90K).",
+      "source": "techcrunch",
+      "tokens": 744
+    },
     {
       "id": "act_1776606978069_wf5doh",
       "timestamp": "2026-04-19T13:56:18.069Z",
