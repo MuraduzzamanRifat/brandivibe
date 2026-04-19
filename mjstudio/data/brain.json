@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776598473454_3lz8oa",
+      "timestamp": "2026-04-19T11:34:33.454Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"FluxTest for testing network performance of self-hosted infrastructure\" — The article describes a tool for testing network performance, not a company at a stage appropriate for brand projects.",
+      "source": "hackernews",
+      "tokens": 665
+    },
+    {
       "id": "act_1776598468138_ohjxr2",
       "timestamp": "2026-04-19T11:34:28.139Z",
       "type": "error",
