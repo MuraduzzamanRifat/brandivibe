@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616767944_9c7l9j",
+      "timestamp": "2026-04-19T16:39:27.944Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Using Ramanujan's Pi Series for Bitcoin Security on Nvidia B200\" — The article discusses Bitcoin security, potentially relevant to fintech or crypto sectors, but doesn't mention any specific company, founder, or funding details.",
+      "source": "hackernews",
+      "tokens": 670
+    },
+    {
       "id": "act_1776616762229_ago1c4",
       "timestamp": "2026-04-19T16:39:22.229Z",
       "type": "error",
