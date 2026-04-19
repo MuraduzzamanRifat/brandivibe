@@ -1136,6 +1136,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592055438_7hzo9p",
+      "timestamp": "2026-04-19T09:47:35.438Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Mac-computer-use, an open-source clone of Codex Computer Use\" — The project is an open-source initiative and appears to target developers using macOS. It does not fit the studio's ICP, which focuses on premium businesses rather than individual or open-source community projects.",
+      "source": "hackernews",
+      "tokens": 778
+    },
+    {
       "id": "act_1776592051292_sfjb4m",
       "timestamp": "2026-04-19T09:47:31.292Z",
       "type": "prospect-skipped",
