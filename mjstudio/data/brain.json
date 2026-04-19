@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776624658387_w56vg4",
+      "timestamp": "2026-04-19T18:50:58.387Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Find jobs and know your fit before you apply\" — Karriero appears to be a job matching and career platform, which is not a target industry such as crypto, SaaS, fintech, etc.",
+      "source": "hackernews",
+      "tokens": 674
+    },
+    {
       "id": "act_1776624652670_ectf0w",
       "timestamp": "2026-04-19T18:50:52.671Z",
       "type": "error",
