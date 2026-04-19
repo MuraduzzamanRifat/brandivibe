@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620163604_4zz50z",
+      "timestamp": "2026-04-19T17:36:03.604Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Bridge the gap between AI code/app generation and human understanding\" — Insufficient information on the company's stage, funding, and industry alignment.",
+      "source": "hackernews",
+      "tokens": 653
+    },
+    {
       "id": "act_1776620159189_bjywuv",
       "timestamp": "2026-04-19T17:35:59.189Z",
       "type": "prospect-skipped",
