@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776624674054_00lfbh",
+      "timestamp": "2026-04-19T18:51:14.054Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Ratio Royale – A playable simulation of the Dead Internet theory\" — The article provides information about a playable simulation game related to the Dead Internet theory, which does not align with the premium web design studio's target industries or company stages.",
+      "source": "hackernews",
+      "tokens": 689
+    },
+    {
       "id": "act_1776624669279_84gigj",
       "timestamp": "2026-04-19T18:51:09.279Z",
       "type": "prospect-skipped",
