@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638129796_x2ednm",
+      "timestamp": "2026-04-19T22:35:29.796Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A font that auto-translates Chinese\" — This is a personal project rather than a company or business, not suitable for a web design studio engagement.",
+      "source": "hackernews",
+      "tokens": 800
+    },
+    {
       "id": "act_1776638124899_bgt225",
       "timestamp": "2026-04-19T22:35:24.899Z",
       "type": "error",
@@ -5455,14 +5463,6 @@
       "timestamp": "2026-04-17T14:17:51.064Z",
       "type": "article-published",
       "description": "Published \"Why Cheap Websites Kill Premium Opportunities for Startups\" (SEO 50/100, 440 words)"
-    },
-    {
-      "id": "act_1776435463755_3sn1ya",
-      "timestamp": "2026-04-17T14:17:43.755Z",
-      "type": "plan-generated",
-      "description": "Planned \"Why Cheap Websites Kill Premium Opportunities for Startups\" + 3 FB posts + 3 lead-gen actions",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 7349
     }
   ],
   "articles": [
