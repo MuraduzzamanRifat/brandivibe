@@ -5120,13 +5120,13 @@
     {
       "date": "2026-04-19",
       "startedAt": "2026-04-19T13:53:55.040Z",
-      "updatedAt": "2026-04-19T13:54:54.038Z",
+      "updatedAt": "2026-04-19T13:55:00.256Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
-          "pending",
+          "done",
           "pending"
         ],
         "score": "pending",
