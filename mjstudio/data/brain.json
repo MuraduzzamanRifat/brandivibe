@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613030903_ds56qq",
+      "timestamp": "2026-04-19T15:37:10.903Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A collaborative SSH copilot for on-calls/DevOps/MLOps\" — The article does not provide sufficient information about the company, such as company structure, founders, industry, or funding stage, to determine if it fits the Brandivibe ICP. It seems more focused on a product or project rather than a business entity seeking web design services.",
+      "source": "hackernews",
+      "tokens": 722
+    },
+    {
       "id": "act_1776613025395_cxgpq3",
       "timestamp": "2026-04-19T15:37:05.395Z",
       "type": "prospect-skipped",
