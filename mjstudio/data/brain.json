@@ -1642,6 +1642,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638159574_ktg41b",
+      "timestamp": "2026-04-19T22:35:59.574Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses a general trend in app launches and the use of AI tools, rather than a specific company.",
+      "source": "techcrunch",
+      "tokens": 710
+    },
+    {
       "id": "act_1776638155656_55gek6",
       "timestamp": "2026-04-19T22:35:55.656Z",
       "type": "prospect-skipped",
@@ -5486,14 +5494,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company valuation of $1.5B indicates it is too large for Brandivibe's target market of premium web design projects ($35-90K).",
       "source": "techcrunch",
       "tokens": 770
-    },
-    {
-      "id": "act_1776435497719_gqmfe8",
-      "timestamp": "2026-04-17T14:18:17.719Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, not a company in need of web design services.",
-      "source": "techcrunch",
-      "tokens": 832
     }
   ],
   "articles": [
