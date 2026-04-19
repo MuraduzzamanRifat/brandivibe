@@ -1136,6 +1136,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592059648_ijzyuk",
+      "timestamp": "2026-04-19T09:47:39.648Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AWS's Kiro just got an Open source Codex\" — AWS is a large, established technology company not typically within Brandivibe's target market of smaller SaaS startups.",
+      "source": "hackernews",
+      "tokens": 696
+    },
+    {
       "id": "act_1776592055438_7hzo9p",
       "timestamp": "2026-04-19T09:47:35.438Z",
       "type": "prospect-skipped",
