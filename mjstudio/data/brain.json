@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776576540137_k44m6e",
+      "timestamp": "2026-04-19T05:29:00.137Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Mac-computer-use, an open-source clone of Codex Computer Use\" — The company is an open-source project on GitHub, not a commercial enterprise that fits the ICP.",
+      "source": "hackernews",
+      "tokens": 807
+    },
+    {
       "id": "act_1776576535425_5t6rw8",
       "timestamp": "2026-04-19T05:28:55.425Z",
       "type": "prospect-skipped",
