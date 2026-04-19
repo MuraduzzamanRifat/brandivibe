@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776576528945_vens9w",
+      "timestamp": "2026-04-19T05:28:48.945Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Server builds, wallet signs — a non-custodial Web3 checkout pattern\" — The article does not mention a specific company; it focuses on a Web3 checkout pattern.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776576524348_xjz8au",
       "timestamp": "2026-04-19T05:28:44.348Z",
       "type": "prospect-skipped",
