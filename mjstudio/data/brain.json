@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583130015_gq0qdu",
+      "timestamp": "2026-04-19T07:18:50.015Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open Passkey – open-source passkey auth with free \"backendless\" host\" — The company Open Passkey is an open-source project, more likely focused on offering free resources rather than purchasing premium web design services.",
+      "source": "hackernews",
+      "tokens": 854
+    },
+    {
       "id": "act_1776583124108_gkg3if",
       "timestamp": "2026-04-19T07:18:44.108Z",
       "type": "prospect-skipped",
