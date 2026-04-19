@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616782745_vhbhfo",
+      "timestamp": "2026-04-19T16:39:42.745Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Claude Code Rust – a native Rust TUI that avoids the V8 heap OOM\" — The article is about an open-source project rather than a company that fits the ICP criteria.",
+      "source": "hackernews",
+      "tokens": 847
+    },
+    {
       "id": "act_1776616778484_gy3pwx",
       "timestamp": "2026-04-19T16:39:38.484Z",
       "type": "prospect-skipped",
