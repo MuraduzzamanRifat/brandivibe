@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606945598_lu6tda",
+      "timestamp": "2026-04-19T13:55:45.598Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"SharpSkill – I simplified the process of ITWs preparation\" — The article implies the company is focusing on individual technical interview preparation, likely targeting B2C or very early-stage B2B markets, which does not align with Brandivibe's premium web design targeting established B2B SaaS or technology companies.",
+      "source": "hackernews",
+      "tokens": 743
+    },
+    {
       "id": "act_1776606940662_0lai4c",
       "timestamp": "2026-04-19T13:55:40.662Z",
       "type": "prospect-skipped",
