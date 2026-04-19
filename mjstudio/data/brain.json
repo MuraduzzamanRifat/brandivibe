@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613025395_cxgpq3",
+      "timestamp": "2026-04-19T15:37:05.395Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Backlit Keyboard API for Python\" — The article describes an individual open-source project not suitable for Brandivibe's target market. It is neither a company nor within the targeted industry stages.",
+      "source": "hackernews",
+      "tokens": 809
+    },
+    {
       "id": "act_1776613019738_kxw16m",
       "timestamp": "2026-04-19T15:36:59.738Z",
       "type": "error",
