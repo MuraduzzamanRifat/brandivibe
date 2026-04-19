@@ -1109,6 +1109,28 @@
         ],
         "createdAt": "2026-04-18T21:35:49.698Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9hZ2Vu",
+      "company": "AgentRQ",
+      "domain": "agentrq.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Launching a platform compatible with Claude and ACP-compatible agents suggests a growth phase needing web design support.",
+      "icpTier": "A",
+      "icpScore": 7,
+      "bestFitDemo": "helix",
+      "brandWeakness": "The current brand does not clearly communicate its unique value proposition and competitive advantages on its website.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "AgentRQ is at the seed stage and involves task management automation, which likely requires professional web design as it scales.",
+      "source": "hackernews",
+      "sourceUrl": "https://agentrq.com",
+      "createdAt": "2026-04-19T09:47:20.259Z",
+      "updatedAt": "2026-04-19T09:47:20.259Z"
     }
   ],
   "drafts": [],
