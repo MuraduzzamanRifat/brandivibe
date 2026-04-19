@@ -5313,7 +5313,7 @@
     {
       "date": "2026-04-19",
       "startedAt": "2026-04-19T13:53:55.040Z",
-      "updatedAt": "2026-04-19T13:56:15.020Z",
+      "updatedAt": "2026-04-19T13:56:35.343Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -5325,7 +5325,7 @@
         "score": "done",
         "source": "pending",
         "leadgen": "done",
-        "research": "pending",
+        "research": "done",
         "sequence": "pending",
         "send": "pending",
         "blast": "pending"
