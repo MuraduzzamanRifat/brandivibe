@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620148400_uzr4pg",
+      "timestamp": "2026-04-19T17:35:48.400Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Find jobs and know your fit before you apply\" — The article describes a job searching service, likely in the HR Tech industry, which doesn't align with the premium web design focus of Brandivibe.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776620143155_9as42i",
       "timestamp": "2026-04-19T17:35:43.155Z",
       "type": "prospect-skipped",
