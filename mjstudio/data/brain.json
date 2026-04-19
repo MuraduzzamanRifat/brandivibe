@@ -1569,6 +1569,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620199775_9d3m8h",
+      "timestamp": "2026-04-19T17:36:39.775Z",
+      "type": "prospect-scraped",
+      "description": "Scraped infrawiseai.com — tech: (none detected) · design 4/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776620192655_x53bcw",
       "timestamp": "2026-04-19T17:36:32.655Z",
       "type": "prospect-skipped",
