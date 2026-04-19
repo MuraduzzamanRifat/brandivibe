@@ -1539,6 +1539,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776603662612_va3b0a",
+      "timestamp": "2026-04-19T13:01:02.612Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776603657711_2ynyxw",
       "timestamp": "2026-04-19T13:00:57.711Z",
       "type": "prospect-skipped",
