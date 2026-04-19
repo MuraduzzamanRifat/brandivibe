@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638202533_gozhx9",
+      "timestamp": "2026-04-19T22:36:42.533Z",
+      "type": "prospect-researched",
+      "description": "Hourly research: 1 prospects researched, 1 emails found",
+      "tokens": 1981
+    },
+    {
       "id": "act_1776638198767_9abtg5",
       "timestamp": "2026-04-19T22:36:38.767Z",
       "type": "prospect-skipped",
@@ -5616,12 +5623,6 @@
       "type": "prospect-skipped",
       "description": "Could not scrape gizmo.com (404 or network failure)",
       "prospectId": "tc_aHR0cHM6Ly90ZWNo"
-    },
-    {
-      "id": "act_1776435524667_2vzm4v",
-      "timestamp": "2026-04-17T14:18:44.667Z",
-      "type": "lead-gen-skipped",
-      "description": "Lead-gen executor: 0 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
     }
   ],
   "articles": [
