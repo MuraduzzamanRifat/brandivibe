@@ -1136,6 +1136,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592081871_l1m8mz",
+      "timestamp": "2026-04-19T09:48:01.871Z",
+      "type": "email-found",
+      "description": "Best email for AgentRQ: hi@agentrq.com (scraped, conf 95)",
+      "prospectId": "tc_aHR0cHM6Ly9hZ2Vu"
+    },
+    {
       "id": "act_1776592079919_osdcd6",
       "timestamp": "2026-04-19T09:47:59.919Z",
       "type": "prospect-researched",
