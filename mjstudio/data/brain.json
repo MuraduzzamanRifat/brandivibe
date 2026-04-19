@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776603638746_zk0mdb",
+      "timestamp": "2026-04-19T13:00:38.746Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open-source digital business card generator\" — The company is an open-source project which typically indicates a focus on free, community-driven development rather than premium, funded tech startups. This does not align with Brandivibe’s target market for paid web design projects.",
+      "source": "hackernews",
+      "tokens": 742
+    },
+    {
       "id": "act_1776603633831_kefegj",
       "timestamp": "2026-04-19T13:00:33.831Z",
       "type": "prospect-skipped",
