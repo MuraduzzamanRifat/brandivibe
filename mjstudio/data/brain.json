@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613045917_u8yjbv",
+      "timestamp": "2026-04-19T15:37:25.917Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"SharpSkill – I simplified the process of ITWs preparation\" — The article does not provide sufficient information about the company's funding stage, industry, or size to determine ICP fit.",
+      "source": "hackernews",
+      "tokens": 726
+    },
+    {
       "id": "act_1776613041462_iyxflw",
       "timestamp": "2026-04-19T15:37:21.462Z",
       "type": "prospect-skipped",
