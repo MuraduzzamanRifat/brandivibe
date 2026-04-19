@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638143062_t0t4ro",
+      "timestamp": "2026-04-19T22:35:43.062Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"NYC Guessr – GeoGuessr for NYC but with live video cam footage\" — The company appears to be a small, possibly individual-owned project rather than a scalable business fitting our ICP for premium web design services.",
+      "source": "hackernews",
+      "tokens": 775
+    },
+    {
       "id": "act_1776638138320_7ap7oc",
       "timestamp": "2026-04-19T22:35:38.320Z",
       "type": "prospect-skipped",
@@ -5461,12 +5469,6 @@
       "timestamp": "2026-04-17T14:18:03.021Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Your website is a digital handshake. Is it firm or limp? Discover the perils of "
-    },
-    {
-      "id": "act_1776435479046_aspdus",
-      "timestamp": "2026-04-17T14:17:59.046Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Technical failures like slow load speed can tank your site's performance. How do"
     }
   ],
   "articles": [
