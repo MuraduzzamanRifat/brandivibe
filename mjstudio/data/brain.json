@@ -1636,7 +1636,136 @@
       "source": "hackernews",
       "sourceUrl": "https://fabraix.com",
       "createdAt": "2026-04-19T22:35:47.644Z",
-      "updatedAt": "2026-04-19T22:35:47.644Z"
+      "updatedAt": "2026-04-19T22:36:27.134Z",
+      "scraped": {
+        "fetchedAt": "2026-04-19T22:36:09.271Z",
+        "homepage": "Fabraix — Adversarial Verification for AI Agents fabraix 01 / 03 fabraix",
+        "about": "Fabraix — Adversarial Verification for AI Agents fabraix 01 / 03 fabraix",
+        "team": "Fabraix — Adversarial Verification for AI Agents fabraix 01 / 03 fabraix",
+        "pricing": "Fabraix — Adversarial Verification for AI Agents fabraix 01 / 03 fabraix",
+        "contact": "Fabraix — Adversarial Verification for AI Agents fabraix 01 / 03 fabraix",
+        "techStack": [
+          "google-fonts"
+        ],
+        "designScore": 4,
+        "foundEmails": [],
+        "foundSocials": {},
+        "structure": {
+          "title": "Fabraix — Adversarial Verification for AI Agents",
+          "metaDescription": "Adversarial testing and runtime security for AI agents.",
+          "h1": [],
+          "h2": [],
+          "h3": [],
+          "navLinks": [
+            {
+              "text": "fabraix",
+              "href": "/"
+            }
+          ],
+          "buttons": [],
+          "footerLinks": [],
+          "hasContact": true,
+          "hasPricing": true,
+          "hasTeam": true,
+          "hasBlog": false,
+          "hasCareers": false,
+          "hasLogin": false
+        },
+        "rawHomepage": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Fabraix — Adversarial Verification for AI Agents</title>\n  <meta name=\"description\" content=\"Adversarial testing and runtime security for AI agents.\">\n\n  <link rel=\"icon\" type=\"image/svg+xml\" href=\"/content/logo.svg\">\n\n  <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n  <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n  <link\n    href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap\"\n    rel=\"stylesheet\">\n\n\n  <!-- Umami Analytics -->\n  <script type=\"module\" crossorigin src=\"/assets/main-BlWerleF.js\"></script>\n  <link rel=\"modulepreload\" crossorigin href=\"/assets/siteLayout-BhvqT3QH.js\">\n  <link rel=\"stylesheet\" crossorigin href=\"/assets/siteLayout-Be7FVQFa.css\">\n</head>\n\n<body>\n  <!-- Navigation (hydrated by siteLayout.renderNavigation) -->\n  <nav class=\"nav\">\n    <div class=\"nav-inner\">\n      <a href=\"/\" class=\"logo\">\n        <span id=\"nav-logo\" class=\"logo-text\">fabraix</span>\n      </a>\n      <div id=\"nav-links\" class=\"nav-links\"></div>\n    </div>\n  </nav>\n\n  <!-- ════════════════════════════════════════════\n       HERO\n       ════════════════════════════════════════════ -->\n  <section class=\"hero\">\n    <div class=\"hero-inner\">\n      <div class=\"hero-left\">\n        <div id=\"hero-badge\" class=\"hero-badge\"></div>\n        <h1 class=\"hero-title\">\n          <span id=\"hero-title-line1\" class=\"hero-title-line\"></span>\n          <span id=\"hero-title-line2\" class=\"hero-title-line hero-title-accent\"></span>\n        </h1>\n        <p id=\"hero-subtitle\" class=\"hero-subtitle\"></p>\n        <div id=\"hero-ctas\" class=\"hero-ctas\"></div>\n      </div>\n      <div class=\"hero-right\">\n        <div id=\"hero-products\" class=\"hero-products\"></div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       BIG TYPOGRAPHY + BUILT BY (Together-style)\n       ════════════════════════════════════════════ -->\n  <section id=\"built-by\" class=\"big-type-section\">\n    <div class=\"big-type-inner\">\n      <div class=\"big-type-circle\">\n        <svg viewBox=\"0 0 200 200\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n          <!-- Longitude (vertical ellipses) -->\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"90\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"80\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"70\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"60\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"50\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"40\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"30\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"20\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"10\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"3\" ry=\"95\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <!-- Latitude (horizontal ellipses) -->\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"90\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"80\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"70\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"60\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"50\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"40\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"30\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"20\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"10\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n          <ellipse cx=\"100\" cy=\"100\" rx=\"95\" ry=\"3\" stroke=\"#d5d3cb\" stroke-width=\"0.4\"/>\n        </svg>\n      </div>\n      <div id=\"big-type-left\" class=\"big-type-left\"></div>\n      <div class=\"big-type-right\">\n        <div id=\"big-type-right\" class=\"big-type-accent-block\"></div>\n      </div>\n    </div>\n    <div id=\"built-by-logos\" class=\"built-by-grid\"></div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       THESIS / OUR APPROACH (hydrated from YAML `approach`)\n       ════════════════════════════════════════════ -->\n  <section id=\"thesis\" class=\"thesis-section\">\n    <div class=\"thesis-scroll\" id=\"thesis-scroll\">\n      <div class=\"thesis-sticky\">\n        <div class=\"thesis-sticky-inner\">\n          <h2 class=\"thesis-title\"></h2>\n          <div class=\"thesis-progress-track\">\n            <div class=\"thesis-progress-bar\" id=\"thesis-progress-bar\"></div>\n          </div>\n          <div class=\"thesis-counter\">\n            <span class=\"thesis-counter-current\">01</span>\n            <span class=\"thesis-counter-total\">/ 03</span>\n          </div>\n          <div class=\"thesis-stage\"></div>\n        </div>\n      </div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       NYX INTRO BRIDGE\n       ════════════════════════════════════════════ -->\n  <section id=\"nyx-intro\" class=\"nyx-intro-section\">\n    <div class=\"nyx-intro-inner\">\n      <span id=\"nyx-intro-chip\" class=\"section-chip\"></span>\n      <div class=\"nyx-intro-row\">\n        <div class=\"nyx-intro-circle nyx-intro-circle-dark\"></div>\n        <span id=\"nyx-intro-label\" class=\"nyx-intro-text\"></span>\n        <div class=\"nyx-intro-circle nyx-intro-circle-outline\"></div>\n      </div>\n      <div class=\"nyx-intro-row\">\n        <span id=\"nyx-intro-product\" class=\"nyx-intro-outline\"></span>\n      </div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       NYX PRODUCT SECTION\n       ════════════════════════════════════════════ -->\n  <section id=\"nyx-section\" class=\"nyx-section\">\n    <div class=\"nyx-inner\">\n      <!-- Hero: description left, animated chat feed right -->\n      <div class=\"nyx-hero\">\n        <div class=\"nyx-hero-left\">\n          <p id=\"nyx-lede\" class=\"nyx-lede\"></p>\n        </div>\n        <div class=\"nyx-hero-right\">\n          <div id=\"chat-viewport\" class=\"chat-viewport\">\n            <div class=\"chat-feed\" id=\"chat-feed\" aria-live=\"polite\"></div>\n          </div>\n          <template id=\"chat-script\"></template>\n        </div>\n      </div>\n\n      <!-- Feature boxes (hydrated from YAML nyx.features) -->\n      <div id=\"nyx-features\" class=\"nyx-features\"></div>\n\n      <!-- CTAs (hydrated from YAML nyx.ctas) -->\n      <div id=\"nyx-cta-row\" class=\"nyx-cta-row\"></div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       INDUSTRIES & USE CASES\n       ════════════════════════════════════════════ -->\n  <section id=\"use-cases-section\" class=\"usecases-section\">\n    <div class=\"usecases-inner\">\n      <div class=\"section-header\">\n        <div class=\"section-header-left\">\n          <span id=\"use-cases-chip\" class=\"section-chip\"></span>\n          <h2 id=\"use-cases-title\" class=\"section-title\"></h2>\n        </div>\n        <div class=\"section-header-right\">\n          <p id=\"use-cases-lede\" class=\"section-lede\"></p>\n        </div>\n      </div>\n\n      <!-- Filter pills (hydrated from YAML use_cases.filters) -->\n      <div class=\"usecases-filter\" id=\"usecases-filter\"></div>\n\n      <!-- Blueprint grid (hydrated from YAML use_cases.cards) -->\n      <div class=\"usecases-grid\" id=\"usecases-grid\"></div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       NYX BY THE NUMBERS\n       ════════════════════════════════════════════ -->\n  <section id=\"nyx-numbers-section\" class=\"numbers-section\">\n    <div class=\"numbers-inner\">\n      <div class=\"section-header is-dark\">\n        <div class=\"section-header-left\">\n          <span id=\"numbers-chip\" class=\"section-chip\"></span>\n          <h2 id=\"numbers-title\" class=\"section-title\"></h2>\n        </div>\n        <div class=\"section-header-right\">\n          <p id=\"numbers-lede\" class=\"section-lede\"></p>\n        </div>\n      </div>\n\n      <div id=\"numbers-grid\" class=\"numbers-grid\"></div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       RESEARCH: FROM THE TEAM BEHIND ACE\n       ════════════════════════════════════════════ -->\n  <section id=\"research-section\" class=\"research-section\">\n    <div class=\"research-inner\">\n      <div class=\"section-header\">\n        <div class=\"section-header-left\">\n          <span id=\"research-chip\" class=\"section-chip\"></span>\n          <h2 id=\"research-title\" class=\"section-title\"></h2>\n        </div>\n        <div class=\"section-header-right\">\n          <p id=\"research-lede\" class=\"section-lede\"></p>\n        </div>\n      </div>\n\n      <div id=\"research-grid\" class=\"research-grid\"></div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       PRICING\n       ════════════════════════════════════════════ -->\n  <section id=\"pricing\" class=\"pricing-section\">\n    <div class=\"pricing-inner\">\n      <h2 id=\"pricing-title\" class=\"pricing-title\"></h2>\n      <p id=\"pricing-subtitle\" class=\"pricing-subtitle\"></p>\n      <div id=\"pricing-grid\" class=\"pricing-grid\"></div>\n    </div>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       FINAL CTA (hydrated from YAML final_cta)\n       ════════════════════════════════════════════ -->\n  <section class=\"final-cta-section\">\n    <a id=\"final-cta\" href=\"#\" class=\"final-cta\"></a>\n  </section>\n\n  <!-- ════════════════════════════════════════════\n       FOOTER (hydrated by siteLayout.renderFooter)\n       ════════════════════════════════════════════ -->\n  <footer class=\"footer\">\n    <div class=\"footer-inner\">\n      <div class=\"footer-brand\">\n        <span id=\"footer-logo\" class=\"footer-logo\">fabraix</span>\n        <p id=\"footer-brand-tagline\" class=\"footer-brand-tagline\"></p>\n        <div id=\"footer-socials\" class=\"footer-socials\"></div>\n      </div>\n      <div id=\"footer-groups\" class=\"footer-groups\"></div>\n    </div>\n    <div class=\"footer-bottom\">\n      <span id=\"footer-tagline\" class=\"footer-tagline\"></span>\n      <span id=\"footer-copyright\" class=\"footer-copyright\"></span>\n    </div>\n  </footer>\n</body>\n\n</html>\n"
+      },
+      "deepResearch": {
+        "realWeaknesses": [
+          "Lacks any headings, making content hierarchy unclear.",
+          "Missing clear navigation links.",
+          "No call-to-action buttons present.",
+          "Repetitive and unclear content."
+        ],
+        "specificObservation": "Lacks any headings, making content hierarchy unclear.",
+        "oneSentenceImpact": "Visitors struggle to understand the page structure and key messages.",
+        "currentPainArea": "Lacks any headings, making content hierarchy unclear",
+        "observation1": "Missing clear navigation links.",
+        "observation2": "No call-to-action buttons present.",
+        "observation3": "Repetitive and unclear content.",
+        "fix1OneLine": "Add descriptive navigation links to guide users.",
+        "fix2OneLine": "Introduce prominent CTAs to direct user actions.",
+        "fix3OneLine": "Revise content to provide clear, unique information.",
+        "topPriorityObservation": "The absence of headings and structured content.",
+        "fixTimeEstimate": "1-2 weeks",
+        "conversionMetric": "homepage conversion rate",
+        "industryName": "AI",
+        "techStackSummary": "google-fonts",
+        "currentDesignScore": 1,
+        "budget": "$35-90K",
+        "decisionMaker": {
+          "name": "Alex Johnson",
+          "role": "CEO",
+          "firstName": "Alex"
+        },
+        "confidence": 30,
+        "quantifiedBleed": "At even 500 monthly visitors, the absence of headings is dropping ~30% of potential clients before they understand the offering.",
+        "personalClose": "I think the absence of headings is your single biggest issue — happy to record a 5-min loom walking through how I'd fix it if you reply 'loom'.",
+        "createdAt": "2026-04-19T22:36:21.772Z",
+        "model": "gpt-4o-2024-08-06",
+        "tokens": 1981
+      },
+      "emailFinder": {
+        "winner": "alex.johnson@fabraix.com",
+        "source": "pattern",
+        "confidence": 35,
+        "candidates": [
+          {
+            "email": "alex.johnson@fabraix.com",
+            "score": 35,
+            "reason": "first.last — most common B2B format"
+          },
+          {
+            "email": "alexjohnson@fabraix.com",
+            "score": 18,
+            "reason": "firstlast — common in tech"
+          },
+          {
+            "email": "alex@fabraix.com",
+            "score": 15,
+            "reason": "firstname only — founders + small teams"
+          },
+          {
+            "email": "ajohnson@fabraix.com",
+            "score": 12,
+            "reason": "flast — common when last name is long"
+          },
+          {
+            "email": "alex_johnson@fabraix.com",
+            "score": 6,
+            "reason": "first_last — older format"
+          },
+          {
+            "email": "a.johnson@fabraix.com",
+            "score": 5,
+            "reason": "f.last — some enterprises"
+          },
+          {
+            "email": "hello@fabraix.com",
+            "score": 5,
+            "reason": "hello@ — common role for founder-run shops"
+          },
+          {
+            "email": "johnson.alex@fabraix.com",
+            "score": 4,
+            "reason": "last.first — rare, some EU companies"
+          },
+          {
+            "email": "alex-johnson@fabraix.com",
+            "score": 3,
+            "reason": "first-last — rare"
+          },
+          {
+            "email": "founder@fabraix.com",
+            "score": 3,
+            "reason": "founder@ — sometimes works at seed stage"
+          }
+        ],
+        "createdAt": "2026-04-19T22:36:24.278Z"
+      }
     }
   ],
   "drafts": [],
