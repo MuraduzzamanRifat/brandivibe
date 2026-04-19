@@ -1642,6 +1642,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638155656_55gek6",
+      "timestamp": "2026-04-19T22:35:55.656Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is likely too large and potentially out of the typical startup phase based on its expansive partnership with Tinder.",
+      "source": "techcrunch",
+      "tokens": 786
+    },
+    {
       "id": "act_1776638150797_tbn32t",
       "timestamp": "2026-04-19T22:35:50.797Z",
       "type": "prospect-added",
@@ -5486,14 +5494,6 @@
       "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, not a company in need of web design services.",
       "source": "techcrunch",
       "tokens": 832
-    },
-    {
-      "id": "act_1776435492478_uardde",
-      "timestamp": "2026-04-17T14:18:12.478Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Company is too large and potentially too advanced for the project budget, having raised $95M Series C.",
-      "source": "techcrunch",
-      "tokens": 797
     }
   ],
   "articles": [
