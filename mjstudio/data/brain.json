@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776576535425_5t6rw8",
+      "timestamp": "2026-04-19T05:28:55.425Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built a CLI to fake Git commits\" — The project is a hobby/side project, not a suitable target for premium web design services.",
+      "source": "hackernews",
+      "tokens": 812
+    },
+    {
       "id": "act_1776576528945_vens9w",
       "timestamp": "2026-04-19T05:28:48.945Z",
       "type": "prospect-skipped",
