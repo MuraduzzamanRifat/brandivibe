@@ -1642,6 +1642,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638184278_k0o9qw",
+      "timestamp": "2026-04-19T22:36:24.278Z",
+      "type": "email-found",
+      "description": "Best email for Nyx: alex.johnson@fabraix.com (pattern, conf 35)",
+      "prospectId": "tc_aHR0cHM6Ly9mYWJy"
+    },
+    {
       "id": "act_1776638181772_ha9vos",
       "timestamp": "2026-04-19T22:36:21.772Z",
       "type": "prospect-researched",
@@ -5485,14 +5492,6 @@
       "type": "source-run",
       "description": "Source tick: 7 articles fetched, 0 new prospects added, 0 already known",
       "tokens": 5462
-    },
-    {
-      "id": "act_1776435518175_8hbbcs",
-      "timestamp": "2026-04-17T14:18:38.175Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Two Americans sentenced for helping North Korea steal $5 million in fake IT work\" — The article is about a criminal case and does not describe a company fit for premium web design services.",
-      "source": "techcrunch",
-      "tokens": 732
     }
   ],
   "articles": [
