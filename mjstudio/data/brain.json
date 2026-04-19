@@ -1547,6 +1547,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776607010363_wqyaft",
+      "timestamp": "2026-04-19T13:56:50.363Z",
+      "type": "source-run",
+      "description": "Source tick: 32 articles fetched, 0 new prospects added, 1 already known",
+      "tokens": 6167
+    },
+    {
       "id": "act_1776607006548_u7yl6l",
       "timestamp": "2026-04-19T13:56:46.548Z",
       "type": "prospect-skipped",
@@ -5351,7 +5358,7 @@
     {
       "date": "2026-04-19",
       "startedAt": "2026-04-19T13:53:55.040Z",
-      "updatedAt": "2026-04-19T13:56:49.065Z",
+      "updatedAt": "2026-04-19T13:56:49.205Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -5366,7 +5373,7 @@
         "research": "done",
         "sequence": "done",
         "send": "done",
-        "blast": "pending"
+        "blast": "done"
       },
       "planId": "plan_1776606871238"
     },
