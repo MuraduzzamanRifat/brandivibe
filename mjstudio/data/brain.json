@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641730958_ns1qms",
+      "timestamp": "2026-04-19T23:35:30.958Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Auxx.ai – Customer Support CRM (Mix of Attio and N8n)\" — The company described is a small independent project likely initiated to solve a personal issue rather than a funded startup; therefore, it doesn't fit the ICP criteria of being a growing, funded entity suitable for a premium web design studio.",
+      "source": "hackernews",
+      "tokens": 833
+    },
+    {
       "id": "act_1776641726205_dsoniq",
       "timestamp": "2026-04-19T23:35:26.205Z",
       "type": "prospect-skipped",
@@ -5621,12 +5629,6 @@
       "timestamp": "2026-04-17T17:34:52.476Z",
       "type": "article-published",
       "description": "Backfill: \"Why Your SaaS Homepage That Converts Matters More Than You Think\" (angle 2, SEO 60)"
-    },
-    {
-      "id": "act_1776447252291_zvg13g",
-      "timestamp": "2026-04-17T17:34:12.291Z",
-      "type": "article-published",
-      "description": "Backfill: \"Why Your $3M Seed Deck Matters Less Than Premium Web Design for Startups\" (angle 1, SEO 70)"
     }
   ],
   "articles": [
