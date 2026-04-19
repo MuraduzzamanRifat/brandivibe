@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641721115_9z5xft",
+      "timestamp": "2026-04-19T23:35:21.115Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lmcli v0.5.0 – A useable tool for LLM minimalists\" — The company is focused on open-source tooling and individual minimalist use, not commercial software or enterprise-level applications.",
+      "source": "hackernews",
+      "tokens": 849
+    },
+    {
       "id": "act_1776641716434_3bfk6m",
       "timestamp": "2026-04-19T23:35:16.434Z",
       "type": "prospect-skipped",
@@ -5617,13 +5625,6 @@
       "timestamp": "2026-04-17T17:33:31.631Z",
       "type": "article-published",
       "description": "Backfill: \"3D Website Design ROI: Why Your Site's Worth More Than Your Deck\" (angle 0, SEO 53)"
-    },
-    {
-      "id": "act_1776435532309_840l26",
-      "timestamp": "2026-04-17T14:18:52.309Z",
-      "type": "sequence-advanced",
-      "description": "Sequence tick: started 0, advanced 0, completed 0",
-      "tokens": 0
     }
   ],
   "articles": [
