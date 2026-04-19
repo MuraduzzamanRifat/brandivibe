@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620159189_bjywuv",
+      "timestamp": "2026-04-19T17:35:59.189Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AgentGrade – agent-readiness guide for your site\" — Insufficient information to determine company profile and industry fit.",
+      "source": "hackernews",
+      "tokens": 669
+    },
+    {
       "id": "act_1776620154029_45mboe",
       "timestamp": "2026-04-19T17:35:54.029Z",
       "type": "prospect-skipped",
