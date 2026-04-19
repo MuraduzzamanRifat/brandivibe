@@ -1136,6 +1136,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592071204_7qea29",
+      "timestamp": "2026-04-19T09:47:51.205Z",
+      "type": "source-run",
+      "description": "Hourly source: 2 new prospects (33 articles scanned)",
+      "tokens": 6091
+    },
+    {
       "id": "act_1776592069037_egzdnb",
       "timestamp": "2026-04-19T09:47:49.037Z",
       "type": "prospect-skipped",
