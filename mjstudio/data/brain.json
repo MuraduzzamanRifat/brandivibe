@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616778484_gy3pwx",
+      "timestamp": "2026-04-19T16:39:38.484Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is part of a large-scale human verification project with significant funding, likely beyond Brandivibe's $35-90K project range.",
+      "source": "techcrunch",
+      "tokens": 769
+    },
+    {
       "id": "act_1776616773697_s1us8l",
       "timestamp": "2026-04-19T16:39:33.697Z",
       "type": "prospect-skipped",
