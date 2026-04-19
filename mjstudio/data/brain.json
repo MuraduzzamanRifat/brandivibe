@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776607422298_15iy54",
+      "timestamp": "2026-04-19T14:03:42.298Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Make Video from Photo for Free\" — The article describes a service, not a company profile. No business details like funding or founders, and it's a consumer-focused tool.",
+      "source": "hackernews",
+      "tokens": 697
+    },
+    {
       "id": "act_1776607417511_1ph4po",
       "timestamp": "2026-04-19T14:03:37.511Z",
       "type": "prospect-skipped",
