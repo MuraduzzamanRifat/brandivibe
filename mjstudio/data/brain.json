@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634550505_fhhyoj",
+      "timestamp": "2026-04-19T21:35:50.505Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lmcli v0.5.0 – A useable tool for LLM minimalists\" — The article describes an open-source tool, not a commercial company. The tool is a project on a code hosting platform rather than a business entity, making it out of scope for a web design studio project.",
+      "source": "hackernews",
+      "tokens": 844
+    },
+    {
       "id": "act_1776634546247_w77tiu",
       "timestamp": "2026-04-19T21:35:46.247Z",
       "type": "prospect-skipped",
@@ -5451,14 +5459,6 @@
       "description": "Skipped \"Anthropic shrugs off VC funding offers valuing it at $800B+, for now\" — Anthropic is valued at $800B, which is far too large for Brandivibe's target market.",
       "source": "techcrunch",
       "tokens": 744
-    },
-    {
-      "id": "act_1776304919895_6lmf2f",
-      "timestamp": "2026-04-16T02:01:59.895Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Accel raises $5B to back late-stage bets\" — Accel is a venture capital firm, not a potential client for web design services.",
-      "source": "techcrunch",
-      "tokens": 742
     }
   ],
   "articles": [
