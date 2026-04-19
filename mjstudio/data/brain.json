@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776576520128_kl807y",
+      "timestamp": "2026-04-19T05:28:40.128Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Slop Cop Claude Code / Cursor Plugin\" — The article describes a GitHub project, not a company. It lacks company data and business context.",
+      "source": "hackernews",
+      "tokens": 655
+    },
+    {
       "id": "act_1776576515845_fd0z1w",
       "timestamp": "2026-04-19T05:28:35.845Z",
       "type": "prospect-skipped",
