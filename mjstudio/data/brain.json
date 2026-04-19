@@ -1136,6 +1136,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592064327_530znk",
+      "timestamp": "2026-04-19T09:47:44.327Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Yojam – Route links to the right browser/profile, strip trackers first\" — The description and context suggest that Yojam is a personal project or open-source tool rather than a company in a suitable industry or stage.",
+      "source": "hackernews",
+      "tokens": 827
+    },
+    {
       "id": "act_1776592059648_ijzyuk",
       "timestamp": "2026-04-19T09:47:39.648Z",
       "type": "prospect-skipped",
