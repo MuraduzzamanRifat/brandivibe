@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638193429_1zxzcw",
+      "timestamp": "2026-04-19T22:36:33.429Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776638184278_k0o9qw",
       "timestamp": "2026-04-19T22:36:24.278Z",
       "type": "email-found",
@@ -5614,13 +5621,6 @@
       "timestamp": "2026-04-17T14:18:42.353Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
-    },
-    {
-      "id": "act_1776435520918_myqmvh",
-      "timestamp": "2026-04-17T14:18:40.918Z",
-      "type": "source-run",
-      "description": "Source tick: 7 articles fetched, 0 new prospects added, 0 already known",
-      "tokens": 5462
     }
   ],
   "articles": [
