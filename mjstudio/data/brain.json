@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613081017_cupzc4",
+      "timestamp": "2026-04-19T15:38:01.017Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The article does not provide enough information about the company, its industry, or its funding stage to determine if it fits within the ICP.",
+      "source": "hackernews",
+      "tokens": 662
+    },
+    {
       "id": "act_1776613076902_j8t0e6",
       "timestamp": "2026-04-19T15:37:56.902Z",
       "type": "prospect-skipped",
