@@ -1547,6 +1547,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606969724_0n96u6",
+      "timestamp": "2026-04-19T13:56:09.724Z",
+      "type": "email-queued",
+      "description": "Lead-gen queued touch 1 for AgentRQ (hi@agentrq.com): \"Is Your Homepage a Strategic Asset?\"",
+      "prospectId": "tc_aHR0cHM6Ly9hZ2Vu"
+    },
+    {
       "id": "act_1776606967259_h5tzwn",
       "timestamp": "2026-04-19T13:56:07.259Z",
       "type": "error",
