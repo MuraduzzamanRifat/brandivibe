@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583147668_snwm5q",
+      "timestamp": "2026-04-19T07:19:07.668Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Server builds, wallet signs — a non-custodial Web3 checkout pattern\" — The article does not provide sufficient information about a specific company, its stage, or funding status. Moreover, Web3 typically aligns more with blockchain and crypto industries.",
+      "source": "hackernews",
+      "tokens": 660
+    },
+    {
       "id": "act_1776583143162_cvy3nk",
       "timestamp": "2026-04-19T07:19:03.162Z",
       "type": "prospect-skipped",
