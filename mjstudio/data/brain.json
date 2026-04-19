@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606931749_ewshat",
+      "timestamp": "2026-04-19T13:55:31.749Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Yojam – Route links to the right browser/profile, strip trackers first\" — The article describes an open-source tool for macOS, likely run by an individual developer. This doesn't align with Brandivibe's target market of premium web design clients with project budgets between $35-90K.",
+      "source": "hackernews",
+      "tokens": 875
+    },
+    {
       "id": "act_1776606927279_fduxgx",
       "timestamp": "2026-04-19T13:55:27.279Z",
       "type": "prospect-skipped",
