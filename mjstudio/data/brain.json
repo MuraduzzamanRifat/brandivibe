@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638134179_2t0bh0",
+      "timestamp": "2026-04-19T22:35:34.179Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built an open source and secure infrastructure for internal apps\" — The company is focused on open source and secure infrastructure which does not align with Brandivibe's premium web design target market.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776638129796_x2ednm",
       "timestamp": "2026-04-19T22:35:29.796Z",
       "type": "prospect-skipped",
@@ -5457,12 +5465,6 @@
       "timestamp": "2026-04-17T14:17:55.276Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Why do cheap websites repel premium clients? It's all about perception. If your "
-    },
-    {
-      "id": "act_1776435471064_sz2c7x",
-      "timestamp": "2026-04-17T14:17:51.064Z",
-      "type": "article-published",
-      "description": "Published \"Why Cheap Websites Kill Premium Opportunities for Startups\" (SEO 50/100, 440 words)"
     }
   ],
   "articles": [
