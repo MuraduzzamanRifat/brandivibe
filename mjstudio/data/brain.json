@@ -1488,6 +1488,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595102489_8n1pdl",
+      "timestamp": "2026-04-19T10:38:22.489Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The article appears to be a project or initiative rather than a company, with no information on funding, team or size indicating it could afford a premium web design project.",
+      "source": "hackernews",
+      "tokens": 694
+    },
+    {
       "id": "act_1776595094425_xwfckf",
       "timestamp": "2026-04-19T10:38:14.425Z",
       "type": "error",
