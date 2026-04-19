@@ -1642,6 +1642,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638181772_ha9vos",
+      "timestamp": "2026-04-19T22:36:21.772Z",
+      "type": "prospect-researched",
+      "description": "Researched Nyx: Lacks any headings, making content hierarchy unclear.",
+      "prospectId": "tc_aHR0cHM6Ly9mYWJy",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 1981
+    },
+    {
       "id": "act_1776638169272_1ka0ze",
       "timestamp": "2026-04-19T22:36:09.272Z",
       "type": "prospect-scraped",
@@ -5484,14 +5493,6 @@
       "description": "Skipped \"Two Americans sentenced for helping North Korea steal $5 million in fake IT work\" — The article is about a criminal case and does not describe a company fit for premium web design services.",
       "source": "techcrunch",
       "tokens": 732
-    },
-    {
-      "id": "act_1776435514407_zh9dze",
-      "timestamp": "2026-04-17T14:18:34.407Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Slash, a Ramp competitor founded by teenagers, raises $100M at $1.4B valuation\" — Slash is too large and well-funded with a $1.4B valuation and $300 million in revenue, beyond the scope of Brandivibe's typical project budget.",
-      "source": "techcrunch",
-      "tokens": 806
     }
   ],
   "articles": [
