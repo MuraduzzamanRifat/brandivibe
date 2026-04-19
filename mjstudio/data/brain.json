@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583119825_5b99am",
+      "timestamp": "2026-04-19T07:18:39.825Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Yojam – Route links to the right browser/profile, strip trackers first\" — The company described, Yojam, is a software utility focused on route linking and privacy features for macOS. It does not align with Brandivibe's target industry or project budget, as it is likely too small and technically focused for premium web design services.",
+      "source": "hackernews",
+      "tokens": 864
+    },
+    {
       "id": "act_1776583113554_d4mh4l",
       "timestamp": "2026-04-19T07:18:33.554Z",
       "type": "error",
