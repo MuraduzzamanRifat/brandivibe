@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641710704_hin4b4",
+      "timestamp": "2026-04-19T23:35:10.704Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776638202533_gozhx9",
       "timestamp": "2026-04-19T22:36:42.533Z",
       "type": "prospect-researched",
@@ -5616,13 +5623,6 @@
       "type": "prospect-researched",
       "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 1",
       "tokens": 0
-    },
-    {
-      "id": "act_1776435527203_y98b1j",
-      "timestamp": "2026-04-17T14:18:47.203Z",
-      "type": "prospect-skipped",
-      "description": "Could not scrape gizmo.com (404 or network failure)",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
     }
   ],
   "articles": [
