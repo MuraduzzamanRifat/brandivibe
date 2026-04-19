@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776566191558_fstyo6",
+      "timestamp": "2026-04-19T02:36:31.558Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Hyprmark – Markdown viewer for the Hyprland ecosystem\" — The company appears to be a small, open-source project on GitHub rather than a business with funding, specific industry classification, or a stage applicable to Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 725
+    },
+    {
       "id": "act_1776566186989_xjsse1",
       "timestamp": "2026-04-19T02:36:26.989Z",
       "type": "prospect-skipped",
