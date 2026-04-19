@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776566211711_9mnm5y",
+      "timestamp": "2026-04-19T02:36:51.711Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The article does not provide information on Deadline.email's company structure, revenue, or funding stage. It is likely a personal or small project without a commercial or scalable nature.",
+      "source": "hackernews",
+      "tokens": 694
+    },
+    {
       "id": "act_1776566207959_eiliey",
       "timestamp": "2026-04-19T02:36:47.959Z",
       "type": "prospect-skipped",
