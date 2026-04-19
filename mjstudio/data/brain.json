@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634563755_act59d",
+      "timestamp": "2026-04-19T21:36:03.755Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Dewobble – Filter out phantom clicks and mouse jitter\" — The company is a GitHub project, likely open-source, without a clear business model or funding information.",
+      "source": "hackernews",
+      "tokens": 701
+    },
+    {
       "id": "act_1776634559554_55br1a",
       "timestamp": "2026-04-19T21:35:59.554Z",
       "type": "prospect-skipped",
@@ -5454,12 +5462,6 @@
       "timestamp": "2026-04-16T02:02:08.623Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: 0 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
-    },
-    {
-      "id": "act_1776304925954_qcmar0",
-      "timestamp": "2026-04-16T02:02:05.954Z",
-      "type": "lead-gen-skipped",
-      "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
     }
   ],
   "articles": [
