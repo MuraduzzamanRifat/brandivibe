@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634541731_7zjiqx",
+      "timestamp": "2026-04-19T21:35:41.731Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Faceoff – A terminal UI for following NHL games\" — The article describes a personal project (Faceoff app), not a company. It doesn't have a business model or funding stage that fits Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 789
+    },
+    {
       "id": "act_1776634536983_ryzatj",
       "timestamp": "2026-04-19T21:35:36.983Z",
       "type": "prospect-skipped",
@@ -5451,15 +5459,6 @@
       "description": "Skipped \"This Khosla-backed autonomous pod startup just raised $170M — now it's aiming fo\" — The company, Glydways, is too large and advanced for Brandivibe's target project size given their recent $170M funding round and plans to raise an additional $250M.",
       "source": "techcrunch",
       "tokens": 819
-    },
-    {
-      "id": "act_1776304910530_j9h8ph",
-      "timestamp": "2026-04-16T02:01:50.530Z",
-      "type": "prospect-added",
-      "description": "Added Gizmo (A-tier, ai) — Gizmo recently secured $22 million in Series A funding.",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo",
-      "source": "techcrunch",
-      "tokens": 813
     }
   ],
   "articles": [
