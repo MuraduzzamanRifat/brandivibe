@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776607006548_u7yl6l",
+      "timestamp": "2026-04-19T13:56:46.548Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"OpenClawdex – Open-Source Orchestrator UI for Claude Code and Codex\" — The company is a free, open-source project, not a commercial entity with a budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 856
+    },
+    {
       "id": "act_1776607003524_5ttmnq",
       "timestamp": "2026-04-19T13:56:43.524Z",
       "type": "sequence-advanced",
@@ -5343,7 +5351,7 @@
     {
       "date": "2026-04-19",
       "startedAt": "2026-04-19T13:53:55.040Z",
-      "updatedAt": "2026-04-19T13:56:40.585Z",
+      "updatedAt": "2026-04-19T13:56:46.439Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -5357,7 +5365,7 @@
         "leadgen": "done",
         "research": "done",
         "sequence": "done",
-        "send": "pending",
+        "send": "done",
         "blast": "pending"
       },
       "planId": "plan_1776606871238"
