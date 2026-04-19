@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776627686126_me1jgq",
+      "timestamp": "2026-04-19T19:41:26.126Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"YouDeserveNow, Justifications for Treating Yourself\" — The company appears to be a consumer-focused AI service, which does not align with Brandivibe's focus on premium web design for established businesses.",
+      "source": "hackernews",
+      "tokens": 738
+    },
+    {
       "id": "act_1776627681571_oivhl9",
       "timestamp": "2026-04-19T19:41:21.571Z",
       "type": "prospect-skipped",
