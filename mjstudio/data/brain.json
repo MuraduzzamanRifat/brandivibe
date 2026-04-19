@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606878692_sqsxxx",
+      "timestamp": "2026-04-19T13:54:38.692Z",
+      "type": "plan-generated",
+      "description": "Planned \"Why Your Startup Homepage is a Strategic Advantage\" + 3 FB posts + 3 lead-gen actions",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 8016
+    },
+    {
       "id": "act_1776603662612_va3b0a",
       "timestamp": "2026-04-19T13:01:02.612Z",
       "type": "prospect-skipped",
