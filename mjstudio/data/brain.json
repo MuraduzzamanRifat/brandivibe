@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613090517_92yqae",
+      "timestamp": "2026-04-19T15:38:10.517Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"StegoForge – A tool to hide payloads and hunt them with offline AI\" — The article describes StegoForge as a tool, likely an open-source project without a clear commercial entity or funding stage, making it out of ICP for Brandivibe, which targets premium web design clients.",
+      "source": "hackernews",
+      "tokens": 720
+    },
+    {
       "id": "act_1776613085493_2qrlds",
       "timestamp": "2026-04-19T15:38:05.493Z",
       "type": "prospect-skipped",
