@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631045712_72kdk7",
+      "timestamp": "2026-04-19T20:37:25.712Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A chess playground that lets you share board configurations\" — The company is involved in creating a chess platform, which falls under the gaming or education sector—outside of Brandivibe's target industries.",
+      "source": "hackernews",
+      "tokens": 687
+    },
+    {
       "id": "act_1776631041424_lu3055",
       "timestamp": "2026-04-19T20:37:21.424Z",
       "type": "prospect-added",
