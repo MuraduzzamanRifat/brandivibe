@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776607413342_u5r9nh",
+      "timestamp": "2026-04-19T14:03:33.342Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Cracks are starting to form on fusion energy’s funding boom\" — The company operates in the fusion energy sector, which is not within Brandivibe's target industries.",
+      "source": "techcrunch",
+      "tokens": 721
+    },
+    {
       "id": "act_1776607408363_69g7vy",
       "timestamp": "2026-04-19T14:03:28.363Z",
       "type": "prospect-skipped",
