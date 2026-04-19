@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776588843694_2vb4sc",
+      "timestamp": "2026-04-19T08:54:03.694Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built a CLI to fake Git commits\" — The article is about an individual project rather than a company, indicating that it is an open-source project rather than a business entity. Therefore, it is outside of Brandivibe's ICP which focuses on premium web design projects for companies.",
+      "source": "hackernews",
+      "tokens": 827
+    },
+    {
       "id": "act_1776588839741_0b1w5b",
       "timestamp": "2026-04-19T08:53:59.741Z",
       "type": "prospect-skipped",
