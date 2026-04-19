@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631050666_dghudv",
+      "timestamp": "2026-04-19T20:37:30.666Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Donbar – Email marketing made dead-simple\" — Donbar targets freelancers, non-profits, and local business owners, which suggests it's likely an early-stage company or has a focus on small-scale clients rather than high-budget projects.",
+      "source": "hackernews",
+      "tokens": 807
+    },
+    {
       "id": "act_1776631045712_72kdk7",
       "timestamp": "2026-04-19T20:37:25.712Z",
       "type": "prospect-skipped",
