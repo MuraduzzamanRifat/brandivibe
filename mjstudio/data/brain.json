@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613041462_iyxflw",
+      "timestamp": "2026-04-19T15:37:21.462Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Make Video from Photo for Free\" — The article does not provide sufficient information about company size, funding, or stage. It's unclear if they fit our ICP for premium web design projects.",
+      "source": "hackernews",
+      "tokens": 708
+    },
+    {
       "id": "act_1776613035767_0d6v2a",
       "timestamp": "2026-04-19T15:37:15.767Z",
       "type": "prospect-skipped",
