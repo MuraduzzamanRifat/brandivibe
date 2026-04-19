@@ -1547,6 +1547,21 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606997743_as9bpa",
+      "timestamp": "2026-04-19T13:56:37.743Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 2",
+      "tokens": 0
+    },
+    {
+      "id": "act_1776606997064_kjdctp",
+      "timestamp": "2026-04-19T13:56:37.064Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Browser Sysinfo – See everything a webpage can learn about you\" — The article is about a web tool, not a company suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 676
+    },
+    {
       "id": "act_1776606991614_rcbp6d",
       "timestamp": "2026-04-19T13:56:31.614Z",
       "type": "prospect-skipped",
