@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776607403886_46cu7u",
+      "timestamp": "2026-04-19T14:03:23.886Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AgentKey – Access governance for AI agents\" — The company is in the AI industry, which is suitable, but lacks sufficient information regarding its size, stage, and funding to determine if it matches the ICP criteria for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 691
+    },
+    {
       "id": "act_1776607398239_jxxal5",
       "timestamp": "2026-04-19T14:03:18.239Z",
       "type": "prospect-skipped",
