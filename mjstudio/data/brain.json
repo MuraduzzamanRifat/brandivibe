@@ -1488,6 +1488,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595113247_loc59t",
+      "timestamp": "2026-04-19T10:38:33.247Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Server builds, wallet signs — a non-custodial Web3 checkout pattern\" — The article does not provide enough information about a specific company that would match the ICP criteria for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 650
+    },
+    {
       "id": "act_1776595108460_bmqpmi",
       "timestamp": "2026-04-19T10:38:28.460Z",
       "type": "prospect-skipped",
