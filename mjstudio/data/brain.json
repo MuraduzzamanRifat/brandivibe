@@ -1136,6 +1136,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592047136_u4f7rm",
+      "timestamp": "2026-04-19T09:47:27.136Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The article is about an open-source project hosted on GitHub, which is not a company or a potential client for a web design project in the given budget range.",
+      "source": "hackernews",
+      "tokens": 683
+    },
+    {
       "id": "act_1776592042404_k6n5be",
       "timestamp": "2026-04-19T09:47:22.404Z",
       "type": "prospect-added",
