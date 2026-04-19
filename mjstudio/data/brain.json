@@ -1615,6 +1615,28 @@
       "sourceUrl": "https://sourcebridge.ai",
       "createdAt": "2026-04-19T20:37:18.996Z",
       "updatedAt": "2026-04-19T20:37:18.996Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9mYWJy",
+      "company": "Nyx",
+      "domain": "fabraix.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Nyx has developed a new AI product and may need a strong digital presence to support its launch.",
+      "icpTier": "A",
+      "icpScore": 8,
+      "bestFitDemo": "helix",
+      "brandWeakness": "Currently lacks a distinct online presence or brand identity.",
+      "estimatedBudget": "$50-75K",
+      "status": "new",
+      "notes": "The company is operating in the AI sector, offering a specialized tool that could benefit from a sophisticated web design to enhance their professional image.",
+      "source": "hackernews",
+      "sourceUrl": "https://fabraix.com",
+      "createdAt": "2026-04-19T22:35:47.644Z",
+      "updatedAt": "2026-04-19T22:35:47.644Z"
     }
   ],
   "drafts": [],
