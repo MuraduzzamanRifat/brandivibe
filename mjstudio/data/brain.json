@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776588839741_0b1w5b",
+      "timestamp": "2026-04-19T08:53:59.741Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Fuelgauge – a Claude Code status line that doesn't need Node\" — Fuelgauge is an open-source project hosted on GitHub, likely not a company seeking premium web design services.",
+      "source": "hackernews",
+      "tokens": 693
+    },
+    {
       "id": "act_1776588834556_vuqm8q",
       "timestamp": "2026-04-19T08:53:54.556Z",
       "type": "prospect-skipped",
