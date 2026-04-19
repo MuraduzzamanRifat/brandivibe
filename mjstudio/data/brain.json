@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638124899_bgt225",
+      "timestamp": "2026-04-19T22:35:24.899Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776634581069_zp2xh6",
       "timestamp": "2026-04-19T21:36:21.069Z",
       "type": "prospect-skipped",
@@ -5456,13 +5463,6 @@
       "description": "Planned \"Why Cheap Websites Kill Premium Opportunities for Startups\" + 3 FB posts + 3 lead-gen actions",
       "model": "gpt-4o-2024-08-06",
       "tokens": 7349
-    },
-    {
-      "id": "act_1776304933865_kot577",
-      "timestamp": "2026-04-16T02:02:13.865Z",
-      "type": "sequence-advanced",
-      "description": "Sequence tick: started 0, advanced 0, completed 0",
-      "tokens": 0
     }
   ],
   "articles": [
