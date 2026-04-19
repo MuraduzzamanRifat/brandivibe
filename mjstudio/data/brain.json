@@ -1642,6 +1642,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638163828_2utvzl",
+      "timestamp": "2026-04-19T22:36:03.828Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lmcli v0.5.0 – A useable tool for LLM minimalists\" — The article describes an open-source tool, not a company looking for web design services.",
+      "source": "hackernews",
+      "tokens": 826
+    },
+    {
       "id": "act_1776638159574_ktg41b",
       "timestamp": "2026-04-19T22:35:59.574Z",
       "type": "prospect-skipped",
@@ -5486,14 +5494,6 @@
       "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the AI-powered film production industry, which is misaligned with Brandivibe's preferred sectors (crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc).",
       "source": "techcrunch",
       "tokens": 780
-    },
-    {
-      "id": "act_1776435501994_uuntjz",
-      "timestamp": "2026-04-17T14:18:21.994Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company valuation of $1.5B indicates it is too large for Brandivibe's target market of premium web design projects ($35-90K).",
-      "source": "techcrunch",
-      "tokens": 770
     }
   ],
   "articles": [
