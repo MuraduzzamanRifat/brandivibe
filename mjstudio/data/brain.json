@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631032252_bumteo",
+      "timestamp": "2026-04-19T20:37:12.252Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lmcli v0.5.0 – A useable tool for LLM minimalists\" — The article pertains to an individual developer project rather than a company operating in our target industries or business stages.",
+      "source": "hackernews",
+      "tokens": 822
+    },
+    {
       "id": "act_1776631026849_6jzx0p",
       "timestamp": "2026-04-19T20:37:06.849Z",
       "type": "error",
