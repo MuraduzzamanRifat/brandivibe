@@ -1504,7 +1504,36 @@
       "source": "hackernews",
       "sourceUrl": "https://snapreceipts.fyi/",
       "createdAt": "2026-04-19T10:38:52.777Z",
-      "updatedAt": "2026-04-19T10:38:52.777Z"
+      "updatedAt": "2026-04-19T10:39:20.234Z",
+      "scraped": {
+        "fetchedAt": "2026-04-19T10:39:15.993Z",
+        "homepage": "SnapReceipts",
+        "about": "SnapReceipts",
+        "team": "SnapReceipts",
+        "pricing": "SnapReceipts",
+        "contact": "SnapReceipts",
+        "techStack": [],
+        "designScore": 4,
+        "foundEmails": [],
+        "foundSocials": {},
+        "structure": {
+          "title": "SnapReceipts",
+          "metaDescription": "Split expenses effortlessly with AI-powered receipt scanning. Upload a photo and let SnapReceipts automatically organize items and calculate who owes what.",
+          "h1": [],
+          "h2": [],
+          "h3": [],
+          "navLinks": [],
+          "buttons": [],
+          "footerLinks": [],
+          "hasContact": true,
+          "hasPricing": true,
+          "hasTeam": true,
+          "hasBlog": false,
+          "hasCareers": false,
+          "hasLogin": false
+        },
+        "rawHomepage": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1\" />\n    <title>SnapReceipts</title>\n    <meta name=\"description\" content=\"Split expenses effortlessly with AI-powered receipt scanning. Upload a photo and let SnapReceipts automatically organize items and calculate who owes what.\" />\n    <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\" />\n    <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/favicon-16x16.png\" />\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-ctCXItQ2.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-C1eNAqIJ.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->\n    <script type=\"text/javascript\" src=\"https://replit.com/public/js/replit-dev-banner.js\"></script>\n  </body>\n</html>"
+      }
     }
   ],
   "drafts": [],
