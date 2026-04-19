@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634536983_ryzatj",
+      "timestamp": "2026-04-19T21:35:36.983Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Libredesk – self-hosted, single-binary Intercom/Zendesk alternative\" — Company offers a fully open-source product, likely unsuitable for premium web design budget ($35-90K).",
+      "source": "hackernews",
+      "tokens": 869
+    },
+    {
       "id": "act_1776634532290_hvvtrl",
       "timestamp": "2026-04-19T21:35:32.290Z",
       "type": "prospect-skipped",
@@ -5452,14 +5460,6 @@
       "prospectId": "tc_aHR0cHM6Ly90ZWNo",
       "source": "techcrunch",
       "tokens": 813
-    },
-    {
-      "id": "act_1776304905612_sk7pyh",
-      "timestamp": "2026-04-16T02:01:45.612Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Hightouch reaches $100M ARR fueled by marketing tools powered by AI\" — The company has reached $100M ARR, which suggests a stage and size likely beyond the typical ICP for $35-90K projects.",
-      "source": "techcrunch",
-      "tokens": 758
     }
   ],
   "articles": [
