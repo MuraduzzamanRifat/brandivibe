@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776588857027_3eb7le",
+      "timestamp": "2026-04-19T08:54:17.027Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The article describes 'Understand Anything', a project hosted on GitHub, which suggests it's more likely an open-source or personal project, not a company. Additionally, there's no mention of funding, founder, or company structure that fits the criteria of our ideal client profiles.",
+      "source": "hackernews",
+      "tokens": 719
+    },
+    {
       "id": "act_1776588852524_yrbiq5",
       "timestamp": "2026-04-19T08:54:12.524Z",
       "type": "prospect-skipped",
