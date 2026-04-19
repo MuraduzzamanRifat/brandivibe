@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583151883_czzfo9",
+      "timestamp": "2026-04-19T07:19:11.883Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"SnapReceipts Snap a receipt, split the bill instantly\" — Insufficient information to determine company stage, industry, or specific funding details.",
+      "source": "hackernews",
+      "tokens": 672
+    },
+    {
       "id": "act_1776583147668_snwm5q",
       "timestamp": "2026-04-19T07:19:07.668Z",
       "type": "prospect-skipped",
