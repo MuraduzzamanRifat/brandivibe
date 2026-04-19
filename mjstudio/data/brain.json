@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776603623640_zywp4i",
+      "timestamp": "2026-04-19T13:00:23.640Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Claude Code Rust – a native Rust TUI that avoids the V8 heap OOM\" — The company is not a commercial entity seeking web design services but rather an open-source project on GitHub.",
+      "source": "hackernews",
+      "tokens": 885
+    },
+    {
       "id": "act_1776603618061_v3wq42",
       "timestamp": "2026-04-19T13:00:18.061Z",
       "type": "prospect-skipped",
