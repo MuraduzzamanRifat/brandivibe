@@ -1542,6 +1542,28 @@
         },
         "rawHomepage": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1\" />\n    <title>SnapReceipts</title>\n    <meta name=\"description\" content=\"Split expenses effortlessly with AI-powered receipt scanning. Upload a photo and let SnapReceipts automatically organize items and calculate who owes what.\" />\n    <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/favicon-32x32.png\" />\n    <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/favicon-16x16.png\" />\n    <link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/apple-touch-icon.png\" />\n    <script type=\"module\" crossorigin src=\"/assets/index-ctCXItQ2.js\"></script>\n    <link rel=\"stylesheet\" crossorigin href=\"/assets/index-C1eNAqIJ.css\">\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->\n    <script type=\"text/javascript\" src=\"https://replit.com/public/js/replit-dev-banner.js\"></script>\n  </body>\n</html>"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9pbmZy",
+      "company": "Infrawise",
+      "domain": "infrawiseai.com",
+      "founder": "Peter",
+      "role": "Co-Founder",
+      "email": "",
+      "industry": "saas",
+      "stage": "Seed",
+      "trigger": "Infrawise is leveraging AI for cloud optimization, indicating a potential need for improved web design to match their innovation.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "aurora",
+      "brandWeakness": "Website design may not fully capture the advanced AI features they offer.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "Their tech stack includes React/TypeScript and Java Spring, indicating a tech-savvy team that may appreciate high-end design services.",
+      "source": "hackernews",
+      "sourceUrl": "https://infrawiseai.com",
+      "createdAt": "2026-04-19T17:36:15.230Z",
+      "updatedAt": "2026-04-19T17:36:15.230Z"
     }
   ],
   "drafts": [],
