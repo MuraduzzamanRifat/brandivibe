@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776598495612_4j932z",
+      "timestamp": "2026-04-19T11:34:55.612Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The company is focused on educational graphs and is possibly an open-source or community-driven project, not a premium service provider.",
+      "source": "hackernews",
+      "tokens": 692
+    },
+    {
       "id": "act_1776598491556_3na8j0",
       "timestamp": "2026-04-19T11:34:51.556Z",
       "type": "prospect-skipped",
