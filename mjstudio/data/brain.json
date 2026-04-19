@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776598504698_hitj8x",
+      "timestamp": "2026-04-19T11:35:04.698Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Make Video from Photo for Free\" — The company appears to be a consumer-facing tool for photo-to-video conversion, which is not aligned with Brandivibe's focus on premium web design for businesses.",
+      "source": "hackernews",
+      "tokens": 735
+    },
+    {
       "id": "act_1776598499883_lft7fr",
       "timestamp": "2026-04-19T11:34:59.883Z",
       "type": "prospect-skipped",
