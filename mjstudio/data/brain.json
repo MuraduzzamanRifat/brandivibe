@@ -1547,6 +1547,21 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606972426_w92jyi",
+      "timestamp": "2026-04-19T13:56:12.426Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"FFmpeg API Cloud – Run FFmpeg over HTTP\" — The company is an early-stage API tool without evident funding, suitable for technical platforms rather than premium web design needs.",
+      "source": "hackernews",
+      "tokens": 837
+    },
+    {
+      "id": "act_1776606972276_2fsckh",
+      "timestamp": "2026-04-19T13:56:12.276Z",
+      "type": "email-queued",
+      "description": "Lead-gen queued touch 1 for MechCloud (sales@mechcloud.io): \"Convert Traffic into Triumph\"",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo"
+    },
+    {
       "id": "act_1776606969724_0n96u6",
       "timestamp": "2026-04-19T13:56:09.724Z",
       "type": "email-queued",
