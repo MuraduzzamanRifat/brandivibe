@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641739903_vmsdlt",
+      "timestamp": "2026-04-19T23:35:39.903Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Find jobs and know your fit before you apply\" — The article does not provide sufficient information about a specific company but rather discusses a general topic related to job applications and fit.",
+      "source": "hackernews",
+      "tokens": 663
+    },
+    {
       "id": "act_1776641735827_du3nka",
       "timestamp": "2026-04-19T23:35:35.827Z",
       "type": "prospect-skipped",
@@ -5625,12 +5633,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is too large and advanced for our target project budget range.",
       "source": "techcrunch",
       "tokens": 766
-    },
-    {
-      "id": "act_1776447331770_vahxcn",
-      "timestamp": "2026-04-17T17:35:31.770Z",
-      "type": "article-published",
-      "description": "Backfill: \"Why Premium 3D Web Design for Startups Outshines Traditional Sites\" (angle 3, SEO 55)"
     }
   ],
   "articles": [
