@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634571231_1yqscs",
+      "timestamp": "2026-04-19T21:36:11.231Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776634563755_act59d",
       "timestamp": "2026-04-19T21:36:03.755Z",
       "type": "prospect-skipped",
@@ -5456,12 +5463,6 @@
       "type": "prospect-skipped",
       "description": "Could not scrape gizmo.com (404 or network failure)",
       "prospectId": "tc_aHR0cHM6Ly90ZWNo"
-    },
-    {
-      "id": "act_1776304928623_40tev3",
-      "timestamp": "2026-04-16T02:02:08.623Z",
-      "type": "lead-gen-skipped",
-      "description": "Lead-gen executor: 0 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
     }
   ],
   "articles": [
