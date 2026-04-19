@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776603649181_44elgm",
+      "timestamp": "2026-04-19T13:00:49.181Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Fuelgauge – a Claude Code status line that doesn't need Node\" — The article describes a technical tool (Fuelgauge) for developers, not a company. It seems to be a project hosted on GitHub, lacking information about a viable business or startup that would fit Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776603644361_mhjdju",
       "timestamp": "2026-04-19T13:00:44.361Z",
       "type": "prospect-skipped",
