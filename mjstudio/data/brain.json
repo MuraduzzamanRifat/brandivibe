@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776576510787_8i4ozk",
+      "timestamp": "2026-04-19T05:28:30.787Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"5-translation RAG matrix fixing LLM religious hallucinations\" — The company is involved in religious content translation and semantic search, which does not align with Brandivibe's target industries such as saas, fintech, ai, healthcare, etc.",
+      "source": "hackernews",
+      "tokens": 703
+    },
+    {
       "id": "act_1776576506181_3quz39",
       "timestamp": "2026-04-19T05:28:26.181Z",
       "type": "prospect-skipped",
