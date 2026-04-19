@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638138320_7ap7oc",
+      "timestamp": "2026-04-19T22:35:38.320Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Alodb – I got tired of pasting my Postgres schema into ChatGPT\" — The article does not provide enough information about the company's stage, industry, funding, or potential budget to assess if they fit the ICP. Additionally, the project scale seems more aligned with a tool than a web design overhaul.",
+      "source": "hackernews",
+      "tokens": 694
+    },
+    {
       "id": "act_1776638134179_2t0bh0",
       "timestamp": "2026-04-19T22:35:34.179Z",
       "type": "prospect-skipped",
@@ -5459,12 +5467,6 @@
       "timestamp": "2026-04-17T14:17:59.046Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Technical failures like slow load speed can tank your site's performance. How do"
-    },
-    {
-      "id": "act_1776435475276_xdatjj",
-      "timestamp": "2026-04-17T14:17:55.276Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Why do cheap websites repel premium clients? It's all about perception. If your "
     }
   ],
   "articles": [
