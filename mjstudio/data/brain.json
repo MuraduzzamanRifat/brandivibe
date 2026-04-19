@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613035767_0d6v2a",
+      "timestamp": "2026-04-19T15:37:15.767Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Fuelgauge – a Claude Code status line that doesn't need Node\" — The article describes a tool rather than a company, and there's no information about a company that fits the ICP criteria.",
+      "source": "hackernews",
+      "tokens": 673
+    },
+    {
       "id": "act_1776613030903_ds56qq",
       "timestamp": "2026-04-19T15:37:10.903Z",
       "type": "prospect-skipped",
