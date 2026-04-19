@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776627696423_ngu6wa",
+      "timestamp": "2026-04-19T19:41:36.423Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AgentGrade – agent-readiness guide for your site\" — The article provides insufficient information about AgentGrade's industry, stage, or size to determine if they fit the ICP criteria. Lack of specific details such as funding, founder information, or triggers makes it impossible to assess suitability.",
+      "source": "hackernews",
+      "tokens": 685
+    },
+    {
       "id": "act_1776627691548_8lyrck",
       "timestamp": "2026-04-19T19:41:31.548Z",
       "type": "prospect-skipped",
