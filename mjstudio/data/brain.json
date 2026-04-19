@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613099863_nllvw8",
+      "timestamp": "2026-04-19T15:38:19.863Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Proposly – AI-generated client proposals for freelancers\" — The article describes a company primarily serving freelancers, which typically indicates a smaller scale not aligned with premium project budgets of $35-90K.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776613095241_awhfo5",
       "timestamp": "2026-04-19T15:38:15.241Z",
       "type": "prospect-skipped",
