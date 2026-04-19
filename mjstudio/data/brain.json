@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641716434_3bfk6m",
+      "timestamp": "2026-04-19T23:35:16.434Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Clone, a small Rust VMM, forks VMs in under 20ms via CoW\" — The company is not a premium web design client but rather a software project focusing on VMM technology.",
+      "source": "hackernews",
+      "tokens": 800
+    },
+    {
       "id": "act_1776641710704_hin4b4",
       "timestamp": "2026-04-19T23:35:10.704Z",
       "type": "error",
@@ -5615,13 +5623,6 @@
       "timestamp": "2026-04-17T14:18:52.309Z",
       "type": "sequence-advanced",
       "description": "Sequence tick: started 0, advanced 0, completed 0",
-      "tokens": 0
-    },
-    {
-      "id": "act_1776435529858_rsn33c",
-      "timestamp": "2026-04-17T14:18:49.858Z",
-      "type": "prospect-researched",
-      "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 1",
       "tokens": 0
     }
   ],
