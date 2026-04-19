@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641762500_lgv0gz",
+      "timestamp": "2026-04-19T23:36:02.500Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776641758383_pkn1i6",
       "timestamp": "2026-04-19T23:35:58.383Z",
       "type": "prospect-skipped",
@@ -5624,14 +5631,6 @@
       "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the media and entertainment industry, which is outside the web design studio's target industries.",
       "source": "techcrunch",
       "tokens": 717
-    },
-    {
-      "id": "act_1776452396318_36tsxt",
-      "timestamp": "2026-04-17T18:59:56.318Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company's valuation at $1.5B places it beyond the typical SMB stage suitable for Brandivibe's premium web design projects.",
-      "source": "techcrunch",
-      "tokens": 796
     }
   ],
   "articles": [
