@@ -1483,6 +1483,28 @@
         ],
         "createdAt": "2026-04-19T09:48:01.871Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9zbmFw",
+      "company": "SnapReceipts",
+      "domain": "snapreceipts.fyi",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Series A",
+      "trigger": "Mentioned in a recent article highlighting its innovative approach.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "axiom",
+      "brandWeakness": "Generic domain name could be stronger to enhance brand recognition.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "SnapReceipts offers a digital solution for splitting bills easily, a service fitting a broad market that may require a strong UX focus in their digital presence.",
+      "source": "hackernews",
+      "sourceUrl": "https://snapreceipts.fyi/",
+      "createdAt": "2026-04-19T10:38:52.777Z",
+      "updatedAt": "2026-04-19T10:38:52.777Z"
     }
   ],
   "drafts": [],
