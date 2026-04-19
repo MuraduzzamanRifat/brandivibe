@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634526292_nsao5f",
+      "timestamp": "2026-04-19T21:35:26.292Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776631079305_pc45ji",
       "timestamp": "2026-04-19T20:37:59.305Z",
       "type": "prospect-skipped",
@@ -5451,12 +5458,6 @@
       "timestamp": "2026-04-16T02:01:37.889Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Investing in design isn't an expense—it's a growth strategy. Discover the ROI of"
-    },
-    {
-      "id": "act_1776304895132_ykl8a8",
-      "timestamp": "2026-04-16T02:01:35.132Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Is your website a competitive advantage? Learn how a premium design can differen"
     }
   ],
   "articles": [
