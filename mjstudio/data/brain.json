@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613055436_1943lg",
+      "timestamp": "2026-04-19T15:37:35.436Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Unclog – find and fix Claude Code context bloat\" — The article describes a personal project tool related to software development, not a company. It does not fit the ICP criteria for a premium web design studio.",
+      "source": "hackernews",
+      "tokens": 796
+    },
+    {
       "id": "act_1776613050832_48hpzg",
       "timestamp": "2026-04-19T15:37:30.832Z",
       "type": "prospect-skipped",
