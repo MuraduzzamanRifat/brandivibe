@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641767316_gn2xyr",
+      "timestamp": "2026-04-19T23:36:07.316Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776641762500_lgv0gz",
       "timestamp": "2026-04-19T23:36:02.500Z",
       "type": "prospect-skipped",
@@ -5623,14 +5630,6 @@
       "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Upscale AI has a $2B valuation, indicating it is likely too large for Brandivibe's target project size.",
       "source": "techcrunch",
       "tokens": 740
-    },
-    {
-      "id": "act_1776452400245_gcipgl",
-      "timestamp": "2026-04-17T19:00:00.245Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the media and entertainment industry, which is outside the web design studio's target industries.",
-      "source": "techcrunch",
-      "tokens": 717
     }
   ],
   "articles": [
