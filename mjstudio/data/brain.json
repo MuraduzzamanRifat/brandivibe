@@ -1136,6 +1136,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592073744_bpxvkd",
+      "timestamp": "2026-04-19T09:47:53.744Z",
+      "type": "prospect-scraped",
+      "description": "Scraped agentrq.com — tech: tailwind, cloudflare · design 5/10 · 1 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9hZ2Vu"
+    },
+    {
       "id": "act_1776592071204_7qea29",
       "timestamp": "2026-04-19T09:47:51.205Z",
       "type": "source-run",
