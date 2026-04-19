@@ -1488,6 +1488,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595123501_9xz8ae",
+      "timestamp": "2026-04-19T10:38:43.501Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses trends in the app store and AI tools, but does not mention a specific company.",
+      "source": "techcrunch",
+      "tokens": 709
+    },
+    {
       "id": "act_1776595117973_njjpbq",
       "timestamp": "2026-04-19T10:38:37.973Z",
       "type": "prospect-skipped",
