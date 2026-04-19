@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776566207959_eiliey",
+      "timestamp": "2026-04-19T02:36:47.959Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"FluxTest for testing network performance of self-hosted infrastructure\" — Insufficient information to determine ICP fit and there is no indication of a corporate entity that would require branding services.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776566204258_ve4usw",
       "timestamp": "2026-04-19T02:36:44.258Z",
       "type": "prospect-skipped",
