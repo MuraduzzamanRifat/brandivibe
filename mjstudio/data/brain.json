@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776613050832_48hpzg",
+      "timestamp": "2026-04-19T15:37:30.832Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Rigor – Anti-Enshittification Proxy for Your AI Agents\" — The company is currently focusing on open-source projects and not positioned or described as having the budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 804
+    },
+    {
       "id": "act_1776613045917_u8yjbv",
       "timestamp": "2026-04-19T15:37:25.917Z",
       "type": "prospect-skipped",
