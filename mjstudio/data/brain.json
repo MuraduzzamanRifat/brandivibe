@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620169004_mtgo1m",
+      "timestamp": "2026-04-19T17:36:09.004Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Vitality AI Health – blood work, wearables, and DNA unified\" — The company operates in the healthcare industry, which doesn't align with Brandivibe's core industries such as premium, luxury, and architecture.",
+      "source": "hackernews",
+      "tokens": 691
+    },
+    {
       "id": "act_1776620163604_4zz50z",
       "timestamp": "2026-04-19T17:36:03.604Z",
       "type": "prospect-skipped",
