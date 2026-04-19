@@ -5056,9 +5056,9 @@
     {
       "date": "2026-04-19",
       "startedAt": "2026-04-19T13:53:55.040Z",
-      "updatedAt": "2026-04-19T13:53:55.040Z",
+      "updatedAt": "2026-04-19T13:54:36.383Z",
       "phases": {
-        "plan": "pending",
+        "plan": "done",
         "article": "pending",
         "fb": [
           "pending",
@@ -5072,7 +5072,8 @@
         "sequence": "pending",
         "send": "pending",
         "blast": "pending"
-      }
+      },
+      "planId": "plan_1776606871238"
     },
     {
       "date": "2026-04-18",
