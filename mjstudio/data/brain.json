@@ -1539,6 +1539,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776606936393_d8tqdz",
+      "timestamp": "2026-04-19T13:55:36.393Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"FFmpeg API Cloud – Run FFmpeg over HTTP\" — The company is a newly launched tool/API with unclear revenue stage, likely early stage or side project, not fitting premium web design budget criteria.",
+      "source": "hackernews",
+      "tokens": 824
+    },
+    {
       "id": "act_1776606931749_ewshat",
       "timestamp": "2026-04-19T13:55:31.749Z",
       "type": "prospect-skipped",
