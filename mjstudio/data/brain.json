@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776566200445_yj057k",
+      "timestamp": "2026-04-19T02:36:40.445Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A Roman fable about a PHP suite that exposed 100 tables in 3 days\" — The article is a metaphoric piece about the Maravel PHP Ecosystem and does not describe a company.",
+      "source": "hackernews",
+      "tokens": 709
+    },
+    {
       "id": "act_1776566196550_wvi06k",
       "timestamp": "2026-04-19T02:36:36.550Z",
       "type": "prospect-skipped",
