@@ -1510,6 +1510,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595135247_t1y84b",
+      "timestamp": "2026-04-19T10:38:55.247Z",
+      "type": "prospect-added",
+      "description": "Added SnapReceipts via hackernews (B-tier, saas) — Mentioned in a recent article highlighting its innovative approach.",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw",
+      "source": "hackernews",
+      "tokens": 728
+    },
+    {
       "id": "act_1776595127728_jbkmwp",
       "timestamp": "2026-04-19T10:38:47.728Z",
       "type": "prospect-skipped",
