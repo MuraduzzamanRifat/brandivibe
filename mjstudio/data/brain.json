@@ -1620,6 +1620,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634581069_zp2xh6",
+      "timestamp": "2026-04-19T21:36:21.069Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776634576038_veavwz",
       "timestamp": "2026-04-19T21:36:16.038Z",
       "type": "prospect-skipped",
@@ -5455,13 +5462,6 @@
       "timestamp": "2026-04-16T02:02:13.865Z",
       "type": "sequence-advanced",
       "description": "Sequence tick: started 0, advanced 0, completed 0",
-      "tokens": 0
-    },
-    {
-      "id": "act_1776304931994_08s5ms",
-      "timestamp": "2026-04-16T02:02:11.994Z",
-      "type": "prospect-researched",
-      "description": "Research tick: scraped 0, researched 0, emails found 0, skipped 1",
       "tokens": 0
     }
   ],
