@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616773697_s1us8l",
+      "timestamp": "2026-04-19T16:39:33.697Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Understand Anything – Graphs that teach > graphs that impress\" — The company focuses on educational graphs, likely making them too niche and not within the high-budget, premium segment that Brandivibe targets.",
+      "source": "hackernews",
+      "tokens": 708
+    },
+    {
       "id": "act_1776616767944_9c7l9j",
       "timestamp": "2026-04-19T16:39:27.944Z",
       "type": "prospect-skipped",
