@@ -1569,6 +1569,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776620177227_hg570p",
+      "timestamp": "2026-04-19T17:36:17.227Z",
+      "type": "prospect-added",
+      "description": "Added Infrawise via hackernews (B-tier, saas) — Infrawise is leveraging AI for cloud optimization, indicating a potential need for improved web design to match their innovation.",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy",
+      "source": "hackernews",
+      "tokens": 838
+    },
+    {
       "id": "act_1776620169004_mtgo1m",
       "timestamp": "2026-04-19T17:36:09.004Z",
       "type": "prospect-skipped",
