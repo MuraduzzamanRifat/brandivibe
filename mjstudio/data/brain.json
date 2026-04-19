@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631060609_qn5jdc",
+      "timestamp": "2026-04-19T20:37:40.610Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Alodb – I got tired of pasting my Postgres schema into ChatGPT\" — Article lacks detail on company size, stage, industry, funding, or need for premium web design.",
+      "source": "hackernews",
+      "tokens": 662
+    },
+    {
       "id": "act_1776631055827_gxstaz",
       "timestamp": "2026-04-19T20:37:35.827Z",
       "type": "prospect-skipped",
