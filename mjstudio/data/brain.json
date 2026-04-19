@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776583143162_cvy3nk",
+      "timestamp": "2026-04-19T07:19:03.162Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too large and part of Sam Altman's well-known projects, likely beyond typical budgeting constraints. Additionally, World is in the human verification sector, which is overly specialized and not in the primary industries of interest (crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc).",
+      "source": "techcrunch",
+      "tokens": 839
+    },
+    {
       "id": "act_1776583138317_t91m7p",
       "timestamp": "2026-04-19T07:18:58.317Z",
       "type": "prospect-skipped",
