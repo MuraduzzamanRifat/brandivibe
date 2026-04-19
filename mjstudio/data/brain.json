@@ -1512,7 +1512,7 @@
       "source": "hackernews",
       "sourceUrl": "https://snapreceipts.fyi/",
       "createdAt": "2026-04-19T10:38:52.777Z",
-      "updatedAt": "2026-04-19T13:01:05.123Z",
+      "updatedAt": "2026-04-19T13:56:32.813Z",
       "scraped": {
         "fetchedAt": "2026-04-19T10:39:15.993Z",
         "homepage": "SnapReceipts",
@@ -1546,6 +1546,14 @@
   ],
   "drafts": [],
   "activities": [
+    {
+      "id": "act_1776606991614_rcbp6d",
+      "timestamp": "2026-04-19T13:56:31.614Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"SharpSkill – I simplified the process of ITWs preparation\" — The company appears to be an individual offering IT interview preparation services, likely too small and early-stage for Brandivibe's target projects.",
+      "source": "hackernews",
+      "tokens": 762
+    },
     {
       "id": "act_1776606990337_2mn6dw",
       "timestamp": "2026-04-19T13:56:30.338Z",
