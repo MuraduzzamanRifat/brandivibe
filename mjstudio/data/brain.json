@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634554983_mihzig",
+      "timestamp": "2026-04-19T21:35:54.983Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"verifiable API and MCP calls\" — The article mentions a GitHub link related to a project called peacprotocol, possibly indicating an open-source project or initiative rather than a commercial entity suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 669
+    },
+    {
       "id": "act_1776634550505_fhhyoj",
       "timestamp": "2026-04-19T21:35:50.505Z",
       "type": "prospect-skipped",
@@ -5451,14 +5459,6 @@
       "type": "source-run",
       "description": "Source tick: 5 articles fetched, 1 new prospects added, 0 already known",
       "tokens": 3876
-    },
-    {
-      "id": "act_1776304923473_cs0g67",
-      "timestamp": "2026-04-16T02:02:03.473Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Anthropic shrugs off VC funding offers valuing it at $800B+, for now\" — Anthropic is valued at $800B, which is far too large for Brandivibe's target market.",
-      "source": "techcrunch",
-      "tokens": 744
     }
   ],
   "articles": [
