@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776631055827_gxstaz",
+      "timestamp": "2026-04-19T20:37:35.827Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A collaborative SSH copilot for on-calls/DevOps/MLOps\" — The company is in the DevOps/MLOps industry, which is not part of the ICP industries like crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc.",
+      "source": "hackernews",
+      "tokens": 704
+    },
+    {
       "id": "act_1776631050666_dghudv",
       "timestamp": "2026-04-19T20:37:30.666Z",
       "type": "prospect-skipped",
