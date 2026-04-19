@@ -1136,6 +1136,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776592051292_sfjb4m",
+      "timestamp": "2026-04-19T09:47:31.292Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"SharpSkill – I simplified the process of ITWs preparation\" — The company appears to be in the early or pre-revenue stage and likely too small for premium web design services.",
+      "source": "hackernews",
+      "tokens": 740
+    },
+    {
       "id": "act_1776592047136_u4f7rm",
       "timestamp": "2026-04-19T09:47:27.136Z",
       "type": "prospect-skipped",
