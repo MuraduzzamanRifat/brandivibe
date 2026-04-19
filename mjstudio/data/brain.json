@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776641735827_du3nka",
+      "timestamp": "2026-04-19T23:35:35.827Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"EIDWTimes – Predicting airport wait times with ML for a school project\" — The project is a school project and not a commercial company. It does not fit the ICP of a business in need of premium web design services.",
+      "source": "hackernews",
+      "tokens": 763
+    },
+    {
       "id": "act_1776641730958_ns1qms",
       "timestamp": "2026-04-19T23:35:30.958Z",
       "type": "prospect-skipped",
@@ -5623,12 +5631,6 @@
       "timestamp": "2026-04-17T17:35:31.770Z",
       "type": "article-published",
       "description": "Backfill: \"Why Premium 3D Web Design for Startups Outshines Traditional Sites\" (angle 3, SEO 55)"
-    },
-    {
-      "id": "act_1776447292476_cx2kdu",
-      "timestamp": "2026-04-17T17:34:52.476Z",
-      "type": "article-published",
-      "description": "Backfill: \"Why Your SaaS Homepage That Converts Matters More Than You Think\" (angle 2, SEO 60)"
     }
   ],
   "articles": [
