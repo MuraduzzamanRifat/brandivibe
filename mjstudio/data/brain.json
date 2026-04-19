@@ -1642,6 +1642,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638166365_j46t8k",
+      "timestamp": "2026-04-19T22:36:06.365Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (31 articles scanned)",
+      "tokens": 6109
+    },
+    {
       "id": "act_1776638163828_2utvzl",
       "timestamp": "2026-04-19T22:36:03.828Z",
       "type": "prospect-skipped",
@@ -5486,14 +5493,6 @@
       "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Upscale AI is too large with a $2B valuation, which exceeds the target company size for Brandivibe's typical project budget.",
       "source": "techcrunch",
       "tokens": 745
-    },
-    {
-      "id": "act_1776435506058_ucrk2l",
-      "timestamp": "2026-04-17T14:18:26.058Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Luma launches AI-powered production studio with faith-focused Wonder Project\" — The company is in the AI-powered film production industry, which is misaligned with Brandivibe's preferred sectors (crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc).",
-      "source": "techcrunch",
-      "tokens": 780
     }
   ],
   "articles": [
