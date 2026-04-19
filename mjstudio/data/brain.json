@@ -1620,6 +1620,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776634532290_hvvtrl",
+      "timestamp": "2026-04-19T21:35:32.290Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A drop-in, open-source replacement for YouTube embed iframes\" — The company appears to be an open-source project and may not generate the budget suitable for a premium web design studio.",
+      "source": "hackernews",
+      "tokens": 752
+    },
+    {
       "id": "act_1776634526292_nsao5f",
       "timestamp": "2026-04-19T21:35:26.292Z",
       "type": "error",
@@ -5452,12 +5460,6 @@
       "description": "Skipped \"Hightouch reaches $100M ARR fueled by marketing tools powered by AI\" — The company has reached $100M ARR, which suggests a stage and size likely beyond the typical ICP for $35-90K projects.",
       "source": "techcrunch",
       "tokens": 758
-    },
-    {
-      "id": "act_1776304897888_vegq5b",
-      "timestamp": "2026-04-16T02:01:37.889Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Investing in design isn't an expense—it's a growth strategy. Discover the ROI of"
     }
   ],
   "articles": [
