@@ -1248,6 +1248,10 @@
           }
         ],
         "createdAt": "2026-04-18T21:35:49.698Z"
+      },
+      "sequence": {
+        "stage": 1,
+        "nextSendAt": "2026-04-21T13:00:00.000Z"
       }
     },
     {
@@ -1482,6 +1486,10 @@
           }
         ],
         "createdAt": "2026-04-19T09:48:01.871Z"
+      },
+      "sequence": {
+        "stage": 1,
+        "nextSendAt": "2026-04-21T13:00:00.000Z"
       }
     },
     {
@@ -1538,6 +1546,13 @@
   ],
   "drafts": [],
   "activities": [
+    {
+      "id": "act_1776606967259_h5tzwn",
+      "timestamp": "2026-04-19T13:56:07.259Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
     {
       "id": "act_1776606965909_xe2kmx",
       "timestamp": "2026-04-19T13:56:05.909Z",
@@ -5349,6 +5364,50 @@
       "tokens": 0,
       "meta": {
         "plannerAngle": 8,
+        "industry": "saas",
+        "icpTier": "B",
+        "subjectStyle": "other",
+        "leadGenKind": "outbound-email"
+      }
+    },
+    {
+      "id": "out_lg_1776606968373_hx3eqf_t1",
+      "prospectId": "tc_aHR0cHM6Ly9hZ2Vu",
+      "sequenceTouch": 1,
+      "subject": "Is Your Homepage a Strategic Asset?",
+      "body": "If your startup's homepage isn't converting, it's just a brochure. We turn homepages into strategic assets that engage and convert. Dive into our approach: https://brandivibe.com/helix\n\nTo opt out: https://brandivibe.com/api/brain/unsubscribe?p=tc_aHR0cHM6Ly9hZ2Vu&s=97e443c9c8124f17\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "to": "hi@agentrq.com",
+      "from": "send@brandivibe.site",
+      "replyTo": "send@brandivibe.site",
+      "sendAt": "2026-04-21T13:00:00.000Z",
+      "createdAt": "2026-04-19T13:56:08.373Z",
+      "status": "queued",
+      "model": "lead-gen-template",
+      "tokens": 0,
+      "meta": {
+        "plannerAngle": 9,
+        "industry": "ai",
+        "icpTier": "A",
+        "subjectStyle": "question",
+        "leadGenKind": "outbound-email"
+      }
+    },
+    {
+      "id": "out_lg_1776606968373_oy57dt_t1",
+      "prospectId": "tc_aHR0cHM6Ly9tZWNo",
+      "sequenceTouch": 1,
+      "subject": "Convert Traffic into Triumph",
+      "body": "Is your SaaS homepage pulling its weight? We specialize in designing sites that convert. Explore our work: https://brandivibe.com/helix\n\nTo opt out: https://brandivibe.com/api/brain/unsubscribe?p=tc_aHR0cHM6Ly9tZWNo&s=5b704eaeefacf5a3\n\nMuraduzzaman\nBrandivibe — brandivibe.com",
+      "to": "sales@mechcloud.io",
+      "from": "send@brandivibe.site",
+      "replyTo": "send@brandivibe.site",
+      "sendAt": "2026-04-21T13:00:00.000Z",
+      "createdAt": "2026-04-19T13:56:08.373Z",
+      "status": "queued",
+      "model": "lead-gen-template",
+      "tokens": 0,
+      "meta": {
+        "plannerAngle": 9,
         "industry": "saas",
         "icpTier": "B",
         "subjectStyle": "other",
