@@ -1488,6 +1488,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776595108460_bmqpmi",
+      "timestamp": "2026-04-19T10:38:28.460Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Make Video from Photo for Free\" — The company is likely a small-scale service or tool for individual consumers, which doesn't fit the ICP for premium web design projects.",
+      "source": "hackernews",
+      "tokens": 705
+    },
+    {
       "id": "act_1776595102489_8n1pdl",
       "timestamp": "2026-04-19T10:38:22.489Z",
       "type": "prospect-skipped",
