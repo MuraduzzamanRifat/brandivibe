@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776624669279_84gigj",
+      "timestamp": "2026-04-19T18:51:09.279Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open-source digital business card generator\" — The company focuses on open-source digital business card generation, which is too small scale and possibly non-commercial for premium web design projects.",
+      "source": "hackernews",
+      "tokens": 708
+    },
+    {
       "id": "act_1776624663421_cl1f71",
       "timestamp": "2026-04-19T18:51:03.421Z",
       "type": "prospect-skipped",
