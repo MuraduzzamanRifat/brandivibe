@@ -1598,6 +1598,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776627691548_8lyrck",
+      "timestamp": "2026-04-19T19:41:31.548Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A privacy-first, local-LLM note app for iOS (Google Keep alternative)\" — The company appears too small and possibly pre-commercial for Brandivibe's target projects ($35-90K).",
+      "source": "hackernews",
+      "tokens": 732
+    },
+    {
       "id": "act_1776627686126_me1jgq",
       "timestamp": "2026-04-19T19:41:26.126Z",
       "type": "prospect-skipped",
