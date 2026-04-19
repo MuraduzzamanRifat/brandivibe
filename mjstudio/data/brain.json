@@ -1642,6 +1642,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776638169272_1ka0ze",
+      "timestamp": "2026-04-19T22:36:09.272Z",
+      "type": "prospect-scraped",
+      "description": "Scraped fabraix.com — tech: google-fonts · design 4/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9mYWJy"
+    },
+    {
       "id": "act_1776638166365_j46t8k",
       "timestamp": "2026-04-19T22:36:06.365Z",
       "type": "source-run",
@@ -5485,14 +5492,6 @@
       "description": "Skipped \"Slash, a Ramp competitor founded by teenagers, raises $100M at $1.4B valuation\" — Slash is too large and well-funded with a $1.4B valuation and $300 million in revenue, beyond the scope of Brandivibe's typical project budget.",
       "source": "techcrunch",
       "tokens": 806
-    },
-    {
-      "id": "act_1776435510174_u5w7te",
-      "timestamp": "2026-04-17T14:18:30.174Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Upscale AI is too large with a $2B valuation, which exceeds the target company size for Brandivibe's typical project budget.",
-      "source": "techcrunch",
-      "tokens": 745
     }
   ],
   "articles": [
