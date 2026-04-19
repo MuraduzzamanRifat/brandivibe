@@ -1365,6 +1365,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776566186989_xjsse1",
+      "timestamp": "2026-04-19T02:36:26.989Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"JSON-logic-path – JSON logic with jsonpath multi-value resolution\" — The company is primarily focused on open-source software development, which is outside of Brandivibe's typical target industry for paid premium web design services.",
+      "source": "hackernews",
+      "tokens": 779
+    },
+    {
       "id": "act_1776566182381_44zszh",
       "timestamp": "2026-04-19T02:36:22.382Z",
       "type": "error",
