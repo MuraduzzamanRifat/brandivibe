@@ -1547,6 +1547,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776616786583_fdz8ma",
+      "timestamp": "2026-04-19T16:39:46.583Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Cracks are starting to form on fusion energy’s funding boom\" — Fusion energy companies are not within the target industries; Brandivibe focuses on web design projects for industries like crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, and vc.",
+      "source": "techcrunch",
+      "tokens": 727
+    },
+    {
       "id": "act_1776616782745_vhbhfo",
       "timestamp": "2026-04-19T16:39:42.745Z",
       "type": "prospect-skipped",
