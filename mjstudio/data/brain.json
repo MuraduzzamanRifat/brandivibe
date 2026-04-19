@@ -1598,6 +1598,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776624710315_dsh21d",
+      "timestamp": "2026-04-19T18:51:50.315Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776624705276_rcexvx",
       "timestamp": "2026-04-19T18:51:45.276Z",
       "type": "prospect-skipped",
