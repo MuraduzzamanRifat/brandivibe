@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701336314_tf7hej",
+      "timestamp": "2026-04-20T16:08:56.314Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Evading an AI SOC with Sable from Vulnetic\" — Article lacks information about company funding stage and industry is cybersecurity, which is not within our ICP industries.",
+      "source": "hackernews",
+      "tokens": 692
+    },
+    {
       "id": "act_1776701330248_kiestv",
       "timestamp": "2026-04-20T16:08:50.248Z",
       "type": "prospect-skipped",
@@ -5695,14 +5703,6 @@
       "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — InGaming operates in the iGaming industry, which does not align with Brandivibe's targeted industries like fintech, saas, ai, etc.",
       "source": "hackernews",
       "tokens": 797
-    },
-    {
-      "id": "act_1776508801380_13x2xr",
-      "timestamp": "2026-04-18T10:40:01.380Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The article describes a browser extension product, not a company, and it's targeted towards individual Twitter users rather than businesses, which doesn't align with Brandivibe's ICP focused on premium web design projects.",
-      "source": "hackernews",
-      "tokens": 731
     }
   ],
   "articles": [
