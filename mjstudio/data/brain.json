@@ -2184,6 +2184,28 @@
       "sourceUrl": "https://console.seltz.ai/login",
       "createdAt": "2026-04-20T19:16:03.087Z",
       "updatedAt": "2026-04-20T19:16:03.087Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9ob3Jh",
+      "company": "Hora",
+      "domain": "horacal.app",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Growth",
+      "trigger": "Launching a new macOS app and may need enhanced digital presence.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "aurora",
+      "brandWeakness": "Modest, technical-focused design that may not appeal broadly.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The company is targeting macOS users with a Google Calendar client, indicating a SaaS approach. They might lack flashy design elements that appeal to broader audiences.",
+      "source": "hackernews",
+      "sourceUrl": "https://horacal.app/",
+      "createdAt": "2026-04-20T19:16:11.470Z",
+      "updatedAt": "2026-04-20T19:16:11.470Z"
     }
   ],
   "drafts": [],
