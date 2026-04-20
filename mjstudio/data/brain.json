@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682086180_y0j9jl",
+      "timestamp": "2026-04-20T10:48:06.180Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Run TRELLIS.2 Image-to-3D generation natively on Apple Silicon\" — The project described is an open-source initiative on GitHub to port a model to Apple Silicon and not a business entity nor does it align with our industry focus.",
+      "source": "hackernews",
+      "tokens": 807
+    },
+    {
       "id": "act_1776682080590_o0qar3",
       "timestamp": "2026-04-20T10:48:00.590Z",
       "type": "prospect-skipped",
@@ -5686,13 +5694,6 @@
       "type": "prospect-scraped",
       "description": "Scraped rtrvr.ai — tech: next.js, tailwind, google-analytics, google-fonts, react · design 6/10 · 2 emails found",
       "prospectId": "tc_aHR0cHM6Ly93d3cu"
-    },
-    {
-      "id": "act_1776488808528_gb1lks",
-      "timestamp": "2026-04-18T05:06:48.528Z",
-      "type": "source-run",
-      "description": "Hourly source: 1 new prospects (32 articles scanned)",
-      "tokens": 6316
     }
   ],
   "articles": [
