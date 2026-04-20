@@ -1766,6 +1766,28 @@
         ],
         "createdAt": "2026-04-19T22:36:24.278Z"
       }
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9tb2R1",
+      "company": "Modular",
+      "domain": "modular.run",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Modular has launched a new product that simplifies AI feature integration, indicating active development and potential need for web design services.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "helix",
+      "brandWeakness": "The article suggests that the solution is highly technical, which might not be reflected well in a user-friendly, accessible brand.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "Modular simplifies AI feature integration, likely appealing to SMBs or startups seeking efficient ways to incorporate AI into their applications. May benefit from improved UI/UX design as part of their branding.",
+      "source": "hackernews",
+      "sourceUrl": "https://modular.run",
+      "createdAt": "2026-04-20T02:37:30.613Z",
+      "updatedAt": "2026-04-20T02:37:30.613Z"
     }
   ],
   "drafts": [],
