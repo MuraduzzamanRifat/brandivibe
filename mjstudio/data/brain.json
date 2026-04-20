@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728505928_6oh2te",
+      "timestamp": "2026-04-20T23:41:45.928Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776724980663_h7egwf",
       "timestamp": "2026-04-20T22:43:00.663Z",
       "type": "prospect-skipped",
@@ -6127,14 +6134,6 @@
       "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source project, not a company seeking web design services.",
       "source": "hackernews",
       "tokens": 821
-    },
-    {
-      "id": "act_1776530391825_1q59nz",
-      "timestamp": "2026-04-18T16:39:51.825Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal project rather than a business entity. It doesn't provide information about a company, its stage, or industry, which is necessary to evaluate fit with Brandivibe's ICP.",
-      "source": "hackernews",
-      "tokens": 721
     }
   ],
   "articles": [
