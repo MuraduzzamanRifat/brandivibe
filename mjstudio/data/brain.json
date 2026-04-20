@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707849719_2y61a7",
+      "timestamp": "2026-04-20T17:57:29.719Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776701387236_k340c3",
       "timestamp": "2026-04-20T16:09:47.236Z",
       "type": "prospect-skipped",
@@ -5715,14 +5722,6 @@
       "description": "Skipped [hackernews] \"codeburn-rs; CodeBurn but 600x faster in Rust [view coding token usage]\" — The article is about an open-source project, not a company seeking web design services.",
       "source": "hackernews",
       "tokens": 649
-    },
-    {
-      "id": "act_1776512057607_ywsnjs",
-      "timestamp": "2026-04-18T11:34:17.607Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — The company is a community platform with no mentioned revenue model, which does not align with our target for premium web design services.",
-      "source": "hackernews",
-      "tokens": 708
     }
   ],
   "articles": [
