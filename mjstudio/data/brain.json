@@ -1881,6 +1881,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707920464_vknqak",
+      "timestamp": "2026-04-20T17:58:40.464Z",
+      "type": "prospect-researched",
+      "description": "Researched Gyrus: The homepage is cluttered with excessive navigation links, overwhelming users.",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 3970
+    },
+    {
       "id": "act_1776707909561_s4jxh0",
       "timestamp": "2026-04-20T17:58:29.561Z",
       "type": "prospect-scraped",
@@ -5714,14 +5723,6 @@
       "timestamp": "2026-04-18T13:56:43.673Z",
       "type": "article-published",
       "description": "Published \"Why Premium Web Design for Startups Separates the Best from the Rest\" (SEO 45/100, 478 words)"
-    },
-    {
-      "id": "act_1776520594360_0d4xzq",
-      "timestamp": "2026-04-18T13:56:34.360Z",
-      "type": "plan-generated",
-      "description": "Planned \"Why Premium Web Design for Startups Separates the Best from the Rest\" + 3 FB posts + 3 lead-gen actions",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 8103
     }
   ],
   "articles": [
