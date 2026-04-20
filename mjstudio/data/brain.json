@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724917422_55n509",
+      "timestamp": "2026-04-20T22:41:57.422Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776721601358_wqp4sl",
       "timestamp": "2026-04-20T21:46:41.358Z",
       "type": "prospect-skipped",
@@ -6129,14 +6136,6 @@
       "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is focused on markdown tools, which is more technical and less aligned with premium web design needs.",
       "source": "hackernews",
       "tokens": 690
-    },
-    {
-      "id": "act_1776526623102_8eysrc",
-      "timestamp": "2026-04-18T15:37:03.102Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I built a hiring platform where you can't list your skills\" — Insufficient information about the company's stage, funding, or brand that would suggest it is a medium to large company or in growth stage, typically aligning with Brandivibe's ICP.",
-      "source": "hackernews",
-      "tokens": 750
     }
   ],
   "articles": [
