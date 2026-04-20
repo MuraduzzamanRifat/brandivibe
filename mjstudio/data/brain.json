@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663707891_hxq5rh",
+      "timestamp": "2026-04-20T05:41:47.891Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776663702422_dxuvn8",
       "timestamp": "2026-04-20T05:41:42.422Z",
       "type": "prospect-skipped",
@@ -5644,14 +5651,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large, well-established AI company, likely with an internal design team and resources beyond Brandivibe's project range.",
       "source": "techcrunch",
       "tokens": 732
-    },
-    {
-      "id": "act_1776469107851_tzo6ox",
-      "timestamp": "2026-04-17T23:38:27.851Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too large and well-funded, likely exceeding Brandivibe's typical project size.",
-      "source": "techcrunch",
-      "tokens": 771
     }
   ],
   "articles": [
