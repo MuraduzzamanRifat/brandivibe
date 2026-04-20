@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701324673_74v4xe",
+      "timestamp": "2026-04-20T16:08:44.673Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"fmsg – An open distributed messaging protocol\" — The company described is at the protocol and infrastructure level in the technology space, which does not align with our focus on premium web design studio services.",
+      "source": "hackernews",
+      "tokens": 830
+    },
+    {
       "id": "act_1776701318353_1yrmwc",
       "timestamp": "2026-04-20T16:08:38.353Z",
       "type": "error",
@@ -5695,14 +5703,6 @@
       "description": "Skipped [techcrunch] \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a large venture capital firm, not a potential client for web design projects.",
       "source": "techcrunch",
       "tokens": 806
-    },
-    {
-      "id": "act_1776508792030_8oefoe",
-      "timestamp": "2026-04-18T10:39:52.030Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Mind-OS – First free online AI dependency self‑assessment\" — The article does not provide sufficient information about the company's stage, industry, or any details that align with premium web design services ICP. It seems to be a project or tool rather than a company seeking web design services.",
-      "source": "hackernews",
-      "tokens": 707
     }
   ],
   "articles": [
