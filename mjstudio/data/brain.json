@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724949918_7gq0zu",
+      "timestamp": "2026-04-20T22:42:29.918Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"MCPfinder – An MCP server that finds and installs other MCP servers\" — The company is heavily focused on a niche technology protocol (MCP) which doesn't align with Brandivibe's target industries like luxury, fintech, or crypto.",
+      "source": "hackernews",
+      "tokens": 827
+    },
+    {
       "id": "act_1776724939664_0pzk76",
       "timestamp": "2026-04-20T22:42:19.664Z",
       "type": "prospect-skipped",
@@ -6128,14 +6136,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776526647440_rnn894",
-      "timestamp": "2026-04-18T15:37:27.440Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal or hobby project, not a company.",
-      "source": "hackernews",
-      "tokens": 698
     }
   ],
   "articles": [
