@@ -2262,6 +2262,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712591785_i5akcg",
+      "timestamp": "2026-04-20T19:16:31.785Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776712587144_iwu9yn",
       "timestamp": "2026-04-20T19:16:27.144Z",
       "type": "prospect-scraped",
@@ -6101,12 +6108,6 @@
     {
       "id": "act_1776520687024_v9tpei",
       "timestamp": "2026-04-18T13:58:07.024Z",
-      "type": "lead-gen-skipped",
-      "description": "Lead-gen executor: 2 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
-    },
-    {
-      "id": "act_1776520684244_6pxkbr",
-      "timestamp": "2026-04-18T13:58:04.244Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: 2 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
     }
