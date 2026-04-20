@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701378383_dsft1q",
+      "timestamp": "2026-04-20T16:09:38.383Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776701370077_62wbvw",
       "timestamp": "2026-04-20T16:09:30.077Z",
       "type": "source-run",
@@ -5718,14 +5725,6 @@
       "description": "Skipped [hackernews] \"devnexus – persistent context across repos, sessions, and engineers\" — Devnexus is an open-source project and lacks a commercial stage or funding; it is unlikely to have the budget for premium web design services.",
       "source": "hackernews",
       "tokens": 836
-    },
-    {
-      "id": "act_1776512044513_lf8dab",
-      "timestamp": "2026-04-18T11:34:04.513Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — PodWarden is focused on open-source self-hosted apps, likely targeting developers and tech enthusiasts, not fitting Brandivibe's luxury market focus.",
-      "source": "hackernews",
-      "tokens": 695
     }
   ],
   "articles": [
