@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672439257_76i73s",
+      "timestamp": "2026-04-20T08:07:19.257Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776672431003_n9nqdp",
       "timestamp": "2026-04-20T08:07:11.003Z",
       "type": "source-run",
@@ -5690,13 +5697,6 @@
       "description": "Skipped [hackernews] \"Seamless – Content-addressed computation caching for Python and bash\" — The company appears to be an individual project in bioinformatics rather than a scalable business. It lacks commercial structure, funding stage, and clear industry alignment with Brandivibe's ICP.",
       "source": "hackernews",
       "tokens": 862
-    },
-    {
-      "id": "act_1776488771801_lsb2or",
-      "timestamp": "2026-04-18T05:06:11.801Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
