@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696630097_2tws91",
+      "timestamp": "2026-04-20T14:50:30.097Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Tuicraft, a WoW 3.3.5a chat client for the terminal\" — The company is not in a relevant industry for Brandivibe's ICP, as it is focused on a niche gaming tool with no indication of being a business entity or having a funding stage.",
+      "source": "hackernews",
+      "tokens": 774
+    },
+    {
       "id": "act_1776696624847_7gdwvx",
       "timestamp": "2026-04-20T14:50:24.847Z",
       "type": "prospect-skipped",
@@ -5674,15 +5682,6 @@
       "type": "email-found",
       "description": "Best email for TokensAI: devin.replit@tokensai.dev (pattern, conf 35)",
       "prospectId": "tc_aHR0cHM6Ly90b2tl"
-    },
-    {
-      "id": "act_1776502290228_jhjw72",
-      "timestamp": "2026-04-18T08:51:30.228Z",
-      "type": "prospect-researched",
-      "description": "Researched TokensAI: The homepage lacks a clear and compelling call-to-action.",
-      "prospectId": "tc_aHR0cHM6Ly90b2tl",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 2267
     }
   ],
   "articles": [
