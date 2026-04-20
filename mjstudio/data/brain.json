@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721601358_wqp4sl",
+      "timestamp": "2026-04-20T21:46:41.358Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776721589811_4bjy8s",
       "timestamp": "2026-04-20T21:46:29.811Z",
       "type": "prospect-skipped",
@@ -6130,14 +6137,6 @@
       "description": "Skipped [hackernews] \"I built a hiring platform where you can't list your skills\" — Insufficient information about the company's stage, funding, or brand that would suggest it is a medium to large company or in growth stage, typically aligning with Brandivibe's ICP.",
       "source": "hackernews",
       "tokens": 750
-    },
-    {
-      "id": "act_1776526617581_5oj1wk",
-      "timestamp": "2026-04-18T15:36:57.581Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Free Email Signature Builder\" — The article describes a free tool, which suggests the company might not have the budget for a premium web design studio like Brandivibe.",
-      "source": "hackernews",
-      "tokens": 735
     }
   ],
   "articles": [
