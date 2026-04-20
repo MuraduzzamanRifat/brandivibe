@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728542510_etiz5o",
+      "timestamp": "2026-04-20T23:42:22.510Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"CLI – A Go command-line library shaped like net/HTTP\" — The article describes a Go command-line library project on GitHub, which is not a commercial company in need of web design services.",
+      "source": "hackernews",
+      "tokens": 674
+    },
+    {
       "id": "act_1776728538082_uglk9m",
       "timestamp": "2026-04-20T23:42:18.082Z",
       "type": "prospect-skipped",
@@ -6127,14 +6135,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large AI company and not a small to mid-sized company.",
       "source": "techcrunch",
       "tokens": 720
-    },
-    {
-      "id": "act_1776533758358_y8ayta",
-      "timestamp": "2026-04-18T17:35:58.358Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The article describes an open-source library, not a company in need of web design services.",
-      "source": "hackernews",
-      "tokens": 697
     }
   ],
   "articles": [
