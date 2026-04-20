@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717906429_jpoakw",
+      "timestamp": "2026-04-20T20:45:06.429Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Freelava – Lava Lamp in an HTML Page\" — The company is a hobby project and does not generate significant revenue to afford premium web design services.",
+      "source": "hackernews",
+      "tokens": 761
+    },
+    {
       "id": "act_1776717900031_phn4vj",
       "timestamp": "2026-04-20T20:45:00.031Z",
       "type": "prospect-skipped",
@@ -6130,13 +6138,6 @@
       "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses the App Store and general AI trends, but does not mention a specific company or startup that would match the ICP criteria for Brandivibe.",
       "source": "techcrunch",
       "tokens": 702
-    },
-    {
-      "id": "act_1776523142015_sqh2mo",
-      "timestamp": "2026-04-18T14:39:02.015Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
