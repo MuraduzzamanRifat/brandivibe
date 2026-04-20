@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701353466_sszoh9",
+      "timestamp": "2026-04-20T16:09:13.466Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Libredesk – self-hosted, single binary Intercom/Zendesk alternative\" — The company is focused on open-source software which is entirely free, indicating a non-profit model likely unsuitable for premium web design projects.",
+      "source": "hackernews",
+      "tokens": 877
+    },
+    {
       "id": "act_1776701347634_jkr51m",
       "timestamp": "2026-04-20T16:09:07.634Z",
       "type": "prospect-skipped",
@@ -5696,13 +5704,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large and advanced AI company not fitting the SMB criteria of Brandivibe's ICP.",
       "source": "techcrunch",
       "tokens": 732
-    },
-    {
-      "id": "act_1776512024436_kq1mp4",
-      "timestamp": "2026-04-18T11:33:44.436Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
