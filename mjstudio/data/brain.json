@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672429039_mtiy06",
+      "timestamp": "2026-04-20T08:07:09.039Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Auxx.ai – Customer Support CRM (Mix of Attio and N8n)\" — The company is an early-stage project developed by an individual to solve a specific personal problem, indicating it's likely too small and not commercially focused enough for Brandivibe's budget range.",
+      "source": "hackernews",
+      "tokens": 858
+    },
+    {
       "id": "act_1776672423453_oedf13",
       "timestamp": "2026-04-20T08:07:03.453Z",
       "type": "prospect-added",
@@ -5688,14 +5696,6 @@
       "timestamp": "2026-04-18T03:31:11.917Z",
       "type": "fb-published",
       "description": "Approved queued FB post fb_1776435480737_diuhlp"
-    },
-    {
-      "id": "act_1776478960751_7ln5p6",
-      "timestamp": "2026-04-18T02:22:40.751Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company, Factory, has reached a $1.5B valuation, indicating it's too large and advanced for Brandivibe's typical project size targeting startups.",
-      "source": "techcrunch",
-      "tokens": 790
     }
   ],
   "articles": [
