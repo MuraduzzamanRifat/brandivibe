@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682098454_j5ps3f",
+      "timestamp": "2026-04-20T10:48:18.454Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Vastlint, inline linting for ad tags in VS Code, Kiro, Cursor\" — The company is a tool for VAST XML linting, which is not an ideal fit for a premium web design studio focused on full-scale web projects.",
+      "source": "hackernews",
+      "tokens": 851
+    },
+    {
       "id": "act_1776682092198_bknsht",
       "timestamp": "2026-04-20T10:48:12.198Z",
       "type": "prospect-skipped",
@@ -5686,15 +5694,6 @@
       "type": "email-found",
       "description": "Best email for rtrvr.ai: support@rtrvr.ai (scraped, conf 95)",
       "prospectId": "tc_aHR0cHM6Ly93d3cu"
-    },
-    {
-      "id": "act_1776488821414_6ulkte",
-      "timestamp": "2026-04-18T05:07:01.415Z",
-      "type": "prospect-researched",
-      "description": "Researched rtrvr.ai: The homepage lacks a clear, concise value proposition above the fold.",
-      "prospectId": "tc_aHR0cHM6Ly93d3cu",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 3819
     }
   ],
   "articles": [
