@@ -1881,6 +1881,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701367454_qcldo5",
+      "timestamp": "2026-04-20T16:09:27.454Z",
+      "type": "prospect-added",
+      "description": "Added SkillCatalog via hackernews (B-tier, saas) — Launched a desktop app improving workflow in AI coding tools.",
+      "prospectId": "tc_aHR0cHM6Ly9za2ls",
+      "source": "hackernews",
+      "tokens": 825
+    },
+    {
       "id": "act_1776701358577_u2e0nb",
       "timestamp": "2026-04-20T16:09:18.577Z",
       "type": "prospect-skipped",
@@ -5718,14 +5727,6 @@
       "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — Podads is an open-source tool hosted on GitHub, indicating it is not a commercial venture likely to engage in a significant web design project.",
       "source": "hackernews",
       "tokens": 850
-    },
-    {
-      "id": "act_1776512035152_lrfz9a",
-      "timestamp": "2026-04-18T11:33:55.152Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I built Panda to get up to 99% token savings\" — The article lacks details about the company's industry, stage, or any business-related information that would indicate a fit for a premium web design studio.",
-      "source": "hackernews",
-      "tokens": 672
     }
   ],
   "articles": [
