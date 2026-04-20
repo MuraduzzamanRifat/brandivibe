@@ -2257,6 +2257,28 @@
       "sourceUrl": "https://horacal.app/",
       "createdAt": "2026-04-20T19:16:11.470Z",
       "updatedAt": "2026-04-20T19:16:11.470Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9leHBs",
+      "company": "Explain The Law",
+      "domain": "explainthelaw.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Launch of a new AI-based platform for simplifying legislation, indicating potential design needs.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "helix",
+      "brandWeakness": "The website may lack a distinct visual identity or branding strategy.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "Focus on improving brand clarity and user experience to better engage users interested in legislation insights.",
+      "source": "hackernews",
+      "sourceUrl": "https://explainthelaw.com/",
+      "createdAt": "2026-04-20T20:44:33.529Z",
+      "updatedAt": "2026-04-20T20:44:33.529Z"
     }
   ],
   "drafts": [],
