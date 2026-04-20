@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695439032_1ok3ua",
+      "timestamp": "2026-04-20T14:30:39.032Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"fmsg – An open distributed messaging protocol\" — The article describes an open distributed messaging protocol project, which is more of a technological protocol development rather than a business entity looking for web design services.",
+      "source": "hackernews",
+      "tokens": 831
+    },
+    {
       "id": "act_1776695430660_fy3loc",
       "timestamp": "2026-04-20T14:30:30.660Z",
       "type": "prospect-skipped",
@@ -5674,14 +5682,6 @@
       "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The article does not provide enough information to determine if PodWarden is in the appropriate stage or industry that fits Brandivibe's ICP. Additionally, no clear indicator of recent funding or specific details on the company's operations are provided.",
       "source": "hackernews",
       "tokens": 707
-    },
-    {
-      "id": "act_1776502255958_2jrjzg",
-      "timestamp": "2026-04-18T08:50:55.958Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"devnexus – persistent context across repos, sessions, and engineers\" — The company is still in the building phase and open-source, indicating early-stage development not suitable for Brandivibe's target premium project range.",
-      "source": "hackernews",
-      "tokens": 812
     }
   ],
   "articles": [
