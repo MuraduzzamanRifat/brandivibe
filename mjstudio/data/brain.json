@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663647131_qyjfyk",
+      "timestamp": "2026-04-20T05:40:47.132Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776652678693_01widv",
       "timestamp": "2026-04-20T02:37:58.693Z",
       "type": "prospect-skipped",
@@ -5646,13 +5653,6 @@
       "type": "prospect-researched",
       "description": "Hourly research: 1 prospects researched, 1 emails found",
       "tokens": 2369
-    },
-    {
-      "id": "act_1776456090847_k2v81j",
-      "timestamp": "2026-04-17T20:01:30.847Z",
-      "type": "email-found",
-      "description": "Best email for Luma: alex.johnson@luma.com (pattern, conf 35)",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
     }
   ],
   "articles": [
