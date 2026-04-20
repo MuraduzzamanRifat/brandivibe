@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686626380_mrulhp",
+      "timestamp": "2026-04-20T12:03:46.380Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built a spaced-repetition vocab app tied to the books you read\" — The company is an individual project likely in the education or app development sector. It is not a fit due to its small scale and early stage, as well as being in the education industry, which doesn't align with Brandivibe's luxury and high growth industry focus.",
+      "source": "hackernews",
+      "tokens": 715
+    },
+    {
       "id": "act_1776686619758_txewqj",
       "timestamp": "2026-04-20T12:03:39.758Z",
       "type": "prospect-skipped",
@@ -5684,15 +5692,6 @@
       "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is a browser extension, likely operating with a low budget and does not match the premium web design needs.",
       "source": "hackernews",
       "tokens": 727
-    },
-    {
-      "id": "act_1776496022846_d4spfr",
-      "timestamp": "2026-04-18T07:07:02.846Z",
-      "type": "prospect-added",
-      "description": "Added Cogveo via hackernews (B-tier, ai) — Launch of AI agents to run Python on files indicates growth and potential need for an enhanced digital presence.",
-      "prospectId": "tc_aHR0cHM6Ly9jb2d2",
-      "source": "hackernews",
-      "tokens": 722
     }
   ],
   "articles": [
