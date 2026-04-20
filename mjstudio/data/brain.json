@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717885569_ty6va4",
+      "timestamp": "2026-04-20T20:44:45.569Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open-source alternative HN front page with point highlights and search\" — The project appears to be an open-source initiative without clear commercial backing or funding, making it unsuitable for a premium web design project.",
+      "source": "hackernews",
+      "tokens": 703
+    },
+    {
       "id": "act_1776717881028_31ob90",
       "timestamp": "2026-04-20T20:44:41.028Z",
       "type": "prospect-skipped",
@@ -6127,13 +6135,6 @@
       "type": "prospect-researched",
       "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
       "tokens": 3255
-    },
-    {
-      "id": "act_1776520706018_q6o3n7",
-      "timestamp": "2026-04-18T13:58:26.018Z",
-      "type": "email-found",
-      "description": "Best email for Readox: contact@readox.ai (scraped, conf 95)",
-      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
     }
   ],
   "articles": [
