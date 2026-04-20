@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696636375_2taezp",
+      "timestamp": "2026-04-20T14:50:36.375Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Slop-O-Meter, an experimental tool to detect slopware projects\" — The company is an experimental tool, suggesting it's at an early development stage not aligned with Brandivibe's target segment.",
+      "source": "hackernews",
+      "tokens": 701
+    },
+    {
       "id": "act_1776696630097_2tws91",
       "timestamp": "2026-04-20T14:50:30.097Z",
       "type": "prospect-skipped",
@@ -5675,13 +5683,6 @@
       "type": "prospect-researched",
       "description": "Hourly research: 2 prospects researched, 1 emails found",
       "tokens": 4364
-    },
-    {
-      "id": "act_1776502292078_92hj49",
-      "timestamp": "2026-04-18T08:51:32.078Z",
-      "type": "email-found",
-      "description": "Best email for TokensAI: devin.replit@tokensai.dev (pattern, conf 35)",
-      "prospectId": "tc_aHR0cHM6Ly90b2tl"
     }
   ],
   "articles": [
