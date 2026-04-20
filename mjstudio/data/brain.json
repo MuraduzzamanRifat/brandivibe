@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652661364_j0n53i",
+      "timestamp": "2026-04-20T02:37:41.364Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (32 articles scanned)",
+      "tokens": 6235
+    },
+    {
       "id": "act_1776652658860_0x1hp7",
       "timestamp": "2026-04-20T02:37:38.860Z",
       "type": "prospect-skipped",
@@ -5647,13 +5654,6 @@
       "timestamp": "2026-04-17T20:01:10.948Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
-    },
-    {
-      "id": "act_1776456069544_ij5eov",
-      "timestamp": "2026-04-17T20:01:09.544Z",
-      "type": "source-run",
-      "description": "Hourly source: 1 new prospects (6 articles scanned)",
-      "tokens": 4614
     }
   ],
   "articles": [
