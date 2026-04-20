@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721579036_2ptrxn",
+      "timestamp": "2026-04-20T21:46:19.036Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Freelava – Lava Lamp in an HTML Page\" — The company provides a free digital lava lamp as a screensaver, which is not indicative of a potential project engagement in the $35-90K range suitable for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 803
+    },
+    {
       "id": "act_1776721572721_avdndk",
       "timestamp": "2026-04-20T21:46:12.721Z",
       "type": "prospect-skipped",
@@ -6130,12 +6138,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776523184949_vohyh6",
-      "timestamp": "2026-04-18T14:39:44.949Z",
-      "type": "email-queued",
-      "description": "Hourly leadgen: 2 new emails queued (2 prospects matched)"
     }
   ],
   "articles": [
