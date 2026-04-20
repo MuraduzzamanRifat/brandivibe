@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652624700_3oxnds",
+      "timestamp": "2026-04-20T02:37:04.700Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Newsmaps.io a map of how news topics are covered by different countries\" — The article does not provide sufficient information on the company's stage, funding, or industry alignment with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 685
+    },
+    {
       "id": "act_1776652619130_pxf0tj",
       "timestamp": "2026-04-20T02:36:59.130Z",
       "type": "prospect-skipped",
@@ -5624,13 +5632,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a well-established company and likely too large for Brandivibe's target market.",
       "source": "techcrunch",
       "tokens": 737
-    },
-    {
-      "id": "act_1776452408593_rdfw80",
-      "timestamp": "2026-04-17T19:00:08.593Z",
-      "type": "prospect-skipped",
-      "description": "Could not scrape gizmo.com (404 or network failure)",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
     }
   ],
   "articles": [
