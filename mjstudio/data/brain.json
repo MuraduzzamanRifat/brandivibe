@@ -1881,6 +1881,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707865086_32k5b9",
+      "timestamp": "2026-04-20T17:57:45.086Z",
+      "type": "prospect-added",
+      "description": "Added Gyrus via hackernews (B-tier, ai) — Gyrus is updating its Snowflake agent to support new models, indicating ongoing developments.",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo",
+      "source": "hackernews",
+      "tokens": 862
+    },
+    {
       "id": "act_1776707856098_glq35l",
       "timestamp": "2026-04-20T17:57:36.098Z",
       "type": "prospect-skipped",
@@ -5715,13 +5724,6 @@
       "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes an individual's project rather than a company, making it unsuitable for a premium web design studio's services.",
       "source": "hackernews",
       "tokens": 786
-    },
-    {
-      "id": "act_1776517259557_4dxdmz",
-      "timestamp": "2026-04-18T13:00:59.557Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
