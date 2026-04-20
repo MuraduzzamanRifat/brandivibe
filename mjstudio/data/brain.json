@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724960235_70k65h",
+      "timestamp": "2026-04-20T22:42:40.235Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Cracks are starting to form on fusion energy’s funding boom\" — The company operates in the fusion energy sector, which is outside the targeted industries such as crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, vc.",
+      "source": "techcrunch",
+      "tokens": 723
+    },
+    {
       "id": "act_1776724955519_pcyind",
       "timestamp": "2026-04-20T22:42:35.519Z",
       "type": "prospect-skipped",
@@ -6129,14 +6137,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is too advanced in its funding stage, having recently raised a $95M Series C round, which is beyond the typical project budget range for Brandivibe.",
       "source": "techcrunch",
       "tokens": 829
-    },
-    {
-      "id": "act_1776530368279_p4ajn8",
-      "timestamp": "2026-04-18T16:39:28.279Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The article is about a GitHub project, not a commercial company.",
-      "source": "hackernews",
-      "tokens": 670
     }
   ],
   "articles": [
