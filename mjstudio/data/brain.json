@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721584723_qxuf4b",
+      "timestamp": "2026-04-20T21:46:24.723Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Simple CLI tool to convert PDFs to dark mode, with TOC preservation\" — The article describes a simple CLI tool made by an individual developer, which doesn't fit our target company profile. It appears to be a personal project rather than a company.",
+      "source": "hackernews",
+      "tokens": 702
+    },
+    {
       "id": "act_1776721579036_2ptrxn",
       "timestamp": "2026-04-20T21:46:19.036Z",
       "type": "prospect-skipped",
@@ -6131,13 +6139,6 @@
       "description": "Skipped [hackernews] \"Great Apps\" — The article lacks sufficient information about the company, its industry, size, or funding to determine an ICP fit.",
       "source": "hackernews",
       "tokens": 639
-    },
-    {
-      "id": "act_1776526606452_816j17",
-      "timestamp": "2026-04-18T15:36:46.452Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
