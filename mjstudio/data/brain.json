@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721572721_avdndk",
+      "timestamp": "2026-04-20T21:46:12.721Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Myanon – fast, deterministic MySQL dump anonymizer\" — The article is about a tool, not a company. It provides no information about an organization or entity that could be considered for web design services.",
+      "source": "hackernews",
+      "tokens": 675
+    },
+    {
       "id": "act_1776721566178_owmrk5",
       "timestamp": "2026-04-20T21:46:06.178Z",
       "type": "prospect-skipped",
@@ -6128,13 +6136,6 @@
       "timestamp": "2026-04-18T14:39:44.949Z",
       "type": "email-queued",
       "description": "Hourly leadgen: 2 new emails queued (2 prospects matched)"
-    },
-    {
-      "id": "act_1776523183851_mrno1j",
-      "timestamp": "2026-04-18T14:39:43.851Z",
-      "type": "email-queued",
-      "description": "Lead-gen queued touch 1 for Readox (contact@readox.ai): \"Your Startup Deserves Better\"",
-      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
     }
   ],
   "articles": [
