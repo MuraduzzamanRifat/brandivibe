@@ -2167,6 +2167,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712550479_7dv6pm",
+      "timestamp": "2026-04-20T19:15:50.479Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"My Hyperliquid Terminal\" — The article lacks sufficient information about the company profile, industry, funding stage, or any other qualifiers needed to assess if they fit the ICP for premium web design services.",
+      "source": "hackernews",
+      "tokens": 654
+    },
+    {
       "id": "act_1776712545040_cogqgq",
       "timestamp": "2026-04-20T19:15:45.040Z",
       "type": "prospect-skipped",
@@ -6006,14 +6014,6 @@
       "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The company appears to be an individual creating a personal project rather than a business. This doesn't fit our ICP, which targets established companies.",
       "source": "hackernews",
       "tokens": 671
-    },
-    {
-      "id": "act_1776520647052_vflkuo",
-      "timestamp": "2026-04-18T13:57:27.052Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — The company appears to be an open-source project hosted on GitHub, not a for-profit business suitable for premium web design services.",
-      "source": "hackernews",
-      "tokens": 786
     }
   ],
   "articles": [
