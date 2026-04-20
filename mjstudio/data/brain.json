@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682106849_tsryiy",
+      "timestamp": "2026-04-20T10:48:26.849Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776682098454_j5ps3f",
       "timestamp": "2026-04-20T10:48:18.454Z",
       "type": "prospect-skipped",
@@ -5687,13 +5694,6 @@
       "type": "prospect-researched",
       "description": "Hourly research: 1 prospects researched, 1 emails found",
       "tokens": 3819
-    },
-    {
-      "id": "act_1776488822959_jkegt5",
-      "timestamp": "2026-04-18T05:07:02.959Z",
-      "type": "email-found",
-      "description": "Best email for rtrvr.ai: support@rtrvr.ai (scraped, conf 95)",
-      "prospectId": "tc_aHR0cHM6Ly93d3cu"
     }
   ],
   "articles": [
