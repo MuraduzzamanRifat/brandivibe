@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686661650_aqpijx",
+      "timestamp": "2026-04-20T12:04:21.650Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"LLM-Rosetta - Translate LLM API Calls Across OpenAI, Anthropic, Gemini\" — The company appears to be a personal project, possibly open-source, without clear indicators of commercial stage or need for premium web design.",
+      "source": "hackernews",
+      "tokens": 838
+    },
+    {
       "id": "act_1776686656209_7ir9as",
       "timestamp": "2026-04-20T12:04:16.209Z",
       "type": "prospect-skipped",
@@ -5685,13 +5693,6 @@
       "type": "prospect-scraped",
       "description": "Scraped cogveo.com — tech: (none detected) · design 5/10 · 1 emails found",
       "prospectId": "tc_aHR0cHM6Ly9jb2d2"
-    },
-    {
-      "id": "act_1776496059268_yqyp8g",
-      "timestamp": "2026-04-18T07:07:39.268Z",
-      "type": "source-run",
-      "description": "Hourly source: 1 new prospects (30 articles scanned)",
-      "tokens": 5869
     }
   ],
   "articles": [
