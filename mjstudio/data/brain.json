@@ -1815,6 +1815,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672414485_t5m5oo",
+      "timestamp": "2026-04-20T08:06:54.485Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too large and influential, well beyond the ICP for premium web design projects.",
+      "source": "techcrunch",
+      "tokens": 775
+    },
+    {
       "id": "act_1776672409140_9pjtkp",
       "timestamp": "2026-04-20T08:06:49.140Z",
       "type": "prospect-skipped",
@@ -5665,14 +5673,6 @@
       "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The company described is a venture capital firm, not a web design project prospect.",
       "source": "techcrunch",
       "tokens": 788
-    },
-    {
-      "id": "act_1776478952808_vg2q6v",
-      "timestamp": "2026-04-18T02:22:32.808Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is in a Series C stage and likely has an established brand not in need of a premium web design studio, and the scale of a $95M funding round suggests a budget and requirements possibly beyond Brandivibe's target range.",
-      "source": "techcrunch",
-      "tokens": 804
     }
   ],
   "articles": [
