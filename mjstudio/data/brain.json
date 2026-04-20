@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686619758_txewqj",
+      "timestamp": "2026-04-20T12:03:39.758Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AI Applyd – a bot that applies to jobs for you\" — No detailed information on company size, stage, or funding; insufficient data to determine if company fits premium web design projects.",
+      "source": "hackernews",
+      "tokens": 686
+    },
+    {
       "id": "act_1776686613356_01uhx0",
       "timestamp": "2026-04-20T12:03:33.356Z",
       "type": "error",
@@ -5685,14 +5693,6 @@
       "prospectId": "tc_aHR0cHM6Ly9jb2d2",
       "source": "hackernews",
       "tokens": 722
-    },
-    {
-      "id": "act_1776496016228_gy74zu",
-      "timestamp": "2026-04-18T07:06:56.228Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"codeburn-rs; CodeBurn but 600x faster in Rust [view coding token usage]\" — The article refers to a GitHub project, not a company. It doesn't fit our ICP which targets companies requiring premium web design services.",
-      "source": "hackernews",
-      "tokens": 675
     }
   ],
   "articles": [
