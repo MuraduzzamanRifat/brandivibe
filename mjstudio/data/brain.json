@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724971119_bdkout",
+      "timestamp": "2026-04-20T22:42:51.119Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776724965740_okhaev",
       "timestamp": "2026-04-20T22:42:45.740Z",
       "type": "prospect-skipped",
@@ -6129,14 +6136,6 @@
       "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The company described appears to be an open-source library project, not a business entity or a stage fit for Brandivibe's premium web design services.",
       "source": "hackernews",
       "tokens": 707
-    },
-    {
-      "id": "act_1776530378386_vo7rrh",
-      "timestamp": "2026-04-18T16:39:38.386Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is a large-scale project led by Sam Altman with significant funding, likely exceeding the size and budget constraints of Brandivibe's ICP.",
-      "source": "techcrunch",
-      "tokens": 785
     }
   ],
   "articles": [
