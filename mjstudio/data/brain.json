@@ -2167,6 +2167,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712545040_cogqgq",
+      "timestamp": "2026-04-20T19:15:45.040Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"My Invention Engine – GDL is more powerful\" — The article appears to be discussing a personal project or initiative rather than a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 710
+    },
+    {
       "id": "act_1776712538745_oc1kb0",
       "timestamp": "2026-04-20T19:15:38.745Z",
       "type": "prospect-skipped",
@@ -6006,14 +6014,6 @@
       "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — The company appears to be an open-source project hosted on GitHub, not a for-profit business suitable for premium web design services.",
       "source": "hackernews",
       "tokens": 786
-    },
-    {
-      "id": "act_1776520642203_r6wbi3",
-      "timestamp": "2026-04-18T13:57:22.203Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is an AI company likely too large and established for Brandivibe's target client size.",
-      "source": "techcrunch",
-      "tokens": 759
     }
   ],
   "articles": [
