@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728518049_9ss1cv",
+      "timestamp": "2026-04-20T23:41:58.049Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Myanon – fast, deterministic MySQL dump anonymizer\" — The article describes a project about Myanon, which appears to be a specific tool for MySQL data anonymization, not a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 683
+    },
+    {
       "id": "act_1776728512813_yacvlv",
       "timestamp": "2026-04-20T23:41:52.813Z",
       "type": "prospect-skipped",
@@ -6126,14 +6134,6 @@
       "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is an open-source project on GitHub, suggesting it may not align with the premium web design studio's ICP, particularly regarding budgetary constraints.",
       "source": "hackernews",
       "tokens": 707
-    },
-    {
-      "id": "act_1776530399645_crap8v",
-      "timestamp": "2026-04-18T16:39:59.645Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company offers a free, open-source application, which indicates a lack of revenue model consistent with the premium web design studio clientele.",
-      "source": "hackernews",
-      "tokens": 687
     }
   ],
   "articles": [
