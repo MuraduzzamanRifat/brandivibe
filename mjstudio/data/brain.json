@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695425753_anci3k",
+      "timestamp": "2026-04-20T14:30:25.753Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Libredesk – self-hosted, single binary Intercom/Zendesk alternative\" — Company explicitly offers a free and open-source product which is not aligned with premium web design projects with budgets starting at $35K.",
+      "source": "hackernews",
+      "tokens": 884
+    },
+    {
       "id": "act_1776695419328_m030s9",
       "timestamp": "2026-04-20T14:30:19.328Z",
       "type": "error",
@@ -5674,15 +5682,6 @@
       "description": "Skipped [hackernews] \"I made a calculator that works over disjoint sets of intervals\" — The article describes a personal project related to interval arithmetic with no indication of a company, funding, team, or commercial application. It appears to be an individual effort without a business context.",
       "source": "hackernews",
       "tokens": 800
-    },
-    {
-      "id": "act_1776502248777_62xnx4",
-      "timestamp": "2026-04-18T08:50:48.777Z",
-      "type": "prospect-added",
-      "description": "Added TokensAI via hackernews (B-tier, ai) — TokensAI recently launched their platform for minting AI usage tokens.",
-      "prospectId": "tc_aHR0cHM6Ly90b2tl",
-      "source": "hackernews",
-      "tokens": 702
     }
   ],
   "articles": [
