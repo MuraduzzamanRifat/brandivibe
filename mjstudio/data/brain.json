@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696684183_0r0z9e",
+      "timestamp": "2026-04-20T14:51:24.183Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"ANSI Saver for Apple TV\" — ANSI Saver is an app for Apple TV, indicating a focus on consumer electronics and app development, not fitting Brandivibe's focus on web design for premium projects.",
+      "source": "hackernews",
+      "tokens": 881
+    },
+    {
       "id": "act_1776696677200_ts9ayx",
       "timestamp": "2026-04-20T14:51:17.200Z",
       "type": "prospect-skipped",
@@ -5699,14 +5707,6 @@
       "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company is focused on the iGaming and casino industry, which does not align with Brandivibe's target industries.",
       "source": "hackernews",
       "tokens": 817
-    },
-    {
-      "id": "act_1776505688890_mehzq3",
-      "timestamp": "2026-04-18T09:48:08.890Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I made a calculator that works over disjoint sets of intervals\" — The article discusses a personal project unrelated to any company or business entity, making it not applicable for a web design studio's ICP.",
-      "source": "hackernews",
-      "tokens": 762
     }
   ],
   "articles": [
