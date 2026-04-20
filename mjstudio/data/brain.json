@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696642089_z0929g",
+      "timestamp": "2026-04-20T14:50:42.089Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776696636375_2taezp",
       "timestamp": "2026-04-20T14:50:36.375Z",
       "type": "prospect-skipped",
@@ -5676,13 +5683,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776502296005_thsnvn",
-      "timestamp": "2026-04-18T08:51:36.005Z",
-      "type": "prospect-researched",
-      "description": "Hourly research: 2 prospects researched, 1 emails found",
-      "tokens": 4364
     }
   ],
   "articles": [
