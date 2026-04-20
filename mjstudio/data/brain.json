@@ -2167,6 +2167,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707926855_s2cn2c",
+      "timestamp": "2026-04-20T17:58:46.855Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776707920464_vknqak",
       "timestamp": "2026-04-20T17:58:40.464Z",
       "type": "prospect-researched",
@@ -6003,12 +6010,6 @@
       "timestamp": "2026-04-18T13:56:48.645Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: The right web design isn't just aesthetic—it's strategic. It anchors your value "
-    },
-    {
-      "id": "act_1776520603673_t3mglc",
-      "timestamp": "2026-04-18T13:56:43.673Z",
-      "type": "article-published",
-      "description": "Published \"Why Premium Web Design for Startups Separates the Best from the Rest\" (SEO 45/100, 478 words)"
     }
   ],
   "articles": [
