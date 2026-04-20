@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686656209_7ir9as",
+      "timestamp": "2026-04-20T12:04:16.209Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Ribbon, a Native iOS Linkding Client\" — The article describes an iOS app client software with no clear company information. Likely a small-scale or individual project.",
+      "source": "hackernews",
+      "tokens": 675
+    },
+    {
       "id": "act_1776686650936_i4skcp",
       "timestamp": "2026-04-20T12:04:10.936Z",
       "type": "prospect-skipped",
@@ -5684,14 +5692,6 @@
       "type": "source-run",
       "description": "Hourly source: 1 new prospects (30 articles scanned)",
       "tokens": 5869
-    },
-    {
-      "id": "act_1776496057392_c2kcz3",
-      "timestamp": "2026-04-18T07:07:37.392Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is too large, having raised a $95M Series C round, which is beyond the typical project budget range of $35-90K.",
-      "source": "techcrunch",
-      "tokens": 783
     }
   ],
   "articles": [
