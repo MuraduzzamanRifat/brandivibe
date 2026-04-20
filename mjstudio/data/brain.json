@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686650936_i4skcp",
+      "timestamp": "2026-04-20T12:04:10.936Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Cracks are starting to form on fusion energy’s funding boom\" — The article discusses fusion energy, an industry not within ICP (energy sector).",
+      "source": "techcrunch",
+      "tokens": 699
+    },
+    {
       "id": "act_1776686645905_1ig3gv",
       "timestamp": "2026-04-20T12:04:05.905Z",
       "type": "prospect-skipped",
@@ -5684,14 +5692,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is too large, having raised a $95M Series C round, which is beyond the typical project budget range of $35-90K.",
       "source": "techcrunch",
       "tokens": 783
-    },
-    {
-      "id": "act_1776496052779_evzg23",
-      "timestamp": "2026-04-18T07:07:32.780Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pyra – a Python toolchain experiment inspired by uv and Bun\" — The article describes an open-source project rather than a company, and there's no indication of a business model, funding stage, or industry focus.",
-      "source": "hackernews",
-      "tokens": 855
     }
   ],
   "articles": [
