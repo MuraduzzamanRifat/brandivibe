@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652678693_01widv",
+      "timestamp": "2026-04-20T02:37:58.693Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776652674007_sjdx29",
       "timestamp": "2026-04-20T02:37:54.007Z",
       "type": "prospect-skipped",
@@ -5646,15 +5653,6 @@
       "type": "email-found",
       "description": "Best email for Luma: alex.johnson@luma.com (pattern, conf 35)",
       "prospectId": "tc_aHR0cHM6Ly90ZWNo"
-    },
-    {
-      "id": "act_1776456089487_rj942u",
-      "timestamp": "2026-04-17T20:01:29.487Z",
-      "type": "prospect-researched",
-      "description": "Researched Luma: Lacks clear call-to-action buttons on the homepage.",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 2369
     }
   ],
   "articles": [
