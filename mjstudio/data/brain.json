@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721559615_5g0lx4",
+      "timestamp": "2026-04-20T21:45:59.615Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Poor's Man Shaders\" — The article provides no relevant information about a specific company, industry, stage, or any business attributes that could determine ICP fit.",
+      "source": "hackernews",
+      "tokens": 661
+    },
+    {
       "id": "act_1776721553955_7n9i3s",
       "timestamp": "2026-04-20T21:45:53.955Z",
       "type": "prospect-skipped",
@@ -6126,14 +6134,6 @@
       "type": "email-queued",
       "description": "Lead-gen queued touch 1 for Readox (contact@readox.ai): \"Is Your Website Attracting Premium Clients?\"",
       "prospectId": "tc_aHR0cHM6Ly9yZWFk"
-    },
-    {
-      "id": "act_1776523178373_y2nul1",
-      "timestamp": "2026-04-18T14:39:38.373Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The project appears to be a personal or small-scale project rather than a business, lacking clear commercial application or fundraising information.",
-      "source": "hackernews",
-      "tokens": 711
     }
   ],
   "articles": [
