@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728532994_v1b83m",
+      "timestamp": "2026-04-20T23:42:12.994Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Simple CLI tool to convert PDFs to dark mode, with TOC preservation\" — The company is a simple GitHub project for a CLI tool, likely an individual project with no clear business entity or funding. Not suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 703
+    },
+    {
       "id": "act_1776728527545_kwyyu6",
       "timestamp": "2026-04-20T23:42:07.545Z",
       "type": "prospect-skipped",
@@ -6127,14 +6135,6 @@
       "description": "Skipped [hackernews] \"Great Apps\" — The article lacks information about the company's funding, stage, industry, and other qualifying details required to determine ICP fit.",
       "source": "hackernews",
       "tokens": 659
-    },
-    {
-      "id": "act_1776533749891_peuetv",
-      "timestamp": "2026-04-18T17:35:49.891Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The article lacks specific information about TweakIdea's industry, stage, or recent funding, making it impossible to assess its fit with Brandivibe's ICP criteria.",
-      "source": "hackernews",
-      "tokens": 691
     }
   ],
   "articles": [
