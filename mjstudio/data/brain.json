@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721543190_gft1oq",
+      "timestamp": "2026-04-20T21:45:43.190Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I built an app to practice public speaking for ESL learners\" — The company is an early-stage, possibly solo project without clear signs of significant funding or business infrastructure.",
+      "source": "hackernews",
+      "tokens": 815
+    },
+    {
       "id": "act_1776721536062_5qu5gb",
       "timestamp": "2026-04-20T21:45:36.063Z",
       "type": "error",
@@ -6126,14 +6134,6 @@
       "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The company appears to be an individual project rather than a business at a relevant stage for Brandivibe.",
       "source": "hackernews",
       "tokens": 663
-    },
-    {
-      "id": "act_1776523164958_3mfzf6",
-      "timestamp": "2026-04-18T14:39:24.958Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"A site for stopping work slop\" — Insufficient information about the company, industry, or stage provided in the article; unclear if it's a business entity or a personal project.",
-      "source": "hackernews",
-      "tokens": 751
     }
   ],
   "articles": [
