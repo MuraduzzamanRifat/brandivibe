@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682080590_o0qar3",
+      "timestamp": "2026-04-20T10:48:00.590Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Radio4000\" — The article is effectively empty, providing no useful information about Radio4000, such as its funding stage, industry, or recent activities. Also, there are no details on whether they are looking for web design services.",
+      "source": "hackernews",
+      "tokens": 689
+    },
+    {
       "id": "act_1776682075179_3cudr0",
       "timestamp": "2026-04-20T10:47:55.179Z",
       "type": "prospect-skipped",
@@ -5685,14 +5693,6 @@
       "type": "source-run",
       "description": "Hourly source: 1 new prospects (32 articles scanned)",
       "tokens": 6316
-    },
-    {
-      "id": "act_1776488806966_vhd9ub",
-      "timestamp": "2026-04-18T05:06:46.966Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The article describes a browser extension for downloading media from Twitter, which indicates that it is a product-based business rather than a service-based business that would engage with web design services. This does not fit Brandivibe’s ICP, which targets companies looking for premium web design services.",
-      "source": "hackernews",
-      "tokens": 716
     }
   ],
   "articles": [
