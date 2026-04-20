@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652639850_r8r82b",
+      "timestamp": "2026-04-20T02:37:19.850Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — Company is too big and likely out of ICP due to high-profile partnerships and substantial existing influence.",
+      "source": "techcrunch",
+      "tokens": 775
+    },
+    {
       "id": "act_1776652634448_1jh80m",
       "timestamp": "2026-04-20T02:37:14.448Z",
       "type": "prospect-skipped",
@@ -5624,14 +5632,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company is valued at $1.5B, which indicates it is too large for Brandivibe's typical project budget and target range.",
       "source": "techcrunch",
       "tokens": 775
-    },
-    {
-      "id": "act_1776456053284_i7xfso",
-      "timestamp": "2026-04-17T20:00:53.284Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia Capital is a large venture capital firm, not a startup or company in need of web design services.",
-      "source": "techcrunch",
-      "tokens": 760
     }
   ],
   "articles": [
