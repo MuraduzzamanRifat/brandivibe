@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695366058_0f6q4j",
+      "timestamp": "2026-04-20T14:29:26.058Z",
+      "type": "plan-generated",
+      "description": "Planned \"The ROI of Premium Web Design for Startups: A Deep Dive into Revenue and Conversion\" + 3 FB posts + 2 lead-gen actions",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 8158
+    },
+    {
       "id": "act_1776686680453_a8rehj",
       "timestamp": "2026-04-20T12:04:40.453Z",
       "type": "prospect-skipped",
@@ -5684,13 +5692,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776496085563_ly827h",
-      "timestamp": "2026-04-18T07:08:05.563Z",
-      "type": "prospect-researched",
-      "description": "Hourly research: 1 prospects researched, 1 emails found",
-      "tokens": 2769
     }
   ],
   "articles": [
