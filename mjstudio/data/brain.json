@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663697131_g1m3hw",
+      "timestamp": "2026-04-20T05:41:37.131Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776663689537_9rd1bq",
       "timestamp": "2026-04-20T05:41:29.537Z",
       "type": "prospect-skipped",
@@ -5646,14 +5653,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company is too large (unicorn status at $1.5B valuation) for typical project budgets at Brandivibe.",
       "source": "techcrunch",
       "tokens": 770
-    },
-    {
-      "id": "act_1776465504957_y93ht4",
-      "timestamp": "2026-04-17T22:38:24.957Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a major venture capital firm, not a company seeking web design services.",
-      "source": "techcrunch",
-      "tokens": 806
     }
   ],
   "articles": [
