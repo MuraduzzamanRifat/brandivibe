@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696618958_ahfij7",
+      "timestamp": "2026-04-20T14:50:18.958Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lightflare – Self-hosted AI agent server for teams\" — The article describes an open-source project on GitHub, which is not a company with a budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 673
+    },
+    {
       "id": "act_1776696613533_0vogzl",
       "timestamp": "2026-04-20T14:50:13.533Z",
       "type": "prospect-skipped",
@@ -5674,15 +5682,6 @@
       "type": "prospect-scraped",
       "description": "Scraped tokensai.dev — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
       "prospectId": "tc_aHR0cHM6Ly90b2tl"
-    },
-    {
-      "id": "act_1776502279991_winq47",
-      "timestamp": "2026-04-18T08:51:19.991Z",
-      "type": "prospect-researched",
-      "description": "Researched Small: The homepage lacks clear CTAs, making it difficult for users to take action.",
-      "prospectId": "tc_aHR0cHM6Ly9nZXRz",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 2097
     }
   ],
   "articles": [
