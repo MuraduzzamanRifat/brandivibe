@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724955519_pcyind",
+      "timestamp": "2026-04-20T22:42:35.519Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"My Hyperliquid Terminal\" — The article does not provide enough specific information about the company, industry, stage, or relevant details to determine an ICP fit.",
+      "source": "hackernews",
+      "tokens": 659
+    },
+    {
       "id": "act_1776724949918_7gq0zu",
       "timestamp": "2026-04-20T22:42:29.918Z",
       "type": "prospect-skipped",
@@ -6129,13 +6137,6 @@
       "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The article is about a GitHub project, not a commercial company.",
       "source": "hackernews",
       "tokens": 670
-    },
-    {
-      "id": "act_1776530363643_cc4v1q",
-      "timestamp": "2026-04-18T16:39:23.643Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
