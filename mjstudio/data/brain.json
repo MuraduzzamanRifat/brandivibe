@@ -1837,6 +1837,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695387514_e2q9l3",
+      "timestamp": "2026-04-20T14:29:47.515Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Rethink your startup's site. Can a premium design really impact your bottom line"
+    },
+    {
       "id": "act_1776695379203_tmae5f",
       "timestamp": "2026-04-20T14:29:39.203Z",
       "type": "article-published",
@@ -5682,15 +5688,6 @@
       "description": "Skipped [hackernews] \"Jean2 – An Open-Source Agent You Assemble Like Lego\" — The company specializes in an open-source project, which typically doesn't align with the premium web design services market.",
       "source": "hackernews",
       "tokens": 696
-    },
-    {
-      "id": "act_1776502228328_di59my",
-      "timestamp": "2026-04-18T08:50:28.328Z",
-      "type": "prospect-added",
-      "description": "Added Small via hackernews (B-tier, saas) — Small has recently launched and might need a strong web presence to attract users and creators.",
-      "prospectId": "tc_aHR0cHM6Ly9nZXRz",
-      "source": "hackernews",
-      "tokens": 823
     }
   ],
   "articles": [
