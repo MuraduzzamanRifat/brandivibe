@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707899213_uuvpxp",
+      "timestamp": "2026-04-20T17:58:19.213Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (30 articles scanned)",
+      "tokens": 6024
+    },
+    {
       "id": "act_1776707896116_wz0sd6",
       "timestamp": "2026-04-20T17:58:16.116Z",
       "type": "prospect-skipped",
@@ -5716,14 +5723,6 @@
       "description": "Skipped [hackernews] \"I built Panda to get up to 99% token savings\" — The company appears to be a project or tool related to token savings without clear commercial backing, size, or funding stage.",
       "source": "hackernews",
       "tokens": 688
-    },
-    {
-      "id": "act_1776517297605_8yj8iy",
-      "timestamp": "2026-04-18T13:01:37.605Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses a general market trend without specifying any particular company that can be evaluated for ICP fit.",
-      "source": "techcrunch",
-      "tokens": 715
     }
   ],
   "articles": [
