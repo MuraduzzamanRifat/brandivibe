@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696672097_7gk8ck",
+      "timestamp": "2026-04-20T14:51:12.097Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Self-hosted Raspberry Pi wall display (no cloud, no subscription)\" — The article describes an open-source DIY project, not a company with potential for premium web design services.",
+      "source": "hackernews",
+      "tokens": 668
+    },
+    {
       "id": "act_1776696667121_4gwvra",
       "timestamp": "2026-04-20T14:51:07.121Z",
       "type": "prospect-skipped",
@@ -5699,14 +5707,6 @@
       "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The article does not describe a company; it describes an individual's project with no indication of a business structure or fundraising status.",
       "source": "hackernews",
       "tokens": 660
-    },
-    {
-      "id": "act_1776505680864_rtn9bc",
-      "timestamp": "2026-04-18T09:48:00.864Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Nilbox – Run OpenClaw without exposing your API tokens\" — The article does not provide enough information about Nilbox being a company or having a business model that fits the premium web design market.",
-      "source": "hackernews",
-      "tokens": 821
     }
   ],
   "articles": [
