@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721589811_4bjy8s",
+      "timestamp": "2026-04-20T21:46:29.811Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776721584723_qxuf4b",
       "timestamp": "2026-04-20T21:46:24.723Z",
       "type": "prospect-skipped",
@@ -6131,14 +6138,6 @@
       "description": "Skipped [hackernews] \"Free Email Signature Builder\" — The article describes a free tool, which suggests the company might not have the budget for a premium web design studio like Brandivibe.",
       "source": "hackernews",
       "tokens": 735
-    },
-    {
-      "id": "act_1776526611581_rrj3am",
-      "timestamp": "2026-04-18T15:36:51.581Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Great Apps\" — The article lacks sufficient information about the company, its industry, size, or funding to determine an ICP fit.",
-      "source": "hackernews",
-      "tokens": 639
     }
   ],
   "articles": [
