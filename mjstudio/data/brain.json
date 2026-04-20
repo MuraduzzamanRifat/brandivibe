@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686669508_9ukeaa",
+      "timestamp": "2026-04-20T12:04:29.508Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776686661650_aqpijx",
       "timestamp": "2026-04-20T12:04:21.650Z",
       "type": "prospect-skipped",
@@ -5686,13 +5693,6 @@
       "prospectId": "tc_aHR0cHM6Ly9jb2d2",
       "model": "gpt-4o-2024-08-06",
       "tokens": 2769
-    },
-    {
-      "id": "act_1776496062013_2tigiy",
-      "timestamp": "2026-04-18T07:07:42.013Z",
-      "type": "prospect-scraped",
-      "description": "Scraped cogveo.com — tech: (none detected) · design 5/10 · 1 emails found",
-      "prospectId": "tc_aHR0cHM6Ly9jb2d2"
     }
   ],
   "articles": [
