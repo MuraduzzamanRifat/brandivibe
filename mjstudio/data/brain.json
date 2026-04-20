@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724922771_ymnhd5",
+      "timestamp": "2026-04-20T22:42:02.771Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"CLI – A Go command-line library shaped like net/HTTP\" — The article describes an open-source Go command-line library project, which is not a company and thus does not fit as a prospect for Brandivibe's web design studio services.",
+      "source": "hackernews",
+      "tokens": 661
+    },
+    {
       "id": "act_1776724917422_55n509",
       "timestamp": "2026-04-20T22:41:57.422Z",
       "type": "error",
@@ -6128,14 +6136,6 @@
       "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — The article describes a local web app project rather than a company, indicating this is likely a solo or small-scale developer initiative, which is out of scope for Brandivibe's target client profile.",
       "source": "hackernews",
       "tokens": 817
-    },
-    {
-      "id": "act_1776526627460_0og574",
-      "timestamp": "2026-04-18T15:37:07.460Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is focused on markdown tools, which is more technical and less aligned with premium web design needs.",
-      "source": "hackernews",
-      "tokens": 690
     }
   ],
   "articles": [
