@@ -2189,6 +2189,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712565614_mzound",
+      "timestamp": "2026-04-20T19:16:05.614Z",
+      "type": "prospect-added",
+      "description": "Added Seltz via hackernews (A-tier, ai) — Seltz is launching a high-speed search API tailored for AI agents.",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z",
+      "source": "hackernews",
+      "tokens": 833
+    },
+    {
       "id": "act_1776712556827_yztogf",
       "timestamp": "2026-04-20T19:15:56.827Z",
       "type": "prospect-skipped",
@@ -6027,15 +6036,6 @@
       "description": "Skipped [hackernews] \"Chlibc – A ptrace-based tool to hot-swap glibc and interp in user-space\" — The company described in the article develops a specialized open-source tool for Linux systems, which suggests a focus on software development and potentially open-source contributions, not fitting the commercial web design target for Brandivibe.",
       "source": "hackernews",
       "tokens": 864
-    },
-    {
-      "id": "act_1776520658541_xdclse",
-      "timestamp": "2026-04-18T13:57:38.541Z",
-      "type": "prospect-added",
-      "description": "Added Readox via hackernews (B-tier, saas) — Readox is likely looking to expand its SaaS platform, providing an opportunity for web design enhancement.",
-      "prospectId": "tc_aHR0cHM6Ly9yZWFk",
-      "source": "hackernews",
-      "tokens": 826
     }
   ],
   "articles": [
