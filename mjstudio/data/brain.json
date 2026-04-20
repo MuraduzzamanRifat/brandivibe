@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672443723_ljx1sk",
+      "timestamp": "2026-04-20T08:07:23.723Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776672439257_76i73s",
       "timestamp": "2026-04-20T08:07:19.257Z",
       "type": "prospect-skipped",
@@ -5689,14 +5696,6 @@
       "prospectId": "tc_aHR0cHM6Ly93d3cu",
       "source": "hackernews",
       "tokens": 904
-    },
-    {
-      "id": "act_1776488776545_w10qdh",
-      "timestamp": "2026-04-18T05:06:16.545Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Seamless – Content-addressed computation caching for Python and bash\" — The company appears to be an individual project in bioinformatics rather than a scalable business. It lacks commercial structure, funding stage, and clear industry alignment with Brandivibe's ICP.",
-      "source": "hackernews",
-      "tokens": 862
     }
   ],
   "articles": [
