@@ -1837,6 +1837,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672423453_oedf13",
+      "timestamp": "2026-04-20T08:07:03.453Z",
+      "type": "prospect-added",
+      "description": "Added Qapir via hackernews (C-tier, saas) — Qapir recently launched a new product focusing on automating API testing.",
+      "prospectId": "tc_aHR0cHM6Ly9hcHAu",
+      "source": "hackernews",
+      "tokens": 856
+    },
+    {
       "id": "act_1776672414485_t5m5oo",
       "timestamp": "2026-04-20T08:06:54.485Z",
       "type": "prospect-skipped",
@@ -5687,14 +5696,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company, Factory, has reached a $1.5B valuation, indicating it's too large and advanced for Brandivibe's typical project size targeting startups.",
       "source": "techcrunch",
       "tokens": 790
-    },
-    {
-      "id": "act_1776478956819_7h7qzh",
-      "timestamp": "2026-04-18T02:22:36.819Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The company described is a venture capital firm, not a web design project prospect.",
-      "source": "techcrunch",
-      "tokens": 788
     }
   ],
   "articles": [
