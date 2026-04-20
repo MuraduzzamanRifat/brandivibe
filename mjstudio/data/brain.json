@@ -2167,6 +2167,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712525958_t0sdpw",
+      "timestamp": "2026-04-20T19:15:25.958Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776707938473_6af37a",
       "timestamp": "2026-04-20T17:58:58.473Z",
       "type": "prospect-researched",
@@ -6006,12 +6013,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776520622740_l7r84n",
-      "timestamp": "2026-04-18T13:57:02.740Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Cheap design attracts cheap clients. Is that really who you want? Let's raise th"
     }
   ],
   "articles": [
