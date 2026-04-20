@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701330248_kiestv",
+      "timestamp": "2026-04-20T16:08:50.248Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A web-based replacement for Nvidia's CUDA occupancy spreadsheet\" — The article describes a personal project or tool rather than a business entity, making it not applicable for Brandivibe's services.",
+      "source": "hackernews",
+      "tokens": 770
+    },
+    {
       "id": "act_1776701324673_74v4xe",
       "timestamp": "2026-04-20T16:08:44.673Z",
       "type": "prospect-skipped",
@@ -5695,14 +5703,6 @@
       "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The article describes a browser extension product, not a company, and it's targeted towards individual Twitter users rather than businesses, which doesn't align with Brandivibe's ICP focused on premium web design projects.",
       "source": "hackernews",
       "tokens": 731
-    },
-    {
-      "id": "act_1776508796610_9kpcdt",
-      "timestamp": "2026-04-18T10:39:56.610Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a large venture capital firm, not a potential client for web design projects.",
-      "source": "techcrunch",
-      "tokens": 806
     }
   ],
   "articles": [
