@@ -6470,14 +6470,14 @@
     {
       "date": "2026-04-20",
       "startedAt": "2026-04-20T14:28:32.406Z",
-      "updatedAt": "2026-04-20T14:29:54.426Z",
+      "updatedAt": "2026-04-20T14:30:04.870Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
           "done",
-          "pending"
+          "done"
         ],
         "score": "pending",
         "source": "pending",
