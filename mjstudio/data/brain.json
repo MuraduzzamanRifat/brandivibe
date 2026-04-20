@@ -1793,6 +1793,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652674007_sjdx29",
+      "timestamp": "2026-04-20T02:37:54.007Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776652669029_t19rrj",
       "timestamp": "2026-04-20T02:37:49.029Z",
       "type": "prospect-skipped",
@@ -5648,13 +5655,6 @@
       "prospectId": "tc_aHR0cHM6Ly90ZWNo",
       "model": "gpt-4o-2024-08-06",
       "tokens": 2369
-    },
-    {
-      "id": "act_1776456073206_n5nubp",
-      "timestamp": "2026-04-17T20:01:13.206Z",
-      "type": "prospect-scraped",
-      "description": "Scraped luma.com — tech: next.js, tailwind, cloudflare, react · design 6/10 · 0 emails found",
-      "prospectId": "tc_aHR0cHM6Ly90ZWNo"
     }
   ],
   "articles": [
