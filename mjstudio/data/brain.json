@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682111434_8315hi",
+      "timestamp": "2026-04-20T10:48:31.434Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for SnapReceipts (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zbmFw"
+    },
+    {
       "id": "act_1776682106849_tsryiy",
       "timestamp": "2026-04-20T10:48:26.849Z",
       "type": "prospect-skipped",
@@ -5687,13 +5694,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776488826341_grfj0g",
-      "timestamp": "2026-04-18T05:07:06.341Z",
-      "type": "prospect-researched",
-      "description": "Hourly research: 1 prospects researched, 1 emails found",
-      "tokens": 3819
     }
   ],
   "articles": [
