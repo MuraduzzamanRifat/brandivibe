@@ -1815,6 +1815,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672409140_9pjtkp",
+      "timestamp": "2026-04-20T08:06:49.140Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Developerpod, K-Cups for Code\" — Insufficient information to determine stage and industry. Description not provided.",
+      "source": "hackernews",
+      "tokens": 649
+    },
+    {
       "id": "act_1776672403395_cwdfc3",
       "timestamp": "2026-04-20T08:06:43.395Z",
       "type": "prospect-skipped",
@@ -5665,14 +5673,6 @@
       "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is in a Series C stage and likely has an established brand not in need of a premium web design studio, and the scale of a $95M funding round suggests a budget and requirements possibly beyond Brandivibe's target range.",
       "source": "techcrunch",
       "tokens": 804
-    },
-    {
-      "id": "act_1776478948221_gyxz8k",
-      "timestamp": "2026-04-18T02:22:28.221Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a well-established company likely beyond the early stage suitable for Brandivibe's ICP.",
-      "source": "techcrunch",
-      "tokens": 734
     }
   ],
   "articles": [
