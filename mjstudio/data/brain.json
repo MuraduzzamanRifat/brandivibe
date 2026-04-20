@@ -1771,6 +1771,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652613394_8s01c7",
+      "timestamp": "2026-04-20T02:36:53.394Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776641767316_gn2xyr",
       "timestamp": "2026-04-19T23:36:07.316Z",
       "type": "prospect-skipped",
@@ -5622,14 +5629,6 @@
       "timestamp": "2026-04-17T19:00:06.336Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
-    },
-    {
-      "id": "act_1776452404893_tubsxn",
-      "timestamp": "2026-04-17T19:00:04.893Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Upscale AI has a $2B valuation, indicating it is likely too large for Brandivibe's target project size.",
-      "source": "techcrunch",
-      "tokens": 740
     }
   ],
   "articles": [
