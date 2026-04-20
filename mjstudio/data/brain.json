@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682058618_mqdhj3",
+      "timestamp": "2026-04-20T10:47:38.618Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses a market trend and does not focus on a specific company.",
+      "source": "techcrunch",
+      "tokens": 714
+    },
+    {
       "id": "act_1776682052228_r7zxd8",
       "timestamp": "2026-04-20T10:47:32.228Z",
       "type": "error",
@@ -5685,14 +5693,6 @@
       "description": "Skipped [hackernews] \"Cogveo–Schedule AI agents to run Python on your files and email results\" — The article lacks detail about company stage, industry fit, or financial status to determine ICP alignment.",
       "source": "hackernews",
       "tokens": 683
-    },
-    {
-      "id": "act_1776488791342_7bwfoe",
-      "timestamp": "2026-04-18T05:06:31.342Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Realtime Voice AI on ESP32 with Cloudflare Durable Objects\" — The company appears to be an individual or a project leveraging Cloudflare for voice AI, which is not a fit for a premium web design service.",
-      "source": "hackernews",
-      "tokens": 783
     }
   ],
   "articles": [
