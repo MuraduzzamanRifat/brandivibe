@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663673297_6xiibn",
+      "timestamp": "2026-04-20T05:41:13.297Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Dewobble – Filter out phantom clicks and mouse jitter\" — The article provides minimal information about Dewobble, offering no details about its stage, industry, funding, or any indication it fits Brandivibe's options. The available link leads to a GitHub page, suggesting it may be a small, open-source project rather than a company in a growth stage.",
+      "source": "hackernews",
+      "tokens": 731
+    },
+    {
       "id": "act_1776663668422_2utwpx",
       "timestamp": "2026-04-20T05:41:08.422Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is an established project with potentially high budgets and large-scale operations; likely too large and established for Brandivibe's project range.",
       "source": "techcrunch",
       "tokens": 803
-    },
-    {
-      "id": "act_1776462072906_51vozo",
-      "timestamp": "2026-04-17T21:41:12.906Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — Factory is valued at $1.5B, which is too large for our target project sizes ($35-90K).",
-      "source": "techcrunch",
-      "tokens": 757
     }
   ],
   "articles": [
