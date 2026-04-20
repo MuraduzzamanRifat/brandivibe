@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728561773_gglqw4",
+      "timestamp": "2026-04-20T23:42:41.773Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776728552621_ny71hj",
       "timestamp": "2026-04-20T23:42:32.621Z",
       "type": "prospect-skipped",
@@ -6126,14 +6133,6 @@
       "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The article describes an open-source project rather than a company, which does not fit the ICP criteria for project size or industry.",
       "source": "hackernews",
       "tokens": 674
-    },
-    {
-      "id": "act_1776533773698_brd9pb",
-      "timestamp": "2026-04-18T17:36:13.698Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is too large and advanced in its funding stage (Series C) for the typical project size and scope of Brandivibe.",
-      "source": "techcrunch",
-      "tokens": 780
     }
   ],
   "articles": [
