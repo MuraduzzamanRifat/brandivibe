@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701358577_u2e0nb",
+      "timestamp": "2026-04-20T16:09:18.577Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"The Trawl CLI, trudge through agent harness logs for shit and giggles\" — The article is about a CLI tool, likely early-stage or hobbyist project without defined funding or clear business structure, not matching our focus on premium web design studio projects.",
+      "source": "hackernews",
+      "tokens": 795
+    },
+    {
       "id": "act_1776701353466_sszoh9",
       "timestamp": "2026-04-20T16:09:13.466Z",
       "type": "prospect-skipped",
@@ -5696,14 +5704,6 @@
       "description": "Skipped [hackernews] \"I built Panda to get up to 99% token savings\" — The article lacks details about the company's industry, stage, or any business-related information that would indicate a fit for a premium web design studio.",
       "source": "hackernews",
       "tokens": 672
-    },
-    {
-      "id": "act_1776512030812_hv57kf",
-      "timestamp": "2026-04-18T11:33:50.812Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large and advanced AI company not fitting the SMB criteria of Brandivibe's ICP.",
-      "source": "techcrunch",
-      "tokens": 732
     }
   ],
   "articles": [
