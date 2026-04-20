@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696598901_geip6z",
+      "timestamp": "2026-04-20T14:49:58.901Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776695439032_1ok3ua",
       "timestamp": "2026-04-20T14:30:39.032Z",
       "type": "prospect-skipped",
@@ -5674,14 +5681,6 @@
       "type": "source-run",
       "description": "Hourly source: 2 new prospects (29 articles scanned)",
       "tokens": 6150
-    },
-    {
-      "id": "act_1776502260176_2omiii",
-      "timestamp": "2026-04-18T08:51:00.176Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The article does not provide enough information to determine if PodWarden is in the appropriate stage or industry that fits Brandivibe's ICP. Additionally, no clear indicator of recent funding or specific details on the company's operations are provided.",
-      "source": "hackernews",
-      "tokens": 707
     }
   ],
   "articles": [
