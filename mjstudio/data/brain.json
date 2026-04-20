@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721547792_g76p9q",
+      "timestamp": "2026-04-20T21:45:47.792Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Resume Script for VLC\" — The article is not about a company; it describes a script for VLC.",
+      "source": "hackernews",
+      "tokens": 649
+    },
+    {
       "id": "act_1776721543190_gft1oq",
       "timestamp": "2026-04-20T21:45:43.190Z",
       "type": "prospect-skipped",
@@ -6126,14 +6134,6 @@
       "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World appears to be a large-scale project with existing infrastructure and partnerships, likely requiring services beyond the project size threshold of $35-90K.",
       "source": "techcrunch",
       "tokens": 807
-    },
-    {
-      "id": "act_1776523169094_pnt5bg",
-      "timestamp": "2026-04-18T14:39:29.094Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The company appears to be an individual project rather than a business at a relevant stage for Brandivibe.",
-      "source": "hackernews",
-      "tokens": 663
     }
   ],
   "articles": [
