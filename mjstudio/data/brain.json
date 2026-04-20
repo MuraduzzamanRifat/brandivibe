@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686613356_01uhx0",
+      "timestamp": "2026-04-20T12:03:33.356Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776682115758_ziy2ae",
       "timestamp": "2026-04-20T10:48:35.758Z",
       "type": "prospect-skipped",
@@ -5686,14 +5693,6 @@
       "description": "Skipped [hackernews] \"codeburn-rs; CodeBurn but 600x faster in Rust [view coding token usage]\" — The article refers to a GitHub project, not a company. It doesn't fit our ICP which targets companies requiring premium web design services.",
       "source": "hackernews",
       "tokens": 675
-    },
-    {
-      "id": "act_1776496012070_yfycbi",
-      "timestamp": "2026-04-18T07:06:52.070Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"A site for stopping work slop\" — The article does not provide sufficient information about a specific company's stage, industry, or funding to determine ICP fit.",
-      "source": "hackernews",
-      "tokens": 750
     }
   ],
   "articles": [
