@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663668422_2utwpx",
+      "timestamp": "2026-04-20T05:41:08.422Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lfk – a yazi inspired, Vim-like keyboard focused fast Kubernetes TUI\" — The company is an open-source project and not a commercial entity suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 790
+    },
+    {
       "id": "act_1776663663851_reib26",
       "timestamp": "2026-04-20T05:41:03.851Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — Factory is valued at $1.5B, which is too large for our target project sizes ($35-90K).",
       "source": "techcrunch",
       "tokens": 757
-    },
-    {
-      "id": "act_1776462068278_7d4cuc",
-      "timestamp": "2026-04-17T21:41:08.278Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a large venture capital firm, which is outside of the size and type suitable for Brandivibe's service offerings.",
-      "source": "techcrunch",
-      "tokens": 762
     }
   ],
   "articles": [
