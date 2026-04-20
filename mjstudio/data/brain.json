@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663689537_9rd1bq",
+      "timestamp": "2026-04-20T05:41:29.537Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Vastlint, inline linting for ad tags in VS Code, Kiro, Cursor\" — The company is a software tool for developers and does not align with Brandivibe's premium web design studio focus.",
+      "source": "hackernews",
+      "tokens": 841
+    },
+    {
       "id": "act_1776663683986_8nilqp",
       "timestamp": "2026-04-20T05:41:23.986Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a major venture capital firm, not a company seeking web design services.",
       "source": "techcrunch",
       "tokens": 806
-    },
-    {
-      "id": "act_1776465500436_d6std1",
-      "timestamp": "2026-04-17T22:38:20.436Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop has raised $95M in a Series C round, indicating they are beyond the scale typically targeted by Brandivibe. Additionally, their AI focus suggests they likely have significant internal resources for web design.",
-      "source": "techcrunch",
-      "tokens": 822
     }
   ],
   "articles": [
