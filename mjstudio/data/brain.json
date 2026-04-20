@@ -2211,6 +2211,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712587144_iwu9yn",
+      "timestamp": "2026-04-20T19:16:27.144Z",
+      "type": "prospect-scraped",
+      "description": "Scraped seltz.ai — tech: webflow, framer, framer-motion, google-fonts · design 8/10 · 1 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776712583189_1u64s8",
       "timestamp": "2026-04-20T19:16:23.189Z",
       "type": "source-run",
@@ -6051,13 +6058,6 @@
       "timestamp": "2026-04-18T13:58:04.244Z",
       "type": "lead-gen-skipped",
       "description": "Lead-gen executor: 2 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
-    },
-    {
-      "id": "act_1776520679879_73u6c5",
-      "timestamp": "2026-04-18T13:57:59.879Z",
-      "type": "source-run",
-      "description": "Source tick: 29 articles fetched, 1 new prospects added, 1 already known",
-      "tokens": 6165
     }
   ],
   "articles": [
