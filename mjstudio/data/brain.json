@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728523363_hh0dyt",
+      "timestamp": "2026-04-20T23:42:03.363Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Holos – QEMU/KVM with a compose-style YAML, GPUs and health checks\" — The article describes an open-source project on GitHub, not a company suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 831
+    },
+    {
       "id": "act_1776728518049_9ss1cv",
       "timestamp": "2026-04-20T23:41:58.049Z",
       "type": "prospect-skipped",
@@ -6126,14 +6134,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776530403791_zixo6j",
-      "timestamp": "2026-04-18T16:40:03.791Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"MDV – a Markdown superset for docs, dashboards, and slides with data\" — The company is an open-source project on GitHub, suggesting it may not align with the premium web design studio's ICP, particularly regarding budgetary constraints.",
-      "source": "hackernews",
-      "tokens": 707
     }
   ],
   "articles": [
