@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728552621_ny71hj",
+      "timestamp": "2026-04-20T23:42:32.621Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776728547153_jo4pxs",
       "timestamp": "2026-04-20T23:42:27.153Z",
       "type": "prospect-skipped",
@@ -6127,14 +6134,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is too large and advanced in its funding stage (Series C) for the typical project size and scope of Brandivibe.",
       "source": "techcrunch",
       "tokens": 780
-    },
-    {
-      "id": "act_1776533768029_y6qt3e",
-      "timestamp": "2026-04-18T17:36:08.029Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Free Email Signature Builder\" — The article describes a free email signature builder service which does not align with Brandivibe's target for premium web design projects.",
-      "source": "hackernews",
-      "tokens": 712
     }
   ],
   "articles": [
