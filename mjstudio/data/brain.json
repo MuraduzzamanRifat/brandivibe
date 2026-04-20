@@ -1859,6 +1859,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701318353_1yrmwc",
+      "timestamp": "2026-04-20T16:08:38.353Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776696712278_sjz3g9",
       "timestamp": "2026-04-20T14:51:52.278Z",
       "type": "prospect-skipped",
@@ -5696,14 +5703,6 @@
       "description": "Skipped [hackernews] \"Mind-OS – First free online AI dependency self‑assessment\" — The article does not provide sufficient information about the company's stage, industry, or any details that align with premium web design services ICP. It seems to be a project or tool rather than a company seeking web design services.",
       "source": "hackernews",
       "tokens": 707
-    },
-    {
-      "id": "act_1776508787385_t38rpw",
-      "timestamp": "2026-04-18T10:39:47.385Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I made a self-employed expense keeper\" — The article does not provide information about a specific company, its stage, or relevant funding details.",
-      "source": "hackernews",
-      "tokens": 654
     }
   ],
   "articles": [
