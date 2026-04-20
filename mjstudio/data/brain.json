@@ -2211,6 +2211,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712579780_99uu9a",
+      "timestamp": "2026-04-20T19:16:19.780Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Noise.widgita.xyz – a zero-back end noise map for anywhere in the world\" — The company appears to be a small or individual project due to its subdomain hosting and lack of any information suggesting significant funding or business operations.",
+      "source": "hackernews",
+      "tokens": 690
+    },
+    {
       "id": "act_1776712574264_hkmuk5",
       "timestamp": "2026-04-20T19:16:14.264Z",
       "type": "prospect-added",
@@ -6051,14 +6059,6 @@
       "description": "Skipped [hackernews] \"Link Shortener – Itlinks.me\" — The company operates as a link shortener service, which falls outside of Brandivibe's target niche focusing on premium web design for industries like crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, and vc.",
       "source": "hackernews",
       "tokens": 671
-    },
-    {
-      "id": "act_1776520668635_k6190z",
-      "timestamp": "2026-04-18T13:57:48.635Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — The article describes a GitHub project for a podcast ad blocker, which appears to be an open-source tool and likely not a commercial company or startup suitable for a premium web design project.",
-      "source": "hackernews",
-      "tokens": 844
     }
   ],
   "articles": [
