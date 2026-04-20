@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652629880_reckkv",
+      "timestamp": "2026-04-20T02:37:09.880Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Auxx.ai – Customer Support CRM (Mix of Attio and N8n)\" — Auxx.ai appears to be in an early-stage development phase by an individual, rather than an established company. It is not clear if it is at Seed stage or incorporates more than one individual in its operations, making it too early for Brandivibe's web design services.",
+      "source": "hackernews",
+      "tokens": 833
+    },
+    {
       "id": "act_1776652624700_3oxnds",
       "timestamp": "2026-04-20T02:37:04.700Z",
       "type": "prospect-skipped",
@@ -5624,14 +5632,6 @@
       "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company, Loop, is in a Stage C funding round, which is typically beyond our target range of startups at early funding stages like Seed or Series A.",
       "source": "techcrunch",
       "tokens": 828
-    },
-    {
-      "id": "act_1776456044942_lkxrdc",
-      "timestamp": "2026-04-17T20:00:44.942Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a well-established company and likely too large for Brandivibe's target market.",
-      "source": "techcrunch",
-      "tokens": 737
     }
   ],
   "articles": [
