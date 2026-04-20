@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696667121_4gwvra",
+      "timestamp": "2026-04-20T14:51:07.121Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Grammar of Graphics CLI tool made in Rust\" — The company is focused on an open-source CLI tool, which usually does not align with Brandivibe's premium web design services due to budget and industry mismatch.",
+      "source": "hackernews",
+      "tokens": 683
+    },
+    {
       "id": "act_1776696662936_4drara",
       "timestamp": "2026-04-20T14:51:02.936Z",
       "type": "prospect-added",
@@ -5699,14 +5707,6 @@
       "description": "Skipped [hackernews] \"Nilbox – Run OpenClaw without exposing your API tokens\" — The article does not provide enough information about Nilbox being a company or having a business model that fits the premium web design market.",
       "source": "hackernews",
       "tokens": 821
-    },
-    {
-      "id": "act_1776505676668_gcl79w",
-      "timestamp": "2026-04-18T09:47:56.668Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The company is focused on providing a catalog of self-hosted apps, which likely requires a robust technical infrastructure rather than premium web design services. It doesn't fit our focus on bespoke design needs.",
-      "source": "hackernews",
-      "tokens": 743
     }
   ],
   "articles": [
