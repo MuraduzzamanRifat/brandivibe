@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701370077_62wbvw",
+      "timestamp": "2026-04-20T16:09:30.077Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (30 articles scanned)",
+      "tokens": 6345
+    },
+    {
       "id": "act_1776701367454_qcldo5",
       "timestamp": "2026-04-20T16:09:27.454Z",
       "type": "prospect-added",
@@ -5719,14 +5726,6 @@
       "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — PodWarden is focused on open-source self-hosted apps, likely targeting developers and tech enthusiasts, not fitting Brandivibe's luxury market focus.",
       "source": "hackernews",
       "tokens": 695
-    },
-    {
-      "id": "act_1776512039742_exfkk9",
-      "timestamp": "2026-04-18T11:33:59.742Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — Podads is an open-source tool hosted on GitHub, indicating it is not a commercial venture likely to engage in a significant web design project.",
-      "source": "hackernews",
-      "tokens": 850
     }
   ],
   "articles": [
