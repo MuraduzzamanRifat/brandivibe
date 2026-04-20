@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728527545_kwyyu6",
+      "timestamp": "2026-04-20T23:42:07.545Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Resume Script for VLC\" — The article describes a script for VLC, not a company or business entity.",
+      "source": "hackernews",
+      "tokens": 649
+    },
+    {
       "id": "act_1776728523363_hh0dyt",
       "timestamp": "2026-04-20T23:42:03.363Z",
       "type": "prospect-skipped",
@@ -6127,13 +6135,6 @@
       "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The article lacks specific information about TweakIdea's industry, stage, or recent funding, making it impossible to assess its fit with Brandivibe's ICP criteria.",
       "source": "hackernews",
       "tokens": 691
-    },
-    {
-      "id": "act_1776533743886_qnaj0r",
-      "timestamp": "2026-04-18T17:35:43.886Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
