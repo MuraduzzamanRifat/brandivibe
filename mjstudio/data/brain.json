@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724939664_0pzk76",
+      "timestamp": "2026-04-20T22:42:19.664Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Eris – desktop PGP workstation with simple GUI\" — The article describes a personal project rather than a developed company, which isn't a fit for Brandivibe's targeted company stage.",
+      "source": "hackernews",
+      "tokens": 789
+    },
+    {
       "id": "act_1776724934444_yi9sys",
       "timestamp": "2026-04-20T22:42:14.444Z",
       "type": "prospect-skipped",
@@ -6128,14 +6136,6 @@
       "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal or hobby project, not a company.",
       "source": "hackernews",
       "tokens": 698
-    },
-    {
-      "id": "act_1776526643086_sknt6l",
-      "timestamp": "2026-04-18T15:37:23.086Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article does not describe any specific company; it's about the mobile app industry trend.",
-      "source": "techcrunch",
-      "tokens": 708
     }
   ],
   "articles": [
