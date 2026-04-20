@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663683986_8nilqp",
+      "timestamp": "2026-04-20T05:41:23.986Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Clone, a small Rust VMM, forks VMs in under 20ms via CoW\" — The company is a small open-source project without commercial backing or suitable budget for premium web design.",
+      "source": "hackernews",
+      "tokens": 814
+    },
+    {
       "id": "act_1776663677413_eit2sk",
       "timestamp": "2026-04-20T05:41:17.413Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop has raised $95M in a Series C round, indicating they are beyond the scale typically targeted by Brandivibe. Additionally, their AI focus suggests they likely have significant internal resources for web design.",
       "source": "techcrunch",
       "tokens": 822
-    },
-    {
-      "id": "act_1776465495650_no4ek7",
-      "timestamp": "2026-04-17T22:38:15.650Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large, established AI company and does not align with the startup stage or budget typically targeted by Brandivibe.",
-      "source": "techcrunch",
-      "tokens": 738
     }
   ],
   "articles": [
