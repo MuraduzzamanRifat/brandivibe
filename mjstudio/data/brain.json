@@ -1832,6 +1832,28 @@
       "sourceUrl": "https://app.qapir.io/",
       "createdAt": "2026-04-20T08:07:00.600Z",
       "updatedAt": "2026-04-20T08:07:00.600Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9nYWxh",
+      "company": "GalaxyBrain",
+      "domain": "galaxybrain.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "Seed",
+      "trigger": "The innovative local-first knowledge system indicates potential for a web redesign to highlight unique features.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "The current brand presence does not clearly convey the innovative value of their local-first structure.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "GalaxyBrain's focus on an advanced knowledge system suggests an opportunity to align their web design with their technical innovation.",
+      "source": "hackernews",
+      "sourceUrl": "https://galaxybrain.com",
+      "createdAt": "2026-04-20T14:51:00.301Z",
+      "updatedAt": "2026-04-20T14:51:00.301Z"
     }
   ],
   "drafts": [],
