@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717894991_7c8lmw",
+      "timestamp": "2026-04-20T20:44:54.991Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"AI Coding Agent Guardrails enforced at runtime\" — The article does not provide sufficient information to determine the company's size, stage, or recent funding which are critical to assess if it fits Brandivibe's ICP criteria. The focus on runtime enforcement for AI coding tools suggests a niche B2B SaaS product, but more details on company stage and funding are required.",
+      "source": "hackernews",
+      "tokens": 870
+    },
+    {
       "id": "act_1776717885569_ty6va4",
       "timestamp": "2026-04-20T20:44:45.569Z",
       "type": "prospect-skipped",
@@ -6128,13 +6136,6 @@
       "type": "prospect-researched",
       "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
       "tokens": 3350
-    },
-    {
-      "id": "act_1776520710638_b70esr",
-      "timestamp": "2026-04-18T13:58:30.638Z",
-      "type": "prospect-researched",
-      "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
-      "tokens": 3255
     }
   ],
   "articles": [
