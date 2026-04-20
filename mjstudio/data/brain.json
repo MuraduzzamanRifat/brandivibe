@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728547153_jo4pxs",
+      "timestamp": "2026-04-20T23:42:27.153Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Freelava – Lava Lamp in an HTML Page\" — Freelava is a hobby project and not a revenue-generating company.",
+      "source": "hackernews",
+      "tokens": 787
+    },
+    {
       "id": "act_1776728542510_etiz5o",
       "timestamp": "2026-04-20T23:42:22.510Z",
       "type": "prospect-skipped",
@@ -6127,14 +6135,6 @@
       "description": "Skipped [hackernews] \"Free Email Signature Builder\" — The article describes a free email signature builder service which does not align with Brandivibe's target for premium web design projects.",
       "source": "hackernews",
       "tokens": 712
-    },
-    {
-      "id": "act_1776533762903_zk5uxr",
-      "timestamp": "2026-04-18T17:36:02.903Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large AI company and not a small to mid-sized company.",
-      "source": "techcrunch",
-      "tokens": 720
     }
   ],
   "articles": [
