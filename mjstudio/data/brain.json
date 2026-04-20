@@ -1788,6 +1788,28 @@
       "sourceUrl": "https://modular.run",
       "createdAt": "2026-04-20T02:37:30.613Z",
       "updatedAt": "2026-04-20T02:37:30.613Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9mZXJh",
+      "company": "FeralHq",
+      "domain": "feralhq.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Early-Stage",
+      "trigger": "The launch of a new AI-driven content generation engine indicates potential for brand and website development.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "The current brand lacks a professional web presence that communicates sophisticated capabilities.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The founder's post suggests a background in product development rather than marketing, indicating potential need for website and branding support.",
+      "source": "hackernews",
+      "sourceUrl": "https://feralhq.com/",
+      "createdAt": "2026-04-20T08:06:35.647Z",
+      "updatedAt": "2026-04-20T08:06:35.647Z"
     }
   ],
   "drafts": [],
