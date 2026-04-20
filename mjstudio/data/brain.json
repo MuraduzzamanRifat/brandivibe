@@ -6434,10 +6434,10 @@
     {
       "date": "2026-04-20",
       "startedAt": "2026-04-20T14:28:32.406Z",
-      "updatedAt": "2026-04-20T14:29:23.058Z",
+      "updatedAt": "2026-04-20T14:29:36.101Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
