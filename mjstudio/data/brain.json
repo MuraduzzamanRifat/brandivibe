@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696613533_0vogzl",
+      "timestamp": "2026-04-20T14:50:13.533Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Self-hosted Raspberry Pi wall display (no cloud, no subscription)\" — The article describes an open-source project on GitHub, which is not a company and does not fit our ICP requirements for company size and stage.",
+      "source": "hackernews",
+      "tokens": 684
+    },
+    {
       "id": "act_1776696606822_t1y58b",
       "timestamp": "2026-04-20T14:50:06.822Z",
       "type": "prospect-skipped",
@@ -5675,13 +5683,6 @@
       "prospectId": "tc_aHR0cHM6Ly9nZXRz",
       "model": "gpt-4o-2024-08-06",
       "tokens": 2097
-    },
-    {
-      "id": "act_1776502264591_bpro6u",
-      "timestamp": "2026-04-18T08:51:04.591Z",
-      "type": "prospect-scraped",
-      "description": "Scraped getsmall.xyz — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
-      "prospectId": "tc_aHR0cHM6Ly9nZXRz"
     }
   ],
   "articles": [
