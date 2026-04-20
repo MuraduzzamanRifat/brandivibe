@@ -1771,6 +1771,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652619130_pxf0tj",
+      "timestamp": "2026-04-20T02:36:59.130Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Self-healing browser harness via direct CDP\" — The article is about a technical project related to browser automation and AI, without any indication of being a company ready for premium web design services.",
+      "source": "hackernews",
+      "tokens": 794
+    },
+    {
       "id": "act_1776652613394_8s01c7",
       "timestamp": "2026-04-20T02:36:53.394Z",
       "type": "error",
@@ -5623,12 +5631,6 @@
       "type": "prospect-skipped",
       "description": "Could not scrape gizmo.com (404 or network failure)",
       "prospectId": "tc_aHR0cHM6Ly90ZWNo"
-    },
-    {
-      "id": "act_1776452406336_sba77h",
-      "timestamp": "2026-04-17T19:00:06.336Z",
-      "type": "lead-gen-skipped",
-      "description": "Lead-gen executor: no eligible prospects yet (need tier A/B with email + research)"
     }
   ],
   "articles": [
