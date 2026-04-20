@@ -1837,6 +1837,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695407972_trluio",
+      "timestamp": "2026-04-20T14:30:07.972Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Premium web design: Not an expense, but a high-return investment. 🚀 Calculate y"
+    },
+    {
       "id": "act_1776695397837_uej5b3",
       "timestamp": "2026-04-20T14:29:57.837Z",
       "type": "fb-queued",
@@ -5678,14 +5684,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is Series C and outside the typical budget range for projects within Brandivibe's scope.",
       "source": "techcrunch",
       "tokens": 799
-    },
-    {
-      "id": "act_1776502238456_v6yf9i",
-      "timestamp": "2026-04-18T08:50:38.456Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company operates in the iGaming/gambling industry, which is not part of the defined target industries such as crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, or vc.",
-      "source": "hackernews",
-      "tokens": 811
     }
   ],
   "articles": [
