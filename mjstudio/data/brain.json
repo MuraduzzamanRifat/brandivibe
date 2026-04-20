@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701347634_jkr51m",
+      "timestamp": "2026-04-20T16:09:07.634Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"We trained a 32B model to beat Opus 4 at credit card optimization\" — The article describes a research project on AI models for credit card optimization. It does not present a company opportunity suitable for a web design studio.",
+      "source": "hackernews",
+      "tokens": 784
+    },
+    {
       "id": "act_1776701342307_im45dd",
       "timestamp": "2026-04-20T16:09:02.307Z",
       "type": "prospect-skipped",
@@ -5695,14 +5703,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776508809745_vti6l2",
-      "timestamp": "2026-04-18T10:40:09.745Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes a personal project using AI for analyzing Garmin data, not a company or business in an industry relevant to Brandivibe's ICP.",
-      "source": "hackernews",
-      "tokens": 781
     }
   ],
   "articles": [
