@@ -2162,6 +2162,28 @@
       "sourceUrl": "https://skillcatalog.dev",
       "createdAt": "2026-04-20T16:09:24.867Z",
       "updatedAt": "2026-04-20T16:09:24.867Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9jb25z",
+      "company": "Seltz",
+      "domain": "seltz.ai",
+      "founder": "Antonio",
+      "role": "Founder",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Seltz is launching a high-speed search API tailored for AI agents.",
+      "icpTier": "A",
+      "icpScore": 7,
+      "bestFitDemo": "helix",
+      "brandWeakness": "The current branding seems very technical and could benefit from a more visually appealing presentation to attract a broader audience.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The company is at the Seed stage and focuses on AI technology, making them a strong candidate for web design services tailored to tech startups.",
+      "source": "hackernews",
+      "sourceUrl": "https://console.seltz.ai/login",
+      "createdAt": "2026-04-20T19:16:03.087Z",
+      "updatedAt": "2026-04-20T19:16:03.087Z"
     }
   ],
   "drafts": [],
