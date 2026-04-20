@@ -2167,6 +2167,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707938473_6af37a",
+      "timestamp": "2026-04-20T17:58:58.473Z",
+      "type": "prospect-researched",
+      "description": "Hourly research: 1 prospects researched, 0 emails found",
+      "tokens": 3970
+    },
+    {
       "id": "act_1776707931584_uklyla",
       "timestamp": "2026-04-20T17:58:51.584Z",
       "type": "prospect-skipped",
@@ -6005,12 +6012,6 @@
       "timestamp": "2026-04-18T13:57:02.740Z",
       "type": "fb-queued",
       "description": "Queued FB post for approval: Cheap design attracts cheap clients. Is that really who you want? Let's raise th"
-    },
-    {
-      "id": "act_1776520615553_r8nh1j",
-      "timestamp": "2026-04-18T13:56:55.553Z",
-      "type": "fb-queued",
-      "description": "Queued FB post for approval: Your website is more than a digital business card. It's a gateway to premium cli"
     }
   ],
   "articles": [
