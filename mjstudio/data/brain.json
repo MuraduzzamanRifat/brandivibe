@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701342307_im45dd",
+      "timestamp": "2026-04-20T16:09:02.307Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Actual Claude Tokenizer\" — The article is about a tool developed for token splitting in textual data, likely in the AI or tech industry. However, it appears to be an individual project rather than a company seeking web design services.",
+      "source": "hackernews",
+      "tokens": 772
+    },
+    {
       "id": "act_1776701336314_tf7hej",
       "timestamp": "2026-04-20T16:08:56.314Z",
       "type": "prospect-skipped",
@@ -5695,14 +5703,6 @@
       "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes a personal project using AI for analyzing Garmin data, not a company or business in an industry relevant to Brandivibe's ICP.",
       "source": "hackernews",
       "tokens": 781
-    },
-    {
-      "id": "act_1776508805740_0w70vw",
-      "timestamp": "2026-04-18T10:40:05.740Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — InGaming operates in the iGaming industry, which does not align with Brandivibe's targeted industries like fintech, saas, ai, etc.",
-      "source": "hackernews",
-      "tokens": 797
     }
   ],
   "articles": [
