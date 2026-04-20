@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696624847_7gdwvx",
+      "timestamp": "2026-04-20T14:50:24.847Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Native desktop app for Google Tasks\" — The article does not provide enough information about the company to determine its industry, stage, or suitability as a client. It only mentions a product without company context.",
+      "source": "hackernews",
+      "tokens": 670
+    },
+    {
       "id": "act_1776696618958_ahfij7",
       "timestamp": "2026-04-20T14:50:18.958Z",
       "type": "prospect-skipped",
@@ -5675,13 +5683,6 @@
       "prospectId": "tc_aHR0cHM6Ly90b2tl",
       "model": "gpt-4o-2024-08-06",
       "tokens": 2267
-    },
-    {
-      "id": "act_1776502284040_qvioaj",
-      "timestamp": "2026-04-18T08:51:24.040Z",
-      "type": "prospect-scraped",
-      "description": "Scraped tokensai.dev — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
-      "prospectId": "tc_aHR0cHM6Ly90b2tl"
     }
   ],
   "articles": [
