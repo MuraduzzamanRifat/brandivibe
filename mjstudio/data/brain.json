@@ -1881,6 +1881,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707876215_vg9xj1",
+      "timestamp": "2026-04-20T17:57:56.215Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open security key on nrf52480 with NFC\" — The article does not describe a company; rather, it discusses a technical update related to security keys, which is not relevant to the ICP of Brandivibe targeting premium web design projects.",
+      "source": "hackernews",
+      "tokens": 663
+    },
+    {
       "id": "act_1776707871323_8ss5g3",
       "timestamp": "2026-04-20T17:57:51.323Z",
       "type": "prospect-skipped",
@@ -5716,14 +5724,6 @@
       "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — Saucybargain operates as a community platform for bargains without a focus on premium web design needs. Their business model does not align with our target ICP in terms of industry relevance or budget capacity for high-end web projects.",
       "source": "hackernews",
       "tokens": 704
-    },
-    {
-      "id": "act_1776517270392_jqje4s",
-      "timestamp": "2026-04-18T13:01:10.392Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Series C funding and substantial funding amount suggest the company is beyond the premium web design studio target size.",
-      "source": "techcrunch",
-      "tokens": 773
     }
   ],
   "articles": [
