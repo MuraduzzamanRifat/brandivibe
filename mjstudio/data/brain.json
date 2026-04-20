@@ -1815,6 +1815,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672403395_cwdfc3",
+      "timestamp": "2026-04-20T08:06:43.395Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A font that auto-translates Chinese\" — The article describes a personal project rather than a company, with no indication of scale, funding, or business stage necessary for a typical Brandivibe client.",
+      "source": "hackernews",
+      "tokens": 807
+    },
+    {
       "id": "act_1776672398145_vd2gff",
       "timestamp": "2026-04-20T08:06:38.145Z",
       "type": "prospect-added",
@@ -5665,14 +5673,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a well-established company likely beyond the early stage suitable for Brandivibe's ICP.",
       "source": "techcrunch",
       "tokens": 734
-    },
-    {
-      "id": "act_1776478944063_ldz1go",
-      "timestamp": "2026-04-18T02:22:24.063Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company 'World' is a large-scale project aimed at human verification with global ambitions, likely beyond Brandivibe's typical project budget range.",
-      "source": "techcrunch",
-      "tokens": 778
     }
   ],
   "articles": [
