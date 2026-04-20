@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696606822_t1y58b",
+      "timestamp": "2026-04-20T14:50:06.822Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"DashPane v2, a macOS app switcher and launcher\" — The company is a small, recently launched macOS app, likely not needing a premium web redesign.",
+      "source": "hackernews",
+      "tokens": 834
+    },
+    {
       "id": "act_1776696598901_geip6z",
       "timestamp": "2026-04-20T14:49:58.901Z",
       "type": "error",
@@ -5674,13 +5682,6 @@
       "type": "prospect-scraped",
       "description": "Scraped getsmall.xyz — tech: next.js, tailwind, react · design 6/10 · 0 emails found",
       "prospectId": "tc_aHR0cHM6Ly9nZXRz"
-    },
-    {
-      "id": "act_1776502261976_55m77c",
-      "timestamp": "2026-04-18T08:51:01.976Z",
-      "type": "source-run",
-      "description": "Hourly source: 2 new prospects (29 articles scanned)",
-      "tokens": 6150
     }
   ],
   "articles": [
