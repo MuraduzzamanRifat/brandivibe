@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724934444_yi9sys",
+      "timestamp": "2026-04-20T22:42:14.444Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pwneye – discovering and accessing IP cameras (ONVIF/RTSP)\" — The article describes a CLI tool for interacting with IP cameras, which is likely a project aimed at penetration testing and security rather than a viable business in the industry sectors Brandivibe serves.",
+      "source": "hackernews",
+      "tokens": 817
+    },
+    {
       "id": "act_1776724928231_txymiy",
       "timestamp": "2026-04-20T22:42:08.231Z",
       "type": "prospect-skipped",
@@ -6128,14 +6136,6 @@
       "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article does not describe any specific company; it's about the mobile app industry trend.",
       "source": "techcrunch",
       "tokens": 708
-    },
-    {
-      "id": "act_1776526639240_miapb2",
-      "timestamp": "2026-04-18T15:37:19.240Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The company described (TweakIdea on GitHub) appears to be a software project or tool for evaluating startup ideas, rather than a standalone business entity that would require web design services. Additionally, it is hosted on GitHub, indicating it may be open source or a component within a larger framework, rather than a company with budgetary capabilities.",
-      "source": "hackernews",
-      "tokens": 758
     }
   ],
   "articles": [
