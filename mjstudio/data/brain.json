@@ -2167,6 +2167,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712532732_dn66cu",
+      "timestamp": "2026-04-20T19:15:32.732Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Release of Writing App: Alistair v1.0\" — The article is about the release of a writing app, indicating a focus on software development rather than a premium web design project suitable for Brandivibe.",
+      "source": "hackernews",
+      "tokens": 692
+    },
+    {
       "id": "act_1776712525958_t0sdpw",
       "timestamp": "2026-04-20T19:15:25.958Z",
       "type": "error",
@@ -6006,13 +6014,6 @@
       "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is a developer of a specific browser extension tool for media downloading, which falls outside the scope of premium web design projects. It is not in the correct industry or stage of development for Brandivibe's services.",
       "source": "hackernews",
       "tokens": 744
-    },
-    {
-      "id": "act_1776520630640_f783i6",
-      "timestamp": "2026-04-18T13:57:10.640Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
