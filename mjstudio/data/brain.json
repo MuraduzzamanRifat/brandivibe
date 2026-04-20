@@ -1859,6 +1859,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696692206_gjyi4k",
+      "timestamp": "2026-04-20T14:51:32.206Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (32 articles scanned)",
+      "tokens": 5935
+    },
+    {
       "id": "act_1776696689590_vnzhuy",
       "timestamp": "2026-04-20T14:51:29.590Z",
       "type": "prospect-skipped",
@@ -5699,14 +5706,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776505697919_t5vlfq",
-      "timestamp": "2026-04-18T09:48:17.919Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is in Series C with significant funding ($95M), likely too large for Brandivibe's ICP.",
-      "source": "techcrunch",
-      "tokens": 785
     }
   ],
   "articles": [
