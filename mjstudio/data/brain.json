@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663677413_eit2sk",
+      "timestamp": "2026-04-20T05:41:17.413Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"OpenRegistry – MCP for global company registry search\" — The article provides insufficient information about OpenRegistry to determine its industry, funding stage, or other attributes relevant for Brandivibe's ICP criteria.",
+      "source": "hackernews",
+      "tokens": 675
+    },
+    {
       "id": "act_1776663673297_6xiibn",
       "timestamp": "2026-04-20T05:41:13.297Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large, established AI company and does not align with the startup stage or budget typically targeted by Brandivibe.",
       "source": "techcrunch",
       "tokens": 738
-    },
-    {
-      "id": "act_1776465490969_u4h6ef",
-      "timestamp": "2026-04-17T22:38:10.969Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Sam Altman's project World looks to scale its human verification empire. First s\" — World is an established project with potentially high budgets and large-scale operations; likely too large and established for Brandivibe's project range.",
-      "source": "techcrunch",
-      "tokens": 803
     }
   ],
   "articles": [
