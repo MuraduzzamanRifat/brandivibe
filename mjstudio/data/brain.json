@@ -2167,6 +2167,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712538745_oc1kb0",
+      "timestamp": "2026-04-20T19:15:38.745Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Ctx – a /resume that works across Claude Code and Codex\" — The company is a GitHub project, not a business entity suitable for high-budget web design projects.",
+      "source": "hackernews",
+      "tokens": 865
+    },
+    {
       "id": "act_1776712532732_dn66cu",
       "timestamp": "2026-04-20T19:15:32.732Z",
       "type": "prospect-skipped",
@@ -6006,14 +6014,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is an AI company likely too large and established for Brandivibe's target client size.",
       "source": "techcrunch",
       "tokens": 759
-    },
-    {
-      "id": "act_1776520636408_ax63pt",
-      "timestamp": "2026-04-18T13:57:16.408Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is a developer of a specific browser extension tool for media downloading, which falls outside the scope of premium web design projects. It is not in the correct industry or stage of development for Brandivibe's services.",
-      "source": "hackernews",
-      "tokens": 744
     }
   ],
   "articles": [
