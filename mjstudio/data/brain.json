@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717914909_jp7759",
+      "timestamp": "2026-04-20T20:45:14.909Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776717909586_fywiq7",
       "timestamp": "2026-04-20T20:45:09.586Z",
       "type": "source-run",
@@ -6129,14 +6136,6 @@
       "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company operates in the iGaming space, which is not part of the targeted industries such as SaaS, Fintech, AI, Healthcare, Luxury, EV, Architecture, or VC.",
       "source": "hackernews",
       "tokens": 818
-    },
-    {
-      "id": "act_1776523151175_vjxwvz",
-      "timestamp": "2026-04-18T14:39:11.175Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Great Apps\" — The article provides no information about the company other than its name and a link. No data on industry, stage, or any business triggers are available.",
-      "source": "hackernews",
-      "tokens": 647
     }
   ],
   "articles": [
