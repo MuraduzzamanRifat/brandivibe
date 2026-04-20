@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696647843_hxxv55",
+      "timestamp": "2026-04-20T14:50:47.843Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Apple style onboarding experience for your Mac app (open-source)\" — The project is open-source and unlikely to have a budget for premium web design services.",
+      "source": "hackernews",
+      "tokens": 721
+    },
+    {
       "id": "act_1776696642089_z0929g",
       "timestamp": "2026-04-20T14:50:42.089Z",
       "type": "error",
@@ -5676,13 +5684,6 @@
       "description": "Skipped [hackernews] \"Pyra – a Python toolchain experiment inspired by uv and Bun\" — The article describes a personal project by an individual developer rather than a company. It's not suitable for Brandivibe's web design services.",
       "source": "hackernews",
       "tokens": 781
-    },
-    {
-      "id": "act_1776505662465_nmc2cr",
-      "timestamp": "2026-04-18T09:47:42.465Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
