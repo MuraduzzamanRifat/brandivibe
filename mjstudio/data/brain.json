@@ -1881,6 +1881,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707871323_8ss5g3",
+      "timestamp": "2026-04-20T17:57:51.323Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pwneye – discovering and accessing IP cameras (ONVIF/RTSP)\" — The article describes a CLI tool developed for interacting with IP cameras in a security testing context, which doesn't align with our focus on premium web design for industries like SaaS, luxury, and fintech.",
+      "source": "hackernews",
+      "tokens": 816
+    },
+    {
       "id": "act_1776707865086_32k5b9",
       "timestamp": "2026-04-20T17:57:45.086Z",
       "type": "prospect-added",
@@ -5716,14 +5724,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Series C funding and substantial funding amount suggest the company is beyond the premium web design studio target size.",
       "source": "techcrunch",
       "tokens": 773
-    },
-    {
-      "id": "act_1776517265230_v21po4",
-      "timestamp": "2026-04-18T13:01:05.230Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article describes an individual's project rather than a company, making it unsuitable for a premium web design studio's services.",
-      "source": "hackernews",
-      "tokens": 786
     }
   ],
   "articles": [
