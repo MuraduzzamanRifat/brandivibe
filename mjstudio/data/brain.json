@@ -2262,6 +2262,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717867259_e3gle1",
+      "timestamp": "2026-04-20T20:44:27.259Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Pwneye – discovering and accessing IP cameras (ONVIF/RTSP)\" — The company, Pwneye, is described as a CLI tool for interacting with IP cameras, focusing on penetration testing and red team engagements. This indicates it is not in Brandivibe's target industries like web design or SaaS.",
+      "source": "hackernews",
+      "tokens": 825
+    },
+    {
       "id": "act_1776717860336_w5kzis",
       "timestamp": "2026-04-20T20:44:20.336Z",
       "type": "prospect-skipped",
@@ -6103,15 +6111,6 @@
       "prospectId": "tc_aHR0cHM6Ly9yZWFk",
       "model": "gpt-4o-2024-08-06",
       "tokens": 3350
-    },
-    {
-      "id": "act_1776520702982_itfbk4",
-      "timestamp": "2026-04-18T13:58:22.982Z",
-      "type": "prospect-researched",
-      "description": "Researched Readox: Duplicate H1 headings create confusion and dilute SEO impact.",
-      "prospectId": "tc_aHR0cHM6Ly9yZWFk",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 3255
     }
   ],
   "articles": [
