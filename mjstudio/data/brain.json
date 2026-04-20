@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721536062_5qu5gb",
+      "timestamp": "2026-04-20T21:45:36.063Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776717926935_fd9ofw",
       "timestamp": "2026-04-20T20:45:26.935Z",
       "type": "prospect-skipped",
@@ -6127,14 +6134,6 @@
       "description": "Skipped [hackernews] \"A site for stopping work slop\" — Insufficient information about the company, industry, or stage provided in the article; unclear if it's a business entity or a personal project.",
       "source": "hackernews",
       "tokens": 751
-    },
-    {
-      "id": "act_1776523160553_tb5jd7",
-      "timestamp": "2026-04-18T14:39:20.553Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The company described, Pvm, is a tool for managing Python virtual environments and does not fit our ICP as it is not a company seeking premium web design services.",
-      "source": "hackernews",
-      "tokens": 688
     }
   ],
   "articles": [
