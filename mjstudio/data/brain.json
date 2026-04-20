@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717900031_phn4vj",
+      "timestamp": "2026-04-20T20:45:00.031Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Glimpse – A native macOS Markdown viewer with on-device AI\" — The company appears to be a single macOS app primarily targeting consumers, which is not high-budget or complex enough for Brandivibe's project scope.",
+      "source": "hackernews",
+      "tokens": 708
+    },
+    {
       "id": "act_1776717894991_7c8lmw",
       "timestamp": "2026-04-20T20:44:54.991Z",
       "type": "prospect-skipped",
@@ -6129,13 +6137,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776520711586_etak1w",
-      "timestamp": "2026-04-18T13:58:31.586Z",
-      "type": "prospect-researched",
-      "description": "Research tick: scraped 1, researched 1, emails found 1, skipped 0",
-      "tokens": 3350
     }
   ],
   "articles": [
