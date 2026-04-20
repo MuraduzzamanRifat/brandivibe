@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728512813_yacvlv",
+      "timestamp": "2026-04-20T23:41:52.813Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Sprag – full-stack Python framework with no JavaScript Required\" — The project is a pre-alpha open-source framework, not a company. It doesn't have a proven market need, revenue, or funding typical of ICPs.",
+      "source": "hackernews",
+      "tokens": 794
+    },
+    {
       "id": "act_1776728505928_6oh2te",
       "timestamp": "2026-04-20T23:41:45.928Z",
       "type": "error",
@@ -6126,14 +6134,6 @@
       "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company offers a free, open-source application, which indicates a lack of revenue model consistent with the premium web design studio clientele.",
       "source": "hackernews",
       "tokens": 687
-    },
-    {
-      "id": "act_1776530395764_yjemq1",
-      "timestamp": "2026-04-18T16:39:55.764Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source project, not a company seeking web design services.",
-      "source": "hackernews",
-      "tokens": 821
     }
   ],
   "articles": [
