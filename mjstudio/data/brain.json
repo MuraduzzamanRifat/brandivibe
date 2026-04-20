@@ -1859,6 +1859,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696700748_ukf268",
+      "timestamp": "2026-04-20T14:51:40.748Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776696692206_gjyi4k",
       "timestamp": "2026-04-20T14:51:32.206Z",
       "type": "source-run",
@@ -5699,13 +5706,6 @@
       "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — The company is likely focused on bargain community content and not an ideal target for premium web design services, suggesting a lower budget range.",
       "source": "hackernews",
       "tokens": 687
-    },
-    {
-      "id": "act_1776508774616_b6q2l3",
-      "timestamp": "2026-04-18T10:39:34.616Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
