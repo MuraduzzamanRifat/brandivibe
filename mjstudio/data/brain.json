@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682092198_bknsht",
+      "timestamp": "2026-04-20T10:48:12.198Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Real time Apple Notes sync to cloud\" — The article describes a personal project focused on Apple Notes sync, which does not align with Brandivibe's target industries or the typical company profiles handled by the studio.",
+      "source": "hackernews",
+      "tokens": 874
+    },
+    {
       "id": "act_1776682086180_y0j9jl",
       "timestamp": "2026-04-20T10:48:06.180Z",
       "type": "prospect-skipped",
@@ -5687,13 +5695,6 @@
       "prospectId": "tc_aHR0cHM6Ly93d3cu",
       "model": "gpt-4o-2024-08-06",
       "tokens": 3819
-    },
-    {
-      "id": "act_1776488812063_hab1es",
-      "timestamp": "2026-04-18T05:06:52.063Z",
-      "type": "prospect-scraped",
-      "description": "Scraped rtrvr.ai — tech: next.js, tailwind, google-analytics, google-fonts, react · design 6/10 · 2 emails found",
-      "prospectId": "tc_aHR0cHM6Ly93d3cu"
     }
   ],
   "articles": [
