@@ -1854,6 +1854,28 @@
       "sourceUrl": "https://galaxybrain.com",
       "createdAt": "2026-04-20T14:51:00.301Z",
       "updatedAt": "2026-04-20T14:51:00.301Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9za2ls",
+      "company": "SkillCatalog",
+      "domain": "skillcatalog.dev",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "saas",
+      "stage": "",
+      "trigger": "Launched a desktop app improving workflow in AI coding tools.",
+      "icpTier": "B",
+      "icpScore": 6,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "Their website lacks detailed design innovation, focusing mainly on functionality.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "Potential for a strategic site redesign to differentiate in the AI tools market.",
+      "source": "hackernews",
+      "sourceUrl": "https://skillcatalog.dev",
+      "createdAt": "2026-04-20T16:09:24.867Z",
+      "updatedAt": "2026-04-20T16:09:24.867Z"
     }
   ],
   "drafts": [],
