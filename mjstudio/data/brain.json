@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776695430660_fy3loc",
+      "timestamp": "2026-04-20T14:30:30.660Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article does not describe a specific company but rather a trend in the app store industry.",
+      "source": "techcrunch",
+      "tokens": 710
+    },
+    {
       "id": "act_1776695425753_anci3k",
       "timestamp": "2026-04-20T14:30:25.753Z",
       "type": "prospect-skipped",
@@ -5674,14 +5682,6 @@
       "description": "Skipped [hackernews] \"devnexus – persistent context across repos, sessions, and engineers\" — The company is still in the building phase and open-source, indicating early-stage development not suitable for Brandivibe's target premium project range.",
       "source": "hackernews",
       "tokens": 812
-    },
-    {
-      "id": "act_1776502252341_eoix6u",
-      "timestamp": "2026-04-18T08:50:52.341Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I made a calculator that works over disjoint sets of intervals\" — The article describes a personal project related to interval arithmetic with no indication of a company, funding, team, or commercial application. It appears to be an individual effort without a business context.",
-      "source": "hackernews",
-      "tokens": 800
     }
   ],
   "articles": [
