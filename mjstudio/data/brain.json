@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686631016_kc6equ",
+      "timestamp": "2026-04-20T12:03:51.016Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"See if the GitHub stars are real or fake\" — The article describes an open-source project on GitHub, which does not fit the criteria for a premium web design project's client. It lacks a corporate structure or funding stage.",
+      "source": "hackernews",
+      "tokens": 726
+    },
+    {
       "id": "act_1776686626380_mrulhp",
       "timestamp": "2026-04-20T12:03:46.380Z",
       "type": "prospect-skipped",
@@ -5684,14 +5692,6 @@
       "description": "Skipped [hackernews] \"Show HN - TokensAI – Mint for AI Usage\" — Insufficient information about company size, stage, and funding. Domain suggests focus on AI, but lacks details.",
       "source": "hackernews",
       "tokens": 676
-    },
-    {
-      "id": "act_1776496026169_odv7sh",
-      "timestamp": "2026-04-18T07:07:06.169Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is a browser extension, likely operating with a low budget and does not match the premium web design needs.",
-      "source": "hackernews",
-      "tokens": 727
     }
   ],
   "articles": [
