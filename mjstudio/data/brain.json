@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724928231_txymiy",
+      "timestamp": "2026-04-20T22:42:08.231Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Freelava – Lava Lamp in an HTML Page\" — Freelava is a simple digital lava lamp project, not a company in need of premium web design services.",
+      "source": "hackernews",
+      "tokens": 782
+    },
+    {
       "id": "act_1776724922771_ymnhd5",
       "timestamp": "2026-04-20T22:42:02.771Z",
       "type": "prospect-skipped",
@@ -6128,14 +6136,6 @@
       "description": "Skipped [hackernews] \"TweakIdea – 14-dimension startup idea evaluation in Claude Code\" — The company described (TweakIdea on GitHub) appears to be a software project or tool for evaluating startup ideas, rather than a standalone business entity that would require web design services. Additionally, it is hosted on GitHub, indicating it may be open source or a component within a larger framework, rather than a company with budgetary capabilities.",
       "source": "hackernews",
       "tokens": 758
-    },
-    {
-      "id": "act_1776526632552_ue7ixo",
-      "timestamp": "2026-04-18T15:37:12.552Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — The article describes a local web app project rather than a company, indicating this is likely a solo or small-scale developer initiative, which is out of scope for Brandivibe's target client profile.",
-      "source": "hackernews",
-      "tokens": 817
     }
   ],
   "articles": [
