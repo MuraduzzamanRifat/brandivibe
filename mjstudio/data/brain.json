@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776724980663_h7egwf",
+      "timestamp": "2026-04-20T22:43:00.663Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for GotSkillz (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
+    },
+    {
       "id": "act_1776724971119_bdkout",
       "timestamp": "2026-04-20T22:42:51.119Z",
       "type": "prospect-skipped",
@@ -6128,14 +6135,6 @@
       "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The article describes a personal project rather than a business entity. It doesn't provide information about a company, its stage, or industry, which is necessary to evaluate fit with Brandivibe's ICP.",
       "source": "hackernews",
       "tokens": 721
-    },
-    {
-      "id": "act_1776530383443_8b1du8",
-      "timestamp": "2026-04-18T16:39:43.443Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The company described appears to be an open-source library project, not a business entity or a stage fit for Brandivibe's premium web design services.",
-      "source": "hackernews",
-      "tokens": 707
     }
   ],
   "articles": [
