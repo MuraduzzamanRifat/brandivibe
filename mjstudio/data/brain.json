@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707909561_s4jxh0",
+      "timestamp": "2026-04-20T17:58:29.561Z",
+      "type": "prospect-scraped",
+      "description": "Scraped github.com/orgs/Gyrus-Dev/repositories — tech: tailwind · design 5/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo"
+    },
+    {
       "id": "act_1776707899213_uuvpxp",
       "timestamp": "2026-04-20T17:58:19.213Z",
       "type": "source-run",
@@ -5715,14 +5722,6 @@
       "description": "Planned \"Why Premium Web Design for Startups Separates the Best from the Rest\" + 3 FB posts + 3 lead-gen actions",
       "model": "gpt-4o-2024-08-06",
       "tokens": 8103
-    },
-    {
-      "id": "act_1776517301474_0v2yas",
-      "timestamp": "2026-04-18T13:01:41.474Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I built Panda to get up to 99% token savings\" — The company appears to be a project or tool related to token savings without clear commercial backing, size, or funding stage.",
-      "source": "hackernews",
-      "tokens": 688
     }
   ],
   "articles": [
