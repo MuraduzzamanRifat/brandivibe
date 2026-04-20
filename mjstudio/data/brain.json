@@ -1881,6 +1881,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707896116_wz0sd6",
+      "timestamp": "2026-04-20T17:58:16.116Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"My First iOS App\" — The article describes an individual app developer and not a company; it lacks details on business stage, industry alignment, or a web presence that would indicate fit.",
+      "source": "hackernews",
+      "tokens": 801
+    },
+    {
       "id": "act_1776707891612_74pi02",
       "timestamp": "2026-04-20T17:58:11.612Z",
       "type": "prospect-skipped",
@@ -5716,14 +5724,6 @@
       "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article discusses a general market trend without specifying any particular company that can be evaluated for ICP fit.",
       "source": "techcrunch",
       "tokens": 715
-    },
-    {
-      "id": "act_1776517289186_kl81g9",
-      "timestamp": "2026-04-18T13:01:29.186Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Ricci Flow – AI Web Scraper\" — The article describes a Chrome extension, not a company with web design needs.",
-      "source": "hackernews",
-      "tokens": 702
     }
   ],
   "articles": [
