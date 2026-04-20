@@ -1881,6 +1881,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707886112_34ryhx",
+      "timestamp": "2026-04-20T17:58:06.112Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Svelte 5 Agency Template – GSAP Animations and Tailwind v4\" — The article describes a project template, not a company.",
+      "source": "hackernews",
+      "tokens": 823
+    },
+    {
       "id": "act_1776707880921_ozkslm",
       "timestamp": "2026-04-20T17:58:00.921Z",
       "type": "prospect-skipped",
@@ -5716,14 +5724,6 @@
       "description": "Skipped [hackernews] \"Twitter Media Downloader – X Media Downloader\" — The company is focused on a utility software tool for Twitter, which does not align with Brandivibe's premium web design services target audience. It's not in the correct industry or size for our ICP.",
       "source": "hackernews",
       "tokens": 762
-    },
-    {
-      "id": "act_1776517279539_hyrbeu",
-      "timestamp": "2026-04-18T13:01:19.539Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Agentic Dev – AI dev-tools news, curated daily by Claude\" — Agentic Dev is a news publication, not a company seeking web design services.",
-      "source": "hackernews",
-      "tokens": 667
     }
   ],
   "articles": [
