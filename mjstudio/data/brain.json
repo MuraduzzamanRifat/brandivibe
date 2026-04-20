@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663653249_f2d4b4",
+      "timestamp": "2026-04-20T05:40:53.249Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"YouDeserveNow, Justifications for Treating Yourself\" — The service is a novelty AI project without a clear business model or significant funding.",
+      "source": "hackernews",
+      "tokens": 737
+    },
+    {
       "id": "act_1776663647131_qyjfyk",
       "timestamp": "2026-04-20T05:40:47.132Z",
       "type": "error",
@@ -5646,13 +5654,6 @@
       "description": "Skipped \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is involved in the AI industry, which is currently beyond the immediate reach of Brandivibe's typical project size and scope.",
       "source": "techcrunch",
       "tokens": 766
-    },
-    {
-      "id": "act_1776456093947_hszylu",
-      "timestamp": "2026-04-17T20:01:33.947Z",
-      "type": "prospect-researched",
-      "description": "Hourly research: 1 prospects researched, 1 emails found",
-      "tokens": 2369
     }
   ],
   "articles": [
