@@ -2211,6 +2211,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776712574264_hkmuk5",
+      "timestamp": "2026-04-20T19:16:14.264Z",
+      "type": "prospect-added",
+      "description": "Added Hora via hackernews (B-tier, saas) — Launching a new macOS app and may need enhanced digital presence.",
+      "prospectId": "tc_aHR0cHM6Ly9ob3Jh",
+      "source": "hackernews",
+      "tokens": 728
+    },
+    {
       "id": "act_1776712565614_mzound",
       "timestamp": "2026-04-20T19:16:05.614Z",
       "type": "prospect-added",
@@ -6050,14 +6059,6 @@
       "description": "Skipped [hackernews] \"Podads – An Ad Blocker for Your Podcasts\" — The article describes a GitHub project for a podcast ad blocker, which appears to be an open-source tool and likely not a commercial company or startup suitable for a premium web design project.",
       "source": "hackernews",
       "tokens": 844
-    },
-    {
-      "id": "act_1776520663394_4k6x7n",
-      "timestamp": "2026-04-18T13:57:43.394Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Chlibc – A ptrace-based tool to hot-swap glibc and interp in user-space\" — The company described in the article develops a specialized open-source tool for Linux systems, which suggests a focus on software development and potentially open-source contributions, not fitting the commercial web design target for Brandivibe.",
-      "source": "hackernews",
-      "tokens": 864
     }
   ],
   "articles": [
