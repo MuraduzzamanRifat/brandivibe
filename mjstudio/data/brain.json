@@ -1859,6 +1859,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696689590_vnzhuy",
+      "timestamp": "2026-04-20T14:51:29.590Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Actual Claude Tokenizer\" — The article discusses a personal project by an individual rather than a company, making it unfit for Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 795
+    },
+    {
       "id": "act_1776696684183_0r0z9e",
       "timestamp": "2026-04-20T14:51:24.183Z",
       "type": "prospect-skipped",
@@ -5699,14 +5707,6 @@
       "description": "Skipped [techcrunch] \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is in Series C with significant funding ($95M), likely too large for Brandivibe's ICP.",
       "source": "techcrunch",
       "tokens": 785
-    },
-    {
-      "id": "act_1776505692755_t695nq",
-      "timestamp": "2026-04-18T09:48:12.755Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company is focused on the iGaming and casino industry, which does not align with Brandivibe's target industries.",
-      "source": "hackernews",
-      "tokens": 817
     }
   ],
   "articles": [
