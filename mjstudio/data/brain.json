@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682063925_mab7i6",
+      "timestamp": "2026-04-20T10:47:43.925Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lfk – a yazi inspired, Vim-like keyboard focused fast Kubernetes TUI\" — The company is in the open source software domain and lacks clear commercial intent or sufficient stage development.",
+      "source": "hackernews",
+      "tokens": 816
+    },
+    {
       "id": "act_1776682058618_mqdhj3",
       "timestamp": "2026-04-20T10:47:38.618Z",
       "type": "prospect-skipped",
@@ -5685,14 +5693,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a large, established company, likely beyond the startup/early-stage focus of Brandivibe.",
       "source": "techcrunch",
       "tokens": 770
-    },
-    {
-      "id": "act_1776488795085_ueu7zd",
-      "timestamp": "2026-04-18T05:06:35.085Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Cogveo–Schedule AI agents to run Python on your files and email results\" — The article lacks detail about company stage, industry fit, or financial status to determine ICP alignment.",
-      "source": "hackernews",
-      "tokens": 683
     }
   ],
   "articles": [
