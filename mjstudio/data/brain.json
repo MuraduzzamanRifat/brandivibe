@@ -1837,6 +1837,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776686640864_kr6r92",
+      "timestamp": "2026-04-20T12:04:00.864Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Lfk – a yazi inspired, Vim-like keyboard focused fast Kubernetes TUI\" — The company appears to be a developer-focused, open-source project and does not fit the profile of a premium web design client.",
+      "source": "hackernews",
+      "tokens": 812
+    },
+    {
       "id": "act_1776686631016_kc6equ",
       "timestamp": "2026-04-20T12:03:51.016Z",
       "type": "prospect-skipped",
@@ -5684,14 +5692,6 @@
       "description": "Skipped [hackernews] \"Jean2 – An Open-Source Agent You Assemble Like Lego\" — The article describes an open-source project, not a company. It's being developed on GitHub without any information about commercialization, funding, or team structure.",
       "source": "hackernews",
       "tokens": 681
-    },
-    {
-      "id": "act_1776496033152_a9uear",
-      "timestamp": "2026-04-18T07:07:13.152Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Show HN - TokensAI – Mint for AI Usage\" — Insufficient information about company size, stage, and funding. Domain suggests focus on AI, but lacks details.",
-      "source": "hackernews",
-      "tokens": 676
     }
   ],
   "articles": [
