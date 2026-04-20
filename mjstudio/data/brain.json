@@ -1859,6 +1859,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776696662936_4drara",
+      "timestamp": "2026-04-20T14:51:02.936Z",
+      "type": "prospect-added",
+      "description": "Added GalaxyBrain via hackernews (B-tier, saas) — The innovative local-first knowledge system indicates potential for a web redesign to highlight unique features.",
+      "prospectId": "tc_aHR0cHM6Ly9nYWxh",
+      "source": "hackernews",
+      "tokens": 811
+    },
+    {
       "id": "act_1776696652373_roejl9",
       "timestamp": "2026-04-20T14:50:52.373Z",
       "type": "prospect-skipped",
@@ -5698,14 +5707,6 @@
       "description": "Skipped [hackernews] \"PodWarden – A catalog of 9k+ self-hosted apps with one-click deploy\" — The company is focused on providing a catalog of self-hosted apps, which likely requires a robust technical infrastructure rather than premium web design services. It doesn't fit our focus on bespoke design needs.",
       "source": "hackernews",
       "tokens": 743
-    },
-    {
-      "id": "act_1776505671811_trf5th",
-      "timestamp": "2026-04-18T09:47:51.811Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I can't write Python. It works anyway\" — The article does not describe a company but rather a personal project using AI for Garmin data processing.",
-      "source": "hackernews",
-      "tokens": 781
     }
   ],
   "articles": [
