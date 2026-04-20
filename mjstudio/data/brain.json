@@ -1881,6 +1881,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776707880921_ozkslm",
+      "timestamp": "2026-04-20T17:58:00.921Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Reproducible benchmark – OpenAI charges 1.5x-3.3x more for non-English\" — The article is about OpenAI pricing, not a specific company that can be evaluated for web design services.",
+      "source": "hackernews",
+      "tokens": 670
+    },
+    {
       "id": "act_1776707876215_vg9xj1",
       "timestamp": "2026-04-20T17:57:56.215Z",
       "type": "prospect-skipped",
@@ -5716,14 +5724,6 @@
       "description": "Skipped [hackernews] \"Agentic Dev – AI dev-tools news, curated daily by Claude\" — Agentic Dev is a news publication, not a company seeking web design services.",
       "source": "hackernews",
       "tokens": 667
-    },
-    {
-      "id": "act_1776517274937_sr80mo",
-      "timestamp": "2026-04-18T13:01:14.937Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — Saucybargain operates as a community platform for bargains without a focus on premium web design needs. Their business model does not align with our target ICP in terms of industry relevance or budget capacity for high-end web projects.",
-      "source": "hackernews",
-      "tokens": 704
     }
   ],
   "articles": [
