@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672388903_aj4pnl",
+      "timestamp": "2026-04-20T08:06:28.903Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"TikTok-style mobile scroller for Civitai, self-hosted recs on a $5 VPS\" — The article does not provide sufficient information about the company, its industry, stage, or funding details to assess ICP fit.",
+      "source": "hackernews",
+      "tokens": 679
+    },
+    {
       "id": "act_1776672384068_jitppv",
       "timestamp": "2026-04-20T08:06:24.068Z",
       "type": "prospect-skipped",
@@ -5642,14 +5650,6 @@
       "description": "Skipped \"Factory hits $1.5B valuation to build AI coding for enterprises\" — The company is too large and likely has an internal team for web design; enterprise-scale with $1.5B valuation.",
       "source": "techcrunch",
       "tokens": 782
-    },
-    {
-      "id": "act_1776469119854_gp0ox7",
-      "timestamp": "2026-04-17T23:38:39.854Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, which is not a fit for Brandivibe's target type of company (startups or growing companies looking for web design services).",
-      "source": "techcrunch",
-      "tokens": 829
     }
   ],
   "articles": [
