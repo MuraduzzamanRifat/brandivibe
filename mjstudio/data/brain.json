@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776721553955_7n9i3s",
+      "timestamp": "2026-04-20T21:45:53.955Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Enlist AI: A tool that turns any job description into a study plan\" — The company is in its early beta phase, lacks clear funding information, and seems to be a solo development project at this stage.",
+      "source": "hackernews",
+      "tokens": 854
+    },
+    {
       "id": "act_1776721547792_g76p9q",
       "timestamp": "2026-04-20T21:45:47.792Z",
       "type": "prospect-skipped",
@@ -6126,14 +6134,6 @@
       "description": "Skipped [hackernews] \"TokenLight – Move Lights in a Photograph in 3D\" — The project appears to be a personal or small-scale project rather than a business, lacking clear commercial application or fundraising information.",
       "source": "hackernews",
       "tokens": 711
-    },
-    {
-      "id": "act_1776523174145_gr2b8m",
-      "timestamp": "2026-04-18T14:39:34.145Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — World appears to be a large-scale project with existing infrastructure and partnerships, likely requiring services beyond the project size threshold of $35-90K.",
-      "source": "techcrunch",
-      "tokens": 807
     }
   ],
   "articles": [
