@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776663663851_reib26",
+      "timestamp": "2026-04-20T05:41:03.851Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I Spy AI – Detect AI-Generated Images, with an MCP Server\" — The company is a single-person project and appears to be in the very early stages, not matching the project budget range of $35-90K.",
+      "source": "hackernews",
+      "tokens": 837
+    },
+    {
       "id": "act_1776663658603_6w8g1l",
       "timestamp": "2026-04-20T05:40:58.603Z",
       "type": "prospect-skipped",
@@ -5646,14 +5654,6 @@
       "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — Sequoia is a large venture capital firm, which is outside of the size and type suitable for Brandivibe's service offerings.",
       "source": "techcrunch",
       "tokens": 762
-    },
-    {
-      "id": "act_1776462062750_kflpft",
-      "timestamp": "2026-04-17T21:41:02.750Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — The company is too large and beyond the premium web design budget with a $95M Series C funding.",
-      "source": "techcrunch",
-      "tokens": 805
     }
   ],
   "articles": [
