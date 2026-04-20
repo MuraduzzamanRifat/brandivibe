@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776672384068_jitppv",
+      "timestamp": "2026-04-20T08:06:24.068Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [techcrunch] \"Cracks are starting to form on fusion energy’s funding boom\" — The company operates in the fusion energy industry, which is outside of Brandivibe's target industries like SaaS, AI, fintech, etc.",
+      "source": "techcrunch",
+      "tokens": 693
+    },
+    {
       "id": "act_1776672377929_mvq2ul",
       "timestamp": "2026-04-20T08:06:17.929Z",
       "type": "error",
@@ -5642,14 +5650,6 @@
       "description": "Skipped \"New leaders, new fund: Sequoia has raised $7B to expand its AI bets\" — The article is about Sequoia, a large venture capital firm, which is not a fit for Brandivibe's target type of company (startups or growing companies looking for web design services).",
       "source": "techcrunch",
       "tokens": 829
-    },
-    {
-      "id": "act_1776469115703_izgkdv",
-      "timestamp": "2026-04-17T23:38:35.703Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Loop raises $95M to build supply chain AI that predicts disruptions\" — Loop is a Series C company and likely has advanced internal teams for web design needs.",
-      "source": "techcrunch",
-      "tokens": 771
     }
   ],
   "articles": [
