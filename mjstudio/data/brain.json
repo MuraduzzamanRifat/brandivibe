@@ -1837,6 +1837,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776682052228_r7zxd8",
+      "timestamp": "2026-04-20T10:47:32.228Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776672448754_2c8u38",
       "timestamp": "2026-04-20T08:07:28.754Z",
       "type": "prospect-skipped",
@@ -5686,14 +5693,6 @@
       "description": "Skipped [hackernews] \"Realtime Voice AI on ESP32 with Cloudflare Durable Objects\" — The company appears to be an individual or a project leveraging Cloudflare for voice AI, which is not a fit for a premium web design service.",
       "source": "hackernews",
       "tokens": 783
-    },
-    {
-      "id": "act_1776488786367_0mnys9",
-      "timestamp": "2026-04-18T05:06:26.367Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"External admission gate for GitHub Actions before execution\" — The article describes a project rather than a company, and lacks specific company details or a defined business stage.",
-      "source": "hackernews",
-      "tokens": 762
     }
   ],
   "articles": [
