@@ -1881,6 +1881,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776701387236_k340c3",
+      "timestamp": "2026-04-20T16:09:47.236Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Infrawise (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9pbmZy"
+    },
+    {
       "id": "act_1776701383708_cuwxgw",
       "timestamp": "2026-04-20T16:09:43.708Z",
       "type": "prospect-skipped",
@@ -5716,14 +5723,6 @@
       "description": "Skipped [hackernews] \"Saucybargain – a community for bargains with zero affiliate marketing\" — The company is a community platform with no mentioned revenue model, which does not align with our target for premium web design services.",
       "source": "hackernews",
       "tokens": 708
-    },
-    {
-      "id": "act_1776512053476_8oy7j8",
-      "timestamp": "2026-04-18T11:34:13.476Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"InGaming, front end MVP for casino brands\" — The company is in the iGaming industry, which is not part of our target ICP industries.",
-      "source": "hackernews",
-      "tokens": 761
     }
   ],
   "articles": [
