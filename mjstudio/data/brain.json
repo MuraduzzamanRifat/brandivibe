@@ -2262,6 +2262,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776717860336_w5kzis",
+      "timestamp": "2026-04-20T20:44:20.336Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Simple CLI tool to convert PDFs to dark mode, with TOC preservation\" — The article is about a side project or tool, not a company. It's a CLI tool hosted on GitHub with no indication of being a business suitable for premium web design services.",
+      "source": "hackernews",
+      "tokens": 723
+    },
+    {
       "id": "act_1776717853914_psuisv",
       "timestamp": "2026-04-20T20:44:13.914Z",
       "type": "error",
@@ -6104,13 +6112,6 @@
       "prospectId": "tc_aHR0cHM6Ly9yZWFk",
       "model": "gpt-4o-2024-08-06",
       "tokens": 3255
-    },
-    {
-      "id": "act_1776520690129_60u606",
-      "timestamp": "2026-04-18T13:58:10.129Z",
-      "type": "prospect-scraped",
-      "description": "Scraped readox.ai — tech: astro, tailwind, google-analytics · design 5/10 · 1 emails found",
-      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
     }
   ],
   "articles": [
