@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776728538082_uglk9m",
+      "timestamp": "2026-04-20T23:42:18.082Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"The Guesthouse – A quiet place to begin the day\" — The article provides insufficient information to determine if The Guesthouse is an ICP fit. It lacks details on the company's stage, industry alignment, funding status, and any recent activities.",
+      "source": "hackernews",
+      "tokens": 684
+    },
+    {
       "id": "act_1776728532994_v1b83m",
       "timestamp": "2026-04-20T23:42:12.994Z",
       "type": "prospect-skipped",
@@ -6127,14 +6135,6 @@
       "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The article describes an open-source library, not a company in need of web design services.",
       "source": "hackernews",
       "tokens": 697
-    },
-    {
-      "id": "act_1776533754099_h4catb",
-      "timestamp": "2026-04-18T17:35:54.099Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Great Apps\" — The article lacks information about the company's funding, stage, industry, and other qualifying details required to determine ICP fit.",
-      "source": "hackernews",
-      "tokens": 659
     }
   ],
   "articles": [
