@@ -1793,6 +1793,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776652658860_0x1hp7",
+      "timestamp": "2026-04-20T02:37:38.860Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"NYC Guessr – GeoGuessr for NYC but with live video cam footage\" — NYC Guessr appears to be a small personal or hobby project without clear commercial or funding information and thus does not fit the premium pricing of $35-90K projects.",
+      "source": "hackernews",
+      "tokens": 797
+    },
+    {
       "id": "act_1776652653200_5nvwm6",
       "timestamp": "2026-04-20T02:37:33.200Z",
       "type": "prospect-added",
@@ -5646,14 +5654,6 @@
       "type": "source-run",
       "description": "Hourly source: 1 new prospects (6 articles scanned)",
       "tokens": 4614
-    },
-    {
-      "id": "act_1776456068445_9eukes",
-      "timestamp": "2026-04-17T20:01:08.445Z",
-      "type": "prospect-skipped",
-      "description": "Skipped \"Upscale AI in talks to raise at $2B valuation, says report\" — Company is too large, valued at $2B, which is outside our target small to mid-sized company range.",
-      "source": "techcrunch",
-      "tokens": 750
     }
   ],
   "articles": [
