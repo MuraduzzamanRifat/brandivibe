@@ -2306,6 +2306,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781867958_w0puox",
+      "timestamp": "2026-04-21T14:31:07.958Z",
+      "type": "article-published",
+      "description": "Published \"The High Cost of Mediocre First Impressions: Why Premium Web Design for Startups is Non-Negotiable\" (SEO 30/100, 621 words)"
+    },
+    {
       "id": "act_1776781855030_d7j7j2",
       "timestamp": "2026-04-21T14:30:55.030Z",
       "type": "plan-generated",
@@ -6146,14 +6152,6 @@
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz",
       "source": "hackernews",
       "tokens": 766
-    },
-    {
-      "id": "act_1776541228062_nfonx1",
-      "timestamp": "2026-04-18T19:40:28.062Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes a Python package on GitHub, not a company that would require web design services.",
-      "source": "hackernews",
-      "tokens": 642
     }
   ],
   "articles": [
