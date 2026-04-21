@@ -2306,6 +2306,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738798182_5sstnd",
+      "timestamp": "2026-04-21T02:33:18.182Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776738792428_8bhky0",
       "timestamp": "2026-04-21T02:33:12.428Z",
       "type": "source-run",
@@ -6146,14 +6153,6 @@
       "type": "source-run",
       "description": "Hourly source: 1 new prospects (29 articles scanned)",
       "tokens": 5595
-    },
-    {
-      "id": "act_1776538318366_x8b0n4",
-      "timestamp": "2026-04-18T18:51:58.366Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The article describes an open-source Go library project, not a commercial company seeking web design services, nor about a company launching a product or raising funds.",
-      "source": "hackernews",
-      "tokens": 695
     }
   ],
   "articles": [
