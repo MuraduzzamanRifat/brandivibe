@@ -2279,6 +2279,28 @@
       "sourceUrl": "https://explainthelaw.com/",
       "createdAt": "2026-04-20T20:44:33.529Z",
       "updatedAt": "2026-04-20T20:44:33.529Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9jcmF0",
+      "company": "Clock-MCP",
+      "domain": "clock-mcp.com",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "",
+      "trigger": "Interest likely due to increasing visibility from AI technology solutions.",
+      "icpTier": "B",
+      "icpScore": 5,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "Lack of a compelling brand story or differentiation in AI space.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The article lacks specific details about funding rounds or company size. AI sector aligns with Brandivibe's expertise in creating web designs that highlight technological advancements.",
+      "source": "hackernews",
+      "sourceUrl": "https://crates.io/crates/clock-mcp",
+      "createdAt": "2026-04-21T02:33:02.105Z",
+      "updatedAt": "2026-04-21T02:33:02.105Z"
     }
   ],
   "drafts": [],
