@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738761736_1et9d4",
+      "timestamp": "2026-04-21T02:32:41.736Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"The Guesthouse – A quiet place to begin the day\" — Insufficient information in the article indicating the company's stage, industry, or any funding details that would align with Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 678
+    },
+    {
       "id": "act_1776738756932_4b7wf1",
       "timestamp": "2026-04-21T02:32:36.932Z",
       "type": "prospect-skipped",
@@ -6125,14 +6133,6 @@
       "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company described is not clearly a commercial venture but rather a project hosted on GitHub, lacking information on funding stage, size, or industry alignment with Brandivibe's ICP.",
       "source": "hackernews",
       "tokens": 710
-    },
-    {
-      "id": "act_1776538283117_n5dm8x",
-      "timestamp": "2026-04-18T18:51:23.117Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article is about a GitHub project rather than a funded company, suggesting it's likely an open-source initiative rather than a commercial enterprise eligible for premium web design services.",
-      "source": "hackernews",
-      "tokens": 661
     }
   ],
   "articles": [
