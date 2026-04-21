@@ -2306,6 +2306,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738785178_lsitoe",
+      "timestamp": "2026-04-21T02:33:05.178Z",
+      "type": "prospect-added",
+      "description": "Added Clock-MCP via hackernews (B-tier, ai) — Interest likely due to increasing visibility from AI technology solutions.",
+      "prospectId": "tc_aHR0cHM6Ly9jcmF0",
+      "source": "hackernews",
+      "tokens": 717
+    },
+    {
       "id": "act_1776738776747_hqfkmt",
       "timestamp": "2026-04-21T02:32:56.747Z",
       "type": "prospect-skipped",
@@ -6147,14 +6156,6 @@
       "description": "Skipped [hackernews] \"Rapid-MLX – Run local LLMs on Mac, 2-3x faster than alternatives\" — The article is focused on running local LLMs on Macs which implies a technology or open-source project focus rather than a commercial enterprise eligible for web design services.",
       "source": "hackernews",
       "tokens": 678
-    },
-    {
-      "id": "act_1776538301607_h4p2fp",
-      "timestamp": "2026-04-18T18:51:41.607Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article does not specify a single company that can be evaluated for ICP fit.",
-      "source": "techcrunch",
-      "tokens": 710
     }
   ],
   "articles": [
