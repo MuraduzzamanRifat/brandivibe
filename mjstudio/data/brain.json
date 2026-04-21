@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738756932_4b7wf1",
+      "timestamp": "2026-04-21T02:32:36.932Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Git Push No-Mistakes\" — The article describes an individual project or tool rather than a company. It does not meet the criteria of a business entity at a compatible stage for web design projects.",
+      "source": "hackernews",
+      "tokens": 754
+    },
+    {
       "id": "act_1776738750066_aag64t",
       "timestamp": "2026-04-21T02:32:30.066Z",
       "type": "prospect-skipped",
@@ -6125,13 +6133,6 @@
       "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article is about a GitHub project rather than a funded company, suggesting it's likely an open-source initiative rather than a commercial enterprise eligible for premium web design services.",
       "source": "hackernews",
       "tokens": 661
-    },
-    {
-      "id": "act_1776538277572_44hbdj",
-      "timestamp": "2026-04-18T18:51:17.572Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
