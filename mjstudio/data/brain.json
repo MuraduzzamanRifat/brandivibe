@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738776747_hqfkmt",
+      "timestamp": "2026-04-21T02:32:56.747Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Eris – desktop PGP workstation with simple GUI\" — The project appears to be a personal project, not a company, and does not fit Brandivibe's ICP in terms of company size or readiness for premium web design services.",
+      "source": "hackernews",
+      "tokens": 824
+    },
+    {
       "id": "act_1776738771669_76fk6c",
       "timestamp": "2026-04-21T02:32:51.669Z",
       "type": "prospect-skipped",
@@ -6125,14 +6133,6 @@
       "description": "Skipped [techcrunch] \"The App Store is booming again, and AI may be why\" — The article does not specify a single company that can be evaluated for ICP fit.",
       "source": "techcrunch",
       "tokens": 710
-    },
-    {
-      "id": "act_1776538296676_3qffi0",
-      "timestamp": "2026-04-18T18:51:36.676Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article describes a technology tool related to virtualization (OCI MicroVMs for Proxmox VE), not a company. This does not align with the industry focus or size typically targeted by Brandivibe.",
-      "source": "hackernews",
-      "tokens": 662
     }
   ],
   "articles": [
