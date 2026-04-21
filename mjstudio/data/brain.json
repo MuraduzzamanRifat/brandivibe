@@ -2306,6 +2306,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781855030_d7j7j2",
+      "timestamp": "2026-04-21T14:30:55.030Z",
+      "type": "plan-generated",
+      "description": "Planned \"The High Cost of Mediocre First Impressions: Why Premium Web Design for Startups is Non-Negotiable\" + 3 FB posts + 3 lead-gen actions",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 8284
+    },
+    {
       "id": "act_1776738809443_0zhboh",
       "timestamp": "2026-04-21T02:33:29.443Z",
       "type": "prospect-skipped",
@@ -6146,13 +6154,6 @@
       "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes a Python package on GitHub, not a company that would require web design services.",
       "source": "hackernews",
       "tokens": 642
-    },
-    {
-      "id": "act_1776541223048_dbytga",
-      "timestamp": "2026-04-18T19:40:23.048Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
