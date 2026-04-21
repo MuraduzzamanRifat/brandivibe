@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738766472_8fgwmh",
+      "timestamp": "2026-04-21T02:32:46.472Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"I Built SwiftUI but for macOS MDM\" — The article describes an open-source project rather than a commercial company.",
+      "source": "hackernews",
+      "tokens": 653
+    },
+    {
       "id": "act_1776738761736_1et9d4",
       "timestamp": "2026-04-21T02:32:41.736Z",
       "type": "prospect-skipped",
@@ -6125,14 +6133,6 @@
       "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package hosted on GitHub, which suggests it may be an open-source tool or small project rather than a scalable business. Not suitable for a $35-90K project budget.",
       "source": "hackernews",
       "tokens": 742
-    },
-    {
-      "id": "act_1776538287736_uv07g1",
-      "timestamp": "2026-04-18T18:51:27.736Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company described is not clearly a commercial venture but rather a project hosted on GitHub, lacking information on funding stage, size, or industry alignment with Brandivibe's ICP.",
-      "source": "hackernews",
-      "tokens": 710
     }
   ],
   "articles": [
