@@ -2306,6 +2306,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781905704_kagogs",
+      "timestamp": "2026-04-21T14:31:45.704Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776781894503_vk2cqa",
       "timestamp": "2026-04-21T14:31:34.503Z",
       "type": "fb-queued",
@@ -6137,14 +6144,6 @@
       "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article focuses on a technical implementation for Proxmox VE, which is not related to the design studio's target markets in luxury, saas, ai, etc.",
       "source": "hackernews",
       "tokens": 675
-    },
-    {
-      "id": "act_1776541246371_gr8ofq",
-      "timestamp": "2026-04-18T19:40:46.371Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which is a software tool and not a company. Thus, it's not within the ICP for web design projects.",
-      "source": "hackernews",
-      "tokens": 657
     }
   ],
   "articles": [
