@@ -7068,14 +7068,14 @@
     {
       "date": "2026-04-21",
       "startedAt": "2026-04-21T14:29:47.687Z",
-      "updatedAt": "2026-04-21T14:31:23.728Z",
+      "updatedAt": "2026-04-21T14:31:32.782Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
           "done",
-          "pending"
+          "done"
         ],
         "score": "pending",
         "source": "pending",
