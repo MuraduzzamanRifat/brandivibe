@@ -2306,6 +2306,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781886434_qn2dyx",
+      "timestamp": "2026-04-21T14:31:26.434Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Your website's design could be silently tanking your conversion rates. Learn how"
+    },
+    {
       "id": "act_1776781877094_bohs43",
       "timestamp": "2026-04-21T14:31:17.094Z",
       "type": "fb-queued",
@@ -6141,14 +6147,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic operates primarily in the AI research industry, which involves substantial resources and technical endeavors likely beyond the premium web design studio scope.",
       "source": "techcrunch",
       "tokens": 784
-    },
-    {
-      "id": "act_1776541238172_zn730t",
-      "timestamp": "2026-04-18T19:40:38.172Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The company is a small open-source project, likely not a business with a budget for premium web design services.",
-      "source": "hackernews",
-      "tokens": 692
     }
   ],
   "articles": [
