@@ -2284,6 +2284,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738771669_76fk6c",
+      "timestamp": "2026-04-21T02:32:51.669Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A tiny macOS app that clears app caches and NPM/Docker/Xcode junk\" — The company described focuses on a small macOS app, likely positioned as a consumer tool. Brandivibe targets premium web design projects between $35-90K, which are not typically relevant to small app development or companies with a likely emphasis on single-product offerings without substantial web presence investment.",
+      "source": "hackernews",
+      "tokens": 704
+    },
+    {
       "id": "act_1776738766472_8fgwmh",
       "timestamp": "2026-04-21T02:32:46.472Z",
       "type": "prospect-skipped",
@@ -6125,14 +6133,6 @@
       "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article describes a technology tool related to virtualization (OCI MicroVMs for Proxmox VE), not a company. This does not align with the industry focus or size typically targeted by Brandivibe.",
       "source": "hackernews",
       "tokens": 662
-    },
-    {
-      "id": "act_1776538292734_9pk15t",
-      "timestamp": "2026-04-18T18:51:32.734Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package hosted on GitHub, which suggests it may be an open-source tool or small project rather than a scalable business. Not suitable for a $35-90K project budget.",
-      "source": "hackernews",
-      "tokens": 742
     }
   ],
   "articles": [
