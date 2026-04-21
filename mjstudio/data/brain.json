@@ -7047,12 +7047,12 @@
     {
       "date": "2026-04-21",
       "startedAt": "2026-04-21T14:29:47.687Z",
-      "updatedAt": "2026-04-21T14:31:05.151Z",
+      "updatedAt": "2026-04-21T14:31:14.353Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
-          "pending",
+          "done",
           "pending",
           "pending"
         ],
