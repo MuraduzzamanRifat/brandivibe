@@ -2284,6 +2284,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738743560_ryrzeo",
+      "timestamp": "2026-04-21T02:32:23.560Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776728561773_gglqw4",
       "timestamp": "2026-04-20T23:42:41.773Z",
       "type": "prospect-skipped",
@@ -6125,14 +6132,6 @@
       "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The article describes StegoForge as an open-source project on GitHub rather than a company, indicating it is not in the appropriate stage or structure to fit our target market.",
       "source": "hackernews",
       "tokens": 688
-    },
-    {
-      "id": "act_1776533777538_kpqxb2",
-      "timestamp": "2026-04-18T17:36:17.538Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The article describes an open-source project rather than a company, which does not fit the ICP criteria for project size or industry.",
-      "source": "hackernews",
-      "tokens": 674
     }
   ],
   "articles": [
