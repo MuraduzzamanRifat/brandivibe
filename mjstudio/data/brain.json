@@ -2306,6 +2306,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738792428_8bhky0",
+      "timestamp": "2026-04-21T02:33:12.428Z",
+      "type": "source-run",
+      "description": "Hourly source: 1 new prospects (27 articles scanned)",
+      "tokens": 5708
+    },
+    {
       "id": "act_1776738789824_4irb7h",
       "timestamp": "2026-04-21T02:33:09.824Z",
       "type": "prospect-skipped",
@@ -6147,15 +6154,6 @@
       "description": "Skipped [hackernews] \"GAI, A flexible and idiomatic GO Agent framework\" — The article describes an open-source Go library project, not a commercial company seeking web design services, nor about a company launching a product or raising funds.",
       "source": "hackernews",
       "tokens": 695
-    },
-    {
-      "id": "act_1776538313908_omh5ma",
-      "timestamp": "2026-04-18T18:51:53.908Z",
-      "type": "prospect-added",
-      "description": "Added MDV via hackernews (C-tier, saas) — The launch and active development of MDV as a tool indicates a potential need for branding and design services.",
-      "prospectId": "tc_aHR0cHM6Ly9naXRo",
-      "source": "hackernews",
-      "tokens": 737
     }
   ],
   "articles": [
