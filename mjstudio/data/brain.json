@@ -2020,6 +2020,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781916574_7ts425",
+      "timestamp": "2026-04-21T14:31:56.574Z",
+      "type": "prospect-added",
+      "description": "Added Orbital via hackernews (B-tier, ai) — Company launching a new product in AI, indicating potential need for brand and UI/UX improvements.",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo",
+      "source": "hackernews",
+      "tokens": 741
+    },
+    {
       "id": "act_1776781905704_kagogs",
       "timestamp": "2026-04-21T14:31:45.704Z",
       "type": "error",
@@ -5850,14 +5859,6 @@
       "description": "Skipped [hackernews] \"TTS.ai\" — The article lacks sufficient detail about TTS.ai regarding its industry, stage, funding, and business needs.",
       "source": "hackernews",
       "tokens": 658
-    },
-    {
-      "id": "act_1776541251083_vgyc3q",
-      "timestamp": "2026-04-18T19:40:51.083Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article focuses on a technical implementation for Proxmox VE, which is not related to the design studio's target markets in luxury, saas, ai, etc.",
-      "source": "hackernews",
-      "tokens": 675
     }
   ],
   "articles": [
