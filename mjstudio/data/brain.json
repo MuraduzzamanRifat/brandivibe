@@ -7035,10 +7035,10 @@
     {
       "date": "2026-04-21",
       "startedAt": "2026-04-21T14:29:47.687Z",
-      "updatedAt": "2026-04-21T14:30:52.845Z",
+      "updatedAt": "2026-04-21T14:31:05.151Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
