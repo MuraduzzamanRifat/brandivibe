@@ -2306,6 +2306,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781877094_bohs43",
+      "timestamp": "2026-04-21T14:31:17.094Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Is your site losing potential clients in seconds? Discover why first impressions"
+    },
+    {
       "id": "act_1776781867958_w0puox",
       "timestamp": "2026-04-21T14:31:07.958Z",
       "type": "article-published",
@@ -6143,15 +6149,6 @@
       "description": "Skipped [hackernews] \"Pvm – A TUI to browse and run commands across multiple Python venvs\" — The company is a small open-source project, likely not a business with a budget for premium web design services.",
       "source": "hackernews",
       "tokens": 692
-    },
-    {
-      "id": "act_1776541234250_azlo2l",
-      "timestamp": "2026-04-18T19:40:34.250Z",
-      "type": "prospect-added",
-      "description": "Added GotSkillz via hackernews (B-tier, saas) — Recently launched a unique platform for evaluating skills based on work produced, indicating potential need for strong branding and design support.",
-      "prospectId": "tc_aHR0cHM6Ly9nb3Rz",
-      "source": "hackernews",
-      "tokens": 766
     }
   ],
   "articles": [
