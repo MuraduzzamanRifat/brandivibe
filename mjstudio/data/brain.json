@@ -2306,6 +2306,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776781894503_vk2cqa",
+      "timestamp": "2026-04-21T14:31:34.503Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Think you can't afford premium web design? Think again. Discover the invisible c"
+    },
+    {
       "id": "act_1776781886434_qn2dyx",
       "timestamp": "2026-04-21T14:31:26.434Z",
       "type": "fb-queued",
@@ -6139,14 +6145,6 @@
       "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which is a software tool and not a company. Thus, it's not within the ICP for web design projects.",
       "source": "hackernews",
       "tokens": 657
-    },
-    {
-      "id": "act_1776541242810_1rje0t",
-      "timestamp": "2026-04-18T19:40:42.810Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic operates primarily in the AI research industry, which involves substantial resources and technical endeavors likely beyond the premium web design studio scope.",
-      "source": "techcrunch",
-      "tokens": 784
     }
   ],
   "articles": [
