@@ -1,18 +1,16 @@
-name: Brandivibe brain hourly tick
+name: Brandivibe brain hourly tick (manual only)
 
-# Runs every hour to keep the brain active 24/7:
-#  - Sources new TechCrunch prospects
-#  - Queues lead-gen emails from today's plan
-#  - Deep-researches scraped prospects
-#  - Advances multi-touch email sequences
-#  - Sends queued emails (respecting warmup cap)
-#  - Processes cold-email blast drip
+# Scheduled runs have been DISABLED to keep the brain on a once-per-day
+# cadence (brain-daily.yml covers it). The workflow is preserved so it can
+# be triggered manually from the Actions tab when you want to run an ad-hoc
+# throughput tick (send queued emails, advance sequences, etc.) without
+# waiting for the next daily run.
 #
-# Does NOT run plan/article/fb/score — those are daily (brain-daily.yml).
+# To re-enable hourly scheduling: restore the `schedule:` block below.
+#   schedule:
+#     - cron: "0 * * * *"  # every hour on the hour
 
 on:
-  schedule:
-    - cron: "0 * * * *"  # every hour on the hour
   workflow_dispatch:
 
 jobs:
@@ -20,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Hourly tick
+      - name: Manual tick
         run: |
           curl -fsS --max-time 310 -X POST \
             https://brandivibe.com/api/brain/tick-hourly \
             -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
             -o response.json
-          echo "--- hourly tick ---"
+          echo "--- manual tick ---"
           cat response.json
