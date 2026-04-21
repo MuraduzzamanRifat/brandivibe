@@ -2306,6 +2306,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776738789824_4irb7h",
+      "timestamp": "2026-04-21T02:33:09.824Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"CLI – A Go command-line library shaped like net/HTTP\" — The article is about a command-line library project on GitHub, which suggests it's more of an open-source project rather than a company looking for a premium web design service.",
+      "source": "hackernews",
+      "tokens": 677
+    },
+    {
       "id": "act_1776738785178_lsitoe",
       "timestamp": "2026-04-21T02:33:05.178Z",
       "type": "prospect-added",
@@ -6148,14 +6156,6 @@
       "prospectId": "tc_aHR0cHM6Ly9naXRo",
       "source": "hackernews",
       "tokens": 737
-    },
-    {
-      "id": "act_1776538306394_uveert",
-      "timestamp": "2026-04-18T18:51:46.394Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Rapid-MLX – Run local LLMs on Mac, 2-3x faster than alternatives\" — The article is focused on running local LLMs on Macs which implies a technology or open-source project focus rather than a commercial enterprise eligible for web design services.",
-      "source": "hackernews",
-      "tokens": 678
     }
   ],
   "articles": [
