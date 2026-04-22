@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868256090_8zwh82",
+      "timestamp": "2026-04-22T14:30:56.090Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Motion can engage or distract. Use it wisely to boost user interaction. #UIUX #D"
+    },
+    {
       "id": "act_1776868247870_bqg6l4",
       "timestamp": "2026-04-22T14:30:47.870Z",
       "type": "fb-queued",
@@ -5848,13 +5854,6 @@
       "timestamp": "2026-04-18T19:41:07.309Z",
       "type": "prospect-skipped",
       "description": "Deep research returned null for GotSkillz (page too thin)",
-      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
-    },
-    {
-      "id": "act_1776541265151_qd2cbj",
-      "timestamp": "2026-04-18T19:41:05.151Z",
-      "type": "prospect-scraped",
-      "description": "Scraped gotskillz.tech — tech: (none detected) · design 4/10 · 0 emails found",
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
     }
   ],
