@@ -6778,6 +6778,27 @@
   "learning": [],
   "runs": [
     {
+      "date": "2026-04-22",
+      "startedAt": "2026-04-22T14:29:36.286Z",
+      "updatedAt": "2026-04-22T14:29:36.286Z",
+      "phases": {
+        "plan": "pending",
+        "article": "pending",
+        "fb": [
+          "pending",
+          "pending",
+          "pending"
+        ],
+        "score": "pending",
+        "source": "pending",
+        "leadgen": "pending",
+        "research": "pending",
+        "sequence": "pending",
+        "send": "pending",
+        "blast": "pending"
+      }
+    },
+    {
       "date": "2026-04-21",
       "startedAt": "2026-04-21T14:29:47.687Z",
       "updatedAt": "2026-04-21T14:31:43.415Z",
