@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868238615_ljdjgi",
+      "timestamp": "2026-04-22T14:30:38.615Z",
+      "type": "article-published",
+      "description": "Published \"Behavioral Science in Premium Web Design for Startups\" (SEO 56/100, 443 words)"
+    },
+    {
       "id": "act_1776868225628_nv7hkb",
       "timestamp": "2026-04-22T14:30:25.628Z",
       "type": "plan-generated",
@@ -5851,14 +5857,6 @@
       "type": "source-run",
       "description": "Hourly source: 1 new prospects (28 articles scanned)",
       "tokens": 5614
-    },
-    {
-      "id": "act_1776541259129_ucj63f",
-      "timestamp": "2026-04-18T19:40:59.129Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Ricci Flow – AI Web Scraper\" — The company is an AI tool specific to web scraping and does not align with web design service requirements.",
-      "source": "hackernews",
-      "tokens": 740
     }
   ],
   "articles": [
