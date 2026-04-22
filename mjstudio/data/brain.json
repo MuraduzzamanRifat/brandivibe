@@ -6880,10 +6880,10 @@
     {
       "date": "2026-04-22",
       "startedAt": "2026-04-22T14:29:36.286Z",
-      "updatedAt": "2026-04-22T14:30:23.931Z",
+      "updatedAt": "2026-04-22T14:30:35.216Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
