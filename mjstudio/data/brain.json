@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868289995_qgqkdy",
+      "timestamp": "2026-04-22T14:31:29.995Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Scalple – Structured production DB access with an immutable audit trail\" — The article provides no information about company stage, industry, or any identifying traits that align with Brandivibe's ICP criteria.",
+      "source": "hackernews",
+      "tokens": 688
+    },
+    {
       "id": "act_1776868282702_acdsp2",
       "timestamp": "2026-04-22T14:31:22.702Z",
       "type": "error",
@@ -5846,14 +5854,6 @@
       "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — ChatbotChambers appears to be a project or tool rather than a fully fledged company. There is no indication of it being at a specific funding stage or fitting into the applicable industries for Brandivibe's services.",
       "source": "hackernews",
       "tokens": 805
-    },
-    {
-      "id": "act_1776544563126_bsjp47",
-      "timestamp": "2026-04-18T20:36:03.126Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too big and well-funded to fit within the typical project range ($35-90K) for a premium web design studio, and is more focused on scaling through large partnerships.",
-      "source": "techcrunch",
-      "tokens": 794
     }
   ],
   "articles": [
