@@ -2020,6 +2020,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868282702_acdsp2",
+      "timestamp": "2026-04-22T14:31:22.702Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
       "id": "act_1776868264875_vel8y7",
       "timestamp": "2026-04-22T14:31:04.875Z",
       "type": "fb-queued",
@@ -5847,13 +5854,6 @@
       "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is too big and well-funded to fit within the typical project range ($35-90K) for a premium web design studio, and is more focused on scaling through large partnerships.",
       "source": "techcrunch",
       "tokens": 794
-    },
-    {
-      "id": "act_1776544556863_dhgqf1",
-      "timestamp": "2026-04-18T20:35:56.863Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
