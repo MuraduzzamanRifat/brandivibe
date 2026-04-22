@@ -6892,12 +6892,12 @@
     {
       "date": "2026-04-22",
       "startedAt": "2026-04-22T14:29:36.286Z",
-      "updatedAt": "2026-04-22T14:30:35.216Z",
+      "updatedAt": "2026-04-22T14:30:45.235Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
-          "pending",
+          "done",
           "pending",
           "pending"
         ],
