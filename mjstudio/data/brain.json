@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868264875_vel8y7",
+      "timestamp": "2026-04-22T14:31:04.875Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Trust is your site's currency. Display those badges and testimonials prominently"
+    },
+    {
       "id": "act_1776868256090_8zwh82",
       "timestamp": "2026-04-22T14:30:56.090Z",
       "type": "fb-queued",
@@ -5848,13 +5854,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776541267309_wkhjv6",
-      "timestamp": "2026-04-18T19:41:07.309Z",
-      "type": "prospect-skipped",
-      "description": "Deep research returned null for GotSkillz (page too thin)",
-      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
     }
   ],
   "articles": [
