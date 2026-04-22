@@ -6918,14 +6918,14 @@
     {
       "date": "2026-04-22",
       "startedAt": "2026-04-22T14:29:36.286Z",
-      "updatedAt": "2026-04-22T14:30:53.095Z",
+      "updatedAt": "2026-04-22T14:31:02.314Z",
       "phases": {
         "plan": "done",
         "article": "done",
         "fb": [
           "done",
           "done",
-          "pending"
+          "done"
         ],
         "score": "pending",
         "source": "pending",
