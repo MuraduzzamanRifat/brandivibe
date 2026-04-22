@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868247870_bqg6l4",
+      "timestamp": "2026-04-22T14:30:47.870Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Whitespace isn't just empty space. It's strategic breathing room for your users."
+    },
+    {
       "id": "act_1776868238615_ljdjgi",
       "timestamp": "2026-04-22T14:30:38.615Z",
       "type": "article-published",
@@ -5850,13 +5856,6 @@
       "type": "prospect-scraped",
       "description": "Scraped gotskillz.tech — tech: (none detected) · design 4/10 · 0 emails found",
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
-    },
-    {
-      "id": "act_1776541261297_c08hvv",
-      "timestamp": "2026-04-18T19:41:01.297Z",
-      "type": "source-run",
-      "description": "Hourly source: 1 new prospects (28 articles scanned)",
-      "tokens": 5614
     }
   ],
   "articles": [
