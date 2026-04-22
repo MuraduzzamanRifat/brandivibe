@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868297115_ue1l4e",
+      "timestamp": "2026-04-22T14:31:37.115Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"PulseGrid – real-time monitoring in C++\" — The article describes a small-scale, individual project, not a company with funding and growth potential suitable for Brandivibe's target projects.",
+      "source": "hackernews",
+      "tokens": 830
+    },
+    {
       "id": "act_1776868289995_qgqkdy",
       "timestamp": "2026-04-22T14:31:29.995Z",
       "type": "prospect-skipped",
@@ -5846,14 +5854,6 @@
       "description": "Skipped [hackernews] \"We Started a Playtest of Our Visual Novel about the Mysterious Shop\" — The company is in the gaming industry, which is not within the ICP for Brandivibe.",
       "source": "hackernews",
       "tokens": 755
-    },
-    {
-      "id": "act_1776544568225_1awrjg",
-      "timestamp": "2026-04-18T20:36:08.225Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"ChatbotChambers – Watch LMs talk to each other\" — ChatbotChambers appears to be a project or tool rather than a fully fledged company. There is no indication of it being at a specific funding stage or fitting into the applicable industries for Brandivibe's services.",
-      "source": "hackernews",
-      "tokens": 805
     }
   ],
   "articles": [
