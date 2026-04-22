@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776868304486_puti0d",
+      "timestamp": "2026-04-22T14:31:44.486Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Stonks-CLI – track your investment portfolio from your terminal\" — The project is a personal terminal-based tool rather than a business operating in SaaS or related fields.",
+      "source": "hackernews",
+      "tokens": 816
+    },
+    {
       "id": "act_1776868297115_ue1l4e",
       "timestamp": "2026-04-22T14:31:37.115Z",
       "type": "prospect-skipped",
@@ -5846,14 +5854,6 @@
       "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which suggests the company is more focused on open-source software development rather than being a potential client for web design services. There are no indications of commercial operations, funding, or a company structure.",
       "source": "hackernews",
       "tokens": 714
-    },
-    {
-      "id": "act_1776544572607_c8fnxm",
-      "timestamp": "2026-04-18T20:36:12.607Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"We Started a Playtest of Our Visual Novel about the Mysterious Shop\" — The company is in the gaming industry, which is not within the ICP for Brandivibe.",
-      "source": "hackernews",
-      "tokens": 755
     }
   ],
   "articles": [
