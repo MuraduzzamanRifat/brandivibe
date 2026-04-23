@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956955454_eg7ylo",
+      "timestamp": "2026-04-23T15:09:15.454Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: Is your website holding your startup back? See how premium web design can make a"
+    },
+    {
       "id": "act_1776956945427_zvqq8s",
       "timestamp": "2026-04-23T15:09:05.427Z",
       "type": "fb-queued",
@@ -5842,14 +5848,6 @@
       "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a major player in the AI industry, likely too large for Brandivibe's target market.",
       "source": "techcrunch",
       "tokens": 737
-    },
-    {
-      "id": "act_1776544587638_s236sb",
-      "timestamp": "2026-04-18T20:36:27.638Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Immediate Mediation WebAuthn on Django\" — The article discusses a technical feature update for a Django library, not a company that provides premium web design projects.",
-      "source": "hackernews",
-      "tokens": 680
     }
   ],
   "articles": [
