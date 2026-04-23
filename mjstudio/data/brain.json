@@ -2485,6 +2485,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957090896_lokmj0",
+      "timestamp": "2026-04-23T15:11:30.896Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 1, researched 1, emails found 0, skipped 2",
+      "tokens": 3992
+    },
+    {
       "id": "act_1776957090375_dwtq6m",
       "timestamp": "2026-04-23T15:11:30.375Z",
       "type": "prospect-researched",
@@ -6300,14 +6307,6 @@
       "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes a GitHub project, which is likely open-source software rather than a commercial company. It thus does not match the ICP criteria focused on premium web design clients.",
       "source": "hackernews",
       "tokens": 657
-    },
-    {
-      "id": "act_1776555266852_xq88lp",
-      "timestamp": "2026-04-18T23:34:26.852Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The company described is not a fit due to inadequate information and lack of relevance to Brandivibe's target industries such as luxury brands, fintech, or saas.",
-      "source": "hackernews",
-      "tokens": 654
     }
   ],
   "articles": [
@@ -7510,7 +7509,7 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:11:29.019Z",
+      "updatedAt": "2026-04-23T15:11:33.105Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -7523,7 +7522,7 @@
         "source": "done",
         "leadgen": "done",
         "research": "done",
-        "sequence": "pending",
+        "sequence": "done",
         "send": "pending",
         "blast": "pending"
       },
