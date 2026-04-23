@@ -1902,6 +1902,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957026382_8egz9v",
+      "timestamp": "2026-04-23T15:10:26.382Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Agent cache for Valkey, now in Python with bundled LiteLLM pricing\" — The article provides limited information and does not clearly describe a company's stage, industry, or suitability for premium web design services.",
+      "source": "hackernews",
+      "tokens": 651
+    },
+    {
       "id": "act_1776957024586_aylhgu",
       "timestamp": "2026-04-23T15:10:24.586Z",
       "type": "prospect-skipped",
@@ -5722,13 +5730,6 @@
       "type": "prospect-scraped",
       "description": "Scraped mechcloud.io — tech: astro, vue, tailwind, cloudflare, google-fonts · design 5/10 · 2 emails found",
       "prospectId": "tc_aHR0cHM6Ly9tZWNo"
-    },
-    {
-      "id": "act_1776548128711_hg56q9",
-      "timestamp": "2026-04-18T21:35:28.711Z",
-      "type": "prospect-skipped",
-      "description": "Deep research returned null for GotSkillz (page too thin)",
-      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
     }
   ],
   "articles": [
@@ -6931,7 +6932,7 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:09:34.345Z",
+      "updatedAt": "2026-04-23T15:10:28.733Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -6941,7 +6942,7 @@
           "done"
         ],
         "score": "done",
-        "source": "pending",
+        "source": "done",
         "leadgen": "pending",
         "research": "pending",
         "sequence": "pending",
