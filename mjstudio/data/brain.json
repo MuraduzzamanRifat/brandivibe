@@ -1902,6 +1902,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957049457_jha9vq",
+      "timestamp": "2026-04-23T15:10:49.457Z",
+      "type": "prospect-skipped",
+      "description": "Deep research returned null for Suparagent AI (page too thin)",
+      "prospectId": "tc_aHR0cHM6Ly9zdXBh"
+    },
+    {
       "id": "act_1776957046621_zy2fz3",
       "timestamp": "2026-04-23T15:10:46.621Z",
       "type": "prospect-scraped",
@@ -5720,14 +5727,6 @@
       "description": "Skipped [hackernews] \"Immediate Mediation WebAuthn on Django\" — The article is about a Django package, not a company that fits our target ICP. It's focused on developers and software tools.",
       "source": "hackernews",
       "tokens": 686
-    },
-    {
-      "id": "act_1776551667132_4bigjy",
-      "timestamp": "2026-04-18T22:34:27.132Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"JSON-logic-path – JSON logic with jsonpath multi-value resolution\" — The article is about a Python implementation, which suggests it's a tech tool, not a business with a need for premium web design services.",
-      "source": "hackernews",
-      "tokens": 760
     }
   ],
   "articles": [
