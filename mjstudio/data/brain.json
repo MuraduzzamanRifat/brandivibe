@@ -1896,7 +1896,7 @@
       "source": "hackernews",
       "sourceUrl": "https://suparagent.ai/",
       "createdAt": "2026-04-23T15:09:59.272Z",
-      "updatedAt": "2026-04-23T15:10:52.347Z",
+      "updatedAt": "2026-04-23T15:11:07.286Z",
       "scraped": {
         "fetchedAt": "2026-04-23T15:10:46.621Z",
         "homepage": "Suparagent AI – All-in-One AI Workspace for Chat, Code, Research, Images & Video",
@@ -1930,6 +1930,15 @@
   ],
   "drafts": [],
   "activities": [
+    {
+      "id": "act_1776957066181_pj5s3y",
+      "timestamp": "2026-04-23T15:11:06.181Z",
+      "type": "prospect-researched",
+      "description": "Researched Allplix: The homepage is cluttered with a long list of tools, making navigation overwhelming.",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 4090
+    },
     {
       "id": "act_1776957064251_offr0w",
       "timestamp": "2026-04-23T15:11:04.251Z",
@@ -5744,14 +5753,6 @@
       "type": "prospect-skipped",
       "description": "Deep research returned null for GotSkillz (page too thin)",
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
-    },
-    {
-      "id": "act_1776551694704_o2ajpx",
-      "timestamp": "2026-04-18T22:34:54.704Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"We Started a Playtest of Our Visual Novel about the Mysterious Shop\" — The company is in the gaming industry, which is not within Brandivibe's ICP of selected industries like crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, and vc.",
-      "source": "hackernews",
-      "tokens": 809
     }
   ],
   "articles": [
