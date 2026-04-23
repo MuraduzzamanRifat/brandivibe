@@ -2042,6 +2042,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957012967_q57gqu",
+      "timestamp": "2026-04-23T15:10:12.967Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Nimble.css minimal classless CSS library for great-looking default HTML\" — The article describes an open-source CSS library project, which does not fit as a high-budget web design opportunity for Brandivibe. It lacks company structure, funding stage, and size to qualify as a client.",
+      "source": "hackernews",
+      "tokens": 880
+    },
+    {
       "id": "act_1776957007370_mphdcg",
       "timestamp": "2026-04-23T15:10:07.370Z",
       "type": "error",
@@ -5860,14 +5868,6 @@
       "prospectId": "tc_aHR0cHM6Ly9tZWNo",
       "source": "hackernews",
       "tokens": 869
-    },
-    {
-      "id": "act_1776548104784_rmnhi5",
-      "timestamp": "2026-04-18T21:35:04.784Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company is a software project on GitHub, not a business entity suitable for premium web design services.",
-      "source": "hackernews",
-      "tokens": 681
     }
   ],
   "articles": [
