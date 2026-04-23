@@ -1902,6 +1902,23 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957024586_aylhgu",
+      "timestamp": "2026-04-23T15:10:24.586Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Open-source database CLI that doubles as an MCP server for agents\" — The company operates in open-source database management, which doesn't align with Brandivibe's industries of focus such as saas, fintech, ai, luxury, etc.",
+      "source": "hackernews",
+      "tokens": 866
+    },
+    {
+      "id": "act_1776957022016_9fj2pb",
+      "timestamp": "2026-04-23T15:10:22.016Z",
+      "type": "prospect-added",
+      "description": "Added Allplix via hackernews (B-tier, saas) — Announcement of 60 new browser-based file tools indicating growth and innovation.",
+      "prospectId": "tc_aHR0cHM6Ly93d3cu",
+      "source": "hackernews",
+      "tokens": 719
+    },
+    {
       "id": "act_1776957019346_8eseta",
       "timestamp": "2026-04-23T15:10:19.346Z",
       "type": "prospect-skipped",
@@ -5712,21 +5729,6 @@
       "type": "prospect-skipped",
       "description": "Deep research returned null for GotSkillz (page too thin)",
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
-    },
-    {
-      "id": "act_1776548124364_vdapst",
-      "timestamp": "2026-04-18T21:35:24.364Z",
-      "type": "source-run",
-      "description": "Hourly source: 1 new prospects (28 articles scanned)",
-      "tokens": 5835
-    },
-    {
-      "id": "act_1776548122176_ekcn4h",
-      "timestamp": "2026-04-18T21:35:22.176Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Sam Altman's project World looks to scale its human verification empire. First s\" — The company is likely out of ICP as it seems too large and is expanding through major partnerships such as with Tinder.",
-      "source": "techcrunch",
-      "tokens": 781
     }
   ],
   "articles": [
