@@ -2042,13 +2042,19 @@
   "drafts": [],
   "activities": [
     {
-      "id": "act_1776957002070_772bla",
-      "timestamp": "2026-04-23T15:10:02.070Z",
-      "type": "prospect-added",
-      "description": "Added Suparagent AI via hackernews (A-tier, ai) — Recently launched as an alternative to established AI tools like Manus and Genspark.",
-      "prospectId": "tc_aHR0cHM6Ly9zdXBh",
+      "id": "act_1776957007370_mphdcg",
+      "timestamp": "2026-04-23T15:10:07.370Z",
+      "type": "error",
+      "description": "Source fetch failed — betalist: BetaList RSS 404",
+      "source": "techcrunch"
+    },
+    {
+      "id": "act_1776957006638_qhnpb4",
+      "timestamp": "2026-04-23T15:10:06.638Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"When Your Repo Moves, Your AI Coding History Doesn't\" — No company details provided in the article.",
       "source": "hackernews",
-      "tokens": 788
+      "tokens": 640
     },
     {
       "id": "act_1776956993603_s4dh1q",
@@ -5862,14 +5868,6 @@
       "description": "Skipped [hackernews] \"StegoForge – A zero-dependency steganography and forensics engine\" — The company is a software project on GitHub, not a business entity suitable for premium web design services.",
       "source": "hackernews",
       "tokens": 681
-    },
-    {
-      "id": "act_1776548101215_o7kg2i",
-      "timestamp": "2026-04-18T21:35:01.215Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Trained a 12M transformer on an ML framework we built from scratch\" — The company is a student project, not a business with a budget for premium web design.",
-      "source": "hackernews",
-      "tokens": 763
     }
   ],
   "articles": [
