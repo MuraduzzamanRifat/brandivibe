@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956965032_nyggyk",
+      "timestamp": "2026-04-23T15:09:25.032Z",
+      "type": "fb-queued",
+      "description": "Queued FB post for approval: A website redesign boosted one startup's conversion rate by 40%. Learn how premi"
+    },
+    {
       "id": "act_1776956955454_eg7ylo",
       "timestamp": "2026-04-23T15:09:15.454Z",
       "type": "fb-queued",
@@ -5840,14 +5846,6 @@
       "type": "prospect-skipped",
       "description": "Deep research returned null for GotSkillz (page too thin)",
       "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
-    },
-    {
-      "id": "act_1776544591780_ck7byl",
-      "timestamp": "2026-04-18T20:36:31.780Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [techcrunch] \"Anthropic launches Claude Design, a new product for creating quick visuals\" — Anthropic is a major player in the AI industry, likely too large for Brandivibe's target market.",
-      "source": "techcrunch",
-      "tokens": 737
     }
   ],
   "articles": [
