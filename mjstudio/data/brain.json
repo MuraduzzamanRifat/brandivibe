@@ -1931,6 +1931,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957061318_n3fluv",
+      "timestamp": "2026-04-23T15:11:01.318Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776957057328_onsvzw",
       "timestamp": "2026-04-23T15:10:57.328Z",
       "type": "prospect-scraped",
@@ -5746,14 +5753,6 @@
       "description": "Skipped [hackernews] \"Coelanox – auditable inference runtime in Rust (BERT runs today)\" — The company, Coelanox, operates in the AI sector, which aligns with the AI industry focus. However, no stage or funding information is provided, making it impossible to assess their financial readiness or budget capability for a premium web design project.",
       "source": "hackernews",
       "tokens": 850
-    },
-    {
-      "id": "act_1776551685828_t5m8vr",
-      "timestamp": "2026-04-18T22:34:45.828Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes Pyinc, which appears to be an open-source project on GitHub rather than a company in the target industries like crypto, saas, fintech, ai, etc.",
-      "source": "hackernews",
-      "tokens": 683
     }
   ],
   "articles": [
