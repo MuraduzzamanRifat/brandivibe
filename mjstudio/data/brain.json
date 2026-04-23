@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956983556_ilc6qs",
+      "timestamp": "2026-04-23T15:09:43.556Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Scrolless- Safari extension to block social algorithms, not sites\" — The description provided is insufficient to determine company details such as industry, stage, or fit for premium web design services.",
+      "source": "hackernews",
+      "tokens": 685
+    },
+    {
       "id": "act_1776956978418_mp9xrt",
       "timestamp": "2026-04-23T15:09:38.418Z",
       "type": "error",
@@ -5839,13 +5847,6 @@
       "description": "Skipped [hackernews] \"60-Second Hack – a daily hacker typing puzzle\" — The article describes a puzzle game which does not align with Brandivibe's target industries such as crypto, saas, fintech, ai, healthcare, luxury, ev, architecture, or vc.",
       "source": "hackernews",
       "tokens": 695
-    },
-    {
-      "id": "act_1776548084782_vagxex",
-      "timestamp": "2026-04-18T21:34:44.782Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
