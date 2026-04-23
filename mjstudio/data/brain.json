@@ -1931,6 +1931,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957055690_r0dn93",
+      "timestamp": "2026-04-23T15:10:55.690Z",
+      "type": "source-run",
+      "description": "Source tick: 32 articles fetched, 0 new prospects added, 1 already known",
+      "tokens": 6298
+    },
+    {
       "id": "act_1776957050432_7ba6p1",
       "timestamp": "2026-04-23T15:10:50.432Z",
       "type": "prospect-skipped",
@@ -5748,14 +5755,6 @@
       "description": "Skipped [hackernews] \"WebGL Liminal Space\" — The article describes a personal project or hobby game rather than a company, suggesting it does not align with Brandivibe's target market.",
       "source": "hackernews",
       "tokens": 768
-    },
-    {
-      "id": "act_1776551675160_99lgdo",
-      "timestamp": "2026-04-18T22:34:35.160Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"I built a tool that reads 2000 health studies a day so you dont have to\" — The article does not provide enough information to determine the company details, stage, or industry.",
-      "source": "hackernews",
-      "tokens": 643
     }
   ],
   "articles": [
@@ -6958,7 +6957,7 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:10:34.404Z",
+      "updatedAt": "2026-04-23T15:10:53.047Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -6968,7 +6967,7 @@
           "done"
         ],
         "score": "done",
-        "source": "pending",
+        "source": "done",
         "leadgen": "done",
         "research": "pending",
         "sequence": "pending",
