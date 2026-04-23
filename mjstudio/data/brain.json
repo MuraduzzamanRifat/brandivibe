@@ -2485,6 +2485,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957090375_dwtq6m",
+      "timestamp": "2026-04-23T15:11:30.375Z",
+      "type": "prospect-researched",
+      "description": "Research tick: scraped 3, researched 2, emails found 0, skipped 2",
+      "tokens": 8095
+    },
+    {
       "id": "act_1776957084150_b3pijg",
       "timestamp": "2026-04-23T15:11:24.150Z",
       "type": "prospect-researched",
@@ -6301,14 +6308,6 @@
       "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The company described is not a fit due to inadequate information and lack of relevance to Brandivibe's target industries such as luxury brands, fintech, or saas.",
       "source": "hackernews",
       "tokens": 654
-    },
-    {
-      "id": "act_1776555262773_zse8ty",
-      "timestamp": "2026-04-18T23:34:22.773Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"A Roman fable about a PHP suite that exposed 100 tables in 3 days\" — The article is metaphorical and does not provide information about a specific company that meets the ICP criteria.",
-      "source": "hackernews",
-      "tokens": 710
     }
   ],
   "articles": [
@@ -7511,7 +7510,7 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:11:28.728Z",
+      "updatedAt": "2026-04-23T15:11:29.019Z",
       "phases": {
         "plan": "done",
         "article": "done",
