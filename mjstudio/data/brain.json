@@ -2020,6 +2020,12 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956935873_cpn0al",
+      "timestamp": "2026-04-23T15:08:55.873Z",
+      "type": "article-published",
+      "description": "Published \"The Impact of Premium Web Design for Startups: A Case Study in Transformation\" (SEO 58/100, 449 words)"
+    },
+    {
       "id": "act_1776956923223_6iacex",
       "timestamp": "2026-04-23T15:08:43.223Z",
       "type": "plan-generated",
@@ -5846,14 +5852,6 @@
       "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company offers a free, open-source app which suggests a limited budget and not a premium market focus.",
       "source": "hackernews",
       "tokens": 677
-    },
-    {
-      "id": "act_1776544580484_9hw8l1",
-      "timestamp": "2026-04-18T20:36:20.484Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source Gradle plugin project, not a company. Brandivibe's ICP focuses on providing web design for companies/projects with substantial funding.",
-      "source": "hackernews",
-      "tokens": 845
     }
   ],
   "articles": [
