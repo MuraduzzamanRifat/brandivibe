@@ -1112,7 +1112,9 @@
       },
       "sequence": {
         "stage": 1,
-        "nextSendAt": "2026-04-21T13:00:00.000Z"
+        "nextSendAt": "2026-04-26T15:11:33.505Z",
+        "lastSentAt": "2026-04-23T15:11:33.505Z",
+        "lastOutcome": "sent"
       }
     },
     {
@@ -1903,7 +1905,9 @@
       },
       "sequence": {
         "stage": 1,
-        "nextSendAt": "2026-04-21T13:00:00.000Z"
+        "nextSendAt": "2026-04-26T15:11:33.832Z",
+        "lastSentAt": "2026-04-23T15:11:33.832Z",
+        "lastOutcome": "sent"
       }
     },
     {
@@ -2484,6 +2488,20 @@
   ],
   "drafts": [],
   "activities": [
+    {
+      "id": "act_1776957096033_z1dm6t",
+      "timestamp": "2026-04-23T15:11:36.033Z",
+      "type": "email-sent",
+      "description": "Sent touch 1 to contact@readox.ai: \"Is Your Website Attracting Premium Clients?\"",
+      "prospectId": "tc_aHR0cHM6Ly9yZWFk"
+    },
+    {
+      "id": "act_1776957095784_lhfwu4",
+      "timestamp": "2026-04-23T15:11:35.784Z",
+      "type": "sequence-advanced",
+      "description": "Sequence tick: started 0, advanced 0, completed 0",
+      "tokens": 0
+    },
     {
       "id": "act_1776957090896_lokmj0",
       "timestamp": "2026-04-23T15:11:30.896Z",
@@ -6291,22 +6309,6 @@
       "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article describes a technical project related to 'OCI MicroVMs for Proxmox VE', which appears to be an open-source or personal project rather than a business entity. This does not align with Brandivibe's target clients who are typically established companies or startups in specific industries.",
       "source": "hackernews",
       "tokens": 723
-    },
-    {
-      "id": "act_1776555274157_d0od8e",
-      "timestamp": "2026-04-18T23:34:34.157Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Reliably Incorrect – explore LLM reliability with data visualizations\" — The article does not provide details about a company suitable for web design services. It focuses on LLM reliability with data visualizations, not a business or startup.",
-      "source": "hackernews",
-      "tokens": 658
-    },
-    {
-      "id": "act_1776555270482_z2bcqn",
-      "timestamp": "2026-04-18T23:34:30.482Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Pyinc – From-scratch consistency in native Python\" — The article describes a GitHub project, which is likely open-source software rather than a commercial company. It thus does not match the ICP criteria focused on premium web design clients.",
-      "source": "hackernews",
-      "tokens": 657
     }
   ],
   "articles": [
@@ -7695,7 +7697,7 @@
       "replyTo": "send@brandivibe.site",
       "sendAt": "2026-04-21T13:00:00.000Z",
       "createdAt": "2026-04-18T14:39:40.618Z",
-      "status": "queued",
+      "status": "sent",
       "model": "lead-gen-template",
       "tokens": 0,
       "meta": {
@@ -7704,7 +7706,9 @@
         "icpTier": "B",
         "subjectStyle": "question",
         "leadGenKind": "outbound-email"
-      }
+      },
+      "resendId": "2fa8b6c9-c18c-4b74-aeae-102bcdb9ca3b",
+      "sentAt": "2026-04-23T15:11:33.505Z"
     },
     {
       "id": "out_lg_1776523180618_n0dwz1_t1",
@@ -7715,7 +7719,7 @@
       "to": "contact@readox.ai",
       "from": "send@brandivibe.site",
       "replyTo": "send@brandivibe.site",
-      "sendAt": "2026-04-21T13:00:00.000Z",
+      "sendAt": "2026-04-24T15:11:33.131Z",
       "createdAt": "2026-04-18T14:39:40.618Z",
       "status": "queued",
       "model": "lead-gen-template",
@@ -7739,7 +7743,7 @@
       "replyTo": "send@brandivibe.site",
       "sendAt": "2026-04-21T13:00:00.000Z",
       "createdAt": "2026-04-19T13:56:08.373Z",
-      "status": "queued",
+      "status": "sent",
       "model": "lead-gen-template",
       "tokens": 0,
       "meta": {
@@ -7748,7 +7752,9 @@
         "icpTier": "A",
         "subjectStyle": "question",
         "leadGenKind": "outbound-email"
-      }
+      },
+      "resendId": "75a6ec35-d10f-4364-a3f6-5f6ef4e22d1b",
+      "sentAt": "2026-04-23T15:11:33.832Z"
     },
     {
       "id": "out_lg_1776606968373_oy57dt_t1",
@@ -7761,7 +7767,7 @@
       "replyTo": "send@brandivibe.site",
       "sendAt": "2026-04-21T13:00:00.000Z",
       "createdAt": "2026-04-19T13:56:08.373Z",
-      "status": "queued",
+      "status": "failed",
       "model": "lead-gen-template",
       "tokens": 0,
       "meta": {
@@ -7770,11 +7776,17 @@
         "icpTier": "B",
         "subjectStyle": "other",
         "leadGenKind": "outbound-email"
-      }
+      },
+      "failReason": "HTTP 429"
     }
   ],
-  "sendCounts": {},
-  "lastSendByDomain": {},
+  "sendCounts": {
+    "2026-04-23": 2
+  },
+  "lastSendByDomain": {
+    "readox.ai": "2026-04-23T15:11:33.505Z",
+    "agentrq.com": "2026-04-23T15:11:33.832Z"
+  },
   "sendingSince": "2026-04-16",
   "gmapsLeads": [],
   "crmContacts": [],
