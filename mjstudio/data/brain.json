@@ -1902,12 +1902,11 @@
   "drafts": [],
   "activities": [
     {
-      "id": "act_1776957026382_8egz9v",
-      "timestamp": "2026-04-23T15:10:26.382Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Agent cache for Valkey, now in Python with bundled LiteLLM pricing\" — The article provides limited information and does not clearly describe a company's stage, industry, or suitability for premium web design services.",
-      "source": "hackernews",
-      "tokens": 651
+      "id": "act_1776957031633_rng5wl",
+      "timestamp": "2026-04-23T15:10:31.633Z",
+      "type": "source-run",
+      "description": "Source tick: 32 articles fetched, 2 new prospects added, 0 already known",
+      "tokens": 5752
     },
     {
       "id": "act_1776957024586_aylhgu",
@@ -6932,7 +6931,7 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:10:28.733Z",
+      "updatedAt": "2026-04-23T15:09:34.345Z",
       "phases": {
         "plan": "done",
         "article": "done",
@@ -6942,7 +6941,7 @@
           "done"
         ],
         "score": "done",
-        "source": "done",
+        "source": "pending",
         "leadgen": "pending",
         "research": "pending",
         "sequence": "pending",
