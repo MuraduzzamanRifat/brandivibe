@@ -6998,9 +6998,9 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:07:53.388Z",
+      "updatedAt": "2026-04-23T15:08:39.730Z",
       "phases": {
-        "plan": "pending",
+        "plan": "done",
         "article": "pending",
         "fb": [
           "pending",
@@ -7014,7 +7014,8 @@
         "sequence": "pending",
         "send": "pending",
         "blast": "pending"
-      }
+      },
+      "planId": "plan_1776956915035"
     },
     {
       "date": "2026-04-22",
