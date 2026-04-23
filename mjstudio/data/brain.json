@@ -2015,6 +2015,28 @@
       "sourceUrl": "https://crates.io/crates/clock-mcp",
       "createdAt": "2026-04-21T02:33:02.105Z",
       "updatedAt": "2026-04-21T02:33:02.105Z"
+    },
+    {
+      "id": "tc_aHR0cHM6Ly9zdXBh",
+      "company": "Suparagent AI",
+      "domain": "suparagent.ai",
+      "founder": "",
+      "role": "",
+      "email": "",
+      "industry": "ai",
+      "stage": "Seed",
+      "trigger": "Recently launched as an alternative to established AI tools like Manus and Genspark.",
+      "icpTier": "A",
+      "icpScore": 7,
+      "bestFitDemo": "neuron",
+      "brandWeakness": "Their current brand might not convey their unique value proposition effectively against established competitors.",
+      "estimatedBudget": "$35-50K",
+      "status": "new",
+      "notes": "The company positions itself as an all-in-one AI workspace, suitable for users of various AI tools.",
+      "source": "hackernews",
+      "sourceUrl": "https://suparagent.ai/",
+      "createdAt": "2026-04-23T15:09:59.272Z",
+      "updatedAt": "2026-04-23T15:09:59.272Z"
     }
   ],
   "drafts": [],
