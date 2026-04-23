@@ -1902,6 +1902,21 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957046621_zy2fz3",
+      "timestamp": "2026-04-23T15:10:46.621Z",
+      "type": "prospect-scraped",
+      "description": "Scraped suparagent.ai — tech: next.js, google-analytics, react · design 5/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9zdXBh"
+    },
+    {
+      "id": "act_1776957045303_l0pzuu",
+      "timestamp": "2026-04-23T15:10:45.303Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"A Collatz conjecture full music generator in 800 lines of C\" — The article describes an open-source project related to music generation, not a company that fits Brandivibe's ICP.",
+      "source": "hackernews",
+      "tokens": 781
+    },
+    {
       "id": "act_1776957042611_l3ca6y",
       "timestamp": "2026-04-23T15:10:42.611Z",
       "type": "prospect-skipped",
@@ -5713,21 +5728,6 @@
       "description": "Skipped [hackernews] \"JSON-logic-path – JSON logic with jsonpath multi-value resolution\" — The article is about a Python implementation, which suggests it's a tech tool, not a business with a need for premium web design services.",
       "source": "hackernews",
       "tokens": 760
-    },
-    {
-      "id": "act_1776551663325_1u9v4g",
-      "timestamp": "2026-04-18T22:34:23.325Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Anya – Offline static malware analysis (Rust)\" — The company focuses on static malware analysis, which is a niche area not aligned with Brandivibe's web design services.",
-      "source": "hackernews",
-      "tokens": 642
-    },
-    {
-      "id": "act_1776551658518_14fqrx",
-      "timestamp": "2026-04-18T22:34:18.518Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
     }
   ],
   "articles": [
