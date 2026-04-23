@@ -2199,6 +2199,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957082662_qh9oli",
+      "timestamp": "2026-04-23T15:11:22.662Z",
+      "type": "prospect-researched",
+      "description": "Researched Orbital: The homepage is cluttered and lacks focus, overwhelming users with too many options.",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 4005
+    },
+    {
       "id": "act_1776957076445_9ejoh5",
       "timestamp": "2026-04-23T15:11:16.445Z",
       "type": "prospect-scraped",
@@ -6013,14 +6022,6 @@
       "description": "Skipped [hackernews] \"Sostactic – polynomial inequalities using sums-of-squares in Lean\" — The company is focused on polynomial inequalities and Lean, which is not aligned with web design or Brandivibe's target industries like SaaS, AI, fintech, etc.",
       "source": "hackernews",
       "tokens": 803
-    },
-    {
-      "id": "act_1776555253760_h1carq",
-      "timestamp": "2026-04-18T23:34:13.760Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company is open-source and offers a free personal management application, indicating it may not have the budget for premium web design services.",
-      "source": "hackernews",
-      "tokens": 709
     }
   ],
   "articles": [
