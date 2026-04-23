@@ -2199,6 +2199,20 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957076445_9ejoh5",
+      "timestamp": "2026-04-23T15:11:16.445Z",
+      "type": "prospect-scraped",
+      "description": "Scraped github.com/zqiren/Orbital — tech: tailwind · design 5/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo"
+    },
+    {
+      "id": "act_1776957074917_wchm5y",
+      "timestamp": "2026-04-23T15:11:14.917Z",
+      "type": "prospect-scraped",
+      "description": "Scraped github.com/zqiren/Orbital — tech: tailwind · design 5/10 · 0 emails found",
+      "prospectId": "tc_aHR0cHM6Ly9naXRo"
+    },
+    {
       "id": "act_1776957066181_pj5s3y",
       "timestamp": "2026-04-23T15:11:06.181Z",
       "type": "prospect-researched",
@@ -6007,20 +6021,6 @@
       "description": "Skipped [hackernews] \"Solyto – a free, open-source all-in-one personal management app\" — The company is open-source and offers a free personal management application, indicating it may not have the budget for premium web design services.",
       "source": "hackernews",
       "tokens": 709
-    },
-    {
-      "id": "act_1776555248533_xtu7or",
-      "timestamp": "2026-04-18T23:34:08.533Z",
-      "type": "error",
-      "description": "Source fetch failed — betalist: BetaList RSS 404",
-      "source": "techcrunch"
-    },
-    {
-      "id": "act_1776551698686_nsom89",
-      "timestamp": "2026-04-18T22:34:58.686Z",
-      "type": "prospect-skipped",
-      "description": "Deep research returned null for GotSkillz (page too thin)",
-      "prospectId": "tc_aHR0cHM6Ly9nb3Rz"
     }
   ],
   "articles": [
