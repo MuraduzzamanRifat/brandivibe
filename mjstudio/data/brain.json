@@ -2489,6 +2489,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957098177_7wtbqe",
+      "timestamp": "2026-04-23T15:11:38.177Z",
+      "type": "email-sent",
+      "description": "Sent touch 1 to hi@agentrq.com: \"Is Your Homepage a Strategic Asset?\"",
+      "prospectId": "tc_aHR0cHM6Ly9hZ2Vu"
+    },
+    {
       "id": "act_1776957096033_z1dm6t",
       "timestamp": "2026-04-23T15:11:36.033Z",
       "type": "email-sent",
@@ -6301,14 +6308,6 @@
       "description": "Skipped [hackernews] \"Anya – Offline static malware analysis (Rust)\" — The company 'Anya' appears to be a project focused on offline static malware analysis, likely developed in Rust, and is hosted on GitHub. This suggests it is an open-source project and not a traditional company seeking web design services.",
       "source": "hackernews",
       "tokens": 706
-    },
-    {
-      "id": "act_1776555278435_1377e6",
-      "timestamp": "2026-04-18T23:34:38.435Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"OCI MicroVMs for Proxmox VE\" — The article describes a technical project related to 'OCI MicroVMs for Proxmox VE', which appears to be an open-source or personal project rather than a business entity. This does not align with Brandivibe's target clients who are typically established companies or startups in specific industries.",
-      "source": "hackernews",
-      "tokens": 723
     }
   ],
   "articles": [
