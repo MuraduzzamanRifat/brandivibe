@@ -2042,6 +2042,15 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957002070_772bla",
+      "timestamp": "2026-04-23T15:10:02.070Z",
+      "type": "prospect-added",
+      "description": "Added Suparagent AI via hackernews (A-tier, ai) — Recently launched as an alternative to established AI tools like Manus and Genspark.",
+      "prospectId": "tc_aHR0cHM6Ly9zdXBh",
+      "source": "hackernews",
+      "tokens": 788
+    },
+    {
       "id": "act_1776956993603_s4dh1q",
       "timestamp": "2026-04-23T15:09:53.603Z",
       "type": "prospect-skipped",
@@ -5861,14 +5870,6 @@
       "description": "Skipped [hackernews] \"Trained a 12M transformer on an ML framework we built from scratch\" — The company is a student project, not a business with a budget for premium web design.",
       "source": "hackernews",
       "tokens": 763
-    },
-    {
-      "id": "act_1776548097363_ygms7d",
-      "timestamp": "2026-04-18T21:34:57.363Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The article provides insufficient information about the company, its stage, industry, or any financial data that would allow for a fit assessment.",
-      "source": "hackernews",
-      "tokens": 653
     }
   ],
   "articles": [
