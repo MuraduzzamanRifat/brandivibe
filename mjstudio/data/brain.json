@@ -1902,6 +1902,20 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957037403_r8pw1w",
+      "timestamp": "2026-04-23T15:10:37.403Z",
+      "type": "lead-gen-skipped",
+      "description": "Lead-gen executor: 3 actions processed, 0 emails queued (0 skipped — prospects may lack email/research yet)"
+    },
+    {
+      "id": "act_1776957035027_45o19y",
+      "timestamp": "2026-04-23T15:10:35.027Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"Gova, a declarative GUI framework for Go\" — The article is about a software framework, not a company, and does not fit the criteria for engaging with a web design studio.",
+      "source": "hackernews",
+      "tokens": 671
+    },
+    {
       "id": "act_1776957031633_rng5wl",
       "timestamp": "2026-04-23T15:10:31.633Z",
       "type": "source-run",
@@ -5712,22 +5726,6 @@
       "timestamp": "2026-04-18T21:35:49.698Z",
       "type": "email-found",
       "description": "Best email for MechCloud: sales@mechcloud.io (scraped, conf 95)",
-      "prospectId": "tc_aHR0cHM6Ly9tZWNo"
-    },
-    {
-      "id": "act_1776548147459_6qzfw0",
-      "timestamp": "2026-04-18T21:35:47.459Z",
-      "type": "prospect-researched",
-      "description": "Researched MechCloud: Lacks clear call-to-action buttons on the homepage.",
-      "prospectId": "tc_aHR0cHM6Ly9tZWNo",
-      "model": "gpt-4o-2024-08-06",
-      "tokens": 2944
-    },
-    {
-      "id": "act_1776548133166_gb4xlj",
-      "timestamp": "2026-04-18T21:35:33.166Z",
-      "type": "prospect-scraped",
-      "description": "Scraped mechcloud.io — tech: astro, vue, tailwind, cloudflare, google-fonts · design 5/10 · 2 emails found",
       "prospectId": "tc_aHR0cHM6Ly9tZWNo"
     }
   ],
