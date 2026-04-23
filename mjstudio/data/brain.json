@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956993603_s4dh1q",
+      "timestamp": "2026-04-23T15:09:53.603Z",
+      "type": "prospect-skipped",
+      "description": "Skipped [hackernews] \"LocalLLM – Recipes for Running the Local LLM (Need Contributors)\" — The article describes a small community project with unclear funding or commercial intent, which suggests they are not ready for a premium web design investment.",
+      "source": "hackernews",
+      "tokens": 843
+    },
+    {
       "id": "act_1776956989115_9acpq8",
       "timestamp": "2026-04-23T15:09:49.115Z",
       "type": "prospect-skipped",
@@ -5839,14 +5847,6 @@
       "description": "Skipped [hackernews] \"Deadline.email – a daily reminder that you'll die\" — The article provides insufficient information about the company, its stage, industry, or any financial data that would allow for a fit assessment.",
       "source": "hackernews",
       "tokens": 653
-    },
-    {
-      "id": "act_1776548093351_t0eebs",
-      "timestamp": "2026-04-18T21:34:53.351Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"A Roman fable about a PHP suite that exposed 100 tables in 3 days\" — The article is a metaphorical presentation of a PHP ecosystem, not describing a tangible company.",
-      "source": "hackernews",
-      "tokens": 711
     }
   ],
   "articles": [
