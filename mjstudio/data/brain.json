@@ -7014,10 +7014,10 @@
     {
       "date": "2026-04-23",
       "startedAt": "2026-04-23T15:07:53.388Z",
-      "updatedAt": "2026-04-23T15:08:39.730Z",
+      "updatedAt": "2026-04-23T15:08:53.013Z",
       "phases": {
         "plan": "done",
-        "article": "pending",
+        "article": "done",
         "fb": [
           "pending",
           "pending",
