@@ -2020,6 +2020,14 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776956923223_6iacex",
+      "timestamp": "2026-04-23T15:08:43.223Z",
+      "type": "plan-generated",
+      "description": "Planned \"The Impact of Premium Web Design for Startups: A Case Study in Transformation\" + 3 FB posts + 3 lead-gen actions",
+      "model": "gpt-4o-2024-08-06",
+      "tokens": 8181
+    },
+    {
       "id": "act_1776868304486_puti0d",
       "timestamp": "2026-04-22T14:31:44.486Z",
       "type": "prospect-skipped",
@@ -5846,14 +5854,6 @@
       "description": "Skipped [hackernews] \"Gradle Avro Plugin to generate Java POJOs from Avro schemas\" — The article describes an open-source Gradle plugin project, not a company. Brandivibe's ICP focuses on providing web design for companies/projects with substantial funding.",
       "source": "hackernews",
       "tokens": 845
-    },
-    {
-      "id": "act_1776544576616_8cja5s",
-      "timestamp": "2026-04-18T20:36:16.617Z",
-      "type": "prospect-skipped",
-      "description": "Skipped [hackernews] \"Praxis – Lab data to publication-ready figures in one Python package\" — The article describes a Python package, which suggests the company is more focused on open-source software development rather than being a potential client for web design services. There are no indications of commercial operations, funding, or a company structure.",
-      "source": "hackernews",
-      "tokens": 714
     }
   ],
   "articles": [
