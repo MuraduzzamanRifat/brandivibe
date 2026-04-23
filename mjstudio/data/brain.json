@@ -1902,6 +1902,13 @@
   "drafts": [],
   "activities": [
     {
+      "id": "act_1776957042611_l3ca6y",
+      "timestamp": "2026-04-23T15:10:42.611Z",
+      "type": "prospect-skipped",
+      "description": "Skipped Seltz — already premium (design score 8/10 is already premium (cutoff 7))",
+      "prospectId": "tc_aHR0cHM6Ly9jb25z"
+    },
+    {
       "id": "act_1776957039894_23ugsc",
       "timestamp": "2026-04-23T15:10:39.894Z",
       "type": "prospect-skipped",
@@ -5721,13 +5728,6 @@
       "type": "error",
       "description": "Source fetch failed — betalist: BetaList RSS 404",
       "source": "techcrunch"
-    },
-    {
-      "id": "act_1776548154403_07972f",
-      "timestamp": "2026-04-18T21:35:54.403Z",
-      "type": "prospect-researched",
-      "description": "Hourly research: 1 prospects researched, 1 emails found",
-      "tokens": 2944
     }
   ],
   "articles": [
