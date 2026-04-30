@@ -129,7 +129,7 @@ export function Loader() {
 
           {/* Bottom — faint tagline that matches the hero's conversion story */}
           <div className="px-6 md:px-12 pb-10 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-            <div>— Premium 3D web design · $15K – $90K</div>
+            <div>— Premium 3D web design · $5K – $25K</div>
             <div>Est. 2024</div>
           </div>
         </motion.div>

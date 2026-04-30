@@ -33,7 +33,7 @@ export const SEED_PROSPECTS: Prospect[] = [
     bestFitDemo: "helix",
     brandWeakness:
       "Entire site is a single Notion page with no 3D, no motion, no security audit narrative. Looks like a hobby project, not a $4.2M raise.",
-    estimatedBudget: "$60K-$80K",
+    estimatedBudget: "$8K-$18K",
     status: "new",
     source: "seed" as const,
     createdAt: now,
@@ -61,7 +61,7 @@ export const SEED_PROSPECTS: Prospect[] = [
     bestFitDemo: "neuron",
     brandWeakness:
       "Framer template with a stock 3D blob hero. The page hero doesn't mention 'agents' anywhere — their core product. Mobile viewport breaks below 400px.",
-    estimatedBudget: "$75K-$90K",
+    estimatedBudget: "$15K-$25K",
     status: "new",
     source: "seed" as const,
     createdAt: now,
@@ -115,7 +115,7 @@ export const SEED_PROSPECTS: Prospect[] = [
     bestFitDemo: "pulse",
     brandWeakness:
       "WordPress. Stock doctor images. 'Patient portal' button links to a Cerner login page that doesn't match the brand. Desperate for a calming, clinical rebrand.",
-    estimatedBudget: "$70K-$90K",
+    estimatedBudget: "$12K-$22K",
     status: "new",
     source: "seed" as const,
     createdAt: now,
@@ -164,7 +164,7 @@ export const SEED_PROSPECTS: Prospect[] = [
     bestFitDemo: "orbit",
     brandWeakness:
       "Placeholder landing. Reservations form submits to a Typeform. No telemetry, no engineering story, no brand atmosphere.",
-    estimatedBudget: "$80K-$100K",
+    estimatedBudget: "$18K-$25K",
     status: "new",
     source: "seed" as const,
     createdAt: now,
@@ -213,7 +213,7 @@ export const SEED_PROSPECTS: Prospect[] = [
     bestFitDemo: "atrium",
     brandWeakness:
       "Single-page Webflow. No thesis document, no portfolio breakdown, no 'submit a deck' workflow. LPs google them and find nothing.",
-    estimatedBudget: "$60K-$90K",
+    estimatedBudget: "$10K-$20K",
     status: "new",
     source: "seed" as const,
     createdAt: now,

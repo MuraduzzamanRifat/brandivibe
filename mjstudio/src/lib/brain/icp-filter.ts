@@ -67,7 +67,7 @@ export function checkIcpFilter(domain: string): IcpFilterResult {
     return {
       ok: false,
       reason: "mega-brand",
-      message: `${d} is out of Brandivibe's ICP — Brandivibe targets Seed–Series B founder companies in the $35–90K rebuild range, not enterprise mega-brands. Try your own startup or a Seed–Series B portfolio company instead.`,
+      message: `${d} is out of Brandivibe's ICP — Brandivibe targets Seed–Series A founder companies in the $5K–$25K rebuild range, not enterprise mega-brands. Try a portfolio company or smaller scaling brand instead.`,
     };
   }
   // Subdomain protection — "blog.vercel.com" etc
