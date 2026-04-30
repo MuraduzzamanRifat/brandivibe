@@ -1,16 +1,11 @@
-name: Brandivibe brain hourly tick (manual only)
+name: Brandivibe brain hourly tick
 
-# Scheduled runs have been DISABLED to keep the brain on a once-per-day
-# cadence (brain-daily.yml covers it). The workflow is preserved so it can
-# be triggered manually from the Actions tab when you want to run an ad-hoc
-# throughput tick (send queued emails, advance sequences, etc.) without
-# waiting for the next daily run.
-#
-# To re-enable hourly scheduling: restore the `schedule:` block below.
-#   schedule:
-#     - cron: "0 * * * *"  # every hour on the hour
+# Re-enabled for always-on operation. Sends queued emails, advances
+# sequences, deep-researches new prospects.
 
 on:
+  schedule:
+    - cron: "0 * * * *"  # every hour on the hour
   workflow_dispatch:
 
 jobs:

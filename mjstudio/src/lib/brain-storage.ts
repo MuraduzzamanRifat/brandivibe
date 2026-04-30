@@ -621,6 +621,45 @@ type BrainData = {
   experiments?: Experiment[];
   /** Autonomy: active planner prompt overrides driven by experiment winners */
   plannerOverrides?: PlannerOverride[];
+  /** Raw feed signals staged by source-pulse, awaiting GPT extraction */
+  rawSourcePool?: RawSourceSignal[];
+  /** LinkedIn DM drafts queued for manual approval + send */
+  linkedinDrafts?: LinkedInDraft[];
+  /** Twitter intent leads — found by scraping for "looking for designer" etc. */
+  twitterIntent?: TwitterIntentLead[];
+};
+
+export type RawSourceSignal = {
+  link: string;
+  title: string;
+  description: string;
+  pubDate: string;
+  source: "techcrunch" | "producthunt" | "hackernews" | "betalist";
+  stagedAt: string;
+};
+
+export type LinkedInDraft = {
+  id: string;
+  prospectId: string;
+  prospectCompany: string;
+  prospectFirstName: string;
+  body: string;
+  status: "queued" | "sent" | "rejected";
+  createdAt: string;
+  sentAt?: string;
+  model?: string;
+  tokens?: number;
+};
+
+export type TwitterIntentLead = {
+  id: string;
+  handle: string;
+  displayName?: string;
+  tweetText: string;
+  tweetUrl: string;
+  matchedKeyword: string;
+  capturedAt: string;
+  status: "new" | "researched" | "drafted" | "contacted" | "ignored";
 };
 
 const DATA_DIR = path.resolve(process.cwd(), "data");
@@ -650,6 +689,9 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     blastConfig: d?.blastConfig,
     experiments: d?.experiments ?? [],
     plannerOverrides: d?.plannerOverrides ?? [],
+    rawSourcePool: d?.rawSourcePool ?? [],
+    linkedinDrafts: d?.linkedinDrafts ?? [],
+    twitterIntent: d?.twitterIntent ?? [],
   };
 }
 

@@ -1,0 +1,24 @@
+name: Brandivibe brain LinkedIn DM drafter (4-hourly)
+
+# Generates personalized LinkedIn DM drafts for top-tier prospects every
+# 4 hours. Drafts queue up at /api/brain/linkedin-draft for manual review
+# and copy-paste send. Never auto-sends — LinkedIn bans automated DMs.
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: LinkedIn DM drafter
+        run: |
+          curl -fsS --max-time 120 -X POST \
+            https://brandivibe.com/api/brain/linkedin-draft \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          echo "--- linkedin draft ---"
+          cat response.json

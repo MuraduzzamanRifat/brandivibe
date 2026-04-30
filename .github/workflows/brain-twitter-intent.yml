@@ -1,0 +1,27 @@
+name: Brandivibe brain Twitter intent scraper (2-hourly)
+
+# Scrapes X/Twitter (via public Nitter mirrors) every 2 hours for buy-intent
+# tweets — founders publicly saying "looking for a designer", "redesigning
+# our website", "rebranding", etc. These are the highest-conversion leads
+# because intent is explicit. No API key needed (Nitter RSS is public).
+#
+# Captured leads land in brain.twitterIntent for manual outreach review.
+
+on:
+  schedule:
+    - cron: "30 */2 * * *"
+  workflow_dispatch:
+
+jobs:
+  intent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Twitter intent scraper
+        run: |
+          curl -fsS --max-time 120 -X POST \
+            https://brandivibe.com/api/brain/twitter-intent \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          echo "--- twitter intent ---"
+          cat response.json

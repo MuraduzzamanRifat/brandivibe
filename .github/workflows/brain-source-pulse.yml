@@ -1,0 +1,25 @@
+name: Brandivibe brain source pulse (15-min)
+
+# Runs every 15 minutes. Just scrapes the 4 feeds, stages new article URLs
+# in brain.rawSourcePool. No GPT calls — costs nothing in API spend.
+# The hourly tick consumes from the staged pool when it runs the full
+# extraction phase.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Source pulse
+        run: |
+          curl -fsS --max-time 60 -X POST \
+            https://brandivibe.com/api/brain/source-pulse \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          echo "--- pulse ---"
+          cat response.json
