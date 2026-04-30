@@ -37,6 +37,10 @@ export type ProspectStatus =
 
 export type Prospect = {
   id: string;
+  /** URL slug for the per-prospect audit landing page at /audit/<slug>.
+   *  Auto-generated from company name on insert; cached so the URL stays
+   *  stable even if the company name is later edited. */
+  auditSlug?: string;
   company: string;
   domain: string;
   founder: string;
@@ -634,7 +638,7 @@ export type RawSourceSignal = {
   title: string;
   description: string;
   pubDate: string;
-  source: "techcrunch" | "producthunt" | "hackernews" | "betalist";
+  source: "techcrunch" | "producthunt" | "hackernews" | "betalist" | "brave";
   stagedAt: string;
 };
 
@@ -787,12 +791,36 @@ export function bustBrainCache(): void {
   memCacheAt = 0;
 }
 
+/** URL-safe slug for the audit landing page, with collision suffix if needed. */
+export function makeAuditSlug(company: string, existing: Set<string>): string {
+  const base = company
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .slice(0, 60);
+  if (!base) return `co-${Math.random().toString(36).slice(2, 8)}`;
+  if (!existing.has(base)) return base;
+  for (let i = 2; i < 100; i++) {
+    const candidate = `${base}-${i}`;
+    if (!existing.has(candidate)) return candidate;
+  }
+  return `${base}-${Math.random().toString(36).slice(2, 6)}`;
+}
+
 export async function upsertProspect(p: Prospect): Promise<void> {
   const data = await loadBrain();
   const idx = data.prospects.findIndex((x) => x.id === p.id);
   if (idx >= 0) {
-    data.prospects[idx] = { ...p, updatedAt: new Date().toISOString() };
+    // Preserve existing auditSlug — it's cached as a URL we may have already shared
+    data.prospects[idx] = { ...p, auditSlug: data.prospects[idx].auditSlug ?? p.auditSlug, updatedAt: new Date().toISOString() };
   } else {
+    if (!p.auditSlug) {
+      const usedSlugs = new Set(
+        data.prospects.map((x) => x.auditSlug).filter((s): s is string => Boolean(s))
+      );
+      p.auditSlug = makeAuditSlug(p.company, usedSlugs);
+    }
     data.prospects.push(p);
   }
   await saveBrain(data);

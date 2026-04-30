@@ -4,6 +4,7 @@ import { fetchTechCrunchArticles } from "@/lib/sources/techcrunch";
 import { fetchProductHuntArticles } from "@/lib/sources/producthunt";
 import { fetchHackerNewsShowHN } from "@/lib/sources/hackernews";
 import { fetchBetaListArticles } from "@/lib/sources/betalist";
+import { fetchBraveSearchProspects } from "@/lib/sources/brave-search";
 import { loadBrain, saveBrain, logActivity } from "@/lib/brain-storage";
 
 /**
@@ -46,9 +47,12 @@ export async function POST(req: Request) {
     fetchProductHuntArticles(),
     fetchHackerNewsShowHN(),
     fetchBetaListArticles(),
+    // Brave Search — only runs when BRAVE_SEARCH_API_KEY is set; otherwise
+    // returns [] without an error so the rest of the pulse continues.
+    fetchBraveSearchProspects(),
   ]);
 
-  const feeds = ["techcrunch", "producthunt", "hackernews", "betalist"];
+  const feeds = ["techcrunch", "producthunt", "hackernews", "betalist", "brave"];
   const allArticles = results.flatMap((r, i) => {
     if (r.status === "fulfilled") return r.value;
     summary.errors.push(`${feeds[i]}: ${r.reason instanceof Error ? r.reason.message : String(r.reason)}`);
