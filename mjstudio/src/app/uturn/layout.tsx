@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "UTurn Store — Small runs. Slow fashion. · Brandivibe",
   description:
     "A capsule-based atelier releasing limited runs four times a year. An ecommerce brand study by Brandivibe.",
+  alternates: { canonical: "/uturn" },
 };
 
 export default function UturnLayout({

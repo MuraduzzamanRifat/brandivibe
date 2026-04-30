@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Helix — Institutional-grade liquid staking for Ethereum · Brandivibe",
   description:
     "Stake ETH. Earn real yield. Stay liquid. Non-custodial liquid staking protocol — a brand study by Brandivibe.",
+  alternates: { canonical: "/helix" },
 };
 
 export default function HelixLayout({

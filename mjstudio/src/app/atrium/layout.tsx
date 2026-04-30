@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Atrium — Capital for founders who think in decades · Brandivibe",
   description:
     "A venture capital firm brand study by Brandivibe. Early-stage capital for long-horizon companies.",
+  alternates: { canonical: "/atrium" },
 };
 
 export default function AtriumLayout({

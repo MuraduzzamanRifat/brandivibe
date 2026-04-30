@@ -56,7 +56,7 @@ export default function AuditPage() {
             Get a 30-point audit of your homepage in <span className="italic text-[#84e1ff]">90 seconds</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl">
-            Real analysis by the same engine we use before quoting a $35–90K
+            Real analysis by the same engine we use before quoting a $5K–$25K
             rebuild. Scraped, scored, and explained. No sales call, no signup
             wall, one email required.
           </p>
@@ -192,7 +192,7 @@ export default function AuditPage() {
                 Want this fixed?
               </h3>
               <p className="text-white/60 mb-6 max-w-xl mx-auto">
-                Brandivibe rebuilds founder homepages in 6 weeks for $35–90K. One
+                Brandivibe rebuilds founder homepages in 6 weeks for $5K–$25K. One
                 designer, production Next.js codebase you own, no retainer.
               </p>
               <Link

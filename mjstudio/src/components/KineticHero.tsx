@@ -34,7 +34,7 @@ export function KineticHero() {
           </RevealLine>
           <RevealLine delay={0.1}>
             <div className="text-right">
-              <div>Index — 001 / 003</div>
+              <div>Index — 001 / 007</div>
               <div className="mt-1">Q2 · 2026</div>
             </div>
           </RevealLine>
@@ -83,7 +83,7 @@ export function KineticHero() {
           <div className="col-span-12 md:col-span-5 md:col-start-8 flex flex-col md:flex-row gap-4 md:justify-end">
             <RevealLine delay={0.8}>
               <MagneticButton
-                href="#contact"
+                href="/audit"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium"
               >
                 Claim a free site audit <ArrowRight className="w-4 h-4" />
@@ -117,7 +117,7 @@ export function KineticHero() {
         className="absolute bottom-10 right-6 md:right-12 font-mono text-xs text-white/40 uppercase tracking-widest text-right"
       >
         <div>$5K – $25K builds</div>
-        <div>6-week delivery</div>
+        <div>6-week delivery · 12 portfolio projects</div>
       </motion.div>
     </section>
   );

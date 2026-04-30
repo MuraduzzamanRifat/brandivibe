@@ -110,7 +110,7 @@ export default function DemosPage() {
 
                   {d.comingSoon && (
                     <div className="absolute top-5 left-5 font-mono text-[9px] uppercase tracking-[0.3em] px-2.5 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20">
-                      Coming soon
+                      Concept study
                     </div>
                   )}
                   <div className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm grid place-items-center border border-white/15 group-hover:bg-white/25 transition-colors">
@@ -163,7 +163,7 @@ export default function DemosPage() {
             </div>
           </div>
           <Link
-            href="/#contact"
+            href="/audit"
             className="shrink-0 inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
           >
             Claim a free site audit →

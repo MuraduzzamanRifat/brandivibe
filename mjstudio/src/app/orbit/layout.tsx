@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Orbit — Zero emissions. Maximum intent. · Brandivibe",
   description:
     "An electric hypercar brand study by Brandivibe. 1,920 horsepower. 0-100 in 1.94 seconds. 87 units.",
+  alternates: { canonical: "/orbit" },
 };
 
 export default function OrbitLayout({

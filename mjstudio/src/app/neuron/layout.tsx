@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Neuron — Ship AI agents in minutes · Brandivibe",
   description:
     "The developer-first platform for production-grade AI agents — a brand study by Brandivibe.",
+  alternates: { canonical: "/neuron" },
 };
 
 export default function NeuronLayout({

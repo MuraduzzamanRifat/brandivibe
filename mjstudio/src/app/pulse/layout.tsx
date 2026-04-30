@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Pulse — The quiet revolution in telehealth · Brandivibe",
   description:
     "Better care. Delivered calmly. A telehealth brand study by Brandivibe.",
+  alternates: { canonical: "/pulse" },
 };
 
 export default function PulseLayout({

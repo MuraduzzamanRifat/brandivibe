@@ -126,7 +126,7 @@ export function Contact() {
             <div>
               <label className="block font-mono text-xs text-white/50 mb-2">BUDGET</label>
               <div className="flex flex-wrap gap-3">
-                {["$15-30k", "$30-60k", "$60-100k", "$100k+"].map((b) => (
+                {["$5-10k", "$10-15k", "$15-25k", "$25k+"].map((b) => (
                   <label key={b} className="cursor-pointer">
                     <input
                       type="radio"

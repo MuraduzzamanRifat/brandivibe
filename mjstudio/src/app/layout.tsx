@@ -18,17 +18,17 @@ const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Brandivibe — Premium web experiences for ambitious brands",
+  title: "Brandivibe — Websites that close $25K deals on sight",
   description:
-    "Independent design & engineering practice crafting cinematic websites for crypto, SaaS, and luxury brands. Next.js, WebGL, and obsessive attention to detail.",
+    "Premium 3D web design for seed → Series A founders. $5K–$25K builds, 6-week delivery, and an autonomous AI brain that writes content, sources prospects, and runs cold outreach for you.",
   keywords: [
-    "web design studio",
-    "premium website development",
-    "Next.js agency",
-    "WebGL design",
-    "crypto website design",
-    "SaaS landing page",
-    "creative web development",
+    "premium web design for startups",
+    "3D website design",
+    "founder homepage rebuild",
+    "Next.js design studio",
+    "high-conversion landing page",
+    "Shopify storefront design",
+    "AI-powered marketing for startups",
   ],
   authors: [{ name: "Brandivibe" }],
   creator: "Brandivibe",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Brandivibe — Premium web experiences for ambitious brands",
+    title: "Brandivibe — Websites that close $25K deals on sight",
     description:
-      "Independent design & engineering practice crafting cinematic websites for crypto, SaaS, and luxury brands.",
+      "Premium 3D web design ($5K–$25K) plus an autonomous AI growth engine for content, leads, and cold outreach. Built for seed → Series A founders.",
     siteName: "Brandivibe",
     images: [
       {
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandivibe — Premium web experiences for ambitious brands",
+    title: "Brandivibe — Websites that close $25K deals on sight",
     description:
-      "Cinematic websites for crypto, SaaS, and luxury brands. Next.js, WebGL, motion design.",
+      "Premium 3D web design + AI growth engine. $5K–$25K builds, 6-week delivery.",
     images: ["/work/helix.jpg"],
   },
   robots: {
@@ -74,20 +74,19 @@ const ORG_SCHEMA = {
       name: "Brandivibe",
       url: "https://brandivibe.com",
       description:
-        "Independent design and engineering studio crafting cinematic websites for crypto, SaaS, and luxury brands. Specialises in Next.js, WebGL, and high-conversion founder homepages.",
+        "Premium 3D web design studio building $5K–$25K founder homepages in 6 weeks. Pairs every Next.js build with an autonomous AI brain for content publishing, prospect sourcing, and cold outreach.",
       foundingDate: "2024",
       areaServed: "Worldwide",
-      priceRange: "$$$",
+      priceRange: "$$",
       knowsAbout: [
-        "premium web design",
+        "premium web design for startups",
         "Next.js development",
-        "WebGL animations",
-        "luxury brand websites",
-        "crypto website design",
-        "SaaS landing pages",
-        "website conversion optimisation",
-        "cinematic web experiences",
-        "founder homepage design",
+        "3D and WebGL websites",
+        "Shopify storefront design",
+        "founder homepage rebuilds",
+        "website conversion optimization",
+        "AI-powered cold outreach",
+        "autonomous content marketing",
       ],
     },
     {
@@ -95,7 +94,7 @@ const ORG_SCHEMA = {
       "@id": "https://brandivibe.com/#website",
       url: "https://brandivibe.com",
       name: "Brandivibe",
-      description: "Premium web experiences for ambitious brands",
+      description: "Websites that close $25K deals on sight — for founders who want a homepage that sells while they sleep.",
       publisher: { "@id": "https://brandivibe.com/#organization" },
       potentialAction: {
         "@type": "SearchAction",

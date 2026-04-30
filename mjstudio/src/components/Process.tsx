@@ -138,7 +138,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       initial={{ opacity: 0.4 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="shrink-0 w-[80vw] md:w-[60vw] lg:w-[48vw] h-[62vh] rounded-3xl relative overflow-hidden border border-white/10 glass flex"
+      className="shrink-0 w-[88vw] md:w-[60vw] lg:w-[48vw] h-[62vh] rounded-3xl relative overflow-hidden border border-white/10 glass flex flex-col md:flex-row"
       style={{
         background: `linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0)), radial-gradient(ellipse 60% 40% at 20% 0%, ${step.accent}18, transparent 60%)`,
       }}

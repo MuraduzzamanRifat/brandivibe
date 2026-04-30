@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Monolith — Architecture that stands · Brandivibe",
   description:
     "An architecture firm brand study by Brandivibe. Concrete, glass, light, and time.",
+  alternates: { canonical: "/monolith" },
 };
 
 export default function MonolithLayout({

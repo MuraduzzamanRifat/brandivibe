@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Loader } from "@/components/Loader";
 import { KineticHero } from "@/components/KineticHero";
+import { TrustStrip } from "@/components/TrustStrip";
 import { Manifesto } from "@/components/Manifesto";
 import { FeaturedWork } from "@/components/FeaturedWork";
 import { Services } from "@/components/Services";
@@ -16,6 +17,7 @@ export default function Home() {
       <Navbar />
       <main className="relative">
         <KineticHero />
+        <TrustStrip />
         <Manifesto />
         <FeaturedWork />
         <Services />

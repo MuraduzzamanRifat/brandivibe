@@ -65,7 +65,7 @@ const FAQ_SCHEMA = {
       name: "How much does Brandivibe charge to rebuild a homepage?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Brandivibe charges $35,000–$90,000 for a full founder homepage rebuild. That covers one dedicated designer, a production Next.js codebase you own outright, and a 6-week delivery timeline. There is no ongoing retainer.",
+        text: "Brandivibe charges $5,000–$25,000 for a full founder homepage rebuild. That covers one dedicated designer, a production Next.js codebase you own outright, and a 6-week delivery timeline. There is no ongoing retainer.",
       },
     },
   ],

@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   title: "Aurora — Swiss haute horlogerie · Brandivibe",
   description:
     "A luxury watch brand study by Brandivibe. Cinematic, editorial, obsessively detailed.",
+  alternates: { canonical: "/aurora" },
 };
 
 export default function AuroraLayout({

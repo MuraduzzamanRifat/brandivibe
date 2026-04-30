@@ -182,6 +182,7 @@ export const demos: Demo[] = [
     gradient: "from-[#f5d4c3]/25 via-[#f3efe6]/12 to-[#1a0f0a]",
     year: "2026",
     role: "Design · Shopify · Brand",
+    comingSoon: true,
   },
   {
     num: "11",
@@ -197,6 +198,7 @@ export const demos: Demo[] = [
     gradient: "from-[#facc15]/20 via-[#0a0a0a]/10 to-[#0a0a0a]",
     year: "2026",
     role: "Design · Shopify · Launch ops",
+    comingSoon: true,
   },
   {
     num: "12",
@@ -212,5 +214,6 @@ export const demos: Demo[] = [
     gradient: "from-[#166534]/20 via-[#f5e6c8]/10 to-[#14110e]",
     year: "2026",
     role: "Design · Shopify · Brand",
+    comingSoon: true,
   },
 ];

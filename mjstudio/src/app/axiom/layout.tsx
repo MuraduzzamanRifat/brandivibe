@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   title: "Axiom — Fintech infrastructure for the next billion · Brandivibe",
   description:
     "Move money. Instantly. Globally. A fintech protocol brand study by Brandivibe.",
+  alternates: { canonical: "/axiom" },
 };
 
 export default function AxiomLayout({

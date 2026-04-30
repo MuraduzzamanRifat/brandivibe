@@ -17,10 +17,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE}/portfolio`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9, lastModified: now },
+    { url: `${SITE}/poster`, changeFrequency: "monthly", priority: 0.5, lastModified: now },
     ...PORTFOLIO_SLUGS.map((d) => ({
       url: `${SITE}/${d}`,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+      lastModified: now,
     })),
   ];
 
