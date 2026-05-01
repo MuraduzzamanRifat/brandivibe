@@ -1,0 +1,105 @@
+name: 🎯 Brain — start hunting now
+
+# Manual one-click pipeline that fires every lead-generation channel in
+# sequence so a human-triggered "start hunting" event runs the whole
+# sourcing → research → outreach loop without waiting for the 15-min /
+# hourly / 2-hour cron schedules to catch up.
+#
+# Order matters: source-pulse must stage signals BEFORE run-daily
+# extracts them; twitter-intent and linkedin-draft are independent and
+# fire in parallel after the main pipeline.
+#
+# Trigger: Actions tab → "Brain — start hunting now" → Run workflow.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source:
+    name: 1. Source pulse (stage feed signals)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Stage new signals from 4 RSS feeds + Brave Search
+        run: |
+          curl -fsS --max-time 90 -X POST \
+            https://brandivibe.com/api/brain/source-pulse \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          cat response.json
+          jq -e '.ok == true' response.json
+
+  daily:
+    name: 2. Daily pipeline (extract → research → email)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: source
+    steps:
+      - name: Run full daily pipeline
+        run: |
+          curl -fsS --max-time 540 -X POST \
+            https://brandivibe.com/api/brain/run-daily \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          cat response.json
+
+  hourly:
+    name: 3. Hourly tick (send queued + advance sequences)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: daily
+    steps:
+      - name: Run hourly tick to dispatch any newly-queued emails
+        run: |
+          curl -fsS --max-time 310 -X POST \
+            https://brandivibe.com/api/brain/tick-hourly \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          cat response.json
+
+  twitter:
+    name: 4. Twitter intent (parallel)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: source
+    steps:
+      - name: Scrape X for buy-intent tweets
+        run: |
+          curl -fsS --max-time 120 -X POST \
+            https://brandivibe.com/api/brain/twitter-intent \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          cat response.json
+
+  linkedin:
+    name: 5. LinkedIn drafter (parallel)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: daily
+    steps:
+      - name: Generate LinkedIn DM drafts for top prospects
+        run: |
+          curl -fsS --max-time 120 -X POST \
+            https://brandivibe.com/api/brain/linkedin-draft \
+            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
+            -o response.json
+          cat response.json
+
+  digest:
+    name: 6. Final summary
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    needs: [hourly, twitter, linkedin]
+    steps:
+      - name: Pull latest brain state
+        run: |
+          echo "=== Active pipeline ==="
+          curl -fsS https://brandivibe.com/api/brain/run-daily -o run.json
+          jq '.run.phases' run.json || cat run.json
+          echo ""
+          echo "=== Twitter intent leads ==="
+          curl -fsS https://brandivibe.com/api/brain/twitter-intent | jq '{total, new}'
+          echo "=== LinkedIn drafts ==="
+          curl -fsS https://brandivibe.com/api/brain/linkedin-draft | jq '{queued, drafts: (.drafts | length)}'
+          echo ""
+          echo "Brain is hunting. Daily digest tomorrow at 14:00 UTC."
