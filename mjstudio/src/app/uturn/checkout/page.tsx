@@ -1,7 +1,7 @@
 import { Navbar } from "../_components/Navbar";
 import { CheckoutForm } from "./_components/CheckoutForm";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export const metadata = {
   title: "Checkout — UTurn Store",

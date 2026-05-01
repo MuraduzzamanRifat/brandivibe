@@ -1,7 +1,7 @@
 import { Navbar } from "../../_components/Navbar";
 import { OrderSuccess } from "./_components/OrderSuccess";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 export const metadata = {
   title: "Order confirmed — UTurn Store",

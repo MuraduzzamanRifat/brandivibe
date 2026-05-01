@@ -5,7 +5,16 @@ import { loadArticle } from "@/lib/brain/journal-loader";
 import { loadBrain } from "@/lib/brain-storage";
 import "./article.css";
 
-export const dynamic = "force-dynamic";
+// Pre-render every article at build time so the static-export build can
+// generate one HTML file per article. The build (running on GitHub Actions
+// with the latest brain.json checked into the repo) sees every article
+// the brain has produced.
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const brain = await loadBrain();
+  return (brain.articles ?? []).map((a) => ({ slug: a.slug }));
+}
 
 type Props = { params: Promise<{ slug: string }> };
 

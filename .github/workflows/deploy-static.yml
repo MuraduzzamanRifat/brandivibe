@@ -1,0 +1,95 @@
+name: Deploy static site to GitHub Pages
+
+# Migration target: brandivibe.com served entirely from GitHub Pages, no Koyeb.
+#
+# This workflow:
+#   1. Strips API routes + dashboard from src/app (they can't co-exist with
+#      output: "export" mode and aren't needed in the static deployment)
+#   2. Builds Next.js with NEXT_BUILD_TARGET=static, which flips next.config.ts
+#      into export mode and generates a static `out/` folder
+#   3. Uploads `out/` as a Pages artifact and deploys
+#
+# Triggered on every main-branch push that touches site source. Brain commits
+# (article + brain.json updates) automatically trigger a rebuild so new
+# articles + new audit pages go live within ~3 minutes of being generated.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "mjstudio/src/**"
+      - "mjstudio/public/**"
+      - "mjstudio/data/brain.json"
+      - "mjstudio/content/**"
+      - "mjstudio/package.json"
+      - "mjstudio/package-lock.json"
+      - "mjstudio/next.config.ts"
+      - ".github/workflows/deploy-static.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: mjstudio
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: mjstudio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Strip server-only routes for static export
+        # output: "export" can't coexist with API routes / route handlers.
+        # We delete them in the workflow only; they remain in the repo for
+        # the Koyeb build during the transition window.
+        run: |
+          rm -rf src/app/api
+          rm -rf src/app/dashboard
+          # feed.xml is a route handler — drop it; static RSS can be regenerated later
+          rm -rf src/app/feed.xml
+          # robots.txt + sitemap are file-conventions and survive static export
+          echo "Stripped server-only routes:"
+          ls src/app
+
+      - name: Build static site
+        env:
+          NEXT_BUILD_TARGET: static
+        run: npx next build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: mjstudio/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

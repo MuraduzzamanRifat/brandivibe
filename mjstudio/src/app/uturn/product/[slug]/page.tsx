@@ -9,7 +9,11 @@ import { ProductDetails } from "./_components/ProductDetails";
 import { RelatedProducts } from "./_components/RelatedProducts";
 import { PRODUCTS, type Product } from "./products";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  return Object.keys(PRODUCTS).map((slug) => ({ slug }));
+}
 
 type Params = { params: Promise<{ slug: string }> };
 

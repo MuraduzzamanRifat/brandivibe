@@ -4,7 +4,16 @@ import { notFound } from "next/navigation";
 import { loadBrain } from "@/lib/brain-storage";
 import { ArrowRight } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+// Pre-render one audit page per prospect at build time. Each new prospect
+// the brain commits to brain.json triggers a rebuild + redeploy.
+export const dynamic = "force-static";
+
+export async function generateStaticParams() {
+  const brain = await loadBrain();
+  return brain.prospects
+    .filter((p) => p.auditSlug)
+    .map((p) => ({ slug: p.auditSlug as string }));
+}
 
 type Props = { params: Promise<{ slug: string }> };
 
