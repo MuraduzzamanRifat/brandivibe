@@ -475,6 +475,8 @@ export type OutboundEmail = {
     /** Autonomy: which experiment this email is part of, and which arm */
     experimentId?: string;
     experimentVariant?: "A" | "B";
+    /** Multi-sender: which sender account dispatched this email */
+    senderId?: string;
   };
   /** Engagement metrics populated by Resend webhook events */
   metrics?: {
@@ -597,7 +599,7 @@ export type Draft = {
   approved: boolean;
 };
 
-type BrainData = {
+export type BrainData = {
   prospects: Prospect[];
   drafts: Draft[];
   activities?: Activity[];
@@ -631,6 +633,46 @@ type BrainData = {
   linkedinDrafts?: LinkedInDraft[];
   /** Twitter intent leads — found by scraping for "looking for designer" etc. */
   twitterIntent?: TwitterIntentLead[];
+  /** Multi-sender pool for scaling email throughput (10 senders × 30-50/day) */
+  senderAccounts?: SenderAccount[];
+};
+
+/**
+ * One sending identity (email + domain). The sender rotation picks the next
+ * eligible account on every send so we spread volume across many subdomains
+ * and keep individual reputations healthy.
+ *
+ * Each account has its own warmup curve — disabled accounts are skipped, new
+ * accounts ramp up from 5/day to dailyCap over 30 days, fully-warmed-up
+ * accounts max out at dailyCap.
+ */
+export type SenderAccount = {
+  /** Stable id, e.g. "primary", "m1", "m2" — used in metrics breakdowns */
+  id: string;
+  fromEmail: string;
+  /** Domain extracted from fromEmail (cached for sorting, dedup, etc.) */
+  domain: string;
+  /** Display name shown in From header (e.g. "Muraduzzaman at Brandivibe") */
+  fromName?: string;
+  /** Reply-To override; if absent the account uses the global RESEND_REPLY_TO */
+  replyTo?: string;
+  enabled: boolean;
+  /** ISO date this account started warming up. Set on first send. */
+  warmupStartedAt?: string;
+  /** Maximum emails per day once fully warmed up (default 50) */
+  dailyCap: number;
+  /** Per-day send tally keyed by YYYY-MM-DD */
+  sentByDay?: Record<string, number>;
+  /** Cumulative lifetime sent count (for dashboard display) */
+  sentLifetime?: number;
+  /** ISO timestamp of the last send through this account */
+  lastSentAt?: string;
+  /** If a send fails with reputation/spam errors, the rotator pauses this
+   *  account by setting circuitBreakerTrippedAt — manual reset required. */
+  circuitBreakerTrippedAt?: string;
+  circuitBreakerReason?: string;
+  /** Free-text notes (e.g. DKIM status, Resend dashboard link) */
+  notes?: string;
 };
 
 export type RawSourceSignal = {
@@ -696,6 +738,7 @@ function ensureShape(d: Partial<BrainData> | undefined | null): BrainData {
     rawSourcePool: d?.rawSourcePool ?? [],
     linkedinDrafts: d?.linkedinDrafts ?? [],
     twitterIntent: d?.twitterIntent ?? [],
+    senderAccounts: d?.senderAccounts ?? [],
   };
 }
 
