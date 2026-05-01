@@ -14,7 +14,7 @@ export function Footer() {
           <a href="#services" className="hover:text-white transition-colors">Services</a>
           <a href="/journal" className="hover:text-white transition-colors">Journal</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-          <a href="mailto:hello@brandivibe.com" className="hover:text-white transition-colors">Email</a>
+          <a href="mailto:mjrifat54@gmail.com" className="hover:text-white transition-colors">Email</a>
         </div>
       </div>
     </footer>

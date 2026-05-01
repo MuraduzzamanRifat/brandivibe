@@ -175,11 +175,11 @@ export function Contact() {
         <div className="mt-12 text-center">
           <p className="text-white/40 text-sm mb-2">or reach us directly</p>
           <a
-            href="mailto:hello@brandivibe.com"
+            href="mailto:mjrifat54@gmail.com"
             className="inline-flex items-center gap-2 text-white hover:text-[#84e1ff] transition-colors"
           >
             <Mail className="w-4 h-4" />
-            hello@brandivibe.com
+            mjrifat54@gmail.com
           </a>
         </div>
       </div>
