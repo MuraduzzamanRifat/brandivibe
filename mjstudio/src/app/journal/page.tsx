@@ -5,14 +5,14 @@ import { loadBrain } from "@/lib/brain-storage";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Journal — Website conversion & design · Brandivibe",
+  title: "Journal — Conversion-focused web design + AI automation · Brandivibe",
   description:
-    "Essays on high-conversion websites for Seed–Series B founders. Design scores, real teardowns, and the thinking behind elite web experiences.",
+    "Long-form essays on high-conversion websites, AI automation systems, SEO that compounds, and digital marketing strategy. Published daily by the Brandivibe AI brain.",
   alternates: { canonical: "/journal" },
   openGraph: {
-    title: "Brandivibe Journal — Website conversion & design",
+    title: "Brandivibe Journal — Conversion + AI automation essays",
     description:
-      "Real analysis on what makes founder websites convert. New piece every day.",
+      "Daily long-form essays on conversion-focused websites, AI automation, SEO, and digital marketing. Published by the Brandivibe AI brain.",
     url: "/journal",
     type: "website",
   },
