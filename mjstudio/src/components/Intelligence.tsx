@@ -208,24 +208,24 @@ export function Intelligence() {
         <div className="grid grid-cols-12 gap-6 mb-10 md:mb-12">
           <div className="col-span-12 md:col-span-4">
             <div className="font-mono text-xs text-white/40 uppercase tracking-[0.3em]">
-              — Intelligence Layer
+              — The Growth Engine
             </div>
             <div className="mt-2 font-mono text-xs text-white/40">005</div>
           </div>
           <div className="col-span-12 md:col-span-8">
             <RevealLine>
               <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Not just a website.
+                Your competitors already use AI.
                 <br />
-                <span className="italic text-white/60">A growth engine.</span>
+                <span className="italic text-white/60">Why are you still manual?</span>
               </h2>
             </RevealLine>
             <RevealLine delay={0.2}>
               <p className="mt-8 text-lg md:text-xl text-white/55 leading-relaxed max-w-2xl text-balance">
-                Every Brandivibe build ships with an autonomous AI brain that
-                writes your content, sources your prospects, sells your service,
-                and learns from every reply. Your website doesn&apos;t sit idle
-                between campaigns. It&apos;s the campaign.
+                Every day without automation costs you customers. Brandivibe ships an autonomous
+                AI growth engine with every build — it sources prospects, writes content, sends
+                cold outreach, and learns from every reply. Your site doesn&apos;t sit between
+                campaigns. It runs the campaign.
               </p>
             </RevealLine>
           </div>
@@ -248,18 +248,18 @@ export function Intelligence() {
         >
           <div>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#84e1ff] mb-3">
-              Included with every build
+              Included with every build · Limited onboarding slots monthly
             </div>
             <div className="text-xl md:text-2xl font-semibold tracking-tight text-balance max-w-2xl">
-              Ship a site on Tuesday. Wake up Wednesday to new articles,
-              queued posts, fresh leads, and sent emails. The brain runs itself.
+              Launch Tuesday. Wake up Wednesday to fresh leads, sent emails,
+              new articles, and queued posts. More clients. Less manual work.
             </div>
           </div>
           <a
             href="#contact"
             className="shrink-0 inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-black font-medium text-sm hover:bg-white/90 transition-colors"
           >
-            See it in action →
+            Build my AI system →
           </a>
         </motion.div>
       </div>

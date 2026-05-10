@@ -26,9 +26,9 @@ export function FeaturedWork() {
           <div className="col-span-12 md:col-span-9">
             <RevealLine>
               <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Recent work,
+                Stop losing customers
                 <br />
-                <span className="italic text-white/60">handpicked</span>.
+                <span className="italic text-white/60">to slow, outdated sites</span>.
               </h2>
             </RevealLine>
           </div>

@@ -53,12 +53,12 @@ export default function AuditPage() {
             — The Brandivibe Homepage Audit
           </div>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-balance mb-5">
-            Get a 30-point audit of your homepage in <span className="italic text-[#84e1ff]">90 seconds</span>
+            Find out exactly why your site is losing customers — in <span className="italic text-[#84e1ff]">90 seconds</span>
           </h1>
           <p className="text-white/60 text-lg max-w-2xl">
-            Real analysis by the same engine we use before quoting a homepage
-            rebuild. Scraped, scored, and explained. No sales call, no signup
-            wall, one email required.
+            A 30-point AI-powered audit of your homepage. The same engine we use before
+            building rebuilds. Scraped, scored, explained. No sales call, no signup wall,
+            one email required.
           </p>
         </header>
 

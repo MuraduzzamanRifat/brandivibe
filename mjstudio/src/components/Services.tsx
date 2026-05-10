@@ -18,35 +18,43 @@ type Service = {
 const services: Service[] = [
   {
     num: "01",
-    slug: "marketing-sites",
-    title: "Marketing sites",
-    desc: "Premium landing pages for SaaS, crypto, and luxury brands. Next.js, SEO, CMS, analytics — shipped in 4-6 weeks.",
+    slug: "webgl-website",
+    title: "WebGL Website",
+    desc: "Most websites look good. Ours make money. Cinematic 3D sites that load in under a second and convert visitors into customers from the first scroll.",
     accent: "#84e1ff",
-    bullets: ["Next.js 16 + App Router", "CMS integration", "SEO + OG metadata", "95+ Lighthouse"],
+    bullets: ["Custom WebGL + 3D", "Sub-second load", "Conversion-engineered", "Mobile-perfect"],
   },
   {
     num: "02",
-    slug: "3d-webgl",
-    title: "3D & WebGL",
-    desc: "Cinematic hero scenes, interactive product showcases, particle systems. Built with React Three Fiber and custom shaders.",
+    slug: "seo-optimization",
+    title: "SEO Optimization",
+    desc: "SEO alone is dead — AI-powered growth wins now. Modern, full-funnel SEO that compounds: technical, content, schema, authority.",
     accent: "#a78bfa",
-    bullets: ["React Three Fiber", "Custom GLSL shaders", "Blender pipelines", "Mobile-optimized"],
+    bullets: ["Technical SEO audit", "Buyer-intent content", "Schema + rich results", "AI content pipeline"],
   },
   {
     num: "03",
-    slug: "motion-design",
-    title: "Motion design",
-    desc: "Scroll-driven animations, micro-interactions, page transitions. The details that make a site feel alive.",
+    slug: "ai-automation",
+    title: "AI Automation",
+    desc: "Your competitors already use AI. Why are you still manual? Replace 15+ hours of weekly busywork with workflows that run 24/7.",
     accent: "#f0abfc",
-    bullets: ["Framer Motion", "Lenis smooth scroll", "GSAP + ScrollTrigger", "Reduced-motion fallbacks"],
+    bullets: ["Lead generation 24/7", "Cold outreach systems", "Content publishing", "Self-learning workflows"],
   },
   {
     num: "04",
-    slug: "full-stack-builds",
-    title: "Full-stack builds",
-    desc: "Dashboards, auth flows, payments. TypeScript, Postgres, Stripe, Supabase. Clean code, documented, maintainable.",
+    slug: "digital-marketing",
+    title: "Digital Marketing",
+    desc: "Stop burning ad budget on audiences that don't convert. Multi-channel campaigns where every dollar is attributable to revenue.",
     accent: "#fcd34d",
-    bullets: ["TypeScript everywhere", "Postgres + Drizzle", "Stripe + webhooks", "Clerk / Supabase auth"],
+    bullets: ["Paid acquisition", "Email + nurture funnels", "Retargeting + LTV", "Attribution modeling"],
+  },
+  {
+    num: "05",
+    slug: "ai-agent-development",
+    title: "AI Agent Development",
+    desc: "Hire an AI employee that never sleeps, never quits. Custom agents that handle support, sales, qualification, and ops — automatically.",
+    accent: "#86efac",
+    bullets: ["Custom-trained agents", "Multi-tool integration", "Voice + chat support", "Human handoff logic"],
   },
 ];
 
@@ -228,7 +236,7 @@ export function Services() {
       <div className="absolute top-8 left-6 md:left-12 z-20 flex items-baseline gap-4 font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
         <span>— Services</span>
         <span>004</span>
-        <span className="hidden md:inline">— what we build when the brief says world-class</span>
+        <span className="hidden md:inline">— five ways we turn your business into a 24/7 client-generating machine</span>
       </div>
 
       <div className="sticky top-0 h-screen overflow-hidden flex items-center">

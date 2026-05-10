@@ -2,6 +2,10 @@
  * Service catalog. Each entry powers /services/[slug] AND the homepage
  * Services section preview. Keep summaries short for the homepage; the
  * detail page renders the full body sections.
+ *
+ * Voice: persuasive, specific, fear-of-loss aware. Every section earns
+ * its place by triggering one of: authority, urgency, social proof,
+ * outcome clarity, or competitor anxiety.
  */
 
 export type ServiceProcessStep = {
@@ -19,355 +23,434 @@ export type Service = {
   slug: string;
   num: string;
   title: string;
+  hook: string;
   tagline: string;
   accent: string;
-  /** One-line summary for the homepage card */
   summary: string;
-  /** Two-paragraph hero copy on the detail page */
   heroBody: string[];
-  /** Bullets shown on both the homepage card AND the detail "What's included" list */
   bullets: string[];
-  /** Detail-page-only deep capabilities — usually 6-8 cards */
   capabilities: ServiceCapability[];
-  /** Detail-page-only "When you need this" — buyer-recognition list */
   whenYouNeedThis: string[];
-  /** 3-4 step process specific to this service */
   process: ServiceProcessStep[];
-  /** Concrete deliverables the buyer walks away with */
   deliverables: string[];
-  /** Demo slugs from data/demos.ts that exemplify this service */
   relatedDemos: string[];
-  /** SEO meta */
   metaTitle: string;
   metaDescription: string;
 };
 
 export const services: Service[] = [
   {
-    slug: "marketing-sites",
+    slug: "webgl-website",
     num: "01",
-    title: "Marketing sites",
-    tagline: "Homepages built to convert, not decorate.",
+    title: "WebGL Website Development",
+    hook: "Most Websites Look Good. Ours Make Money.",
+    tagline: "Ultra-fast interactive websites engineered to impress users and convert them in seconds.",
     accent: "#84e1ff",
     summary:
-      "Premium landing pages for SaaS, fintech, luxury, and 3D-native brands. Next.js, hand-coded, SEO-engineered, shipped in 4-6 weeks.",
+      "High-converting 3D websites built to outclass your competitors and turn visitors into customers — fast.",
     heroBody: [
-      "Most agency sites are decorations. We build conversion infrastructure. Every section earns its place: clear value proposition above the fold, social proof where doubt creeps in, a primary CTA that resolves a real next step. The aesthetic carries the brand; the architecture carries the deal.",
-      "Each marketing site is hand-coded in Next.js 16 against a TypeScript codebase you own outright. No drag-and-drop builder, no theme tax, no migration trap. The result loads under a second on cellular, ranks for buyer-intent keywords, and reads like a brand that knows exactly who it's talking to.",
+      "Your website has 3 seconds to convince a visitor you're worth their attention. A static template doesn't cut it anymore. We build cinematic WebGL websites that load fast, look premium, and trigger the buying decision before the visitor scrolls.",
+      "Every site is hand-coded in Next.js with custom 3D, motion, and conversion architecture. No drag-and-drop builders. No theme tax. The result: a website that runs like a sales employee, not a digital brochure.",
     ],
-    bullets: ["Next.js 16 + App Router", "CMS integration", "SEO + OG metadata", "95+ Lighthouse"],
+    bullets: ["Custom WebGL + 3D", "Sub-second load time", "Conversion-first layout", "Mobile-perfect"],
     capabilities: [
       {
-        title: "Above-the-fold conversion",
-        body: "We architect the hero around one decision the visitor must make. Headline, subhead, social proof, and primary CTA — all measured against scroll depth and click-through, not just designer taste.",
+        title: "Cinematic first impression",
+        body: "Custom 3D hero scenes that anchor your brand as premium within the first 2 seconds. Visitors don't bounce — they lean in.",
       },
       {
-        title: "Buyer-intent SEO",
-        body: "Every page targets a specific commercial keyword cluster: schema.org Product or Service markup, OG metadata, sitemap.xml, robots.txt, RSS feed, per-page canonicals. Your demo posts get indexed within hours.",
+        title: "Conversion-engineered layout",
+        body: "Every section earns its place: clear value prop above the fold, social proof where doubt creeps in, primary CTA that resolves a real next step.",
       },
       {
-        title: "CMS + content ops",
-        body: "Headless CMS integration (Sanity, Contentful, or a markdown-based content folder) so your team ships copy without a developer. Includes auto-revalidation so edits go live in minutes.",
+        title: "Sub-second load time",
+        body: "LCP under 1.8s on cellular. Lighthouse 95+. Your visitors don't wait — and Google rewards you for it in rankings.",
       },
       {
-        title: "Performance budget",
-        body: "Lighthouse 95+ on mobile, LCP under 1.8s, zero unused CSS shipped. Image optimization, font subsetting, route-level code-splitting, and edge caching tuned per route.",
+        title: "Mobile-perfect performance",
+        body: "60fps animations on phones from 2020. WebGL fallbacks where the GPU isn't there. The site never feels slow, never feels broken.",
       },
       {
-        title: "Analytics + attribution",
-        body: "Plausible / GA4 / Mixpanel wiring with UTM passthrough, session-stitching, conversion events on every meaningful interaction. You see which channel actually drives bookings.",
+        title: "Built-in analytics + lead capture",
+        body: "Every meaningful interaction is a tracked event. Forms wired to Resend, Cal.com, your CRM. You see which channel actually drives bookings.",
       },
       {
-        title: "Lead capture + integrations",
-        body: "Forms wired to Resend, Cal.com, HubSpot, or your CRM of choice. Newsletter opt-in, gated lead magnets, audit-request flows — all production-grade with proper validation.",
+        title: "You own the codebase",
+        body: "Production Next.js + TypeScript. No platform lock-in. Hire any developer to extend it later — they'll thank you for the clean handover.",
       },
     ],
     whenYouNeedThis: [
-      "You just raised a round and the deck looks better than your homepage.",
-      "Your conversion rate is sub-1% and you can't tell whether it's the copy or the layout.",
-      "You're moving upmarket and the current site looks like the old you, not the next you.",
-      "You need a site that ranks for buyer keywords without a 12-month SEO retainer.",
-      "You're tired of editing a Webflow template that fights you on every change.",
+      "Your competitors just launched a slicker site and your conversion rate is sliding.",
+      "You raised a round and the deck looks better than your homepage.",
+      "Your current site looks like the old you, not the next you.",
+      "Visitors land and bounce — you don't know if it's the copy or the layout.",
+      "You're moving upmarket and need a homepage that justifies a premium price tag.",
     ],
     process: [
       {
         label: "Week 1",
-        title: "Discovery + positioning",
-        body: "We map your ICP, value proposition, top 3 buyer objections, and competitor landscape. You leave week 1 with a tight one-pager that defines the entire build.",
+        title: "Strategy + positioning",
+        body: "We map your ICP, top 3 buyer objections, and competitor landscape. You leave week 1 with a tight brief that defines the entire build.",
       },
       {
         label: "Week 2-3",
-        title: "Design + content",
-        body: "Pixel-perfect Figma mockups for hero, mid-funnel sections, and footer. Copy drafted alongside design — never bolted on after. Two rounds of revisions.",
+        title: "Design + 3D direction",
+        body: "Pixel-perfect Figma mockups + 3D scene direction. Copy drafted alongside design — never bolted on after. Two rounds of revisions.",
       },
       {
         label: "Week 4-5",
         title: "Build + integrations",
-        body: "Production Next.js codebase, CMS wiring, analytics events, deploy preview at every commit. Daily progress demos via Loom.",
+        body: "Production Next.js codebase, custom WebGL, CMS wiring, analytics events, deploy preview at every commit. Daily Loom progress demos.",
       },
       {
         label: "Week 6",
         title: "Launch + transfer",
-        body: "Domain cutover, post-launch QA across browsers + devices, full handover with documentation, repo access, and 30 days of post-launch support included.",
+        body: "Domain cutover, post-launch QA across browsers + devices, full handover with documentation, repo access, and 30 days of post-launch support.",
       },
     ],
     deliverables: [
       "Production Next.js codebase (TypeScript, App Router, ESLint clean)",
+      "Custom WebGL scenes + GLSL shaders",
       "Figma source file with the full design system",
-      "CMS schema + admin walkthrough video",
-      "SEO audit report (technical + content)",
-      "Deployment pipeline (Vercel / Koyeb / Cloudflare)",
+      "CMS integration + admin walkthrough video",
+      "Lighthouse 95+ performance report",
       "30 days of post-launch support",
     ],
-    relatedDemos: ["neuron", "axiom", "pulse"],
-    metaTitle: "Marketing sites — premium landing pages for founders · Brandivibe",
+    relatedDemos: ["helix", "aurora", "axiom"],
+    metaTitle: "WebGL Website Development — Custom 3D Sites That Convert · Brandivibe",
     metaDescription:
-      "Hand-coded Next.js marketing sites built for conversion. SEO, CMS, analytics, and 95+ Lighthouse — shipped in 4-6 weeks. No templates, ever.",
+      "Hand-coded WebGL websites built for conversion. Sub-second load, custom 3D, mobile-perfect, engineered to turn visitors into paying customers in 6 weeks.",
   },
 
   {
-    slug: "3d-webgl",
+    slug: "seo-optimization",
     num: "02",
-    title: "3D & WebGL",
-    tagline: "Interactive 3D experiences that price-anchor your brand.",
+    title: "SEO Optimization",
+    hook: "SEO Alone Is Dead. AI-Powered Growth Wins Now.",
+    tagline: "Rank higher on Google and capture buyers searching for your services every single day.",
     accent: "#a78bfa",
     summary:
-      "Cinematic hero scenes, real-time product showcases, particle systems, custom shader work. Built with React Three Fiber, optimized for mobile.",
+      "Show up where buyers are already searching. Modern SEO that compounds — not the keyword-stuffing playbook from 2015.",
     heroBody: [
-      "Static screenshots and stock illustration are the visual language of every B2B SaaS site. Custom WebGL is the language of brands that want to price differently. When the hero of your homepage is an interactive 3D scene tuned to 60fps on a four-year-old phone, you're no longer competing on feature lists — you're competing on craft.",
-      "Every 3D build is engineered first. We use React Three Fiber for the scene graph, custom GLSL shaders for material work, and Drei utilities for the heavy lifting. Geometry is simplified for mobile, draw calls are batched, and the entire scene falls back gracefully on devices that can't handle it.",
+      "Most agencies sell SEO like it's still 2015 — keyword density, backlink farms, monthly retainers that show up as a spreadsheet you can't read. The Google algorithm has moved on. Today's rankings reward expertise, intent-match, and genuine authority. We build for that.",
+      "Our SEO engagements are full-funnel: technical audit, content strategy aligned to buyer intent, AI-powered article publishing pipeline, schema-rich markup, and on-page optimization that compounds. You stop renting traffic from ads and start owning it.",
     ],
-    bullets: ["React Three Fiber", "Custom GLSL shaders", "Blender pipelines", "Mobile-optimized"],
+    bullets: ["Technical SEO audit", "Buyer-intent content", "Schema + structured data", "AI content pipeline"],
     capabilities: [
       {
-        title: "Cinematic hero scenes",
-        body: "Custom 3D environments that respond to scroll, cursor, or audio. Tuned per-device — your phone gets a simplified mesh, your laptop gets full effects. Same visual language, different polygon budget.",
+        title: "Technical SEO that actually works",
+        body: "Core Web Vitals tuned to Google's quality bar, sitemap.xml, robots.txt, canonical tags, schema.org JSON-LD, OG metadata. Your site stops fighting the crawler and starts working with it.",
       },
       {
-        title: "Interactive product showcases",
-        body: "Rotate-to-explore product configurators, exploded-view diagrams, real-time material swaps. Built for ecommerce and complex product brands where photos can't show the whole story.",
+        title: "Buyer-intent keyword strategy",
+        body: "We don't chase vanity keywords. We map every page to a specific commercial-intent query — the searches your future customers are typing right now.",
       },
       {
-        title: "Custom GLSL shaders",
-        body: "Hand-written vertex and fragment shaders for unique material effects: holographic, iridescent, liquid metal, volumetric fog, signed-distance-field text. The looks competitors can't copy.",
+        title: "AI-powered content engine",
+        body: "Optional add-on: an autonomous content engine that publishes long-form, E-E-A-T-compliant articles to your blog daily. Your competitors can't keep up because they're still writing one post a week.",
       },
       {
-        title: "Particle + simulation systems",
-        body: "GPU-driven particles, fluid simulations, instanced geometry for swarm effects. Renders 100k+ particles at 60fps on commodity hardware.",
+        title: "Schema markup that earns rich results",
+        body: "Product, Service, FAQPage, Organization, Article schemas — done right so Google shows you stars, prices, and FAQ accordions in the search results page itself.",
       },
       {
-        title: "Blender → web pipeline",
-        body: "We handle the full asset chain: Blender modeling, optimization, GLB export, automatic LOD generation. You get the source files and the production assets.",
+        title: "On-page conversion-rate optimization",
+        body: "Ranking is half the battle. Once visitors arrive, the page has to convert. We tune headlines, social proof placement, and CTAs against real heatmap data.",
       },
       {
-        title: "Performance + accessibility",
-        body: "GPU profiling on every commit. Reduced-motion fallback for users with vestibular disorders. Full keyboard navigation. WebGL-not-supported fallback to a poster image — no broken hero ever.",
+        title: "Backlink + authority strategy",
+        body: "Real backlinks from real sites — guest posts, expert roundups, podcast features. No PBNs, no link farms. The kind that survives the next algorithm update.",
       },
     ],
     whenYouNeedThis: [
-      "You're selling a physical product and photos don't do it justice.",
-      "Your category is crowded and you need an unfair brand advantage.",
-      "You want the hero of your site to be the marketing — no demo video required.",
-      "You're targeting design-conscious buyers (luxury, aerospace, watches, automotive, premium SaaS).",
-      "Your competitor just launched a 3D site and your team is panicking.",
+      "You're spending more on Google Ads than you can sustain and need organic traffic to take over.",
+      "Your competitors are ranking page-1 for terms you should own.",
+      "You publish articles but they don't bring in leads.",
+      "You hired an SEO agency and got a monthly report nobody can decipher.",
+      "You're launching a category and need to own it before competitors catch on.",
     ],
     process: [
       {
         label: "Week 1",
-        title: "Concept + technical scope",
-        body: "Sketch direction, technical feasibility on target devices, polygon budget, draw call ceiling. We write the perf contract before any modeling starts.",
-      },
-      {
-        label: "Week 2-3",
-        title: "Modeling + shading",
-        body: "Blender mesh work, UV unwrapping, custom shader development, lighting rig. Mid-fidelity preview shipped end of week 3.",
-      },
-      {
-        label: "Week 4-5",
-        title: "Integration + interaction",
-        body: "React Three Fiber scene, scroll/cursor binding, mobile fallbacks, audio sync if relevant. Performance pass on real devices.",
-      },
-      {
-        label: "Week 6",
-        title: "Polish + ship",
-        body: "Final color grading, motion easing, microinteractions, accessibility audit, GPU profiling, launch.",
-      },
-    ],
-    deliverables: [
-      "React Three Fiber components, fully typed",
-      "Custom GLSL shader sources",
-      "Blender source files + exported GLB assets",
-      "LOD pipeline + texture compression presets",
-      "Mobile fallback poster image set",
-      "Performance profile report (FPS by device class)",
-    ],
-    relatedDemos: ["helix", "aurora", "orbit"],
-    metaTitle: "3D & WebGL websites — cinematic web experiences · Brandivibe",
-    metaDescription:
-      "Custom 3D and WebGL hero scenes built with React Three Fiber. Mobile-optimized, GLSL shader work, Blender pipelines, accessibility-first. For brands that compete on craft.",
-  },
-
-  {
-    slug: "motion-design",
-    num: "03",
-    title: "Motion design",
-    tagline: "Micro-interactions and scroll cinematography that make a site feel alive.",
-    accent: "#f0abfc",
-    summary:
-      "Scroll-driven storytelling, page transitions, gesture-aware micro-interactions. Framer Motion + GSAP + Lenis, with reduced-motion fallbacks built in.",
-    heroBody: [
-      "Motion is the difference between a site that loads and a site that breathes. Done well, it guides the eye, anchors brand voice, and makes content feel choreographed. Done poorly, it's gimmicky decoration that hurts performance and frustrates users on slower connections.",
-      "We treat motion as a layer of the design system, not a finishing flourish. Every animation is choreographed against scroll position, viewport intersection, or explicit user intent. Reduced-motion preference is honored automatically. The result reads as cinematic, never busy.",
-    ],
-    bullets: ["Framer Motion", "Lenis smooth scroll", "GSAP + ScrollTrigger", "Reduced-motion fallbacks"],
-    capabilities: [
-      {
-        title: "Scroll cinematography",
-        body: "Scroll-driven hero sequences, parallax depth layers, pinned section transitions, horizontal filmstrip storytelling. The kind of motion that reads as deliberate, not gratuitous.",
-      },
-      {
-        title: "Page transitions",
-        body: "Shared element transitions between routes, fade choreography on entry/exit, content-aware speed curves. The site feels like a single fluid surface, not a collection of pages.",
-      },
-      {
-        title: "Micro-interactions",
-        body: "Magnetic buttons, cursor-aware tooltips, hover state ladders, custom focus rings, tactile click feedback. The little details that signal a premium product to the people who notice.",
-      },
-      {
-        title: "SVG + path animation",
-        body: "Hand-drawn SVG line reveals, animated logo lockups, morphing iconography, signature path animations for brand moments.",
-      },
-      {
-        title: "Smooth scroll without jank",
-        body: "Lenis-powered inertial scrolling tuned per device. Touch, trackpad, and mouse wheel all feel right. No motion sickness, no lag.",
-      },
-      {
-        title: "Reduced-motion respect",
-        body: "Every animation has a reduced-motion fallback. We test with prefers-reduced-motion: reduce on real devices. Accessibility is the floor, not a checkbox.",
-      },
-    ],
-    whenYouNeedThis: [
-      "Your existing site looks fine but feels static next to your competitors.",
-      "You want a hero moment that gets shared on Twitter the day you launch.",
-      "Your brand has a distinctive voice and you want the motion to match it.",
-      "Designers tell you the static designs look great but the live site has no energy.",
-      "You're shipping a redesign and want the launch to feel like an event, not a release note.",
-    ],
-    process: [
-      {
-        label: "Week 1",
-        title: "Motion brief",
-        body: "We define the motion vocabulary: timing curves, durations, choreography rules, reduced-motion specifications. Everything downstream references this brief.",
+        title: "Audit + opportunity map",
+        body: "Full technical SEO audit, competitor gap analysis, keyword opportunity map. You see exactly what's broken and where the biggest wins are.",
       },
       {
         label: "Week 2",
-        title: "Storyboards + prototypes",
-        body: "Loom walkthroughs of every scroll moment, page transition, and key micro-interaction. You sign off before any code is written.",
+        title: "Technical fixes + on-page",
+        body: "Core Web Vitals optimization, schema markup, internal linking, on-page rewrites. Foundational fixes that move rankings before any new content.",
       },
       {
-        label: "Week 3-5",
-        title: "Implementation",
-        body: "Framer Motion + GSAP integration, Lenis tuning, scroll-trigger orchestration. Daily Loom updates as moments come online.",
+        label: "Week 3-4",
+        title: "Content strategy + execution",
+        body: "Pillar articles + cluster pieces aligned to buyer intent. AI content pipeline (if added) lights up daily publishing.",
       },
       {
-        label: "Week 6",
-        title: "Polish + cross-device",
-        body: "Final timing pass on real devices, frame-rate profiling, reduced-motion verification, accessibility audit.",
+        label: "Ongoing",
+        title: "Track + iterate",
+        body: "Monthly ranking reports tied to revenue, not vanity. Quarterly strategy reviews to double-down on what's working.",
       },
     ],
     deliverables: [
-      "Framer Motion + GSAP + Lenis integration code",
-      "Motion design system documentation (timing, easing, reduced-motion rules)",
-      "Storyboard Loom library for every scroll moment",
-      "Performance report (frame rate by device class)",
-      "Accessibility audit covering prefers-reduced-motion + keyboard navigation",
+      "Full technical SEO audit + prioritized fix list",
+      "Competitor gap analysis",
+      "Buyer-intent keyword map (50+ terms)",
+      "Schema.org markup deployed across the site",
+      "Pillar + cluster content strategy",
+      "Monthly ranking + traffic dashboard",
     ],
-    relatedDemos: ["axiom", "monolith", "atrium"],
-    metaTitle: "Motion design — scroll cinematography for premium websites · Brandivibe",
+    relatedDemos: ["axiom", "neuron", "atrium"],
+    metaTitle: "SEO Optimization — Buyer-Intent Search Strategy · Brandivibe",
     metaDescription:
-      "Premium motion design with Framer Motion, GSAP, and Lenis. Scroll-driven storytelling, page transitions, micro-interactions — all with reduced-motion fallbacks built in.",
+      "Modern SEO that compounds. Technical audits, buyer-intent content, AI publishing pipeline, schema-rich markup. Rank for what your customers are actually searching.",
   },
 
   {
-    slug: "full-stack-builds",
-    num: "04",
-    title: "Full-stack builds",
-    tagline: "Dashboards, auth, and payments that don't break under load.",
-    accent: "#fcd34d",
+    slug: "ai-automation",
+    num: "03",
+    title: "AI Automation Systems",
+    hook: "Your Competitors Already Use AI. Why Are You Still Manual?",
+    tagline: "Eliminate repetitive work with intelligent AI workflows that run while you sleep.",
+    accent: "#f0abfc",
     summary:
-      "Production TypeScript apps with Postgres, Stripe, and modern auth. Documented, tested, and built so a future engineer thanks you instead of cursing you.",
+      "Replace manual operations with AI workflows that source leads, qualify them, send outreach, follow up — 24/7, no breaks, no salary.",
     heroBody: [
-      "Most agencies stop at the marketing site. We finish the loop. Authenticated dashboards, billing flows, internal tools, customer-facing portals — built on the same stack as the marketing site so the team that ships your homepage also ships your product surface.",
-      "Every full-stack build is end-to-end TypeScript: typed API contracts, typed database schema, typed UI props. The codebase is opinionated where it matters (lint rules, file conventions, error handling) and pragmatic where it doesn't. Your next engineer can be productive on day one.",
+      "Every business runs on repetitive work: sourcing leads, drafting emails, sorting customer messages, posting content, following up. Each one is a 30-minute task you do daily — adding up to 15 hours a week of pure tax. We replace it with AI systems that never sleep.",
+      "Our automation systems aren't off-the-shelf Zapier cobble-ups. They're custom-built workflows — GPT-4o for the thinking, native APIs for the actions, self-healing logs for the operations. Your team stops doing busywork and starts doing the work only humans can do.",
     ],
-    bullets: ["TypeScript everywhere", "Postgres + Drizzle", "Stripe + webhooks", "Clerk / Supabase auth"],
+    bullets: ["Lead generation automation", "Cold outreach systems", "Content publishing", "Self-learning workflows"],
     capabilities: [
       {
-        title: "Authenticated dashboards",
-        body: "Role-based access, audit logs, multi-tenant scoping, organization invites. Built on Clerk or Supabase Auth depending on your billing model and compliance posture.",
+        title: "Autonomous lead radar",
+        body: "Scans 5+ sources every 15 minutes — TechCrunch, Product Hunt, Hacker News, BetaList, Google search dorks. Filters by ICP fit. Adds qualified leads to your pipeline without you lifting a finger.",
       },
       {
-        title: "Stripe + payment flows",
-        body: "One-time charges, subscriptions, metered billing, customer portal, webhook reconciliation, dunning. Every Stripe event mapped to a specific domain action so you never have ghost subscribers.",
+        title: "AI-powered cold outreach",
+        body: "Personalized email sequences with smart timing. Click signals trigger faster follow-ups. Open signals trigger different angles. Bounces auto-pause sender domains. Every email feels human; every send is automated.",
       },
       {
-        title: "Postgres + schema design",
-        body: "Drizzle ORM with type-safe migrations, indexed access patterns, row-level security where appropriate. We model the domain first, then the schema — never the other way.",
+        title: "Self-publishing content engine",
+        body: "Daily long-form articles drafted, fact-checked, hero-imaged, and published to your site without a writer. SEO-optimized, brand-voice-aligned, plagiarism-free. Your competitors can't keep up.",
       },
       {
-        title: "Background jobs + queues",
-        body: "Inngest, Trigger.dev, or BullMQ depending on your runtime. Email sending, webhook delivery, scheduled tasks, retries with exponential backoff — all observable from a single dashboard.",
+        title: "Smart CRM + lead scoring",
+        body: "Every prospect tracked from cold to closed. AI scores intent based on opens, clicks, replies, site visits. Hot leads bubble up automatically — no manual triage.",
       },
       {
-        title: "Internal admin tools",
-        body: "The unsexy interfaces that keep a business running: customer support views, content moderation queues, refund flows, manual override consoles. Built fast so your team isn't bottlenecked by engineering.",
+        title: "Self-learning A/B experiments",
+        body: "The system runs experiments on itself — angles, subject styles, sender accounts. Picks winners after 14 days. Auto-applies what works. Gets smarter every week with zero intervention.",
       },
       {
-        title: "Observability + ops",
-        body: "Sentry for errors, structured logging via Pino, health-check endpoints, on-call runbooks. Your site doesn't just work — you can prove it works at 3am.",
+        title: "Daily digest + alerts",
+        body: "One email each morning summarizing yesterday's performance. Real-time alerts if anything breaks. You glance once and know the system is working.",
       },
     ],
     whenYouNeedThis: [
-      "Your marketing site is great but the product surface looks like it was built by a different team.",
-      "You're losing customers in the signup or billing flow and don't know which step.",
-      "Your team is duct-taping no-code tools because real engineering hasn't been done yet.",
-      "You need a customer dashboard, an internal admin, and a billing portal — and want them to share one design system.",
-      "You're hiring a CTO and want a clean codebase to hand them on day one.",
+      "You spend 2+ hours a day on outreach, lead sourcing, or follow-ups.",
+      "Your competitors are scaling without hiring and you're losing ground.",
+      "You hired a virtual assistant and they still can't keep up.",
+      "You're stuck in inbox jail every morning.",
+      "You want a business that grows when you take a vacation, not stalls.",
     ],
     process: [
       {
         label: "Week 1",
-        title: "Domain + schema design",
-        body: "We map your domain entities, access patterns, billing model, and compliance needs into a Drizzle schema and a typed API contract before writing a single feature.",
+        title: "Workflow audit + design",
+        body: "We map every repetitive task in your operation, score them by time saved, and design the automation system that replaces them.",
       },
       {
         label: "Week 2-3",
-        title: "Auth + billing foundations",
-        body: "Clerk or Supabase Auth wired with org invites + RBAC. Stripe customer + subscription objects modeled, webhooks deployed, billing portal live in dev.",
+        title: "Build + integrate",
+        body: "Custom GPT-4o workflows, API integrations, scheduling, error handling. Each automation tested against real data before going live.",
       },
       {
-        label: "Week 4-5",
-        title: "Feature surface",
-        body: "Dashboards, internal admin, customer-facing flows. Daily Loom walkthroughs. Each feature ships with at least one integration test against a real Postgres instance.",
+        label: "Week 4",
+        title: "Train + deploy",
+        body: "We watch the system run for 7 days, tune it against real signal, then hand over the dashboard + runbook.",
       },
       {
-        label: "Week 6",
-        title: "Hardening + handover",
-        body: "Sentry wiring, performance audit, security review, runbooks, README walkthrough. You receive the repo, the deployment pipeline, and a 90-minute handover call.",
+        label: "Ongoing",
+        title: "Monitor + evolve",
+        body: "Optional retainer: monthly tune-ups as your business changes, new automations as you spot new repetitive tasks.",
       },
     ],
     deliverables: [
-      "TypeScript monorepo or single-app codebase",
-      "Drizzle schema + migrations + seed scripts",
-      "Stripe integration with webhook reconciliation",
-      "Auth (Clerk or Supabase) with RBAC + org invites",
-      "Sentry + structured logging + health checks",
-      "On-call runbook + README + 90-min handover call",
-      "30 days of post-launch support",
+      "Custom AI workflow architecture",
+      "Lead sourcing + outreach system",
+      "Content publishing pipeline",
+      "CRM + lead scoring dashboard",
+      "Daily digest email + monitoring alerts",
+      "Self-healing logs + audit trail",
     ],
-    relatedDemos: ["neuron", "uturn", "atrium"],
-    metaTitle: "Full-stack builds — TypeScript apps with auth, Stripe, and Postgres · Brandivibe",
+    relatedDemos: ["neuron", "axiom", "helix"],
+    metaTitle: "AI Automation Systems — Workflows That Run 24/7 · Brandivibe",
     metaDescription:
-      "Production-grade full-stack TypeScript apps. Postgres + Drizzle, Stripe billing, Clerk or Supabase auth, observability built in. Built so your next engineer can ship on day one.",
+      "Custom AI automation systems that source leads, run cold outreach, publish content, and follow up automatically. Replace 15 hours of weekly busywork with software that never sleeps.",
+  },
+
+  {
+    slug: "digital-marketing",
+    num: "04",
+    title: "Digital Marketing Strategy",
+    hook: "Stop Burning Ad Budget On Audiences That Don't Convert.",
+    tagline: "Data-driven campaigns engineered to generate leads, sales, and long-term brand growth.",
+    accent: "#fcd34d",
+    summary:
+      "Multi-channel marketing where every dollar is attributable. Paid, organic, email, retargeting — coordinated, measured, profitable.",
+    heroBody: [
+      "Most marketing budgets are graveyards. Money pours into Google Ads, Meta, agencies, freelancers, content creators — and the spreadsheet tracking ROI is a fiction. We build marketing systems where every dollar is attributable, every channel earns its place, and growth is something you can plan for, not pray for.",
+      "Our strategies start with one question: who's the most valuable customer you're not yet reaching? Then we engineer the funnel — paid acquisition, organic content, email nurture, retargeting — to find them, qualify them, and convert them. Every campaign tracked against revenue, not vanity metrics.",
+    ],
+    bullets: ["Paid acquisition strategy", "Email + nurture funnels", "Retargeting + LTV", "Attribution modeling"],
+    capabilities: [
+      {
+        title: "Paid acquisition that earns",
+        body: "Google Ads, Meta, LinkedIn — built to ROAS targets, not spray-and-pray reach metrics. Creative testing, audience layering, and bid strategies tied to lifetime value, not first-click revenue.",
+      },
+      {
+        title: "Email + nurture funnels",
+        body: "Drip sequences that convert cold subscribers into customers. Welcome flows, abandoned-flow rescues, post-purchase upsells, win-backs. Every email earns its place in the sequence.",
+      },
+      {
+        title: "Retargeting + lookalike audiences",
+        body: "Visitors who didn't convert the first time become your warmest audience. Smart frequency caps, creative rotation, and segment-aware messaging that doesn't feel stalker-ish.",
+      },
+      {
+        title: "Attribution + revenue modeling",
+        body: "Multi-touch attribution that tells you which channel actually drives revenue — not just which one got the last click. UTM hygiene, server-side tracking, customer-level reporting.",
+      },
+      {
+        title: "Content distribution strategy",
+        body: "Your articles, videos, and case studies engineered for maximum amplification. Repurposing pipeline, paid amplification of organic winners, syndication relationships.",
+      },
+      {
+        title: "Conversion rate optimization",
+        body: "Heatmap audits, A/B testing on landing pages, checkout flow analysis. Most growth comes from converting more of the traffic you already have, not buying more.",
+      },
+    ],
+    whenYouNeedThis: [
+      "You're scaling ad spend but ROAS is sliding and nobody can explain why.",
+      "Your CMO left and the marketing function is duct-tape.",
+      "You're getting traffic but not buyers — the funnel leaks somewhere and you don't know where.",
+      "You're launching a product and need a coordinated multi-channel rollout.",
+      "You want to stop relying on word-of-mouth and build predictable demand.",
+    ],
+    process: [
+      {
+        label: "Week 1",
+        title: "Audit + funnel diagnosis",
+        body: "Full audit of paid, organic, email, retargeting. Heatmap review on landing pages. We identify the leak — and the fastest win.",
+      },
+      {
+        label: "Week 2",
+        title: "Strategy + ICP refinement",
+        body: "Customer segmentation, ICP scoring, channel allocation, budget re-balance. You see exactly where every dollar goes and why.",
+      },
+      {
+        label: "Week 3-4",
+        title: "Campaign launch + creative",
+        body: "Ad creative production, copy, landing page optimization, email sequences. First wave goes live with measurable hypotheses.",
+      },
+      {
+        label: "Ongoing",
+        title: "Optimize + scale winners",
+        body: "Weekly performance reviews, creative iteration, budget reallocation toward winners. Compounding growth, not flat-line spending.",
+      },
+    ],
+    deliverables: [
+      "Full marketing audit + diagnosis",
+      "ICP + customer segmentation report",
+      "Channel allocation + budget plan",
+      "Ad creative production (5+ variations)",
+      "Email + nurture sequence build",
+      "Attribution dashboard tied to revenue",
+    ],
+    relatedDemos: ["pulse", "uturn", "kindred"],
+    metaTitle: "Digital Marketing Strategy — Revenue-Tied Growth Campaigns · Brandivibe",
+    metaDescription:
+      "Multi-channel marketing where every dollar is attributable. Paid, organic, email, retargeting — all measured against revenue, not vanity metrics.",
+  },
+
+  {
+    slug: "ai-agent-development",
+    num: "05",
+    title: "AI Agent Development",
+    hook: "Hire An AI Employee That Never Sleeps, Never Quits.",
+    tagline: "Custom AI agents trained to handle customer support, sales, lead qualification, and operations — automatically.",
+    accent: "#86efac",
+    summary:
+      "AI agents that work like a senior employee — handling support tickets, qualifying leads, closing routine sales, all 24/7 without a salary or sick days.",
+    heroBody: [
+      "The customer support rep, the SDR, the operations coordinator — these roles are increasingly being automated. Not by chatbots that frustrate users, but by AI agents trained on your specific business, your specific tone, and your specific decision-making rules.",
+      "We build AI agents that act, not just respond. They look up customer data, schedule meetings, escalate edge cases, write proposals, and refund orders — within the boundaries you set. They run on GPT-4o or Claude depending on the task, and they integrate directly with your existing tools.",
+    ],
+    bullets: ["Custom-trained agents", "Multi-tool integration", "Voice + chat support", "Human handoff logic"],
+    capabilities: [
+      {
+        title: "Customer support agents",
+        body: "Handles 70%+ of routine support tickets — order status, returns, password resets, FAQ answers. Escalates complex issues to humans with full context attached. Your support team focuses on the 30% that matters.",
+      },
+      {
+        title: "Lead qualification agents",
+        body: "Conducts a structured discovery conversation with inbound leads. Scores fit, books qualified prospects directly to your calendar, sends 'not a fit' a polite no. Your sales team only talks to qualified buyers.",
+      },
+      {
+        title: "Sales-closing agents (low-ticket)",
+        body: "For repeatable, low-ticket products: agent handles the entire sale from question to checkout. Answers objections, sends proposals, processes payments. Works while you sleep.",
+      },
+      {
+        title: "Operations + admin agents",
+        body: "Internal agents that file expense reports, update CRM records, draft project status updates, schedule meetings. The boring 20% of your team's calendar — gone.",
+      },
+      {
+        title: "Multi-tool integration",
+        body: "Agents that actually do things: read Gmail, write to Notion, query Postgres, charge Stripe, send Slack messages. Powered by function-calling APIs and your existing stack.",
+      },
+      {
+        title: "Voice + chat interfaces",
+        body: "Deploy as web chat widgets, WhatsApp bots, voice phone agents (via Twilio or Vapi), or Slack DM agents. Same brain, multiple surfaces.",
+      },
+    ],
+    whenYouNeedThis: [
+      "Your support team is drowning and hiring more people just delays the problem.",
+      "You're booking demo calls with prospects who weren't a fit anyway.",
+      "Your team spends hours on admin work that could be automated.",
+      "You want to scale customer touchpoints without scaling headcount.",
+      "Your competitors deploy 24/7 chat and it's making you look slow by comparison.",
+    ],
+    process: [
+      {
+        label: "Week 1",
+        title: "Use case + scope",
+        body: "We pick the highest-leverage agent to build first. Map decision rules, escalation logic, tool integrations, and success metrics.",
+      },
+      {
+        label: "Week 2-3",
+        title: "Build + train",
+        body: "Agent development, prompt engineering, function-calling integrations, evaluation suite. Tested against 100+ real edge cases before launch.",
+      },
+      {
+        label: "Week 4",
+        title: "Pilot + tune",
+        body: "Deployed to a fraction of traffic. Daily review of conversations. Tune prompts, expand or restrict scope based on real performance.",
+      },
+      {
+        label: "Ongoing",
+        title: "Scale + monitor",
+        body: "Full deployment with monitoring dashboard. Quarterly retraining as your business evolves and the model improves.",
+      },
+    ],
+    deliverables: [
+      "Custom AI agent (GPT-4o or Claude-based)",
+      "Function-calling integrations with your stack",
+      "Web chat widget OR voice phone agent OR WhatsApp bot",
+      "Evaluation suite + monitoring dashboard",
+      "Conversation logs + analytics",
+      "Quarterly retraining included for 12 months",
+    ],
+    relatedDemos: ["neuron", "atrium", "helix"],
+    metaTitle: "AI Agent Development — Custom AI Employees For Your Business · Brandivibe",
+    metaDescription:
+      "Custom AI agents trained to handle support, sales, qualification, operations. GPT-4o or Claude-powered, deployable as chat / voice / WhatsApp / Slack.",
   },
 ];

@@ -29,7 +29,7 @@ export function KineticHero() {
           <RevealLine>
             <div>
               <div>Brandivibe</div>
-              <div className="mt-1">Independent · Remote · Worldwide</div>
+              <div className="mt-1">AI-powered growth systems</div>
             </div>
           </RevealLine>
           <RevealLine delay={0.1}>
@@ -48,18 +48,18 @@ export function KineticHero() {
       >
         <div className="mx-auto max-w-[1600px]">
           <h1 className="text-[14vw] md:text-[12vw] leading-[0.85] font-semibold tracking-[-0.04em]">
-            <SplitText as="span">Websites that</SplitText>
+            <SplitText as="span">Build a business</SplitText>
             <br />
             <SplitText as="span" delay={0.15} className="italic text-white/70">
-              close
+              that runs
             </SplitText>{" "}
             <SplitText as="span" delay={0.35}>
-              clients
+              24/7
             </SplitText>
             <br />
             <span className="gradient-text">
               <SplitText as="span" delay={0.55}>
-                on first sight.
+                with AI automation.
               </SplitText>
             </span>
           </h1>
@@ -75,26 +75,26 @@ export function KineticHero() {
           <div className="col-span-12 md:col-span-5 md:col-start-2">
             <RevealLine delay={0.6}>
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-md text-balance">
-                Your website is your first impression, your price anchor, and your best salesperson.
-                We build the one that turns curious visitors into committed clients.
+                We build high-converting websites, AI systems, and marketing funnels that
+                attract customers, automate operations, and scale revenue — while you sleep.
               </p>
             </RevealLine>
           </div>
-          <div className="col-span-12 md:col-span-5 md:col-start-8 flex flex-col md:flex-row gap-4 md:justify-end">
+          <div className="col-span-12 md:col-span-5 md:col-start-8 flex flex-col md:flex-row md:flex-wrap gap-3 md:justify-end">
             <RevealLine delay={0.8}>
               <MagneticButton
-                href="/audit"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium"
+                href="#contact"
+                className="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-black font-medium text-sm"
               >
-                Claim a free site audit <ArrowRight className="w-4 h-4" />
+                Get free strategy call <ArrowRight className="w-4 h-4" />
               </MagneticButton>
             </RevealLine>
             <RevealLine delay={0.9}>
               <MagneticButton
-                href="#work"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/20 text-white"
+                href="/audit"
+                className="inline-flex items-center gap-3 px-7 py-4 rounded-full border border-white/30 text-white text-sm"
               >
-                See selected work <ArrowDownRight className="w-4 h-4" />
+                Audit my business <ArrowDownRight className="w-4 h-4" />
               </MagneticButton>
             </RevealLine>
           </div>
@@ -116,8 +116,8 @@ export function KineticHero() {
         style={{ opacity }}
         className="absolute bottom-10 right-6 md:right-12 font-mono text-xs text-white/40 uppercase tracking-widest text-right"
       >
-        <div>Premium 3D builds</div>
-        <div>6-week delivery · 12 portfolio projects</div>
+        <div>Trusted by growing brands</div>
+        <div>Limited onboarding · 4 slots / month</div>
       </motion.div>
     </section>
   );

@@ -66,9 +66,12 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6" style={{ color: service.accent }}>
             — Service · {service.num}
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-8">
-            {service.title}
+          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
+            {service.hook}
           </h1>
+          <div className="text-xl md:text-2xl uppercase tracking-[0.2em] font-mono text-white/40 mb-10">
+            {service.title}
+          </div>
           <p className="text-2xl md:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
             {service.tagline}
           </p>
@@ -246,23 +249,23 @@ export default async function ServiceDetailPage({ params }: Props) {
             — Ready to start?
           </div>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
-            Let&apos;s build {service.title.toLowerCase()} for your brand.
+            Stop being manual. Your competitors aren&apos;t.
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">
-            Tell us about your project. We&apos;ll come back within 48 hours with a one-page brief, a fixed-price proposal, and a kickoff date.
+            Limited onboarding — 4 slots per month. Book a free strategy call and we&apos;ll come back within 24 hours with a tailored plan.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/#contact"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
             >
-              Start a project <ArrowRight className="w-4 h-4" />
+              Get free strategy call <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/audit"
               className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white"
             >
-              Or claim a free site audit →
+              Or audit my business →
             </Link>
           </div>
         </div>

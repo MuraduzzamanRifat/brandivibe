@@ -18,17 +18,19 @@ const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Brandivibe — Websites that close clients on first sight",
+  title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
   description:
-    "Premium 3D web design for seed → Series A founders. 6-week delivery, 100% custom code, and an autonomous AI brain that writes content, sources prospects, and runs cold outreach for you.",
+    "We build conversion-focused AI-powered digital systems that make businesses look premium, rank higher, automate operations, and generate more customers. WebGL websites, SEO, AI automation, marketing strategy, custom AI agents.",
   keywords: [
-    "premium web design for startups",
-    "3D website design",
-    "founder homepage rebuild",
-    "Next.js design studio",
-    "high-conversion landing page",
-    "Shopify storefront design",
-    "AI-powered marketing for startups",
+    "WebGL website development",
+    "AI automation systems",
+    "AI agent development",
+    "SEO optimization",
+    "digital marketing strategy",
+    "conversion-focused web design",
+    "AI-powered business automation",
+    "custom AI agents",
+    "lead generation automation",
   ],
   authors: [{ name: "Brandivibe" }],
   creator: "Brandivibe",
@@ -38,9 +40,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Brandivibe — Websites that close clients on first sight",
+    title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
     description:
-      "Premium 3D web design plus an autonomous AI growth engine for content, leads, and cold outreach. Built for seed → Series A founders.",
+      "WebGL websites, SEO, AI automation, marketing strategy, and custom AI agents — built so your business attracts customers and scales revenue while you sleep.",
     siteName: "Brandivibe",
     images: [
       {
@@ -53,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandivibe — Websites that close clients on first sight",
+    title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
     description:
-      "Premium 3D web design + AI growth engine. 6-week delivery, 100% custom code.",
+      "WebGL sites, AI automation, SEO, marketing, custom AI agents. Stop being manual — your competitors aren't.",
     images: ["/work/helix.jpg"],
   },
   robots: {
@@ -74,19 +76,21 @@ const ORG_SCHEMA = {
       name: "Brandivibe",
       url: "https://brandivibe.com",
       description:
-        "Premium 3D web design studio building founder homepages in 6 weeks with 100% custom code. Pairs every Next.js build with an autonomous AI brain for content publishing, prospect sourcing, and cold outreach.",
+        "Brandivibe builds conversion-focused AI-powered digital systems. WebGL websites, SEO optimization, AI automation systems, digital marketing strategy, and custom AI agent development for businesses ready to scale revenue without scaling headcount.",
       foundingDate: "2024",
       areaServed: "Worldwide",
       priceRange: "$$",
       knowsAbout: [
-        "premium web design for startups",
+        "WebGL website development",
         "Next.js development",
-        "3D and WebGL websites",
-        "Shopify storefront design",
-        "founder homepage rebuilds",
-        "website conversion optimization",
-        "AI-powered cold outreach",
-        "autonomous content marketing",
+        "SEO optimization",
+        "AI automation systems",
+        "AI agent development",
+        "digital marketing strategy",
+        "conversion rate optimization",
+        "lead generation automation",
+        "autonomous content publishing",
+        "customer support AI agents",
       ],
     },
     {
@@ -94,7 +98,7 @@ const ORG_SCHEMA = {
       "@id": "https://brandivibe.com/#website",
       url: "https://brandivibe.com",
       name: "Brandivibe",
-      description: "Websites that close clients on first sight — for founders who want a homepage that sells while they sleep.",
+      description: "Build a business that runs 24/7 with AI automation — for founders who want a system that attracts customers, automates operations, and scales revenue while they sleep.",
       publisher: { "@id": "https://brandivibe.com/#organization" },
       potentialAction: {
         "@type": "SearchAction",

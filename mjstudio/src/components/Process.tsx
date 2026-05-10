@@ -82,9 +82,9 @@ export function Process() {
                 — Process · 006
               </div>
               <h2 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance max-w-3xl">
-                From kickoff to launch,
+                Launch in days, not months.
                 <br />
-                <span className="italic text-white/60">in six weeks</span>.
+                <span className="italic text-white/60">Six weeks, fixed.</span>
               </h2>
             </div>
             <div className="hidden md:block font-mono text-[10px] text-white/40 uppercase tracking-[0.3em] text-right">

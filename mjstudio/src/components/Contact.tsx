@@ -53,13 +53,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="font-mono text-sm text-[#84e1ff]">— Let&apos;s talk</span>
+          <span className="font-mono text-sm text-[#84e1ff]">— Get free strategy call</span>
           <h2 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight text-balance">
-            Have a project in mind?
+            Turn your business into a 24/7 client-generating machine.
           </h2>
           <p className="mt-6 text-lg text-white/60 max-w-xl mx-auto">
-            We take on 2 projects per quarter. Tell us what you&apos;re building
-            and we&apos;ll reply within 24 hours.
+            Limited onboarding — 4 slots per month. Tell us where you are and we&apos;ll
+            come back within 24 hours with a tailored automation plan and a kickoff date.
           </p>
         </motion.div>
 

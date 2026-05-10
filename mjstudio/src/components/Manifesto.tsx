@@ -40,27 +40,27 @@ export function Manifesto() {
             <div className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05] space-y-3">
               <RevealLine>
                 <div>
-                  Most websites are <span className="text-white/30">forgettable</span>.
+                  Your website should work like a <span className="text-white/30">sales employee</span>.
                 </div>
               </RevealLine>
               <RevealLine delay={0.15}>
-                <div>We build the other kind —</div>
+                <div>Not a digital brochure.</div>
               </RevealLine>
               <RevealLine delay={0.3}>
                 <div>
-                  <span className="italic gradient-text">cinematic</span>, considered,
+                  We build <span className="italic gradient-text">conversion-focused</span>
                 </div>
               </RevealLine>
               <RevealLine delay={0.45}>
-                <div>and engineered to convert.</div>
+                <div>AI-powered digital systems.</div>
               </RevealLine>
             </div>
 
             <RevealLine delay={0.65}>
-              <div className="mt-10 max-w-lg text-white/50 text-base leading-relaxed">
-                A design philosophy called <em className="text-white/80">Silent Architecture</em> —
-                the result of painstaking attention to space, craft, and restraint.
-                View our limited-edition manifesto poster →
+              <div className="mt-10 max-w-lg text-white/55 text-base leading-relaxed">
+                Premium WebGL websites. SEO that compounds. AI automation that runs while you sleep.
+                Custom AI agents that handle support, sales, and operations. Every system designed
+                to attract customers, automate work, and scale revenue — together, as one machine.
               </div>
             </RevealLine>
           </div>
@@ -104,7 +104,7 @@ export function Manifesto() {
         style={{ x }}
         className="mt-32 whitespace-nowrap font-semibold text-[18vw] leading-none tracking-[-0.05em] text-white/[0.04] select-none pointer-events-none"
       >
-        TASTE · CRAFT · MOTION · RESTRAINT · DETAIL ·
+        CONVERT · AUTOMATE · RANK · SCALE · COMPOUND ·
       </motion.div>
     </section>
   );

@@ -11,10 +11,10 @@ import { motion } from "framer-motion";
  * of the kinetic hero or the manifesto narrative.
  */
 const STATS: Array<{ value: string; label: string }> = [
-  { value: "12", label: "Portfolio projects shipped" },
-  { value: "6", label: "Week delivery window" },
+  { value: "24/7", label: "AI systems that never sleep" },
+  { value: "6", label: "Week launch — not 6 months" },
   { value: "100%", label: "Custom code · zero templates" },
-  { value: "1", label: "Founder, end-to-end" },
+  { value: "4", label: "Onboarding slots / month" },
 ];
 
 export function TrustStrip() {
@@ -41,7 +41,7 @@ export function TrustStrip() {
           ))}
         </div>
         <div className="mt-10 pt-6 border-t border-white/5 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/35">
-          Independent studio · Built and shipped by Muraduzzaman · Remote, worldwide
+          Trusted by growing brands · Built and shipped by Muraduzzaman · Remote, worldwide
         </div>
       </div>
     </section>

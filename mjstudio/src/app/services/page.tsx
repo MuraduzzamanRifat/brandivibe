@@ -8,12 +8,12 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Services — Brandivibe",
   description:
-    "Premium 3D web design, custom WebGL, motion design, and full-stack TypeScript builds for seed → Series A founders.",
+    "WebGL website development, SEO optimization, AI automation systems, digital marketing strategy, custom AI agent development. Five services that turn your business into a 24/7 client-generating machine.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Services — Brandivibe",
     description:
-      "Marketing sites, 3D + WebGL, motion design, and full-stack builds. Hand-coded, premium, shipped in 4-6 weeks.",
+      "WebGL websites, SEO, AI automation, digital marketing, AI agents — five services that compound into one 24/7 growth machine.",
     url: "/services",
     type: "website",
   },
@@ -45,11 +45,12 @@ export default function ServicesIndexPage() {
             — Services
           </div>
           <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] mb-8 text-balance">
-            Four ways we&apos;ll<br />ship something elite.
+            Five ways we turn your<br />business into a 24/7 machine.
           </h1>
           <p className="text-lg md:text-xl text-white/55 max-w-2xl leading-relaxed text-balance">
-            Each engagement is fixed-price, fixed-timeline, and fully owned by you afterwards.
-            Pick one — or stack them — and we&apos;ll have a tailored proposal in 48 hours.
+            We build conversion-focused AI-powered digital systems that make your business
+            look premium, rank higher, automate operations, and generate more customers.
+            Pick one — or stack them — and we&apos;ll have a tailored plan in 48 hours.
           </p>
         </div>
       </section>
@@ -114,17 +115,18 @@ export default function ServicesIndexPage() {
       <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
-            Not sure which one?
+            Not sure which to start with?
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">
-            Most projects combine two or three of these. Tell us where you are and where you&apos;re going — we&apos;ll
-            recommend the right shape.
+            The strongest results come from stacking 2-3 services into one system. Book a free
+            strategy call — we&apos;ll diagnose your funnel, identify the highest-leverage
+            starting point, and map the rollout in 30 minutes.
           </p>
           <Link
             href="/#contact"
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
           >
-            Start a conversation <ArrowRight className="w-4 h-4" />
+            Get free strategy call <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
