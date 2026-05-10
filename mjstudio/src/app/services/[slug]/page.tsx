@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/data/services";
+import { industries } from "@/data/industries";
 import { demos } from "@/data/demos";
 
 export const dynamic = "force-static";
@@ -183,7 +184,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="grid grid-cols-12 gap-6 mb-14 md:mb-16">
             <div className="col-span-12 md:col-span-4">
               <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4" style={{ color: service.accent }}>
-                — What's included
+                — What&apos;s included
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
@@ -374,6 +375,52 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      {/* Industries we serve — internal linking layer to programmatic
+          SEO pages at /services/[slug]/[industry]. Each card is a distinct
+          long-tail commercial-intent landing page. */}
+      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-12 gap-6 mb-12 md:mb-14">
+            <div className="col-span-12 md:col-span-4">
+              <div
+                className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
+                style={{ color: service.accent }}
+              >
+                — Industries we ship for
+              </div>
+            </div>
+            <div className="col-span-12 md:col-span-8">
+              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
+                {service.title}, framed for your industry.
+              </h2>
+              <p className="text-white/55 leading-relaxed mt-5 max-w-2xl">
+                Same engagement model. Strategy and execution scoped to the conversion priorities and operational realities of your category.
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {industries.map((ind) => (
+              <Link
+                key={ind.slug}
+                href={`/services/${service.slug}/${ind.slug}`}
+                className="group rounded-2xl border border-white/8 bg-white/[0.015] p-5 hover:border-white/25 hover:bg-white/[0.03] transition-colors"
+              >
+                <div
+                  className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2"
+                  style={{ color: service.accent }}
+                >
+                  {service.title}
+                </div>
+                <div className="text-base md:text-lg font-semibold tracking-tight group-hover:translate-x-0.5 transition-transform">
+                  For {ind.name}
+                </div>
+                <div className="text-white/45 text-xs mt-2 line-clamp-2">{ind.shortLabel}</div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
