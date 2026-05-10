@@ -2,11 +2,13 @@
 
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import { RevealLine } from "./SplitText";
 import { LazyVideo } from "./LazyVideo";
 
 type Service = {
   num: string;
+  slug: string;
   title: string;
   desc: string;
   accent: string;
@@ -16,6 +18,7 @@ type Service = {
 const services: Service[] = [
   {
     num: "01",
+    slug: "marketing-sites",
     title: "Marketing sites",
     desc: "Premium landing pages for SaaS, crypto, and luxury brands. Next.js, SEO, CMS, analytics — shipped in 4-6 weeks.",
     accent: "#84e1ff",
@@ -23,6 +26,7 @@ const services: Service[] = [
   },
   {
     num: "02",
+    slug: "3d-webgl",
     title: "3D & WebGL",
     desc: "Cinematic hero scenes, interactive product showcases, particle systems. Built with React Three Fiber and custom shaders.",
     accent: "#a78bfa",
@@ -30,6 +34,7 @@ const services: Service[] = [
   },
   {
     num: "03",
+    slug: "motion-design",
     title: "Motion design",
     desc: "Scroll-driven animations, micro-interactions, page transitions. The details that make a site feel alive.",
     accent: "#f0abfc",
@@ -37,6 +42,7 @@ const services: Service[] = [
   },
   {
     num: "04",
+    slug: "full-stack-builds",
     title: "Full-stack builds",
     desc: "Dashboards, auth flows, payments. TypeScript, Postgres, Stripe, Supabase. Clean code, documented, maintainable.",
     accent: "#fcd34d",
@@ -178,7 +184,7 @@ function ServicePanel({
           <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-10 text-balance">
             {service.desc}
           </p>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 max-w-lg">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 max-w-lg mb-10">
             {service.bullets.map((b) => (
               <li
                 key={b}
@@ -192,6 +198,13 @@ function ServicePanel({
               </li>
             ))}
           </ul>
+          <Link
+            href={`/services/${service.slug}`}
+            className="pointer-events-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.3em] hover:gap-4 transition-all"
+            style={{ color: service.accent }}
+          >
+            Learn more about {service.title.toLowerCase()} →
+          </Link>
         </motion.div>
       </div>
     </motion.div>

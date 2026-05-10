@@ -18,9 +18,9 @@ const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Brandivibe — Websites that close $25K deals on sight",
+  title: "Brandivibe — Websites that close clients on first sight",
   description:
-    "Premium 3D web design for seed → Series A founders. $5K–$25K builds, 6-week delivery, and an autonomous AI brain that writes content, sources prospects, and runs cold outreach for you.",
+    "Premium 3D web design for seed → Series A founders. 6-week delivery, 100% custom code, and an autonomous AI brain that writes content, sources prospects, and runs cold outreach for you.",
   keywords: [
     "premium web design for startups",
     "3D website design",
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Brandivibe — Websites that close $25K deals on sight",
+    title: "Brandivibe — Websites that close clients on first sight",
     description:
-      "Premium 3D web design ($5K–$25K) plus an autonomous AI growth engine for content, leads, and cold outreach. Built for seed → Series A founders.",
+      "Premium 3D web design plus an autonomous AI growth engine for content, leads, and cold outreach. Built for seed → Series A founders.",
     siteName: "Brandivibe",
     images: [
       {
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandivibe — Websites that close $25K deals on sight",
+    title: "Brandivibe — Websites that close clients on first sight",
     description:
-      "Premium 3D web design + AI growth engine. $5K–$25K builds, 6-week delivery.",
+      "Premium 3D web design + AI growth engine. 6-week delivery, 100% custom code.",
     images: ["/work/helix.jpg"],
   },
   robots: {
@@ -74,7 +74,7 @@ const ORG_SCHEMA = {
       name: "Brandivibe",
       url: "https://brandivibe.com",
       description:
-        "Premium 3D web design studio building $5K–$25K founder homepages in 6 weeks. Pairs every Next.js build with an autonomous AI brain for content publishing, prospect sourcing, and cold outreach.",
+        "Premium 3D web design studio building founder homepages in 6 weeks with 100% custom code. Pairs every Next.js build with an autonomous AI brain for content publishing, prospect sourcing, and cold outreach.",
       foundingDate: "2024",
       areaServed: "Worldwide",
       priceRange: "$$",
@@ -94,7 +94,7 @@ const ORG_SCHEMA = {
       "@id": "https://brandivibe.com/#website",
       url: "https://brandivibe.com",
       name: "Brandivibe",
-      description: "Websites that close $25K deals on sight — for founders who want a homepage that sells while they sleep.",
+      description: "Websites that close clients on first sight — for founders who want a homepage that sells while they sleep.",
       publisher: { "@id": "https://brandivibe.com/#organization" },
       potentialAction: {
         "@type": "SearchAction",

@@ -43,7 +43,7 @@ async function draftDmForProspect(prospect: Prospect): Promise<{ body: string; m
 
   const openai = getOpenAI();
 
-  const system = `You write LinkedIn DMs on behalf of Muraduzzaman, founder of Brandivibe (premium 3D web design studio, $5K-$25K projects, seed → Series A clients).
+  const system = `You write LinkedIn DMs on behalf of Muraduzzaman, founder of Brandivibe (premium 3D web design studio for seed → Series A clients). Never mention pricing or dollar amounts in DMs — pricing belongs in a discovery call, not a first touch.
 
 ABSOLUTE RULES:
 - Plain text only. No JSON, no headers, no markdown.

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { loadBrain } from "@/lib/brain-storage";
+import { services } from "@/data/services";
 
 const SITE = "https://brandivibe.com";
 const PORTFOLIO_SLUGS = [
@@ -15,6 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1, lastModified: now },
     { url: `${SITE}/portfolio`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
+    { url: `${SITE}/services`, changeFrequency: "monthly", priority: 0.95, lastModified: now },
+    ...services.map((s) => ({
+      url: `${SITE}/services/${s.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+      lastModified: now,
+    })),
     { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9, lastModified: now },
     { url: `${SITE}/poster`, changeFrequency: "monthly", priority: 0.5, lastModified: now },

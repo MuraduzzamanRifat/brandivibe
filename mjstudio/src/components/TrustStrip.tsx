@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 /**
  * Thin trust strip between Hero and Manifesto. Provides scannable proof
- * (real portfolio count, real build window, real founder name) so a $25K
+ * (real portfolio count, real build window, real founder name) so a
  * prospect doesn't bounce on the hero's claim alone.
  *
  * Pulled out into its own section because it reads as a stat row, not part
@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const STATS: Array<{ value: string; label: string }> = [
   { value: "12", label: "Portfolio projects shipped" },
   { value: "6", label: "Week delivery window" },
-  { value: "$5–25K", label: "Build range" },
+  { value: "100%", label: "Custom code · zero templates" },
   { value: "1", label: "Founder, end-to-end" },
 ];
 

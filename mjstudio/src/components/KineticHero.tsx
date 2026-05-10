@@ -54,12 +54,12 @@ export function KineticHero() {
               close
             </SplitText>{" "}
             <SplitText as="span" delay={0.35}>
-              $25K
+              clients
             </SplitText>
             <br />
             <span className="gradient-text">
               <SplitText as="span" delay={0.55}>
-                deals on sight.
+                on first sight.
               </SplitText>
             </span>
           </h1>
@@ -76,7 +76,7 @@ export function KineticHero() {
             <RevealLine delay={0.6}>
               <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-md text-balance">
                 Your website is your first impression, your price anchor, and your best salesperson.
-                We build the one that turns $5K visitors into $25K clients.
+                We build the one that turns curious visitors into committed clients.
               </p>
             </RevealLine>
           </div>
@@ -116,7 +116,7 @@ export function KineticHero() {
         style={{ opacity }}
         className="absolute bottom-10 right-6 md:right-12 font-mono text-xs text-white/40 uppercase tracking-widest text-right"
       >
-        <div>$5K – $25K builds</div>
+        <div>Premium 3D builds</div>
         <div>6-week delivery · 12 portfolio projects</div>
       </motion.div>
     </section>
