@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { loadBrain } from "@/lib/brain-storage";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { glossary } from "@/data/glossary";
 
 const SITE = "https://brandivibe.com";
 const PORTFOLIO_SLUGS = [
@@ -16,9 +17,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE}/`, changeFrequency: "weekly", priority: 1, lastModified: now },
+    { url: `${SITE}/about`, changeFrequency: "monthly", priority: 0.7, lastModified: now },
     { url: `${SITE}/portfolio`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
     { url: `${SITE}/services`, changeFrequency: "monthly", priority: 0.95, lastModified: now },
     { url: `${SITE}/industries`, changeFrequency: "monthly", priority: 0.85, lastModified: now },
+    { url: `${SITE}/glossary`, changeFrequency: "monthly", priority: 0.8, lastModified: now },
+    // AI-citation-optimized glossary pages — definitional content for
+    // "what is X" queries on ChatGPT, Perplexity, Google AI Overviews.
+    ...glossary.map((g) => ({
+      url: `${SITE}/glossary/${g.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      lastModified: now,
+    })),
     ...services.map((s) => ({
       url: `${SITE}/services/${s.slug}`,
       changeFrequency: "monthly" as const,

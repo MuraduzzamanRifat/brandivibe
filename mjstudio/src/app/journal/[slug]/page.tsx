@@ -54,6 +54,10 @@ export default async function ArticlePage({ params }: Props) {
   const brain = await loadBrain();
   const meta = (brain.articles ?? []).find((a) => a.slug === slug);
 
+  // Article schema with Person author — E-E-A-T upgrade for AI search.
+  // ChatGPT, Perplexity, and Google AI Overviews weight named individual
+  // authorship more than Organization authorship, especially for YMYL
+  // and expert-domain topics.
   const articleSchema = meta
     ? {
         "@context": "https://schema.org",
@@ -63,9 +67,23 @@ export default async function ArticlePage({ params }: Props) {
         datePublished: frontmatter.publishedAt,
         dateModified: frontmatter.publishedAt,
         author: {
-          "@type": "Organization",
-          name: "Brandivibe",
-          url: "https://brandivibe.com",
+          "@type": "Person",
+          name: "Muraduzzaman",
+          url: "https://brandivibe.com/about",
+          jobTitle: "Founder & Lead Engineer at Brandivibe",
+          worksFor: {
+            "@type": "Organization",
+            "@id": "https://brandivibe.com/#organization",
+            name: "Brandivibe",
+          },
+          knowsAbout: [
+            "WebGL website development",
+            "AI automation systems",
+            "Custom AI agent development",
+            "Conversion-focused web design",
+            "Generative engine optimization",
+            "Digital marketing strategy",
+          ],
         },
         publisher: {
           "@type": "Organization",
