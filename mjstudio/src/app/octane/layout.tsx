@@ -22,14 +22,14 @@ const mono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Octane — VYCE · An interactive campaign destination · Brandivibe",
+  title: "Octane Mountain — an interactive campaign destination · Brandivibe",
   description:
-    "A WebGL album-campaign experience by Brandivibe. VYCE — OCTANE. Climb the mountain. Unlock the record. Out 06.21.26.",
+    "A WebGL world-building campaign study by Brandivibe — opening sequence, terrain-grid pulse, HUD navigation, near-black + warm tan. An album launch you climb, not a landing page.",
   alternates: { canonical: "/octane" },
   openGraph: {
-    title: "Octane — VYCE · Campaign destination · Brandivibe",
+    title: "Octane Mountain — campaign destination study · Brandivibe",
     description:
-      "WebGL mountain world-building for an album launch. Built by Brandivibe.",
+      "WebGL terrain-pulse experience for an album launch. Opening sequence, immersive HUD, non-traditional navigation. Built by Brandivibe.",
     url: "/octane",
     type: "website",
   },

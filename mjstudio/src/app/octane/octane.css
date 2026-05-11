@@ -1,19 +1,20 @@
-/* Octane — interactive album campaign destination. Scoped to .octane-root.
-   Inspired by the "world-building campaign site" genre: dark, cinematic,
-   WebGL-mountain hero, ember-warm palette, brutalist display type. */
+/* Octane — interactive campaign destination, "world-building" genre.
+   Tuned to match the OCTANE MOUNTAIN aesthetic: near-black + warm muted
+   tan, opening sequence, terrain grid pulse, non-traditional HUD nav.
+   Scoped to .octane-root. */
 
 .octane-root {
-  --oct-bg: #07060a;
-  --oct-bg-2: #0d0a0e;
-  --oct-bg-3: #14100f;
-  --oct-fg: #f6f1ea;
-  --oct-muted: rgba(246, 241, 234, 0.5);
-  --oct-faint: rgba(246, 241, 234, 0.14);
-  --oct-flame: #ff5a1f;
-  --oct-flame-bright: #ff7a3d;
-  --oct-amber: #fbbf24;
-  --oct-ember: #ff3d2e;
-  --oct-ice: #7dd3fc;
+  --oct-bg: #0a0908;
+  --oct-bg-2: #0e0c0a;
+  --oct-bg-3: #14110d;
+  --oct-fg: #ece6da;
+  --oct-tan: #c4b49a;
+  --oct-tan-bright: #ddcfb5;
+  --oct-tan-dim: rgba(196, 180, 154, 0.55);
+  --oct-muted: rgba(236, 230, 218, 0.42);
+  --oct-faint: rgba(236, 230, 218, 0.12);
+  --oct-line: rgba(196, 180, 154, 0.18);
+  --oct-ember: #d98a4a;
 
   background: var(--oct-bg);
   color: var(--oct-fg);
@@ -37,7 +38,7 @@
 }
 
 .octane-root :focus-visible {
-  outline: 2px solid var(--oct-flame);
+  outline: 1px solid var(--oct-tan);
   outline-offset: 3px;
 }
 
@@ -48,77 +49,107 @@
 }
 
 .octane-root ::selection {
-  background: var(--oct-flame);
-  color: #07060a;
+  background: var(--oct-tan);
+  color: #0a0908;
 }
 
-.octane-root .flame-text {
-  background: linear-gradient(180deg, #ffd29a 0%, var(--oct-flame-bright) 38%, var(--oct-ember) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 60px rgba(255, 90, 31, 0.25);
+/* warm tan headline wash — subtle, not flashy */
+.octane-root .tan-text {
+  color: var(--oct-tan);
+  text-shadow: 0 0 50px rgba(196, 180, 154, 0.18);
 }
 
-.octane-root .flame-bg {
-  background: linear-gradient(135deg, var(--oct-flame), var(--oct-ember));
-  color: #07060a;
+.octane-root .tan-bg {
+  background: var(--oct-tan);
+  color: #0a0908;
 }
 
-.octane-root .ember-grid {
+/* faint terrain grid backplate */
+.octane-root .terrain-grid {
   background-image:
-    linear-gradient(rgba(255, 90, 31, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 90, 31, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-}
-
-.octane-root .scanline {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 90, 31, 0.05) 0px,
-    rgba(255, 90, 31, 0.05) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+    linear-gradient(rgba(196, 180, 154, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196, 180, 154, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 .octane-root .divider-line {
-  border-color: rgba(255, 90, 31, 0.18);
+  border-color: var(--oct-line);
 }
 
+/* HUD frame corner ticks */
+.octane-root .hud-corner::before,
+.octane-root .hud-corner::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--oct-tan-dim);
+}
+
+/* film grain */
 .octane-root .grain::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.07;
+  opacity: 0.06;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@keyframes oct-rise {
-  0% { transform: translateY(0) scale(1); opacity: 0; }
-  10% { opacity: 0.8; }
-  100% { transform: translateY(-120px) scale(0.4); opacity: 0; }
+/* slow horizontal scan line */
+@keyframes oct-scan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  8% { opacity: 0.5; }
+  92% { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
-
-.octane-root .ember-particle {
+.octane-root .scan-bar {
   position: absolute;
-  width: 3px;
-  height: 3px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--oct-tan), transparent);
+  animation: oct-scan 9s linear infinite;
+  pointer-events: none;
+}
+
+/* radial pulse ring (CSS, used in reduced-motion fallback) */
+@keyframes oct-ring {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+.octane-root .pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  height: 40vw;
+  border: 1px solid var(--oct-tan);
   border-radius: 50%;
-  background: var(--oct-flame-bright);
-  box-shadow: 0 0 8px 2px rgba(255, 90, 31, 0.6);
-  animation: oct-rise linear infinite;
+  animation: oct-ring 5s ease-out infinite;
+  pointer-events: none;
 }
 
-@keyframes oct-flicker {
-  0%, 100% { opacity: 1; }
-  43% { opacity: 0.86; }
-  47% { opacity: 1; }
-  72% { opacity: 0.92; }
-}
+/* blinking status dot */
+@keyframes oct-blink { 0%, 70% { opacity: 1; } 71%, 100% { opacity: 0.25; } }
+.octane-root .blink { animation: oct-blink 2.4s steps(1) infinite; }
 
-.octane-root .flicker {
-  animation: oct-flicker 4s ease-in-out infinite;
+/* typewriter-ish reveal for HUD lines */
+@keyframes oct-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
+.octane-root .hud-line { animation: oct-fade-up 0.6s ease-out both; }
+
+/* opening sequence */
+@keyframes oct-open-progress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+.octane-root .open-progress { animation: oct-open-progress 2.6s ease-in-out forwards; }
+
+@keyframes oct-open-out {
+  to { opacity: 0; visibility: hidden; }
+}
+.octane-root .open-out { animation: oct-open-out 0.8s ease-in-out 3s forwards; }

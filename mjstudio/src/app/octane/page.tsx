@@ -1,3 +1,4 @@
+import { OpeningSequence } from "./_components/OpeningSequence";
 import { Navbar } from "./_components/Navbar";
 import { Hero } from "./_components/Hero";
 import { Ascent } from "./_components/Ascent";
@@ -9,6 +10,7 @@ import { Footer } from "./_components/Footer";
 export default function OctanePage() {
   return (
     <>
+      <OpeningSequence />
       <Navbar />
       <main className="relative">
         <Hero />

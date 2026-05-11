@@ -33,23 +33,24 @@ export function Ascent() {
 
   return (
     <section id="ascent" className="relative border-t divider-line py-24 md:py-36 px-6 md:px-10 overflow-hidden">
-      <div className="absolute inset-0 ember-grid opacity-30 pointer-events-none" />
-      <div className="relative mx-auto max-w-[1700px]">
+      <div className="absolute inset-0 terrain-grid opacity-40 pointer-events-none" />
+      <div className="scan-bar" style={{ animationDelay: "3s" }} />
+      <div className="relative mx-auto max-w-[1800px]">
         <div className="grid grid-cols-12 gap-6 mb-16 md:mb-24">
           <div className="col-span-12 md:col-span-4">
-            <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#ff5a1f] mb-4">
-              — Tracklist · sorted by altitude
+            <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-[#c4b49a]/70 mb-4">
+              SCENE 01 — THE ASCENT · tracklist by altitude
             </div>
           </div>
           <div className="col-span-12 md:col-span-8">
             <h2 className="font-display leading-[0.85] text-balance" style={{ fontSize: "clamp(2.6rem, 7vw, 6.5rem)" }}>
               ELEVEN SONGS.<br />
-              <span className="flame-text">ONE CLIMB.</span>
+              <span className="tan-text">ONE CLIMB.</span>
             </h2>
-            <p className="text-white/55 leading-relaxed mt-6 max-w-xl">
-              The record is sequenced as an ascent. Five tracks are open now —
-              the rest unlock as the campaign climbs. Pre-save to get every
-              altitude the moment it&apos;s reached.
+            <p className="text-[#ece6da]/55 leading-relaxed mt-6 max-w-xl">
+              The record is sequenced as an ascent. Five altitudes are open on
+              the mountain now — the rest unlock as the campaign climbs higher.
+              Enter the channel to reach them the moment they&apos;re live.
             </p>
           </div>
         </div>
@@ -68,40 +69,40 @@ export function Ascent() {
               >
                 <button
                   onClick={() => setActive(open ? null : t.no)}
-                  className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 items-center py-5 md:py-7 group hover:bg-white/[0.02] transition-colors px-2"
+                  className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 items-center py-5 md:py-7 group hover:bg-[#c4b49a]/[0.03] transition-colors px-2"
                 >
-                  <div className="col-span-2 md:col-span-1 font-mono text-[11px] text-white/35 tabular-nums">
+                  <div className="col-span-2 md:col-span-1 font-mono text-[11px] text-[#c4b49a]/35 tabular-nums">
                     {t.no}
                   </div>
                   <div className="col-span-7 md:col-span-5 flex items-center gap-3">
                     {t.unlocked ? (
-                      <Play className="w-3.5 h-3.5 text-[#ff5a1f] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <Play className="w-3.5 h-3.5 text-[#c4b49a] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                     ) : (
-                      <Lock className="w-3.5 h-3.5 text-white/25 shrink-0" />
+                      <Lock className="w-3.5 h-3.5 text-[#ece6da]/25 shrink-0" />
                     )}
                     <span
                       className={`font-display text-2xl md:text-4xl leading-none ${
-                        t.unlocked ? "" : "text-white/35"
+                        t.unlocked ? "" : "text-[#ece6da]/35"
                       } group-hover:translate-x-1 transition-transform`}
                     >
                       {t.title}
                     </span>
                     {t.feature && (
-                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-white/35 hidden md:inline">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-[#c4b49a]/35 hidden md:inline">
                         {t.feature}
                       </span>
                     )}
                   </div>
-                  <div className="col-span-2 md:col-span-3 font-mono text-[10px] uppercase tracking-[0.25em] text-white/40 text-right md:text-left">
+                  <div className="col-span-2 md:col-span-3 font-mono text-[10px] uppercase tracking-[0.25em] text-[#c4b49a]/40 text-right md:text-left">
                     {t.altitude}
                   </div>
-                  <div className="hidden md:block md:col-span-2 font-mono text-[10px] text-white/30 tabular-nums">
+                  <div className="hidden md:block md:col-span-2 font-mono text-[10px] text-[#ece6da]/30 tabular-nums">
                     {t.runtime}
                   </div>
                   <div className="col-span-1 text-right">
                     <span
                       className={`font-mono text-[9px] uppercase tracking-[0.25em] ${
-                        t.unlocked ? "text-[#ff5a1f]" : "text-white/25"
+                        t.unlocked ? "text-[#c4b49a]" : "text-[#ece6da]/25"
                       }`}
                     >
                       {t.unlocked ? "OPEN" : "LOCKED"}
@@ -117,10 +118,10 @@ export function Ascent() {
                   >
                     <div className="pb-7 px-2 md:px-10 grid grid-cols-12 gap-4">
                       <div className="col-span-12 md:col-span-1" />
-                      <p className="col-span-12 md:col-span-7 text-white/55 leading-relaxed text-sm md:text-base text-balance">
+                      <p className="col-span-12 md:col-span-7 text-[#ece6da]/55 leading-relaxed text-sm md:text-base text-balance">
                         {t.note}
                       </p>
-                      <div className="col-span-12 md:col-span-4 flex md:justify-end items-start gap-3 font-mono text-[9px] uppercase tracking-[0.25em] text-white/35">
+                      <div className="col-span-12 md:col-span-4 flex md:justify-end items-start gap-3 font-mono text-[9px] uppercase tracking-[0.25em] text-[#c4b49a]/35">
                         <span>{t.feature ?? "no feature"}</span>
                         <span>·</span>
                         <span>{t.runtime}</span>
@@ -133,10 +134,10 @@ export function Ascent() {
           })}
         </div>
 
-        <div className="mt-10 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
+        <div className="mt-10 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.3em] text-[#c4b49a]/40">
           <span>5 / 11 altitudes reached</span>
-          <a href="#drop" className="text-[#ff5a1f] hover:text-[#ff7a3d] transition-colors">
-            Pre-save for the rest →
+          <a href="#drop" className="text-[#c4b49a] hover:text-[#ddcfb5] transition-colors">
+            Enter the channel for the rest →
           </a>
         </div>
       </div>
