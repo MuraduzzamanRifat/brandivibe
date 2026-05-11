@@ -116,7 +116,7 @@ export const services: Service[] = [
       "Lighthouse 95+ performance report",
       "30 days of post-launch support",
     ],
-    relatedDemos: ["helix", "aurora", "axiom"],
+    relatedDemos: ["octane", "helix", "aurora"],
     metaTitle: "WebGL Website Development — Custom 3D Sites That Convert · Brandivibe",
     metaDescription:
       "Hand-coded WebGL websites built for conversion. Sub-second load, custom 3D, mobile-perfect, engineered to turn visitors into paying customers in 6 weeks.",

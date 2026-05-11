@@ -7,7 +7,7 @@ import { glossary } from "@/data/glossary";
 const SITE = "https://brandivibe.com";
 const PORTFOLIO_SLUGS = [
   "helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium",
-  "uturn", "kindred", "ironwood", "terroir",
+  "uturn", "kindred", "ironwood", "terroir", "octane",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

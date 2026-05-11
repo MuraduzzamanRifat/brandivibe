@@ -1,0 +1,124 @@
+/* Octane — interactive album campaign destination. Scoped to .octane-root.
+   Inspired by the "world-building campaign site" genre: dark, cinematic,
+   WebGL-mountain hero, ember-warm palette, brutalist display type. */
+
+.octane-root {
+  --oct-bg: #07060a;
+  --oct-bg-2: #0d0a0e;
+  --oct-bg-3: #14100f;
+  --oct-fg: #f6f1ea;
+  --oct-muted: rgba(246, 241, 234, 0.5);
+  --oct-faint: rgba(246, 241, 234, 0.14);
+  --oct-flame: #ff5a1f;
+  --oct-flame-bright: #ff7a3d;
+  --oct-amber: #fbbf24;
+  --oct-ember: #ff3d2e;
+  --oct-ice: #7dd3fc;
+
+  background: var(--oct-bg);
+  color: var(--oct-fg);
+  font-family: var(--font-oct-body), system-ui, sans-serif;
+  min-height: 100vh;
+  display: block;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "ss01";
+}
+
+.octane-root .font-display {
+  font-family: var(--font-oct-display), Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.octane-root .font-mono {
+  font-family: var(--font-oct-mono), ui-monospace, monospace;
+}
+
+.octane-root :focus-visible {
+  outline: 2px solid var(--oct-flame);
+  outline-offset: 3px;
+}
+
+.octane-root button,
+.octane-root a,
+.octane-root [role="button"] {
+  cursor: pointer;
+}
+
+.octane-root ::selection {
+  background: var(--oct-flame);
+  color: #07060a;
+}
+
+.octane-root .flame-text {
+  background: linear-gradient(180deg, #ffd29a 0%, var(--oct-flame-bright) 38%, var(--oct-ember) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(255, 90, 31, 0.25);
+}
+
+.octane-root .flame-bg {
+  background: linear-gradient(135deg, var(--oct-flame), var(--oct-ember));
+  color: #07060a;
+}
+
+.octane-root .ember-grid {
+  background-image:
+    linear-gradient(rgba(255, 90, 31, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 90, 31, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.octane-root .scanline {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 90, 31, 0.05) 0px,
+    rgba(255, 90, 31, 0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.octane-root .divider-line {
+  border-color: rgba(255, 90, 31, 0.18);
+}
+
+.octane-root .grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes oct-rise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.8; }
+  100% { transform: translateY(-120px) scale(0.4); opacity: 0; }
+}
+
+.octane-root .ember-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--oct-flame-bright);
+  box-shadow: 0 0 8px 2px rgba(255, 90, 31, 0.6);
+  animation: oct-rise linear infinite;
+}
+
+@keyframes oct-flicker {
+  0%, 100% { opacity: 1; }
+  43% { opacity: 0.86; }
+  47% { opacity: 1; }
+  72% { opacity: 0.92; }
+}
+
+.octane-root .flicker {
+  animation: oct-flicker 4s ease-in-out infinite;
+}

@@ -216,4 +216,19 @@ export const demos: Demo[] = [
     role: "Design · Shopify · Brand",
     comingSoon: true,
   },
+  {
+    num: "13",
+    name: "Octane",
+    category: "Music · Album Campaign Destination",
+    description:
+      "A WebGL world-building campaign for an album launch. Procedural 3D mountain hero with rising embers, tracklist sequenced as altitudes that unlock as the campaign climbs, lore chapters, tour dates, and a multi-platform pre-save funnel. Anton display type on an ember-warm palette.",
+    tags: ["Next.js", "R3F", "Procedural terrain", "Campaign site"],
+    href: "/octane",
+    kind: "website",
+    video: null,
+    poster: null,
+    gradient: "from-[#ff5a1f]/25 via-[#fbbf24]/8 to-[#07060a]",
+    year: "2026",
+    role: "Design · Build · WebGL",
+  },
 ];
