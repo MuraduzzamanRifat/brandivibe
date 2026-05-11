@@ -4,16 +4,13 @@ import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { glossary, getGlossaryTerm } from "@/data/glossary";
 
-// Runtime-on-first-request + cache. Same ISR pattern as
-// /services/[slug]/[industry] for the same reason — avoids the Windows
-// Next.js 16 build-time prerender crash on nested dynamic routes. Each
-// glossary page renders on first request and caches for 24h.
+// Fully prerendered at build time — required for `output: "export"`
+// (GitHub Pages). One static HTML page per glossary term.
 export const dynamic = "force-static";
-export const dynamicParams = true;
-export const revalidate = 86400;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return [];
+  return glossary.map((g) => ({ term: g.slug }));
 }
 
 type Props = { params: Promise<{ term: string }> };

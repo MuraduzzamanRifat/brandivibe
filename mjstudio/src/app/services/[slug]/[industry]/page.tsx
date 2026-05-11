@@ -6,19 +6,16 @@ import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildServiceIndustryPayload } from "@/lib/programmatic-seo";
 
-// Render-on-first-request + cache (ISR-style). Returning an empty array
-// from generateStaticParams + dynamic=force-static means pages prerender
-// at runtime on the first hit and are cached thereafter. This avoids a
-// Next.js 16 prerender bug where statically generating nested dynamic
-// routes (/[slug]/[industry]) crashes with `useContext null` during
-// build-time static generation. Pages remain server-rendered and fully
-// crawlable — same SEO outcome as fully static.
+// Fully prerendered at build time — required for `output: "export"`
+// (GitHub Pages). 5 services × 8 industries = 40 static pages. No
+// runtime; the HTML is committed to the static bundle.
 export const dynamic = "force-static";
-export const dynamicParams = true;
-export const revalidate = 86400;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return [];
+  return services.flatMap((s) =>
+    industries.map((i) => ({ slug: s.slug, industry: i.slug }))
+  );
 }
 
 type Props = {
