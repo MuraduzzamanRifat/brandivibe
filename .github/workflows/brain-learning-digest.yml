@@ -1,8 +1,7 @@
 name: Brandivibe brain learning digest (weekly)
 
-# Runs once per week (Mondays 14:00 UTC, an hour after the daily tick) to
-# aggregate the past 7 days of outbound email performance into LearningEntry
-# records the planner reads on its next run.
+# Mondays 14:00 UTC: aggregate the past 7 days of outbound performance into
+# LearningEntry records the planner reads next run. GitHub Actions (no Koyeb).
 
 on:
   schedule:
@@ -10,15 +9,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  digest:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Run digest
-        run: |
-          curl -fsS --max-time 120 -X POST \
-            https://brandivibe.com/api/brain/learning/digest \
-            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response.json
-          echo "--- digest result ---"
-          cat response.json
+  run:
+    uses: ./.github/workflows/_brain-runner.yml
+    with:
+      task: learning-digest
+      timeout-minutes: 12
+    secrets: inherit

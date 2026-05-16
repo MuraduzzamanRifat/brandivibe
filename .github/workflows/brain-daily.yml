@@ -1,62 +1,19 @@
 name: Brandivibe brain daily tick
 
+# Full daily pipeline: plan → article → FB → score → source → leadgen →
+# research → sequence → send → blast. Runs inside GitHub Actions (no Koyeb).
+# Idempotent + resumable via the DailyRun ledger; runs twice 30s apart.
+
 on:
   schedule:
     - cron: "0 13 * * *"
   workflow_dispatch:
 
 jobs:
-  tick:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - name: Tick 1 — plan + execute
-        id: tick1
-        continue-on-error: true
-        run: |
-          curl -fsS --max-time 310 -X POST \
-            https://brandivibe.com/api/brain/run-daily \
-            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response1.json
-          echo "--- tick 1 ---"
-          cat response1.json
-
-      - name: Wait 30s before tick 2
-        run: sleep 30
-
-      - name: Tick 2 — resume from checkpoint (idempotent, always run)
-        id: tick2
-        continue-on-error: true
-        run: |
-          curl -fsS --max-time 310 -X POST \
-            https://brandivibe.com/api/brain/run-daily \
-            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response2.json
-          echo "--- tick 2 (resume) ---"
-          cat response2.json
-
-      - name: Status probe
-        run: |
-          curl -fsS https://brandivibe.com/api/brain/run-daily -o status.json
-          echo "--- run ledger ---"
-          cat status.json
-
-      - name: Fail job if any critical phase still failed
-        run: |
-          node -e "
-            const s = require('./status.json');
-            if (!s.run) {
-              console.error('No run found for today — POST tick did not reach server (check BRAIN_CRON_SECRET)');
-              process.exit(1);
-            }
-            const p = s.run.phases;
-            const scalar = { plan: p.plan, article: p.article, score: p.score, source: p.source, leadgen: p.leadgen, research: p.research, sequence: p.sequence, send: p.send, blast: p.blast };
-            const failed = Object.fromEntries(Object.entries(scalar).filter(([,v]) => v === 'failed'));
-            const fbFailed = (p.fb || []).reduce((acc, v, i) => { if (v === 'failed') acc['fb[' + i + ']'] = v; return acc; }, {});
-            const allFailed = Object.assign({}, failed, fbFailed);
-            if (Object.keys(allFailed).length) {
-              console.error('Phases failed:', JSON.stringify(allFailed));
-              process.exit(1);
-            }
-            console.log('All phases OK:', JSON.stringify(p));
-          "
+  run:
+    uses: ./.github/workflows/_brain-runner.yml
+    with:
+      task: daily
+      timeout-minutes: 25
+      twice: true
+    secrets: inherit

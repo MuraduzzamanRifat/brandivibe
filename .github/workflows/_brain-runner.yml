@@ -1,0 +1,89 @@
+name: _brain-runner (reusable)
+
+# Reusable brain task runner. Replaces the old "curl Koyeb /api/brain/*"
+# model — Koyeb is decommissioned; the brain now executes directly inside
+# GitHub Actions via `npx tsx scripts/brain/run.ts <task>`.
+#
+# State (brain.json) persists through the GitHub Contents API: the runners
+# read/write mjstudio/data/brain.json when GITHUB_REPO + GITHUB_TOKEN are
+# set. GITHUB_TOKEN MUST be a PAT (secrets.BRAIN_GH_PAT) — not the default
+# GITHUB_TOKEN — because commits made with the default token do NOT trigger
+# other workflows, and we need the brain.json commit to trigger
+# deploy-static.yml so new articles/audit pages go live.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions):
+#   BRAIN_GH_PAT        PAT with contents:write on this repo (was the
+#                       GITHUB_TOKEN env on Koyeb)
+#   OPENAI_API_KEY      planner / executor / research / scorer
+#   RESEND_API_KEY      outbound email
+# Optional (features degrade gracefully when unset):
+#   RESEND_REPLY_TO, NOTIFICATION_EMAIL, BRAVE_SEARCH_API_KEY,
+#   PEXELS_API_KEY, FACEBOOK_PAGE_ID, FACEBOOK_ACCESS_TOKEN,
+#   PLAUSIBLE_SITE_ID, PLAUSIBLE_API_KEY
+
+on:
+  workflow_call:
+    inputs:
+      task:
+        description: "brain task (daily|hourly|source-pulse|twitter-intent|linkedin-draft|daily-digest-email|health|learning-digest|blast-daily)"
+        required: true
+        type: string
+      timeout-minutes:
+        required: false
+        type: number
+        default: 12
+      twice:
+        description: "run the task twice 30s apart (daily resume/idempotency)"
+        required: false
+        type: boolean
+        default: false
+
+# Never let two brain runs mutate brain.json concurrently — they'd race the
+# Contents API SHA and stomp each other.
+concurrency:
+  group: brain-state
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    defaults:
+      run:
+        working-directory: mjstudio
+    env:
+      GITHUB_REPO: ${{ github.repository }}
+      GITHUB_TOKEN: ${{ secrets.BRAIN_GH_PAT }}
+      GITHUB_BRANCH: main
+      GITHUB_BRAIN_PATH: mjstudio/data/brain.json
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_REPLY_TO: ${{ secrets.RESEND_REPLY_TO }}
+      NOTIFICATION_EMAIL: ${{ secrets.NOTIFICATION_EMAIL }}
+      BRAVE_SEARCH_API_KEY: ${{ secrets.BRAVE_SEARCH_API_KEY }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      FACEBOOK_ACCESS_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
+      PLAUSIBLE_SITE_ID: ${{ secrets.PLAUSIBLE_SITE_ID }}
+      PLAUSIBLE_API_KEY: ${{ secrets.PLAUSIBLE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: mjstudio/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run brain task — ${{ inputs.task }}
+        run: npx tsx scripts/brain/run.ts ${{ inputs.task }}
+
+      - name: Resume pass (idempotent)
+        if: ${{ inputs.twice }}
+        run: |
+          sleep 30
+          npx tsx scripts/brain/run.ts ${{ inputs.task }}

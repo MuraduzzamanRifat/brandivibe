@@ -1,8 +1,7 @@
 name: Brandivibe brain daily digest email
 
-# Sends the yesterday-summary digest to NOTIFICATION_EMAIL (defaults to
-# mjrifat54@gmail.com) every morning at 14:00 UTC — one hour after the
-# main daily tick so it includes the brand-new article + plan from today.
+# 14:00 UTC (1h after the daily tick): email the yesterday-summary digest
+# to NOTIFICATION_EMAIL. Runs inside GitHub Actions (no Koyeb).
 
 on:
   schedule:
@@ -10,15 +9,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  digest:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Send daily digest
-        run: |
-          curl -fsS --max-time 60 -X POST \
-            https://brandivibe.com/api/brain/daily-digest-email \
-            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response.json
-          echo "--- digest send ---"
-          cat response.json
+  run:
+    uses: ./.github/workflows/_brain-runner.yml
+    with:
+      task: daily-digest-email
+      timeout-minutes: 8
+    secrets: inherit

@@ -1,7 +1,7 @@
 name: Brandivibe brain hourly tick
 
-# Re-enabled for always-on operation. Sends queued emails, advances
-# sequences, deep-researches new prospects.
+# Lightweight throughput tick: source → leadgen → research → sequence →
+# send → blast. Runs inside GitHub Actions (no Koyeb).
 
 on:
   schedule:
@@ -9,15 +9,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  tick:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Manual tick
-        run: |
-          curl -fsS --max-time 310 -X POST \
-            https://brandivibe.com/api/brain/tick-hourly \
-            -H "x-brain-secret: ${{ secrets.BRAIN_CRON_SECRET }}" \
-            -o response.json
-          echo "--- manual tick ---"
-          cat response.json
+  run:
+    uses: ./.github/workflows/_brain-runner.yml
+    with:
+      task: hourly
+      timeout-minutes: 12
+    secrets: inherit
