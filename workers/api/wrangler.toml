@@ -2,16 +2,22 @@ name = "brandivibe-api"
 main = "worker.js"
 compatibility_date = "2024-11-01"
 
-# Mount the Worker at brandivibe.com/api/* so the existing static-site
-# forms keep POSTing to the same paths with zero frontend change.
+# Mount the Worker so the static site's dynamic paths work with zero
+# frontend change. The Worker intercepts these before GitHub Pages;
+# every other path still serves the static site.
+#   /api/*  — public forms (contact, audit) + auth-gated CRM JSON API
+#   /crm*   — the operator CRM app (login + SPA), served by the Worker
 # Requires the brandivibe.com zone to be on this Cloudflare account.
 routes = [
-  { pattern = "brandivibe.com/api/*", zone_name = "brandivibe.com" }
+  { pattern = "brandivibe.com/api/*", zone_name = "brandivibe.com" },
+  { pattern = "brandivibe.com/crm*", zone_name = "brandivibe.com" }
 ]
 
-# Secrets are NOT set here (never commit keys). Set them with:
-#   wrangler secret put RESEND_API_KEY
+# Secrets are NOT set here (never commit keys). Set with `wrangler secret put`:
+#   RESEND_API_KEY       (required — forms + CRM send)
+#   BRAIN_GH_PAT         (required for CRM — GitHub PAT, contents:write)
+#   CRM_PASSWORD         (required for CRM — operator login password)
+#   CRM_SESSION_SECRET   (required for CRM — random 32+ char string)
 # Optional:
-#   wrangler secret put NOTIFICATION_EMAIL
-#   wrangler secret put RESEND_FROM_EMAIL
-#   wrangler secret put RESEND_REPLY_TO
+#   NOTIFICATION_EMAIL  RESEND_FROM_EMAIL  RESEND_REPLY_TO
+#   GITHUB_REPO  GITHUB_BRANCH  GITHUB_BRAIN_PATH

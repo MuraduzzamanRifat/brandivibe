@@ -1,63 +1,89 @@
-# Brandivibe API Worker
+# Brandivibe API + CRM Worker
 
-Restores `brandivibe.com/api/contact` and `/api/audit/run` after the
-Koyeb → GitHub Pages migration (static sites have no server).
+brandivibe.com is a static GitHub Pages site (no server). This one
+Cloudflare Worker restores everything dynamic:
 
-## What it does
-
-| Endpoint | Behaviour |
+| Path | What |
 |---|---|
-| `POST /api/contact` | Validates the contact form, emails the submission to the operator via Resend, `reply_to` = the visitor. Returns `{ok:true}`. **Fully working.** |
-| `POST /api/audit/run` | Emails the audit request (URL + email) to the operator so no lead is lost, returns a friendly "we'll email your report" message. The full GPT instant-audit port is the next step. |
+| `POST /api/contact` | Contact form → emails you via Resend. **Fully working.** |
+| `POST /api/audit/run` | Audit form → captures the lead + notifies you. |
+| `GET /crm` | **Operator CRM app** — password-gated, served entirely by the Worker (never on the public static site). |
+| `/api/crm/*` | CRM JSON API (auth-gated): contacts CRUD, templates, send, email history. |
 
-The static forms already POST to these exact paths — no frontend change.
+## The CRM
 
-## Deploy (one-time, ~3 min)
+A full single-operator CRM, **better than crm.mjrifat.com** because it
+shares one datastore with the AI brain:
 
-### Option A — Wrangler CLI (recommended)
+- **Contacts** — list, search, status filter, add, edit (status / notes /
+  tags), delete. Auto-includes prospects the brain syncs in.
+- **Compose & send** — pick a template or write freeform, send via Resend,
+  logged as a `CrmEmail`, contact auto-moves `new → contacted`.
+- **Templates** — create / edit / delete (cold, followup, loom, breakup,
+  audit, custom).
+- **Email history** per contact, **sent counts**, **follow-up** via the
+  status pipeline.
+
+**Datastore = the same `mjstudio/data/brain.json` the brain uses**, via the
+GitHub Contents API. Every write is GET(sha)→mutate→PUT(sha) with a
+409-retry, so the brain (GitHub Actions) and the CRM never overwrite each
+other. CRM changes show up in the read-only `/dashboard` and feed the
+brain's outreach engine (sender pool, sequences, tracking).
+
+## Deploy (one-time, ~4 min)
 
 ```bash
 npm install -g wrangler
 cd workers/api
-wrangler login                       # opens browser, authorises your CF account
-wrangler secret put RESEND_API_KEY   # paste your Resend key when prompted
-# optional:
-wrangler secret put NOTIFICATION_EMAIL   # default mjrifat54@gmail.com
-wrangler secret put RESEND_FROM_EMAIL    # default hello@send.brandivibe.site
+wrangler login
+
+# required
+wrangler secret put RESEND_API_KEY        # Resend key
+wrangler secret put BRAIN_GH_PAT          # GitHub PAT (this repo, Contents: R/W)
+wrangler secret put CRM_PASSWORD          # pick your CRM login password
+wrangler secret put CRM_SESSION_SECRET    # paste a long random string
+# optional
+wrangler secret put NOTIFICATION_EMAIL    # default mjrifat54@gmail.com
+wrangler secret put RESEND_FROM_EMAIL     # default hello@send.brandivibe.site
+
 wrangler deploy
 ```
 
-`wrangler deploy` reads `wrangler.toml`, which already has the route
-`brandivibe.com/api/*` — so as soon as it deploys, the live contact form
-works. (The `brandivibe.com` zone must be on the same Cloudflare account.)
+Generate a session secret:
+`node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`
 
-### Option B — Cloudflare dashboard (no CLI)
+`wrangler.toml` already pins the routes `brandivibe.com/api/*` and
+`brandivibe.com/crm*` — the moment `wrangler deploy` finishes:
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Worker** →
-   name it `brandivibe-api` → **Deploy**.
-2. **Edit code** → paste the entire contents of `worker.js` → **Deploy**.
-3. Worker → **Settings → Variables and Secrets** → add **Secret**
-   `RESEND_API_KEY` = your Resend key. (Optionally `NOTIFICATION_EMAIL`,
-   `RESEND_FROM_EMAIL`, `RESEND_REPLY_TO`.)
-4. Worker → **Settings → Domains & Routes** → **Add route** →
-   `brandivibe.com/api/*` → zone `brandivibe.com` → Save.
+- the contact form sends, and
+- **the CRM is live at `https://brandivibe.com/crm`** (log in with
+  `CRM_PASSWORD`).
+
+### Dashboard option (no CLI)
+
+Cloudflare dashboard → Workers & Pages → Create Worker `brandivibe-api` →
+paste `worker.js` → Settings → Variables: add the four required secrets →
+Settings → Domains & Routes: add `brandivibe.com/api/*` **and**
+`brandivibe.com/crm*`.
 
 ## Test
 
 ```bash
-curl -X POST https://brandivibe.com/api/contact \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Test","email":"you@example.com","company":"Acme","message":"hello"}'
-# → {"ok":true}  and an email lands in the operator inbox
-```
+curl -X POST https://brandivibe.com/api/contact -H 'Content-Type: application/json' \
+  -d '{"name":"Test","email":"you@example.com","company":"Acme","message":"hi"}'
+# → {"ok":true}
 
-Or just submit the form on `https://brandivibe.com/#contact`.
+open https://brandivibe.com/crm     # log in, add a contact, send a test email
+```
 
 ## Notes
 
-- `RESEND_FROM_EMAIL` must be a Resend-verified sender. `send.brandivibe.site`
-  already has Resend DNS from the brain setup, so the default works.
-- The Worker route takes priority over GitHub Pages for `/api/*` only;
-  every other path still serves the static site.
-- Secrets are never committed — they live in Cloudflare, set via the steps
-  above.
+- The CRM is **operator-only**: HMAC-signed httpOnly session cookie,
+  12-hour expiry, `CRM_PASSWORD` gate. Data is fetched only after auth —
+  no lead data is ever in static HTML.
+- `BRAIN_GH_PAT` here is a **Cloudflare** secret (separate from the GitHub
+  Actions secret of the same purpose). Same kind of PAT, set in both
+  places.
+- `RESEND_FROM_EMAIL` must be a Resend-verified sender;
+  `send.brandivibe.site` already is.
+- Secrets live in Cloudflare only — never committed.
