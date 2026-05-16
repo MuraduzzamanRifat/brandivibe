@@ -62,13 +62,13 @@ jobs:
 
       - name: Strip server-only routes for static export
         # output: "export" can't coexist with API routes / route handlers.
-        # We delete them in the workflow only; they remain in the repo for
-        # the Koyeb build during the transition window.
         run: |
           rm -rf src/app/api
-          rm -rf src/app/dashboard
           # feed.xml is a route handler — drop it; static RSS can be regenerated later
           rm -rf src/app/feed.xml
+          # NOTE: /dashboard is NOT stripped anymore — it is now a static,
+          # build-time, read-only render of brain.json (no /api, no client
+          # mutations), so it exports cleanly.
           # robots.txt + sitemap are file-conventions and survive static export
           echo "Stripped server-only routes:"
           ls src/app
