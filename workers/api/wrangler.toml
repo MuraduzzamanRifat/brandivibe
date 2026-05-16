@@ -1,0 +1,17 @@
+name = "brandivibe-api"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# Mount the Worker at brandivibe.com/api/* so the existing static-site
+# forms keep POSTing to the same paths with zero frontend change.
+# Requires the brandivibe.com zone to be on this Cloudflare account.
+routes = [
+  { pattern = "brandivibe.com/api/*", zone_name = "brandivibe.com" }
+]
+
+# Secrets are NOT set here (never commit keys). Set them with:
+#   wrangler secret put RESEND_API_KEY
+# Optional:
+#   wrangler secret put NOTIFICATION_EMAIL
+#   wrangler secret put RESEND_FROM_EMAIL
+#   wrangler secret put RESEND_REPLY_TO
