@@ -9,7 +9,6 @@ export function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +22,7 @@ export function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, budget, message }),
+        body: JSON.stringify({ name, email, company, message }),
       });
       if (!res.ok) {
         const json = await res.json().catch(() => ({}));
@@ -122,26 +121,6 @@ export function Contact() {
                 placeholder="Acme Inc."
                 className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
               />
-            </div>
-            <div>
-              <label className="block font-mono text-xs text-white/50 mb-2">BUDGET</label>
-              <div className="flex flex-wrap gap-3">
-                {["$5-10k", "$10-15k", "$15-25k", "$25k+"].map((b) => (
-                  <label key={b} className="cursor-pointer">
-                    <input
-                      type="radio"
-                      name="budget"
-                      value={b}
-                      checked={budget === b}
-                      onChange={() => setBudget(b)}
-                      className="peer sr-only"
-                    />
-                    <span className="block px-4 py-2 rounded-full border border-white/20 text-sm hover:border-white/40 peer-checked:bg-white peer-checked:text-black peer-checked:border-white transition-colors">
-                      {b}
-                    </span>
-                  </label>
-                ))}
-              </div>
             </div>
             <div>
               <label className="block font-mono text-xs text-white/50 mb-2">
