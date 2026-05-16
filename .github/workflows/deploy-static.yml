@@ -12,6 +12,10 @@ name: Deploy static site to GitHub Pages
 # Triggered on every main-branch push that touches site source. Brain commits
 # (article + brain.json updates) automatically trigger a rebuild so new
 # articles + new audit pages go live within ~3 minutes of being generated.
+#
+# PREREQUISITE (one-time, manual — done): repo Settings → Pages → Source =
+# "GitHub Actions". The workflow token cannot create the Pages site itself,
+# so this must be enabled by a repo admin once. Now enabled.
 
 on:
   push:
