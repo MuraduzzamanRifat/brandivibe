@@ -7,6 +7,8 @@ import { industries } from "@/data/industries";
 import { demos } from "@/data/demos";
 
 export const dynamic = "force-static";
+// Required for `output: "export"` — fully enumerated, no runtime fallback.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));

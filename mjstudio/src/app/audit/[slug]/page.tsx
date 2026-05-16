@@ -7,12 +7,27 @@ import { ArrowRight } from "lucide-react";
 // Pre-render one audit page per prospect at build time. Each new prospect
 // the brain commits to brain.json triggers a rebuild + redeploy.
 export const dynamic = "force-static";
+// Required for `output: "export"` — dynamic routes must be non-dynamic and
+// fully enumerated at build time. Slugs not in generateStaticParams 404.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const brain = await loadBrain();
-  return brain.prospects
-    .filter((p) => p.auditSlug)
-    .map((p) => ({ slug: p.auditSlug as string }));
+  let slugs: string[] = [];
+  try {
+    const brain = await loadBrain();
+    slugs = brain.prospects
+      .filter((p) => p.auditSlug)
+      .map((p) => p.auditSlug as string);
+  } catch {
+    slugs = [];
+  }
+  // `output: "export"` rejects a dynamic route that yields zero params
+  // ("missing generateStaticParams"). When brain.json has no prospects
+  // (e.g. a fresh CI build), emit a single placeholder — the page calls
+  // notFound() for any unknown slug, so it 404s harmlessly and is never
+  // linked. Real prospect pages appear once brain.json carries them.
+  if (slugs.length === 0) return [{ slug: "__none__" }];
+  return slugs.map((slug) => ({ slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };

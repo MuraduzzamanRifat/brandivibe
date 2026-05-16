@@ -10,6 +10,8 @@ import { RelatedProducts } from "./_components/RelatedProducts";
 import { PRODUCTS, type Product } from "./products";
 
 export const dynamic = "force-static";
+// Required for `output: "export"` — fully enumerated, no runtime fallback.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   return Object.keys(PRODUCTS).map((slug) => ({ slug }));

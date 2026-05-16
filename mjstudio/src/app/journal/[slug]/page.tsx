@@ -10,10 +10,22 @@ import "./article.css";
 // with the latest brain.json checked into the repo) sees every article
 // the brain has produced.
 export const dynamic = "force-static";
+// Required for `output: "export"` — no dynamicParams fallback in a static
+// export; articles are fully enumerated at build time from brain.json.
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const brain = await loadBrain();
-  return (brain.articles ?? []).map((a) => ({ slug: a.slug }));
+  let slugs: string[] = [];
+  try {
+    const brain = await loadBrain();
+    slugs = (brain.articles ?? []).map((a) => a.slug);
+  } catch {
+    slugs = [];
+  }
+  // `output: "export"` rejects a dynamic route that yields zero params.
+  // No articles yet (fresh CI build) → one placeholder the page 404s.
+  if (slugs.length === 0) return [{ slug: "__none__" }];
+  return slugs.map((slug) => ({ slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };

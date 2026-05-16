@@ -4,6 +4,11 @@ import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { glossary } from "@/data/glossary";
 
+// Required for `output: "export"` (GitHub Pages). loadBrain() is async, so
+// without this Next treats the sitemap as dynamic and refuses to export it.
+// force-static = run once at build time, emit a static sitemap.xml.
+export const dynamic = "force-static";
+
 const SITE = "https://brandivibe.com";
 const PORTFOLIO_SLUGS = [
   "helix", "neuron", "axiom", "pulse", "aurora", "orbit", "monolith", "atrium",
