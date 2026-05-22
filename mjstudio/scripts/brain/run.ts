@@ -43,11 +43,17 @@ const TASKS: Record<string, () => Promise<unknown>> = {
   "blast-daily": runBlastDaily,
 };
 
-/** A task "failed" if it returned an errors[] with entries, or ok/healthy:false. */
+/**
+ * A task "failed" only when it explicitly reports failure — ok:false or
+ * healthy:false. A non-empty errors[] is informational (e.g. source-pulse
+ * scrapes 5 public feeds with Promise.allSettled — one flaky feed should
+ * not red the whole 15-min cron when the other four succeeded and the
+ * runner saved state cleanly). Errors are still printed to the log below
+ * for visibility; they just don't crash the run.
+ */
 function taskFailed(result: unknown): boolean {
   if (!result || typeof result !== "object") return false;
   const r = result as TaskResult;
-  if (Array.isArray(r.errors) && r.errors.length > 0) return true;
   if (r.ok === false) return true;
   if (r.healthy === false) return true;
   return false;
