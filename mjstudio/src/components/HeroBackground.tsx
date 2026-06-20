@@ -83,12 +83,12 @@ export function HeroBackground() {
 
   if (reduced) {
     return (
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,rgba(132,225,255,0.15),transparent_60%),radial-gradient(ellipse_50%_40%_at_30%_60%,rgba(167,139,250,0.1),transparent)]" />
+      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,rgba(132,225,255,0.15),transparent_60%),radial-gradient(ellipse_50%_40%_at_30%_60%,rgba(167,139,250,0.1),transparent)]" />
     );
   }
 
   return (
-    <div className="absolute inset-0">
+    <div aria-hidden="true" className="absolute inset-0">
       <SceneErrorBoundary>
         <Canvas
           camera={{ position: [0, 0, 5], fov: 45 }}
@@ -102,7 +102,9 @@ export function HeroBackground() {
             <pointLight position={[2, 0, 3]} intensity={2} color="#84e1ff" distance={10} />
             <GlassBlob scroll={scrollFactor} />
             <CameraDrift scroll={scrollFactor} />
-            <Environment preset="night" />
+            {/* Self-hosted env map (was drei preset="night" → raw.githack.com, a
+                no-SLA dev CDN). Served from /public, long-cacheable, no SPOF. */}
+            <Environment files="/hdri/dikhololo_night_1k.hdr" />
             <fog attach="fog" args={["#08080a", 4, 14]} />
           </Suspense>
         </Canvas>

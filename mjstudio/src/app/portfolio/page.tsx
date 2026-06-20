@@ -101,7 +101,7 @@ export default function DemosPage() {
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center px-6">
-                      <div className="text-[14vw] md:text-[7vw] font-semibold tracking-tighter text-white/90 text-center">
+                      <div className="text-5xl sm:text-6xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-white/90 text-center break-words">
                         {d.name}
                       </div>
                     </div>

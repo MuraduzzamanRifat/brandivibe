@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { glossary, GLOSSARY_CATEGORIES, type GlossaryTerm } from "@/data/glossary";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
       "Definitions for the categories Brandivibe builds in: premium websites, AI automation, AI agents, conversion design, generative engine optimization.",
     url: "/glossary",
     type: "website",
+    images: OG_IMAGE,
   },
 };
 
@@ -79,10 +81,10 @@ export default function GlossaryHubPage() {
           <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
             — Glossary
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
             Definitions for the categories we build in.
           </h1>
-          <p className="text-2xl md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-6">
+          <p className="text-2xl sm:text-[1.7rem] md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-6">
             Short, plain-language answers to &quot;what is X&quot; for the terms Brandivibe uses every day.
           </p>
           <p className="text-white/55 leading-relaxed max-w-2xl">
@@ -142,7 +144,7 @@ export default function GlossaryHubPage() {
           <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
             — Want a system, not a definition?
           </div>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
             Knowing what something is isn&apos;t the same as having it built.
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">

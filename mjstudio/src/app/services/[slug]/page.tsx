@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: service.metaDescription,
       url: `/services/${slug}`,
       type: "website",
+      images: OG_IMAGE,
     },
   };
 }
@@ -143,13 +145,13 @@ export default async function ServiceDetailPage({ params }: Props) {
           <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6" style={{ color: service.accent }}>
             — Service · {service.num}
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
             {service.hook}
           </h1>
           <div className="text-xl md:text-2xl uppercase tracking-[0.2em] font-mono text-white/40 mb-10">
             {service.title}
           </div>
-          <p className="text-2xl md:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
+          <p className="text-2xl sm:text-3xl md:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
             {service.tagline}
           </p>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mb-12">
@@ -354,9 +356,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                   href={d.href}
                   className="group block rounded-2xl border border-white/10 hover:border-white/30 transition-colors overflow-hidden bg-white/[0.015]"
                 >
-                  <div className={`relative aspect-[4/3] bg-gradient-to-br ${d.gradient}`}>
+                  <div className={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${d.gradient}`}>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-[14vw] md:text-[5vw] font-semibold tracking-tighter text-white/85">
+                      <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tighter text-white/85">
                         {d.name}
                       </div>
                     </div>
@@ -401,7 +403,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {industries.map((ind) => (
               <Link
                 key={ind.slug}

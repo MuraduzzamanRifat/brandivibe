@@ -138,13 +138,13 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       initial={{ opacity: 0.4 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="shrink-0 w-[88vw] md:w-[60vw] lg:w-[48vw] h-[62vh] rounded-3xl relative overflow-hidden border border-white/10 glass flex flex-col md:flex-row"
+      className="shrink-0 w-[88vw] sm:w-[78vw] md:w-[60vw] lg:w-[48vw] h-auto md:h-[62vh] rounded-3xl relative overflow-hidden border border-white/10 glass flex flex-col md:flex-row"
       style={{
         background: `linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.0)), radial-gradient(ellipse 60% 40% at 20% 0%, ${step.accent}18, transparent 60%)`,
       }}
     >
       {/* Left: massive number */}
-      <div className="flex-1 p-10 md:p-14 flex flex-col justify-between">
+      <div className="flex-1 p-8 md:p-14 flex flex-col justify-between">
         <div>
           <div
             className="font-mono text-xs uppercase tracking-[0.3em] mb-4"
@@ -155,7 +155,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
           <div
             className="font-semibold leading-[0.85] tracking-[-0.04em] mb-6"
             style={{
-              fontSize: "clamp(6rem, 11vw, 16rem)",
+              fontSize: "clamp(4rem, 14vw, 16rem)",
               background: `linear-gradient(180deg, ${step.accent} 0%, rgba(255,255,255,0.15) 100%)`,
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
@@ -179,7 +179,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
       </div>
 
       {/* Right: description + details */}
-      <div className="w-[40%] p-10 md:p-14 border-l border-white/5 flex flex-col justify-center">
+      <div className="w-full md:w-[40%] p-8 md:p-14 border-t md:border-t-0 md:border-l border-white/5 flex flex-col justify-center">
         <p className="text-base md:text-lg text-white/60 leading-relaxed mb-8 text-balance">
           {step.desc}
         </p>

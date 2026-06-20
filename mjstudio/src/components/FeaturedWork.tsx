@@ -70,7 +70,7 @@ export function FeaturedWork() {
                     </>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-[18vw] md:text-[14vw] font-semibold tracking-tighter text-white/90 group-hover:scale-[1.03] transition-transform duration-1000 ease-out">
+                      <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white/90 break-words text-center px-4 max-w-full group-hover:scale-[1.03] transition-transform duration-1000 ease-out">
                         {p.name}
                       </div>
                     </div>

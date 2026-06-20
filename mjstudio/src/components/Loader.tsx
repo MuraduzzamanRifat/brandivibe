@@ -84,7 +84,7 @@ export function Loader() {
           className="fixed inset-0 z-[100] bg-[#08080a] overflow-hidden flex flex-col"
         >
           {/* Top row — counter + studio meta */}
-          <div className="flex items-start justify-between px-6 md:px-12 pt-8 font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+          <div className="flex items-start justify-between gap-3 px-6 md:px-12 pt-8 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/40">
             <div>
               <div>Brandivibe</div>
               <div className="mt-1 text-white/20">Studio · Loading</div>
@@ -108,7 +108,7 @@ export function Loader() {
                     delay: 0.1 + i * 0.045,
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className="inline-block font-semibold text-[14vw] md:text-[10vw] leading-none tracking-[-0.04em] text-white"
+                  className="inline-block font-semibold text-[13vw] sm:text-[12vw] md:text-[10vw] leading-none tracking-[-0.04em] text-white"
                 >
                   {char}
                 </motion.span>
@@ -128,8 +128,8 @@ export function Loader() {
           </div>
 
           {/* Bottom — faint tagline that matches the hero's conversion story */}
-          <div className="px-6 md:px-12 pb-10 flex justify-between items-end font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-            <div>— Premium 3D web design · Brandivibe Studio</div>
+          <div className="px-6 md:px-12 pb-8 md:pb-10 flex justify-between items-end gap-4 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-white/30">
+            <div className="truncate">— Premium 3D web design · Brandivibe Studio</div>
             <div>Est. 2024</div>
           </div>
         </motion.div>

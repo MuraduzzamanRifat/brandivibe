@@ -15,14 +15,19 @@ export default function PosterPage() {
       </div>
 
       <figure className="relative max-w-[min(90vw,640px)] w-full shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/posters/mjstudio-manifesto.png"
-          alt="Brandivibe — Silent Architecture manifesto poster. Limited edition 001/003, Q2 2026."
-          className="w-full h-auto block"
-          width={1200}
-          height={1600}
-        />
+        <picture>
+          <source type="image/avif" srcSet="/posters/mjstudio-manifesto.avif" />
+          <source type="image/webp" srcSet="/posters/mjstudio-manifesto.webp" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/posters/mjstudio-manifesto.webp"
+            alt="Brandivibe — Silent Architecture manifesto poster. Limited edition 001/003, Q2 2026."
+            className="w-full h-auto block"
+            width={1200}
+            height={1600}
+            fetchPriority="high"
+          />
+        </picture>
       </figure>
 
       <figcaption className="text-center max-w-xl">

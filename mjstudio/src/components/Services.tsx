@@ -94,7 +94,7 @@ function StepperItem({
         className="mt-3 flex items-baseline gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60"
       >
         <span style={{ color: service.accent }}>{service.num}</span>
-        <span className="truncate">{service.title}</span>
+        <span className="hidden sm:inline truncate">{service.title}</span>
       </motion.div>
     </motion.div>
   );
@@ -158,7 +158,7 @@ function ServicePanel({
       style={{ opacity }}
       className="absolute inset-0 flex items-center justify-center px-6 md:px-16 pointer-events-none"
     >
-      <div className="mx-auto max-w-[1600px] w-full grid grid-cols-12 gap-8 items-center">
+      <div className="mx-auto max-w-[1600px] w-full grid grid-cols-12 gap-4 md:gap-8 items-center">
         {/* massive number */}
         <motion.div
           style={{ scale: numberScale, y: numberY }}
@@ -173,7 +173,7 @@ function ServicePanel({
           <div
             className="font-semibold leading-[0.82] tracking-[-0.05em]"
             style={{
-              fontSize: "clamp(8rem, 22vw, 28rem)",
+              fontSize: "clamp(4.5rem, 22vw, 28rem)",
               background: `linear-gradient(180deg, ${service.accent} 0%, rgba(255,255,255,0.4) 100%)`,
               WebkitBackgroundClip: "text",
               backgroundClip: "text",
@@ -186,13 +186,13 @@ function ServicePanel({
 
         {/* title + description */}
         <motion.div style={{ y: contentY }} className="col-span-12 md:col-span-7 md:pl-10">
-          <h3 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
+          <h3 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-5 md:mb-8">
             {service.title}
           </h3>
-          <p className="text-lg md:text-xl text-white/65 leading-relaxed max-w-xl mb-10 text-balance">
+          <p className="text-base md:text-xl text-white/65 leading-relaxed max-w-xl mb-6 md:mb-10 text-balance">
             {service.desc}
           </p>
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 max-w-lg mb-10">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 max-w-lg mb-6 md:mb-10">
             {service.bullets.map((b) => (
               <li
                 key={b}
@@ -259,7 +259,7 @@ export function Services() {
             replaces the previous 4-dot indicator. Highlights the active service
             so users always know where they are in the sequence. */}
         <div className="absolute bottom-10 left-6 md:left-12 right-6 md:right-12 z-10">
-          <div className="mx-auto max-w-[1600px] flex gap-4 md:gap-6">
+          <div className="mx-auto max-w-[1600px] flex gap-2 sm:gap-4 md:gap-6">
             {services.map((s, i) => (
               <StepperItem
                 key={s.num}

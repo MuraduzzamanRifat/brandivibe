@@ -68,7 +68,7 @@ export default function IndustriesHubPage() {
           <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
             — Industries we ship for
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] sm:leading-[0.9] text-balance mb-6">
             Built for your industry. Not the average.
           </h1>
           <p className="text-2xl md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
@@ -95,7 +95,7 @@ export default function IndustriesHubPage() {
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
+              <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
                 Pick the one closest to your business.
               </h2>
             </div>
@@ -167,7 +167,7 @@ export default function IndustriesHubPage() {
           <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
             — Don&apos;t see your industry?
           </div>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
+          <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
             We work outside these too.
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">

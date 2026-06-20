@@ -126,7 +126,7 @@ export default function AboutPage() {
           <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
             — About
           </div>
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
             Muraduzzaman.<br className="hidden md:block" /> Founder, Brandivibe.
           </h1>
           <p className="text-2xl md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-3xl text-balance mb-10">

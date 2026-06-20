@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { useState } from "react";
 import { LazyVideo } from "./LazyVideo";
+import { CONTACT_EMAIL, CONTACT_ENDPOINT, WEB3FORMS_KEY } from "@/lib/contact";
 
 export function Contact() {
   const [name, setName] = useState("");
@@ -19,16 +20,40 @@ export function Contact() {
     setSubmitting(true);
     setError(null);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, company, message }),
-      });
-      if (!res.ok) {
-        const json = await res.json().catch(() => ({}));
-        throw new Error((json as { error?: string }).error ?? "Failed to send");
+      if (CONTACT_ENDPOINT) {
+        // Deliver through a no-backend form service (static host has no /api).
+        const payload = {
+          name,
+          email,
+          company,
+          message,
+          subject: `New Brandivibe enquiry — ${name}${company ? ` (${company})` : ""}`,
+          ...(WEB3FORMS_KEY ? { access_key: WEB3FORMS_KEY } : {}),
+        };
+        const res = await fetch(CONTACT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) {
+          const json = await res.json().catch(() => ({}));
+          throw new Error(
+            (json as { message?: string; error?: string }).message ??
+              (json as { error?: string }).error ??
+              "Failed to send"
+          );
+        }
+        setSubmitted(true);
+      } else {
+        // No endpoint configured: never drop the lead — open the visitor's mail
+        // client prefilled, addressed to the real inbox.
+        const subject = encodeURIComponent(`New Brandivibe enquiry — ${name}`);
+        const body = encodeURIComponent(
+          `Name: ${name}\nEmail: ${email}\nCompany: ${company || "—"}\n\n${message}`
+        );
+        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+        setSubmitted(true);
       }
-      setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Try again.");
     } finally {
@@ -53,7 +78,7 @@ export function Contact() {
           className="text-center mb-16"
         >
           <span className="font-mono text-sm text-[#84e1ff]">— Get free strategy call</span>
-          <h2 className="mt-4 text-4xl md:text-6xl font-semibold tracking-tight text-balance">
+          <h2 className="mt-4 text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-balance">
             Turn your business into a 24/7 client-generating machine.
           </h2>
           <p className="mt-6 text-lg text-white/60 max-w-xl mx-auto">
@@ -90,49 +115,56 @@ export function Contact() {
           >
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block font-mono text-xs text-white/50 mb-2">NAME</label>
+                <label htmlFor="cf-name" className="block font-mono text-xs text-white/50 mb-2">NAME</label>
                 <input
+                  id="cf-name"
                   required
                   type="text"
+                  autoComplete="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Jane Doe"
-                  className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
+                  className="w-full bg-transparent border-b border-white/30 pb-3 outline-none focus-visible:border-[#84e1ff] transition-colors placeholder:text-white/50"
                 />
               </div>
               <div>
-                <label className="block font-mono text-xs text-white/50 mb-2">EMAIL</label>
+                <label htmlFor="cf-email" className="block font-mono text-xs text-white/50 mb-2">EMAIL</label>
                 <input
+                  id="cf-email"
                   required
                   type="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="jane@company.com"
-                  className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
+                  className="w-full bg-transparent border-b border-white/30 pb-3 outline-none focus-visible:border-[#84e1ff] transition-colors placeholder:text-white/50"
                 />
               </div>
             </div>
             <div>
-              <label className="block font-mono text-xs text-white/50 mb-2">COMPANY</label>
+              <label htmlFor="cf-company" className="block font-mono text-xs text-white/50 mb-2">COMPANY</label>
               <input
+                id="cf-company"
                 type="text"
+                autoComplete="organization"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="Acme Inc."
-                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50"
+                className="w-full bg-transparent border-b border-white/30 pb-3 outline-none focus-visible:border-[#84e1ff] transition-colors placeholder:text-white/50"
               />
             </div>
             <div>
-              <label className="block font-mono text-xs text-white/50 mb-2">
+              <label htmlFor="cf-message" className="block font-mono text-xs text-white/50 mb-2">
                 TELL US ABOUT YOUR PROJECT
               </label>
               <textarea
+                id="cf-message"
                 required
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="We're building…"
-                className="w-full bg-transparent border-b border-white/20 pb-3 outline-none focus:border-[#84e1ff] transition-colors placeholder:text-white/50 resize-none"
+                className="w-full bg-transparent border-b border-white/30 pb-3 outline-none focus-visible:border-[#84e1ff] transition-colors placeholder:text-white/50 resize-none"
               />
             </div>
 
@@ -154,11 +186,11 @@ export function Contact() {
         <div className="mt-12 text-center">
           <p className="text-white/40 text-sm mb-2">or reach us directly</p>
           <a
-            href="mailto:mjrifat54@gmail.com"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="inline-flex items-center gap-2 text-white hover:text-[#84e1ff] transition-colors"
           >
             <Mail className="w-4 h-4" />
-            mjrifat54@gmail.com
+            {CONTACT_EMAIL}
           </a>
         </div>
       </div>

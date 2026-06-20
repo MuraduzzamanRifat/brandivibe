@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: payload.metaDescription,
       url: payload.canonical,
       type: "website",
+      images: OG_IMAGE,
     },
   };
 }
@@ -129,13 +131,13 @@ export default async function ServiceForIndustryPage({ params }: Props) {
           >
             — {service.title} · For {industryRecord.pluralName}
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold tracking-tight leading-[0.95] sm:leading-[0.9] text-balance mb-6">
             {payload.hook}
           </h1>
           <div className="text-xl md:text-2xl uppercase tracking-[0.2em] font-mono text-white/40 mb-10">
             {service.title} · {industryRecord.shortLabel}
           </div>
-          <p className="text-2xl md:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
             {payload.tagline}
           </p>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mb-12">
@@ -225,12 +227,12 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
                 Capabilities, not promises.
               </h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {service.capabilities.map((c) => (
               <article
                 key={c.title}
@@ -257,7 +259,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
                 Same cadence. Tailored to {industryRecord.pluralName}.
               </h2>
             </div>
@@ -297,7 +299,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
           >
             — What you take home
           </div>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-12 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-12 text-balance">
             Deliverables.
           </h2>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 max-w-5xl">
@@ -324,7 +326,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               </div>
             </div>
             <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
                 Answered, in plain language.
               </h2>
             </div>
@@ -442,7 +444,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
           >
             — Ready for {industryRecord.pluralName}
           </div>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
             Built for {industryRecord.pluralName}. Shipped in 6 weeks.
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">

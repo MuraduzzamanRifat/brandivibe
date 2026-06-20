@@ -19,7 +19,7 @@ export function Manifesto() {
   return (
     <section
       ref={ref}
-      className="relative py-40 px-6 md:px-12 border-y border-white/5 overflow-hidden"
+      className="relative py-24 sm:py-32 md:py-40 px-6 md:px-12 border-y border-white/5 overflow-hidden"
     >
       {/* atmospheric stock video — Engin Akyurt / Pexels */}
       <LazyVideo
@@ -68,7 +68,7 @@ export function Manifesto() {
           {/* poster as visible artifact */}
           <motion.div
             style={{ y: posterY, rotate: posterRotate }}
-            className="col-span-12 md:col-span-4 md:col-start-9 relative"
+            className="col-span-12 max-w-sm mx-auto md:max-w-none md:mx-0 md:col-span-4 md:col-start-9 relative"
           >
             <Link
               href="/poster"
@@ -78,12 +78,28 @@ export function Manifesto() {
             >
               <div className="absolute -inset-8 bg-gradient-to-br from-[#84e1ff]/10 via-transparent to-[#a78bfa]/10 blur-3xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
               <div className="relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 shadow-[0_40px_120px_-20px_rgba(0,0,0,0.8)] group-hover:border-white/20 transition-all duration-700">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/posters/mjstudio-manifesto.png"
-                  alt="Brandivibe — Silent Architecture manifesto poster"
-                  className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
-                />
+                <picture>
+                  <source
+                    type="image/avif"
+                    sizes="(max-width: 768px) 90vw, 33vw"
+                    srcSet="/posters/mjstudio-manifesto-600.avif 600w, /posters/mjstudio-manifesto-1000.avif 1000w, /posters/mjstudio-manifesto-1600.avif 1600w"
+                  />
+                  <source
+                    type="image/webp"
+                    sizes="(max-width: 768px) 90vw, 33vw"
+                    srcSet="/posters/mjstudio-manifesto-600.webp 600w, /posters/mjstudio-manifesto-1000.webp 1000w, /posters/mjstudio-manifesto-1600.webp 1600w"
+                  />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/posters/mjstudio-manifesto-1000.webp"
+                    alt="Brandivibe — Silent Architecture manifesto poster"
+                    width={1200}
+                    height={1600}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                   <div className="font-mono text-[9px] text-white/60 uppercase tracking-widest">
@@ -102,7 +118,7 @@ export function Manifesto() {
       {/* horizontal drifting keyword row */}
       <motion.div
         style={{ x }}
-        className="mt-32 whitespace-nowrap font-semibold text-[18vw] leading-none tracking-[-0.05em] text-white/[0.04] select-none pointer-events-none"
+        className="mt-20 sm:mt-28 lg:mt-32 whitespace-nowrap font-semibold text-[22vw] sm:text-[18vw] leading-none tracking-[-0.05em] text-white/[0.04] select-none pointer-events-none"
       >
         CONVERT · AUTOMATE · RANK · SCALE · COMPOUND ·
       </motion.div>

@@ -2,13 +2,29 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { MagneticButton } from "./MagneticButton";
 import { services } from "@/data/services";
 
 export function Navbar() {
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close the mobile menu on Escape, and lock body scroll while it's open.
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
 
   return (
     <motion.header
@@ -57,13 +73,69 @@ export function Navbar() {
           <Link href="/journal" className="hover:text-white transition-colors">Journal</Link>
         </nav>
 
-        <MagneticButton
-          href="#contact"
-          className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/60 text-white font-mono text-xs uppercase tracking-widest"
-        >
-          Book a call
-        </MagneticButton>
+        <div className="flex items-center gap-2 sm:gap-3">
+          <MagneticButton
+            href="#contact"
+            className="hidden sm:inline-flex items-center gap-3 px-5 py-2 rounded-full border border-white/60 text-white font-mono text-xs uppercase tracking-widest"
+          >
+            Book a call
+          </MagneticButton>
+          {/* mobile menu toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 -mr-2 text-white"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile menu — full-screen panel below the header (z-40, header is z-50
+          so the logo + close button stay tappable on top). */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-0 z-40 bg-[#08080a]/98 backdrop-blur-xl overflow-y-auto"
+          >
+            <nav className="flex flex-col px-6 pt-28 pb-10 font-mono text-sm uppercase tracking-widest text-white/80">
+              <Link href="/portfolio" onClick={() => setMobileOpen(false)} className="py-3 border-b border-white/10 hover:text-white transition-colors">Portfolio</Link>
+              <Link href="/services" onClick={() => setMobileOpen(false)} className="pt-3 pb-2 hover:text-white transition-colors">Services</Link>
+              <div className="flex flex-col pl-4 pb-3 mb-1 border-b border-white/10 normal-case tracking-normal font-sans text-[13px] text-white/55">
+                {services.map((s) => (
+                  <Link
+                    key={s.slug}
+                    href={`/services/${s.slug}`}
+                    onClick={() => setMobileOpen(false)}
+                    className="py-1.5 flex items-center gap-2 hover:text-white transition-colors"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.accent }} />
+                    {s.title}
+                  </Link>
+                ))}
+              </div>
+              <a href="#intelligence" onClick={() => setMobileOpen(false)} className="py-3 border-b border-white/10 hover:text-white transition-colors">Growth Engine</a>
+              <a href="#process" onClick={() => setMobileOpen(false)} className="py-3 border-b border-white/10 hover:text-white transition-colors">Process</a>
+              <Link href="/journal" onClick={() => setMobileOpen(false)} className="py-3 border-b border-white/10 hover:text-white transition-colors">Journal</Link>
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="mt-6 inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-white text-black normal-case tracking-normal font-sans font-medium"
+              >
+                Book a call <ArrowRight className="w-4 h-4" />
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Services dropdown panel — rendered OUTSIDE the mix-blend-difference
           row so the panel keeps its real colors instead of inverting. The

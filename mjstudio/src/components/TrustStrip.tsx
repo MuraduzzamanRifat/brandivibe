@@ -21,7 +21,7 @@ export function TrustStrip() {
   return (
     <section className="relative border-y border-white/5 bg-[#08080a] px-6 md:px-12 py-10 md:py-14">
       <div className="mx-auto max-w-[1600px]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-5 md:gap-6">
           {STATS.map((s, i) => (
             <motion.div
               key={s.label}
@@ -31,7 +31,7 @@ export function TrustStrip() {
               transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col"
             >
-              <div className="text-3xl md:text-5xl font-semibold tracking-tight tabular-nums">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight tabular-nums">
                 {s.value}
               </div>
               <div className="mt-2 font-mono text-[10px] md:text-xs uppercase tracking-[0.25em] text-white/40">
@@ -40,7 +40,7 @@ export function TrustStrip() {
             </motion.div>
           ))}
         </div>
-        <div className="mt-10 pt-6 border-t border-white/5 font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/35">
+        <div className="mt-10 pt-6 border-t border-white/5 font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] text-white/35">
           Trusted by growing brands · Built and shipped by Muraduzzaman · Remote, worldwide
         </div>
       </div>

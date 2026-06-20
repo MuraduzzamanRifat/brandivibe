@@ -214,7 +214,7 @@ export function Intelligence() {
           </div>
           <div className="col-span-12 md:col-span-8">
             <RevealLine>
-              <h2 className="text-5xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] sm:leading-[0.95] text-balance">
                 Your competitors already use AI.
                 <br />
                 <span className="italic text-white/60">Why are you still manual?</span>

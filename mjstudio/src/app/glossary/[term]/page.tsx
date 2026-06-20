@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: entry.metaDescription,
       url: `/glossary/${entry.slug}`,
       type: "article",
+      images: OG_IMAGE,
     },
   };
 }
@@ -187,7 +189,7 @@ export default async function GlossaryTermPage({ params }: Props) {
         <div className="font-mono text-xs uppercase tracking-[0.4em] mb-5 text-[#84e1ff]">
           — Glossary · Definition
         </div>
-        <h1 className="text-4xl md:text-7xl font-semibold tracking-tight leading-[0.95] text-balance mb-8">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] sm:leading-[0.95] text-balance mb-8">
           What is {entry.term.toLowerCase()}?
         </h1>
 

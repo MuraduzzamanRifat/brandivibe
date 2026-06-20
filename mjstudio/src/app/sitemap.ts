@@ -69,5 +69,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...articleRoutes];
+  // GitHub Pages serves trailing-slash canonicals (next.config trailingSlash:true).
+  // Emit matching <loc> so the sitemap advertises canonicals, not 301 redirects.
+  return [...staticRoutes, ...articleRoutes].map((entry) => ({
+    ...entry,
+    url: entry.url.endsWith("/") ? entry.url : `${entry.url}/`,
+  }));
 }

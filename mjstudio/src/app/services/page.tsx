@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { services } from "@/data/services";
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
       "WebGL websites, SEO, AI automation, digital marketing, AI agents — five services that compound into one 24/7 growth machine.",
     url: "/services",
     type: "website",
+    images: OG_IMAGE,
   },
 };
 
@@ -44,7 +46,7 @@ export default function ServicesIndexPage() {
           <div className="font-mono text-xs uppercase tracking-[0.4em] text-[#84e1ff] mb-6">
             — Services
           </div>
-          <h1 className="text-5xl md:text-8xl font-semibold tracking-tight leading-[0.9] mb-8 text-balance">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold tracking-tight leading-[1.05] md:leading-[0.95] mb-8 text-balance">
             Five ways we turn your<br />business into a 24/7 machine.
           </h1>
           <p className="text-lg md:text-xl text-white/55 max-w-2xl leading-relaxed text-balance">
@@ -79,7 +81,7 @@ export default function ServicesIndexPage() {
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-7">
-                  <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] mb-4 group-hover:opacity-90">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.05] mb-4 group-hover:opacity-90">
                     {s.title}
                   </h2>
                   <p className="text-xl md:text-2xl tracking-tight italic text-white/60 mb-5 text-balance">
@@ -114,7 +116,7 @@ export default function ServicesIndexPage() {
       {/* Bottom CTA */}
       <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
             Not sure which to start with?
           </h2>
           <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">

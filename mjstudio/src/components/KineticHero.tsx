@@ -24,7 +24,7 @@ export function KineticHero() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(8,8,10,0.92)_0%,rgba(8,8,10,0.75)_40%,rgba(8,8,10,0.2)_100%)] pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-b from-transparent to-[#08080a] pointer-events-none" />
       {/* top meta row */}
-      <div className="relative pt-32 px-6 md:px-12">
+      <div className="relative pt-24 sm:pt-28 md:pt-32 px-6 md:px-12">
         <div className="mx-auto max-w-[1600px] flex justify-between items-start font-mono text-xs text-white/40 uppercase tracking-widest">
           <RevealLine>
             <div>
@@ -47,7 +47,7 @@ export function KineticHero() {
         className="relative mt-16 md:mt-24 px-6 md:px-12"
       >
         <div className="mx-auto max-w-[1600px]">
-          <h1 className="text-[14vw] md:text-[12vw] leading-[0.85] font-semibold tracking-[-0.04em]">
+          <h1 className="text-[clamp(2.75rem,11vw,8.5rem)] sm:text-[clamp(3.5rem,10vw,9rem)] md:text-[12vw] leading-[0.9] sm:leading-[0.85] font-semibold tracking-[-0.04em]">
             <SplitText as="span">Build a business</SplitText>
             <br />
             <SplitText as="span" delay={0.15} className="italic text-white/70">
@@ -57,11 +57,18 @@ export function KineticHero() {
               24/7
             </SplitText>
             <br />
-            <span className="gradient-text">
-              <SplitText as="span" delay={0.55}>
-                with AI automation.
-              </SplitText>
-            </span>
+            {/* Single contiguous text run so the gradient (background-clip:text)
+                clips reliably — nesting per-char SplitText inside it makes the
+                gradient drop out / wash the line on wrap. Clean reveal instead. */}
+            <motion.span
+              className="gradient-text inline-block"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.8, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            >
+              with AI automation.
+            </motion.span>
           </h1>
         </div>
       </motion.div>
@@ -69,7 +76,7 @@ export function KineticHero() {
       {/* asymmetric subrow */}
       <motion.div
         style={{ y: y2, opacity }}
-        className="relative mt-24 md:mt-32 px-6 md:px-12"
+        className="relative mt-12 sm:mt-16 md:mt-32 px-6 md:px-12"
       >
         <div className="mx-auto max-w-[1600px] grid grid-cols-12 gap-6 items-end">
           <div className="col-span-12 md:col-span-5 md:col-start-2">
@@ -104,7 +111,7 @@ export function KineticHero() {
       {/* scroll hint */}
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-10 left-6 md:left-12 font-mono text-xs text-white/40 uppercase tracking-widest"
+        className="hidden sm:block absolute bottom-10 left-6 md:left-12 font-mono text-xs text-white/40 uppercase tracking-widest"
       >
         <div className="flex items-center gap-3">
           <span className="inline-block w-2 h-2 rounded-full bg-white/60 animate-pulse" />
@@ -114,7 +121,7 @@ export function KineticHero() {
 
       <motion.div
         style={{ opacity }}
-        className="absolute bottom-10 right-6 md:right-12 font-mono text-xs text-white/40 uppercase tracking-widest text-right"
+        className="absolute bottom-10 right-6 md:right-12 max-w-[60%] sm:max-w-none font-mono text-[10px] sm:text-xs text-white/40 uppercase tracking-widest text-right"
       >
         <div>Trusted by growing brands</div>
         <div>Limited onboarding · 4 slots / month</div>

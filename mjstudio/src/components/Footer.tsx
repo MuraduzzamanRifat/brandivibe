@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL } from "@/lib/contact";
+
 export function Footer() {
   return (
     <footer className="relative border-t border-white/5 py-12 px-6">
@@ -9,12 +11,12 @@ export function Footer() {
           <span className="font-semibold">Brandivibe</span>
           <span className="text-white/40 text-sm ml-2">© {new Date().getFullYear()}</span>
         </div>
-        <div className="flex gap-6 text-sm text-white/60">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 sm:gap-6 text-sm text-white/60">
           <a href="#work" className="hover:text-white transition-colors">Work</a>
           <a href="#services" className="hover:text-white transition-colors">Services</a>
           <a href="/journal" className="hover:text-white transition-colors">Journal</a>
           <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-          <a href="mailto:mjrifat54@gmail.com" className="hover:text-white transition-colors">Email</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-white transition-colors">Email</a>
         </div>
       </div>
     </footer>

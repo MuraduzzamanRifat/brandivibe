@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, ReactNode, createElement } from "react";
 
 type Props = {
   children: string;
@@ -19,10 +19,17 @@ export function SplitText({
   as = "span",
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
   const words = children.split(" ");
 
   const Container = motion[as] as typeof motion.span;
+
+  // Reduced motion / no-JS-friendly: render the text statically and fully
+  // visible — no per-char y-slide that can leave the line clipped/illegible.
+  if (reduce) {
+    return createElement(as, { className: `inline-block ${className}` }, children);
+  }
 
   return (
     <Container ref={ref as React.Ref<HTMLDivElement>} className={`inline-block ${className}`}>
@@ -57,7 +64,11 @@ export function SplitText({
 
 export function RevealLine({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
   const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  if (reduce) {
+    return <div className={className}>{children}</div>;
+  }
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
       <motion.div
