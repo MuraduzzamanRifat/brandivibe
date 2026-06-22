@@ -1,27 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { loadBrain } from "@/lib/brain-storage";
+import { getArticles } from "@/lib/articles";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Journal — Conversion-focused web design + AI automation · Brandivibe",
   description:
-    "Long-form essays on high-conversion websites, AI automation systems, SEO that compounds, and digital marketing strategy. Published daily by the Brandivibe AI brain.",
+    "Long-form essays on high-conversion websites, AI automation systems, SEO that compounds, and digital marketing strategy from Brandivibe.",
   alternates: { canonical: "/journal" },
   openGraph: {
     title: "Brandivibe Journal — Conversion + AI automation essays",
     description:
-      "Daily long-form essays on conversion-focused websites, AI automation, SEO, and digital marketing. Published by the Brandivibe AI brain.",
+      "Long-form essays on conversion-focused websites, AI automation, SEO, and digital marketing from Brandivibe.",
     url: "/journal",
     type: "website",
   },
 };
 
-export default async function JournalIndex() {
-  const brain = await loadBrain();
-  const articles = (brain.articles ?? [])
-    .slice()
+export default function JournalIndex() {
+  const articles = getArticles()
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
@@ -40,12 +38,6 @@ export default async function JournalIndex() {
           >
             ← Brandivibe
           </Link>
-          <a
-            href="/feed.xml"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 hover:text-[#84e1ff] transition-colors"
-          >
-            RSS
-          </a>
         </div>
       </header>
 
@@ -60,8 +52,8 @@ export default async function JournalIndex() {
           </h1>
           <p className="text-white/50 text-lg max-w-2xl">
             {articles.length > 0
-              ? `${articles.length} article${articles.length === 1 ? "" : "s"} — written and published by the Brandivibe brain every day.`
-              : "New essays coming daily. The brain is warming up."}
+              ? `${articles.length} essay${articles.length === 1 ? "" : "s"} on building businesses that convert and scale.`
+              : "New essays coming soon."}
           </p>
         </div>
 
@@ -166,7 +158,7 @@ export default async function JournalIndex() {
         {/* CTA */}
         <div className="mt-20 pt-12 border-t border-white/5 text-center">
           <p className="text-white/40 text-sm mb-6">
-            Want your homepage reviewed by the same brain?
+            Want your homepage reviewed?
           </p>
           <Link
             href="/audit"

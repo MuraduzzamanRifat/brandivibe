@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { loadArticle } from "@/lib/brain/journal-loader";
-import { loadBrain } from "@/lib/brain-storage";
+import { loadArticle, getArticle, getArticles } from "@/lib/articles";
 import "./article.css";
 
 // Pre-render every article at build time so the static-export build can
-// generate one HTML file per article. The build (running on GitHub Actions
-// with the latest brain.json checked into the repo) sees every article
-// the brain has produced.
+// generate one HTML file per article — enumerated from src/data/articles.json.
 export const dynamic = "force-static";
-// Required for `output: "export"` — no dynamicParams fallback in a static
-// export; articles are fully enumerated at build time from brain.json.
+// Required for `output: "export"` — no dynamicParams fallback in a static export.
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   let slugs: string[] = [];
   try {
-    const brain = await loadBrain();
-    slugs = (brain.articles ?? []).map((a) => a.slug);
+    slugs = getArticles().map((a) => a.slug);
   } catch {
     slugs = [];
   }
@@ -32,8 +27,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const brain = await loadBrain();
-  const meta = (brain.articles ?? []).find((a) => a.slug === slug);
+  const meta = getArticle(slug);
   if (!meta) return { title: "Not found" };
   return {
     title: `${meta.title} · Brandivibe Journal`,
@@ -63,8 +57,7 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const { frontmatter, html } = article;
-  const brain = await loadBrain();
-  const meta = (brain.articles ?? []).find((a) => a.slug === slug);
+  const meta = getArticle(slug);
 
   // Article schema with Person author — E-E-A-T upgrade for AI search.
   // ChatGPT, Perplexity, and Google AI Overviews weight named individual

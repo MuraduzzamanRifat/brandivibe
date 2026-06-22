@@ -1,12 +1,10 @@
 import type { MetadataRoute } from "next";
-import { loadBrain } from "@/lib/brain-storage";
+import { getArticles } from "@/lib/articles";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { glossary } from "@/data/glossary";
 
-// Required for `output: "export"` (GitHub Pages). loadBrain() is async, so
-// without this Next treats the sitemap as dynamic and refuses to export it.
-// force-static = run once at build time, emit a static sitemap.xml.
+// Required for `output: "export"` (GitHub Pages): emit a static sitemap.xml.
 export const dynamic = "force-static";
 
 const SITE = "https://brandivibe.com";
@@ -15,9 +13,8 @@ const PORTFOLIO_SLUGS = [
   "uturn", "kindred", "ironwood", "terroir", "octane",
 ];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const brain = await loadBrain();
-  const articles = brain.articles ?? [];
+export default function sitemap(): MetadataRoute.Sitemap {
+  const articles = getArticles();
 
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
