@@ -4,8 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { services, pillars, getServicesByPillar } from "@/data/services";
+import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand, CtaInline } from "@/components/warm/Cta";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -74,11 +76,11 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
             <div className="mt-8">
               <Link
-                href="/#contact"
+                href={PRIMARY_CTA.href}
                 className="inline-flex items-center gap-2 rounded-full text-white px-7 py-4 font-medium transition-transform hover:scale-[1.02]"
                 style={{ background: a }}
               >
-                Start a project <ArrowRight className="h-4 w-4" />
+                {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -110,6 +112,8 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        <CtaInline text={`Curious what ${service.title.toLowerCase()} could do for you?`} />
 
         {/* ---- when you need this ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
@@ -175,23 +179,11 @@ export default async function ServiceDetailPage({ params }: Props) {
         )}
 
         {/* ---- cta ---- */}
-        <section className="px-5 sm:px-8 py-20">
-          <div className="mx-auto max-w-[1080px] rounded-[36px] p-10 md:p-16 text-center text-white" style={{ background: a }}>
-            <h2 className="font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[18ch] mx-auto">
-              Let&apos;s talk about your {service.title.toLowerCase()}.
-            </h2>
-            <p className="mt-4 text-white/85 max-w-[44ch] mx-auto leading-relaxed">
-              A friendly chat, honest advice, and a clear plan. No pressure, no jargon.
-            </p>
-            <Link
-              href="/#contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
-              style={{ color: "#2a231f" }}
-            >
-              Start a project <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </section>
+        <CtaBand
+          accent={a}
+          title={`Let's talk about your ${service.title.toLowerCase()}.`}
+          subtitle="A friendly chat, honest advice, and a clear plan. No pressure, no jargon."
+        />
       </main>
       <WarmFooter />
     </>

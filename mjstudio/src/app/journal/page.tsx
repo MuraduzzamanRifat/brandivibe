@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { getArticles } from "@/lib/articles";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
 
 export const dynamic = "force-static";
 
@@ -165,22 +166,10 @@ export default function JournalIndex() {
         </section>
 
         {/* ---- CTA ---- */}
-        <section className="px-5 sm:px-8 py-16">
-          <div className="mx-auto max-w-[1080px] card-soft p-10 md:p-14 text-center">
-            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
-              Want a friendly pair of eyes on your homepage?
-            </h2>
-            <p className="mt-4 text-foreground/70 max-w-[46ch] mx-auto leading-relaxed">
-              We&apos;ll take a proper look and tell you, honestly, what&apos;s working and what&apos;s costing you customers. No sales pitch.
-            </p>
-            <Link
-              href="/audit"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
-            >
-              Get a free audit <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </section>
+        <CtaBand
+          title="Want a friendly pair of eyes on your homepage?"
+          subtitle="We'll take a proper look and tell you, honestly, what's working and what's costing you customers. No sales pitch."
+        />
       </main>
       <WarmFooter />
     </>

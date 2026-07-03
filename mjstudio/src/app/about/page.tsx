@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
+import { PRIMARY_CTA } from "@/lib/cta";
 
 export const dynamic = "force-static";
 
@@ -156,10 +158,10 @@ export default function AboutPage() {
             </p>
             <div className="mt-9">
               <Link
-                href="/#contact"
+                href={PRIMARY_CTA.href}
                 className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
-                Start a project <ArrowRight className="h-4 w-4" />
+                {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -236,32 +238,10 @@ export default function AboutPage() {
         </section>
 
         {/* ---- cta ---- */}
-        <section className="px-5 sm:px-8 py-20">
-          <div className="mx-auto max-w-[1080px] rounded-[36px] bg-primary p-10 md:p-16 text-center text-white">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/75">— Want to work together?</p>
-            <h2 className="mt-4 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
-              Let&apos;s book a free, no-pressure call.
-            </h2>
-            <p className="mt-4 text-white/85 max-w-[46ch] mx-auto leading-relaxed">
-              Thirty friendly minutes on your business, your biggest bottleneck, and what would genuinely move the needle. No pitch deck, no upsell — just honest advice.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
-                style={{ color: "#2a231f" }}
-              >
-                Get a free strategy call <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/audit"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-4 font-medium text-white hover:bg-white/10 transition-colors"
-              >
-                Or audit my business
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="Let's book a free, no-pressure call."
+          subtitle="Thirty friendly minutes on your business, your biggest bottleneck, and what would genuinely move the needle. No pitch deck, no upsell — just honest advice."
+        />
       </main>
       <WarmFooter />
     </>

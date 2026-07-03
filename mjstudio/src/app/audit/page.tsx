@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
 
 type AuditResult = {
   ok: boolean;
@@ -212,28 +212,17 @@ export default function AuditPage() {
                 </div>
               )}
 
-              <div className="rounded-[36px] p-8 md:p-12 text-center text-white bg-primary">
-                <h3 className="font-display text-2xl md:text-3xl font-semibold tracking-tight mb-3">
-                  Want a hand fixing it?
-                </h3>
-                <p className="text-white/85 mb-7 max-w-[46ch] mx-auto leading-relaxed">
-                  We love rebuilding founder homepages — one designer on it, a clean Next.js codebase that&apos;s
-                  yours to keep, and no retainer hanging over you afterwards. Roughly six friendly weeks, start to finish.
-                </p>
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
-                  style={{ color: "#2a231f" }}
-                >
-                  Start a project <ArrowRight className="h-4 w-4" />
-                </Link>
-                <div className="mt-5 text-sm text-white/75 flex items-center justify-center gap-2">
-                  <Check className="h-4 w-4" />
-                  {result.emailSent
-                    ? "The full report is on its way to your inbox."
-                    : "Your full report is right here above (we skipped the email this time)."}
-                </div>
+              <div className="text-sm text-muted flex items-center justify-center gap-2">
+                <Check className="h-4 w-4" />
+                {result.emailSent
+                  ? "The full report is on its way to your inbox."
+                  : "Your full report is right here above (we skipped the email this time)."}
               </div>
+
+              <CtaBand
+                title="Want a hand fixing it?"
+                subtitle="We love rebuilding founder homepages — one designer on it, a clean Next.js codebase that's yours to keep, and no retainer afterwards. Roughly six friendly weeks, start to finish."
+              />
 
               <div className="text-center pt-2">
                 <button

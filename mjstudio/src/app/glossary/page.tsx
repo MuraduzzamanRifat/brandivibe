@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { glossary, GLOSSARY_CATEGORIES, type GlossaryTerm } from "@/data/glossary";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
 
 export const dynamic = "force-static";
 
@@ -126,32 +127,10 @@ export default function GlossaryHubPage() {
         </section>
 
         {/* ---- cta ---- */}
-        <section className="px-5 sm:px-8 py-20 md:py-24">
-          <div className="mx-auto max-w-[1080px] rounded-[36px] bg-primary p-10 md:p-16 text-center text-white">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/80">— Want the thing, not just the word?</p>
-            <h2 className="mt-5 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
-              Knowing what it is and having it built are two different things.
-            </h2>
-            <p className="mt-5 text-white/85 max-w-[48ch] mx-auto leading-relaxed">
-              We build the real thing behind these words — websites, AI, conversion-ready design — with a small, senior team you can actually talk to. Tell us what you&apos;re after and we&apos;ll help you get there.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
-                style={{ color: "#2a231f" }}
-              >
-                Start a project <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/audit"
-                className="font-mono text-xs uppercase tracking-[0.16em] text-white/80 hover:text-white"
-              >
-                Or get a free audit →
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          title="Knowing what it is and having it built are two different things."
+          subtitle="We build the real thing behind these words — websites, AI, conversion-ready design — with a small, senior team you can actually talk to."
+        />
       </main>
       <WarmFooter />
     </>

@@ -5,6 +5,7 @@ import { OG_IMAGE } from "@/lib/seo";
 import { pillars, getServicesByPillar } from "@/data/services";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
 
 export const dynamic = "force-static";
 
@@ -67,20 +68,10 @@ export default function ServicesIndexPage() {
           );
         })}
 
-        <section className="px-5 sm:px-8 py-20">
-          <div className="mx-auto max-w-[1080px] rounded-[32px] bg-surface-2 border border-border p-10 md:p-14 text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-semibold">Not sure where to start?</h2>
-            <p className="mt-4 text-foreground/70 max-w-[46ch] mx-auto leading-relaxed">
-              Tell us the problem, not the service. We&apos;ll point you to the right thing — even if it isn&apos;t us.
-            </p>
-            <Link
-              href="/#contact"
-              className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
-            >
-              Start a conversation <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </section>
+        <CtaBand
+          title="Not sure where to start?"
+          subtitle="Tell us the problem, not the service — we'll point you to the right thing, even if it isn't us."
+        />
       </main>
       <WarmFooter />
     </>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { PRIMARY_CTA } from "@/lib/cta";
 
 const LINKS = [
   { href: "/services", label: "Services" },
@@ -60,10 +61,10 @@ export function WarmNav() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/#contact"
+            href={PRIMARY_CTA.href}
             className="hidden sm:inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-[0.92rem] font-medium hover:bg-primary transition-colors"
           >
-            Start a project
+            {PRIMARY_CTA.label}
           </Link>
           <button
             type="button"
@@ -92,11 +93,11 @@ export function WarmNav() {
               </Link>
             ))}
             <Link
-              href="/#contact"
+              href={PRIMARY_CTA.href}
               onClick={() => setOpen(false)}
               className="mt-6 inline-flex justify-center items-center rounded-full bg-primary text-white px-6 py-4 text-lg font-medium"
             >
-              Start a project
+              {PRIMARY_CTA.label}
             </Link>
           </nav>
         </div>

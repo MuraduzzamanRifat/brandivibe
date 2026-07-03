@@ -6,6 +6,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { glossary, getGlossaryTerm } from "@/data/glossary";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand, CtaInline } from "@/components/warm/Cta";
 
 // Fully prerendered at build time — required for `output: "export"`
 // (GitHub Pages). One static HTML page per glossary term.
@@ -219,6 +220,11 @@ export default async function GlossaryTermPage({ params }: Props) {
             </ul>
           </section>
 
+          {/* Mid-page nudge */}
+          <div className="mt-12 -mx-5 sm:-mx-8">
+            <CtaInline text={`Want ${entry.term.toLowerCase()} done properly? Let's talk it through.`} />
+          </div>
+
           {/* When it applies */}
           <section className="mt-12">
             <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
@@ -286,19 +292,13 @@ export default async function GlossaryTermPage({ params }: Props) {
             </section>
           )}
 
-          {/* CTA */}
-          <section className="mt-16 pt-12 border-t border-border text-center">
-            <p className="text-muted mb-6">
-              Want {entry.term.toLowerCase()} built into your business? Let&apos;s have a friendly chat.
-            </p>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
-            >
-              Start a project <ArrowRight className="h-4 w-4" />
-            </Link>
-          </section>
         </article>
+
+        {/* CTA */}
+        <CtaBand
+          title={`Want ${entry.term.toLowerCase()} built into your business?`}
+          subtitle="Have a friendly chat with a small, senior team — honest advice and a clear plan, no pressure."
+        />
       </main>
       <WarmFooter />
     </>

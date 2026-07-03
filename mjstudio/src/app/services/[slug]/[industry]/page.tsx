@@ -6,8 +6,10 @@ import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildServiceIndustryPayload } from "@/lib/programmatic-seo";
+import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand, CtaInline } from "@/components/warm/Cta";
 
 // Fully prerendered at build time — required for `output: "export"`
 // (GitHub Pages). 5 services × 8 industries = 40 static pages. No
@@ -131,11 +133,11 @@ export default async function ServiceForIndustryPage({ params }: Props) {
 
             <div className="mt-9">
               <Link
-                href="/#contact"
+                href={PRIMARY_CTA.href}
                 className="inline-flex items-center gap-2 rounded-full text-white px-7 py-4 font-medium transition-transform hover:scale-[1.02]"
                 style={{ background: a }}
               >
-                Start a project <ArrowRight className="h-4 w-4" />
+                {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -216,6 +218,8 @@ export default async function ServiceForIndustryPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        <CtaInline text={`Want ${service.title.toLowerCase()} built for ${industryRecord.pluralName}?`} />
 
         {/* ---- process ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
@@ -363,34 +367,11 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         </section>
 
         {/* ---- cta ---- */}
-        <section className="px-5 sm:px-8 py-20">
-          <div className="mx-auto max-w-[1080px] rounded-[36px] p-10 md:p-16 text-center text-white" style={{ background: a }}>
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/70">
-              — Ready when you are
-            </p>
-            <h2 className="mt-4 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
-              Made for {industryRecord.pluralName}. Live in about 6 weeks.
-            </h2>
-            <p className="mt-4 text-white/85 max-w-[48ch] mx-auto leading-relaxed">
-              We take on just a handful of new projects each month, so we can give yours real attention. Say hello and we&apos;ll reply within a day with a friendly, tailored plan for your {industryRecord.shortLabel.toLowerCase()} build — no pressure, no jargon.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
-                style={{ color: "#2a231f" }}
-              >
-                Start a project <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/audit"
-                className="font-mono text-xs uppercase tracking-[0.16em] text-white/80 hover:text-white transition-colors"
-              >
-                Or get a free audit →
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CtaBand
+          accent={a}
+          title={`Made for ${industryRecord.pluralName}. Live in about 6 weeks.`}
+          subtitle={`We take on just a handful of new projects each month, so we can give yours real attention. Say hello and we'll reply within a day with a friendly, tailored plan for your ${industryRecord.shortLabel.toLowerCase()} build.`}
+        />
       </main>
       <WarmFooter />
     </>

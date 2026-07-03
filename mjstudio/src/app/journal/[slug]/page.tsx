@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { loadArticle, getArticle, getArticles } from "@/lib/articles";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaInline } from "@/components/warm/Cta";
 import "./article.css";
 
 // Pre-render every article at build time so the static-export build can
@@ -167,6 +168,10 @@ export default async function ArticlePage({ params }: Props) {
             className="prose max-w-none"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          <div className="mt-14">
+            <CtaInline text="Enjoying the read? Let's turn these ideas into your next site." />
+          </div>
 
           <footer className="mt-20 pt-8 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
             <Link

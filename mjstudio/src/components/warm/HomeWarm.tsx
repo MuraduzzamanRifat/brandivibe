@@ -4,7 +4,9 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound } from "lucide-react";
 import { pillars, getServicesByPillar } from "@/data/services";
-import { CONTACT_EMAIL } from "@/lib/contact";
+import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
+import { WarmContact } from "./WarmContact";
+import { CtaInline } from "./Cta";
 
 const rise = {
   initial: { opacity: 0, y: 16 },
@@ -61,16 +63,16 @@ export function HomeWarm() {
           </motion.p>
           <motion.div {...rise} transition={{ ...rise.transition, delay: 0.18 }} className="mt-9 flex flex-wrap gap-3">
             <Link
-              href="/#contact"
+              href={PRIMARY_CTA.href}
               className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors shadow-[0_14px_30px_-12px_rgba(255,106,61,0.6)]"
             >
-              Start a project <ArrowRight className="h-4 w-4" />
+              {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/portfolio"
+              href={SECONDARY_CTA.href}
               className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-4 font-medium text-foreground hover:border-foreground/30 transition-colors"
             >
-              See our work
+              {SECONDARY_CTA.label}
             </Link>
           </motion.div>
         </div>
@@ -139,6 +141,8 @@ export function HomeWarm() {
         </div>
       </section>
 
+      <CtaInline text="Not sure which service fits? Tell us the problem — we'll point you the right way." />
+
       {/* ---------- PROCESS ---------- */}
       <section className="px-5 sm:px-8 py-24 md:py-28 bg-surface-2 border-y border-border">
         <div className="mx-auto max-w-[1200px]">
@@ -160,41 +164,8 @@ export function HomeWarm() {
         </div>
       </section>
 
-      {/* ---------- CONTACT CTA ---------- */}
-      <section id="contact" className="px-5 sm:px-8 py-24 md:py-32">
-        <motion.div
-          {...rise}
-          className="relative mx-auto max-w-[1080px] overflow-hidden rounded-[36px] bg-foreground text-background px-7 py-16 md:px-16 md:py-20 text-center"
-        >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-[380px] w-[680px] rounded-full opacity-30 blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(255,106,61,0.9), transparent 65%)" }}
-          />
-          <div className="relative">
-            <h2 className="font-display text-4xl md:text-[3.4rem] font-semibold tracking-tight text-balance max-w-[18ch] mx-auto">
-              Let&apos;s make something you&apos;re proud of.
-            </h2>
-            <p className="mt-5 text-background/70 text-lg leading-relaxed max-w-[48ch] mx-auto">
-              Tell us what you&apos;re thinking about. We&apos;ll reply within a day with honest, friendly advice — whether or not we end up working together.
-            </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
-              >
-                Start a project <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="inline-flex items-center gap-2 rounded-full border border-background/25 px-7 py-4 font-medium text-background hover:bg-background/10 transition-colors"
-              >
-                {CONTACT_EMAIL}
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
+      {/* ---------- CONTACT (real form + booking) ---------- */}
+      <WarmContact />
     </>
   );
 }

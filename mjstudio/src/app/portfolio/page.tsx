@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { demos, type DemoKind } from "@/data/demos";
 import { LazyVideo } from "@/components/LazyVideo";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
+import { CtaBand } from "@/components/warm/Cta";
 
 type Tab = "all" | DemoKind;
 
@@ -153,22 +154,10 @@ export default function DemosPage() {
         </section>
 
         {/* ---- cta ---- */}
-        <section className="px-5 sm:px-8 py-16 md:py-24">
-          <div className="mx-auto max-w-[1080px] rounded-[36px] bg-foreground text-background px-7 py-14 md:px-16 md:py-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary mb-3">— Got something in mind?</p>
-              <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance max-w-[20ch]">
-                Let&apos;s build one you&apos;re proud to share.
-              </h2>
-            </div>
-            <Link
-              href="/#contact"
-              className="shrink-0 inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
-            >
-              Start a project <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </section>
+        <CtaBand
+          title="Let's build one you're proud to share."
+          subtitle="Got something in mind? Tell us about it — we'll help you shape it into a site people remember."
+        />
       </main>
       <WarmFooter />
     </>

@@ -22,3 +22,9 @@ export const CONTACT_EMAIL =
 export const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "";
 
 export const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+
+//   NEXT_PUBLIC_BOOKING_URL       A calendar booking link (Cal.com / Calendly).
+//                                 When set, a "Book a call" option appears
+//                                 alongside the form. When unset, the form is
+//                                 the only path (still fully functional).
+export const BOOKING_URL = process.env.NEXT_PUBLIC_BOOKING_URL ?? "";
