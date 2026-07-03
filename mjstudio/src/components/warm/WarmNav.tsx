@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { PRIMARY_CTA } from "@/lib/cta";
+import { pillars, getServicesByPillar } from "@/data/services";
 
 const LINKS = [
-  { href: "/services", label: "Services" },
   { href: "/portfolio", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
@@ -14,6 +14,7 @@ const LINKS = [
 
 export function WarmNav() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -48,6 +49,49 @@ export function WarmNav() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
+          {/* Services — dropdown by pillar */}
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <Link
+              href="/services"
+              className="flex items-center gap-1 px-3.5 py-2 rounded-full text-[0.95rem] text-foreground/75 hover:text-foreground hover:bg-[rgba(42,35,31,0.05)] transition-colors"
+              aria-haspopup="true"
+              aria-expanded={servicesOpen}
+            >
+              Services
+              <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
+            </Link>
+            {servicesOpen && (
+              <div className="absolute left-0 top-full pt-3 w-[560px]">
+                <div className="card-soft p-3 grid grid-cols-2 gap-1">
+                  {pillars.map((p) => (
+                    <Link
+                      key={p.slug}
+                      href={`/services#${p.slug}`}
+                      className="group flex items-start gap-3 rounded-2xl p-3 hover:bg-[rgba(42,35,31,0.04)] transition-colors"
+                    >
+                      <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-xl text-white font-display text-sm font-semibold shrink-0" style={{ background: p.accent }}>
+                        {p.title.charAt(0)}
+                      </span>
+                      <span>
+                        <span className="block font-medium text-foreground text-[0.95rem]">{p.title}</span>
+                        <span className="block text-[0.8rem] text-muted leading-snug mt-0.5">
+                          {getServicesByPillar(p.title).length} services
+                        </span>
+                      </span>
+                    </Link>
+                  ))}
+                  <Link href="/services" className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl py-2.5 text-sm font-medium text-primary hover:bg-primary-soft transition-colors">
+                    View all services →
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+
           {LINKS.map((l) => (
             <Link
               key={l.href}
@@ -81,7 +125,18 @@ export function WarmNav() {
 
       {open && (
         <div id="warm-mobile-menu" className="md:hidden fixed inset-0 top-[68px] z-40 bg-background overflow-y-auto">
-          <nav className="flex flex-col px-6 py-8 gap-1">
+          <nav className="flex flex-col px-6 py-8">
+            <Link href="/services" onClick={() => setOpen(false)} className="py-4 text-2xl font-display font-medium text-foreground border-b border-border">
+              Services
+            </Link>
+            <div className="grid grid-cols-2 gap-x-4 py-4 border-b border-border">
+              {pillars.map((p) => (
+                <Link key={p.slug} href={`/services#${p.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-2 py-2 text-foreground/75">
+                  <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: p.accent }} />
+                  <span className="text-sm">{p.title}</span>
+                </Link>
+              ))}
+            </div>
             {LINKS.map((l) => (
               <Link
                 key={l.href}

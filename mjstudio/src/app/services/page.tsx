@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { OG_IMAGE } from "@/lib/seo";
-import { pillars, getServicesByPillar } from "@/data/services";
+import { pillars, getServicesByPillar, type Service } from "@/data/services";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
@@ -23,6 +23,29 @@ export const metadata: Metadata = {
     images: OG_IMAGE,
   },
 };
+
+// Digital Marketing holds 13 services — too many to scan flat. Break it into
+// three clear sub-areas so people find the right one fast.
+const DM_SUBGROUPS: { label: string; slugs: string[] }[] = [
+  {
+    label: "Search (SEO)",
+    slugs: ["seo-services", "local-seo", "ecommerce-seo", "app-store-optimization", "google-business-profile", "guest-posts", "seo-audit"],
+  },
+  { label: "Advertising", slugs: ["facebook-ads", "linkedin-ads", "youtube-ads", "content-distribution"] },
+  { label: "Social & Reputation", slugs: ["social-media-management", "online-reputation-management"] },
+];
+
+function ServiceCard({ s, accent }: { s: Service; accent: string }) {
+  return (
+    <Link href={`/services/${s.slug}`} className="card-soft lift group p-6 flex flex-col">
+      <h3 className="font-display text-xl font-semibold tracking-tight flex items-center gap-1.5">
+        {s.title}
+        <ArrowRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" style={{ color: accent }} />
+      </h3>
+      <p className="mt-2 text-foreground/70 text-[0.95rem] leading-relaxed flex-1">{s.summary}</p>
+    </Link>
+  );
+}
 
 export default function ServicesIndexPage() {
   return (
@@ -52,17 +75,33 @@ export default function ServicesIndexPage() {
                   <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight">{p.title}</h2>
                 </div>
                 <p className="mt-2 text-foreground/65 max-w-[52ch]">{p.blurb}</p>
-                <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {list.map((s) => (
-                    <Link key={s.slug} href={`/services/${s.slug}`} className="card-soft lift group p-6 flex flex-col">
-                      <h3 className="font-display text-xl font-semibold tracking-tight flex items-center gap-1.5">
-                        {s.title}
-                        <ArrowRight className="h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" style={{ color: p.accent }} />
-                      </h3>
-                      <p className="mt-2 text-foreground/70 text-[0.95rem] leading-relaxed flex-1">{s.summary}</p>
-                    </Link>
-                  ))}
-                </div>
+
+                {p.slug === "digital-marketing" ? (
+                  <div className="mt-8 space-y-10">
+                    {DM_SUBGROUPS.map((g) => {
+                      const items = g.slugs
+                        .map((slug) => list.find((s) => s.slug === slug))
+                        .filter((s): s is Service => Boolean(s));
+                      if (items.length === 0) return null;
+                      return (
+                        <div key={g.label}>
+                          <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted mb-4">{g.label}</p>
+                          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {items.map((s) => (
+                              <ServiceCard key={s.slug} s={s} accent={p.accent} />
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {list.map((s) => (
+                      <ServiceCard key={s.slug} s={s} accent={p.accent} />
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
           );
