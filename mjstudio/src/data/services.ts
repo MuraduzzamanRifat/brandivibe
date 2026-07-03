@@ -4,7 +4,8 @@ export type Service = {
   slug: string; num: string; pillar: string; title: string; hook: string; tagline: string;
   accent: string; summary: string; heroBody: string[]; bullets: string[];
   capabilities: ServiceCapability[]; whenYouNeedThis: string[]; process: ServiceProcessStep[];
-  deliverables: string[]; relatedDemos: string[]; metaTitle: string; metaDescription: string;
+  deliverables: string[]; relatedDemos: string[]; faqs?: { q: string; a: string }[];
+  metaTitle: string; metaDescription: string;
 };
 export type Pillar = { slug: string; title: string; accent: string; blurb: string };
 
@@ -131,6 +132,28 @@ export const services: Service[] = [
       "Full ownership of your code and files"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to build a custom website?",
+        "a": "Most of our custom sites go from first conversation to launch in around six weeks. We spend the early weeks getting to know you and designing the key pages together, then build, test on every screen, and hand you the keys."
+      },
+      {
+        "q": "How much does a custom website cost?",
+        "a": "Every website is quoted to what you actually need, and we agree one clear fixed price up front, with no retainers and no surprises later. The best way to get a real estimate is a free call, where we can talk through your goals and give you an honest number."
+      },
+      {
+        "q": "Will I own my website and be able to edit it myself?",
+        "a": "Yes, you fully own all the code and files we create, so you're never locked in. We also wire up a friendly editor so you can update words and images whenever you like, without needing to call a developer."
+      },
+      {
+        "q": "Do you use templates or WordPress page-builders?",
+        "a": "No, we hand-build every site with clean, custom code rather than bloated templates or clunky page-builders. That keeps your pages fast and tidy, and makes it simple to add pages or features as you grow."
+      },
+      {
+        "q": "Will my website work well on mobile and rank on Google?",
+        "a": "Absolutely. We design mobile-first so it looks and works beautifully on phones, tablets, and big monitors, and we bake in a solid structure, sensible metadata, and speed to give you a real head start on search."
+      }
+    ],
     "metaTitle": "Website Development — Custom Sites Built for You · Brandivibe",
     "metaDescription": "Friendly, senior-built websites designed around your business. Fast, custom-coded, mobile-first sites you fully own, launched in around six weeks."
   },
@@ -217,6 +240,28 @@ export const services: Service[] = [
       "A quick training session and handover"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to build an online store?",
+        "a": "A custom store typically takes around six weeks, from learning your products to launch day. We design the storefront and checkout with you, wire up payments and shipping, load your products, and test every order path before going live."
+      },
+      {
+        "q": "How much does an e-commerce website cost?",
+        "a": "We quote each store to your range and the way you want to sell, then agree one fixed price up front, with no retainers and no surprises. A free call is the easiest way to get a real estimate for your shop."
+      },
+      {
+        "q": "Which payment options can you set up for my shop?",
+        "a": "We connect trusted gateways like Stripe and PayPal so money lands safely and you never have to wrestle with a tangle of settings. You get a short, reassuring checkout with the payment options your customers already expect."
+      },
+      {
+        "q": "Is it easy to manage products, stock, and orders myself?",
+        "a": "Yes, adding products, updating stock, and processing orders is genuinely simple, even on a busy day. We give you an order and stock dashboard and walk you through it in a training session so you feel confident running it."
+      },
+      {
+        "q": "Can you set up shipping rates and delivery options?",
+        "a": "We do, with clear rates, zones, and options set up properly so customers know exactly what they'll pay before they commit. It's all part of making browsing enjoyable and checkout effortless."
+      }
+    ],
     "metaTitle": "E-commerce Websites — Shops People Love to Buy · Brandivibe",
     "metaDescription": "Custom online stores built to sell. Beautiful product pages, smooth checkout, payments and shipping sorted, and an easy dashboard you fully own."
   },
@@ -303,6 +348,32 @@ export const services: Service[] = [
       "Full ownership of the code and 3D assets"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does a WebGL or 3D website take to build?",
+        "a": "These experiences usually take around six weeks. We start by dreaming up the idea and building interactive prototypes so you can feel the movement early, then craft the final scenes, tune every interaction, and optimise hard before launch."
+      },
+      {
+        "q": "How much does a 3D or WebGL website cost?",
+        "a": "Because every 3D experience is different, we quote it to your idea and agree one clear fixed price up front, with no retainers and no surprises. A free call is the best way to explore what you have in mind and get a real estimate."
+      },
+      {
+        "q": "Do people need an app or headset to view the 3D experience?",
+        "a": "Not at all. Everything runs smoothly right in the browser, so there's no app to download and no headset needed. Visitors just open your page and the scenes, spins, and animations come to life."
+      },
+      {
+        "q": "Will a 3D site still run fast, even on phones?",
+        "a": "Yes, we obsess over frame rates and load times so it all feels silky, even on a phone, never heavy or janky. We optimise the assets to load fast and tune the performance for mobile specifically."
+      },
+      {
+        "q": "Can customers spin or customise my product in 3D before they buy?",
+        "a": "They can. We build interactive product spins and live configurators where colours and options update in real time, so people connect with your product and build exactly what they want before they own it."
+      },
+      {
+        "q": "Do I own the 3D assets and code you create?",
+        "a": "Yes, you get full ownership of the code and the 3D assets we make for you, so it's genuinely yours to keep and build on."
+      }
+    ],
     "metaTitle": "WebGL & 3D Experiences — Cinematic & Interactive · Brandivibe",
     "metaDescription": "Our signature craft: immersive WebGL and 3D web experiences. Cinematic scenes, product spins, and scroll stories that feel premium and run fast."
   },
@@ -389,6 +460,28 @@ export const services: Service[] = [
       "A plain-English monthly care report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What does a website maintenance plan actually include?",
+        "a": "We handle regular software updates, automatic tested backups, security monitoring and patching, and uptime monitoring so we catch hiccups fast. You also get an allowance of small content tweaks and a plain-English monthly report on how your site is doing."
+      },
+      {
+        "q": "How much does website maintenance cost?",
+        "a": "Your care plan is priced around your site and what it needs, with a clear amount agreed up front and no surprises. The easiest way to get a real figure is a free call where we can look at your site together."
+      },
+      {
+        "q": "How quickly will you respond when I need a change or something breaks?",
+        "a": "When you need help, you reach a senior person who knows your site, not a queue or a chatbot, and we take care of small tweaks promptly. We're also alerted the moment your site has a hiccup and often jump on it before you'd even notice."
+      },
+      {
+        "q": "Are small content changes included in my plan?",
+        "a": "Yes, your plan includes a set allowance of little jobs like swapping an image, updating some words, or adding a page, without extra fuss. Just send them over and we'll handle them."
+      },
+      {
+        "q": "What happens if my website goes down or an update breaks something?",
+        "a": "We keep automatic backups, so if anything ever goes wrong we can roll things back in minutes, not days. With uptime monitoring and careful updates, we work to keep problems from reaching you in the first place."
+      }
+    ],
     "metaTitle": "Website Maintenance & Care — Safe & Sorted · Brandivibe",
     "metaDescription": "Friendly, senior website maintenance. Updates, backups, security, monitoring, and small tweaks handled for you, plus a real person to call anytime."
   },
@@ -475,6 +568,28 @@ export const services: Service[] = [
       "A clear before-and-after report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does website speed optimization take?",
+        "a": "A speed tune-up usually takes around two weeks. We measure everything in the first week, fix the biggest culprits like images, code, and caching, then fine-tune the details and hand you clear before-and-after numbers."
+      },
+      {
+        "q": "How much does it cost to speed up my website?",
+        "a": "We quote each tune-up to your site and what's actually slowing it down, then agree one fixed price up front with no surprises. A free call is the best way to get a real estimate for your project."
+      },
+      {
+        "q": "Do you have to rebuild my site to make it faster?",
+        "a": "No, this makes your existing site faster without rebuilding from scratch. We diagnose the real bottlenecks and fix them in place, so you keep the site you have, just lighter and quicker."
+      },
+      {
+        "q": "Will you actually show me proof that my site got faster?",
+        "a": "Yes, you get clear before-and-after numbers so you can see the difference, not just take our word for it. We measure with real tools before we start and again when we're done."
+      },
+      {
+        "q": "Can you fix my Core Web Vitals and help my Google scores?",
+        "a": "That's a core part of what we do. We tune the exact metrics Google measures, so your site scores well and gets the ranking boost that tends to follow, alongside happier visitors who stick around."
+      }
+    ],
     "metaTitle": "Website Speed Optimization — Fast, Snappy Pages · Brandivibe",
     "metaDescription": "Make your site load fast. We diagnose the real slowdowns, fix images, code and caching, boost Core Web Vitals, and prove it with before-and-after numbers."
   },
@@ -561,6 +676,28 @@ export const services: Service[] = [
       "Team training and handover"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What is a custom CRM and how is it different from something like HubSpot or Salesforce?",
+        "a": "A custom CRM is built around the way your team already sells, rather than asking you to bend your process to fit a rigid off-the-shelf tool. You get exactly the pipeline stages, fields, and workflows you need, nothing you don't, and you own the software outright."
+      },
+      {
+        "q": "How long does it take to build a custom CRM?",
+        "a": "We usually spend the first week mapping how you sell, then a few weeks building out your pipelines, contact records, and automations before we migrate your data and train the team. Every business is different, so we'll give you a clear timeline once we understand your workflow on a call."
+      },
+      {
+        "q": "How much does a custom CRM cost?",
+        "a": "Every CRM is quoted to what you actually need, and we agree one clear fixed price up front, with no retainers and no surprises later. The best way to get a real estimate is a free call where we learn how your team works, then price it honestly."
+      },
+      {
+        "q": "Can you move my existing contacts and data into the new CRM?",
+        "a": "Yes, cleaning up and migrating your existing contacts is part of the build, so nothing gets left behind in old spreadsheets or inboxes. We bring it all over tidily so day one feels natural for your team."
+      },
+      {
+        "q": "Will the CRM connect to my email and calendar?",
+        "a": "It will. We link your CRM to the email, calendars, and apps your team already relies on, so details flow through automatically instead of being copied across by hand."
+      }
+    ],
     "metaTitle": "CRM Systems — One Home for Every Customer · Brandivibe",
     "metaDescription": "Custom CRM software shaped around how your team sells, keeping leads, deals, and customer history tidy and easy to act on."
   },
@@ -647,6 +784,28 @@ export const services: Service[] = [
       "Rollout plan, training, and support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What does an ERP system actually do for my business?",
+        "a": "An ERP ties your separate tools together so stock, sales, orders, and finance all share the same live data, which means an order in one place updates everything else automatically. You get one dependable view of the whole operation instead of the same numbers keyed into five different systems."
+      },
+      {
+        "q": "Do I have to replace all my current software at once?",
+        "a": "Not at all. We build your ERP module by module, starting with the pieces that unlock the biggest wins, and keep everything running while we connect the rest. It's a steady rollout, never a painful all-or-nothing overhaul."
+      },
+      {
+        "q": "How long does an ERP project take?",
+        "a": "We start by mapping how work flows across your business, then build the core backbone first before adding modules in phases. Because ERPs touch so many parts of a company, we'll map out realistic timeframes for your specific setup on a call rather than guess."
+      },
+      {
+        "q": "How much does a custom ERP cost?",
+        "a": "Your ERP is quoted to the modules and connections you genuinely need, with one fixed price agreed up front, no retainers, and no surprise add-ons. A free call is the best way to get a real estimate, since we can see the scope of your operation first."
+      },
+      {
+        "q": "Will the ERP keep my inventory figures accurate?",
+        "a": "Yes, it tracks stock across your locations in real time so you can stop guessing what you actually have on hand. Because inventory shares the same live data as sales and finance, everyone is always working from the same numbers."
+      }
+    ],
     "metaTitle": "ERP Systems — Run It All from One Place · Brandivibe",
     "metaDescription": "Custom ERP software that connects stock, orders, finance, and operations into one dependable, real-time system built for how you work."
   },
@@ -733,6 +892,28 @@ export const services: Service[] = [
       "Launch support and handover"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "Why choose a custom e-commerce platform over Shopify or WooCommerce?",
+        "a": "A bespoke platform gives you a store shaped around your products and the way you like to work, without wrestling a bloated template or paying for features you'll never touch. It's fast, easy for your team to manage, and it's genuinely yours to keep."
+      },
+      {
+        "q": "Will my online store be easy to shop on a phone?",
+        "a": "Definitely. Most people shop on their phone, so we design mobile-first and keep the checkout short and clear, which means fewer abandoned carts and more completed orders."
+      },
+      {
+        "q": "Can you move my existing products and orders to the new store?",
+        "a": "Yes, migrating your product data and orders is part of the build, so nothing gets lost in the switch. We load everything up, test every path from browse to buy, and launch with confidence."
+      },
+      {
+        "q": "How long does it take to build a custom online store?",
+        "a": "After a week getting to know your range and customers, we design and build the storefront and checkout, wire up payments and shipping, then migrate your products and go live. We'll share a clear timeline for your store once we've seen what you're selling."
+      },
+      {
+        "q": "How much does a custom e-commerce platform cost?",
+        "a": "Every store is quoted to your products and the way you want it to run, with one fixed price agreed up front and no retainers or surprises. The best way to get a real estimate is a free call where we learn about your catalogue and goals."
+      }
+    ],
     "metaTitle": "E-commerce Platforms — Stores Built to Sell · Brandivibe",
     "metaDescription": "Bespoke e-commerce platforms tuned for smooth checkouts, happy customers, and simple day-to-day management, built fast and truly yours."
   },
@@ -819,6 +1000,28 @@ export const services: Service[] = [
       "Training and ongoing support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What can custom accounting and finance software do that a spreadsheet can't?",
+        "a": "It automates the busywork that spreadsheets leave to you, sending and chasing invoices, logging expenses as they happen, and keeping your reports a click away. You get a calm, current picture of your money instead of a month-end scramble."
+      },
+      {
+        "q": "Can the software connect to my bank account?",
+        "a": "Yes, we link your bank accounts so transactions flow in automatically and reconciliation stops being a weekend job. Your books stay current without the manual data entry."
+      },
+      {
+        "q": "Will my books be ready for my accountant at tax time?",
+        "a": "They will. We organise everything the way your accountant expects, so filing is quick and stress-free, and we shape the reports around what your business and tax needs actually require."
+      },
+      {
+        "q": "How long does it take to build finance software?",
+        "a": "We spend the first week learning how money moves through your business, then build and tailor your invoicing, expenses, and reporting before connecting your bank feeds and bringing your data across. We'll give you a clear timeline for your setup on a call."
+      },
+      {
+        "q": "How much does custom accounting software cost?",
+        "a": "Your finance software is quoted to what you actually need, with one fixed price agreed up front, no retainers, and no surprises. A free call is the best way to get a real estimate, since we can see how your money moves first."
+      }
+    ],
     "metaTitle": "Accounting & Finance Software — Money, Made Clear · Brandivibe",
     "metaDescription": "Custom finance software that automates invoicing and expenses and keeps your numbers accurate, current, and easy to understand."
   },
@@ -905,6 +1108,28 @@ export const services: Service[] = [
       "Team training and support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What does HR management software help with day to day?",
+        "a": "It keeps employee records, holidays, documents, and onboarding neatly in one place, so the admin runs itself instead of swallowing your week. Staff can book leave and find their own documents, managers approve in a click, and you get a clear view of your whole team."
+      },
+      {
+        "q": "Can employees book their own leave and update their details?",
+        "a": "Yes, the self-service portal lets people request holidays, update their information, and grab payslips themselves, which frees up your HR time. Managers just approve requests and balances update automatically, with no spreadsheet in sight."
+      },
+      {
+        "q": "Will it help make onboarding new hires smoother?",
+        "a": "It will. New starters get a warm, organised welcome with everything they need ready on day one, so onboarding stops feeling chaotic every time you hire."
+      },
+      {
+        "q": "How long does it take to set up HR software?",
+        "a": "We start by mapping how you hire, manage leave, and keep records, then build the records, leave, onboarding, and self-service portal around your policies before migrating your data. We'll give you a clear timeline for your team once we've talked it through."
+      },
+      {
+        "q": "How much does custom HR software cost?",
+        "a": "Every HR system is quoted to what your company needs, with one clear fixed price agreed up front and no retainers or surprises. The best way to get a real estimate is a free call where we learn how your team works."
+      }
+    ],
     "metaTitle": "HR Management Software — Care for Your People · Brandivibe",
     "metaDescription": "Custom HR software that keeps records, leave, and onboarding organised in one friendly place, so admin runs itself and your team thrives."
   },
@@ -991,6 +1216,28 @@ export const services: Service[] = [
       "Testing, rollout, and support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What does payroll software handle for me each pay run?",
+        "a": "It works out salaries, hours, overtime, and bonuses automatically, applies tax and deductions cleanly, and generates payslips in a click. That means your team gets paid correctly and on time without you sweating the details at month end."
+      },
+      {
+        "q": "Can it handle different pay schedules, rates, and bonuses?",
+        "a": "Yes, it's shaped around how your business actually pays people, whatever the mix of salaries, hourly rates, and bonuses. It flexes to fit your team as it is now and as it grows."
+      },
+      {
+        "q": "How do I know the calculations will be correct before I rely on it?",
+        "a": "We test thoroughly against your real figures, then run the new system alongside your current process first, so you can trust it fully before switching over. Nothing goes live until you're confident everyone's paid properly."
+      },
+      {
+        "q": "How long does it take to set up payroll software?",
+        "a": "We spend the first week mapping your pay structures, deductions, and schedules, then build and test the calculations before running in parallel with your current process. We'll share a clear timeline for your setup once we understand how you pay."
+      },
+      {
+        "q": "How much does custom payroll software cost?",
+        "a": "Your payroll software is quoted to your pay setup and what you actually need, with one fixed price agreed up front, no retainers, and no surprises. A free call is the best way to get a real estimate for your team."
+      }
+    ],
     "metaTitle": "Payroll Management Software — Payday, Sorted · Brandivibe",
     "metaDescription": "Custom payroll software that handles calculations, deductions, and payslips so your team gets paid accurately and on time, every time."
   },
@@ -1077,6 +1324,28 @@ export const services: Service[] = [
       "Onboarding and support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How is custom project management software better than a tool like Asana or Trello?",
+        "a": "We shape the stages and boards around how your team really delivers, rather than forcing your work into a generic template that does too much and helps too little. You get a clear, calm view of tasks, timelines, and progress with none of the clutter."
+      },
+      {
+        "q": "Can I see my team's workload and who's overloaded?",
+        "a": "Yes, workload views show you who's stretched and who has room, so you can share work out fairly across the team. Live status also means you can check where a project stands without pulling everyone into a meeting."
+      },
+      {
+        "q": "Will it connect to the tools and files my team already uses?",
+        "a": "It will. We link it to the apps and files your team already relies on, so everything stays in one flow instead of scattered across chats and spreadsheets."
+      },
+      {
+        "q": "How long does it take to build project management software?",
+        "a": "We start by mapping your project stages, roles, and how work moves through your team, then build the tasks, timelines, and dashboards around that before bringing your current projects across. We'll give you a clear timeline for your setup on a call."
+      },
+      {
+        "q": "How much does custom project management software cost?",
+        "a": "Every project tool is quoted to how your team delivers and what you actually need, with one fixed price agreed up front and no retainers or surprises. The best way to get a real estimate is a free call where we learn how you work."
+      }
+    ],
     "metaTitle": "Project Management Software — Work, Made Visible · Brandivibe",
     "metaDescription": "Custom project management software that keeps tasks, deadlines, and your team moving together, with clear progress and none of the noise."
   },
@@ -1163,6 +1432,28 @@ export const services: Service[] = [
       "Post-launch support"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "Will my app work on both iPhone and Android?",
+        "a": "Yes, we build for iPhone and Android together, so you reach everyone without paying for two separate apps. It's designed to feel right and run smoothly on every device."
+      },
+      {
+        "q": "Can the app connect to my website and existing systems?",
+        "a": "It can. We connect the app to your website, data, and tools so everything stays in sync, and there's no double-handling behind the scenes."
+      },
+      {
+        "q": "Do you handle getting the app onto the App Store and Google Play?",
+        "a": "Yes, we take care of the whole submission process and get you cleanly onto both the App Store and Google Play. We also test on real devices first to make sure it's smooth and stable before people download it."
+      },
+      {
+        "q": "How long does it take to build a mobile app?",
+        "a": "We spend the first week or two shaping the idea and how it'll look, then design and build it properly for both platforms, sharing progress as we go, before testing and launching. We'll give you a realistic timeline for your app once we've talked through what it needs to do."
+      },
+      {
+        "q": "How much does it cost to build a mobile app?",
+        "a": "Every app is quoted to what you want it to do, with one clear fixed price agreed up front, no retainers, and no surprises. A free call is the best way to get a real estimate, since we can shape the scope with you first."
+      }
+    ],
     "metaTitle": "Mobile App Development — Your Business, Pocket-Sized · Brandivibe",
     "metaDescription": "Custom mobile apps for iPhone and Android that feel fast, look lovely, and give your customers something genuinely useful to keep coming back to."
   },
@@ -1249,6 +1540,28 @@ export const services: Service[] = [
       "Monthly performance report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does SEO take to show results?",
+        "a": "SEO is a steady, honest game rather than an overnight one, and most sites start seeing movement in rankings and traffic within a few months. We fix the foundations first, then build momentum month by month, so the growth keeps compounding the longer we work together."
+      },
+      {
+        "q": "How much does SEO cost?",
+        "a": "Every SEO project is quoted around your site, your goals, and how competitive your space is, and we agree one clear fixed price up front with no retainers or surprises. The best way to get a real estimate is a free call where we look at your site together and talk through what would move the needle."
+      },
+      {
+        "q": "Do you use any risky tricks or shortcuts to rank my site?",
+        "a": "No, and we never will. We fix what's holding your site back, create pages worth ranking, and earn trust with search engines the slow, solid way that keeps paying off long after cheap tricks would have gotten you penalised."
+      },
+      {
+        "q": "What's actually included in your SEO service?",
+        "a": "You get a full technical audit, a keyword and content strategy mapped to what your customers really search, on-page optimisation, content recommendations, and a link-building plan. Every month we hand you a plain-numbers report on rankings, traffic, and enquiries so you can see the progress for yourself."
+      },
+      {
+        "q": "Will SEO work if I already have a website I like?",
+        "a": "Absolutely. If you've built a lovely site that nobody's finding, that's exactly where we come in. We tune your structure, pages, and content so search engines understand and trust you, and the right people finally land on the site you already have."
+      }
+    ],
     "metaTitle": "SEO Services — Get Found by the Right People · Brandivibe",
     "metaDescription": "Honest, senior-run SEO that grows your organic traffic and brings the right searchers to your site — no shortcuts, just steady results."
   },
@@ -1335,6 +1648,28 @@ export const services: Service[] = [
       "Monthly local ranking report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does local SEO take to start bringing in customers?",
+        "a": "Local SEO often moves a little faster than broad SEO because the competition is right around you, and many businesses start seeing more calls and map visibility within the first couple of months. We clean up your foundations early, then keep building local trust so the results grow steadily from there."
+      },
+      {
+        "q": "How much does local SEO cost?",
+        "a": "We quote local SEO to your area, your goals, and how competitive your patch is, then agree one fixed price up front with no retainers or hidden extras. A quick free call is the easiest way to get a real estimate, since we can look at your listings and local searches together."
+      },
+      {
+        "q": "How do I show up in the Google map pack?",
+        "a": "Getting into the map pack comes down to a complete, accurate profile, consistent listings across the web, genuine reviews, and pages that speak to your area. We handle all of those pieces so Google has every reason to feature you when nearby customers search."
+      },
+      {
+        "q": "Can you help me get more reviews from my customers?",
+        "a": "Yes, we set up a simple system that makes it easy to earn more genuine reviews and reply to them well. Real reviews reassure people who are choosing between you and the shop down the road, and they help your local rankings at the same time."
+      },
+      {
+        "q": "Is local SEO right for my business?",
+        "a": "If you serve customers in a specific area, have a shopfront, or travel out to local visits, then yes. Local SEO is built to win you the calls, walk-ins, and bookings from the people closest to you, so it's a natural fit whenever your best customers are nearby."
+      }
+    ],
     "metaTitle": "Local SEO — Win Customers Right Around the Corner · Brandivibe",
     "metaDescription": "Friendly local SEO that gets you into the map pack and in front of nearby customers ready to call, visit, or book."
   },
@@ -1421,6 +1756,28 @@ export const services: Service[] = [
       "Monthly revenue-focused report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does e-commerce SEO take to grow my sales?",
+        "a": "For online stores, the first wins on your highest-value categories and products can show within a few months, and the growth builds as we work through more of your catalogue. It's a steady climb rather than a switch you flip, but organic traffic keeps paying you back long after the work is done."
+      },
+      {
+        "q": "How much does e-commerce SEO cost?",
+        "a": "We quote e-commerce SEO around the size of your catalogue, your goals, and how competitive your products are, then agree one clear fixed price up front with no retainers or surprises. A free call is the best way to get a real estimate, since we can look at your store and search opportunities together."
+      },
+      {
+        "q": "Why aren't my product pages showing up in Google?",
+        "a": "Online stores have their own quirks that quietly hold pages back, like big catalogues, duplicate pages from filters and variants, and thin descriptions. We fix those properly so every product gets a fair shot at ranking and each visit has a better chance of ending in a sale."
+      },
+      {
+        "q": "What are rich results and can you get them for my store?",
+        "a": "Rich results are the extra details Google can show right in search, like star ratings, prices, and stock. We set up the structured data your store needs so those show up, which helps your listings stand out and earns you more clicks from ready-to-buy shoppers."
+      },
+      {
+        "q": "Can e-commerce SEO reduce how much I spend on ads?",
+        "a": "It can, over time. As your category and product pages start ranking, you get a stream of shoppers who found you without a single paid click, which means less reliance on ads for the same traffic. Many stores use organic search to steadily lower their cost per sale."
+      }
+    ],
     "metaTitle": "E-commerce SEO — Product Searches Into Orders · Brandivibe",
     "metaDescription": "SEO for online stores that ranks your product and category pages and brings ready-to-buy shoppers straight to checkout."
   },
@@ -1507,6 +1864,28 @@ export const services: Service[] = [
       "Monthly ranking & install report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does app store optimization take to lift my downloads?",
+        "a": "You'll usually see your listing's visibility and installs start to shift within a few weeks of the reworked listing going live, and we keep testing keywords and visuals to push rankings higher from there. It's an ongoing tune-up rather than a one-off, so the download growth builds steadily."
+      },
+      {
+        "q": "How much does app store optimization cost?",
+        "a": "We quote ASO around your app, your goals, and how competitive your category is, then agree one fixed price up front with no retainers or surprises. The easiest way to get a real estimate is a free call where we look at your current listing together."
+      },
+      {
+        "q": "How can I get more app downloads without paying for ads?",
+        "a": "Most people find new apps by searching the store, so where you rank decides how many discover yours. We research the terms users actually search and work them into your title, keywords, description, and screenshots, so you earn installs you didn't have to pay for."
+      },
+      {
+        "q": "Do you optimize for both the App Store and Google Play?",
+        "a": "Yes, and we tune each one separately because they work differently. Your keywords, title, and visuals are shaped for the way each store ranks and displays apps, so you show up well and look convincing on both."
+      },
+      {
+        "q": "Can you help my app that's about to launch?",
+        "a": "Definitely, launch is a great time to get this right. We shape your keywords, title, screenshots, and description so your app arrives ready to be found and chosen from day one, rather than getting buried while you figure it out later."
+      }
+    ],
     "metaTitle": "App Store Optimization — More Organic Installs · Brandivibe",
     "metaDescription": "ASO that lifts your app's ranking in the App Store and Google Play and turns browsers into downloads — no ad spend needed."
   },
@@ -1593,6 +1972,28 @@ export const services: Service[] = [
       "Monthly insights report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to optimize my Google Business Profile?",
+        "a": "The core optimisation, filling in every field, sorting categories, photos, and your description, usually happens within the first couple of weeks. From there we keep the profile active with posts and review replies, and you'll typically see calls, directions, and views climb over the following weeks."
+      },
+      {
+        "q": "How much does Google Business Profile optimization cost?",
+        "a": "We quote it around your business and how much ongoing activity you'd like, then agree one clear fixed price up front with no retainers or hidden extras. A free call is the best way to get a real estimate, since we can look at your current listing together."
+      },
+      {
+        "q": "Why isn't my business showing up on Google Maps?",
+        "a": "It usually comes down to a profile that's incomplete, out of date, or missing the right categories. We fill in every part properly, choose categories that match what people search, and keep the listing fresh, which is exactly what Google rewards with more visibility on maps and search."
+      },
+      {
+        "q": "What's the difference between this and local SEO?",
+        "a": "Your Google Business Profile is one powerful piece of the local picture, this service makes that single listing work as hard as possible with photos, posts, reviews, and the right categories. Local SEO is the broader effort across your whole site and the web, and the two work beautifully together."
+      },
+      {
+        "q": "Do you help manage and respond to reviews?",
+        "a": "Yes, we set up a system to earn more genuine reviews and reply to them in a way that builds trust. Fresh, well-handled reviews reassure the people deciding whether to call or visit, and they help your profile show up more often too."
+      }
+    ],
     "metaTitle": "Google Business Profile Optimization · Brandivibe",
     "metaDescription": "We optimise your Google My Business (GMB) profile so nearby customers find you on search and maps and get in touch."
   },
@@ -1679,6 +2080,28 @@ export const services: Service[] = [
       "Monthly link report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does link building take to affect my rankings?",
+        "a": "Quality links build authority gradually, so this is a slow, safe process rather than an instant one, and you'll typically see the effect on rankings compound over several months. We secure genuine placements month by month, and each one makes your whole site a little stronger."
+      },
+      {
+        "q": "How much do guest posts and link building cost?",
+        "a": "We quote it around the authority gap you're closing and the kind of sites you're aiming for, then agree one fixed price up front with no retainers or surprises. A free call is the best way to get a real estimate, since we can look at your current link profile together."
+      },
+      {
+        "q": "Are your links safe, or could they get my site penalised?",
+        "a": "Everything we do is strictly white-hat, so your rankings grow without the risk. We pitch real, relevant sites, write content worth publishing, and keep your anchors natural, with no spammy networks or dodgy shortcuts that could come back to bite you."
+      },
+      {
+        "q": "How do you decide which websites to get links from?",
+        "a": "We target real publications that fit your niche and genuinely carry authority, not just anywhere that will take a link. You get a shortlist of relevant, trusted sites worth earning placements from, so every link actually helps rather than just padding a number."
+      },
+      {
+        "q": "Will I know exactly where my links end up?",
+        "a": "Yes, every placement is reported to you with where it lives and the value it carries. You'll never be left guessing what you paid for, because you can see each link, the site it's on, and how it strengthens your profile."
+      }
+    ],
     "metaTitle": "Guest Posts & Link Building — Real Authority · Brandivibe",
     "metaDescription": "Genuine guest posts and white-hat links from real, relevant sites that grow your authority and lift your rankings safely."
   },
@@ -1765,6 +2188,28 @@ export const services: Service[] = [
       "Prioritised action plan"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does an SEO audit take?",
+        "a": "Most audits take a couple of weeks from start to finish, including the deep dive across technical, on-page, content, and links, and prioritising every finding. We then walk you through it in a clear session so you leave knowing exactly what to tackle first."
+      },
+      {
+        "q": "How much does an SEO audit cost?",
+        "a": "We quote the audit around the size of your site and what you want to rank for, then agree one clear fixed price up front with no retainers or surprises. A quick free call is the easiest way to get a real estimate for your particular site."
+      },
+      {
+        "q": "What do I actually get at the end of the audit?",
+        "a": "You get a prioritised, plain-English plan covering your technical health, on-page issues, content gaps, a competitor comparison, and a backlink assessment. It's not a 200-page export nobody reads, it's a ranked list of the fixes that matter, so you know precisely where to start."
+      },
+      {
+        "q": "Do I have to hire you to do the fixes afterwards?",
+        "a": "Not at all. The audit is yours to use however you like, so whether we carry out the work or your own team does, you'll have a clear plan to follow. There's no obligation, just an honest picture of what will move your rankings."
+      },
+      {
+        "q": "Should I get an audit before redesigning my site?",
+        "a": "Yes, that's one of the best times to do it. An audit shows what's working and what's holding you back before you rebuild, so you carry the good parts forward and fix the problems instead of accidentally baking them into the new site."
+      }
+    ],
     "metaTitle": "SEO Audit — Find What's Holding Your Site Back · Brandivibe",
     "metaDescription": "A thorough, plain-English SEO audit that shows exactly what's hurting your rankings and gives you a prioritised plan to fix it."
   },
@@ -1851,6 +2296,28 @@ export const services: Service[] = [
       "Monthly performance report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to set up and launch Facebook and Instagram ads?",
+        "a": "We usually spend the first week getting to know your business and customers, then build and launch your audiences, creative, copy, and tracking within the first week or two. From there we keep testing and tuning week after week, so your account gets sharper over time."
+      },
+      {
+        "q": "How much do Facebook and Instagram ad campaigns cost?",
+        "a": "Every project is quoted around what you actually need, with a clear fixed price we agree up front, so there are no retainers and no surprises. Your ad budget with Meta is separate and always yours to decide. The easiest way to get a real number is a free call where we talk through your goals."
+      },
+      {
+        "q": "Do I keep ownership of my Meta ad account and all the data?",
+        "a": "Yes, the ad account, the pixel, and everything we build stays yours. We set it up properly under your ownership so you're never locked in, and you can see exactly what's running at any time."
+      },
+      {
+        "q": "Will you write the ad copy and make the creative, or do I need to supply it?",
+        "a": "We handle the whole thing for you, including scroll-stopping images and video paired with copy that speaks to what your customers actually want. If you have brand assets or photos you love, we'll happily fold those in too."
+      },
+      {
+        "q": "Why aren't my boosted posts getting results, and can ads fix that?",
+        "a": "Boosting a post is a blunt tool, it shows your content to a broad crowd without proper targeting or tracking. We build real campaigns with audiences shaped around your best customers, full-funnel retargeting, and conversion tracking, so you can see which ads bring actual sales rather than just clicks."
+      }
+    ],
     "metaTitle": "Facebook & Instagram Ads That Bring Results · Brandivibe",
     "metaDescription": "Friendly, senior-run Facebook and Instagram ad management that finds your best customers and turns scrolling into real leads and sales."
   },
@@ -1937,6 +2404,28 @@ export const services: Service[] = [
       "Monthly performance report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to launch a LinkedIn ad campaign?",
+        "a": "We spend the first week mapping the exact roles, companies, and industries worth reaching, then build and launch your targeting, creative, forms, and tracking within a week or two. Because B2B buying takes time, we keep refining and nurturing the right accounts from there."
+      },
+      {
+        "q": "How much does LinkedIn advertising cost?",
+        "a": "We quote each project around your goals with a clear fixed price agreed up front, so there are no retainers and no surprises. Your media spend on LinkedIn is separate and stays in your control. A free call is the best way to get a real estimate for your situation."
+      },
+      {
+        "q": "Can you target specific job titles and companies on LinkedIn?",
+        "a": "Yes, that's LinkedIn's real strength. We reach people by job title, seniority, company, and industry, and we can run account-based campaigns focused on the specific businesses you'd love to work with, so none of your budget goes to the wrong people."
+      },
+      {
+        "q": "Is LinkedIn advertising right for my business?",
+        "a": "If you sell to other businesses and need to reach particular roles or industries, LinkedIn is often where those decision-makers spend their working day. It's especially worth it when you're getting cheaper leads elsewhere but not the right ones."
+      },
+      {
+        "q": "How do you measure whether LinkedIn ads are actually working?",
+        "a": "We tie tracking to what matters to you, qualified leads and pipeline, rather than vanity clicks. Each month you get a clear view of the leads coming in, what they cost, and the plan for the month ahead."
+      }
+    ],
     "metaTitle": "LinkedIn Ads That Reach Decision-Makers · Brandivibe",
     "metaDescription": "Friendly, senior-run LinkedIn ad management that targets the right roles and companies and brings you qualified B2B conversations worth having."
   },
@@ -2023,6 +2512,28 @@ export const services: Service[] = [
       "Monthly performance report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to get YouTube ads up and running?",
+        "a": "We start by agreeing what success looks like and who you most want watching, then build and launch your targeting, formats, and tracking within a week or two. After that we keep refining audiences and bids to lift results and lower your cost over time."
+      },
+      {
+        "q": "How much do YouTube ads cost?",
+        "a": "We quote each project around your goals with a clear fixed price agreed up front, so there are no retainers and no surprises. Your spend on YouTube itself is separate and always yours to set. A free call is the easiest way to get a real estimate."
+      },
+      {
+        "q": "Do I need to already have a video to run YouTube ads?",
+        "a": "Having video helps, and we'll guide the creative so it works hard from the first five seconds, before the skip button even appears. We shape the hook, choose the right formats, and can advise on what to film if you're starting fresh."
+      },
+      {
+        "q": "Can YouTube ads drive sales, or are they only good for brand awareness?",
+        "a": "They can do both. We match the ad format to your goal, whether that's memorable reach or direct action, and we run retargeting to bring back viewers who watched but didn't act yet, so every view moves you closer to what you want."
+      },
+      {
+        "q": "How will I know if my YouTube campaign is paying off?",
+        "a": "You get clear reporting on views, watch time, and the actions that actually matter to you, explained in plain English. Each month we walk you through the reach and engagement and lay out what's next."
+      }
+    ],
     "metaTitle": "YouTube Ads That Get You Seen & Remembered · Brandivibe",
     "metaDescription": "Friendly, senior-run YouTube ad management that reaches the right viewers, holds attention, and turns video views into real action for your brand."
   },
@@ -2109,6 +2620,28 @@ export const services: Service[] = [
       "Monthly performance report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long before my social media channels are up and running with you?",
+        "a": "In the first week we get to know your brand, audience, and goals, then build a content calendar and produce the first batch of posts for your sign-off within a week or two. After that we post on schedule and stay on top of engagement every month."
+      },
+      {
+        "q": "How much does social media management cost?",
+        "a": "We quote each project around what you actually need, with a clear fixed price agreed up front, so there are no retainers and no surprises. The best way to get a real number is a free call where we talk through your channels and goals."
+      },
+      {
+        "q": "Which social media platforms will you manage for my business?",
+        "a": "We focus your effort where your audience actually spends time, rather than trying to be everywhere at once. During our first conversations we'll agree the platforms that make the most sense for you."
+      },
+      {
+        "q": "Will the posts actually sound like my brand, or feel generic?",
+        "a": "They'll sound like you. We shape captions and visuals around your real voice, not a generic template, and everything runs to a plan mapped to your goals so each post has a purpose."
+      },
+      {
+        "q": "Do you handle replying to comments and messages too?",
+        "a": "Yes, community engagement is part of the day-to-day for us. We reply to comments and messages so your audience feels heard and your channels stay lively, not just a one-way broadcast."
+      }
+    ],
     "metaTitle": "Social Media Management, Done For You · Brandivibe",
     "metaDescription": "Friendly, senior-run social media management that keeps your channels active, on-brand, and growing an engaged audience, without eating your week."
   },
@@ -2195,6 +2728,28 @@ export const services: Service[] = [
       "Monthly reputation report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to see results from reputation management?",
+        "a": "In the first week we audit your reviews, listings, and search results, then set up review requests and monitoring within a week or two. Reputation builds steadily, so you'll see fresh reviews and a stronger presence grow month by month rather than overnight."
+      },
+      {
+        "q": "How much does online reputation management cost?",
+        "a": "We quote each project around what you need, with a clear fixed price agreed up front, so there are no retainers and no surprises. A free call is the best way to get a real estimate once we understand where your reputation stands today."
+      },
+      {
+        "q": "Can you remove or hide a bad review?",
+        "a": "This isn't about hiding anything, and we won't promise to make honest feedback disappear. Instead we help you respond to tricky reviews with grace, make it easy for happy customers to speak up, and keep your best side showing when someone searches your name."
+      },
+      {
+        "q": "How do you help my business get more reviews?",
+        "a": "We put simple systems in place that prompt happy customers to leave a review at the right moment, so getting fresh feedback stops being a chore. It's an easy, honest way to let your best customers do the talking."
+      },
+      {
+        "q": "Will you help me respond to reviews, both good and bad?",
+        "a": "Yes, we help you reply thoughtfully to reviews of every kind in a way that builds trust. We also keep an eye on mentions and reviews so nothing catches you off guard."
+      }
+    ],
     "metaTitle": "Online Reputation Management You Can Trust · Brandivibe",
     "metaDescription": "Friendly, senior-run reputation management that earns more good reviews, handles feedback with care, and keeps your search results honest and strong."
   },
@@ -2281,6 +2836,28 @@ export const services: Service[] = [
       "Monthly reach report"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to start distributing my content?",
+        "a": "In the first week we review what you already have and where it could travel further, then map channels, repurpose pieces, and set up promotion within a week or two. From there we distribute and amplify on an ongoing basis, refining what reaches best."
+      },
+      {
+        "q": "How much does content distribution and amplification cost?",
+        "a": "We quote each project around your goals, with a clear fixed price agreed up front, so there are no retainers and no surprises. Any paid amplification budget is separate and stays in your control. A free call is the easiest way to get a real estimate."
+      },
+      {
+        "q": "Do you create the content, or just distribute what I already have?",
+        "a": "We take the content you've already made and give it legs, reshaping each piece to fit the channels it belongs on. It's about getting far more mileage from your existing work rather than starting from a blank page."
+      },
+      {
+        "q": "What does repurposing my content actually involve?",
+        "a": "We turn one strong piece into many, adapting it to suit each platform so nothing goes to waste. That means a single article, video, or post can reach the right people in several places, saving you time along the way."
+      },
+      {
+        "q": "How will I know if my content is reaching more people?",
+        "a": "You get clear reporting on views, engagement, and the reach we've earned, so the difference is easy to see. Each month we show you what landed and where it's worth pushing next."
+      }
+    ],
     "metaTitle": "Content Distribution & Amplification · Brandivibe",
     "metaDescription": "Friendly, senior-run content distribution that gets the work you've already made in front of far more of the right people across the channels that suit it."
   },
@@ -2367,6 +2944,28 @@ export const services: Service[] = [
       "Clean handover files"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does content writing take?",
+        "a": "It depends on how much you need, but most projects move through a quick voice-finding step, an outline, a first draft, and refinement over a matter of days to a couple of weeks. We'll give you a clear timeline once we know your page count and scope, and we won't leave you guessing along the way."
+      },
+      {
+        "q": "How much does content writing cost?",
+        "a": "Every project is quoted to exactly what you need, with one clear fixed price agreed up front and no retainers or surprise add-ons. The best way to get a real number is a quick free call where we talk through your pages and goals."
+      },
+      {
+        "q": "Will the writing actually sound like my brand and not generic?",
+        "a": "Yes. We start by learning how you talk and what you're going for, then write in a voice that sounds like a real person rather than a template. You also get tone notes so anything written later stays true to you."
+      },
+      {
+        "q": "What kinds of copy can you write for my business?",
+        "a": "We handle website pages like your home, about, and service pages, blog articles built to earn search traffic, email welcome flows and newsletters, and clear product or service descriptions. If you've already written something, we can also sharpen it up with a careful edit."
+      },
+      {
+        "q": "Do I get to review and request changes to the copy?",
+        "a": "Absolutely. We agree on the outline before writing, deliver a first draft, then shape it with you through two rounds of edits until it feels right. You get finished, ready-to-publish files at the end, complete with SEO-aware headings and meta descriptions."
+      }
+    ],
     "metaTitle": "Content Writing That Sounds Human · Brandivibe",
     "metaDescription": "Warm, senior-written website copy, articles, and email that sound like you and help the right people say yes."
   },
@@ -2453,6 +3052,28 @@ export const services: Service[] = [
       "Simple monthly performance recap"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does it take to get social media content up and running?",
+        "a": "We usually set the direction and build your first monthly content calendar within the first week or two, then keep a steady rhythm of finished posts and reels each month after that. You approve the plan before anything gets made, so it never feels rushed."
+      },
+      {
+        "q": "How much does social media content creation cost?",
+        "a": "We quote each plan to what you actually need, with a clear fixed price agreed up front and no retainers or hidden extras. A quick free call is the easiest way to get a real estimate for your posting volume and platforms."
+      },
+      {
+        "q": "Which platforms should I be posting on?",
+        "a": "We focus your effort where your audience actually spends time rather than spreading you thin across every app. During setup we agree together on the platforms worth prioritising, so the work always goes where it counts."
+      },
+      {
+        "q": "Do you handle the posting, or just create the content?",
+        "a": "We handle both. Once you've approved the calendar, we design the posts, edit the reels, write captions in your voice, then schedule and publish everything for you. Nothing slips through the cracks."
+      },
+      {
+        "q": "What do I actually receive each month?",
+        "a": "You get an approved content calendar, finished post graphics, edited reels and shorts, written captions and hashtags, all scheduled and published, plus a simple recap of what performed. Your page stays looking alive and looked-after."
+      }
+    ],
     "metaTitle": "Social Media Content Creation, Done For You · Brandivibe",
     "metaDescription": "Planned, on-brand posts and reels made and scheduled for you, so your social presence stays consistent and alive."
   },
@@ -2539,6 +3160,28 @@ export const services: Service[] = [
       "Final files in every size you need"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does video production take from idea to final cut?",
+        "a": "A typical project runs through shaping the idea, planning the shoot, filming, then editing, which usually spans a few weeks depending on scope. We'll map out clear dates with you up front so you always know when your footage lands."
+      },
+      {
+        "q": "How much does video production cost?",
+        "a": "Every video is quoted to what you're making, with one fixed price agreed before we start and no surprise costs afterward. If you've been quoted big scary numbers elsewhere, a free call is a friendly way to hear a real, honest estimate."
+      },
+      {
+        "q": "Do you handle everything, or do I need to hire a separate crew and editor?",
+        "a": "One team handles the whole thing, from the first idea and script through the shoot and into the edit. There's no juggling separate vendors, so it stays calm and the finished piece feels consistent."
+      },
+      {
+        "q": "Can you make social clips as well as a main brand film?",
+        "a": "Yes. We can deliver a polished main video plus social cut-downs sized and cut for web, social, and ads, all from the same shoot. You get versions ready for wherever you're posting."
+      },
+      {
+        "q": "Will the video still work if people watch it on mute?",
+        "a": "It will. We add captions, titles, and on-screen graphics so your point lands even with the sound off, which is how a lot of people watch on social. The message comes through either way."
+      }
+    ],
     "metaTitle": "Video Production, Idea to Final Cut · Brandivibe",
     "metaDescription": "Brand films, product videos, and social clips planned, shot, and edited end to end, so the watch feels effortless."
   },
@@ -2625,6 +3268,28 @@ export const services: Service[] = [
       "Developer-ready handover files"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does UI/UX design take?",
+        "a": "Most projects move through understanding your users, mapping flows and wireframes, then polished design and a prototype, which typically takes a few weeks depending on how many screens you need. We'll agree a clear timeline once we've scoped the product."
+      },
+      {
+        "q": "How much does UI/UX design cost?",
+        "a": "We quote each project to your specific product and screen count, with a fixed price set up front and no retainers or surprises. The best way to get a real figure is a short free call where we talk through what you're building."
+      },
+      {
+        "q": "What's the difference between UX and UI, and do I get both?",
+        "a": "UX is about how people move through your product so the right step is always the easy one, while UI is how those screens actually look and feel. You get both, starting with user flows and wireframes before we add the polished visual design."
+      },
+      {
+        "q": "Will my developers be able to build from the designs you deliver?",
+        "a": "Yes. We hand over tidy, developer-ready files and specs, along with a reusable component library, so your build team can pick it up cleanly without the usual back-and-forth."
+      },
+      {
+        "q": "Can I test the design before anything gets built?",
+        "a": "You can. We create a clickable prototype so you can experience the real thing and give feedback before a line of code is written. That way we catch anything early, when it's easy to change."
+      }
+    ],
     "metaTitle": "UI/UX Design That Feels Obvious · Brandivibe",
     "metaDescription": "Research-led product and website design where the right path is the easy one, handed over ready to build."
   },
@@ -2711,6 +3376,28 @@ export const services: Service[] = [
       "Editable templates and source files"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does graphic design and branding take?",
+        "a": "A brand project usually moves from brief, to exploring a few directions, to refining your chosen one, then building out the kit, which spans a few weeks depending on how much you need. We'll give you a clear timeline once we understand the scope."
+      },
+      {
+        "q": "How much does graphic design cost?",
+        "a": "Every project is quoted to what you actually need, whether that's a logo or a full brand system, with one fixed price agreed up front and no surprises. A quick free call is the easiest way to get a real estimate."
+      },
+      {
+        "q": "Do I get more than one logo option to choose from?",
+        "a": "Yes. We explore a few distinct directions for you to react to rather than presenting a single guess, then sharpen your chosen one into a finished identity. It's a real choice, not a take-it-or-leave-it."
+      },
+      {
+        "q": "What's included in a brand kit?",
+        "a": "You get primary and secondary logos, a colour and font system, brand guidelines, and both print-ready and digital assets. We also include editable templates and source files so your team can keep everything consistent."
+      },
+      {
+        "q": "Can you design ongoing marketing pieces, not just the logo?",
+        "a": "Definitely. Alongside your identity we design the flyers, cards, packaging, social graphics, banners, and pitch decks you use every week, all holding together so your brand reads as one confident thing."
+      }
+    ],
     "metaTitle": "Graphic Design & Brand Identity · Brandivibe",
     "metaDescription": "Logos, brand kits, and everyday design that make you instantly recognisable and consistent everywhere you show up."
   },
@@ -2797,6 +3484,28 @@ export const services: Service[] = [
       "Source and export files"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "How long does a motion graphics project take?",
+        "a": "A piece typically moves from nailing the message, to a storyboard, to animation and final export, which usually takes a couple of weeks depending on length and complexity. We'll set clear dates with you before we begin."
+      },
+      {
+        "q": "How much do motion graphics cost?",
+        "a": "We quote each animation to what you're making, from a short logo sting to a full explainer, with a fixed price agreed up front and no hidden extras. A free call is the best way to get a real estimate for your piece."
+      },
+      {
+        "q": "What kinds of motion graphics can you make?",
+        "a": "We create animated logos for intros and sites, explainer videos that make tricky ideas click, scroll-stopping motion for social, animated ads, and kinetic type that lands your key message. If it needs movement, we can bring it to life."
+      },
+      {
+        "q": "Will I see a plan before you start animating?",
+        "a": "Yes. We storyboard the frames and flow so you can see and approve the visual plan before any animation happens. That keeps everyone aligned and avoids surprises in the final piece."
+      },
+      {
+        "q": "Will the animation be ready for every platform I post on?",
+        "a": "It will. We export your finished piece in the formats and sizes each platform needs, along with sound, music, and the source files. You get versions ready to play wherever you use them."
+      }
+    ],
     "metaTitle": "Motion Graphics & Animation · Brandivibe",
     "metaDescription": "Animated logos, explainers, and social motion that make people stop and watch, crafted on-brand and ready to play."
   },
@@ -2883,6 +3592,28 @@ export const services: Service[] = [
       "Plain-English handover guide"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What is an AI automation system and what can it actually do for my business?",
+        "a": "It's a set of custom workflows that wire your existing apps together so repetitive jobs run on their own, like sourcing leads, sending follow-ups, tidying data, and publishing posts on schedule. You stay in charge and see everything that happens, while the busywork quietly takes care of itself in the background."
+      },
+      {
+        "q": "How long does it take to set up an AI automation system?",
+        "a": "We usually start with one task that's costing you the most time and get it working beautifully before adding more, so you often see your first automation running within a couple of weeks. From there we widen it step by step, so the wins add up without a big, scary switchover."
+      },
+      {
+        "q": "How much does an AI automation system cost?",
+        "a": "Every setup is different, so we quote your specific workflows and agree one clear, fixed price up front, with no retainers and no surprises. The best way to get a real estimate is a free call where we look at your week and spot the tasks worth automating first."
+      },
+      {
+        "q": "Do I need to replace the tools I already use?",
+        "a": "Not at all. We connect the apps you already pay for so your data moves between them on its own, which means you keep the tools your team knows and simply get them talking to each other."
+      },
+      {
+        "q": "How do I know the automations are running properly?",
+        "a": "You get simple dashboards and alerts so you can always see it's working, plus a plain-English handover guide. And because we build one flow at a time and test each one hard before switching it on, you're never left guessing."
+      }
+    ],
     "metaTitle": "AI Automation Systems — Repetitive Work, Handled · Brandivibe",
     "metaDescription": "Friendly, custom AI automations that source leads, send follow-ups, and publish for you, so your team gets its time back and grows without extra headcount."
   },
@@ -2969,6 +3700,32 @@ export const services: Service[] = [
       "Conversation reports"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What is a custom AI agent and how is it different from a basic chatbot?",
+        "a": "It's a custom assistant we train on your own knowledge, products, and FAQs, so it answers accurately and sounds like your brand rather than reading from a generic script. It can handle support questions, qualify leads, and help your team, then pass anything tricky to a real person with the full context attached."
+      },
+      {
+        "q": "How long does it take to build an AI agent?",
+        "a": "We work through it in clear steps, agreeing what the agent should handle, teaching it your knowledge, testing it carefully with real questions, then going live, which typically takes a few weeks depending on how much it needs to know. We keep improving it from real conversations after launch too."
+      },
+      {
+        "q": "How much does an AI agent cost?",
+        "a": "It depends on what you want the agent to do and where it lives, so we quote your project and agree one fixed price up front, with no retainers or hidden extras. A free call is the easiest way to get a real estimate for your situation."
+      },
+      {
+        "q": "Will the AI agent sound like my brand or like a robot?",
+        "a": "It'll sound like you. We shape its voice and tone to match your brand so it feels warm, clear, and on-brand, and it always stays within the limits you set for what it can and can't do."
+      },
+      {
+        "q": "Can the AI agent hand a conversation over to a real person?",
+        "a": "Yes, and that's built in from the start. It handles the routine questions and first steps, then passes anything sensitive or complex to a human with the whole conversation attached, so nothing gets lost in the handover."
+      },
+      {
+        "q": "Where can the AI agent work? Website, WhatsApp, or somewhere else?",
+        "a": "Wherever suits you. We can put it on your website, WhatsApp, email, or your own internal tools, so it meets your customers and your team where they already are."
+      }
+    ],
     "metaTitle": "AI Agent Development — Your Always-On Teammate · Brandivibe",
     "metaDescription": "Friendly custom AI assistants for support, sales, and ops, trained in your voice, that answer fast and hand the tricky stuff to your team."
   },
@@ -3055,6 +3812,32 @@ export const services: Service[] = [
       "Monthly performance summary"
     ],
     "relatedDemos": [],
+    "faqs": [
+      {
+        "q": "What is an AI content engine and how does it keep my blog updated?",
+        "a": "It's an always-on pipeline we set up that researches topics, drafts articles in your voice, and lines them up ready to publish on a steady schedule. It keeps your site fresh and helps you get found on Google, without the weekly scramble of starting from a blank page."
+      },
+      {
+        "q": "Do humans review the articles before they go live?",
+        "a": "Always. Every piece gets a real review before it publishes, and you stay the editor throughout, so your blog grows steadily with content you're happy to put your name to."
+      },
+      {
+        "q": "How long does it take to get an AI content engine running?",
+        "a": "We start by learning your voice and goals and building a topic plan, then set up the research, drafting, and publishing steps, which usually takes a few weeks. After that, articles flow on schedule and we keep sharpening the topics based on what performs."
+      },
+      {
+        "q": "How much does an AI content engine cost?",
+        "a": "Every content engine is tailored to your voice, goals, and publishing pace, so we quote your setup and agree one clear, fixed price up front, with no retainers or surprises. A free call is the best way to get a real estimate for what you need."
+      },
+      {
+        "q": "Will the articles actually sound like my brand?",
+        "a": "Yes, that's the whole point. We build a brand voice guide and shape every draft to your tone, so pieces read like you wrote them rather than something a robot churned out."
+      },
+      {
+        "q": "Can the content engine focus on the services I most want to sell?",
+        "a": "Definitely. We steer the topic plan toward the searches your customers make and the services you're keenest to grow, so your content is working toward real business goals, not just filling space."
+      }
+    ],
     "metaTitle": "AI Content Engine — Always-On, On-Brand Articles · Brandivibe",
     "metaDescription": "A friendly, always-on content pipeline that drafts and publishes SEO-friendly, on-brand articles, with a human check, so your blog grows on its own."
   }

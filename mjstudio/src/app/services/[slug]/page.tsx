@@ -48,6 +48,22 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <>
       <WarmNav />
+      {service.faqs && service.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: service.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            }),
+          }}
+        />
+      )}
       <main>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 pb-14 px-5 sm:px-8">
@@ -160,6 +176,46 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
         </section>
+
+        {/* ---- how pricing works ---- */}
+        <section className="px-5 sm:px-8 py-14">
+          <div className="mx-auto max-w-[900px] rounded-[28px] p-8 md:p-10" style={{ background: `${a}12` }}>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] mb-3" style={{ color: a }}>How pricing works</p>
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">Clear, fixed pricing — no surprises.</h2>
+            <p className="mt-4 text-lg text-foreground/75 leading-relaxed max-w-[62ch]">
+              Every project is quoted to what you actually need — no bloated packages, no monthly
+              retainers you can&apos;t cancel. We agree a clear, fixed price before we start, so you always
+              know exactly where you stand. The quickest way to a real number is a short, free call.
+            </p>
+            <Link
+              href={PRIMARY_CTA.href}
+              className="mt-6 inline-flex items-center gap-2 rounded-full text-white px-6 py-3 font-medium transition-transform hover:scale-[1.02]"
+              style={{ background: a }}
+            >
+              {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
+        {/* ---- faqs ---- */}
+        {service.faqs && service.faqs.length > 0 && (
+          <section className="px-5 sm:px-8 py-14 border-t border-border">
+            <div className="mx-auto max-w-[820px]">
+              <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight">Questions, answered</h2>
+              <div className="mt-8 space-y-3">
+                {service.faqs.map((f) => (
+                  <details key={f.q} className="card-soft group overflow-hidden p-0">
+                    <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
+                      <span>{f.q}</span>
+                      <span className="font-mono text-xl shrink-0 leading-none transition-transform group-open:rotate-45" style={{ color: a }}>+</span>
+                    </summary>
+                    <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ---- siblings ---- */}
         {siblings.length > 0 && (
