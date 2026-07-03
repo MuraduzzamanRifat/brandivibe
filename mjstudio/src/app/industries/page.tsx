@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { WarmNav } from "@/components/warm/WarmNav";
+import { WarmFooter } from "@/components/warm/WarmFooter";
 
 export const dynamic = "force-static";
 
@@ -38,157 +40,160 @@ export default function IndustriesHubPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-white">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
-
-      <header className="border-b border-white/5 px-6 md:px-10 py-6">
-        <div className="mx-auto max-w-6xl flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors"
-          >
-            Brandivibe
-          </Link>
-          <Link
-            href="/services"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 hover:text-white"
-          >
-            All services →
-          </Link>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="relative px-6 md:px-10 py-20 md:py-28 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[1200px] h-[600px] rounded-full blur-3xl pointer-events-none opacity-25 bg-[radial-gradient(circle,#84e1ff,transparent_70%)]" />
-        <div className="relative mx-auto max-w-6xl">
-          <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
-            — Industries we ship for
-          </div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.95] sm:leading-[0.9] text-balance mb-6">
-            Built for your industry. Not the average.
-          </h1>
-          <p className="text-2xl md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
-            Five services. Eight industries. Forty tailored engagements where the strategy, copy, and conversion architecture are scoped to the buyer journey of your category.
-          </p>
-          <div className="flex flex-wrap items-center gap-4 text-white/40 text-sm">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-              For
-            </span>
-            <span className="text-white/55">
-              Founders and growth leads at seed-to-Series-B brands competing on quality, not template.
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* Industries grid */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-12 gap-6 mb-14">
-            <div className="col-span-12 md:col-span-4">
-              <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4 text-[#84e1ff]">
-                — Eight industries
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Pick the one closest to your business.
-              </h2>
-            </div>
-          </div>
-
-          <div className="space-y-12">
-            {industries.map((industry) => (
-              <article
-                key={industry.slug}
-                className="border-t border-white/5 pt-12 first:border-t-0 first:pt-0"
+      <WarmNav />
+      <main>
+        {/* ---- hero ---- */}
+        <section className="relative overflow-hidden pt-36 md:pt-40 pb-14 px-5 sm:px-8">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 right-[-8%] h-[480px] w-[480px] rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(255,106,61,0.28), rgba(255,106,61,0) 68%)" }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute top-40 left-[-12%] h-[400px] w-[400px] rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(15,165,152,0.20), rgba(15,165,152,0) 70%)" }}
+          />
+          <div className="relative mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+              — Made for your world
+            </p>
+            <h1 className="mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] max-w-[16ch]">
+              Built for your industry, not the average of everyone else.
+            </h1>
+            <p className="mt-6 text-xl text-foreground/70 max-w-[54ch] leading-relaxed text-pretty">
+              Every business speaks a slightly different language. We know eight of them well — so the words, the design, and the path to “yes” are shaped around the way your customers actually decide.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
-                <div className="grid grid-cols-12 gap-6 md:gap-10">
-                  <div className="col-span-12 md:col-span-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/40 mb-3">
-                      {industry.shortLabel}
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-balance">
-                      {industry.name}
-                    </h3>
-                    <p className="text-white/55 leading-relaxed text-[15px] mb-5">
-                      {industry.intro}
-                    </p>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30 mb-2">
-                      Buyer
-                    </div>
-                    <p className="text-white/45 text-sm">{industry.buyerPersona}</p>
-                  </div>
-                  <div className="col-span-12 md:col-span-8">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30 mb-4">
-                      Five services for {industry.pluralName}
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {services.map((service) => (
-                        <Link
-                          key={service.slug}
-                          href={`/services/${service.slug}/${industry.slug}`}
-                          className="group rounded-2xl border border-white/8 bg-white/[0.015] p-5 hover:border-white/25 hover:bg-white/[0.03] transition-colors"
-                        >
-                          <div
-                            className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2"
-                            style={{ color: service.accent }}
-                          >
-                            Service · {service.num}
-                          </div>
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="text-base md:text-lg font-semibold tracking-tight">
-                              {service.title}
-                              <span className="text-white/35 font-normal"> for {industry.name}</span>
-                            </div>
-                            <ArrowRight
-                              className="w-4 h-4 shrink-0 mt-1 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
-                              style={{ color: service.accent }}
-                            />
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
+                Start a project <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-7 py-4 font-medium text-foreground hover:border-foreground/30 transition-colors"
+              >
+                See all services
+              </Link>
+            </div>
+            <p className="mt-8 text-foreground/65 max-w-[60ch] leading-relaxed">
+              We tend to be a great fit for founders and growth leads at growing brands who care about quality — not another template that looks like the competitor down the street.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
-            — Don&apos;t see your industry?
+        {/* ---- industries ---- */}
+        <section className="px-5 sm:px-8 py-14">
+          <div className="mx-auto max-w-[1200px]">
+            <div className="max-w-[52ch]">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Eight industries</p>
+              <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
+                Find the one closest to home.
+              </h2>
+              <p className="mt-5 text-foreground/70 text-lg leading-relaxed">
+                Pick the industry that sounds most like you, then choose the help you need. Each one comes with framing built around your buyers — no guessing.
+              </p>
+            </div>
+
+            <div className="mt-14 space-y-12">
+              {industries.map((industry) => (
+                <article
+                  key={industry.slug}
+                  className="border-t border-border pt-12 first:border-t-0 first:pt-0"
+                >
+                  <div className="grid grid-cols-12 gap-6 md:gap-10">
+                    <div className="col-span-12 md:col-span-4">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-3">
+                        {industry.shortLabel}
+                      </p>
+                      <h3 className="font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+                        {industry.name}
+                      </h3>
+                      <p className="mt-4 text-foreground/70 leading-relaxed text-[0.97rem]">
+                        {industry.intro}
+                      </p>
+                      <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted mb-2">
+                        Who we build for
+                      </p>
+                      <p className="text-foreground/60 text-sm leading-relaxed">{industry.buyerPersona}</p>
+                    </div>
+
+                    <div className="col-span-12 md:col-span-8">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted mb-4">
+                        Five ways we help {industry.pluralName}
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {services.map((service) => (
+                          <Link
+                            key={service.slug}
+                            href={`/services/${service.slug}/${industry.slug}`}
+                            className="group card-soft lift p-5"
+                            style={{ ["--pa" as string]: service.accent }}
+                          >
+                            <p
+                              className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2"
+                              style={{ color: service.accent }}
+                            >
+                              Service · {service.num}
+                            </p>
+                            <div className="flex items-start justify-between gap-3">
+                              <p className="font-display text-base md:text-lg font-semibold tracking-tight">
+                                {service.title}
+                                <span className="text-foreground/45 font-normal"> for {industry.name}</span>
+                              </p>
+                              <ArrowUpRight
+                                className="h-4 w-4 shrink-0 mt-1 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                                style={{ color: service.accent }}
+                              />
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
-            We work outside these too.
-          </h2>
-          <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">
-            These eight cover most of our work — but the engagement model travels. If your category isn&apos;t listed and you&apos;re competing on quality, book a call and we&apos;ll come back with a tailored plan within 24 hours.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
-            >
-              Get free strategy call <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/audit"
-              className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white"
-            >
-              Or audit my business →
-            </Link>
+        </section>
+
+        {/* ---- cta ---- */}
+        <section className="px-5 sm:px-8 py-20">
+          <div className="mx-auto max-w-[1080px] rounded-[36px] bg-foreground text-background p-10 md:p-16 text-center">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+              — Don&apos;t see yours?
+            </p>
+            <h2 className="mt-5 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[18ch] mx-auto">
+              We happily work outside these too.
+            </h2>
+            <p className="mt-4 text-background/70 max-w-[52ch] mx-auto leading-relaxed">
+              These eight cover most of what we do, but the way we work travels anywhere. If your world isn&apos;t on the list and you care about doing it well, say hello — we&apos;ll come back with a friendly, tailored plan within a day.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+              >
+                Start a project <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/audit"
+                className="inline-flex items-center gap-2 rounded-full border border-background/25 px-7 py-4 font-medium text-background hover:bg-background/10 transition-colors"
+              >
+                Get a free audit
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+      <WarmFooter />
+    </>
   );
 }

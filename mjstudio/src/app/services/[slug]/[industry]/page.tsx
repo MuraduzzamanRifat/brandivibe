@@ -6,6 +6,8 @@ import { ArrowRight, Check } from "lucide-react";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { buildServiceIndustryPayload } from "@/lib/programmatic-seo";
+import { WarmNav } from "@/components/warm/WarmNav";
+import { WarmFooter } from "@/components/warm/WarmFooter";
 
 // Fully prerendered at build time — required for `output: "export"`
 // (GitHub Pages). 5 services × 8 industries = 40 static pages. No
@@ -52,6 +54,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
   if (!service || !industryRecord) notFound();
 
   const payload = buildServiceIndustryPayload(service, industryRecord);
+  const a = service.accent;
 
   // Sibling industries for this service — internal linking layer.
   // Helps Google crawl the cluster and signals topical breadth.
@@ -63,7 +66,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
   const otherServicesForIndustry = services.filter((s) => s.slug !== service.slug);
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-white">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(payload.serviceSchema) }}
@@ -77,395 +80,319 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(payload.breadcrumbSchema) }}
       />
 
-      <header className="border-b border-white/5 px-6 md:px-10 py-6">
-        <div className="mx-auto max-w-6xl flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors"
-          >
-            Brandivibe
-          </Link>
-          <Link
-            href={`/services/${service.slug}`}
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 hover:text-white"
-          >
-            ← {service.title}
-          </Link>
-        </div>
-      </header>
-
-      {/* Breadcrumb */}
-      <nav
-        aria-label="Breadcrumb"
-        className="px-6 md:px-10 pt-8 mx-auto max-w-6xl"
-      >
-        <ol className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 flex-wrap">
-          <li>
-            <Link href="/" className="hover:text-white">Home</Link>
-          </li>
-          <li className="text-white/20">/</li>
-          <li>
-            <Link href="/services" className="hover:text-white">Services</Link>
-          </li>
-          <li className="text-white/20">/</li>
-          <li>
-            <Link href={`/services/${service.slug}`} className="hover:text-white">
-              {service.title}
-            </Link>
-          </li>
-          <li className="text-white/20">/</li>
-          <li className="text-white/60">For {industryRecord.name}</li>
-        </ol>
-      </nav>
-
-      {/* Hero */}
-      <section className="relative px-6 md:px-10 py-16 md:py-24 overflow-hidden">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[1200px] h-[600px] rounded-full blur-3xl pointer-events-none opacity-25"
-          style={{ background: `radial-gradient(circle, ${service.accent}, transparent 70%)` }}
-        />
-        <div className="relative mx-auto max-w-6xl">
+      <WarmNav />
+      <main>
+        {/* ---- hero ---- */}
+        <section className="relative overflow-hidden pt-36 md:pt-40 pb-14 px-5 sm:px-8">
           <div
-            className="font-mono text-xs uppercase tracking-[0.4em] mb-6"
-            style={{ color: service.accent }}
-          >
-            — {service.title} · For {industryRecord.pluralName}
-          </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-semibold tracking-tight leading-[0.95] sm:leading-[0.9] text-balance mb-6">
-            {payload.hook}
-          </h1>
-          <div className="text-xl md:text-2xl uppercase tracking-[0.2em] font-mono text-white/40 mb-10">
-            {service.title} · {industryRecord.shortLabel}
-          </div>
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-12">
-            {payload.tagline}
-          </p>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mb-12">
-            {payload.intro.map((p, i) => (
-              <p key={i} className="text-white/60 leading-relaxed">
-                {p}
-              </p>
-            ))}
-          </div>
+            aria-hidden
+            className="pointer-events-none absolute -top-32 right-[-8%] h-[460px] w-[460px] rounded-full opacity-50 blur-3xl"
+            style={{ background: `radial-gradient(circle, ${a}55, transparent 68%)` }}
+          />
+          <div className="relative mx-auto max-w-[1200px]">
+            {/* Breadcrumb */}
+            <nav aria-label="Breadcrumb">
+              <ol className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-muted flex-wrap">
+                <li>
+                  <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
+                </li>
+                <li className="text-foreground/25">/</li>
+                <li>
+                  <Link href="/services" className="hover:text-foreground transition-colors">Services</Link>
+                </li>
+                <li className="text-foreground/25">/</li>
+                <li>
+                  <Link href={`/services/${service.slug}`} className="hover:text-foreground transition-colors">
+                    {service.title}
+                  </Link>
+                </li>
+                <li className="text-foreground/25">/</li>
+                <li className="text-foreground/70">For {industryRecord.name}</li>
+              </ol>
+            </nav>
 
-          {/* Definition block — AI-extractable summary anchored to the
-              service × industry pair. Lifts cleanly into ChatGPT or
-              Perplexity answers for "what is <service> for <industry>". */}
-          <div
-            className="max-w-4xl rounded-2xl border-l-2 pl-6 py-2"
-            style={{ borderColor: service.accent }}
-          >
-            <div
-              className="font-mono text-[10px] uppercase tracking-[0.3em] mb-3"
-              style={{ color: service.accent }}
-            >
-              In one sentence
-            </div>
-            <p className="text-lg md:text-xl text-white/85 leading-relaxed">
-              <span className="font-semibold">
-                {service.title} for {industryRecord.pluralName}
-              </span>{" "}
-              is Brandivibe&apos;s {service.tagline.charAt(0).toLowerCase() + service.tagline.slice(1).replace(/\.$/, "")}, scoped to the conversion priorities and operational realities of {industryRecord.shortLabel} — shipped in 6 weeks.
+            <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — {service.title} · for {industryRecord.pluralName}
             </p>
-          </div>
+            <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] font-semibold tracking-tight text-balance max-w-[16ch]">
+              {payload.hook}
+            </h1>
+            <p className="mt-6 text-xl text-foreground/70 max-w-[54ch] leading-relaxed text-pretty">
+              {payload.tagline}
+            </p>
 
-          {/* Industry signal — quick credibility anchor */}
-          <div className="mt-10 flex flex-wrap items-center gap-4 text-white/40 text-sm">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-              Built for
-            </span>
-            <span className="text-white/55">{industryRecord.buyerPersona}</span>
-            <span className="text-white/20">·</span>
-            <span className="text-white/55">{industryRecord.conversionFrame}</span>
-          </div>
-        </div>
-      </section>
+            <div className="mt-8 grid gap-5 md:grid-cols-2 max-w-[820px]">
+              {payload.intro.map((p, i) => (
+                <p key={i} className="text-foreground/75 leading-relaxed">
+                  {p}
+                </p>
+              ))}
+            </div>
 
-      {/* When you need this — combined industry + service pain points */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-12 gap-6 mb-12">
-            <div className="col-span-12 md:col-span-4">
-              <div
-                className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-                style={{ color: service.accent }}
-              >
-                — Where {industryRecord.pluralName} get stuck
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-balance">
-                If any of these sound familiar, we should talk.
-              </h2>
-            </div>
-          </div>
-          <ul className="space-y-4 max-w-4xl ml-auto">
-            {payload.combinedPainPoints.map((line, i) => (
-              <li key={i} className="flex items-start gap-4 group">
-                <span
-                  className="mt-2 w-2 h-2 rounded-full shrink-0 transition-transform group-hover:scale-150"
-                  style={{ background: service.accent }}
-                />
-                <span className="text-white/75 text-lg leading-relaxed">{line}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Capabilities — sourced from service, presented as the answer
-          to industry pains */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-12 gap-6 mb-14 md:mb-16">
-            <div className="col-span-12 md:col-span-4">
-              <div
-                className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-                style={{ color: service.accent }}
-              >
-                — How we deliver for {industryRecord.pluralName}
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Capabilities, not promises.
-              </h2>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {service.capabilities.map((c) => (
-              <article
-                key={c.title}
-                className="rounded-2xl border border-white/8 bg-white/[0.015] p-7 hover:border-white/20 transition-colors"
-              >
-                <h3 className="text-xl font-semibold tracking-tight mb-3">{c.title}</h3>
-                <p className="text-white/55 leading-relaxed text-[15px]">{c.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-12 gap-6 mb-14 md:mb-16">
-            <div className="col-span-12 md:col-span-4">
-              <div
-                className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-                style={{ color: service.accent }}
-              >
-                — The 6-week process
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Same cadence. Tailored to {industryRecord.pluralName}.
-              </h2>
-            </div>
-          </div>
-          <div className="space-y-6">
-            {service.process.map((step, i) => (
-              <article
-                key={i}
-                className="grid grid-cols-12 gap-4 md:gap-8 items-start py-8 border-b border-white/5 last:border-0"
-              >
-                <div className="col-span-12 md:col-span-2 font-mono text-[10px] uppercase tracking-[0.4em] text-white/40">
-                  {step.label}
-                </div>
-                <div className="col-span-12 md:col-span-3">
-                  <h3
-                    className="text-2xl md:text-3xl font-semibold tracking-tight"
-                    style={{ color: service.accent }}
-                  >
-                    {step.title}
-                  </h3>
-                </div>
-                <div className="col-span-12 md:col-span-7">
-                  <p className="text-white/65 leading-relaxed text-lg">{step.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Deliverables */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div
-            className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-            style={{ color: service.accent }}
-          >
-            — What you take home
-          </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-12 text-balance">
-            Deliverables.
-          </h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-5 max-w-5xl">
-            {service.deliverables.map((d) => (
-              <li key={d} className="flex items-start gap-3">
-                <Check className="w-5 h-5 shrink-0 mt-1" style={{ color: service.accent }} />
-                <span className="text-white/80 leading-relaxed">{d}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* FAQ — industry + service combined */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-12 gap-6 mb-12 md:mb-16">
-            <div className="col-span-12 md:col-span-4">
-              <div
-                className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-                style={{ color: service.accent }}
-              >
-                — Common questions from {industryRecord.pluralName}
-              </div>
-            </div>
-            <div className="col-span-12 md:col-span-8">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] text-balance">
-                Answered, in plain language.
-              </h2>
-            </div>
-          </div>
-          <div className="space-y-4 md:space-y-5 max-w-4xl">
-            {payload.faqPairs.map((pair, i) => (
-              <details
-                key={i}
-                className="group rounded-2xl border border-white/8 bg-white/[0.015] overflow-hidden"
-              >
-                <summary className="flex items-center justify-between px-6 md:px-8 py-5 md:py-6 cursor-pointer hover:bg-white/[0.02] transition-colors">
-                  <span className="text-lg md:text-xl font-medium tracking-tight pr-4">
-                    {pair.q}
-                  </span>
-                  <span
-                    className="shrink-0 w-2.5 h-2.5 border-r-2 border-b-2 border-white/40 rotate-45 group-open:-rotate-135 group-open:translate-y-1 transition-transform duration-200"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <div className="px-6 md:px-8 pb-6 text-white/65 leading-relaxed">
-                  {pair.a}
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Sibling industries — internal linking layer */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl">
-          <div
-            className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-            style={{ color: service.accent }}
-          >
-            — Also building {service.title.toLowerCase()} for
-          </div>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[0.95] mb-10 text-balance">
-            Other industries we ship for.
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {siblingIndustries.map((ind) => (
+            <div className="mt-9">
               <Link
-                key={ind.slug}
-                href={`/services/${service.slug}/${ind.slug}`}
-                className="group rounded-2xl border border-white/8 bg-white/[0.015] p-5 hover:border-white/25 hover:bg-white/[0.03] transition-colors"
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-full text-white px-7 py-4 font-medium transition-transform hover:scale-[1.02]"
+                style={{ background: a }}
               >
-                <div
-                  className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2"
-                  style={{ color: service.accent }}
-                >
-                  {service.title}
-                </div>
-                <div className="text-base md:text-lg font-semibold tracking-tight group-hover:translate-x-0.5 transition-transform">
-                  For {ind.name}
-                </div>
-                <div className="text-white/45 text-xs mt-2">{ind.shortLabel}</div>
+                Start a project <ArrowRight className="h-4 w-4" />
               </Link>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Other services for this industry — second internal linking layer */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl">
-          <div
-            className="font-mono text-[10px] uppercase tracking-[0.4em] mb-4"
-            style={{ color: service.accent }}
-          >
-            — More services for {industryRecord.pluralName}
+        {/* ---- in one sentence ---- */}
+        <section className="px-5 sm:px-8 py-4">
+          <div className="mx-auto max-w-[1200px]">
+            {/* Definition block — AI-extractable summary anchored to the
+                service × industry pair. Lifts cleanly into ChatGPT or
+                Perplexity answers for "what is <service> for <industry>". */}
+            <div
+              className="max-w-[900px] rounded-2xl border-l-2 pl-6 py-3"
+              style={{ borderColor: a }}
+            >
+              <p className="font-mono text-xs uppercase tracking-[0.14em] mb-3" style={{ color: a }}>
+                In one sentence
+              </p>
+              <p className="text-lg md:text-xl text-foreground/80 leading-relaxed text-pretty">
+                <span className="font-semibold text-foreground">
+                  {service.title} for {industryRecord.pluralName}
+                </span>{" "}
+                is Brandivibe&apos;s {service.tagline.charAt(0).toLowerCase() + service.tagline.slice(1).replace(/\.$/, "")}, shaped around the conversion priorities and day-to-day realities of {industryRecord.shortLabel} — and ready to launch in about 6 weeks.
+              </p>
+            </div>
+
+            {/* Industry signal — quick credibility anchor */}
+            <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
+              <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                Made for
+              </span>
+              <span className="text-foreground/70">{industryRecord.buyerPersona}</span>
+              <span className="text-foreground/25">·</span>
+              <span className="text-foreground/70">{industryRecord.conversionFrame}</span>
+            </div>
           </div>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[0.95] mb-10 text-balance">
-            Other ways we partner with {industryRecord.pluralName}.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {otherServicesForIndustry.map((svc) => (
-              <Link
-                key={svc.slug}
-                href={`/services/${svc.slug}/${industryRecord.slug}`}
-                className="group rounded-2xl border border-white/8 bg-white/[0.015] p-6 md:p-7 hover:border-white/25 transition-colors"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1">
-                    <div
-                      className="font-mono text-[10px] uppercase tracking-[0.3em] mb-2"
-                      style={{ color: svc.accent }}
-                    >
-                      Service · {svc.num}
-                    </div>
-                    <div className="text-xl md:text-2xl font-semibold tracking-tight mb-2">
-                      {svc.title} for {industryRecord.pluralName}
-                    </div>
-                    <p className="text-white/55 text-sm leading-relaxed line-clamp-2">
-                      {svc.tagline}
-                    </p>
+        </section>
+
+        {/* ---- where you get stuck (pain points) ---- */}
+        <section className="px-5 sm:px-8 py-16 mt-6 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[900px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — Where {industryRecord.pluralName} get stuck
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+              If any of these sound familiar, let&apos;s talk.
+            </h2>
+            <ul className="mt-8 space-y-3.5">
+              {payload.combinedPainPoints.map((line, i) => (
+                <li key={i} className="flex items-start gap-3 text-lg text-foreground/80">
+                  <span className="mt-2.5 h-2 w-2 rounded-full shrink-0" style={{ background: a }} />
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ---- capabilities ---- */}
+        <section className="px-5 sm:px-8 py-16">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — How we help {industryRecord.pluralName}
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+              Real capabilities, not promises.
+            </h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {service.capabilities.map((c) => (
+                <div key={c.title} className="card-soft p-6">
+                  <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${a}1f`, color: a }}>
+                    <Check className="h-5 w-5" />
                   </div>
-                  <ArrowRight
-                    className="w-5 h-5 shrink-0 mt-1 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
-                    style={{ color: svc.accent }}
-                  />
+                  <h3 className="mt-4 font-display text-lg font-semibold">{c.title}</h3>
+                  <p className="mt-2 text-foreground/70 text-[0.95rem] leading-relaxed">{c.body}</p>
                 </div>
-              </Link>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <div
-            className="font-mono text-[10px] uppercase tracking-[0.4em] mb-6"
-            style={{ color: service.accent }}
-          >
-            — Ready for {industryRecord.pluralName}
+        {/* ---- process ---- */}
+        <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — The six-week rhythm
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+              The same steady steps, tuned for {industryRecord.pluralName}.
+            </h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {service.process.map((step, i) => (
+                <div key={i} className="card-soft p-6">
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: a }}>{step.label}</span>
+                  <h3 className="mt-3 font-display text-lg font-semibold">{step.title}</h3>
+                  <p className="mt-2 text-foreground/70 text-[0.93rem] leading-relaxed">{step.body}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
-            Built for {industryRecord.pluralName}. Shipped in 6 weeks.
-          </h2>
-          <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">
-            Limited onboarding — 4 slots per month. Book a free strategy call and we&apos;ll come back within 24 hours with a tailored plan for your {industryRecord.shortLabel.toLowerCase()} build.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
-            >
-              Get free strategy call <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/audit"
-              className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white"
-            >
-              Or audit my business →
-            </Link>
+        </section>
+
+        {/* ---- deliverables ---- */}
+        <section className="px-5 sm:px-8 py-14">
+          <div className="mx-auto max-w-[900px] card-soft p-8 md:p-10">
+            <p className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: a }}>
+              — What you take home
+            </p>
+            <h2 className="mt-3 font-display text-2xl md:text-3xl font-semibold tracking-tight">
+              What you&apos;ll walk away with
+            </h2>
+            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+              {service.deliverables.map((d) => (
+                <li key={d} className="flex items-start gap-2.5 text-foreground/80">
+                  <Check className="h-5 w-5 shrink-0 mt-0.5" style={{ color: a }} />
+                  {d}
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+
+        {/* ---- FAQ ---- */}
+        <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[900px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — Questions we hear from {industryRecord.pluralName}
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+              Answered, in plain language.
+            </h2>
+            <div className="mt-8 space-y-3">
+              {payload.faqPairs.map((pair, i) => (
+                <details
+                  key={i}
+                  className="group card-soft overflow-hidden"
+                >
+                  <summary className="flex items-center justify-between gap-4 px-6 md:px-7 py-5 cursor-pointer list-none">
+                    <span className="text-lg font-medium tracking-tight text-foreground pr-2">
+                      {pair.q}
+                    </span>
+                    <span
+                      className="shrink-0 grid h-8 w-8 place-items-center rounded-full text-white transition-transform duration-200 group-open:rotate-45"
+                      style={{ background: a }}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="px-6 md:px-7 pb-6 text-foreground/70 leading-relaxed">
+                    {pair.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- sibling industries ---- */}
+        <section className="px-5 sm:px-8 py-16">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — {service.title} for other industries
+            </p>
+            <h2 className="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight text-balance">
+              We do this for these folks too.
+            </h2>
+            <div className="mt-8 grid gap-4 grid-cols-2 md:grid-cols-4">
+              {siblingIndustries.map((ind) => (
+                <Link
+                  key={ind.slug}
+                  href={`/services/${service.slug}/${ind.slug}`}
+                  className="card-soft lift group p-5"
+                >
+                  <div className="font-mono text-xs uppercase tracking-[0.14em] mb-2" style={{ color: a }}>
+                    {service.title}
+                  </div>
+                  <div className="font-display text-base md:text-lg font-semibold">
+                    For {ind.name}
+                  </div>
+                  <div className="text-foreground/60 text-xs mt-2">{ind.shortLabel}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- other services for this industry ---- */}
+        <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+              — More ways we help {industryRecord.pluralName}
+            </p>
+            <h2 className="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight text-balance">
+              Other things we can do together.
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {otherServicesForIndustry.map((svc) => (
+                <Link
+                  key={svc.slug}
+                  href={`/services/${svc.slug}/${industryRecord.slug}`}
+                  className="card-soft lift group p-6 md:p-7"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <div className="font-mono text-xs uppercase tracking-[0.14em] mb-2" style={{ color: svc.accent }}>
+                        Service · {svc.num}
+                      </div>
+                      <div className="font-display text-xl md:text-2xl font-semibold tracking-tight mb-2">
+                        {svc.title} for {industryRecord.pluralName}
+                      </div>
+                      <p className="text-foreground/65 text-sm leading-relaxed line-clamp-2">
+                        {svc.tagline}
+                      </p>
+                    </div>
+                    <ArrowRight
+                      className="w-5 h-5 shrink-0 mt-1 opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                      style={{ color: svc.accent }}
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ---- cta ---- */}
+        <section className="px-5 sm:px-8 py-20">
+          <div className="mx-auto max-w-[1080px] rounded-[36px] p-10 md:p-16 text-center text-white" style={{ background: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/70">
+              — Ready when you are
+            </p>
+            <h2 className="mt-4 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
+              Made for {industryRecord.pluralName}. Live in about 6 weeks.
+            </h2>
+            <p className="mt-4 text-white/85 max-w-[48ch] mx-auto leading-relaxed">
+              We take on just a handful of new projects each month, so we can give yours real attention. Say hello and we&apos;ll reply within a day with a friendly, tailored plan for your {industryRecord.shortLabel.toLowerCase()} build — no pressure, no jargon.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
+                style={{ color: "#2a231f" }}
+              >
+                Start a project <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/audit"
+                className="font-mono text-xs uppercase tracking-[0.16em] text-white/80 hover:text-white transition-colors"
+              >
+                Or get a free audit →
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      <WarmFooter />
+    </>
   );
 }

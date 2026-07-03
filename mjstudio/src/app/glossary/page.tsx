@@ -3,6 +3,8 @@ import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { glossary, GLOSSARY_CATEGORIES, type GlossaryTerm } from "@/data/glossary";
+import { WarmNav } from "@/components/warm/WarmNav";
+import { WarmFooter } from "@/components/warm/WarmFooter";
 
 export const dynamic = "force-static";
 
@@ -51,121 +53,107 @@ export default function GlossaryHubPage() {
   for (const term of glossary) byCategory[term.category].push(term);
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSetSchema) }}
-      />
+    <>
+      <WarmNav />
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSetSchema) }}
+        />
 
-      <header className="border-b border-white/5 px-6 md:px-10 py-6">
-        <div className="mx-auto max-w-6xl flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors"
-          >
-            Brandivibe
-          </Link>
-          <Link
-            href="/journal"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 hover:text-white"
-          >
-            Journal →
-          </Link>
-        </div>
-      </header>
-
-      {/* Hero */}
-      <section className="relative px-6 md:px-10 py-20 md:py-28 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] max-w-[1200px] h-[500px] rounded-full blur-3xl pointer-events-none opacity-25 bg-[radial-gradient(circle,#84e1ff,transparent_70%)]" />
-        <div className="relative mx-auto max-w-6xl">
-          <div className="font-mono text-xs uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
-            — Glossary
+        {/* ---- hero ---- */}
+        <section className="relative overflow-hidden pt-36 md:pt-40 pb-14 px-5 sm:px-8">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -top-32 right-[-8%] h-[460px] w-[460px] rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(255,106,61,0.28), rgba(255,106,61,0) 68%)" }}
+          />
+          <div className="relative mx-auto max-w-[1200px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Glossary</p>
+            <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-tight text-balance leading-[1.03] max-w-[18ch]">
+              Plain-English answers to the words we use.
+            </h1>
+            <p className="mt-6 text-xl text-foreground/70 max-w-[54ch] leading-relaxed text-pretty">
+              Short, friendly definitions of the things we build — no jargon walls, no fluff. If you&apos;ve ever nodded along to a term and quietly wondered what it meant, start here.
+            </p>
+            <p className="mt-4 text-foreground/65 leading-relaxed max-w-[62ch]">
+              Every entry opens with a one-sentence definition, then walks through why it matters, what it includes, and when a business actually needs it — written to be clear for founders and helpful for AI search engines alike.
+            </p>
           </div>
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-[0.9] text-balance mb-6">
-            Definitions for the categories we build in.
-          </h1>
-          <p className="text-2xl sm:text-[1.7rem] md:text-3xl tracking-tight italic text-white/65 leading-tight max-w-4xl text-balance mb-6">
-            Short, plain-language answers to &quot;what is X&quot; for the terms Brandivibe uses every day.
-          </p>
-          <p className="text-white/55 leading-relaxed max-w-2xl">
-            Each entry leads with a tight one-sentence definition, then explains why it matters, what it includes, and when a business needs it. Written for founders, growth leads, and AI search engines alike.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Glossary by category */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-16 md:py-24 bg-white/[0.01]">
-        <div className="mx-auto max-w-6xl space-y-16 md:space-y-20">
-          {(Object.keys(byCategory) as Array<keyof typeof byCategory>).map((cat) => {
-            const terms = byCategory[cat];
-            if (terms.length === 0) return null;
-            return (
-              <section key={cat}>
-                <div className="grid grid-cols-12 gap-6 mb-10">
-                  <div className="col-span-12 md:col-span-4">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-3 text-[#84e1ff]">
-                      — Category
+        {/* ---- glossary by category ---- */}
+        <section className="px-5 sm:px-8 py-14 md:py-20 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[1200px] space-y-16 md:space-y-20">
+            {(Object.keys(byCategory) as Array<keyof typeof byCategory>).map((cat) => {
+              const terms = byCategory[cat];
+              if (terms.length === 0) return null;
+              return (
+                <section key={cat}>
+                  <div className="grid grid-cols-12 gap-6 md:gap-10">
+                    <div className="col-span-12 md:col-span-4">
+                      <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Category</p>
+                      <h2 className="mt-3 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
+                        {GLOSSARY_CATEGORIES[cat]}
+                      </h2>
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-[0.95] text-balance">
-                      {GLOSSARY_CATEGORIES[cat]}
-                    </h2>
-                  </div>
-                  <div className="col-span-12 md:col-span-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {terms.map((term) => (
-                        <Link
-                          key={term.slug}
-                          href={`/glossary/${term.slug}`}
-                          className="group rounded-2xl border border-white/8 bg-white/[0.015] p-5 hover:border-white/25 hover:bg-white/[0.03] transition-colors"
-                        >
-                          <div className="flex items-start justify-between gap-3 mb-2">
-                            <div className="text-base md:text-lg font-semibold tracking-tight group-hover:translate-x-0.5 transition-transform">
-                              {term.term}
+                    <div className="col-span-12 md:col-span-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {terms.map((term) => (
+                          <Link
+                            key={term.slug}
+                            href={`/glossary/${term.slug}`}
+                            className="card-soft lift group p-5"
+                          >
+                            <div className="flex items-start justify-between gap-3 mb-2">
+                              <div className="font-display text-base md:text-lg font-semibold tracking-tight">
+                                {term.term}
+                              </div>
+                              <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
                             </div>
-                            <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-white/30 group-hover:text-[#84e1ff] group-hover:translate-x-1 transition-all" />
-                          </div>
-                          <p className="text-white/55 text-sm leading-relaxed line-clamp-3">
-                            {term.definition}
-                          </p>
-                        </Link>
-                      ))}
+                            <p className="text-foreground/65 text-sm leading-relaxed line-clamp-3">
+                              {term.definition}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
-            );
-          })}
-        </div>
-      </section>
+                </section>
+              );
+            })}
+          </div>
+        </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/5 px-6 md:px-10 py-20 md:py-28">
-        <div className="mx-auto max-w-4xl text-center">
-          <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-6 text-[#84e1ff]">
-            — Want a system, not a definition?
+        {/* ---- cta ---- */}
+        <section className="px-5 sm:px-8 py-20 md:py-24">
+          <div className="mx-auto max-w-[1080px] rounded-[36px] bg-primary p-10 md:p-16 text-center text-white">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-white/80">— Want the thing, not just the word?</p>
+            <h2 className="mt-5 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
+              Knowing what it is and having it built are two different things.
+            </h2>
+            <p className="mt-5 text-white/85 max-w-[48ch] mx-auto leading-relaxed">
+              We build the real thing behind these words — websites, AI, conversion-ready design — with a small, senior team you can actually talk to. Tell us what you&apos;re after and we&apos;ll help you get there.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/#contact"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-4 font-medium hover:bg-white/90 transition-colors"
+                style={{ color: "#2a231f" }}
+              >
+                Start a project <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/audit"
+                className="font-mono text-xs uppercase tracking-[0.16em] text-white/80 hover:text-white"
+              >
+                Or get a free audit →
+              </Link>
+            </div>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight leading-[0.95] mb-8 text-balance">
-            Knowing what something is isn&apos;t the same as having it built.
-          </h2>
-          <p className="text-white/55 max-w-xl mx-auto mb-10 leading-relaxed">
-            Brandivibe builds the systems these terms describe — premium websites, AI automation, custom AI agents, conversion architecture — for founders shipping in 6 weeks, not 6 months.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
-            >
-              Get free strategy call <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/audit"
-              className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white"
-            >
-              Or audit my business →
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+      <WarmFooter />
+    </>
   );
 }

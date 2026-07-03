@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { loadArticle, getArticle, getArticles } from "@/lib/articles";
+import { WarmNav } from "@/components/warm/WarmNav";
+import { WarmFooter } from "@/components/warm/WarmFooter";
 import "./article.css";
 
 // Pre-render every article at build time so the static-export build can
@@ -119,50 +122,69 @@ export default async function ArticlePage({ params }: Props) {
     : null;
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-white">
+    <>
+      <WarmNav />
       {articleSchema && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
       )}
-      <article className="journal-article mx-auto max-w-3xl px-6 md:px-10 py-24">
-        <header className="mb-12">
-          <div className="font-mono text-xs uppercase tracking-[0.3em] text-[#84e1ff] mb-4">
-            — Brandivibe Journal
-          </div>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-balance mb-6">
-            {frontmatter.title}
-          </h1>
-          <p className="text-white/60 text-lg">{frontmatter.excerpt}</p>
-          <div className="mt-6 font-mono text-[10px] uppercase tracking-[0.25em] text-white/40">
-            {new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </div>
-        </header>
+      <main>
+        <article className="journal-article mx-auto max-w-[760px] px-5 sm:px-8 pt-36 md:pt-40 pb-16">
+          <header className="mb-10">
+            <Link
+              href="/journal"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-[0.16em] text-muted hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" /> The Journal
+            </Link>
+            <h1 className="mt-5 font-display text-4xl md:text-6xl font-semibold tracking-tight text-balance mb-6">
+              {frontmatter.title}
+            </h1>
+            <p className="text-foreground/70 text-lg leading-relaxed text-pretty">
+              {frontmatter.excerpt}
+            </p>
+            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+              {new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
+          </header>
 
-        {frontmatter.heroImage && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={frontmatter.heroImage}
-            alt={frontmatter.title}
-            className="w-full rounded-2xl mb-16 border border-white/10"
+          {frontmatter.heroImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={frontmatter.heroImage}
+              alt={frontmatter.title}
+              className="w-full rounded-2xl mb-14 border border-border"
+            />
+          )}
+
+          <div
+            className="prose max-w-none"
+            dangerouslySetInnerHTML={{ __html: html }}
           />
-        )}
 
-        <div
-          className="prose prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-
-        <footer className="mt-24 pt-8 border-t border-white/10 text-white/40 text-sm flex items-center justify-between">
-          <Link href="/journal" className="hover:text-white">← All journal posts</Link>
-          <Link href="/contact" className="hover:text-white">Work with Brandivibe →</Link>
-        </footer>
-      </article>
-    </main>
+          <footer className="mt-20 pt-8 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
+            <Link
+              href="/journal"
+              className="inline-flex items-center gap-1.5 text-foreground/70 hover:text-foreground transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" /> All journal posts
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 text-primary font-medium hover:text-primary-deep transition-colors"
+            >
+              Work with Brandivibe <ArrowRight className="h-4 w-4" />
+            </Link>
+          </footer>
+        </article>
+      </main>
+      <WarmFooter />
+    </>
   );
 }

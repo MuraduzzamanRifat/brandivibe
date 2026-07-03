@@ -1,59 +1,84 @@
 .journal-article .prose {
   font-size: 1.125rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(42, 35, 31, 0.82);
 }
 .journal-article .prose > * + * { margin-top: 1.25em; }
+.journal-article .prose h1,
+.journal-article .prose h2,
+.journal-article .prose h3 {
+  font-family: var(--font-display), var(--font-geist-sans), serif;
+  color: var(--foreground);
+}
 .journal-article .prose h1 {
   font-size: 2.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   margin-top: 2.5em;
-  color: white;
 }
 .journal-article .prose h2 {
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.015em;
   margin-top: 2em;
-  color: white;
 }
 .journal-article .prose h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-top: 1.75em;
-  color: white;
 }
-.journal-article .prose p { color: rgba(255, 255, 255, 0.75); }
+.journal-article .prose p { color: rgba(42, 35, 31, 0.78); }
 .journal-article .prose a {
-  color: #84e1ff;
+  color: var(--primary);
   text-decoration: underline;
-  text-decoration-color: rgba(132, 225, 255, 0.3);
+  text-decoration-color: rgba(255, 106, 61, 0.35);
   text-underline-offset: 3px;
+  font-weight: 500;
 }
-.journal-article .prose a:hover { text-decoration-color: #84e1ff; }
+.journal-article .prose a:hover {
+  color: var(--primary-deep);
+  text-decoration-color: var(--primary-deep);
+}
 .journal-article .prose ul,
 .journal-article .prose ol { padding-left: 1.5em; }
 .journal-article .prose ul li { list-style: disc; }
 .journal-article .prose ol li { list-style: decimal; }
+.journal-article .prose li::marker { color: var(--primary); }
 .journal-article .prose blockquote {
-  border-left: 2px solid #84e1ff;
+  border-left: 3px solid var(--primary);
   padding-left: 1.25em;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(42, 35, 31, 0.68);
   font-style: italic;
 }
 .journal-article .prose code {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
   padding: 0.1em 0.4em;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.9em;
+  color: var(--primary-deep);
 }
 .journal-article .prose pre {
-  background: #0d0d10;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--foreground);
+  border: 1px solid var(--border-strong);
   padding: 1.25em;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow-x: auto;
+  color: #fbf6ef;
 }
-.journal-article .prose pre code { background: transparent; padding: 0; }
-.journal-article .prose strong { color: white; font-weight: 600; }
+.journal-article .prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+.journal-article .prose strong { color: var(--foreground); font-weight: 600; }
+.journal-article .prose img {
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+.journal-article .prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}

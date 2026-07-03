@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
 import { glossary, getGlossaryTerm } from "@/data/glossary";
+import { WarmNav } from "@/components/warm/WarmNav";
+import { WarmFooter } from "@/components/warm/WarmFooter";
 
 // Fully prerendered at build time — required for `output: "export"`
 // (GitHub Pages). One static HTML page per glossary term.
@@ -131,194 +133,174 @@ export default async function GlossaryTermPage({ params }: Props) {
   };
 
   return (
-    <main className="min-h-screen bg-[#08080a] text-white">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+    <>
+      <WarmNav />
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        />
 
-      <header className="border-b border-white/5 px-6 md:px-10 py-6">
-        <div className="mx-auto max-w-4xl flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors"
-          >
-            Brandivibe
-          </Link>
-          <Link
-            href="/glossary"
-            className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 hover:text-white"
-          >
-            ← All terms
-          </Link>
-        </div>
-      </header>
-
-      {/* Breadcrumb */}
-      <nav
-        aria-label="Breadcrumb"
-        className="px-6 md:px-10 pt-8 mx-auto max-w-4xl"
-      >
-        <ol className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 flex-wrap">
-          <li>
-            <Link href="/" className="hover:text-white">Home</Link>
-          </li>
-          <li className="text-white/20">/</li>
-          <li>
-            <Link href="/glossary" className="hover:text-white">Glossary</Link>
-          </li>
-          <li className="text-white/20">/</li>
-          <li className="text-white/60">{entry.term}</li>
-        </ol>
-      </nav>
-
-      <article className="mx-auto max-w-4xl px-6 md:px-10 py-12 md:py-16">
-        {/* H1 phrased as the question — high AI-extraction signal */}
-        <div className="font-mono text-xs uppercase tracking-[0.4em] mb-5 text-[#84e1ff]">
-          — Glossary · Definition
-        </div>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.05] sm:leading-[0.95] text-balance mb-8">
-          What is {entry.term.toLowerCase()}?
-        </h1>
-
-        {/* Lead definition block — THE line AI lifts. Self-contained,
-            no preamble, no hedging. Mirrors the schema.org description. */}
-        <div className="rounded-2xl border-l-2 border-[#84e1ff] pl-6 py-4 mb-12 bg-white/[0.02]">
-          <div className="font-mono text-[10px] uppercase tracking-[0.3em] mb-3 text-[#84e1ff]">
-            Definition
-          </div>
-          <p className="text-xl md:text-2xl text-white/90 leading-snug text-balance">
-            <span className="font-semibold">{entry.term}</span> is {entry.definition.replace(new RegExp(`^${entry.term}\\s+is\\s+`, "i"), "")}
-          </p>
-          {entry.alsoKnownAs.length > 0 && (
-            <p className="mt-5 text-white/45 text-sm">
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">
-                Also known as:
-              </span>{" "}
-              {entry.alsoKnownAs.join(", ")}
-            </p>
-          )}
-        </div>
-
-        {/* Why it matters */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5">
-            Why it matters
-          </h2>
-          <p className="text-white/70 leading-relaxed text-lg">
-            {entry.whyItMatters}
-          </p>
-        </section>
-
-        {/* Components / What it includes */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5">
-            What {entry.term.toLowerCase()} includes
-          </h2>
-          <ul className="space-y-3">
-            {entry.components.map((c, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <Check className="w-5 h-5 text-[#84e1ff] shrink-0 mt-1" />
-                <span className="text-white/75 leading-relaxed">{c}</span>
+        <article className="mx-auto max-w-[760px] px-5 sm:px-8 pt-36 md:pt-40 pb-12">
+          {/* Breadcrumb */}
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-muted flex-wrap">
+              <li>
+                <Link href="/" className="hover:text-foreground transition-colors">Home</Link>
               </li>
-            ))}
-          </ul>
-        </section>
+              <li className="text-foreground/25">/</li>
+              <li>
+                <Link href="/glossary" className="hover:text-foreground transition-colors">Glossary</Link>
+              </li>
+              <li className="text-foreground/25">/</li>
+              <li className="text-foreground/70">{entry.term}</li>
+            </ol>
+          </nav>
 
-        {/* When it applies */}
-        <section className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5">
-            When a business needs {entry.term.toLowerCase()}
-          </h2>
-          <p className="text-white/70 leading-relaxed text-lg">
-            {entry.whenItApplies}
-          </p>
-        </section>
+          {/* H1 phrased as the question — high AI-extraction signal */}
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Glossary · Definition</p>
+          <h1 className="mt-5 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.05]">
+            What is {entry.term.toLowerCase()}?
+          </h1>
 
-        {/* FAQ */}
-        <section className="mb-16">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">
-            Common questions
-          </h2>
-          <div className="space-y-3">
-            {entry.faqs.map((pair, i) => (
-              <details
-                key={i}
-                className="group rounded-2xl border border-white/8 bg-white/[0.015] overflow-hidden"
-              >
-                <summary className="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-white/[0.02] transition-colors">
-                  <span className="text-lg font-medium tracking-tight pr-4">
-                    {pair.q}
-                  </span>
-                  <span
-                    className="shrink-0 w-2.5 h-2.5 border-r-2 border-b-2 border-white/40 rotate-45 group-open:-rotate-135 group-open:translate-y-1 transition-transform duration-200"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <div className="px-6 pb-6 text-white/65 leading-relaxed">
-                  {pair.a}
-                </div>
-              </details>
-            ))}
-          </div>
-        </section>
-
-        {/* Related terms */}
-        {related.length > 0 && (
-          <section className="mb-16 pt-12 border-t border-white/5">
-            <div className="font-mono text-[10px] uppercase tracking-[0.4em] mb-5 text-[#84e1ff]">
-              — Related terms
+          {/* Lead definition block — THE line AI lifts. Self-contained,
+              no preamble, no hedging. Mirrors the schema.org description. */}
+          <div className="mt-8 card-soft border-l-[3px] border-l-primary p-6 md:p-7">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] mb-3 text-primary">
+              Definition
             </div>
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6">
-              Read next
+            <p className="text-xl md:text-2xl text-foreground leading-snug text-balance">
+              <span className="font-semibold">{entry.term}</span> is {entry.definition.replace(new RegExp(`^${entry.term}\\s+is\\s+`, "i"), "")}
+            </p>
+            {entry.alsoKnownAs.length > 0 && (
+              <p className="mt-5 text-muted text-sm">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">
+                  Also known as:
+                </span>{" "}
+                {entry.alsoKnownAs.join(", ")}
+              </p>
+            )}
+          </div>
+
+          {/* Why it matters */}
+          <section className="mt-12">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
+              Why it matters
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {related.map((r) => (
-                <Link
-                  key={r.slug}
-                  href={`/glossary/${r.slug}`}
-                  className="group rounded-2xl border border-white/8 bg-white/[0.015] p-5 hover:border-white/25 hover:bg-white/[0.03] transition-colors"
+            <p className="mt-5 text-foreground/80 leading-relaxed text-lg">
+              {entry.whyItMatters}
+            </p>
+          </section>
+
+          {/* Components / What it includes */}
+          <section className="mt-12">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
+              What {entry.term.toLowerCase()} includes
+            </h2>
+            <ul className="mt-5 space-y-3.5">
+              {entry.components.map((c, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <span className="text-foreground/80 leading-relaxed">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          {/* When it applies */}
+          <section className="mt-12">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
+              When a business needs {entry.term.toLowerCase()}
+            </h2>
+            <p className="mt-5 text-foreground/80 leading-relaxed text-lg">
+              {entry.whenItApplies}
+            </p>
+          </section>
+
+          {/* FAQ */}
+          <section className="mt-14">
+            <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight mb-6">
+              Common questions
+            </h2>
+            <div className="space-y-3">
+              {entry.faqs.map((pair, i) => (
+                <details
+                  key={i}
+                  className="group card-soft overflow-hidden"
                 >
-                  <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="text-base md:text-lg font-semibold tracking-tight group-hover:translate-x-0.5 transition-transform">
-                      {r.term}
-                    </div>
-                    <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-white/30 group-hover:text-[#84e1ff] group-hover:translate-x-1 transition-all" />
+                  <summary className="flex items-center justify-between px-6 py-5 cursor-pointer hover:bg-surface-2 transition-colors">
+                    <span className="font-display text-lg font-medium tracking-tight pr-4">
+                      {pair.q}
+                    </span>
+                    <span
+                      className="shrink-0 w-2.5 h-2.5 border-r-2 border-b-2 border-foreground/40 rotate-45 group-open:-rotate-135 group-open:translate-y-1 transition-transform duration-200"
+                      aria-hidden="true"
+                    />
+                  </summary>
+                  <div className="px-6 pb-6 text-foreground/70 leading-relaxed">
+                    {pair.a}
                   </div>
-                  <p className="text-white/55 text-sm leading-relaxed line-clamp-2">
-                    {r.definition}
-                  </p>
-                </Link>
+                </details>
               ))}
             </div>
           </section>
-        )}
 
-        {/* CTA */}
-        <section className="mt-16 pt-12 border-t border-white/5 text-center">
-          <p className="text-white/40 text-sm mb-6">
-            Want {entry.term.toLowerCase()} built into your business?
-          </p>
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
-          >
-            Get free strategy call <ArrowRight className="w-4 h-4" />
-          </Link>
-        </section>
-      </article>
-    </main>
+          {/* Related terms */}
+          {related.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-border">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Related terms</p>
+              <h2 className="mt-3 font-display text-2xl md:text-3xl font-semibold tracking-tight mb-6">
+                Read next
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {related.map((r) => (
+                  <Link
+                    key={r.slug}
+                    href={`/glossary/${r.slug}`}
+                    className="card-soft lift group p-5"
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <div className="font-display text-base md:text-lg font-semibold tracking-tight">
+                        {r.term}
+                      </div>
+                      <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                    </div>
+                    <p className="text-foreground/65 text-sm leading-relaxed line-clamp-2">
+                      {r.definition}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* CTA */}
+          <section className="mt-16 pt-12 border-t border-border text-center">
+            <p className="text-muted mb-6">
+              Want {entry.term.toLowerCase()} built into your business? Let&apos;s have a friendly chat.
+            </p>
+            <Link
+              href="/#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+            >
+              Start a project <ArrowRight className="h-4 w-4" />
+            </Link>
+          </section>
+        </article>
+      </main>
+      <WarmFooter />
+    </>
   );
 }
