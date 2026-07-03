@@ -129,3 +129,5 @@ button, a, [role="button"] { cursor: pointer; }
   -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
+
+/* re-trigger pages deploy */
