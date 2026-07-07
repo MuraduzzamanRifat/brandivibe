@@ -56,6 +56,7 @@ export default async function ArticlePage({ params }: Props) {
 
   const { frontmatter, html } = article;
   const meta = await getArticle(slug);
+  const moreArticles = (await getArticles()).filter((a) => a.slug !== slug).slice(0, 3);
 
   // Article schema with Person author — E-E-A-T upgrade for AI search.
   // ChatGPT, Perplexity, and Google AI Overviews weight named individual
@@ -188,6 +189,20 @@ export default async function ArticlePage({ params }: Props) {
           <div className="mt-14">
             <CtaInline text="Enjoying the read? Let's turn these ideas into your next site." />
           </div>
+
+          {moreArticles.length > 0 && (
+            <section className="mt-16 pt-10 border-t border-border">
+              <h2 className="font-display text-2xl font-semibold tracking-tight">More from the journal</h2>
+              <div className="mt-6 grid gap-5 sm:grid-cols-3">
+                {moreArticles.map((a) => (
+                  <Link key={a.slug} href={`/journal/${a.slug}`} className="card-soft lift p-5 block">
+                    <h3 className="font-display text-base font-semibold leading-snug line-clamp-2">{a.title}</h3>
+                    <p className="mt-2 text-foreground/65 text-sm line-clamp-2 leading-relaxed">{a.excerpt}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           <footer className="mt-20 pt-8 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
             <Link
