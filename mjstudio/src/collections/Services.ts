@@ -13,7 +13,10 @@ export const Services: CollectionConfig = {
     read: () => true,
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 1500 },
+    },
+    maxPerDoc: 50,
   },
   fields: [
     {

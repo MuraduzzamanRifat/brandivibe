@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { seoPlugin } from '@payloadcms/plugin-seo'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 
@@ -26,6 +27,7 @@ import { Industries } from './collections/Industries'
 import { Technologies } from './collections/Technologies'
 // Globals
 import { Homepage } from './globals/Homepage'
+import { BrandGuidelines } from './globals/BrandGuidelines'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -68,8 +70,28 @@ export default buildConfig({
     Industries,
     Technologies,
   ],
-  globals: [Homepage],
+  globals: [Homepage, BrandGuidelines],
   plugins: [
+    // Content Studio: SEO panel with Google-preview, character counters, and
+    // one-click auto-generation of titles/descriptions.
+    seoPlugin({
+      collections: ['articles', 'case-studies', 'services'],
+      uploadsCollection: 'media',
+      generateTitle: ({ doc }) => {
+        const d = doc as { title?: string } | undefined
+        return d?.title ? `${d.title} · Brandivibe` : 'Brandivibe'
+      },
+      generateDescription: ({ doc }) => {
+        const d = doc as { excerpt?: string; summary?: string } | undefined
+        return d?.excerpt || d?.summary || ''
+      },
+      generateURL: ({ doc, collectionSlug }) => {
+        const d = doc as { slug?: string } | undefined
+        const base = 'https://brandivibe.com'
+        const path = collectionSlug === 'articles' ? 'journal' : collectionSlug
+        return d?.slug ? `${base}/${path}/${d.slug}` : base
+      },
+    }),
     // Persistent media storage on Vercel Blob (uploads survive deployments).
     // Falls back to local-disk storage in dev when no token is present.
     ...(process.env.BLOB_READ_WRITE_TOKEN

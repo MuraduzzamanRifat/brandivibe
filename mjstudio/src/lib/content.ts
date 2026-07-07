@@ -51,17 +51,105 @@ export function lexicalToParagraphs(value: unknown): string[] {
   return root.children.map((c) => nodeText(c).trim()).filter(Boolean)
 }
 
+const esc = (s: unknown) =>
+  String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/** Embed URL for YouTube/Vimeo links; '' if unrecognized. */
+function videoEmbedSrc(url: string): string {
+  const yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})/)
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}`
+  const vm = url.match(/vimeo\.com\/(\d+)/)
+  if (vm) return `https://player.vimeo.com/video/${vm[1]}`
+  return ''
+}
+
+const CALLOUT_COLORS: Record<string, string> = {
+  info: '#7B6EF6',
+  tip: '#0FA598',
+  warning: '#F5A524',
+  success: '#2FBF71',
+}
+
+type BlockFields = Record<string, unknown>
+
+/** HTML converters for the Content Studio editor blocks (warm design system). */
+const blockConverters = {
+  callout: ({ node }: { node: { fields: BlockFields } }) => {
+    const f = node.fields
+    const color = CALLOUT_COLORS[String(f.style ?? 'info')] ?? CALLOUT_COLORS.info
+    return `<aside style="border-left:4px solid ${color};background:${color}14;border-radius:14px;padding:1rem 1.25rem;margin:1.5rem 0">${
+      f.title ? `<p style="font-weight:600;margin:0 0 .35rem">${esc(f.title)}</p>` : ''
+    }<p style="margin:0">${esc(f.body)}</p></aside>`
+  },
+  cta: ({ node }: { node: { fields: BlockFields } }) => {
+    const f = node.fields
+    return `<div style="background:#fdf3e8;border-radius:20px;padding:1.75rem;margin:2rem 0;text-align:center">${
+      f.heading ? `<p style="font-weight:600;font-size:1.2rem;margin:0 0 .4rem">${esc(f.heading)}</p>` : ''
+    }${f.body ? `<p style="margin:0 0 1rem;color:#6b5f55">${esc(f.body)}</p>` : ''}<a href="${esc(
+      f.buttonHref || '/#contact',
+    )}" style="display:inline-block;background:#ff6a3d;color:#fff;border-radius:999px;padding:.8rem 1.7rem;font-weight:500;text-decoration:none">${esc(
+      f.buttonLabel || 'Book a free call',
+    )}</a></div>`
+  },
+  codeBlock: ({ node }: { node: { fields: BlockFields } }) => {
+    const f = node.fields
+    return `<pre style="background:#2a231f;color:#f7f1ea;border-radius:14px;padding:1.1rem 1.3rem;overflow-x:auto;margin:1.5rem 0"><code class="language-${esc(
+      f.language || 'plaintext',
+    )}">${esc(f.code)}</code></pre>`
+  },
+  videoEmbed: ({ node }: { node: { fields: BlockFields } }) => {
+    const f = node.fields
+    const src = videoEmbedSrc(String(f.url ?? ''))
+    if (!src) return `<p><a href="${esc(f.url)}" target="_blank" rel="noopener noreferrer">${esc(f.caption || f.url)}</a></p>`
+    return `<figure style="margin:1.75rem 0"><div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden"><iframe src="${src}" title="${esc(
+      f.caption || 'Video',
+    )}" style="position:absolute;inset:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>${
+      f.caption ? `<figcaption style="margin-top:.5rem;font-size:.85rem;color:#8a7c70">${esc(f.caption)}</figcaption>` : ''
+    }</figure>`
+  },
+  stats: ({ node }: { node: { fields: BlockFields } }) => {
+    const items = Array.isArray(node.fields.items) ? (node.fields.items as BlockFields[]) : []
+    if (!items.length) return ''
+    return `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.75rem 0">${items
+      .map(
+        (i) =>
+          `<div style="background:#fff;border:1px solid rgba(42,35,31,.1);border-radius:16px;padding:1.1rem;text-align:center"><div style="font-size:1.6rem;font-weight:600;color:#ff6a3d">${esc(
+            i.value,
+          )}</div><div style="font-size:.85rem;color:#8a7c70;margin-top:.2rem">${esc(i.label)}</div></div>`,
+      )
+      .join('')}</div>`
+  },
+  faqBlock: ({ node }: { node: { fields: BlockFields } }) => {
+    const items = Array.isArray(node.fields.items) ? (node.fields.items as BlockFields[]) : []
+    return items
+      .map(
+        (i) =>
+          `<details style="background:#fff;border:1px solid rgba(42,35,31,.1);border-radius:14px;padding: .9rem 1.1rem;margin:.6rem 0"><summary style="font-weight:500;cursor:pointer">${esc(
+            i.question,
+          )}</summary><p style="margin:.6rem 0 0;color:#5d5148">${esc(i.answer)}</p></details>`,
+      )
+      .join('')
+  },
+}
+
 /** Lexical value -> HTML string ('' when empty). Falls back to escaped paragraphs. */
 export function lexicalToHTML(value: unknown): string {
   if (!value) return ''
   try {
-    const html = convertLexicalToHTML({ data: value as never, disableContainer: true })
+    const html = convertLexicalToHTML({
+      data: value as never,
+      disableContainer: true,
+      converters: (({ defaultConverters }: { defaultConverters: Record<string, unknown> }) => ({
+        ...defaultConverters,
+        blocks: blockConverters,
+      })) as never,
+    })
     if (typeof html === 'string' && html.trim()) return html
   } catch {
     /* fall through */
   }
   return lexicalToParagraphs(value)
-    .map((p) => `<p>${p.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`)
+    .map((p) => `<p>${esc(p)}</p>`)
     .join('\n')
 }
 

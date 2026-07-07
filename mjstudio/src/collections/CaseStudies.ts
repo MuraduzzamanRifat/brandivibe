@@ -14,7 +14,10 @@ export const CaseStudies: CollectionConfig = {
     read: () => true,
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 1500 },
+    },
+    maxPerDoc: 50,
   },
   fields: [
     {

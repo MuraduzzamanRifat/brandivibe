@@ -1,6 +1,23 @@
 import type { CollectionConfig } from 'payload'
+import {
+  BlocksFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
+  lexicalEditor,
+} from '@payloadcms/richtext-lexical'
 import { slugField } from '../fields/slugField'
 import { seoField } from '../fields/seoField'
+import { editorBlocks } from '../blocks/editorBlocks'
+
+// Local text extractor (avoids importing lib/content, which would create a
+// circular import back into payload.config).
+type LexNode = { text?: string; children?: LexNode[]; root?: LexNode }
+function lexText(node: LexNode | undefined): string {
+  if (!node) return ''
+  if (typeof node.text === 'string') return node.text
+  if (Array.isArray(node.children)) return node.children.map(lexText).join(' ')
+  return ''
+}
 
 export const Articles: CollectionConfig = {
   slug: 'articles',
@@ -8,12 +25,38 @@ export const Articles: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'author', 'publishedAt'],
     group: 'Content',
+    // Live side-by-side preview while writing (draft-aware).
+    livePreview: {
+      url: ({ data }) =>
+        `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3111'}/journal/${data?.slug ?? ''}?preview=1`,
+    },
   },
   access: {
     read: () => true,
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 1500 }, // Content Studio: auto-save while typing
+    },
+    maxPerDoc: 50,
+  },
+  hooks: {
+    beforeChange: [
+      // Auto-compute word count + reading time from the body.
+      ({ data }) => {
+        try {
+          const root = (data?.content as LexNode | undefined)?.root
+          const words = lexText(root).split(/\s+/).filter(Boolean).length
+          if (words > 0) {
+            data.wordCount = words
+            data.readingTime = Math.max(1, Math.round(words / 220))
+          }
+        } catch {
+          /* leave manual values untouched */
+        }
+        return data
+      },
+    ],
   },
   fields: [
     {
@@ -70,17 +113,68 @@ export const Articles: CollectionConfig = {
     {
       name: 'content',
       type: 'richText',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          FixedToolbarFeature(),
+          EXPERIMENTAL_TableFeature(),
+          BlocksFeature({ blocks: editorBlocks }),
+        ],
+      }),
       admin: {
         description:
-          'The article body. Richer blocks like code, video, and FAQ arrive in a later phase.',
+          'The article body. Use "/" or the + button for blocks: callouts, CTAs, code, video embeds, stats, FAQs, tables.',
+      },
+    },
+    {
+      // Content Studio: keyword research workspace (stored per article).
+      name: 'keywords',
+      type: 'group',
+      admin: {
+        description: 'SEO keyword research for this article.',
+      },
+      fields: [
+        { name: 'focusKeyword', type: 'text', admin: { description: 'The primary keyword this article targets.' } },
+        {
+          name: 'secondaryKeywords',
+          type: 'array',
+          fields: [{ name: 'keyword', type: 'text' }],
+        },
+        {
+          name: 'searchIntent',
+          type: 'select',
+          options: [
+            { label: 'Informational', value: 'informational' },
+            { label: 'Commercial', value: 'commercial' },
+            { label: 'Transactional', value: 'transactional' },
+            { label: 'Navigational', value: 'navigational' },
+          ],
+        },
+        {
+          name: 'competitorUrls',
+          type: 'array',
+          fields: [{ name: 'url', type: 'text' }],
+          admin: { description: 'Top-ranking pages to beat.' },
+        },
+        { name: 'notes', type: 'textarea' },
+      ],
+    },
+    {
+      name: 'wordCount',
+      type: 'number',
+      admin: {
+        description: 'Auto-computed from the body on save.',
+        position: 'sidebar',
+        readOnly: true,
       },
     },
     {
       name: 'readingTime',
       type: 'number',
       admin: {
-        description: 'Estimated minutes; auto-calculation added later',
+        description: 'Minutes — auto-computed from the body on save.',
         position: 'sidebar',
+        readOnly: true,
       },
     },
     {
