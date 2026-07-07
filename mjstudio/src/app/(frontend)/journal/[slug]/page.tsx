@@ -8,23 +8,17 @@ import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaInline } from "@/components/warm/Cta";
 import "./article.css";
 
-// Pre-render every article at build time so the static-export build can
-// generate one HTML file per article — enumerated from src/data/articles.json.
-export const dynamic = "force-static";
-// Required for `output: "export"` — no dynamicParams fallback in a static export.
-export const dynamicParams = false;
+// ISR: article edits/new posts from the admin appear live within 5 minutes,
+// and brand-new slugs render on demand — no redeploy needed.
+export const revalidate = 300;
+export const dynamicParams = true;
 
 export async function generateStaticParams() {
-  let slugs: string[] = [];
   try {
-    slugs = (await getArticles()).map((a) => a.slug);
+    return (await getArticles()).map((a) => ({ slug: a.slug }));
   } catch {
-    slugs = [];
+    return [];
   }
-  // `output: "export"` rejects a dynamic route that yields zero params.
-  // No articles yet (fresh CI build) → one placeholder the page 404s.
-  if (slugs.length === 0) return [{ slug: "__none__" }];
-  return slugs.map((slug) => ({ slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };

@@ -6,7 +6,8 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
 
-export const dynamic = "force-static";
+// ISR: articles published in the admin appear live within 5 minutes.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Journal — Conversion-focused web design + AI automation · Brandivibe",

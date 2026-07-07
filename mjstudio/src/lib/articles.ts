@@ -121,23 +121,27 @@ export async function loadArticle(slug: string): Promise<LoadedArticle | null> {
   const meta = await getArticle(slug)
   if (!meta) return null
 
+  // CMS-first: the article body in Payload is the source of truth (editable in
+  // the admin). Legacy MDX files remain only as a fallback for empty bodies.
   let html = ''
-  try {
-    // Legacy posts: render from intact original Markdown (best fidelity).
-    const raw = await readFile(path.join(CONTENT_DIR, `${slug}.mdx`), 'utf8')
-    const out = await marked.parse(matter(raw).content, { gfm: true, breaks: false })
-    html = typeof out === 'string' ? out : String(out)
-  } catch {
-    // New CMS article (no MDX file): render from the Lexical body.
-    const payload = await client()
-    const res = await payload.find({
-      collection: 'articles',
-      where: { slug: { equals: slug } },
-      limit: 1,
-      depth: 1,
-      overrideAccess: true,
-    })
-    if (res.docs.length) html = lexicalBodyToHTML((res.docs[0] as Record<string, unknown>).content)
+  const payload = await client()
+  const res = await payload.find({
+    collection: 'articles',
+    where: { slug: { equals: slug } },
+    limit: 1,
+    depth: 1,
+    overrideAccess: true,
+  })
+  if (res.docs.length) html = lexicalBodyToHTML((res.docs[0] as Record<string, unknown>).content)
+
+  if (!html.trim()) {
+    try {
+      const raw = await readFile(path.join(CONTENT_DIR, `${slug}.mdx`), 'utf8')
+      const out = await marked.parse(matter(raw).content, { gfm: true, breaks: false })
+      html = typeof out === 'string' ? out : String(out)
+    } catch {
+      /* no fallback file either */
+    }
   }
 
   return {
