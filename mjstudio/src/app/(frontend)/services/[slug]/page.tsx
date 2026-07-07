@@ -3,7 +3,7 @@ import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check } from "lucide-react";
-import { services, pillars, getServicesByPillar } from "@/data/services";
+import { getAllServices, getServiceBySlug, getServicesByPillar, pillars } from "@/lib/content";
 import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
@@ -13,14 +13,15 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+  const all = await getAllServices();
+  return all.map((s) => ({ slug: s.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const service = await getServiceBySlug(slug);
   if (!service) return { title: "Service not found" };
   return {
     title: service.metaTitle,
@@ -38,12 +39,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
   const a = service.accent;
   const pillarSlug = pillars.find((p) => p.title === service.pillar)?.slug ?? "";
-  const siblings = getServicesByPillar(service.pillar).filter((s) => s.slug !== service.slug).slice(0, 3);
+  const siblings = (await getServicesByPillar(service.pillar)).filter((s) => s.slug !== service.slug).slice(0, 3);
 
   return (
     <>

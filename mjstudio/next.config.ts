@@ -1,4 +1,11 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
+
+// Pin the workspace root to THIS project. There's a stray package-lock.json one
+// directory up (H:\VS Code File\) that otherwise makes Turbopack infer the wrong root.
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Dual-mode build:
@@ -24,6 +31,7 @@ const nextConfig: NextConfig = isStaticBuild
       trailingSlash: true,
     }
   : {
+      turbopack: { root: projectRoot },
       async redirects() {
         return [
           {
@@ -41,4 +49,6 @@ const nextConfig: NextConfig = isStaticBuild
       },
     };
 
-export default nextConfig;
+// withPayload mounts the CMS admin + REST/GraphQL API and applies the
+// Next config tweaks Payload needs (server externals, transpilation).
+export default withPayload(nextConfig);

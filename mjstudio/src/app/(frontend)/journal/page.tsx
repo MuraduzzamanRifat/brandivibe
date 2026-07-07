@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function JournalIndex() {
-  const articles = getArticles()
+export default async function JournalIndex() {
+  const articles = (await getArticles())
     .sort(
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()

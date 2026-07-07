@@ -9,17 +9,11 @@ name: Deploy static site to GitHub Pages
 #
 # PREREQUISITE (one-time, done): repo Settings → Pages → Source = "GitHub Actions".
 
+# FROZEN (Brandivibe OS migration): main is now the Payload CMS codebase deployed
+# on Vercel. The push trigger is disabled so this workflow can't attempt a static
+# export of server code. brandivibe.com keeps serving the last successful Pages
+# deploy until the domain is cut over to Vercel. Manual runs remain possible.
 on:
-  push:
-    branches: [main]
-    paths:
-      - "mjstudio/src/**"
-      - "mjstudio/public/**"
-      - "mjstudio/content/**"
-      - "mjstudio/package.json"
-      - "mjstudio/package-lock.json"
-      - "mjstudio/next.config.ts"
-      - ".github/workflows/deploy-static.yml"
   workflow_dispatch:
 
 concurrency:

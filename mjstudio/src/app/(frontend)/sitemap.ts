@@ -13,8 +13,8 @@ const PORTFOLIO_SLUGS = [
   "uturn", "kindred", "ironwood", "terroir", "octane",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const articles = getArticles();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getArticles();
 
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
