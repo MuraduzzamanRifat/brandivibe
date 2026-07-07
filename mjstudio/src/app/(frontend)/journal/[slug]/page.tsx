@@ -17,7 +17,7 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   let slugs: string[] = [];
   try {
-    slugs = getArticles().map((a) => a.slug);
+    slugs = (await getArticles()).map((a) => a.slug);
   } catch {
     slugs = [];
   }
@@ -31,7 +31,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const meta = getArticle(slug);
+  const meta = await getArticle(slug);
   if (!meta) return { title: "Not found" };
   return {
     title: `${meta.title} · Brandivibe Journal`,
@@ -61,7 +61,7 @@ export default async function ArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const { frontmatter, html } = article;
-  const meta = getArticle(slug);
+  const meta = await getArticle(slug);
 
   // Article schema with Person author — E-E-A-T upgrade for AI search.
   // ChatGPT, Perplexity, and Google AI Overviews weight named individual
