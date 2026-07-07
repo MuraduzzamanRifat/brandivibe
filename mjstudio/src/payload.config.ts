@@ -17,6 +17,8 @@ import { Articles } from './collections/Articles'
 import { Categories } from './collections/Categories'
 import { Tags } from './collections/Tags'
 import { FAQs } from './collections/FAQs'
+// Operations
+import { Leads } from './collections/Leads'
 // People & Clients
 import { Authors } from './collections/Authors'
 import { Team } from './collections/Team'
@@ -61,6 +63,8 @@ export default buildConfig({
     Categories,
     Tags,
     FAQs,
+    // Operations
+    Leads,
     // People & Clients
     Authors,
     Team,

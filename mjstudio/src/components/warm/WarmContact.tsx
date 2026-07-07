@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Calendar, Check } from "lucide-react";
 import { pillars } from "@/data/services";
-import { CONTACT_EMAIL, CONTACT_ENDPOINT, WEB3FORMS_KEY, BOOKING_URL } from "@/lib/contact";
+import { CONTACT_EMAIL, BOOKING_URL } from "@/lib/contact";
 import { CTA_REASSURANCE } from "@/lib/cta";
 
 /**
@@ -18,6 +18,7 @@ export function WarmContact() {
   const [company, setCompany] = useState("");
   const [service, setService] = useState("");
   const [message, setMessage] = useState("");
+  const [botField, setBotField] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -27,41 +28,31 @@ export function WarmContact() {
     setSubmitting(true);
     setError(null);
     try {
-      const subject = `New Brandivibe enquiry — ${name}${company ? ` (${company})` : ""}`;
-      if (CONTACT_ENDPOINT) {
-        const payload = {
+      const res = await fetch("/contact/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           name,
           email,
           company,
           service,
           message,
-          subject,
-          ...(WEB3FORMS_KEY ? { access_key: WEB3FORMS_KEY } : {}),
-        };
-        const res = await fetch(CONTACT_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) {
-          const json = await res.json().catch(() => ({}));
-          throw new Error(
-            (json as { message?: string; error?: string }).message ??
-              (json as { error?: string }).error ??
-              "Something went wrong. Please try again."
-          );
-        }
-        setSubmitted(true);
-      } else {
-        // No endpoint configured — never drop the lead: open a prefilled email.
-        const body = encodeURIComponent(
-          `Name: ${name}\nEmail: ${email}\nCompany: ${company || "—"}\nInterested in: ${service || "—"}\n\n${message}`
-        );
-        window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${body}`;
-        setSubmitted(true);
+          website: botField,
+          source: typeof window !== "undefined" ? window.location.pathname : "",
+        }),
+      });
+      if (!res.ok) {
+        const json = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(json.error ?? "Something went wrong. Please try again.");
       }
+      setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      // Never lose a lead — the visible "email us directly" link is the fallback.
+      setError(
+        err instanceof Error
+          ? `${err.message} You can also email us at ${CONTACT_EMAIL}.`
+          : `Something went wrong — please email us at ${CONTACT_EMAIL}.`
+      );
     } finally {
       setSubmitting(false);
     }
@@ -124,6 +115,17 @@ export function WarmContact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* honeypot — hidden from people, bots fill it and get silently dropped */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={botField}
+                onChange={(e) => setBotField(e.target.value)}
+                style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+              />
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="c-name" className={label}>Your name</label>
