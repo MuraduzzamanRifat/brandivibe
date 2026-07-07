@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
-import type { HomepageContent } from "@/lib/content";
+import type { HomepageContent, TestimonialItem } from "@/lib/content";
 import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
 import { WarmContact } from "./WarmContact";
 import { CtaInline } from "./Cta";
@@ -72,9 +72,13 @@ const FALLBACK: HomepageContent = {
   ],
 };
 
-type Props = { content?: HomepageContent; pillarCounts?: Record<string, number> };
+type Props = {
+  content?: HomepageContent;
+  pillarCounts?: Record<string, number>;
+  testimonials?: TestimonialItem[];
+};
 
-export function HomeWarm({ content, pillarCounts = {} }: Props) {
+export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Props) {
   const c = content ?? FALLBACK;
   const reassurance = c.reassurance?.length ? c.reassurance : FALLBACK.reassurance;
   const steps = c.process?.length ? c.process : FALLBACK.process;
@@ -198,6 +202,57 @@ export function HomeWarm({ content, pillarCounts = {} }: Props) {
           </div>
         </div>
       </section>
+
+      {/* ---------- PROOF / TESTIMONIALS (renders only when present) ---------- */}
+      {testimonials.length > 0 && (
+        <section className="px-5 sm:px-8 py-24 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[1200px]">
+            <motion.div {...rise} className="max-w-[46ch]">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— In their words</p>
+              <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
+                Work people are glad they paid for.
+              </h2>
+            </motion.div>
+            <div className="mt-12 grid gap-5 md:grid-cols-3 items-start">
+              {testimonials.map((t, i) => (
+                <motion.figure
+                  key={i}
+                  {...rise}
+                  transition={{ ...rise.transition, delay: (i % 3) * 0.06 }}
+                  className="card-soft p-6 flex flex-col"
+                >
+                  <div className="flex gap-0.5 text-amber">
+                    {Array.from({ length: Math.max(1, Math.min(5, Math.round(t.rating))) }).map((_, s) => (
+                      <Star key={s} className="h-4 w-4 fill-current" strokeWidth={0} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-foreground/80 leading-relaxed text-[0.96rem] flex-1 text-pretty">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-5 flex items-center gap-3">
+                    {t.avatar ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={t.avatar} alt={t.authorName || t.company} className="h-9 w-9 rounded-full object-cover" />
+                    ) : (
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary font-display font-semibold">
+                        {(t.authorName || t.company || "?").charAt(0).toUpperCase()}
+                      </span>
+                    )}
+                    <span>
+                      <span className="block font-medium text-foreground text-sm">{t.authorName || t.company}</span>
+                      {(t.authorRole || (t.authorName && t.company)) && (
+                        <span className="block text-xs text-muted">
+                          {[t.authorRole, t.authorName ? t.company : ""].filter(Boolean).join(" · ")}
+                        </span>
+                      )}
+                    </span>
+                  </figcaption>
+                </motion.figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CtaInline text="Not sure which service fits? Tell us the problem — we'll point you the right way." />
 

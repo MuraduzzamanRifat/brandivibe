@@ -242,6 +242,48 @@ export type IndustryMeta = {
   buyerPersona: string
 }
 
+// ---- Testimonials ---------------------------------------------------------
+export type TestimonialItem = {
+  quote: string
+  authorName: string
+  authorRole: string
+  company: string
+  rating: number
+  avatar: string
+  featured: boolean
+}
+
+export const getTestimonials = cache(async (): Promise<TestimonialItem[]> => {
+  const payload = await client()
+  const res = await payload.find({
+    collection: 'testimonials',
+    limit: 50,
+    depth: 1,
+    sort: '-createdAt',
+    overrideAccess: true,
+  })
+  return res.docs.map((d) => {
+    const doc = d as Record<string, unknown>
+    const c = doc.client
+    return {
+      quote: String(doc.quote ?? ''),
+      authorName: String(doc.authorName ?? ''),
+      authorRole: String(doc.authorRole ?? ''),
+      company: c && typeof c === 'object' ? String((c as { name?: string }).name ?? '') : '',
+      rating: Number(doc.rating ?? 5) || 5,
+      avatar: mediaURL(doc.avatar),
+      featured: Boolean(doc.featured),
+    }
+  })
+})
+
+export async function getFeaturedTestimonials(limit = 3): Promise<TestimonialItem[]> {
+  const all = await getTestimonials()
+  const featured = all.filter((t) => t.featured)
+  const rest = all.filter((t) => !t.featured)
+  return [...featured, ...rest].slice(0, limit) // featured first, then fill
+}
+
 export const getIndustries = cache(async (): Promise<IndustryMeta[]> => {
   const payload = await client()
   const res = await payload.find({
