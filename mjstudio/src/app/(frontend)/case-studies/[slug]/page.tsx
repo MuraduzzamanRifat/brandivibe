@@ -64,15 +64,28 @@ export default async function CaseStudyPage({ params }: Props) {
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: cs.title,
-    description: cs.excerpt,
-    datePublished: cs.publishedAt,
-    author: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
-    publisher: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
-    mainEntityOfPage: { "@type": "WebPage", "@id": `https://brandivibe.com/case-studies/${slug}` },
-    ...(cs.heroImage && { image: { "@type": "ImageObject", url: cs.heroImage } }),
-    articleSection: "Case study",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: cs.title,
+        description: cs.excerpt,
+        datePublished: cs.publishedAt,
+        author: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
+        publisher: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
+        mainEntityOfPage: { "@type": "WebPage", "@id": `https://brandivibe.com/case-studies/${slug}` },
+        ...(cs.heroImage && { image: { "@type": "ImageObject", url: cs.heroImage } }),
+        ...(cs.client && { about: { "@type": "Organization", name: cs.client } }),
+        articleSection: "Case study",
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://brandivibe.com" },
+          { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://brandivibe.com/case-studies" },
+          { "@type": "ListItem", position: 3, name: cs.title, item: `https://brandivibe.com/case-studies/${slug}` },
+        ],
+      },
+    ],
   };
 
   return (
