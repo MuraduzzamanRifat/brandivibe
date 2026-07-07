@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { services } from "@/data/services";
-import { industries } from "@/data/industries";
+import { getIndustries, getAllServices } from "@/lib/content";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 
@@ -22,7 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function IndustriesHubPage() {
+export default async function IndustriesHubPage() {
+  const [industries, services] = await Promise.all([getIndustries(), getAllServices()]);
   // Hub-page schema: signals to AI search this is a navigational
   // overview page that fans out to industry-specific service pages.
   const collectionSchema = {
