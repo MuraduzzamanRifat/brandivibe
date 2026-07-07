@@ -111,3 +111,79 @@ export async function getServicesByPillar(pillarTitle: string): Promise<Service[
   const all = await getAllServices()
   return all.filter((s) => s.pillar === pillarTitle)
 }
+
+/** Number of published services in each pillar — for the nav dropdown + home grid. */
+export const getPillarCounts = cache(async (): Promise<Record<string, number>> => {
+  const all = await getAllServices()
+  const counts: Record<string, number> = {}
+  for (const p of pillars) counts[p.title] = all.filter((s) => s.pillar === p.title).length
+  return counts
+})
+
+// ---- Industries -----------------------------------------------------------
+export type IndustryMeta = {
+  slug: string
+  name: string
+  pluralName: string
+  shortLabel: string
+  intro: string
+  buyerPersona: string
+}
+
+export const getIndustries = cache(async (): Promise<IndustryMeta[]> => {
+  const payload = await client()
+  const res = await payload.find({
+    collection: 'industries',
+    limit: 100,
+    depth: 0,
+    sort: 'order',
+    overrideAccess: true,
+  })
+  return res.docs.map((d) => {
+    const doc = d as Record<string, unknown>
+    return {
+      slug: String(doc.slug ?? ''),
+      name: String(doc.name ?? ''),
+      pluralName: String(doc.pluralName ?? doc.name ?? ''),
+      shortLabel: String(doc.shortLabel ?? ''),
+      intro: String(doc.intro ?? doc.description ?? ''),
+      buyerPersona: String(doc.buyerPersona ?? ''),
+    }
+  })
+})
+
+// ---- Homepage global ------------------------------------------------------
+export type HomepageContent = {
+  heroEyebrow: string
+  heroHeadline: string
+  heroHeadlineAccent: string
+  heroHeadlineTail: string
+  heroSubhead: string
+  reassurance: { title: string; body: string }[]
+  servicesEyebrow: string
+  servicesHeading: string
+  servicesSubhead: string
+  processEyebrow: string
+  processHeading: string
+  process: { number: string; title: string; body: string }[]
+}
+
+export const getHomepage = cache(async (): Promise<HomepageContent> => {
+  const payload = await client()
+  const g = (await payload.findGlobal({ slug: 'homepage', overrideAccess: true })) as Record<string, unknown>
+  const arr = <T = Record<string, unknown>>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : [])
+  return {
+    heroEyebrow: String(g.heroEyebrow ?? ''),
+    heroHeadline: String(g.heroHeadline ?? ''),
+    heroHeadlineAccent: String(g.heroHeadlineAccent ?? ''),
+    heroHeadlineTail: String(g.heroHeadlineTail ?? ''),
+    heroSubhead: String(g.heroSubhead ?? ''),
+    reassurance: arr<{ title?: string; body?: string }>(g.reassurance).map((r) => ({ title: r.title ?? '', body: r.body ?? '' })),
+    servicesEyebrow: String(g.servicesEyebrow ?? ''),
+    servicesHeading: String(g.servicesHeading ?? ''),
+    servicesSubhead: String(g.servicesSubhead ?? ''),
+    processEyebrow: String(g.processEyebrow ?? ''),
+    processHeading: String(g.processHeading ?? ''),
+    process: arr<{ number?: string; title?: string; body?: string }>(g.process).map((s) => ({ number: s.number ?? '', title: s.title ?? '', body: s.body ?? '' })),
+  }
+})

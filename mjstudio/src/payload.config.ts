@@ -23,6 +23,8 @@ import { Testimonials } from './collections/Testimonials'
 // Taxonomy
 import { Industries } from './collections/Industries'
 import { Technologies } from './collections/Technologies'
+// Globals
+import { Homepage } from './globals/Homepage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -65,6 +67,7 @@ export default buildConfig({
     Industries,
     Technologies,
   ],
+  globals: [Homepage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
