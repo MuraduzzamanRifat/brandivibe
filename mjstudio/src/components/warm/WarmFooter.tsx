@@ -4,10 +4,12 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 const COMPANY = [
   { href: "/about", label: "About" },
-  { href: "/case-studies", label: "Work" },
-  { href: "/portfolio", label: "Demos" },
+  { href: "/case-studies", label: "Case Studies" },
+  { href: "/industries", label: "Industries" },
+  { href: "/portfolio", label: "Interactive Demos" },
   { href: "/journal", label: "Journal" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/glossary", label: "Glossary" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function WarmFooter() {

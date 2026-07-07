@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getArticles } from "@/lib/articles";
+import { getCaseStudies } from "@/lib/case-studies";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { glossary } from "@/data/glossary";
 
-// Required for `output: "export"` (GitHub Pages): emit a static sitemap.xml.
-export const dynamic = "force-static";
+// Regenerated periodically so CMS-published articles/case studies appear.
+export const revalidate = 3600;
 
 const SITE = "https://brandivibe.com";
 const PORTFOLIO_SLUGS = [
@@ -15,6 +16,7 @@ const PORTFOLIO_SLUGS = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getArticles();
+  const caseStudies = await getCaseStudies().catch(() => []);
 
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -49,6 +51,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }))
     ),
     { url: `${SITE}/audit`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
+    { url: `${SITE}/contact`, changeFrequency: "monthly", priority: 0.9, lastModified: now },
+    { url: `${SITE}/case-studies`, changeFrequency: "weekly", priority: 0.95, lastModified: now },
+    ...caseStudies.map((c) => ({
+      url: `${SITE}/case-studies/${c.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+      lastModified: c.publishedAt ? new Date(c.publishedAt) : now,
+    })),
     { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9, lastModified: now },
     { url: `${SITE}/poster`, changeFrequency: "monthly", priority: 0.5, lastModified: now },
     ...PORTFOLIO_SLUGS.map((d) => ({
@@ -66,10 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // GitHub Pages serves trailing-slash canonicals (next.config trailingSlash:true).
-  // Emit matching <loc> so the sitemap advertises canonicals, not 301 redirects.
-  return [...staticRoutes, ...articleRoutes].map((entry) => ({
-    ...entry,
-    url: entry.url.endsWith("/") ? entry.url : `${entry.url}/`,
-  }));
+  // Server deployment (Vercel) canonicals are non-trailing-slash — emit URLs
+  // that match the canonical tags exactly, never redirects.
+  return [...staticRoutes, ...articleRoutes];
 }

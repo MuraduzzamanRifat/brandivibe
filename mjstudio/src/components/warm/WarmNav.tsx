@@ -44,7 +44,7 @@ export function WarmNav() {
     >
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8 h-[68px] flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5 group" aria-label="Brandivibe home">
-          <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-white font-display font-semibold text-lg leading-none group-hover:rotate-6 transition-transform">b</span>
+          <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-white font-display font-semibold text-lg leading-none group-hover:rotate-6 transition-transform">b</span>
           <span className="font-display text-[1.35rem] font-semibold tracking-tight text-foreground">Brandivibe</span>
         </Link>
 

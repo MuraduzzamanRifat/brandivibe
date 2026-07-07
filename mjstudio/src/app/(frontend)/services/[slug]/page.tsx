@@ -46,9 +46,40 @@ export default async function ServiceDetailPage({ params }: Props) {
   const pillarSlug = pillars.find((p) => p.title === service.pillar)?.slug ?? "";
   const siblings = (await getServicesByPillar(service.pillar)).filter((s) => s.slug !== service.slug).slice(0, 3);
 
+  // Service + BreadcrumbList schema — declares what this page sells and where
+  // it sits in the site hierarchy (Home > Services > Pillar > Service).
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": `https://brandivibe.com/services/${service.slug}#service`,
+        name: service.title,
+        description: service.summary,
+        serviceType: service.title,
+        provider: { "@id": "https://brandivibe.com/#organization" },
+        areaServed: "Worldwide",
+        url: `https://brandivibe.com/services/${service.slug}`,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://brandivibe.com" },
+          { "@type": "ListItem", position: 2, name: "Services", item: "https://brandivibe.com/services" },
+          { "@type": "ListItem", position: 3, name: service.pillar, item: `https://brandivibe.com/services#${pillarSlug}` },
+          { "@type": "ListItem", position: 4, name: service.title, item: `https://brandivibe.com/services/${service.slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
       <WarmNav />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       {service.faqs && service.faqs.length > 0 && (
         <script
           type="application/ld+json"
@@ -80,8 +111,14 @@ export default async function ServiceDetailPage({ params }: Props) {
             >
               ← {service.pillar}
             </Link>
-            <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] font-semibold tracking-tight text-balance max-w-[15ch]">
-              {service.hook}
+            <h1 className="mt-5 font-display font-semibold tracking-tight text-balance">
+              {/* Keyword-bearing kicker keeps the service entity in the H1 while the warm hook stays the visual lead. */}
+              <span className="block text-lg sm:text-xl font-medium tracking-normal" style={{ color: a }}>
+                {service.title}
+              </span>
+              <span className="block mt-2 text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] max-w-[15ch]">
+                {service.hook}
+              </span>
             </h1>
             <p className="mt-6 text-xl text-foreground/70 max-w-[52ch] leading-relaxed text-pretty">{service.tagline}</p>
             <div className="mt-7 flex flex-wrap gap-2">
@@ -235,10 +272,42 @@ export default async function ServiceDetailPage({ params }: Props) {
           </section>
         )}
 
+        {/* ---- industries we serve (links the industry-specific variants) ---- */}
+        <section className="px-5 sm:px-8 py-10">
+          <div className="mx-auto max-w-[1200px]">
+            <h2 className="font-display text-2xl font-semibold text-foreground/80">
+              {service.title} for your industry
+            </h2>
+            <p className="mt-2 text-foreground/65 max-w-[56ch]">
+              The same senior craft, shaped around how your buyers actually decide.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {[
+                { slug: "saas", name: "SaaS" },
+                { slug: "ecommerce", name: "E-commerce" },
+                { slug: "real-estate", name: "Real Estate" },
+                { slug: "hospitality", name: "Hospitality" },
+                { slug: "fintech", name: "FinTech" },
+                { slug: "web3", name: "Web3" },
+                { slug: "agencies", name: "Agencies" },
+                { slug: "healthcare", name: "Healthcare" },
+              ].map((ind) => (
+                <Link
+                  key={ind.slug}
+                  href={`/services/${service.slug}/${ind.slug}`}
+                  className="rounded-full border border-border bg-surface px-4 py-2 text-sm text-foreground/75 hover:border-foreground/30 transition-colors"
+                >
+                  {service.title} for {ind.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* ---- cta ---- */}
         <CtaBand
           accent={a}
-          title={`Let's talk about your ${service.title.toLowerCase()}.`}
+          title={`Let's talk about your ${service.title} project.`}
           subtitle="A friendly chat, honest advice, and a clear plan. No pressure, no jargon."
         />
       </main>

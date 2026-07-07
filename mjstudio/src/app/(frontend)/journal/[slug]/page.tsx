@@ -116,6 +116,16 @@ export default async function ArticlePage({ params }: Props) {
       }
     : null;
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://brandivibe.com" },
+      { "@type": "ListItem", position: 2, name: "Journal", item: "https://brandivibe.com/journal" },
+      { "@type": "ListItem", position: 3, name: frontmatter.title, item: `https://brandivibe.com/journal/${slug}` },
+    ],
+  };
+
   return (
     <>
       <WarmNav />
@@ -125,6 +135,10 @@ export default async function ArticlePage({ params }: Props) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
       )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <main>
         <article className="journal-article mx-auto max-w-[760px] px-5 sm:px-8 pt-36 md:pt-40 pb-16">
           <header className="mb-10">
@@ -140,12 +154,20 @@ export default async function ArticlePage({ params }: Props) {
             <p className="text-foreground/70 text-lg leading-relaxed text-pretty">
               {frontmatter.excerpt}
             </p>
-            <div className="mt-6 font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
-              {new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+            {/* Visible byline — matches the Person author declared in the Article schema. */}
+            <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <Link href="/about" className="font-medium text-foreground hover:text-primary transition-colors">
+                Muraduzzaman
+              </Link>
+              <span className="text-muted text-sm">Founder &amp; Lead Engineer, Brandivibe</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted">
+                ·{" "}
+                {new Date(frontmatter.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
             </div>
           </header>
 

@@ -49,8 +49,34 @@ function ServiceCard({ s, accent }: { s: Service; accent: string }) {
 
 export default async function ServicesIndexPage() {
   const allServices = await getAllServices();
+
+  // ItemList schema — declares the full service catalog to search/AI engines.
+  const catalogSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://brandivibe.com/services",
+    name: "Brandivibe services",
+    description: `All ${allServices.length} Brandivibe services across six areas: web development, software, digital marketing, creative content, creative design, and AI automation.`,
+    isPartOf: { "@id": "https://brandivibe.com/#website" },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: allServices.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "Service",
+          name: s.title,
+          description: s.summary,
+          url: `https://brandivibe.com/services/${s.slug}`,
+          provider: { "@id": "https://brandivibe.com/#organization" },
+        },
+      })),
+    },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(catalogSchema) }} />
       <WarmNav />
       <main>
         <section className="pt-36 pb-14 px-5 sm:px-8">
@@ -63,6 +89,24 @@ export default async function ServicesIndexPage() {
               From a quick website to a custom platform, a full marketing engine to an AI teammate —
               here&apos;s everything we can help with, grouped into six simple areas.
             </p>
+            {/* Quotable entity summary for answer engines. */}
+            <p className="mt-4 text-foreground/60 max-w-[62ch] leading-relaxed">
+              Brandivibe is a friendly digital studio offering {allServices.length} services across six areas:
+              web development, custom software, digital marketing, creative content, creative design, and AI automation.
+            </p>
+            {/* Jump-link TOC — snippet-friendly list + faster navigation on a long page. */}
+            <nav aria-label="Service areas" className="mt-7 flex flex-wrap gap-2">
+              {pillars.map((p) => (
+                <a
+                  key={p.slug}
+                  href={`#${p.slug}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm text-foreground/75 hover:border-foreground/30 transition-colors"
+                >
+                  <span className="h-2 w-2 rounded-full" style={{ background: p.accent }} />
+                  {p.title}
+                </a>
+              ))}
+            </nav>
           </div>
         </section>
 

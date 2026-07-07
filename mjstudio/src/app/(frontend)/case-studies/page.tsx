@@ -27,8 +27,31 @@ export const metadata: Metadata = {
 
 export default async function CaseStudiesPage() {
   const items = await getCaseStudies();
+
+  // CollectionPage + ItemList — declares the portfolio to search/AI engines.
+  const hubSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://brandivibe.com/case-studies",
+    name: "Brandivibe case studies",
+    description: "Real client projects by Brandivibe — the work, the process, and the results.",
+    isPartOf: { "@id": "https://brandivibe.com/#website" },
+    ...(items.length > 0 && {
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: items.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c.title,
+          url: `https://brandivibe.com/case-studies/${c.slug}`,
+        })),
+      },
+    }),
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(hubSchema) }} />
       <WarmNav />
       <main>
         <section className="pt-36 pb-14 px-5 sm:px-8">

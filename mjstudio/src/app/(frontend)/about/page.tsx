@@ -62,37 +62,35 @@ export default function AboutPage() {
     workLocation: { "@type": "Place", name: "Dhaka, Bangladesh — remote worldwide" },
   };
 
-  // FAQPage schema: helps AI search answer "who is behind Brandivibe"
-  // and "what does Muraduzzaman do" queries.
+  // FAQ content — rendered VISIBLY below and mirrored word-for-word in the
+  // FAQPage schema (schema-only FAQs are a rich-results compliance risk).
+  const ABOUT_FAQS = [
+    {
+      q: "Who runs Brandivibe?",
+      a: "Brandivibe is founded and led by Muraduzzaman, a full-stack engineer based in Dhaka, Bangladesh, working remotely with founders worldwide. He handles strategy, design direction, and engineering for every engagement personally.",
+    },
+    {
+      q: "What does Brandivibe specialize in?",
+      a: "Brandivibe covers six areas — web development (including WebGL and 3D), custom software, digital marketing and SEO, creative content, design, and AI automation — delivered in fixed-scope engagements with one clear price agreed up front.",
+    },
+    {
+      q: "Where is Brandivibe based?",
+      a: "Brandivibe is operated from Dhaka, Bangladesh, working remotely with clients across the US, Canada, UK, EU, and Australia. Engagements run on Zoom, Loom, Slack, and email — no in-person travel required.",
+    },
+    {
+      q: "What happens after the six weeks?",
+      a: "You get a full handover: documentation, a walkthrough of how everything works, and code that any developer can extend. If you'd like ongoing help, care plans cover updates, backups, and small tweaks — and SEO or marketing engagements continue month to month, cancellable any time.",
+    },
+  ];
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Who runs Brandivibe?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Brandivibe is founded and led by Muraduzzaman, a full-stack engineer based in Dhaka, Bangladesh, working remotely with seed-to-Series-B founders worldwide. He handles strategy, design direction, and engineering for every engagement personally.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What does Brandivibe specialize in?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Brandivibe builds premium WebGL websites, AI automation systems, custom AI agents, SEO and AI search optimization, and digital marketing strategy — five services delivered in fixed 6-week engagements for founders who want a system, not a deck.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Where is Brandivibe based?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Brandivibe is operated from Dhaka, Bangladesh, working remotely with clients across the US, Canada, UK, EU, and Australia. Engagements run on Zoom, Loom, Slack, and email — no in-person travel required.",
-        },
-      },
-    ],
+    mainEntity: ABOUT_FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
   };
 
   const SHIPS = [
@@ -233,6 +231,34 @@ export default function AboutPage() {
               <p>
                 Most founders find me through a referral, the Brandivibe portfolio, or the journal. I take four new client slots a month, and the calendar usually books two to three weeks ahead — so if the timing feels right, it&apos;s worth saying hello early.
               </p>
+              <p className="text-foreground/60 text-base">
+                And if I ever miss the mark, the{" "}
+                <Link href="/refund-policy" className="text-primary hover:text-primary-deep underline underline-offset-2">
+                  refund policy
+                </Link>{" "}
+                applies — promises should be accountable, not just words on a page.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ---- FAQ (visible twin of the FAQPage schema) ---- */}
+        <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
+          <div className="mx-auto max-w-[820px]">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Questions founders ask</p>
+            <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
+              The short version, honestly answered.
+            </h2>
+            <div className="mt-8 space-y-3">
+              {ABOUT_FAQS.map((f) => (
+                <details key={f.q} className="card-soft group overflow-hidden p-0">
+                  <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
+                    <span>{f.q}</span>
+                    <span className="font-mono text-xl shrink-0 leading-none text-primary transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
+                </details>
+              ))}
             </div>
           </div>
         </section>

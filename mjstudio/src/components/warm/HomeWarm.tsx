@@ -19,6 +19,31 @@ const rise = {
 // Icons stay in code (mapped by position); copy comes from the CMS.
 const REASSURE_ICONS = [Heart, Clock, KeyRound];
 
+// Honest answers to the questions founders actually ask before contacting an
+// agency — every claim is backed by real site policy, nothing invented.
+const FAQ_ITEMS = [
+  {
+    q: "How much does a project cost?",
+    a: "Every project is quoted to what you actually need — one clear, fixed price agreed before we start. No bloated packages, no retainers you can't cancel, no surprises. A short free call is the quickest way to a real number.",
+  },
+  {
+    q: "How long does a project take?",
+    a: "Most website projects run about six weeks from first conversation to launch. Larger software and marketing engagements are phased — you'll see the timeline in the plan before anything starts.",
+  },
+  {
+    q: "Who will I actually be working with?",
+    a: "The people doing the work — a small, senior team. No juniors learning on your project, no hand-offs, no account-manager layer. You get direct answers from the person building your thing.",
+  },
+  {
+    q: "Do I own what you build?",
+    a: "Yes — completely. Your code, your accounts, your files. We build everything to be yours, so you're never locked in to us or anyone else.",
+  },
+  {
+    q: "What happens after launch?",
+    a: "We ship it properly, show you how everything works, and stick around. Care plans cover updates, backups, security, and small tweaks — and you can always just email a real person.",
+  },
+];
+
 // Fallbacks — used only if the Homepage global returns empty (it ships with
 // these as field defaults, so the page always renders correctly).
 const FALLBACK: HomepageContent = {
@@ -118,7 +143,7 @@ export function HomeWarm({ content, pillarCounts = {} }: Props) {
                 className="card-soft p-6"
               >
                 <Icon className="h-6 w-6 text-primary" strokeWidth={1.75} />
-                <h3 className="mt-4 font-display text-lg font-semibold">{r.title}</h3>
+                <h2 className="mt-4 font-display text-lg font-semibold">{r.title}</h2>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.97rem]">{r.body}</p>
               </motion.div>
             );
@@ -150,6 +175,7 @@ export function HomeWarm({ content, pillarCounts = {} }: Props) {
                     style={{ ["--pa" as string]: p.accent }}
                   >
                     <span
+                      aria-hidden="true"
                       className="grid h-11 w-11 place-items-center rounded-2xl text-white font-display font-semibold"
                       style={{ background: p.accent }}
                     >
@@ -194,6 +220,43 @@ export function HomeWarm({ content, pillarCounts = {} }: Props) {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ---------- FAQ (answer-engine ready) ---------- */}
+      <section className="px-5 sm:px-8 py-24">
+        <div className="mx-auto max-w-[820px]">
+          <motion.div {...rise}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Good questions</p>
+            <h2 className="mt-4 font-display text-4xl md:text-[3rem] font-semibold tracking-tight text-balance">
+              Things people ask before saying hello.
+            </h2>
+          </motion.div>
+          <div className="mt-10 space-y-3">
+            {FAQ_ITEMS.map((f) => (
+              <details key={f.q} className="card-soft group overflow-hidden p-0">
+                <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
+                  <span>{f.q}</span>
+                  <span className="font-mono text-xl shrink-0 leading-none text-primary transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: FAQ_ITEMS.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            }),
+          }}
+        />
       </section>
 
       {/* ---------- CONTACT (real form + booking) ---------- */}

@@ -52,7 +52,7 @@ export function buildServiceIndustryPayload(
   // Hook: industry-aware variant of service.hook. Keeps the persuasive
   // edge from the service hook but anchors the visitor with their
   // industry context immediately.
-  const hook = `${service.hook.replace(/\.$/, "")} For ${industry.pluralName}.`;
+  const hook = `${service.hook.replace(/\.$/, "")} — for ${industry.pluralName}.`;
 
   // Tagline: combines service tagline with industry framing.
   const tagline = `${service.tagline.replace(/\.$/, "")} — engineered for ${industry.pluralName}.`;
@@ -83,16 +83,16 @@ export function buildServiceIndustryPayload(
   // a generic "how long" answer rooted in the service process.
   const faqPairs: ServiceIndustryFaqPair[] = [
     {
-      q: `Why does ${industry.pluralName.toLowerCase().replace(/companies/i, "businesses")} need ${service.title.toLowerCase()} specifically?`,
+      q: `Why do ${industry.pluralName} need ${service.title} specifically?`,
       a: industryFraming,
     },
     ...industry.industryFaqs,
     {
-      q: `How long does a ${service.title.toLowerCase()} engagement take for a ${industry.name.toLowerCase()} brand?`,
-      a: `Six weeks, fixed. ${service.process[0].label}: ${service.process[0].title.toLowerCase()}. ${service.process[1].label}: ${service.process[1].title.toLowerCase()}. The cadence is the same across industries; the strategy and execution are tailored to ${industry.pluralName}.`,
+      q: `How long does a ${service.title} engagement take for a ${industry.name} brand?`,
+      a: `Six weeks, fixed. ${service.process[0].label}: ${service.process[0].title.toLowerCase()}. ${service.process[1].label}: ${service.process[1].title.toLowerCase()}. The strategy, messaging, and execution are built around how ${industry.pluralName} buy.`,
     },
     {
-      q: `What's included in Brandivibe's ${service.title.toLowerCase()} for ${industry.pluralName}?`,
+      q: `What's included in Brandivibe's ${service.title} for ${industry.pluralName}?`,
       a: `Each engagement covers ${service.capabilities
         .slice(0, 3)
         .map((c) => c.title.toLowerCase())
@@ -105,13 +105,15 @@ export function buildServiceIndustryPayload(
   // is more valuable here than truncation aesthetics.
   const metaTitle = `${service.title} for ${industry.pluralName} · Brandivibe`;
 
-  // Meta description: industry-specific outcome + service capability +
-  // proof. Stays under 160 chars to render fully in SERPs.
-  const baseDescription = `Custom ${service.title.toLowerCase()} for ${industry.pluralName}. ${industryFraming}`;
+  // Meta description: industry-specific outcome + service capability.
+  // Always a COMPLETE sentence — never truncated mid-thought (a hanging
+  // ellipsis in SERPs reads as broken templating).
+  const firstFramingSentence = industryFraming.split(/(?<=\.)\s/)[0] ?? industryFraming;
+  const candidate = `Custom ${service.title.toLowerCase()} for ${industry.pluralName}. ${firstFramingSentence}`;
   const metaDescription =
-    baseDescription.length > 160
-      ? baseDescription.slice(0, 157).replace(/\s+\S*$/, "") + "…"
-      : baseDescription;
+    candidate.length <= 160
+      ? candidate
+      : `Custom ${service.title.toLowerCase()} for ${industry.pluralName} — built around how ${industry.name} buyers decide. Fixed six-week engagements, and you own everything.`;
 
   const canonical = `/services/${service.slug}/${industry.slug}`;
 

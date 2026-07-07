@@ -25,20 +25,9 @@ const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
+  title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
   description:
-    "We build conversion-focused AI-powered digital systems that make businesses look premium, rank higher, automate operations, and generate more customers. WebGL websites, SEO, AI automation, marketing strategy, custom AI agents.",
-  keywords: [
-    "WebGL website development",
-    "AI automation systems",
-    "AI agent development",
-    "SEO optimization",
-    "digital marketing strategy",
-    "conversion-focused web design",
-    "AI-powered business automation",
-    "custom AI agents",
-    "lead generation automation",
-  ],
+    "Brandivibe is a friendly digital studio for growing businesses — custom websites, software, digital marketing, creative content, design, and AI automation, under one warm roof. Senior work, honest advice, and you own everything we build.",
   authors: [{ name: "Brandivibe" }],
   creator: "Brandivibe",
   alternates: {
@@ -47,9 +36,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
+    title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
     description:
-      "WebGL websites, SEO, AI automation, marketing strategy, and custom AI agents — built so your business attracts customers and scales revenue while you sleep.",
+      "Websites, software, marketing, content, design, and AI — made by a small, senior team that enjoys the work. Premium quality, none of the corporate coldness.",
     siteName: "Brandivibe",
     images: [
       {
@@ -62,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandivibe — Build a Business That Runs 24/7 With AI Automation",
+    title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
     description:
-      "WebGL sites, AI automation, SEO, marketing, custom AI agents. Stop being manual — your competitors aren't.",
+      "Websites, software, marketing, content, design, and AI — a friendly senior studio for growing businesses. You own everything we build.",
     images: ["/work/helix.jpg"],
   },
   robots: {
@@ -83,21 +72,27 @@ const ORG_SCHEMA = {
       name: "Brandivibe",
       url: "https://brandivibe.com",
       description:
-        "Brandivibe builds conversion-focused AI-powered digital systems. WebGL websites, SEO optimization, AI automation systems, digital marketing strategy, and custom AI agent development for businesses ready to scale revenue without scaling headcount.",
+        "Brandivibe is a friendly digital studio founded in 2024 by Muraduzzaman, based in Dhaka, Bangladesh, working with founders worldwide. Services span web development, custom software, digital marketing, creative content, design, and AI automation — senior work with full client ownership of everything built.",
+      founder: {
+        "@type": "Person",
+        name: "Muraduzzaman",
+        url: "https://brandivibe.com/about",
+        jobTitle: "Founder & Lead Engineer",
+      },
       foundingDate: "2024",
       areaServed: "Worldwide",
       priceRange: "$$",
       knowsAbout: [
-        "WebGL website development",
+        "web development",
         "Next.js development",
-        "SEO optimization",
+        "WebGL and 3D web experiences",
+        "custom software development",
+        "SEO and answer engine optimization",
+        "digital marketing strategy",
+        "creative content and design",
         "AI automation systems",
         "AI agent development",
-        "digital marketing strategy",
         "conversion rate optimization",
-        "lead generation automation",
-        "autonomous content publishing",
-        "customer support AI agents",
       ],
     },
     {
@@ -105,17 +100,9 @@ const ORG_SCHEMA = {
       "@id": "https://brandivibe.com/#website",
       url: "https://brandivibe.com",
       name: "Brandivibe",
-      description: "Build a business that runs 24/7 with AI automation — for founders who want a system that attracts customers, automates operations, and scales revenue while they sleep.",
+      description:
+        "Everything a growing business needs online, under one warm roof — websites, software, marketing, content, design, and AI automation from a friendly senior studio.",
       publisher: { "@id": "https://brandivibe.com/#organization" },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate:
-            "https://brandivibe.com/journal?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
     },
   ],
 };

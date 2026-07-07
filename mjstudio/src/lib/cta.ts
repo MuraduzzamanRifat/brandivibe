@@ -6,7 +6,7 @@
  *  PRIMARY   — the conversion action. Points to the contact/booking section.
  *  SECONDARY — a lower-commitment step for people not ready to talk yet.
  */
-export const PRIMARY_CTA = { label: "Book a free call", href: "/#contact" } as const;
+export const PRIMARY_CTA = { label: "Book a free call", href: "/contact" } as const;
 export const SECONDARY_CTA = { label: "Get a free audit", href: "/audit" } as const;
 
 // Short reassurance line to sit next to conversion buttons.
