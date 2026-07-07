@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check } from "lucide-react";
-import { getAllServices, getServiceBySlug, getServicesByPillar, pillars } from "@/lib/content";
+import { ArrowRight, Check, Star } from "lucide-react";
+import { getAllServices, getServiceBySlug, getServicesByPillar, getFeaturedTestimonials, pillars } from "@/lib/content";
 import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
 
-export const dynamic = "force-static";
 export const dynamicParams = false;
+// ISR so a testimonial added in the admin appears on service pages within 5 min
+// (matches the homepage). Pages are still prebuilt via generateStaticParams.
+export const revalidate = 300;
 
 export async function generateStaticParams() {
   const all = await getAllServices();
@@ -45,6 +47,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const a = service.accent;
   const pillarSlug = pillars.find((p) => p.title === service.pillar)?.slug ?? "";
   const siblings = (await getServicesByPillar(service.pillar)).filter((s) => s.slug !== service.slug).slice(0, 3);
+  const proof = (await getFeaturedTestimonials(1))[0]; // single strongest review, if any
 
   // Service + BreadcrumbList schema — declares what this page sells and where
   // it sits in the site hierarchy (Home > Services > Pillar > Service).
@@ -214,6 +217,31 @@ export default async function ServiceDetailPage({ params }: Props) {
             </ul>
           </div>
         </section>
+
+        {/* ---- proof (one featured review, accent pull-quote — renders only when present) ---- */}
+        {proof && (
+          <section className="px-5 sm:px-8 py-10">
+            <figure
+              className="mx-auto max-w-[900px] rounded-[28px] p-8 md:p-12 text-center"
+              style={{ background: `${a}0f`, border: `1px solid ${a}26` }}
+            >
+              <div className="flex justify-center gap-0.5 mb-5" style={{ color: a }}>
+                {Array.from({ length: Math.max(1, Math.min(5, Math.round(proof.rating))) }).map((_, s) => (
+                  <Star key={s} className="h-4 w-4 fill-current" strokeWidth={0} />
+                ))}
+              </div>
+              <blockquote className="font-display text-2xl md:text-[1.9rem] leading-snug tracking-tight text-balance text-pretty text-foreground">
+                &ldquo;{proof.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-6 text-sm text-muted">
+                <span className="font-medium text-foreground">{proof.authorName || proof.company}</span>
+                {(proof.authorRole || (proof.authorName && proof.company)) && (
+                  <span> · {[proof.authorRole, proof.authorName ? proof.company : ""].filter(Boolean).join(" · ")}</span>
+                )}
+              </figcaption>
+            </figure>
+          </section>
+        )}
 
         {/* ---- how pricing works ---- */}
         <section className="px-5 sm:px-8 py-14">
