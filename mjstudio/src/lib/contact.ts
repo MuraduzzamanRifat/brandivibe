@@ -17,7 +17,7 @@
 //   NEXT_PUBLIC_WEB3FORMS_KEY     Access key — only when using Web3Forms.
 
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "mjrifat54@gmail.com";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "hello@brandivibe.com";
 
 export const CONTACT_ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "";
 

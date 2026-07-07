@@ -82,6 +82,14 @@ const ORG_SCHEMA = {
       foundingDate: "2024",
       areaServed: "Worldwide",
       priceRange: "$$",
+      email: "hello@brandivibe.com",
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "hello@brandivibe.com",
+        contactType: "customer service",
+        areaServed: "Worldwide",
+        availableLanguage: ["English"],
+      },
       knowsAbout: [
         "web development",
         "Next.js development",
