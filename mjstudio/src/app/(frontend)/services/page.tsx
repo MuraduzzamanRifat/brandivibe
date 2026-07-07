@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { OG_IMAGE } from "@/lib/seo";
-import { pillars, getServicesByPillar, type Service } from "@/data/services";
+import { pillars, getAllServices, type Service } from "@/lib/content";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
@@ -47,7 +47,8 @@ function ServiceCard({ s, accent }: { s: Service; accent: string }) {
   );
 }
 
-export default function ServicesIndexPage() {
+export default async function ServicesIndexPage() {
+  const allServices = await getAllServices();
   return (
     <>
       <WarmNav />
@@ -66,7 +67,7 @@ export default function ServicesIndexPage() {
         </section>
 
         {pillars.map((p) => {
-          const list = getServicesByPillar(p.title);
+          const list = allServices.filter((s) => s.pillar === p.title);
           return (
             <section key={p.slug} id={p.slug} className="px-5 sm:px-8 py-14 scroll-mt-24 border-t border-border">
               <div className="mx-auto max-w-[1200px]">
