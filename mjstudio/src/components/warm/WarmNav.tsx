@@ -7,7 +7,7 @@ import { PRIMARY_CTA } from "@/lib/cta";
 import { pillars, getServicesByPillar } from "@/data/services";
 
 const LINKS = [
-  { href: "/portfolio", label: "Work" },
+  { href: "/case-studies", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/journal", label: "Journal" },
 ];

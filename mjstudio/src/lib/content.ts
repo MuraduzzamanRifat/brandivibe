@@ -2,6 +2,7 @@ import 'server-only'
 import { cache } from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 
 /**
  * Payload-backed content layer for server components.
@@ -48,6 +49,29 @@ export function lexicalToParagraphs(value: unknown): string[] {
   const root = (value as LexNode | undefined)?.root
   if (!root?.children) return []
   return root.children.map((c) => nodeText(c).trim()).filter(Boolean)
+}
+
+/** Lexical value -> HTML string ('' when empty). Falls back to escaped paragraphs. */
+export function lexicalToHTML(value: unknown): string {
+  if (!value) return ''
+  try {
+    const html = convertLexicalToHTML({ data: value as never, disableContainer: true })
+    if (typeof html === 'string' && html.trim()) return html
+  } catch {
+    /* fall through */
+  }
+  return lexicalToParagraphs(value)
+    .map((p) => `<p>${p.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`)
+    .join('\n')
+}
+
+/** Extract a usable URL from an upload relation (or '' if none). */
+export function mediaURL(m: unknown): string {
+  if (m && typeof m === 'object' && 'url' in (m as object)) {
+    const u = (m as { url?: string }).url
+    if (typeof u === 'string') return u
+  }
+  return ''
 }
 
 // ---- Payload client (singleton) -------------------------------------------

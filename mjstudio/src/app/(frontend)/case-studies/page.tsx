@@ -7,7 +7,9 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
 
-export const dynamic = "force-static";
+// Revalidate every 5 minutes — case studies published in the admin appear on
+// the live site without a redeploy.
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Our Work & Case Studies · Brandivibe",
@@ -23,8 +25,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CaseStudiesPage() {
-  const items = getCaseStudies();
+export default async function CaseStudiesPage() {
+  const items = await getCaseStudies();
   return (
     <>
       <WarmNav />

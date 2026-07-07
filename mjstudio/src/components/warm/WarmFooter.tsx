@@ -4,7 +4,8 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 const COMPANY = [
   { href: "/about", label: "About" },
-  { href: "/portfolio", label: "Work" },
+  { href: "/case-studies", label: "Work" },
+  { href: "/portfolio", label: "Demos" },
   { href: "/journal", label: "Journal" },
   { href: "/#contact", label: "Contact" },
 ];
