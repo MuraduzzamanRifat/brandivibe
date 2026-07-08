@@ -7,6 +7,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // OpenAI / ChatGPT Browse
@@ -14,6 +15,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // Anthropic / Claude
@@ -21,12 +23,14 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     "User-agent: anthropic-ai",
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // Perplexity
@@ -34,6 +38,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // Google Gemini / Bard
@@ -41,6 +46,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // Common Crawl (trains most LLMs)
@@ -48,6 +54,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     // Cohere
@@ -55,6 +62,7 @@ export function GET() {
     "Allow: /",
     "Disallow: /dashboard",
     "Disallow: /admin",
+    "Allow: /api/media/",
     "Disallow: /api/",
     "",
     "Sitemap: https://brandivibe.com/sitemap.xml",

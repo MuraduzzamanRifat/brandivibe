@@ -83,8 +83,11 @@ export function buildServiceIndustryPayload(
   // a generic "how long" answer rooted in the service process.
   const faqPairs: ServiceIndustryFaqPair[] = [
     {
+      // Phrased independently of `industryFraming` — that sentence already
+      // appears verbatim in intro[1], and repeating it word-for-word on the
+      // same page reads as broken templating (to people and to Google).
       q: `Why do ${industry.pluralName} need ${service.title} specifically?`,
-      a: industryFraming,
+      a: `Because generic ${service.title.toLowerCase()} ignores how ${industry.pluralName} actually evaluate and buy — the conversion moment that matters here is ${industry.conversionFrame.charAt(0).toLowerCase()}${industry.conversionFrame.slice(1)}. We scope the engagement around that from day one, rather than adapting a one-size-fits-all playbook afterwards.`,
     },
     ...industry.industryFaqs,
     {
@@ -100,20 +103,23 @@ export function buildServiceIndustryPayload(
     },
   ];
 
-  // Meta title: long-tail commercial-intent format.
-  // Keep under ~60 chars where possible, but ranking on the long-tail
-  // is more valuable here than truncation aesthetics.
-  const metaTitle = `${service.title} for ${industry.pluralName} · Brandivibe`;
+  // Meta title: long-tail commercial-intent format. Keep within ~60 chars:
+  // the brand suffix is dropped when the keyword phrase alone already fills
+  // the SERP title width (the keyword matters more than the brand there).
+  const baseTitle = `${service.title} for ${industry.pluralName}`;
+  const metaTitle = baseTitle.length <= 47 ? `${baseTitle} · Brandivibe` : baseTitle;
 
   // Meta description: industry-specific outcome + service capability.
   // Always a COMPLETE sentence — never truncated mid-thought (a hanging
   // ellipsis in SERPs reads as broken templating).
-  const firstFramingSentence = industryFraming.split(/(?<=\.)\s/)[0] ?? industryFraming;
-  const candidate = `Custom ${service.title.toLowerCase()} for ${industry.pluralName}. ${firstFramingSentence}`;
+  // Never lowercase service.title here — it mangles acronyms in SERPs
+  // ("Custom seo services…", "Custom crm systems…"). The tagline gives each
+  // service a distinct sentence, so combos don't read as one template.
+  const candidate = `${baseTitle}: ${service.tagline}`;
   const metaDescription =
     candidate.length <= 160
       ? candidate
-      : `Custom ${service.title.toLowerCase()} for ${industry.pluralName} — built around how ${industry.name} buyers decide. Fixed six-week engagements, and you own everything.`;
+      : `${baseTitle} — built around how ${industry.name} buyers decide. Fixed pricing, delivered in about six weeks.`;
 
   const canonical = `/services/${service.slug}/${industry.slug}`;
 

@@ -65,8 +65,26 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 
+/* CSS-driven hero entrance: unlike the framer-motion reveals (which ship
+   opacity:0 in the SSR HTML and stay invisible until ~300KB of JS hydrates),
+   these paint as soon as CSS loads — protecting the homepage LCP and working
+   even with JS disabled. */
+@keyframes warm-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-rise   { animation: warm-rise 0.55s cubic-bezier(0.2, 0.65, 0.3, 1) both; }
+.hero-rise-1 { animation-delay: 0.06s; }
+.hero-rise-2 { animation-delay: 0.12s; }
+.hero-rise-3 { animation-delay: 0.18s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+}
+
 :focus-visible {
-  outline: 2.5px solid var(--primary);
+  /* Ink, not coral: the coral ring was 2.65:1 against the canvas — below the
+     3:1 WCAG minimum for focus indicators. The warm ink passes everywhere. */
+  outline: 2.5px solid var(--foreground);
   outline-offset: 3px;
   border-radius: 6px;
 }

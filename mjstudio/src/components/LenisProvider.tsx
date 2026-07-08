@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { MotionConfig } from "framer-motion";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -26,5 +27,8 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  // reducedMotion="user": every framer-motion animation site-wide collapses
+  // to a simple opacity change when the OS asks for reduced motion — Lenis
+  // already opts out above; this brings the reveals in line with it.
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

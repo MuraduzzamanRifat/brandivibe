@@ -26,8 +26,9 @@ const SITE_URL = "https://brandivibe.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
+  // ≤160 chars so it never truncates in SERPs.
   description:
-    "Brandivibe is a friendly digital studio for growing businesses — custom websites, software, digital marketing, creative content, design, and AI automation, under one warm roof. Senior work, honest advice, and you own everything we build.",
+    "A friendly digital studio for growing businesses — websites, software, marketing, design, and AI automation. Senior work, and you own everything we build.",
   authors: [{ name: "Brandivibe" }],
   creator: "Brandivibe",
   alternates: {
@@ -80,6 +81,11 @@ const ORG_SCHEMA = {
         jobTitle: "Founder & Lead Engineer",
       },
       foundingDate: "2024",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Dhaka",
+        addressCountry: "BD",
+      },
       areaServed: "Worldwide",
       priceRange: "$$",
       email: "hello@brandivibe.com",

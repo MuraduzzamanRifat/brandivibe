@@ -103,7 +103,9 @@ export function WarmContact() {
         {/* right — the form */}
         <div className="card-soft p-6 md:p-8">
           {submitted ? (
-            <div className="py-10 text-center">
+            // role="status" so screen readers announce the confirmation when
+            // the form is replaced by this block.
+            <div className="py-10 text-center" role="status">
               <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary-soft text-primary mb-5">
                 <Check className="h-7 w-7" />
               </div>
@@ -156,7 +158,7 @@ export function WarmContact() {
                 <label htmlFor="c-message" className={label}>A few words about your project</label>
                 <textarea id="c-message" required rows={4} className={`${field} resize-none`} value={message} onChange={(e) => setMessage(e.target.value)} placeholder="What are you hoping to do?" />
               </div>
-              {error && <p className="text-sm text-[#c0392b]">{error}</p>}
+              {error && <p role="alert" className="text-sm text-[#c0392b]">{error}</p>}
               <button
                 type="submit"
                 disabled={submitting}

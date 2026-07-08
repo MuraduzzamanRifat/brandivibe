@@ -32,9 +32,36 @@ export default async function JournalIndex() {
 
   const [featured, ...rest] = articles;
 
+  // Blog + ItemList schema: machine-readable enumeration of every essay for
+  // search engines and AI assistants (mirrors the pattern on /services and
+  // /case-studies).
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "@id": "https://brandivibe.com/journal#blog",
+    name: "The Brandivibe Journal",
+    url: "https://brandivibe.com/journal",
+    description:
+      "Long-form essays on high-conversion websites, AI automation systems, SEO that compounds, and digital marketing strategy.",
+    publisher: { "@id": "https://brandivibe.com/#organization" },
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: articles.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: a.title,
+        url: `https://brandivibe.com/journal/${a.slug}`,
+      })),
+    },
+  };
+
   return (
     <>
       <WarmNav />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <main>
         {/* ---- header ---- */}
         <section className="px-5 sm:px-8 pt-36 md:pt-40 pb-4">

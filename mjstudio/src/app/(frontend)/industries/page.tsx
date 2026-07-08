@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Industries — Brandivibe by vertical",
     description:
-      "Premium digital builds tailored to your industry. 5 services × 8 industries.",
+      "Premium digital builds tailored to your industry — every Brandivibe service, shaped for 8 verticals.",
     url: "/industries",
     type: "website",
   },
@@ -31,11 +31,22 @@ export default async function IndustriesHubPage() {
     "@id": "https://brandivibe.com/industries",
     name: "Industries Brandivibe serves",
     description:
-      "Industries Brandivibe builds for, paired with the 5 services we offer per vertical.",
+      "Industries Brandivibe builds for, paired with the services we offer per vertical.",
     isPartOf: {
       "@type": "WebSite",
       "@id": "https://brandivibe.com/#website",
       name: "Brandivibe",
+    },
+    // Enumerate the verticals so the CollectionPage actually lists its
+    // collection (was an empty shell before).
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: industries.map((ind, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: ind.name,
+        url: `https://brandivibe.com/industries#${ind.slug}`,
+      })),
     },
   };
 
@@ -122,12 +133,12 @@ export default async function IndustriesHubPage() {
                       <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted mb-2">
                         Who we build for
                       </p>
-                      <p className="text-foreground/60 text-sm leading-relaxed">{industry.buyerPersona}</p>
+                      <p className="text-foreground/70 text-sm leading-relaxed">{industry.buyerPersona}</p>
                     </div>
 
                     <div className="col-span-12 md:col-span-8">
                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted mb-4">
-                        Five ways we help {industry.pluralName}
+                        {services.length} ways we help {industry.pluralName}
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {services.map((service) => (

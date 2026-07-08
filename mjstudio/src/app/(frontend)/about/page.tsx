@@ -35,7 +35,8 @@ export default function AboutPage() {
     name: "Muraduzzaman",
     alternateName: "MJ Rifat",
     url: `${SITE}/about`,
-    image: `${SITE}/avatar.png`,
+    // image intentionally omitted until a real founder photo is uploaded —
+    // a 404ing image URL is worse for entity trust than none at all.
     jobTitle: "Founder & Lead Engineer",
     description:
       "Founder of Brandivibe, building premium WebGL websites and AI automation systems for seed-to-Series-B founders.",

@@ -98,26 +98,21 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           style={{ background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)" }}
         />
         <div className="relative mx-auto max-w-[1200px]">
-          <motion.p {...rise} className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+          {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
+              framer-motion — the h1 is the LCP element and must paint before
+              JS hydrates. Below-the-fold sections keep motion.* reveals. */}
+          <p className="hero-rise font-mono text-xs uppercase tracking-[0.18em] text-primary">
             {c.heroEyebrow || FALLBACK.heroEyebrow}
-          </motion.p>
-          <motion.h1
-            {...rise}
-            transition={{ ...rise.transition, delay: 0.06 }}
-            className="mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.02] sm:text-6xl md:text-[4.6rem] max-w-[16ch]"
-          >
+          </p>
+          <h1 className="hero-rise hero-rise-1 mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.02] sm:text-6xl md:text-[4.6rem] max-w-[16ch]">
             {c.heroHeadline || FALLBACK.heroHeadline}
             <span className="gradient-text">{c.heroHeadlineAccent || FALLBACK.heroHeadlineAccent}</span>
             {c.heroHeadlineTail ?? FALLBACK.heroHeadlineTail}
-          </motion.h1>
-          <motion.p
-            {...rise}
-            transition={{ ...rise.transition, delay: 0.12 }}
-            className="mt-7 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-[52ch] text-pretty"
-          >
+          </h1>
+          <p className="hero-rise hero-rise-2 mt-7 text-lg md:text-xl text-foreground/70 leading-relaxed max-w-[52ch] text-pretty">
             {c.heroSubhead || FALLBACK.heroSubhead}
-          </motion.p>
-          <motion.div {...rise} transition={{ ...rise.transition, delay: 0.18 }} className="mt-9 flex flex-wrap gap-3">
+          </p>
+          <div className="hero-rise hero-rise-3 mt-9 flex flex-wrap gap-3">
             <Link
               href={PRIMARY_CTA.href}
               className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors shadow-[0_14px_30px_-12px_rgba(255,106,61,0.6)]"
@@ -130,7 +125,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
             >
               {SECONDARY_CTA.label}
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 

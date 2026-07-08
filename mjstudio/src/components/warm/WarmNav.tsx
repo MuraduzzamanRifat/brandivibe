@@ -106,7 +106,7 @@ export function WarmNav() {
         <div className="flex items-center gap-2">
           <Link
             href={PRIMARY_CTA.href}
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-[0.92rem] font-medium hover:bg-primary transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-3.5 py-2 text-[0.82rem] sm:px-5 sm:py-2.5 sm:text-[0.92rem] font-medium hover:bg-primary transition-colors"
           >
             {PRIMARY_CTA.label}
           </Link>
