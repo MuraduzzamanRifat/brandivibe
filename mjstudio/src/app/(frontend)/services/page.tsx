@@ -81,7 +81,7 @@ export default async function ServicesIndexPage() {
       <main>
         <section className="pt-36 pb-14 px-5 sm:px-8">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— What we do</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— What we do</p>
             <h1 className="mt-4 font-display text-5xl md:text-7xl font-semibold tracking-tight text-balance max-w-[16ch]">
               Everything, under one warm roof.
             </h1>

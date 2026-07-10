@@ -66,7 +66,7 @@ export default async function JournalIndex() {
         {/* ---- header ---- */}
         <section className="px-5 sm:px-8 pt-36 md:pt-40 pb-4">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
               — The Brandivibe Journal
             </p>
             <h1 className="mt-4 font-display text-4xl md:text-6xl font-semibold tracking-tight text-balance max-w-[16ch]">
@@ -117,7 +117,7 @@ export default async function JournalIndex() {
                     </div>
 
                     <div className="p-8 md:p-10">
-                      <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary mb-3">
+                      <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-primary-strong mb-3">
                         Latest ·{" "}
                         {new Date(featured.publishedAt).toLocaleDateString("en-US", {
                           year: "numeric",
@@ -133,7 +133,7 @@ export default async function JournalIndex() {
                       <p className="text-foreground/70 text-base md:text-lg max-w-2xl leading-relaxed line-clamp-2">
                         {featured.excerpt}
                       </p>
-                      <div className="mt-5 inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                      <div className="mt-5 inline-flex items-center gap-2 text-primary-strong font-medium group-hover:gap-3 transition-all">
                         Read the essay <ArrowRight className="h-4 w-4" />
                       </div>
                     </div>
@@ -180,7 +180,7 @@ export default async function JournalIndex() {
                           <p className="text-foreground/65 text-sm line-clamp-3 leading-relaxed">
                             {article.excerpt}
                           </p>
-                          <div className="mt-4 inline-flex items-center gap-1.5 text-primary font-medium text-sm group-hover:gap-2.5 transition-all">
+                          <div className="mt-4 inline-flex items-center gap-1.5 text-primary-strong font-medium text-sm group-hover:gap-2.5 transition-all">
                             Read <ArrowRight className="h-3.5 w-3.5" />
                           </div>
                         </div>

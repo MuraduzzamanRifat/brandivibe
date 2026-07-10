@@ -56,7 +56,7 @@ export default async function CaseStudiesPage() {
       <main>
         <section className="pt-36 pb-14 px-5 sm:px-8">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Our work</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Our work</p>
             <h1 className="mt-4 font-display text-5xl md:text-7xl font-semibold tracking-tight text-balance max-w-[15ch]">
               Real projects, real results.
             </h1>
@@ -76,7 +76,7 @@ export default async function CaseStudiesPage() {
               </p>
               <Link
                 href="/#contact"
-                className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
                 Book a free call <ArrowRight className="h-4 w-4" />
               </Link>
@@ -103,7 +103,7 @@ export default async function CaseStudiesPage() {
                       <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                         {c.metrics.slice(0, 3).map((m) => (
                           <div key={m.label}>
-                            <div className="font-display text-lg font-semibold text-primary">{m.value}</div>
+                            <div className="font-display text-lg font-semibold text-primary-strong">{m.value}</div>
                             <div className="text-[11px] text-muted">{m.label}</div>
                           </div>
                         ))}

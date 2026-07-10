@@ -171,7 +171,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           </nav>
 
           {/* H1 phrased as the question — high AI-extraction signal */}
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Glossary · Definition</p>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Glossary · Definition</p>
           <h1 className="mt-5 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.05]">
             What is {entry.term.toLowerCase()}?
           </h1>
@@ -179,7 +179,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           {/* Lead definition block — THE line AI lifts. Self-contained,
               no preamble, no hedging. Mirrors the schema.org description. */}
           <div className="mt-8 card-soft border-l-[3px] border-l-primary p-6 md:p-7">
-            <div className="font-mono text-[10px] uppercase tracking-[0.18em] mb-3 text-primary">
+            <div className="font-mono text-[10px] uppercase tracking-[0.18em] mb-3 text-primary-strong">
               Definition
             </div>
             <p className="text-xl md:text-2xl text-foreground leading-snug text-balance">
@@ -213,7 +213,7 @@ export default async function GlossaryTermPage({ params }: Props) {
             <ul className="mt-5 space-y-3.5">
               {entry.components.map((c, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <Check className="w-5 h-5 text-primary-strong shrink-0 mt-0.5" />
                   <span className="text-foreground/80 leading-relaxed">{c}</span>
                 </li>
               ))}
@@ -266,7 +266,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           {/* Related terms */}
           {related.length > 0 && (
             <section className="mt-16 pt-12 border-t border-border">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Related terms</p>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Related terms</p>
               <h2 className="mt-3 font-display text-2xl md:text-3xl font-semibold tracking-tight mb-6">
                 Read next
               </h2>
@@ -281,7 +281,7 @@ export default async function GlossaryTermPage({ params }: Props) {
                       <div className="font-display text-base md:text-lg font-semibold tracking-tight">
                         {r.term}
                       </div>
-                      <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                      <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary-strong group-hover:translate-x-1 transition-all" />
                     </div>
                     <p className="text-foreground/65 text-sm leading-relaxed line-clamp-2">
                       {r.definition}

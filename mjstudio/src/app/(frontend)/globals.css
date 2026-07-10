@@ -10,13 +10,14 @@
   --surface: #ffffff;         /* cards */
   --surface-2: #fdf3e8;       /* warm cream tint */
   --foreground: #2a231f;      /* warm charcoal ink */
-  --muted: #8a7c70;           /* warm taupe */
+  --muted: #7c6f65;           /* warm taupe — darkened to clear WCAG AA (4.5:1) on canvas + cards */
   --border: rgba(42, 35, 31, 0.10);
   --border-strong: rgba(42, 35, 31, 0.16);
 
-  --primary: #ff6a3d;         /* friendly coral */
+  --primary: #ff6a3d;         /* friendly coral — for tints, glows, decorative accents */
   --primary-deep: #e8502a;    /* coral pressed/hover */
   --primary-soft: #ffe9e0;    /* coral tint bg */
+  --primary-strong: #d13000;  /* accessible coral — white-text buttons + coral-as-text (5:1 white, 4.7:1 canvas) */
 
   --teal: #0fa598;            /* fresh support */
   --teal-soft: #e2f4f1;
@@ -42,6 +43,7 @@
   --color-primary: var(--primary);
   --color-primary-deep: var(--primary-deep);
   --color-primary-soft: var(--primary-soft);
+  --color-primary-strong: var(--primary-strong);
   --color-teal: var(--teal);
   --color-amber: var(--amber);
   --color-violet: var(--violet);

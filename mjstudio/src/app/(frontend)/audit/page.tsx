@@ -65,7 +65,7 @@ export default function AuditPage() {
             style={{ background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)" }}
           />
           <div className="relative mx-auto max-w-[760px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— A free homepage check-up</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— A free homepage check-up</p>
             <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl font-semibold tracking-tight text-balance">
               See what your homepage is <span className="gradient-text">quietly costing you</span> — in about 90 seconds.
             </h1>
@@ -118,7 +118,7 @@ export default function AuditPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {loading ? "Taking a look…" : "Check my homepage"}
                   {!loading && <ArrowRight className="h-4 w-4" />}
@@ -138,7 +138,7 @@ export default function AuditPage() {
 
             {loading && (
               <div className="mt-10 text-center">
-                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary animate-pulse">
+                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong animate-pulse">
                   Reading your page · Spotting the stack · Making notes
                 </div>
                 <div className="mt-3 text-muted text-sm">This usually takes about 30–60 seconds — hang tight.</div>
@@ -152,7 +152,7 @@ export default function AuditPage() {
           <section className="px-5 sm:px-8 pb-4">
             <div className="mx-auto max-w-[760px] space-y-10">
               <div className="card-soft p-8 md:p-10">
-                <div className="font-mono text-xs uppercase tracking-[0.16em] text-primary mb-4">
+                <div className="font-mono text-xs uppercase tracking-[0.16em] text-primary-strong mb-4">
                   — All done
                 </div>
                 <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-balance">
@@ -173,7 +173,7 @@ export default function AuditPage() {
               </div>
 
               <div>
-                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary mb-5">
+                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong mb-5">
                   — Three things worth fixing first
                 </div>
                 <ul className="space-y-4">
@@ -183,7 +183,7 @@ export default function AuditPage() {
                         {i + 1}. {o.title}
                       </div>
                       <div className="text-foreground/70 text-[0.95rem] leading-relaxed">
-                        <span className="text-primary font-medium">Fix →</span> {o.fix}
+                        <span className="text-primary-strong font-medium">Fix →</span> {o.fix}
                       </div>
                     </li>
                   ))}
@@ -198,7 +198,7 @@ export default function AuditPage() {
 
               {result.weaknesses.length > 0 && (
                 <div>
-                  <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary mb-5">
+                  <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong mb-5">
                     — Everything else we spotted
                   </div>
                   <ol className="space-y-2.5">

@@ -43,7 +43,7 @@ export default function ContactPage() {
       <main>
         <section className="pt-36 pb-8 px-5 sm:px-8">
           <div className="mx-auto max-w-[900px] text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Let&apos;s talk</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Let&apos;s talk</p>
             <h1 className="mt-4 font-display text-5xl md:text-6xl font-semibold tracking-tight text-balance">
               Book your free call.
             </h1>
@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div className="mx-auto max-w-[1000px] grid gap-5 sm:grid-cols-3">
             {STEPS.map((s) => (
               <div key={s.title} className="card-soft p-6 text-left">
-                <s.icon className="h-6 w-6 text-primary" strokeWidth={1.75} />
+                <s.icon className="h-6 w-6 text-primary-strong" strokeWidth={1.75} />
                 <h2 className="mt-4 font-display text-lg font-semibold">{s.title}</h2>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.95rem]">{s.body}</p>
               </div>

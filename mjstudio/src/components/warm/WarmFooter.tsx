@@ -19,7 +19,7 @@ export function WarmFooter() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <Link href="/" className="flex items-center gap-2.5 w-fit">
-              <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-white font-display font-semibold text-lg leading-none">b</span>
+              <span className="grid h-8 w-8 place-items-center rounded-xl bg-primary-strong text-white font-display font-semibold text-lg leading-none">b</span>
               <span className="font-display text-[1.35rem] font-semibold tracking-tight">Brandivibe</span>
             </Link>
             <p className="mt-4 max-w-sm text-foreground/70 leading-relaxed">
@@ -27,7 +27,7 @@ export function WarmFooter() {
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-5 inline-flex items-center gap-2 text-primary font-medium hover:text-primary-deep"
+              className="mt-5 inline-flex items-center gap-2 text-primary-strong font-medium hover:text-primary-deep"
             >
               {CONTACT_EMAIL}
             </a>

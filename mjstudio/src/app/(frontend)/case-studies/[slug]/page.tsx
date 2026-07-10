@@ -46,7 +46,7 @@ function Section({ eyebrow, title, html }: { eyebrow: string; title: string; htm
   return (
     <section className="px-5 sm:px-8 py-10">
       <div className="mx-auto max-w-[760px]">
-        <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary">{eyebrow}</p>
+        <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary-strong">{eyebrow}</p>
         <h2 className="mt-3 font-display text-3xl md:text-4xl font-semibold tracking-tight">{title}</h2>
         <div
           className="prose max-w-none mt-6 text-lg text-foreground/80 leading-relaxed space-y-5"
@@ -107,7 +107,7 @@ export default async function CaseStudyPage({ params }: Props) {
             >
               <ArrowLeft className="h-3.5 w-3.5" /> Our work
             </Link>
-            <div className="mt-5 font-mono text-[11px] uppercase tracking-[0.16em] text-primary">
+            <div className="mt-5 font-mono text-[11px] uppercase tracking-[0.16em] text-primary-strong">
               {[cs.client, cs.industry].filter(Boolean).join(" · ")}
             </div>
             <h1 className="mt-3 font-display text-4xl md:text-6xl font-semibold tracking-tight text-balance">
@@ -135,7 +135,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <div className="mx-auto max-w-[900px] card-soft p-7 md:p-9 grid gap-6 sm:grid-cols-3">
               {cs.metrics.slice(0, 6).map((m) => (
                 <div key={m.label}>
-                  <div className="font-display text-3xl md:text-4xl font-semibold text-primary">{m.value}</div>
+                  <div className="font-display text-3xl md:text-4xl font-semibold text-primary-strong">{m.value}</div>
                   <div className="mt-1 text-sm text-foreground/70">{m.label}</div>
                   {m.note && <div className="mt-0.5 text-xs text-muted">{m.note}</div>}
                 </div>
@@ -165,7 +165,7 @@ export default async function CaseStudyPage({ params }: Props) {
               <ul className="mt-5 space-y-3">
                 {cs.objectives.map((o) => (
                   <li key={o} className="flex items-start gap-2.5 text-foreground/80">
-                    <Check className="h-5 w-5 shrink-0 mt-0.5 text-primary" /> {o}
+                    <Check className="h-5 w-5 shrink-0 mt-0.5 text-primary-strong" /> {o}
                   </li>
                 ))}
               </ul>
@@ -186,7 +186,7 @@ export default async function CaseStudyPage({ params }: Props) {
               <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {cs.timeline.map((t, i) => (
                   <div key={i} className="card-soft p-6">
-                    <span className="font-mono text-xs uppercase tracking-[0.14em] text-primary">{t.duration}</span>
+                    <span className="font-mono text-xs uppercase tracking-[0.14em] text-primary-strong">{t.duration}</span>
                     <h3 className="mt-2.5 font-display text-lg font-semibold">{t.phase}</h3>
                     <p className="mt-2 text-foreground/70 text-[0.93rem] leading-relaxed">{t.detail}</p>
                   </div>
@@ -213,7 +213,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   <figure>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={cs.beforeAfter.afterImage} alt={cs.beforeAfter.afterLabel} className="w-full rounded-2xl border border-border" />
-                    <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-primary">{cs.beforeAfter.afterLabel}</figcaption>
+                    <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-primary-strong">{cs.beforeAfter.afterLabel}</figcaption>
                   </figure>
                 )}
               </div>
@@ -250,7 +250,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   <li key={v.url}>
                     <a href={v.url} target="_blank" rel="noopener noreferrer" className="card-soft lift flex items-center justify-between gap-4 p-5 group">
                       <span className="font-medium text-foreground">{v.title || v.url}</span>
-                      <ArrowRight className="h-4 w-4 text-primary opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
+                      <ArrowRight className="h-4 w-4 text-primary-strong opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" />
                     </a>
                   </li>
                 ))}
@@ -283,7 +283,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 {cs.relatedServices.slice(0, 3).map((s) => (
                   <Link key={s.slug} href={`/services/${s.slug}`} className="card-soft lift p-5">
                     <h3 className="font-display text-lg font-semibold">{s.title}</h3>
-                    <span className="mt-2 inline-flex items-center gap-1.5 text-sm text-primary font-medium">
+                    <span className="mt-2 inline-flex items-center gap-1.5 text-sm text-primary-strong font-medium">
                       Explore <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </Link>

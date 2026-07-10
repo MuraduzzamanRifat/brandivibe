@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { PRIMARY_CTA, SECONDARY_CTA, CTA_REASSURANCE } from "@/lib/cta";
+import { accentInk } from "@/lib/accent";
 
 /**
  * Standardized CTA surfaces used across every page so the primary/secondary
@@ -21,14 +22,17 @@ export function CtaBand({
   return (
     <section className="px-5 sm:px-8 py-20">
       <div
+        // Ink background (not the bright accent) so white text clears WCAG AA
+        // (~5:1). accentInk maps a passed pillar accent to its accessible ink;
+        // the default falls back to the accessible coral token.
         className="mx-auto max-w-[1080px] rounded-[36px] p-10 md:p-16 text-center text-white"
-        style={{ background: accent ?? "var(--primary)" }}
+        style={{ background: accent ? accentInk(accent) : "var(--primary-strong)" }}
       >
         <h2 className="font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[20ch] mx-auto">
           {title}
         </h2>
         {subtitle && (
-          <p className="mt-4 text-white/85 max-w-[46ch] mx-auto leading-relaxed">{subtitle}</p>
+          <p className="mt-4 text-white/90 max-w-[46ch] mx-auto leading-relaxed">{subtitle}</p>
         )}
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
@@ -45,7 +49,7 @@ export function CtaBand({
             {SECONDARY_CTA.label} →
           </Link>
         </div>
-        <p className="mt-6 text-xs text-white/70">{CTA_REASSURANCE}</p>
+        <p className="mt-6 text-xs text-white/90">{CTA_REASSURANCE}</p>
       </div>
     </section>
   );
@@ -61,13 +65,13 @@ export function CtaInline({ text }: { text?: string }) {
         <div className="flex flex-wrap justify-center gap-3 shrink-0">
           <Link
             href={PRIMARY_CTA.href}
-            className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-6 py-3 font-medium hover:bg-primary-deep transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-6 py-3 font-medium hover:bg-primary-deep transition-colors"
           >
             {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href={SECONDARY_CTA.href}
-            className="inline-flex items-center rounded-full border border-border-strong bg-surface px-6 py-3 font-medium hover:border-primary hover:text-primary transition-colors"
+            className="inline-flex items-center rounded-full border border-border-strong bg-surface px-6 py-3 font-medium hover:border-primary hover:text-primary-strong transition-colors"
           >
             {SECONDARY_CTA.label}
           </Link>

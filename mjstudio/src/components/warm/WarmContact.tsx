@@ -67,7 +67,7 @@ export function WarmContact() {
       <div className="mx-auto max-w-[1100px] grid gap-12 lg:grid-cols-[1fr_1.1fr] items-start">
         {/* left — the pitch + booking */}
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Let&apos;s talk</p>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Let&apos;s talk</p>
           <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
             Tell us what you&apos;re thinking about.
           </h2>
@@ -78,7 +78,7 @@ export function WarmContact() {
           <ul className="mt-7 space-y-3">
             {CTA_REASSURANCE.split(" · ").map((r) => (
               <li key={r} className="flex items-center gap-2.5 text-foreground/75">
-                <Check className="h-5 w-5 text-primary shrink-0" /> {r}
+                <Check className="h-5 w-5 text-primary-strong shrink-0" /> {r}
               </li>
             ))}
           </ul>
@@ -87,14 +87,14 @@ export function WarmContact() {
               href={BOOKING_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-6 py-3.5 font-medium text-foreground hover:border-primary hover:text-primary transition-colors"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-border-strong bg-surface px-6 py-3.5 font-medium text-foreground hover:border-primary hover:text-primary-strong transition-colors"
             >
               <Calendar className="h-4 w-4" /> Prefer a quick call? Book a time
             </a>
           )}
           <p className="mt-6 text-sm text-muted">
             Or email us directly at{" "}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary hover:text-primary-deep">
+            <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-strong hover:text-primary-deep">
               {CONTACT_EMAIL}
             </a>
           </p>
@@ -106,7 +106,7 @@ export function WarmContact() {
             // role="status" so screen readers announce the confirmation when
             // the form is replaced by this block.
             <div className="py-10 text-center" role="status">
-              <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary-soft text-primary mb-5">
+              <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary-soft text-primary-strong mb-5">
                 <Check className="h-7 w-7" />
               </div>
               <h3 className="font-display text-2xl font-semibold">Message on its way — thank you.</h3>
@@ -162,7 +162,7 @@ export function WarmContact() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors disabled:opacity-60"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors disabled:opacity-60"
               >
                 {submitting ? "Sending…" : "Send message"}
                 {!submitting && <ArrowRight className="h-4 w-4" />}

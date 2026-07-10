@@ -35,7 +35,7 @@ export default function DemosPage() {
             style={{ background: "radial-gradient(circle, rgba(255,106,61,0.26), transparent 68%)" }}
           />
           <div className="relative mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Our work</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Our work</p>
             <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] font-semibold tracking-tight text-balance max-w-[16ch]">
               A few things we&apos;ve loved building.
             </h1>
@@ -120,7 +120,7 @@ export default function DemosPage() {
                     </div>
 
                     <div className="p-6 md:p-7 flex flex-col">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary mb-3">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary-strong mb-3">
                         {d.category}
                       </p>
                       <h2 className="font-display text-2xl md:text-[1.7rem] font-semibold tracking-tight">

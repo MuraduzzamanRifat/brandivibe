@@ -44,7 +44,7 @@ export function WarmNav() {
     >
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8 h-[68px] flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5 group" aria-label="Brandivibe home">
-          <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-xl bg-primary text-white font-display font-semibold text-lg leading-none group-hover:rotate-6 transition-transform">b</span>
+          <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-xl bg-primary-strong text-white font-display font-semibold text-lg leading-none group-hover:rotate-6 transition-transform">b</span>
           <span className="font-display text-[1.35rem] font-semibold tracking-tight text-foreground">Brandivibe</span>
         </Link>
 
@@ -84,7 +84,7 @@ export function WarmNav() {
                       </span>
                     </Link>
                   ))}
-                  <Link href="/services" className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl py-2.5 text-sm font-medium text-primary hover:bg-primary-soft transition-colors">
+                  <Link href="/services" className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl py-2.5 text-sm font-medium text-primary-strong hover:bg-primary-soft transition-colors">
                     View all services →
                   </Link>
                 </div>
@@ -150,7 +150,7 @@ export function WarmNav() {
             <Link
               href={PRIMARY_CTA.href}
               onClick={() => setOpen(false)}
-              className="mt-6 inline-flex justify-center items-center rounded-full bg-primary text-white px-6 py-4 text-lg font-medium"
+              className="mt-6 inline-flex justify-center items-center rounded-full bg-primary-strong text-white px-6 py-4 text-lg font-medium"
             >
               {PRIMARY_CTA.label}
             </Link>

@@ -70,7 +70,7 @@ export default function GlossaryHubPage() {
             style={{ background: "radial-gradient(circle, rgba(255,106,61,0.28), rgba(255,106,61,0) 68%)" }}
           />
           <div className="relative mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Glossary</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Glossary</p>
             <h1 className="mt-5 font-display text-4xl md:text-5xl lg:text-[3.6rem] font-semibold tracking-tight text-balance leading-[1.03] max-w-[18ch]">
               Plain-English answers to the words we use.
             </h1>
@@ -93,7 +93,7 @@ export default function GlossaryHubPage() {
                 <section key={cat}>
                   <div className="grid grid-cols-12 gap-6 md:gap-10">
                     <div className="col-span-12 md:col-span-4">
-                      <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Category</p>
+                      <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Category</p>
                       <h2 className="mt-3 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
                         {GLOSSARY_CATEGORIES[cat]}
                       </h2>
@@ -110,7 +110,7 @@ export default function GlossaryHubPage() {
                               <div className="font-display text-base md:text-lg font-semibold tracking-tight">
                                 {term.term}
                               </div>
-                              <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                              <ArrowRight className="w-4 h-4 shrink-0 mt-1 text-muted group-hover:text-primary-strong group-hover:translate-x-1 transition-all" />
                             </div>
                             <p className="text-foreground/65 text-sm leading-relaxed line-clamp-3">
                               {term.definition}

@@ -71,7 +71,7 @@ export default async function IndustriesHubPage() {
             style={{ background: "radial-gradient(circle, rgba(15,165,152,0.20), rgba(15,165,152,0) 70%)" }}
           />
           <div className="relative mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
               — Made for your world
             </p>
             <h1 className="mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] max-w-[16ch]">
@@ -83,7 +83,7 @@ export default async function IndustriesHubPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
                 Start a project <ArrowRight className="h-4 w-4" />
               </Link>
@@ -104,7 +104,7 @@ export default async function IndustriesHubPage() {
         <section className="px-5 sm:px-8 py-14">
           <div className="mx-auto max-w-[1200px]">
             <div className="max-w-[52ch]">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Eight industries</p>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Eight industries</p>
               <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
                 Find the one closest to home.
               </h2>
@@ -178,7 +178,7 @@ export default async function IndustriesHubPage() {
         {/* ---- cta ---- */}
         <section className="px-5 sm:px-8 py-20">
           <div className="mx-auto max-w-[1080px] rounded-[36px] bg-foreground text-background p-10 md:p-16 text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
               — Don&apos;t see yours?
             </p>
             <h2 className="mt-5 font-display text-3xl md:text-[3rem] font-semibold tracking-tight text-balance max-w-[18ch] mx-auto">
@@ -190,7 +190,7 @@ export default async function IndustriesHubPage() {
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
                 Start a project <ArrowRight className="h-4 w-4" />
               </Link>

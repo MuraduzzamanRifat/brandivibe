@@ -11,6 +11,7 @@ import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
+import { accentInk } from "@/lib/accent";
 
 // Prebuilt via generateStaticParams (the service × industry matrix), then
 // ISR: revalidate=300 lets a testimonial added in the admin appear here
@@ -57,7 +58,8 @@ export default async function ServiceForIndustryPage({ params }: Props) {
   if (!service || !industryRecord) notFound();
 
   const payload = buildServiceIndustryPayload(service, industryRecord);
-  const a = service.accent;
+  const a = service.accent; // bright accent — glows, tints, decorative fills
+  const ink = accentInk(a); // accessible variant — white-text buttons + accent-as-text
 
   // Sibling industries for this service — internal linking layer.
   // Helps Google crawl the cluster and signals topical breadth.
@@ -116,7 +118,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               </ol>
             </nav>
 
-            <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — {service.title} · for {industryRecord.pluralName}
             </p>
             <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] font-semibold tracking-tight text-balance max-w-[16ch]">
@@ -138,7 +140,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               <Link
                 href={PRIMARY_CTA.href}
                 className="inline-flex items-center gap-2 rounded-full text-white px-7 py-4 font-medium transition-transform hover:scale-[1.02]"
-                style={{ background: a }}
+                style={{ background: ink }}
               >
                 {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -156,7 +158,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               className="max-w-[900px] rounded-2xl border-l-2 pl-6 py-3"
               style={{ borderColor: a }}
             >
-              <p className="font-mono text-xs uppercase tracking-[0.14em] mb-3" style={{ color: a }}>
+              <p className="font-mono text-xs uppercase tracking-[0.14em] mb-3" style={{ color: ink }}>
                 In one sentence
               </p>
               <p className="text-lg md:text-xl text-foreground/80 leading-relaxed text-pretty">
@@ -182,7 +184,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- where you get stuck (pain points) ---- */}
         <section className="px-5 sm:px-8 py-16 mt-6 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[900px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — Where {industryRecord.pluralName} get stuck
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
@@ -202,7 +204,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- capabilities ---- */}
         <section className="px-5 sm:px-8 py-16">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — How we help {industryRecord.pluralName}
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
@@ -211,7 +213,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {service.capabilities.map((c) => (
                 <div key={c.title} className="card-soft p-6">
-                  <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${a}1f`, color: a }}>
+                  <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${a}1f`, color: ink }}>
                     <Check className="h-5 w-5" />
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold">{c.title}</h3>
@@ -227,7 +229,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- process ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — The six-week rhythm
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
@@ -236,7 +238,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {service.process.map((step, i) => (
                 <div key={i} className="card-soft p-6">
-                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: a }}>{step.label}</span>
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: ink }}>{step.label}</span>
                   <h3 className="mt-3 font-display text-lg font-semibold">{step.title}</h3>
                   <p className="mt-2 text-foreground/70 text-[0.93rem] leading-relaxed">{step.body}</p>
                 </div>
@@ -248,7 +250,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- deliverables ---- */}
         <section className="px-5 sm:px-8 py-14">
           <div className="mx-auto max-w-[900px] card-soft p-8 md:p-10">
-            <p className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: ink }}>
               — What you take home
             </p>
             <h2 className="mt-3 font-display text-2xl md:text-3xl font-semibold tracking-tight">
@@ -257,7 +259,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-2.5 text-foreground/80">
-                  <Check className="h-5 w-5 shrink-0 mt-0.5" style={{ color: a }} />
+                  <Check className="h-5 w-5 shrink-0 mt-0.5" style={{ color: ink }} />
                   {d}
                 </li>
               ))}
@@ -272,7 +274,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
               className="mx-auto max-w-[900px] rounded-[28px] p-8 md:p-12 text-center"
               style={{ background: `${a}0f`, border: `1px solid ${a}26` }}
             >
-              <div className="flex justify-center gap-0.5 mb-5" style={{ color: a }}>
+              <div className="flex justify-center gap-0.5 mb-5" style={{ color: ink }}>
                 {Array.from({ length: Math.max(1, Math.min(5, Math.round(proof.rating))) }).map((_, s) => (
                   <Star key={s} className="h-4 w-4 fill-current" strokeWidth={0} />
                 ))}
@@ -293,7 +295,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- FAQ ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[900px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — Questions we hear from {industryRecord.pluralName}
             </p>
             <h2 className="mt-4 font-display text-3xl md:text-4xl font-semibold tracking-tight text-balance">
@@ -311,7 +313,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
                     </span>
                     <span
                       className="shrink-0 grid h-8 w-8 place-items-center rounded-full text-white transition-transform duration-200 group-open:rotate-45"
-                      style={{ background: a }}
+                      style={{ background: ink }}
                       aria-hidden="true"
                     >
                       +
@@ -329,7 +331,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- sibling industries ---- */}
         <section className="px-5 sm:px-8 py-16">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — {service.title} for other industries
             </p>
             <h2 className="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight text-balance">
@@ -342,7 +344,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
                   href={`/services/${service.slug}/${ind.slug}`}
                   className="card-soft lift group p-5"
                 >
-                  <div className="font-mono text-xs uppercase tracking-[0.14em] mb-2" style={{ color: a }}>
+                  <div className="font-mono text-xs uppercase tracking-[0.14em] mb-2" style={{ color: ink }}>
                     {service.title}
                   </div>
                   <div className="font-display text-base md:text-lg font-semibold">
@@ -358,7 +360,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
         {/* ---- other services for this industry ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: a }}>
+            <p className="font-mono text-xs uppercase tracking-[0.18em]" style={{ color: ink }}>
               — More ways we help {industryRecord.pluralName}
             </p>
             <h2 className="mt-4 font-display text-2xl md:text-3xl font-semibold tracking-tight text-balance">

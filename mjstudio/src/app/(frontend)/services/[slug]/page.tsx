@@ -8,6 +8,7 @@ import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
+import { accentInk } from "@/lib/accent";
 
 export const dynamicParams = false;
 // ISR so a testimonial added in the admin appears on service pages within 5 min
@@ -44,7 +45,8 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = await getServiceBySlug(slug);
   if (!service) notFound();
 
-  const a = service.accent;
+  const a = service.accent; // bright accent — glows, tints, decorative fills
+  const ink = accentInk(a); // accessible variant — white-text buttons + accent-as-text
   const pillarSlug = pillars.find((p) => p.title === service.pillar)?.slug ?? "";
   const siblings = (await getServicesByPillar(service.pillar)).filter((s) => s.slug !== service.slug).slice(0, 3);
   const proof = (await getFeaturedTestimonials(1))[0]; // single strongest review, if any
@@ -116,7 +118,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </Link>
             <h1 className="mt-5 font-display font-semibold tracking-tight text-balance">
               {/* Keyword-bearing kicker keeps the service entity in the H1 while the warm hook stays the visual lead. */}
-              <span className="block text-lg sm:text-xl font-medium tracking-normal" style={{ color: a }}>
+              <span className="block text-lg sm:text-xl font-medium tracking-normal" style={{ color: ink }}>
                 {service.title}
               </span>
               <span className="block mt-2 text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.2rem] max-w-[15ch]">
@@ -135,7 +137,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Link
                 href={PRIMARY_CTA.href}
                 className="inline-flex items-center gap-2 rounded-full text-white px-7 py-4 font-medium transition-transform hover:scale-[1.02]"
-                style={{ background: a }}
+                style={{ background: ink }}
               >
                 {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -159,7 +161,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {service.capabilities.map((c) => (
                 <div key={c.title} className="card-soft p-6">
-                  <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${a}1f`, color: a }}>
+                  <div className="grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${a}1f`, color: ink }}>
                     <Check className="h-5 w-5" />
                   </div>
                   <h3 className="mt-4 font-display text-lg font-semibold">{c.title}</h3>
@@ -194,7 +196,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {service.process.map((step) => (
                 <div key={step.title} className="card-soft p-6">
-                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: a }}>{step.label}</span>
+                  <span className="font-mono text-xs uppercase tracking-[0.14em]" style={{ color: ink }}>{step.label}</span>
                   <h3 className="mt-3 font-display text-lg font-semibold">{step.title}</h3>
                   <p className="mt-2 text-foreground/70 text-[0.93rem] leading-relaxed">{step.body}</p>
                 </div>
@@ -210,7 +212,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <ul className="mt-6 grid gap-3 sm:grid-cols-2">
               {service.deliverables.map((d) => (
                 <li key={d} className="flex items-start gap-2.5 text-foreground/80">
-                  <Check className="h-5 w-5 shrink-0 mt-0.5" style={{ color: a }} />
+                  <Check className="h-5 w-5 shrink-0 mt-0.5" style={{ color: ink }} />
                   {d}
                 </li>
               ))}
@@ -225,7 +227,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               className="mx-auto max-w-[900px] rounded-[28px] p-8 md:p-12 text-center"
               style={{ background: `${a}0f`, border: `1px solid ${a}26` }}
             >
-              <div className="flex justify-center gap-0.5 mb-5" style={{ color: a }}>
+              <div className="flex justify-center gap-0.5 mb-5" style={{ color: ink }}>
                 {Array.from({ length: Math.max(1, Math.min(5, Math.round(proof.rating))) }).map((_, s) => (
                   <Star key={s} className="h-4 w-4 fill-current" strokeWidth={0} />
                 ))}
@@ -246,7 +248,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         {/* ---- how pricing works ---- */}
         <section className="px-5 sm:px-8 py-14">
           <div className="mx-auto max-w-[900px] rounded-[28px] p-8 md:p-10" style={{ background: `${a}12` }}>
-            <p className="font-mono text-xs uppercase tracking-[0.16em] mb-3" style={{ color: a }}>How pricing works</p>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] mb-3" style={{ color: ink }}>How pricing works</p>
             <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">Clear, fixed pricing — no surprises.</h2>
             <p className="mt-4 text-lg text-foreground/75 leading-relaxed max-w-[62ch]">
               Every project is quoted to what you actually need — no bloated packages, no monthly
@@ -256,7 +258,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <Link
               href={PRIMARY_CTA.href}
               className="mt-6 inline-flex items-center gap-2 rounded-full text-white px-6 py-3 font-medium transition-transform hover:scale-[1.02]"
-              style={{ background: a }}
+              style={{ background: ink }}
             >
               {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -273,7 +275,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   <details key={f.q} className="card-soft group overflow-hidden p-0">
                     <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
                       <span>{f.q}</span>
-                      <span className="font-mono text-xl shrink-0 leading-none transition-transform group-open:rotate-45" style={{ color: a }}>+</span>
+                      <span className="font-mono text-xl shrink-0 leading-none transition-transform group-open:rotate-45" style={{ color: ink }}>+</span>
                     </summary>
                     <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
                   </details>

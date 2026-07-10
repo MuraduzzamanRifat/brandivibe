@@ -101,7 +101,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
               framer-motion — the h1 is the LCP element and must paint before
               JS hydrates. Below-the-fold sections keep motion.* reveals. */}
-          <p className="hero-rise font-mono text-xs uppercase tracking-[0.18em] text-primary">
+          <p className="hero-rise font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
             {c.heroEyebrow || FALLBACK.heroEyebrow}
           </p>
           <h1 className="hero-rise hero-rise-1 mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.02] sm:text-6xl md:text-[4.6rem] max-w-[16ch]">
@@ -115,7 +115,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           <div className="hero-rise hero-rise-3 mt-9 flex flex-wrap gap-3">
             <Link
               href={PRIMARY_CTA.href}
-              className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors shadow-[0_14px_30px_-12px_rgba(255,106,61,0.6)]"
+              className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors shadow-[0_14px_30px_-12px_rgba(255,106,61,0.6)]"
             >
               {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
             </Link>
@@ -141,7 +141,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                 transition={{ ...rise.transition, delay: i * 0.06 }}
                 className="card-soft p-6"
               >
-                <Icon className="h-6 w-6 text-primary" strokeWidth={1.75} />
+                <Icon className="h-6 w-6 text-primary-strong" strokeWidth={1.75} />
                 <h2 className="mt-4 font-display text-lg font-semibold">{r.title}</h2>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.97rem]">{r.body}</p>
               </motion.div>
@@ -154,7 +154,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
       <section id="services" className="px-5 sm:px-8 py-24 md:py-32">
         <div className="mx-auto max-w-[1200px]">
           <motion.div {...rise} className="max-w-[46ch]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{c.servicesEyebrow || FALLBACK.servicesEyebrow}</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">{c.servicesEyebrow || FALLBACK.servicesEyebrow}</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
               {c.servicesHeading || FALLBACK.servicesHeading}
             </h2>
@@ -203,7 +203,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
         <section className="px-5 sm:px-8 py-24 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[1200px]">
             <motion.div {...rise} className="max-w-[46ch]">
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— In their words</p>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— In their words</p>
               <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
                 Work people are glad they paid for.
               </h2>
@@ -229,7 +229,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={t.avatar} alt={t.authorName || t.company} className="h-9 w-9 rounded-full object-cover" />
                     ) : (
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary font-display font-semibold">
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary-strong font-display font-semibold">
                         {(t.authorName || t.company || "?").charAt(0).toUpperCase()}
                       </span>
                     )}
@@ -255,7 +255,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
       <section className="px-5 sm:px-8 py-24 md:py-28 bg-surface-2 border-y border-border">
         <div className="mx-auto max-w-[1200px]">
           <motion.div {...rise} className="max-w-[46ch]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{c.processEyebrow || FALLBACK.processEyebrow}</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">{c.processEyebrow || FALLBACK.processEyebrow}</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
               {c.processHeading || FALLBACK.processHeading}
             </h2>
@@ -263,7 +263,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <motion.div key={s.number || i} {...rise} transition={{ ...rise.transition, delay: (i % 4) * 0.06 }} className="card-soft p-6">
-                <span className="font-mono text-sm font-semibold text-primary">{s.number}</span>
+                <span className="font-mono text-sm font-semibold text-primary-strong">{s.number}</span>
                 <h3 className="mt-3 font-display text-xl font-semibold">{s.title}</h3>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.95rem]">{s.body}</p>
               </motion.div>
@@ -276,7 +276,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
       <section className="px-5 sm:px-8 py-24">
         <div className="mx-auto max-w-[820px]">
           <motion.div {...rise}>
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Good questions</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Good questions</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3rem] font-semibold tracking-tight text-balance">
               Things people ask before saying hello.
             </h2>
@@ -286,7 +286,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
               <details key={f.q} className="card-soft group overflow-hidden p-0">
                 <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
                   <span>{f.q}</span>
-                  <span className="font-mono text-xl shrink-0 leading-none text-primary transition-transform group-open:rotate-45">+</span>
+                  <span className="font-mono text-xl shrink-0 leading-none text-primary-strong transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
               </details>

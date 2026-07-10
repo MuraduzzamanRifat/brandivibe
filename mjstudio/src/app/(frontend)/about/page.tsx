@@ -148,7 +148,7 @@ export default function AboutPage() {
             style={{ background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)" }}
           />
           <div className="relative mx-auto max-w-[1200px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Say hello</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Say hello</p>
             <h1 className="mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.03] sm:text-6xl md:text-[4.4rem] max-w-[15ch]">
               Hi, I&apos;m Muraduzzaman — the person behind Brandivibe.
             </h1>
@@ -158,7 +158,7 @@ export default function AboutPage() {
             <div className="mt-9">
               <Link
                 href={PRIMARY_CTA.href}
-                className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors"
               >
                 {PRIMARY_CTA.label} <ArrowRight className="h-4 w-4" />
               </Link>
@@ -169,7 +169,7 @@ export default function AboutPage() {
         {/* ---- story / what I do ---- */}
         <section className="px-5 sm:px-8 py-10">
           <div className="mx-auto max-w-[760px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— What I do</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— What I do</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
               One person, the whole stack, no hand-offs.
             </h2>
@@ -193,7 +193,7 @@ export default function AboutPage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {SHIPS.map((s) => (
                 <div key={s.n} className="card-soft p-6">
-                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-primary">{s.n}</span>
+                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-primary-strong">{s.n}</span>
                   <h3 className="mt-3 font-display text-lg font-semibold">{s.title}</h3>
                   <p className="mt-2 text-foreground/70 text-[0.95rem] leading-relaxed">{s.body}</p>
                 </div>
@@ -205,7 +205,7 @@ export default function AboutPage() {
         {/* ---- where I work ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[760px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Where I work</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Where I work</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
               Dhaka-based, working with founders worldwide.
             </h2>
@@ -218,7 +218,7 @@ export default function AboutPage() {
         {/* ---- what I'm known for ---- */}
         <section className="px-5 sm:px-8 py-16">
           <div className="mx-auto max-w-[760px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— How I like to work</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— How I like to work</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
               Two promises I actually keep.
             </h2>
@@ -234,7 +234,7 @@ export default function AboutPage() {
               </p>
               <p className="text-foreground/60 text-base">
                 And if I ever miss the mark, the{" "}
-                <Link href="/refund-policy" className="text-primary hover:text-primary-deep underline underline-offset-2">
+                <Link href="/refund-policy" className="text-primary-strong hover:text-primary-deep underline underline-offset-2">
                   refund policy
                 </Link>{" "}
                 applies — promises should be accountable, not just words on a page.
@@ -246,7 +246,7 @@ export default function AboutPage() {
         {/* ---- FAQ (visible twin of the FAQPage schema) ---- */}
         <section className="px-5 sm:px-8 py-16 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[820px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">— Questions founders ask</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Questions founders ask</p>
             <h2 className="mt-4 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance">
               The short version, honestly answered.
             </h2>
@@ -255,7 +255,7 @@ export default function AboutPage() {
                 <details key={f.q} className="card-soft group overflow-hidden p-0">
                   <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between gap-4 p-5 font-medium text-foreground">
                     <span>{f.q}</span>
-                    <span className="font-mono text-xl shrink-0 leading-none text-primary transition-transform group-open:rotate-45">+</span>
+                    <span className="font-mono text-xl shrink-0 leading-none text-primary-strong transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <p className="px-5 pb-5 -mt-1 text-foreground/75 leading-relaxed">{f.a}</p>
                 </details>

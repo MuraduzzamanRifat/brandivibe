@@ -157,7 +157,7 @@ export default async function ArticlePage({ params }: Props) {
             </p>
             {/* Visible byline — matches the Person author declared in the Article schema. */}
             <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <Link href="/about" className="font-medium text-foreground hover:text-primary transition-colors">
+              <Link href="/about" className="font-medium text-foreground hover:text-primary-strong transition-colors">
                 Muraduzzaman
               </Link>
               <span className="text-muted text-sm">Founder &amp; Lead Engineer, Brandivibe</span>
@@ -213,7 +213,7 @@ export default async function ArticlePage({ params }: Props) {
             </Link>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1.5 text-primary font-medium hover:text-primary-deep transition-colors"
+              className="inline-flex items-center gap-1.5 text-primary-strong font-medium hover:text-primary-deep transition-colors"
             >
               Work with Brandivibe <ArrowRight className="h-4 w-4" />
             </Link>
