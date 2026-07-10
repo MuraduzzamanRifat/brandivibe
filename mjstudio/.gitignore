@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /data/
+
+# Any file whose name ends in .env (e.g. " (2).env" from an editor duplicate).
+# The `.env*` rule above only matches names that START with .env.
+*.env
