@@ -20,19 +20,32 @@ import { industries as staticIndustries } from '../src/data/industries'
 import { glossary as staticGlossary } from '../src/data/glossary'
 
 async function main() {
-  const target = process.env.DATABASE_URI_MIGRATION
-  const prod = process.env.DATABASE_URI
+  const target = process.env.DATABASE_URI_MIGRATION?.trim()
+  const active = process.env.DATABASE_URI?.trim()
 
   if (!target) {
     throw new Error(
-      'DATABASE_URI_MIGRATION is not set. Create a Neon branch and put its connection string there — this script must never run against production.'
+      'DATABASE_URI_MIGRATION is not set. Put your Neon *branch* connection string there.'
     )
   }
-  if (prod && target.trim() === prod.trim()) {
+
+  /**
+   * Payload connects with DATABASE_URI. Requiring it to equal
+   * DATABASE_URI_MIGRATION is how we prove, at runtime, that this seed is
+   * pointed at the throwaway branch and not at production — you cannot run it
+   * by accident while DATABASE_URI still points at the live database.
+   */
+  if (active !== target) {
     throw new Error(
-      'DATABASE_URI_MIGRATION equals DATABASE_URI. Point it at a Neon *branch*, not production.'
+      'Refusing to run: DATABASE_URI does not equal DATABASE_URI_MIGRATION.\n' +
+        'Point DATABASE_URI at the Neon branch for the duration of the migration,\n' +
+        'so Payload writes to the branch and never to production.'
     )
   }
+
+  // Say out loud which endpoint we are about to write to.
+  const endpoint = target.match(/@(ep-[a-z0-9-]+)/)?.[1] ?? 'unknown'
+  console.log(`writing to Neon endpoint: ${endpoint}\n`)
 
   const payload = await getPayload({ config })
 
