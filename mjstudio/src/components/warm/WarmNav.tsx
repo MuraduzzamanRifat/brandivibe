@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { PRIMARY_CTA } from "@/lib/cta";
+import { accentInk } from "@/lib/accent";
 import { pillars, getServicesByPillar } from "@/data/services";
 
 const LINKS = [
@@ -82,7 +83,7 @@ export function WarmNav() {
                       href={`/services#${p.slug}`}
                       className="group flex items-start gap-3 rounded-2xl p-3 hover:bg-[rgba(42,35,31,0.04)] transition-colors"
                     >
-                      <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-xl text-white font-display text-sm font-semibold shrink-0" style={{ background: p.accent }}>
+                      <span className="mt-0.5 grid h-8 w-8 place-items-center rounded-xl text-white font-display text-sm font-semibold shrink-0" style={{ background: accentInk(p.accent) }}>
                         {p.title.charAt(0)}
                       </span>
                       <span>

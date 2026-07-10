@@ -1,21 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { Reveal, RevealGroup, RevealItem, riseVariants } from "./Reveal";
+import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
 import type { HomepageContent, TestimonialItem } from "@/lib/content";
 import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
 import { WarmContact } from "./WarmContact";
 import { CtaInline } from "./Cta";
-
-const rise = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
-};
 
 // Icons stay in code (mapped by position); copy comes from the CMS.
 const REASSURE_ICONS = [Heart, Clock, KeyRound];
@@ -84,19 +79,34 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
   const reassurance = c.reassurance?.length ? c.reassurance : FALLBACK.reassurance;
   const steps = c.process?.length ? c.process : FALLBACK.process;
 
+  // Ambient parallax on the two hero glows. Purely decorative and
+  // transform-only, so it never touches the LCP text or triggers layout.
+  // useTransform bypasses MotionConfig, so reduced motion is opted out here
+  // explicitly rather than relying on the global setting.
+  const reduceMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const coralDrift = useTransform(scrollY, [0, 700], [0, reduceMotion ? 0 : 70]);
+  const tealDrift = useTransform(scrollY, [0, 700], [0, reduceMotion ? 0 : -50]);
+
   return (
     <>
       {/* ---------- HERO ---------- */}
       <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-5 sm:px-8 overflow-hidden">
-        <div
+        <motion.div
           aria-hidden
+          style={{
+            y: coralDrift,
+            background: "radial-gradient(circle, rgba(255,106,61,0.28), rgba(255,106,61,0) 68%)",
+          }}
           className="pointer-events-none absolute -top-40 right-[-10%] h-[520px] w-[520px] rounded-full opacity-60 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(255,106,61,0.28), rgba(255,106,61,0) 68%)" }}
         />
-        <div
+        <motion.div
           aria-hidden
+          style={{
+            y: tealDrift,
+            background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)",
+          }}
           className="pointer-events-none absolute top-40 left-[-12%] h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)" }}
         />
         <div className="relative mx-auto max-w-[1200px]">
           {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
@@ -132,29 +142,24 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
 
       {/* ---------- REASSURANCE ---------- */}
       <section className="px-5 sm:px-8">
-        <div className="mx-auto max-w-[1200px] grid gap-5 sm:grid-cols-3">
+        <RevealGroup className="mx-auto max-w-[1200px] grid gap-5 sm:grid-cols-3">
           {reassurance.map((r, i) => {
             const Icon = REASSURE_ICONS[i % REASSURE_ICONS.length];
             return (
-              <motion.div
-                key={r.title || i}
-                {...rise}
-                transition={{ ...rise.transition, delay: i * 0.06 }}
-                className="card-soft p-6"
-              >
+              <RevealItem key={r.title || i} className="card-soft p-6">
                 <Icon className="h-6 w-6 text-primary-strong" strokeWidth={1.75} />
                 <h2 className="mt-4 font-display text-lg font-semibold">{r.title}</h2>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.97rem]">{r.body}</p>
-              </motion.div>
+              </RevealItem>
             );
           })}
-        </div>
+        </RevealGroup>
       </section>
 
       {/* ---------- PILLARS ---------- */}
       <section id="services" className="px-5 sm:px-8 py-24 md:py-32">
         <div className="mx-auto max-w-[1200px]">
-          <motion.div {...rise} className="max-w-[46ch]">
+          <Reveal className="max-w-[46ch]">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">{c.servicesEyebrow || FALLBACK.servicesEyebrow}</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
               {c.servicesHeading || FALLBACK.servicesHeading}
@@ -162,13 +167,13 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
             <p className="mt-5 text-foreground/70 text-lg leading-relaxed">
               {c.servicesSubhead || FALLBACK.servicesSubhead}
             </p>
-          </motion.div>
+          </Reveal>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((p, i) => {
+          <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {pillars.map((p) => {
               const count = pillarCounts[p.title] ?? 0;
               return (
-                <motion.div key={p.slug} {...rise} transition={{ ...rise.transition, delay: (i % 3) * 0.06 }}>
+                <RevealItem key={p.slug}>
                   <Link
                     href={`/services#${p.slug}`}
                     className="card-soft lift group flex h-full flex-col p-7"
@@ -177,25 +182,25 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                     <span
                       aria-hidden="true"
                       className="grid h-11 w-11 place-items-center rounded-2xl text-white font-display font-semibold"
-                      style={{ background: p.accent }}
+                      style={{ background: accentInk(p.accent) }}
                     >
                       {p.title.charAt(0)}
                     </span>
                     <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight flex items-center gap-1.5">
                       {p.title}
-                      <ArrowUpRight className="h-5 w-5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" style={{ color: p.accent }} />
+                      <ArrowUpRight className="h-5 w-5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" style={{ color: accentInk(p.accent) }} />
                     </h3>
                     <p className="mt-2.5 text-foreground/70 leading-relaxed flex-1">{p.blurb}</p>
                     {count > 0 && (
-                      <span className="mt-6 font-mono text-xs uppercase tracking-[0.14em]" style={{ color: p.accent }}>
+                      <span className="mt-6 font-mono text-xs uppercase tracking-[0.14em]" style={{ color: accentInk(p.accent) }}>
                         {count} service{count === 1 ? "" : "s"} →
                       </span>
                     )}
                   </Link>
-                </motion.div>
+                </RevealItem>
               );
             })}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
@@ -203,25 +208,29 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
       {testimonials.length > 0 && (
         <section className="px-5 sm:px-8 py-24 bg-surface-2 border-y border-border">
           <div className="mx-auto max-w-[1200px]">
-            <motion.div {...rise} className="max-w-[46ch]">
+            <Reveal className="max-w-[46ch]">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— In their words</p>
               <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
                 Work people are glad they paid for.
               </h2>
-            </motion.div>
-            <div className="mt-12 grid gap-5 md:grid-cols-3 items-start">
-              {testimonials.map((t, i) => (
+            </Reveal>
+            <RevealGroup className="mt-12 grid gap-5 md:grid-cols-3 items-start">
+              {testimonials.map((t, i) => {
+                const stars = Math.max(1, Math.min(5, Math.round(t.rating)));
+                return (
                 <motion.figure
                   key={i}
-                  {...rise}
-                  transition={{ ...rise.transition, delay: (i % 3) * 0.06 }}
+                  variants={riseVariants}
                   className="card-soft p-6 flex flex-col"
                 >
-                  <div className="flex gap-0.5 text-amber">
-                    {Array.from({ length: Math.max(1, Math.min(5, Math.round(t.rating))) }).map((_, s) => (
+                  {/* The golden stars are decorative; the rating is stated in
+                      text for screen readers, so colour is never the only cue. */}
+                  <div className="flex gap-0.5 text-amber" aria-hidden="true">
+                    {Array.from({ length: stars }).map((_, s) => (
                       <Star key={s} className="h-4 w-4 fill-current" strokeWidth={0} />
                     ))}
                   </div>
+                  <span className="sr-only">{stars} out of 5 stars</span>
                   <blockquote className="mt-4 text-foreground/80 leading-relaxed text-[0.96rem] flex-1 text-pretty">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
@@ -251,8 +260,9 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                     </span>
                   </figcaption>
                 </motion.figure>
-              ))}
-            </div>
+                );
+              })}
+            </RevealGroup>
           </div>
         </section>
       )}
@@ -262,33 +272,33 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
       {/* ---------- PROCESS ---------- */}
       <section className="px-5 sm:px-8 py-24 md:py-28 bg-surface-2 border-y border-border">
         <div className="mx-auto max-w-[1200px]">
-          <motion.div {...rise} className="max-w-[46ch]">
+          <Reveal className="max-w-[46ch]">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">{c.processEyebrow || FALLBACK.processEyebrow}</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3.2rem] font-semibold tracking-tight text-balance">
               {c.processHeading || FALLBACK.processHeading}
             </h2>
-          </motion.div>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          </Reveal>
+          <RevealGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
-              <motion.div key={s.number || i} {...rise} transition={{ ...rise.transition, delay: (i % 4) * 0.06 }} className="card-soft p-6">
+              <RevealItem key={s.number || i} className="card-soft p-6">
                 <span className="font-mono text-sm font-semibold text-primary-strong">{s.number}</span>
                 <h3 className="mt-3 font-display text-xl font-semibold">{s.title}</h3>
                 <p className="mt-2 text-foreground/70 leading-relaxed text-[0.95rem]">{s.body}</p>
-              </motion.div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
       {/* ---------- FAQ (answer-engine ready) ---------- */}
       <section className="px-5 sm:px-8 py-24">
         <div className="mx-auto max-w-[820px]">
-          <motion.div {...rise}>
+          <Reveal>
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Good questions</p>
             <h2 className="mt-4 font-display text-4xl md:text-[3rem] font-semibold tracking-tight text-balance">
               Things people ask before saying hello.
             </h2>
-          </motion.div>
+          </Reveal>
           <div className="mt-10 space-y-3">
             {FAQ_ITEMS.map((f) => (
               <details key={f.q} className="card-soft group overflow-hidden p-0">
