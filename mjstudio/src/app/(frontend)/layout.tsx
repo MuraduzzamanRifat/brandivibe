@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     siteName: "Brandivibe",
     images: [
       {
-        url: "/work/helix.jpg",
-        width: 1600,
-        height: 1000,
+        url: "https://brandivibe.com/brand-og",
+        width: 1200,
+        height: 630,
         alt: "Brandivibe — selected work",
       },
     ],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
     description:
       "Websites, software, marketing, content, design, and AI — a friendly senior studio for growing businesses. You own everything we build.",
-    images: ["/work/helix.jpg"],
+    images: ["https://brandivibe.com/brand-og"],
   },
   robots: {
     index: true,

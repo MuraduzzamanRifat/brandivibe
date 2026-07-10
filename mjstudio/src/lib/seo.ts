@@ -4,11 +4,13 @@ import type { Metadata } from "next";
 // `openGraph` must include `images` explicitly — Next does not merge the
 // parent layout's openGraph.images into a child openGraph object, so without
 // this every sub-page shipped with no og:image (text-only shares).
+// A branded card generated at /brand-og (see app/(frontend)/brand-og/route.tsx),
+// not a portfolio demo screenshot. Absolute URL so scrapers resolve it.
 export const OG_IMAGE: NonNullable<NonNullable<Metadata["openGraph"]>["images"]> = [
   {
-    url: "/work/helix.jpg",
-    width: 1600,
-    height: 1000,
-    alt: "Brandivibe — premium WebGL sites, SEO & AI automation",
+    url: "https://brandivibe.com/brand-og",
+    width: 1200,
+    height: 630,
+    alt: "Brandivibe — websites, software, marketing & AI under one warm roof",
   },
 ];

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
       "AI-powered homepage audit: design score, tech stack detection, and three actionable fixes. Takes 90 seconds. No sales call, no signup wall.",
     url: `${SITE}/audit`,
     type: "website",
-    images: [{ url: `${SITE}/work/helix.jpg`, width: 1600, height: 1000 }],
+    images: [{ url: `${SITE}/brand-og`, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Founder Homepage Audit in 90 Seconds",
     description:
       "Design score, tech stack, 3 fixes. AI-powered analysis of your homepage. No signup.",
-    images: [`${SITE}/work/helix.jpg`],
+    images: [`${SITE}/brand-og`],
   },
 };
 
