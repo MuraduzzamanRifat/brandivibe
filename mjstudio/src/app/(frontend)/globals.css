@@ -55,7 +55,10 @@
 }
 
 html, body {
-  background: var(--background);
+  /* Transparent so the fixed FlowBackdrop (still gradient + WebGL) shows
+     through the gaps between content. FlowBackdrop always paints the warm
+     ivory base, so the page is never actually see-through or white. */
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -81,6 +84,12 @@ html.lenis, html.lenis body { height: auto; }
 .hero-rise-3 { animation-delay: 0.18s; }
 @media (prefers-reduced-motion: reduce) {
   .hero-rise { animation: none; }
+}
+
+/* Gentle fade for the WebGL backdrop easing in after first paint. */
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 :focus-visible {

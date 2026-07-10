@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
 import { ClientChrome } from "@/components/ClientChrome";
+import { FlowBackdrop } from "@/components/warm/backdrop/FlowBackdrop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -133,6 +134,10 @@ export default function RootLayout({
         />
       </head>
       <body className="grain">
+        {/* Site-wide calm-flowing WebGL background. Mounted once here so it
+            persists across page navigation. Always renders a still gradient
+            underneath, so nothing depends on WebGL succeeding. */}
+        <FlowBackdrop />
         <ClientChrome />
         <LenisProvider>{children}</LenisProvider>
       </body>
