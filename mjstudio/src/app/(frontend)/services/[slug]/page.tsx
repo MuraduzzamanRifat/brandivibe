@@ -9,6 +9,7 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
 import { accentInk } from "@/lib/accent";
+import { WebglShowcase } from "@/components/warm/scene/WebglShowcase";
 
 export const dynamicParams = false;
 // ISR so a testimonial added in the admin appears on service pages within 5 min
@@ -153,6 +154,15 @@ export default async function ServiceDetailPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {/* ---- live 3D demo: only on the page that actually sells 3D ----
+             Every other service page must not pay three.js's weight, so this is
+             gated on the slug rather than rendered for all 35 services. */}
+        {service.slug === "webgl-3d-experiences" && (
+          <section className="py-6">
+            <WebglShowcase accent={a} />
+          </section>
+        )}
 
         {/* ---- capabilities ---- */}
         <section className="px-5 sm:px-8 py-14">
