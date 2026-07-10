@@ -73,6 +73,13 @@ const ORG_SCHEMA = {
       "@id": "https://brandivibe.com/#organization",
       name: "Brandivibe",
       url: "https://brandivibe.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://brandivibe.com/logo",
+        width: 512,
+        height: 512,
+      },
+      image: "https://brandivibe.com/logo",
       description:
         "Brandivibe is a friendly digital studio founded in 2024 by Muraduzzaman, based in Dhaka, Bangladesh, working with founders worldwide. Services span web development, custom software, digital marketing, creative content, design, and AI automation — senior work with full client ownership of everything built.",
       founder: {
