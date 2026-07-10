@@ -4,6 +4,8 @@ import { getCaseStudies } from "@/lib/case-studies";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
 import { glossary } from "@/data/glossary";
+import { DEFAULT_LOCALE, getLocale, localizedPath } from "@/lib/i18n/config";
+import { getEnabledLocales } from "@/lib/i18n/enabled";
 
 // Regenerated periodically so CMS-published articles/case studies appear.
 export const revalidate = 3600;
@@ -80,5 +82,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Server deployment (Vercel) canonicals are non-trailing-slash — emit URLs
   // that match the canonical tags exactly, never redirects.
-  return [...staticRoutes, ...articleRoutes];
+  const englishRoutes = [...staticRoutes, ...articleRoutes];
+
+  const enabled = await getEnabledLocales();
+  const others = enabled.filter((l) => l !== DEFAULT_LOCALE);
+  if (others.length === 0) return englishRoutes;
+
+  /**
+   * One entry per (page, enabled locale), each carrying the full alternates
+   * set so Google sees the whole cluster from any single URL.
+   *
+   * Only *enabled* locales appear. A locale that is authorable but not
+   * switched on has no public URL, so listing it would advertise a 404.
+   * Per-page translation status is enforced at the page level (noindex), and
+   * once content lands, untranslated pages drop out of this list too.
+   */
+  const withAlternates: MetadataRoute.Sitemap = [];
+  for (const route of englishRoutes) {
+    const path = route.url.replace(SITE, "") || "/";
+    const languages: Record<string, string> = { "x-default": `${SITE}${path}` };
+    for (const code of enabled) {
+      languages[getLocale(code).hreflang] = `${SITE}${localizedPath(path, code)}`;
+    }
+    for (const code of enabled) {
+      withAlternates.push({
+        ...route,
+        url: `${SITE}${localizedPath(path, code)}`,
+        alternates: { languages },
+      });
+    }
+  }
+  return withAlternates;
 }

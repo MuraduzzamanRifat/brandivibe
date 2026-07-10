@@ -10,14 +10,14 @@ import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
 import { accentInk } from "@/lib/accent";
 
-export const dynamicParams = false;
+export const dynamicParams = true; // enabled non-English locales render on demand
 // ISR so a testimonial added in the admin appears on service pages within 5 min
 // (matches the homepage). Pages are still prebuilt via generateStaticParams.
 export const revalidate = 300;
 
 export async function generateStaticParams() {
   const all = await getAllServices();
-  return all.map((s) => ({ slug: s.slug }));
+  return all.map((s) => ({ lang: "en", slug: s.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };

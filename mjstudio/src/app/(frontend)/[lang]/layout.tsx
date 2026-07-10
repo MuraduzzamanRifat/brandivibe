@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
 import { ClientChrome } from "@/components/ClientChrome";
+import { DEFAULT_LOCALE, getLocale, isLocale } from "@/lib/i18n/config";
+import { getEnabledLocales } from "@/lib/i18n/enabled";
+import { LanguageSuggestion } from "@/components/i18n/LanguageSuggestion";
+import { LocaleProvider } from "@/components/i18n/LocaleProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -121,11 +126,35 @@ const ORG_SCHEMA = {
   ],
 };
 
-export default function RootLayout({
+/**
+ * Only English is prerendered at build time. Other enabled locales render on
+ * demand and are then cached — with ~1,500 potential URLs, prerendering every
+ * locale would balloon the build for pages nobody has requested yet.
+ */
+export async function generateStaticParams() {
+  return [{ lang: DEFAULT_LOCALE }];
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  params,
+}: Readonly<{ children: React.ReactNode; params: Promise<{ lang: string }> }>) {
+  const { lang } = await params;
+
+  // A locale that isn't supported, or isn't switched on in the admin, must not
+  // resolve — otherwise it would serve English content under a foreign URL.
+  if (!isLocale(lang)) notFound();
+  const enabled = await getEnabledLocales();
+  if (!enabled.includes(lang)) notFound();
+
+  const locale = getLocale(lang);
+
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}>
+    <html
+      lang={locale.hreflang}
+      dir={locale.dir}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} antialiased`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -133,8 +162,11 @@ export default function RootLayout({
         />
       </head>
       <body className="grain">
-        <ClientChrome />
-        <LenisProvider>{children}</LenisProvider>
+        <LocaleProvider locale={lang} enabledLocales={enabled}>
+          <ClientChrome />
+          <LenisProvider>{children}</LenisProvider>
+          <LanguageSuggestion />
+        </LocaleProvider>
       </body>
     </html>
   );

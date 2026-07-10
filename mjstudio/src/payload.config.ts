@@ -30,6 +30,8 @@ import { Technologies } from './collections/Technologies'
 // Globals
 import { Homepage } from './globals/Homepage'
 import { BrandGuidelines } from './globals/BrandGuidelines'
+// LanguageSettings + SUPPORTED_LOCALES are wired in with the localization
+// migration (Phase 1a) — registering the global creates a table.
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -53,6 +55,35 @@ export default buildConfig({
       titleSuffix: '· Brandivibe OS',
     },
   },
+  /**
+   * ─── Payload localization: intentionally NOT enabled yet ───────────────────
+   *
+   * Turning this on rewrites the Postgres schema — every collection with a
+   * localized field gains a `<table>_locales` table, and the SEO plugin's meta
+   * group moves into it. DATABASE_URI points at the live Neon database that
+   * production is serving from, so this is a real migration, not a config flag.
+   *
+   * It ships as its own step (Phase 1a), in this order:
+   *   1. snapshot / Neon branch the database
+   *   2. enable the block below + register the LanguageSettings global
+   *   3. add `localized: true` to the fields we actually translate,
+   *      plus the per-locale `translationStatus` gate (fields/translationStatus.ts)
+   *   4. push the schema, verify, then enable es/de/ja in the admin
+   *
+   * Until then the routing, hreflang, sitemap and language UX below are all
+   * live and harmless: only English is enabled, so nothing new is indexed.
+   *
+   * localization: {
+   *   locales: SUPPORTED_LOCALES.map((l) => ({
+   *     label: `${l.label} (${l.englishName})`,
+   *     code: l.code,
+   *     ...(l.dir === 'rtl' ? { rtl: true } : {}),
+   *   })),
+   *   defaultLocale: DEFAULT_LOCALE,
+   *   fallback: true,   // editors see English as a base; the frontend queries
+   *                     // with fallbackLocale:'none' so it can spot an English echo
+   * },
+   */
   collections: [
     Users,
     Media,

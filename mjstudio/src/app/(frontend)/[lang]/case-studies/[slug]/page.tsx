@@ -15,7 +15,7 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   try {
-    return (await getCaseStudies()).map((c) => ({ slug: c.slug }));
+    return (await getCaseStudies()).map((c) => ({ lang: "en", slug: c.slug }));
   } catch {
     return [];
   }

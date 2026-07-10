@@ -16,12 +16,12 @@ import { accentInk } from "@/lib/accent";
 // Prebuilt via generateStaticParams (the service × industry matrix), then
 // ISR: revalidate=300 lets a testimonial added in the admin appear here
 // within ~5 min, matching the homepage and service detail pages.
-export const dynamicParams = false;
+export const dynamicParams = true; // enabled non-English locales render on demand
 export const revalidate = 300;
 
 export async function generateStaticParams() {
   return services.flatMap((s) =>
-    industries.map((i) => ({ slug: s.slug, industry: i.slug }))
+    industries.map((i) => ({ lang: "en", slug: s.slug, industry: i.slug }))
   );
 }
 

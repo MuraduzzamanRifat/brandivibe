@@ -19,7 +19,7 @@ export const dynamicParams = true;
 
 export async function generateStaticParams() {
   try {
-    return (await getArticles()).map((a) => ({ slug: a.slug }));
+    return (await getArticles()).map((a) => ({ lang: "en", slug: a.slug }));
   } catch {
     return [];
   }

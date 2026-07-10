@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return Object.keys(PRODUCTS).map((slug) => ({ slug }));
+  return Object.keys(PRODUCTS).map((slug) => ({ lang: "en", slug }));
 }
 
 type Params = { params: Promise<{ slug: string }> };

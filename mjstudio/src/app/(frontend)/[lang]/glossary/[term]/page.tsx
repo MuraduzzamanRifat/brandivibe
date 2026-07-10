@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return glossary.map((g) => ({ term: g.slug }));
+  return glossary.map((g) => ({ lang: "en", term: g.slug }));
 }
 
 type Props = { params: Promise<{ term: string }> };

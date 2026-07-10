@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { PRIMARY_CTA } from "@/lib/cta";
 import { accentInk } from "@/lib/accent";
+import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { pillars, getServicesByPillar } from "@/data/services";
 
 const LINKS = [
@@ -114,6 +115,8 @@ export function WarmNav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          {/* Renders nothing until a second language is enabled. */}
+          <LanguageSwitcher />
           <Link
             href={PRIMARY_CTA.href}
             className="inline-flex items-center gap-2 rounded-full bg-foreground text-background min-h-[44px] px-4 py-2 text-[0.82rem] sm:px-5 sm:py-2.5 sm:text-[0.92rem] font-medium hover:bg-primary transition-colors"
