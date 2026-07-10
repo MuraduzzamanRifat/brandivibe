@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PenLine } from "lucide-react";
 import { getArticles } from "@/lib/articles";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
@@ -84,8 +84,11 @@ export default async function JournalIndex() {
           <div className="mx-auto max-w-[1200px]">
             {articles.length === 0 ? (
               <div className="card-soft p-12 text-center">
-                <div className="text-5xl mb-4" aria-hidden>
-                  ✍️
+                <div
+                  className="mx-auto mb-5 grid h-14 w-14 place-items-center rounded-full bg-primary-soft text-primary-strong"
+                  aria-hidden
+                >
+                  <PenLine className="h-7 w-7" />
                 </div>
                 <p className="text-lg text-foreground/70">
                   Nothing here just yet — pop back soon and there&apos;ll be a good read waiting.

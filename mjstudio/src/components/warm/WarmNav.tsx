@@ -140,7 +140,7 @@ export function WarmNav() {
             </Link>
             <div className="grid grid-cols-2 gap-x-4 py-4 border-b border-border">
               {pillars.map((p) => (
-                <Link key={p.slug} href={`/services#${p.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-2 py-2 text-foreground/75">
+                <Link key={p.slug} href={`/services#${p.slug}`} onClick={() => setOpen(false)} className="flex items-center gap-2 py-3 text-foreground/75">
                   <span className="h-2.5 w-2.5 rounded-full shrink-0" style={{ background: p.accent }} />
                   <span className="text-sm">{p.title}</span>
                 </Link>
