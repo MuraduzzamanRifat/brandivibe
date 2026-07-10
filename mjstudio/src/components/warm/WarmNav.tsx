@@ -54,6 +54,15 @@ export function WarmNav() {
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
             onMouseLeave={() => setServicesOpen(false)}
+            // Keyboard access: open on focus-in, close when focus leaves the
+            // group or on Escape — the menu was mouse-only before.
+            onFocus={() => setServicesOpen(true)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget as Node)) setServicesOpen(false);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") setServicesOpen(false);
+            }}
           >
             <Link
               href="/services"
@@ -106,7 +115,7 @@ export function WarmNav() {
         <div className="flex items-center gap-2">
           <Link
             href={PRIMARY_CTA.href}
-            className="inline-flex items-center gap-2 rounded-full bg-foreground text-background px-3.5 py-2 text-[0.82rem] sm:px-5 sm:py-2.5 sm:text-[0.92rem] font-medium hover:bg-primary transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-foreground text-background min-h-[44px] px-4 py-2 text-[0.82rem] sm:px-5 sm:py-2.5 sm:text-[0.92rem] font-medium hover:bg-primary transition-colors"
           >
             {PRIMARY_CTA.label}
           </Link>
@@ -116,7 +125,7 @@ export function WarmNav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls="warm-mobile-menu"
-            className="md:hidden grid h-10 w-10 place-items-center rounded-full text-foreground hover:bg-[rgba(42,35,31,0.06)]"
+            className="md:hidden grid h-11 w-11 place-items-center rounded-full text-foreground hover:bg-[rgba(42,35,31,0.06)]"
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>

@@ -89,7 +89,7 @@ export default async function CaseStudiesPage() {
                 <Link key={c.slug} href={`/case-studies/${c.slug}`} className="card-soft lift group overflow-hidden flex flex-col">
                   {c.heroImage ? (
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.heroImage} alt={c.title} className="w-full h-44 object-cover" />
+                    <img src={c.heroImage} alt={c.title} loading="lazy" decoding="async" className="w-full h-44 object-cover" />
                   ) : (
                     <div className="w-full h-44 bg-surface-2" />
                   )}

@@ -158,6 +158,8 @@ export default async function JournalIndex() {
                                 : `https://brandivibe.com${article.heroImage}`
                             }
                             alt={article.title}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-44 object-cover group-hover:scale-[1.03] transition-transform duration-500"
                           />
                         ) : (

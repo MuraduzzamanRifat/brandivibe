@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
-import { CustomCursor } from "@/components/CustomCursor";
+import { ClientChrome } from "@/components/ClientChrome";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -133,7 +133,7 @@ export default function RootLayout({
         />
       </head>
       <body className="grain">
-        <CustomCursor />
+        <ClientChrome />
         <LenisProvider>{children}</LenisProvider>
       </body>
     </html>

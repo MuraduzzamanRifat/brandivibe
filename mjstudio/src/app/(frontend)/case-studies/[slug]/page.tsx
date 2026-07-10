@@ -205,14 +205,14 @@ export default async function CaseStudyPage({ params }: Props) {
                 {cs.beforeAfter.beforeImage && (
                   <figure>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={cs.beforeAfter.beforeImage} alt={cs.beforeAfter.beforeLabel} className="w-full rounded-2xl border border-border" />
+                    <img src={cs.beforeAfter.beforeImage} alt={cs.beforeAfter.beforeLabel} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
                     <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-muted">{cs.beforeAfter.beforeLabel}</figcaption>
                   </figure>
                 )}
                 {cs.beforeAfter.afterImage && (
                   <figure>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={cs.beforeAfter.afterImage} alt={cs.beforeAfter.afterLabel} className="w-full rounded-2xl border border-border" />
+                    <img src={cs.beforeAfter.afterImage} alt={cs.beforeAfter.afterLabel} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
                     <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-primary-strong">{cs.beforeAfter.afterLabel}</figcaption>
                   </figure>
                 )}
@@ -231,7 +231,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 {cs.gallery.map((g, i) => (
                   <figure key={i}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={g.image} alt={g.caption || cs.title} className="w-full rounded-2xl border border-border" />
+                    <img src={g.image} alt={g.caption || cs.title} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
                     {g.caption && <figcaption className="mt-2 text-sm text-muted">{g.caption}</figcaption>}
                   </figure>
                 ))}

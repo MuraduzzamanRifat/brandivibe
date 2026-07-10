@@ -227,7 +227,7 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                   <figcaption className="mt-5 flex items-center gap-3">
                     {t.avatar ? (
                       // eslint-disable-next-line @next/next/no-img-element
-                      <img src={t.avatar} alt={t.authorName || t.company} className="h-9 w-9 rounded-full object-cover" />
+                      <img src={t.avatar} alt={t.authorName || t.company} width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-full object-cover" />
                     ) : (
                       <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary-strong font-display font-semibold">
                         {(t.authorName || t.company || "?").charAt(0).toUpperCase()}

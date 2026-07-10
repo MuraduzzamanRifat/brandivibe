@@ -66,7 +66,7 @@ export function buildServiceIndustryPayload(
 
   const intro = [
     industry.intro,
-    `That's why we engineer our ${service.title.toLowerCase()} engagement specifically for ${industry.pluralName}. ${industryFraming}`,
+    `That's why we shape our ${service.title.toLowerCase()} work around ${industry.pluralName} specifically. ${industryFraming}`,
   ];
 
   // Combined pain points: lead with industry-specific pains (which the
