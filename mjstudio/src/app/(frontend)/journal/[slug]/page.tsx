@@ -7,6 +7,9 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaInline } from "@/components/warm/Cta";
 import { ResponsiveMedia } from "@/components/ResponsiveMedia";
+import { linksForArticle } from "@/lib/article-links";
+import { services } from "@/data/services";
+import { glossary } from "@/data/glossary";
 import "./article.css";
 
 // ISR: article edits/new posts from the admin appear live within 5 minutes,
@@ -58,6 +61,11 @@ export default async function ArticlePage({ params }: Props) {
   const { frontmatter, html } = article;
   const meta = await getArticle(slug);
   const moreArticles = (await getArticles()).filter((a) => a.slug !== slug).slice(0, 3);
+
+  // Contextual internal links out of this essay (see lib/article-links.ts).
+  const { service: serviceSlug, glossary: glossarySlug } = linksForArticle(slug);
+  const relatedService = services.find((s) => s.slug === serviceSlug) ?? null;
+  const relatedTerm = glossary.find((g) => g.slug === glossarySlug) ?? null;
 
   // Article schema with Person author — E-E-A-T upgrade for AI search.
   // ChatGPT, Perplexity, and Google AI Overviews weight named individual
@@ -190,6 +198,43 @@ export default async function ArticlePage({ params }: Props) {
             className="prose max-w-none"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          {/* Contextual internal links: a descriptive anchor from this essay into
+              the service it argues for, and into the term it defines. Keeps the
+              glossary from being an island and gives the money pages topical
+              support. */}
+          {(relatedService || relatedTerm) && (
+            <aside className="mt-14 rounded-[28px] border border-border bg-surface-2 p-7 md:p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary-strong">
+                — Where this shows up in our work
+              </p>
+              <div className="mt-4 space-y-3 text-lg text-foreground/80 leading-relaxed">
+                {relatedService && (
+                  <p>
+                    If this is the standard you want, read how we approach{" "}
+                    <Link
+                      href={`/services/${relatedService.slug}`}
+                      className="font-medium text-primary-strong underline underline-offset-4 hover:text-primary-deep"
+                    >
+                      {relatedService.title.toLowerCase()}
+                    </Link>
+                    .
+                  </p>
+                )}
+                {relatedTerm && (
+                  <p className="text-foreground/70 text-base">
+                    New to the term?{" "}
+                    <Link
+                      href={`/glossary/${relatedTerm.slug}`}
+                      className="font-medium text-primary-strong underline underline-offset-4 hover:text-primary-deep"
+                    >
+                      What is {relatedTerm.term.toLowerCase()}?
+                    </Link>
+                  </p>
+                )}
+              </div>
+            </aside>
+          )}
 
           <div className="mt-14">
             <CtaInline text="Enjoying the read? Let's turn these ideas into your next site." />
