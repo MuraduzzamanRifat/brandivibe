@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
 import type { HomepageContent, TestimonialItem } from "@/lib/content";
@@ -226,8 +227,15 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
                   </blockquote>
                   <figcaption className="mt-5 flex items-center gap-3">
                     {t.avatar ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={t.avatar} alt={t.authorName || t.company} width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-full object-cover" />
+                      // object-cover crops to the 36px circle, so a non-square
+                      // source never distorts.
+                      <Image
+                        src={t.avatar}
+                        alt={t.authorName || t.company}
+                        width={36}
+                        height={36}
+                        className="h-9 w-9 rounded-full object-cover"
+                      />
                     ) : (
                       <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary-strong font-display font-semibold">
                         {(t.authorName || t.company || "?").charAt(0).toUpperCase()}

@@ -162,6 +162,19 @@ export function mediaURL(m: unknown): string {
   return ''
 }
 
+/**
+ * Intrinsic pixel size of an upload relation, or zeros if unknown.
+ * next/image needs real dimensions for auto-height responsive images —
+ * guessing the aspect ratio would stretch the picture.
+ */
+export function mediaDims(m: unknown): { width: number; height: number } {
+  if (m && typeof m === 'object') {
+    const d = m as { width?: number; height?: number }
+    return { width: Number(d.width) || 0, height: Number(d.height) || 0 }
+  }
+  return { width: 0, height: 0 }
+}
+
 // ---- Payload client (singleton) -------------------------------------------
 const client = cache(async () => getPayload({ config }))
 

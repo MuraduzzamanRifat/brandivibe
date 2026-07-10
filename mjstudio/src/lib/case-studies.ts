@@ -2,7 +2,7 @@ import 'server-only'
 import { cache } from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { lexicalToHTML, lexicalToParagraphs, mediaURL } from '@/lib/content'
+import { lexicalToHTML, lexicalToParagraphs, mediaURL, mediaDims } from '@/lib/content'
 
 /**
  * Case-study (portfolio) store — Payload-backed.
@@ -21,6 +21,9 @@ export type CaseStudyMeta = {
   services: string[]
   excerpt: string
   heroImage: string
+  /** Intrinsic size of heroImage — 0 when unknown (fall back to a plain img). */
+  heroWidth: number
+  heroHeight: number
   metrics: CaseMetric[]
   featured?: boolean
   publishedAt: string
@@ -43,6 +46,8 @@ function mapMeta(doc: Doc): CaseStudyMeta {
     services: arr<Doc>(doc.services).map((s) => String(s.title ?? '')).filter(Boolean),
     excerpt: String(doc.excerpt ?? ''),
     heroImage: mediaURL(doc.heroImage),
+    heroWidth: mediaDims(doc.heroImage).width,
+    heroHeight: mediaDims(doc.heroImage).height,
     metrics: arr<{ label?: string; value?: string; note?: string }>(doc.metrics).map((m) => ({
       label: m.label ?? '',
       value: m.value ?? '',
@@ -89,8 +94,18 @@ export type CaseStudyFull = CaseStudyMeta & {
   devHtml: string
   marketingHtml: string
   timeline: { phase: string; duration: string; detail: string }[]
-  beforeAfter: { beforeImage: string; afterImage: string; beforeLabel: string; afterLabel: string; note: string } | null
-  gallery: { image: string; caption: string }[]
+  beforeAfter: {
+    beforeImage: string
+    afterImage: string
+    beforeWidth: number
+    beforeHeight: number
+    afterWidth: number
+    afterHeight: number
+    beforeLabel: string
+    afterLabel: string
+    note: string
+  } | null
+  gallery: { image: string; caption: string; width: number; height: number }[]
   videos: { url: string; title: string }[]
   testimonial: { quote: string; authorName: string; authorRole: string } | null
   relatedServices: { title: string; slug: string }[]
@@ -116,6 +131,10 @@ export async function getCaseStudyFull(slug: string): Promise<CaseStudyFull | nu
       ? {
           beforeImage: mediaURL(ba.beforeImage),
           afterImage: mediaURL(ba.afterImage),
+          beforeWidth: mediaDims(ba.beforeImage).width,
+          beforeHeight: mediaDims(ba.beforeImage).height,
+          afterWidth: mediaDims(ba.afterImage).width,
+          afterHeight: mediaDims(ba.afterImage).height,
           beforeLabel: String(ba.beforeLabel ?? 'Before'),
           afterLabel: String(ba.afterLabel ?? 'After'),
           note: String(ba.note ?? ''),
@@ -148,7 +167,12 @@ export async function getCaseStudyFull(slug: string): Promise<CaseStudyFull | nu
     })),
     beforeAfter,
     gallery: arr<Doc>(doc.gallery)
-      .map((g) => ({ image: mediaURL(g.image), caption: String(g.caption ?? '') }))
+      .map((g) => ({
+        image: mediaURL(g.image),
+        caption: String(g.caption ?? ''),
+        width: mediaDims(g.image).width,
+        height: mediaDims(g.image).height,
+      }))
       .filter((g) => g.image),
     videos: arr<{ url?: string; title?: string }>(doc.videos)
       .map((v) => ({ url: v.url ?? '', title: v.title ?? '' }))

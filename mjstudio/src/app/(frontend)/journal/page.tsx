@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, PenLine } from "lucide-react";
 import { getArticles } from "@/lib/articles";
 import { WarmNav } from "@/components/warm/WarmNav";
@@ -102,20 +103,21 @@ export default async function JournalIndex() {
                     href={`/journal/${featured.slug}`}
                     className="group card-soft lift block overflow-hidden mb-8"
                   >
-                    <div className="relative">
+                    {/* Fixed-height object-cover box: `fill` crops rather than
+                        stretches, so no intrinsic dimensions are needed. Local
+                        paths stay relative so next/image treats them as local. */}
+                    <div className="relative h-64 md:h-96">
                       {featured.heroImage ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={
-                            featured.heroImage.startsWith("http")
-                              ? featured.heroImage
-                              : `https://brandivibe.com${featured.heroImage}`
-                          }
+                        <Image
+                          src={featured.heroImage}
                           alt={featured.title}
-                          className="w-full h-64 md:h-96 object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                          fill
+                          priority
+                          sizes="(min-width: 1200px) 1200px, 100vw"
+                          className="object-cover group-hover:scale-[1.02] transition-transform duration-700"
                         />
                       ) : (
-                        <div className="w-full h-64 md:h-96 bg-gradient-to-br from-primary-soft via-[var(--teal-soft)] to-surface" />
+                        <div className="w-full h-full bg-gradient-to-br from-primary-soft via-[var(--teal-soft)] to-surface" />
                       )}
                     </div>
 
@@ -153,18 +155,15 @@ export default async function JournalIndex() {
                         className="group card-soft lift block overflow-hidden"
                       >
                         {article.heroImage ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={
-                              article.heroImage.startsWith("http")
-                                ? article.heroImage
-                                : `https://brandivibe.com${article.heroImage}`
-                            }
-                            alt={article.title}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-44 object-cover group-hover:scale-[1.03] transition-transform duration-500"
-                          />
+                          <div className="relative h-44 overflow-hidden">
+                            <Image
+                              src={article.heroImage}
+                              alt={article.title}
+                              fill
+                              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                              className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                            />
+                          </div>
                         ) : (
                           <div className="w-full h-44 bg-gradient-to-br from-primary-soft via-[var(--teal-soft)] to-surface" />
                         )}

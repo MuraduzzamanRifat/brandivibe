@@ -6,6 +6,7 @@ import { loadArticle, getArticle, getArticles } from "@/lib/articles";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaInline } from "@/components/warm/Cta";
+import { ResponsiveMedia } from "@/components/ResponsiveMedia";
 import "./article.css";
 
 // ISR: article edits/new posts from the admin appear live within 5 minutes,
@@ -173,11 +174,15 @@ export default async function ArticlePage({ params }: Props) {
           </header>
 
           {frontmatter.heroImage && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            // MDX frontmatter carries no intrinsic size, so this renders as a
+            // plain eager <img> — see ResponsiveMedia for why we don't guess.
+            <ResponsiveMedia
               src={frontmatter.heroImage}
               alt={frontmatter.title}
-              className="w-full rounded-2xl mb-14 border border-border"
+              width={0}
+              height={0}
+              priority
+              className="rounded-2xl mb-14 border border-border"
             />
           )}
 

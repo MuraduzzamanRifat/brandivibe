@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { OG_IMAGE } from "@/lib/seo";
 import { getCaseStudies } from "@/lib/case-studies";
@@ -88,8 +89,15 @@ export default async function CaseStudiesPage() {
               {items.map((c) => (
                 <Link key={c.slug} href={`/case-studies/${c.slug}`} className="card-soft lift group overflow-hidden flex flex-col">
                   {c.heroImage ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.heroImage} alt={c.title} loading="lazy" decoding="async" className="w-full h-44 object-cover" />
+                    <div className="relative h-44 overflow-hidden">
+                      <Image
+                        src={c.heroImage}
+                        alt={c.title}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
                   ) : (
                     <div className="w-full h-44 bg-surface-2" />
                   )}

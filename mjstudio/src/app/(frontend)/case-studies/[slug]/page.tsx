@@ -7,6 +7,7 @@ import { getCaseStudies, getCaseStudyFull } from "@/lib/case-studies";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
+import { ResponsiveMedia } from "@/components/ResponsiveMedia";
 
 // New case studies published in the admin appear without a redeploy.
 export const revalidate = 300;
@@ -148,8 +149,14 @@ export default async function CaseStudyPage({ params }: Props) {
         {cs.heroImage && (
           <section className="px-5 sm:px-8 py-8">
             <div className="mx-auto max-w-[1100px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={cs.heroImage} alt={cs.title} className="w-full rounded-3xl border border-border" />
+              <ResponsiveMedia
+                src={cs.heroImage}
+                alt={cs.title}
+                width={cs.heroWidth}
+                height={cs.heroHeight}
+                priority
+                className="rounded-3xl border border-border"
+              />
             </div>
           </section>
         )}
@@ -204,15 +211,27 @@ export default async function CaseStudyPage({ params }: Props) {
               <div className="mt-7 grid gap-5 md:grid-cols-2">
                 {cs.beforeAfter.beforeImage && (
                   <figure>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={cs.beforeAfter.beforeImage} alt={cs.beforeAfter.beforeLabel} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
+                    <ResponsiveMedia
+                      src={cs.beforeAfter.beforeImage}
+                      alt={cs.beforeAfter.beforeLabel}
+                      width={cs.beforeAfter.beforeWidth}
+                      height={cs.beforeAfter.beforeHeight}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="rounded-2xl border border-border"
+                    />
                     <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-muted">{cs.beforeAfter.beforeLabel}</figcaption>
                   </figure>
                 )}
                 {cs.beforeAfter.afterImage && (
                   <figure>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={cs.beforeAfter.afterImage} alt={cs.beforeAfter.afterLabel} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
+                    <ResponsiveMedia
+                      src={cs.beforeAfter.afterImage}
+                      alt={cs.beforeAfter.afterLabel}
+                      width={cs.beforeAfter.afterWidth}
+                      height={cs.beforeAfter.afterHeight}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="rounded-2xl border border-border"
+                    />
                     <figcaption className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-primary-strong">{cs.beforeAfter.afterLabel}</figcaption>
                   </figure>
                 )}
@@ -230,8 +249,14 @@ export default async function CaseStudyPage({ params }: Props) {
               <div className="mt-7 grid gap-5 sm:grid-cols-2">
                 {cs.gallery.map((g, i) => (
                   <figure key={i}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={g.image} alt={g.caption || cs.title} loading="lazy" decoding="async" className="w-full rounded-2xl border border-border" />
+                    <ResponsiveMedia
+                      src={g.image}
+                      alt={g.caption || cs.title}
+                      width={g.width}
+                      height={g.height}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="rounded-2xl border border-border"
+                    />
                     {g.caption && <figcaption className="mt-2 text-sm text-muted">{g.caption}</figcaption>}
                   </figure>
                 ))}
