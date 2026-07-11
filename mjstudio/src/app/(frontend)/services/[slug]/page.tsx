@@ -9,6 +9,8 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand, CtaInline } from "@/components/warm/Cta";
 import { accentInk } from "@/lib/accent";
+import { glossaryForService } from "@/lib/service-glossary";
+import { glossary } from "@/data/glossary";
 
 export const dynamicParams = false;
 // ISR so a testimonial added in the admin appears on service pages within 5 min
@@ -50,6 +52,12 @@ export default async function ServiceDetailPage({ params }: Props) {
   const pillarSlug = pillars.find((p) => p.title === service.pillar)?.slug ?? "";
   const siblings = (await getServicesByPillar(service.pillar)).filter((s) => s.slug !== service.slug).slice(0, 3);
   const proof = (await getFeaturedTestimonials(1))[0]; // single strongest review, if any
+
+  // Glossary terms this service genuinely relates to (empty for most services —
+  // an irrelevant link is worse than none).
+  const relatedTerms = glossaryForService(service.slug)
+    .map((slug) => glossary.find((g) => g.slug === slug))
+    .filter((g): g is (typeof glossary)[number] => Boolean(g));
 
   // Service + BreadcrumbList schema — declares what this page sells and where
   // it sits in the site hierarchy (Home > Services > Pillar > Service).
@@ -281,6 +289,36 @@ export default async function ServiceDetailPage({ params }: Props) {
                   </details>
                 ))}
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* ---- jargon: link out to the glossary ----
+             Nothing on the site linked INTO /glossary/*, so those 12 term pages
+             sat as an island with no internal authority flowing in. A reader on
+             a service page is exactly who wants "what is a WebGL website?". */}
+        {relatedTerms.length > 0 && (
+          <section className="px-5 sm:px-8 py-10">
+            <div className="mx-auto max-w-[820px] rounded-[28px] border border-border bg-surface-2 p-7 md:p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.16em]" style={{ color: ink }}>
+                — In plain English
+              </p>
+              <p className="mt-3 text-foreground/75 leading-relaxed">
+                New to the terminology? These are the words that come up in{" "}
+                {service.title.toLowerCase()} work, explained without the jargon.
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-2.5">
+                {relatedTerms.map((t) => (
+                  <li key={t.slug}>
+                    <Link
+                      href={`/glossary/${t.slug}`}
+                      className="inline-flex min-h-[44px] items-center rounded-full border border-border bg-surface px-4 py-2 text-sm text-foreground/80 transition-colors hover:border-foreground/30 hover:text-foreground"
+                    >
+                      What is {t.term.toLowerCase()}?
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </section>
         )}
