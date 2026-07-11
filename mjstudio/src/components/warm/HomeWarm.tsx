@@ -4,6 +4,16 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { Reveal, RevealGroup, RevealItem, riseVariants } from "./Reveal";
+import {
+  Problems,
+  Outcomes,
+  IndustryNavigator,
+  Comparison,
+  TechStack,
+  AfterLaunch,
+  WhyNotUs,
+  TrustBar,
+} from "./HomeSections";
 import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
@@ -36,7 +46,55 @@ const FAQ_ITEMS = [
   },
   {
     q: "What happens after launch?",
-    a: "We ship it properly, show you how everything works, and stick around. Care plans cover updates, backups, security, and small tweaks — and you can always just email a real person.",
+    a: "We ship it properly, show you how everything works, and stick around. You get 30 days of support included, a recorded walkthrough for your team, analytics and Search Console set up and verified, and a full handover of code, files and accounts. Care plans cover updates, backups, security and small tweaks — and you can cancel any time.",
+  },
+  {
+    q: "Do you work with clients outside your country?",
+    a: "Yes — most of our work is remote, with founders in the US, UK, Canada, EU and Australia. Everything runs on calls, Loom videos, email and shared docs. We're based in Dhaka, Bangladesh, and we schedule around your working hours, not ours.",
+  },
+  {
+    q: "What technology do you build with?",
+    a: "Websites and apps in Next.js, React, TypeScript, Node.js and Tailwind, with Three.js/WebGL for 3D work. WordPress and Elementor when that's genuinely the right tool. AI work uses OpenAI and Claude. This very site runs on that stack — you can inspect it right now.",
+  },
+  {
+    q: "Will my site actually rank on Google?",
+    a: "We build search visibility in from the first page we design — clean structure, fast pages, proper metadata and schema. What we won't do is promise you a position: nobody honest can guarantee a ranking, and anyone who does is selling you something.",
+  },
+  {
+    q: "Can you fix or improve my existing site instead of rebuilding it?",
+    a: "Often, yes. A speed tune-up, an SEO audit, or a redesign of the pages that matter can be far better value than starting again. We'll tell you honestly which one you actually need — even when that's the smaller job.",
+  },
+  {
+    q: "Do you offer hosting?",
+    a: "We set your site up on hosting that suits it — usually Vercel for custom builds — in accounts registered in your name, not ours. You keep the keys. If you'd rather we manage it, that's what a care plan is for.",
+  },
+  {
+    q: "How do payments work?",
+    a: "One fixed price agreed before we start, split into a deposit and staged payments tied to milestones. No hourly billing, no invoices that quietly grow, no charges you didn't agree to.",
+  },
+  {
+    q: "How many revisions do I get?",
+    a: "We design with you rather than presenting a finished thing and defending it, so revisions are part of the process, not a countdown. We agree the direction together early — that's what stops a project going round in circles.",
+  },
+  {
+    q: "Am I locked into a contract?",
+    a: "No. Project work is a fixed scope at a fixed price. Ongoing care and marketing plans run month to month and you can cancel any time. If we're not earning our place, you shouldn't have to stay.",
+  },
+  {
+    q: "Is my site secure and kept up to date?",
+    a: "Yes. We build with current, maintained tooling, keep dependencies patched, and care plans include security monitoring, automatic backups and quick patching if something needs attention.",
+  },
+  {
+    q: "Will my website be accessible?",
+    a: "We build to WCAG AA as standard: real colour contrast, keyboard navigation, screen-reader-friendly markup, and respect for reduced-motion settings. It's not an upsell — it's just how a site should be built.",
+  },
+  {
+    q: "Can you help with AI — and is it worth it?",
+    a: "We build AI agents and automations for support, sales qualification and content — but only where they genuinely save time or money. If a simpler fix would do the job, we'll tell you. AI that exists to look modern is just an expensive way to look modern.",
+  },
+  {
+    q: "What kind of businesses do you work with?",
+    a: "Growing businesses that care how they come across: SaaS, e-commerce, real estate, hospitality, FinTech, healthcare, agencies and Web3. Every service we offer is shaped around how buyers in that specific world actually decide.",
   },
 ];
 
@@ -137,6 +195,11 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
               {SECONDARY_CTA.label}
             </Link>
           </div>
+          {/* Honest trust signals. Deliberately NOT invented statistics —
+              "100+ projects" is worthless the moment a prospect asks which. */}
+          <div className="hero-rise hero-rise-3">
+            <TrustBar />
+          </div>
         </div>
       </section>
 
@@ -155,6 +218,12 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           })}
         </RevealGroup>
       </section>
+
+      {/* ---------- PROBLEMS: name the pain before naming the product ---------- */}
+      <Problems />
+
+      {/* ---------- OUTCOMES: people buy the change, not the deliverable ---------- */}
+      <Outcomes />
 
       {/* ---------- PILLARS ---------- */}
       <section id="services" className="px-5 sm:px-8 py-24 md:py-32">
@@ -203,6 +272,9 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           </RevealGroup>
         </div>
       </section>
+
+      {/* ---------- INDUSTRY NAVIGATOR: surfaces the service×industry pages ---------- */}
+      <IndustryNavigator />
 
       {/* ---------- PROOF / TESTIMONIALS (renders only when present) ---------- */}
       {testimonials.length > 0 && (
@@ -289,6 +361,18 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           </RevealGroup>
         </div>
       </section>
+
+      {/* ---------- COMPARISON: how we differ, honestly hedged ---------- */}
+      <Comparison />
+
+      {/* ---------- TECH STACK: named tools, all verifiable ---------- */}
+      <TechStack />
+
+      {/* ---------- AFTER LAUNCH: the question nobody answers ---------- */}
+      <AfterLaunch />
+
+      {/* ---------- WHY NOT US: the most disarming section on the page ---------- */}
+      <WhyNotUs />
 
       {/* ---------- FAQ (answer-engine ready) ---------- */}
       <section className="px-5 sm:px-8 py-24">
