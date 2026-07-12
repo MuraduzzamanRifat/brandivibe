@@ -75,6 +75,62 @@ tools precisely because a visitor can open dev tools and verify the claim.
 
 ---
 
+## 4b. Full page inventory
+
+### The 35 services, by pillar
+
+**Web Development (5)** — `/services/…`
+`website-development` · `ecommerce-website` · `webgl-3d-experiences` ·
+`website-speed-optimization` · `website-maintenance`
+
+**Software Development (8)**
+`crm` · `erp` · `ecommerce-platform` · `accounting-finance` · `hr-management` ·
+`payroll-management` · `project-management` · `mobile-app`
+
+**Digital Marketing (13)** — the largest pillar
+`seo-services` · `local-seo` · `ecommerce-seo` · `seo-audit` ·
+`app-store-optimization` · `google-business-profile` · `guest-posts` ·
+`facebook-ads` · `linkedin-ads` · `youtube-ads` · `social-media-management` ·
+`online-reputation-management` · `content-distribution`
+
+**Creative Content (3)**
+`content-writing` · `social-media-content` · `video-production`
+
+**Creative Design (3)**
+`ui-ux-design` · `graphic-design` · `motion-graphics`
+
+**AI & Automation (3)**
+`ai-automation-systems` · `ai-agent-development` · `ai-content-engine`
+
+> ⚠ **Naming inconsistency:** the service is titled *"Google Business Profile
+> Optimization"*. House style is **"Google My Business (GMB)"** — never "GBP".
+> Renaming the title is safe; the slug `google-business-profile` should stay so
+> the 8 existing industry pages under it don't 404.
+
+### The 8 industries
+SaaS · E-commerce · Real Estate · Hospitality · FinTech · Web3 · Agencies · Healthcare
+
+Each pairs with all 35 services → **280 pages** at `/services/<service>/<industry>`.
+
+### The 12 glossary terms (built for AI citation)
+WebGL Website · 3D Website · Conversion-Focused Web Design · Premium Website
+Design · Cinematic Web Design · High-Conversion Website · AI Automation System ·
+Custom AI Agent · AI Sales Brain · Autonomous Content Marketing · Generative
+Engine Optimization (GEO) · Conversion Rate Optimization (CRO)
+
+### The 13 portfolio demos
+`helix` `neuron` `axiom` `pulse` `aurora` `orbit` `monolith` `atrium` `uturn`
+`kindred` `ironwood` `terroir` `octane`
+
+Standalone interactive builds, each at its own route. They demonstrate range —
+but they are demos, not client work, and the site never claims otherwise.
+
+### Standing pages
+`/` · `/services` · `/industries` · `/case-studies` · `/journal` · `/glossary` ·
+`/portfolio` · `/about` · `/contact` · `/audit` *(lead magnet — free website audit)*
+
+---
+
 ## 5. Homepage (12 sections)
 
 Ordered to move a stranger from *"I have a problem"* to *"I'll email them"*:
