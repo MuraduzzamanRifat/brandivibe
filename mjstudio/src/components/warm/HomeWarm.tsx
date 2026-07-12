@@ -18,6 +18,7 @@ import { HomePortfolio } from "./HomePortfolio";
 import { HeroMedia } from "./HeroMedia";
 import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
+import { pillarIcon } from "@/lib/pillar-icons";
 import { pillars } from "@/data/services";
 import type { HomepageContent, TestimonialItem, HeroImage } from "@/lib/content";
 import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
@@ -268,12 +269,18 @@ export function HomeWarm({
                     className="card-soft lift group flex h-full flex-col p-7"
                     style={{ ["--pa" as string]: p.accent }}
                   >
+                    {/* Icon on a soft tint of its own accent. The icon takes the
+                        accessible ink so it stays legible on the tint — a bright
+                        accent on a bright tint of itself is nearly invisible. */}
                     <span
                       aria-hidden="true"
-                      className="grid h-11 w-11 place-items-center rounded-2xl text-white font-display font-semibold"
-                      style={{ background: accentInk(p.accent) }}
+                      className="grid h-12 w-12 place-items-center rounded-2xl"
+                      style={{ background: `${p.accent}1f`, color: accentInk(p.accent) }}
                     >
-                      {p.title.charAt(0)}
+                      {(() => {
+                        const Icon = pillarIcon(p.slug);
+                        return <Icon className="h-[22px] w-[22px]" strokeWidth={1.75} />;
+                      })()}
                     </span>
                     <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight flex items-center gap-1.5">
                       {p.title}
