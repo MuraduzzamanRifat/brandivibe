@@ -61,6 +61,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ...(c.publishedAt ? { lastModified: new Date(c.publishedAt) } : {}),
     })),
     { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9 },
+    // Legal pages — the footer linked to these from every page while they 404'd.
+    { url: `${SITE}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE}/refund-policy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/poster`, changeFrequency: "monthly", priority: 0.5 },
     // Demo/showcase pages: kept crawlable but below money pages — they
     // mostly dead-end and shouldn't outrank /about or the journal.

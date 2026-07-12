@@ -14,6 +14,7 @@ import {
   WhyNotUs,
   TrustBar,
 } from "./HomeSections";
+import { HomePortfolio } from "./HomePortfolio";
 import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
@@ -272,6 +273,9 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           </RevealGroup>
         </div>
       </section>
+
+      {/* ---------- WORK: the homepage never showed a single build ---------- */}
+      <HomePortfolio />
 
       {/* ---------- INDUSTRY NAVIGATOR: surfaces the service×industry pages ---------- */}
       <IndustryNavigator />
