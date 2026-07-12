@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Check,
@@ -11,6 +12,13 @@ import {
   ShoppingCart,
   Sparkles,
   TrendingUp,
+  MousePointerClick,
+  SearchX,
+  Unlink,
+  Timer,
+  Repeat,
+  Shuffle,
+  type LucideIcon,
 } from "lucide-react";
 import { Reveal, RevealGroup, RevealItem } from "./Reveal";
 import { industries } from "@/data/industries";
@@ -33,16 +41,46 @@ import { accentInk } from "@/lib/accent";
 /* 1. The problems a visitor actually arrives with                      */
 /* ------------------------------------------------------------------ */
 
-const PROBLEMS = [
-  "Your website looks fine, but almost nobody enquires through it.",
-  "You've been paying for SEO for months and can't point to what it bought.",
-  "The work is split across five freelancers who don't talk to each other.",
-  "Your site is slow, and you've quietly stopped believing it can be fixed.",
-  "The same manual job eats your team's week — every single week.",
-  "Your brand looks like a different company everywhere someone meets it.",
+const PROBLEMS: { text: string; icon: LucideIcon; alt: string }[] = [
+  {
+    text: "Your website looks fine, but almost nobody enquires through it.",
+    icon: MousePointerClick,
+    alt: "A beautiful website that nobody enquires through",
+  },
+  {
+    text: "You've been paying for SEO for months and can't point to what it bought.",
+    icon: SearchX,
+    alt: "Months of SEO spend with nothing to show for it",
+  },
+  {
+    text: "The work is split across five freelancers who don't talk to each other.",
+    icon: Unlink,
+    alt: "Work scattered across freelancers who never speak to each other",
+  },
+  {
+    text: "Your site is slow, and you've quietly stopped believing it can be fixed.",
+    icon: Timer,
+    alt: "A slow website you've given up on fixing",
+  },
+  {
+    text: "The same manual job eats your team's week — every single week.",
+    icon: Repeat,
+    alt: "The same manual task repeating every week",
+  },
+  {
+    text: "Your brand looks like a different company everywhere someone meets it.",
+    icon: Shuffle,
+    alt: "A brand that looks like a different company everywhere",
+  },
 ];
 
-export function Problems() {
+/**
+ * `images` comes from availableProblemImages() — one slot per problem, null
+ * where no file exists. A card shows its photo when there is one and its icon
+ * when there isn't, so the section is complete either way and half-finished
+ * artwork never ships a broken image.
+ */
+export function Problems({ images = [] }: { images?: (string | null)[] }) {
   return (
     <section className="px-5 sm:px-8 py-24 md:py-28">
       <div className="mx-auto max-w-[1200px]">
@@ -55,16 +93,35 @@ export function Problems() {
           </h2>
         </Reveal>
 
-        <RevealGroup className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {PROBLEMS.map((p) => (
-            <RevealItem key={p} className="card-soft flex gap-3 p-6">
-              <span
-                aria-hidden="true"
-                className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-primary-strong"
-              />
-              <p className="text-foreground/80 leading-relaxed text-pretty">{p}</p>
-            </RevealItem>
-          ))}
+        <RevealGroup className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {PROBLEMS.map(({ text, icon: Icon, alt }, i) => {
+            const img = images[i] ?? null;
+            return (
+              <RevealItem key={text} className="card-soft flex flex-col overflow-hidden">
+                {img ? (
+                  <div className="relative aspect-[16/10] w-full overflow-hidden">
+                    <Image
+                      src={img}
+                      alt={alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="px-6 pt-6">
+                    <span
+                      aria-hidden="true"
+                      className="grid h-11 w-11 place-items-center rounded-2xl bg-primary-soft text-primary-strong"
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </span>
+                  </div>
+                )}
+                <p className="p-6 leading-relaxed text-foreground/80 text-pretty">{text}</p>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
 
         <Reveal>

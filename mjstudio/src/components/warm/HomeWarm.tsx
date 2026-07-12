@@ -135,6 +135,8 @@ type Props = {
   testimonials?: TestimonialItem[];
   /** Null until a Media item named `homepage-hero` exists; falls back to a bundled image. */
   heroImage?: HeroImage | null;
+  /** One slot per problem card; null where no image file exists yet. */
+  problemImages?: (string | null)[];
 };
 
 export function HomeWarm({
@@ -142,6 +144,7 @@ export function HomeWarm({
   pillarCounts = {},
   testimonials = [],
   heroImage = null,
+  problemImages = [],
 }: Props) {
   const c = content ?? FALLBACK;
   const reassurance = c.reassurance?.length ? c.reassurance : FALLBACK.reassurance;
@@ -241,7 +244,7 @@ export function HomeWarm({
       </section>
 
       {/* ---------- PROBLEMS: name the pain before naming the product ---------- */}
-      <Problems />
+      <Problems images={problemImages} />
 
       {/* ---------- OUTCOMES: people buy the change, not the deliverable ---------- */}
       <Outcomes />
