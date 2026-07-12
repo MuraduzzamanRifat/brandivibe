@@ -181,10 +181,11 @@ export function HomeWarm({
           }}
           className="pointer-events-none absolute top-40 left-[-12%] h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
         />
-        {/* Copy is capped at ~58% width so it stays over the opaque part of the
-            scrim and the video is visible past it. */}
+        {/* Copy is capped at 560px of the 1200px container (≈47%) so it sits
+            entirely inside the scrim's opaque region (solid to 48%). Widen this
+            and the text starts overlapping moving footage — see HeroMedia. */}
         <div className="relative mx-auto max-w-[1200px]">
-          <div className="max-w-[640px]">
+          <div className="max-w-[560px]">
           {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
               framer-motion — the h1 is the LCP element and must paint before
               JS hydrates. Below-the-fold sections keep motion.* reveals. */}

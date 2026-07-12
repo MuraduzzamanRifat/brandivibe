@@ -56,6 +56,18 @@ export function HeroMedia({
           preload="metadata"
           poster={poster}
           onCanPlay={() => setReady(true)}
+          style={{
+            /*
+              The generator burns a watermark into the bottom-right pixels. CSS
+              cannot erase it — only push it outside the frame. Scaling from the
+              centre moves a corner mark from ~95% of the width out past 100%
+              (0.5 + 0.45 × 1.22 = 1.05), so the container clips it.
+              Re-exporting the video without the watermark is the real fix; this
+              just costs a little of the edges.
+            */
+            transform: "scale(1.22)",
+            transformOrigin: "center",
+          }}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
             ready ? "opacity-100" : "opacity-0"
           }`}
@@ -75,20 +87,31 @@ export function HeroMedia({
         className="absolute inset-0"
         style={{
           /*
-            Stays FULLY opaque to 56%, which is past the right edge of the copy
-            (capped at 640px of a 1200px container ≈ 53%). Verified against a
-            pure-black video: ink lands at 14.4:1 and coral at 4.7:1 there.
-            An earlier fade put coral at 3.6:1 — a real WCAG failure, since the
-            text would otherwise be sitting on whatever frame happened to play.
+            Opaque only as far as the copy actually reaches, then it gets out of
+            the way fast. The text column is capped at 560px of a 1200px
+            container (≈47%), so the wash holds solid to 48% and is fully clear
+            by 78% — the right third is untouched footage.
+
+            The opaque region is non-negotiable, not a style choice: the copy is
+            dark ink on a dark, MOVING image. Thin the wash under the text and
+            contrast starts depending on which frame happens to be playing.
+            Verified against a pure-black frame — ink 14.4:1, coral 4.7:1.
           */
           background:
-            "linear-gradient(100deg, var(--background) 0%, var(--background) 56%, color-mix(in srgb, var(--background) 72%, transparent) 68%, color-mix(in srgb, var(--background) 34%, transparent) 84%, color-mix(in srgb, var(--background) 12%, transparent) 100%)",
+            "linear-gradient(100deg, var(--background) 0%, var(--background) 48%, color-mix(in srgb, var(--background) 55%, transparent) 60%, color-mix(in srgb, var(--background) 18%, transparent) 70%, transparent 78%)",
+        }}
+      />
+      {/* Short fades on the edges so the footage doesn't end on a hard line. */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-28"
+        style={{
+          background: "linear-gradient(to bottom, transparent, var(--background))",
         }}
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-40"
+        className="absolute inset-x-0 top-0 h-24"
         style={{
-          background: "linear-gradient(to bottom, transparent, var(--background))",
+          background: "linear-gradient(to bottom, var(--background), transparent)",
         }}
       />
     </div>
