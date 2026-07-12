@@ -18,7 +18,7 @@ import { HomePortfolio } from "./HomePortfolio";
 import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
-import type { HomepageContent, TestimonialItem } from "@/lib/content";
+import type { HomepageContent, TestimonialItem, HeroImage } from "@/lib/content";
 import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
 import { WarmContact } from "./WarmContact";
 import { CtaInline } from "./Cta";
@@ -131,9 +131,16 @@ type Props = {
   content?: HomepageContent;
   pillarCounts?: Record<string, number>;
   testimonials?: TestimonialItem[];
+  /** Null until a Media item named `homepage-hero` exists; falls back to a bundled image. */
+  heroImage?: HeroImage | null;
 };
 
-export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Props) {
+export function HomeWarm({
+  content,
+  pillarCounts = {},
+  testimonials = [],
+  heroImage = null,
+}: Props) {
   const c = content ?? FALLBACK;
   const reassurance = c.reassurance?.length ? c.reassurance : FALLBACK.reassurance;
   const steps = c.process?.length ? c.process : FALLBACK.process;
@@ -167,14 +174,15 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
           }}
           className="pointer-events-none absolute top-40 left-[-12%] h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
         />
-        <div className="relative mx-auto max-w-[1200px]">
+        <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
           {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
               framer-motion — the h1 is the LCP element and must paint before
               JS hydrates. Below-the-fold sections keep motion.* reveals. */}
           <p className="hero-rise font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
             {c.heroEyebrow || FALLBACK.heroEyebrow}
           </p>
-          <h1 className="hero-rise hero-rise-1 mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.02] sm:text-6xl md:text-[4.6rem] max-w-[16ch]">
+          <h1 className="hero-rise hero-rise-1 mt-5 font-display font-semibold tracking-tight text-balance text-[2.7rem] leading-[1.02] sm:text-6xl md:text-[4.2rem] max-w-[16ch]">
             {c.heroHeadline || FALLBACK.heroHeadline}
             <span className="gradient-text">{c.heroHeadlineAccent || FALLBACK.heroHeadlineAccent}</span>
             {c.heroHeadlineTail ?? FALLBACK.heroHeadlineTail}
@@ -200,6 +208,21 @@ export function HomeWarm({ content, pillarCounts = {}, testimonials = [] }: Prop
               "100+ projects" is worthless the moment a prospect asks which. */}
           <div className="hero-rise hero-rise-3">
             <TrustBar />
+          </div>
+          </div>
+
+          {/* Hero image. Swap it from Admin → Media by uploading a file named
+              `homepage-hero` — see getHomeHeroImage(). `priority` because if
+              this becomes the LCP element it must not lazy-load. */}
+          <div className="hero-rise hero-rise-2 relative hidden aspect-[4/3] overflow-hidden rounded-[28px] border border-border shadow-[0_30px_60px_-30px_rgba(42,35,31,0.35)] lg:block">
+            <Image
+              src={heroImage?.url || "/work/_mj-hero.jpg"}
+              alt={heroImage?.alt || "Brandivibe — a senior studio building websites, software and AI"}
+              fill
+              priority
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>

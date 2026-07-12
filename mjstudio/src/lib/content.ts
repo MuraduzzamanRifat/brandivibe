@@ -255,6 +255,49 @@ export type IndustryMeta = {
   buyerPersona: string
 }
 
+// ---- Homepage hero image --------------------------------------------------
+export type HeroImage = { url: string; alt: string; width: number; height: number }
+
+/**
+ * The homepage hero image, editable from the admin with NO schema change.
+ *
+ * Adding an upload field to the Homepage global would add a column, and Payload
+ * only pushes schema in dev — a production build would then query a column that
+ * doesn't exist. So instead of a new field we look the image up by convention:
+ * whichever Media item is named `homepage-hero` wins.
+ *
+ * To change it: Admin → Media → upload a file named `homepage-hero.jpg`
+ * (replacing any existing one). The homepage picks it up within 5 minutes (ISR).
+ * Returns null when absent, and the page falls back to a bundled placeholder.
+ */
+export const getHomeHeroImage = cache(async (): Promise<HeroImage | null> => {
+  try {
+    const payload = await client()
+    const res = await payload.find({
+      collection: 'media',
+      where: { filename: { like: 'homepage-hero' } },
+      limit: 1,
+      depth: 0,
+      sort: '-createdAt',
+      overrideAccess: true,
+    })
+    const doc = res.docs[0] as Record<string, unknown> | undefined
+    if (!doc) return null
+    const url = mediaURL(doc)
+    if (!url) return null
+    const { width, height } = mediaDims(doc)
+    return {
+      url,
+      alt: String(doc.alt ?? 'Brandivibe'),
+      // next/image needs real pixels; 0 means "unknown" and the caller falls back.
+      width: width || 0,
+      height: height || 0,
+    }
+  } catch {
+    return null
+  }
+})
+
 // ---- Testimonials ---------------------------------------------------------
 export type TestimonialItem = {
   quote: string
