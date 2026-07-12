@@ -159,6 +159,12 @@ export function HomeWarm({
     <>
       {/* ---------- HERO ---------- */}
       <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-5 sm:px-8 overflow-hidden">
+        {/* Full-bleed background video + its scrim. Sits behind everything; the
+            copy reads against the scrim's solid canvas, never against the
+            footage itself. The poster (swappable from Admin → Media as
+            `homepage-hero`) covers the buffer before the first frame. */}
+        <HeroMedia poster={heroImage?.url} />
+
         <motion.div
           aria-hidden
           style={{
@@ -175,8 +181,10 @@ export function HomeWarm({
           }}
           className="pointer-events-none absolute top-40 left-[-12%] h-[420px] w-[420px] rounded-full opacity-50 blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+        {/* Copy is capped at ~58% width so it stays over the opaque part of the
+            scrim and the video is visible past it. */}
+        <div className="relative mx-auto max-w-[1200px]">
+          <div className="max-w-[640px]">
           {/* Above-the-fold: CSS entrance (see .hero-rise in globals.css), NOT
               framer-motion — the h1 is the LCP element and must paint before
               JS hydrates. Below-the-fold sections keep motion.* reveals. */}
@@ -210,18 +218,6 @@ export function HomeWarm({
           <div className="hero-rise hero-rise-3">
             <TrustBar />
           </div>
-          </div>
-
-          {/* Hero media: looping video over a still that paints first. Swap the
-              still from Admin → Media by uploading a file named `homepage-hero`
-              (see getHomeHeroImage); the video lives at public/hero.mp4. */}
-          <div className="hero-rise hero-rise-2 hidden lg:block">
-            <HeroMedia
-              poster={heroImage?.url || "/work/_mj-hero.jpg"}
-              posterAlt={
-                heroImage?.alt || "Brandivibe — a senior studio building websites, software and AI"
-              }
-            />
           </div>
         </div>
       </section>
