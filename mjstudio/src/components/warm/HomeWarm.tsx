@@ -15,6 +15,7 @@ import {
   TrustBar,
 } from "./HomeSections";
 import { HomePortfolio } from "./HomePortfolio";
+import { HeroMedia } from "./HeroMedia";
 import { accentInk } from "@/lib/accent";
 import { ArrowUpRight, ArrowRight, Heart, Clock, KeyRound, Star } from "lucide-react";
 import { pillars } from "@/data/services";
@@ -211,17 +212,15 @@ export function HomeWarm({
           </div>
           </div>
 
-          {/* Hero image. Swap it from Admin → Media by uploading a file named
-              `homepage-hero` — see getHomeHeroImage(). `priority` because if
-              this becomes the LCP element it must not lazy-load. */}
-          <div className="hero-rise hero-rise-2 relative hidden aspect-[4/3] overflow-hidden rounded-[28px] border border-border shadow-[0_30px_60px_-30px_rgba(42,35,31,0.35)] lg:block">
-            <Image
-              src={heroImage?.url || "/work/_mj-hero.jpg"}
-              alt={heroImage?.alt || "Brandivibe — a senior studio building websites, software and AI"}
-              fill
-              priority
-              sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-cover"
+          {/* Hero media: looping video over a still that paints first. Swap the
+              still from Admin → Media by uploading a file named `homepage-hero`
+              (see getHomeHeroImage); the video lives at public/hero.mp4. */}
+          <div className="hero-rise hero-rise-2 hidden lg:block">
+            <HeroMedia
+              poster={heroImage?.url || "/work/_mj-hero.jpg"}
+              posterAlt={
+                heroImage?.alt || "Brandivibe — a senior studio building websites, software and AI"
+              }
             />
           </div>
         </div>
