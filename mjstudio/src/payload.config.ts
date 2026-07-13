@@ -27,6 +27,24 @@ import { Testimonials } from './collections/Testimonials'
 // Taxonomy
 import { Industries } from './collections/Industries'
 import { Technologies } from './collections/Technologies'
+// CRM
+import { Contacts } from './collections/crm/Contacts'
+import { Deals } from './collections/crm/Deals'
+import { Activities } from './collections/crm/Activities'
+// Client Portal
+import { Projects } from './collections/portal/Projects'
+import { Milestones } from './collections/portal/Milestones'
+import { ProjectTasks } from './collections/portal/ProjectTasks'
+import { ProjectFiles } from './collections/portal/ProjectFiles'
+import { Invoices } from './collections/portal/Invoices'
+import { ProjectMessages } from './collections/portal/ProjectMessages'
+import { Approvals } from './collections/portal/Approvals'
+// Email Marketing
+import { Subscribers } from './collections/email/Subscribers'
+import { EmailLists } from './collections/email/EmailLists'
+import { EmailTemplates } from './collections/email/EmailTemplates'
+import { EmailCampaigns } from './collections/email/EmailCampaigns'
+import { EmailEvents } from './collections/email/EmailEvents'
 // Globals
 import { Homepage } from './globals/Homepage'
 import { BrandGuidelines } from './globals/BrandGuidelines'
@@ -73,6 +91,24 @@ export default buildConfig({
     // Taxonomy
     Industries,
     Technologies,
+    // CRM
+    Contacts,
+    Deals,
+    Activities,
+    // Client Portal
+    Projects,
+    Milestones,
+    ProjectTasks,
+    ProjectFiles,
+    Invoices,
+    ProjectMessages,
+    Approvals,
+    // Email Marketing
+    Subscribers,
+    EmailLists,
+    EmailTemplates,
+    EmailCampaigns,
+    EmailEvents,
   ],
   globals: [Homepage, BrandGuidelines],
   plugins: [
@@ -108,14 +144,30 @@ export default buildConfig({
       : []),
   ],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  // Never boot with an empty JWT secret in production — that silently signs
+  // every auth token with '' and makes sessions forgeable. Fail loudly instead.
+  secret: (() => {
+    const s = process.env.PAYLOAD_SECRET
+    if (!s && process.env.NODE_ENV === 'production') {
+      throw new Error('PAYLOAD_SECRET is required in production.')
+    }
+    return s || ''
+  })(),
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
+    // Runtime queries go through the pooled endpoint (DATABASE_URI). Schema DDL
+    // needs a DIRECT, non-pooled connection — the `migrate` npm script sets
+    // DATABASE_URI to DATABASE_URI_MIGRATION (the Neon direct host) for that run.
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
+    migrationDir: path.resolve(dirname, 'migrations'),
+    // Auto-push schema ONLY in dev. In production the build runs no push, so
+    // the new tables must be created by committed migrations (see runbook at
+    // docs/agency-platform-migration.md).
+    push: process.env.NODE_ENV !== 'production',
   }),
   sharp,
 })
