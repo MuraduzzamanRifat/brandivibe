@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getIndustries, getAllServices } from "@/lib/content";
+import { industryImage } from "@/lib/section-images";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 
@@ -121,6 +123,22 @@ export default async function IndustriesHubPage() {
                 >
                   <div className="grid grid-cols-12 gap-6 md:gap-10">
                     <div className="col-span-12 md:col-span-4">
+                      {/* Artwork is optional — a missing file just leaves the
+                          column typographic, exactly as before. */}
+                      {(() => {
+                        const img = industryImage(industry.slug);
+                        return img ? (
+                          <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-border">
+                            <Image
+                              src={img}
+                              alt={`${industry.name} — the buyers and businesses we build for`}
+                              fill
+                              sizes="(min-width: 768px) 33vw, 100vw"
+                              className="object-cover"
+                            />
+                          </div>
+                        ) : null;
+                      })()}
                       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-3">
                         {industry.shortLabel}
                       </p>
