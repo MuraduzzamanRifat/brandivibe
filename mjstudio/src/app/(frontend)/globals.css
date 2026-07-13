@@ -10,7 +10,7 @@
   --surface: #ffffff;         /* cards */
   --surface-2: #fdf3e8;       /* warm cream tint */
   --foreground: #2a231f;      /* warm charcoal ink */
-  --muted: #7c6f65;           /* warm taupe — darkened to clear WCAG AA (4.5:1) on canvas + cards */
+  --muted: #756a5f;           /* warm taupe — clears WCAG AA (4.5:1) on canvas, cards AND the cream footer surface */
   --border: rgba(42, 35, 31, 0.10);
   --border-strong: rgba(42, 35, 31, 0.16);
 
@@ -120,7 +120,10 @@ button, a, [role="button"] { cursor: pointer; }
 
 /* warm gradient ink for accented words */
 .gradient-text {
-  background: linear-gradient(100deg, var(--primary) 0%, var(--berry) 55%, var(--violet) 100%);
+  /* Start at the deeper coral: --primary (#ff6a3d) is only 2.65:1 on the ivory
+     canvas, below the 3:1 large-text minimum. --primary-deep clears it while
+     keeping the warm-to-violet sweep. */
+  background: linear-gradient(100deg, var(--primary-deep) 0%, var(--berry) 55%, var(--violet) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

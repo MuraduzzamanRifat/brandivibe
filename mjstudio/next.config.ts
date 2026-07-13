@@ -32,6 +32,8 @@ const nextConfig: NextConfig = isStaticBuild
     }
   : {
       turbopack: { root: projectRoot },
+      // Don't advertise the stack (was "X-Powered-By: Next.js, Payload").
+      poweredByHeader: false,
       async redirects() {
         return [
           {
@@ -46,6 +48,45 @@ const nextConfig: NextConfig = isStaticBuild
           // Pexels CDN — used for journal hero images and uTurn store demo imagery.
           { protocol: "https", hostname: "images.pexels.com" },
         ],
+        // Optimized images are content-addressed and safe to cache for a year.
+        minimumCacheTTL: 31536000,
+      },
+      async headers() {
+        return [
+          {
+            // Security headers site-wide. frame-ancestors + X-Frame-Options
+            // close the clickjacking gap on the Payload /admin login; the CSP
+            // ships Report-Only first so it can't break the admin bundle —
+            // switch the key to "Content-Security-Policy" once reports are clean.
+            source: "/:path*",
+            headers: [
+              { key: "X-Frame-Options", value: "SAMEORIGIN" },
+              { key: "X-Content-Type-Options", value: "nosniff" },
+              { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+              {
+                key: "Permissions-Policy",
+                value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+              },
+              {
+                key: "Strict-Transport-Security",
+                value: "max-age=63072000; includeSubDomains; preload",
+              },
+              {
+                key: "Content-Security-Policy-Report-Only",
+                value:
+                  "default-src 'self'; img-src 'self' data: blob: https://images.pexels.com https://*.public.blob.vercel-storage.com; media-src 'self' https://*.public.blob.vercel-storage.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.public.blob.vercel-storage.com; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'",
+              },
+            ],
+          },
+          {
+            // Static media in /public is effectively immutable — cache hard.
+            // (Use versioned filenames if a file's contents ever change.)
+            source: "/:all*(mp4|webm|hdr|exr|avif|webp|png|jpg|jpeg|gif|svg|woff2)",
+            headers: [
+              { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+            ],
+          },
+        ];
       },
     };
 

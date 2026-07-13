@@ -12,7 +12,7 @@ export default function MonolithPage() {
     <LenisProvider>
       <Loader />
       <Navbar />
-      <main className="relative">
+      <main id="main-content" tabIndex={-1} className="relative">
         <Hero />
         <Works />
         <Philosophy />

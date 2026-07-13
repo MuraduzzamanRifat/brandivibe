@@ -351,7 +351,7 @@ export function HomeWarm({
                         className="h-9 w-9 rounded-full object-cover"
                       />
                     ) : (
-                      <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-primary-strong font-display font-semibold">
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-primary-soft text-[#a82600] font-display font-semibold">
                         {(t.authorName || t.company || "?").charAt(0).toUpperCase()}
                       </span>
                     )}

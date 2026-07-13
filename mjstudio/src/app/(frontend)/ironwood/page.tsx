@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function IronwoodPage() {
   return (
-    <main className="ironwood min-h-screen">
+    <main id="main-content" tabIndex={-1} className="ironwood min-h-screen">
       <Hero />
       <Drop />
       <Lookbook />

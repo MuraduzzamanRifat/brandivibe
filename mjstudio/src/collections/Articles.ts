@@ -27,8 +27,10 @@ export const Articles: CollectionConfig = {
     group: 'Content',
     // Live side-by-side preview while writing (draft-aware).
     livePreview: {
+      // Fall back to production, not localhost — a missing env var in the live
+      // admin should still open the real site, not a dead localhost link.
       url: ({ data }) =>
-        `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3111'}/journal/${data?.slug ?? ''}?preview=1`,
+        `${process.env.NEXT_PUBLIC_SITE_URL || 'https://brandivibe.com'}/journal/${data?.slug ?? ''}?preview=1`,
     },
   },
   access: {

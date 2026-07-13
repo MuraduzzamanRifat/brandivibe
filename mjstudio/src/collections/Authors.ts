@@ -46,8 +46,14 @@ export const Authors: CollectionConfig = {
     {
       name: 'email',
       type: 'text',
+      // Authors are publicly readable (bylines), but the email must not be
+      // served to anonymous API/GraphQL callers — it would be harvestable.
+      // Field-level read gate: signed-in staff only.
+      access: {
+        read: ({ req: { user } }) => Boolean(user),
+      },
       admin: {
-        description: 'Contact email (optional — only if they’re happy to share it).',
+        description: 'Internal contact email (optional) — never shown publicly.',
       },
     },
     {

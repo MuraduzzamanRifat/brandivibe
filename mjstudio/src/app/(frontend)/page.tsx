@@ -27,7 +27,7 @@ export default async function Home() {
   return (
     <>
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <HomeWarm
           content={content}
           pillarCounts={pillarCounts}

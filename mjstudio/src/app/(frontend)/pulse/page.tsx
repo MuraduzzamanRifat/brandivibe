@@ -17,7 +17,7 @@ export default function PulsePage() {
     <>
       <Loader />
       <Navbar />
-      <main className="relative">
+      <main id="main-content" tabIndex={-1} className="relative">
         <div className="pulse-sheet pulse-sheet-1">
           <Hero />
         </div>

@@ -318,7 +318,7 @@ export function Comparison() {
                   <th scope="col" className="p-5 font-display text-lg font-semibold text-foreground">
                     Brandivibe
                   </th>
-                  <th scope="col" className="p-5 font-display text-lg font-semibold text-foreground/60">
+                  <th scope="col" className="p-5 font-display text-lg font-semibold text-foreground/70">
                     A typical agency
                   </th>
                 </tr>
@@ -344,7 +344,7 @@ export function Comparison() {
                     <td className="p-5 align-top">
                       <span className="flex gap-2.5">
                         <X aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-muted" />
-                        <span className="text-foreground/60">{row.them}</span>
+                        <span className="text-foreground/70">{row.them}</span>
                       </span>
                     </td>
                   </tr>

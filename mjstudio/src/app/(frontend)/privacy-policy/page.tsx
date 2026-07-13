@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <WarmNav />
-      <main className="px-5 sm:px-8 pt-36 pb-24">
+      <main id="main-content" tabIndex={-1} className="px-5 sm:px-8 pt-36 pb-24">
         <article className="mx-auto max-w-[760px]">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
             — The legal bit, in plain English
@@ -34,6 +34,9 @@ export default function PrivacyPolicyPage() {
           <h1 className="mt-4 font-display text-4xl md:text-[3.4rem] font-semibold tracking-tight text-balance">
             Privacy Policy
           </h1>
+          <p className="mt-4 font-mono text-xs text-muted uppercase tracking-[0.16em]">
+            Last updated 13 July 2026
+          </p>
           <p className="mt-6 text-lg text-foreground/70 leading-relaxed">
             We collect as little as we can get away with, we never sell it, and you can
             have it deleted by sending one email. That&apos;s the whole policy — the
@@ -41,6 +44,21 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <div className="mt-12 space-y-10 text-foreground/80 leading-relaxed">
+            <section>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
+                Who we are
+              </h2>
+              <p className="mt-3">
+                Brandivibe is a digital studio operated by Muraduzzaman, based in Dhaka,
+                Bangladesh, working with founders worldwide. We are the data controller for
+                anything you send us. You can reach us any time at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-strong underline">
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </p>
+            </section>
+
             <section>
               <h2 className="font-display text-2xl font-semibold text-foreground">
                 What we collect
@@ -93,6 +111,18 @@ export default function PrivacyPolicyPage() {
                   {CONTACT_EMAIL}
                 </a>{" "}
                 and say what you want.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
+                Cookies
+              </h2>
+              <p className="mt-3">
+                This site sets no analytics or advertising cookies, and shows no consent
+                banner because it doesn&apos;t need one. We use only the strictly-necessary
+                storage required to run the site — and, if you log in to a client area, to
+                keep you signed in.
               </p>
             </section>
 

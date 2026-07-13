@@ -8,7 +8,7 @@ export default function OrbitPage() {
   return (
     <>
       <Navbar />
-      <main className="relative">
+      <main id="main-content" tabIndex={-1} className="relative">
         <Hero />
         <Specs />
         <CTA />

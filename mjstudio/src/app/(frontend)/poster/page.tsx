@@ -5,11 +5,14 @@ export const metadata: Metadata = {
   title: "Brandivibe — Manifesto Poster",
   description:
     "Silent Architecture: a design philosophy expressed as a limited-edition manifesto poster. Plate 001 of 003.",
+  // Thin visual demo (a few dozen words, no H1). Keep it crawlable/shareable but
+  // out of the index so it doesn't dilute site-wide quality signals.
+  robots: { index: false, follow: true },
 };
 
 export default function PosterPage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-6 py-20 gap-10">
+    <main id="main-content" tabIndex={-1} className="min-h-screen flex flex-col items-center justify-center px-6 py-20 gap-10">
       <div className="font-mono text-[10px] text-white/40 uppercase tracking-[0.3em]">
         — Plate 001 · Silent Architecture · 2026
       </div>

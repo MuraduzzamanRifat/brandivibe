@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { ArrowRight, Calendar, Check } from "lucide-react";
 import { pillars } from "@/data/services";
 import { CONTACT_EMAIL, BOOKING_URL } from "@/lib/contact";
@@ -167,6 +168,13 @@ export function WarmContact() {
                 {submitting ? "Sending…" : "Send message"}
                 {!submitting && <ArrowRight className="h-4 w-4" />}
               </button>
+              <p className="text-xs text-muted mt-3">
+                We&apos;ll only use this to reply — never shared. See our{" "}
+                <Link href="/privacy-policy" className="underline hover:text-foreground">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
             </form>
           )}
         </div>

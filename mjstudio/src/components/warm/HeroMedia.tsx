@@ -29,6 +29,7 @@ export function HeroMedia({
 }) {
   const reduceMotion = useReducedMotion();
   const [allowed, setAllowed] = useState(false);
+  const [wide, setWide] = useState(false);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -41,7 +42,19 @@ export function HeroMedia({
     setAllowed(!slow);
   }, []);
 
-  const showVideo = allowed && !reduceMotion;
+  // Desktop only. The scrim's opaque region is sized for a ≤560px text column
+  // in a wide container (~47%); on a phone the copy fills the width and would
+  // spill onto the fading footage — dark ink on dark video. Below 768px the
+  // hero falls back to the poster + ivory canvas + glows, all at full contrast.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const sync = () => setWide(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const showVideo = allowed && wide && !reduceMotion;
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">

@@ -20,17 +20,34 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Bad request.' }, { status: 400 })
   }
 
-  // Honeypot: real users never fill this. Pretend success so bots don't retry.
-  if (typeof body.website === 'string' && body.website.trim() !== '') {
+  // Honeypot: real users never fill this. Any truthy value = bot (omitting the
+  // field no longer bypasses it). Pretend success so bots don't retry.
+  if (body.website) {
     return NextResponse.json({ ok: true })
   }
 
   const name = String(body.name ?? '').trim()
   const email = String(body.email ?? '').trim()
   const message = String(body.message ?? '').trim()
+  const company = String(body.company ?? '').trim()
+  const service = String(body.service ?? '').trim()
+  const source = String(body.source ?? '').trim()
 
   if (!name || !EMAIL_RE.test(email)) {
     return NextResponse.json({ error: 'Please add your name and a valid email address.' }, { status: 422 })
+  }
+
+  // Length caps so this (the only unauthenticated write path) can't be used to
+  // POST multi-megabyte payloads at the Leads table.
+  if (
+    name.length > 120 ||
+    email.length > 200 ||
+    company.length > 160 ||
+    service.length > 80 ||
+    message.length > 5000 ||
+    source.length > 300
+  ) {
+    return NextResponse.json({ error: 'That message is too long — please shorten it and try again.' }, { status: 422 })
   }
 
   try {
@@ -41,10 +58,10 @@ export async function POST(req: Request) {
       data: {
         name,
         email,
-        company: String(body.company ?? '').trim() || undefined,
-        service: String(body.service ?? '').trim() || undefined,
+        company: company || undefined,
+        service: service || undefined,
         message: message || undefined,
-        source: String(body.source ?? '').trim() || undefined,
+        source: source || undefined,
         status: 'new',
       },
     })
