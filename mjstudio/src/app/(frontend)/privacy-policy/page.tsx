@@ -116,13 +116,32 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="font-display text-2xl font-semibold text-foreground">
-                Cookies
+                Cookies &amp; analytics
               </h2>
               <p className="mt-3">
-                This site sets no analytics or advertising cookies, and shows no consent
-                banner because it doesn&apos;t need one. We use only the strictly-necessary
-                storage required to run the site — and, if you log in to a client area, to
-                keep you signed in.
+                We use Google Analytics to understand which pages people find useful — how
+                many visitors a page gets, roughly where they came from, and what they
+                clicked. It sets a cookie (<code>_ga</code>) to tell one visit from another.
+                We look at it in aggregate; we&apos;re not trying to identify you, and we
+                never sell or share it.
+              </p>
+              <p className="mt-3">
+                We run no advertising or retargeting cookies. The only other storage we use
+                is the strictly-necessary kind that makes the site work — and, if you log in
+                to a client area, keeps you signed in.
+              </p>
+              <p className="mt-3">
+                You can opt out at any time with Google&apos;s{" "}
+                <a
+                  href="https://tools.google.com/dlpage/gaoptout"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-primary-strong underline underline-offset-4 hover:text-primary-deep"
+                >
+                  browser add-on
+                </a>
+                , or by blocking cookies in your browser — the site works perfectly well
+                without them.
               </p>
             </section>
 
@@ -133,7 +152,12 @@ export default function PrivacyPolicyPage() {
               <p className="mt-3">
                 The services that make the site run: Vercel (hosting) and Neon (database).
                 They process data on our behalf and cannot use it for their own purposes.
-                Nobody else.
+              </p>
+              <p className="mt-3">
+                Google Analytics also processes anonymised usage data — page views and
+                rough location — so we can see which pages are worth improving. Anything you
+                type into a form stays between us; it is never sent to Google. Nobody else
+                gets your data, and we never sell it.
               </p>
             </section>
 

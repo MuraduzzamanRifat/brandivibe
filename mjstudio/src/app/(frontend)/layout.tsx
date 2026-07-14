@@ -4,6 +4,7 @@ import "./globals.css";
 import { LenisProvider } from "@/components/LenisProvider";
 import { ClientChrome } from "@/components/ClientChrome";
 import { FlowBackdrop } from "@/components/warm/backdrop/FlowBackdrop";
+import { Analytics } from "@/components/Analytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,11 @@ export const metadata: Metadata = {
     "A friendly digital studio for growing businesses — websites, software, marketing, design, and AI automation. Senior work, and you own everything we build.",
   authors: [{ name: "Brandivibe" }],
   creator: "Brandivibe",
+  // Google Search Console ownership. Next renders this as the
+  // <meta name="google-site-verification"> tag Google looks for.
+  verification: {
+    google: "9AVbYbdo56bJu3EUtB2ncIWXjhZuSgF-P-POFFWGnzc",
+  },
   alternates: {
     canonical: SITE_URL,
   },
@@ -156,6 +162,7 @@ export default function RootLayout({
         <FlowBackdrop />
         <ClientChrome />
         <LenisProvider>{children}</LenisProvider>
+        <Analytics />
       </body>
     </html>
   );

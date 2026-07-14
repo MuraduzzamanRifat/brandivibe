@@ -72,9 +72,13 @@ const nextConfig: NextConfig = isStaticBuild
                 value: "max-age=63072000; includeSubDomains; preload",
               },
               {
+                // Google Analytics needs googletagmanager.com to load the tag and
+                // google-analytics.com to beacon hits back, so both are allowlisted
+                // in script-src/connect-src/img-src. Still Report-Only — flip the key
+                // to "Content-Security-Policy" once the reports come back clean.
                 key: "Content-Security-Policy-Report-Only",
                 value:
-                  "default-src 'self'; img-src 'self' data: blob: https://images.pexels.com https://*.public.blob.vercel-storage.com; media-src 'self' https://*.public.blob.vercel-storage.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.public.blob.vercel-storage.com; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'",
+                  "default-src 'self'; img-src 'self' data: blob: https://images.pexels.com https://*.public.blob.vercel-storage.com https://*.google-analytics.com https://*.googletagmanager.com; media-src 'self' https://*.public.blob.vercel-storage.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src 'self' https://*.public.blob.vercel-storage.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'",
               },
             ],
           },
