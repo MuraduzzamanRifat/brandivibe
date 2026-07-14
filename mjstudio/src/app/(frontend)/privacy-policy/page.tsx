@@ -131,7 +131,14 @@ export default function PrivacyPolicyPage() {
                 to a client area, keeps you signed in.
               </p>
               <p className="mt-3">
-                You can opt out at any time with Google&apos;s{" "}
+                If you&apos;re in the UK or EU, nothing is measured until you say yes — we
+                ask first, and analytics stays switched off until you accept. Everywhere
+                else you can turn it off with the same banner. Changed your mind? Hit{" "}
+                <strong className="font-medium text-foreground">Cookie choices</strong> at
+                the bottom of any page and pick again.
+              </p>
+              <p className="mt-3">
+                You can also opt out with Google&apos;s{" "}
                 <a
                   href="https://tools.google.com/dlpage/gaoptout"
                   target="_blank"
