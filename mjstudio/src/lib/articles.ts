@@ -144,6 +144,11 @@ export async function loadArticle(slug: string): Promise<LoadedArticle | null> {
     }
   }
 
+  // The page renders frontmatter.title as the sole <h1>. Demote any H1 that
+  // leaks in from the body (a legacy MDX "# " heading or a Lexical H1 node) to
+  // H2 so each article has exactly one top-level heading. Source-agnostic.
+  html = html.replace(/<(\/?)h1(\b[^>]*)?>/gi, '<$1h2$2>')
+
   return {
     frontmatter: {
       title: meta.title,

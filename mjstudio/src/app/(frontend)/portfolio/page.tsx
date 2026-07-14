@@ -26,7 +26,7 @@ export default function DemosPage() {
   return (
     <>
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 md:pt-40 pb-12 px-5 sm:px-8">
           <div

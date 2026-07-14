@@ -43,15 +43,16 @@ export function Loader() {
           >
             Studio — by conversation
           </motion.div>
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 30, letterSpacing: "0.02em" }}
             animate={{ opacity: 1, y: 0, letterSpacing: "-0.01em" }}
             transition={{ duration: 1.6, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
             className="mt-5 font-serif italic text-[var(--aurora-champagne)]"
             style={{ fontSize: "clamp(3rem, 9vw, 7rem)", lineHeight: 1 }}
+            aria-hidden="true"
           >
             Aurora
-          </motion.h1>
+          </motion.div>
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}

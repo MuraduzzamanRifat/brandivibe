@@ -93,7 +93,7 @@ export default async function CaseStudyPage({ params }: Props) {
     <>
       <WarmNav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 pb-12 px-5 sm:px-8">
           <div

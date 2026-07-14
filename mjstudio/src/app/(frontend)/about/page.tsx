@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
 import { PRIMARY_CTA } from "@/lib/cta";
+import { aboutImage } from "@/lib/section-images";
 
 export const dynamic = "force-static";
 
@@ -125,7 +127,7 @@ export default function AboutPage() {
   return (
     <>
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
@@ -165,6 +167,29 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        {/* ---- craft image ----
+            Deliberately object-focused (a desk, hands, the work itself). A stock
+            photo of people here would read as "this is our team" — and the copy
+            below says, truthfully, that Brandivibe is one person. */}
+        {(() => {
+          const img = aboutImage("craft");
+          return img ? (
+            <section className="px-5 sm:px-8 pb-4">
+              <div className="mx-auto max-w-[1200px]">
+                <div className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-border">
+                  <Image
+                    src={img}
+                    alt="Close, unhurried work — the craft behind every Brandivibe build"
+                    fill
+                    sizes="(min-width: 1200px) 1200px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </section>
+          ) : null;
+        })()}
 
         {/* ---- story / what I do ---- */}
         <section className="px-5 sm:px-8 py-10">

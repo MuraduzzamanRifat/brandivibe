@@ -60,6 +60,11 @@ export default async function ArticlePage({ params }: Props) {
 
   const { frontmatter, html } = article;
   const meta = await getArticle(slug);
+
+  // Real word count from the rendered body. meta.wordCount is a stale legacy
+  // number for migrated posts (e.g. "77" on a ~1,000-word essay), so compute it
+  // from the actual HTML for the schema rather than trusting the seed value.
+  const wordCount = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   const moreArticles = (await getArticles()).filter((a) => a.slug !== slug).slice(0, 3);
 
   // Contextual internal links out of this essay (see lib/article-links.ts).
@@ -117,7 +122,7 @@ export default async function ArticlePage({ params }: Props) {
           },
         }),
         keywords: meta.secondaryKeywords?.join(", "),
-        wordCount: meta.wordCount,
+        wordCount,
         articleSection: "Website conversion & design",
         about: {
           "@type": "Thing",
@@ -149,7 +154,7 @@ export default async function ArticlePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <article className="journal-article mx-auto max-w-[760px] px-5 sm:px-8 pt-36 md:pt-40 pb-16">
           <header className="mb-10">
             <Link

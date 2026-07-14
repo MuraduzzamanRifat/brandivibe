@@ -13,7 +13,7 @@ export async function GET() {
   const lines: string[] = [
     "# Brandivibe",
     "",
-    "> Brandivibe is a digital agency founded by Muraduzzaman. We design and build websites (including cinematic WebGL/3D experiences), custom software, and AI-powered content and automation systems — plus the digital marketing to get them found. Clear fixed pricing agreed before work starts; most projects go live in about 6 weeks.",
+    "> Brandivibe is a friendly digital studio founded in 2024 by Muraduzzaman, based in Dhaka, Bangladesh, working with founders worldwide. We design and build websites (including cinematic WebGL/3D experiences), custom software, and AI-powered content and automation systems — plus the digital marketing to get them found. Clear fixed pricing agreed before work starts; most projects go live in about 6 weeks.",
     "",
     `- [Services overview](${BASE}/services): everything we do, organized by pillar`,
     `- [Case studies](${BASE}/case-studies): selected work`,

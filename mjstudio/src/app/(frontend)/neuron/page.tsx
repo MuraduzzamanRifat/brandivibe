@@ -14,7 +14,7 @@ export default function NeuronPage() {
     <LenisProvider>
       <Loader />
       <Navbar />
-      <main className="relative neuron-main">
+      <main id="main-content" tabIndex={-1} className="relative neuron-main">
         <Hero />
         <LogoBar />
         <Features />

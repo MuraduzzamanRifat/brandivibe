@@ -26,7 +26,7 @@ const SITE_URL = "https://brandivibe.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
+  title: "Brandivibe — Digital Studio: Web, Software, Marketing & AI",
   // ≤160 chars so it never truncates in SERPs.
   description:
     "A friendly digital studio for growing businesses — websites, software, marketing, design, and AI automation. Senior work, and you own everything we build.",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
+    title: "Brandivibe — Digital Studio: Web, Software, Marketing & AI",
     description:
       "Websites, software, marketing, content, design, and AI — made by a small, senior team that enjoys the work. Premium quality, none of the corporate coldness.",
     siteName: "Brandivibe",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brandivibe — Friendly Digital Studio: Web, Software, Marketing & AI",
+    title: "Brandivibe — Digital Studio: Web, Software, Marketing & AI",
     description:
       "Websites, software, marketing, content, design, and AI — a friendly senior studio for growing businesses. You own everything we build.",
     images: ["https://brandivibe.com/brand-og"],
@@ -138,6 +138,15 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
+        />
+        {/* No-JS safety net: the scroll-reveal wrappers ship with inline
+            opacity:0 and only animate to visible after framer-motion hydrates.
+            If JS never runs (or fails), reveal them so the page isn't blank
+            below the hero. */}
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<style>[style*="opacity:0"]{opacity:1!important;transform:none!important}</style>`,
+          }}
         />
       </head>
       <body className="grain">

@@ -26,7 +26,7 @@ export default function RefundPolicyPage() {
   return (
     <>
       <WarmNav />
-      <main className="px-5 sm:px-8 pt-36 pb-24">
+      <main id="main-content" tabIndex={-1} className="px-5 sm:px-8 pt-36 pb-24">
         <article className="mx-auto max-w-[760px]">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
             — No small print
@@ -34,6 +34,9 @@ export default function RefundPolicyPage() {
           <h1 className="mt-4 font-display text-4xl md:text-[3.4rem] font-semibold tracking-tight text-balance">
             Refunds &amp; cancellation
           </h1>
+          <p className="mt-4 font-mono text-xs text-muted uppercase tracking-[0.16em]">
+            Last updated 13 July 2026
+          </p>
           <p className="mt-6 text-lg text-foreground/70 leading-relaxed">
             We&apos;d rather sort a problem out than hide behind a clause. If something
             isn&apos;t right, tell us early — that&apos;s almost always fixable.
@@ -107,6 +110,17 @@ export default function RefundPolicyPage() {
                 because nobody honest can guarantee those, and we won&apos;t pretend
                 otherwise. What we guarantee is the work itself: built to the scope we agreed,
                 to the standard we showed you.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
+                Governing law
+              </h2>
+              <p className="mt-3">
+                These terms are governed by the laws of Bangladesh, where Brandivibe is based.
+                Wherever you are in the world, we&apos;ll always try to sort a problem out
+                directly and fairly before anything formal.
               </p>
             </section>
 

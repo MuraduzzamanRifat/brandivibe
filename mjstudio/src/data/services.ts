@@ -1640,7 +1640,7 @@ export const services: Service[] = [
       }
     ],
     "deliverables": [
-      "Google Business Profile optimisation",
+      "Google My Business (GMB) optimisation",
       "Local citation cleanup",
       "Review generation system",
       "Area landing pages",
@@ -1893,7 +1893,7 @@ export const services: Service[] = [
     "slug": "google-business-profile",
     "num": "05",
     "pillar": "Digital Marketing",
-    "title": "Google Business Profile Optimization",
+    "title": "Google My Business (GMB) Optimization",
     "hook": "Make your Google listing work harder.",
     "tagline": "A fully optimised Google My Business (GMB) profile that helps nearby customers find, trust, and choose you.",
     "accent": "#F5A524",
@@ -1974,11 +1974,11 @@ export const services: Service[] = [
     "relatedDemos": [],
     "faqs": [
       {
-        "q": "How long does it take to optimize my Google Business Profile?",
+        "q": "How long does it take to optimize my Google My Business (GMB) profile?",
         "a": "The core optimisation, filling in every field, sorting categories, photos, and your description, usually happens within the first couple of weeks. From there we keep the profile active with posts and review replies, and you'll typically see calls, directions, and views climb over the following weeks."
       },
       {
-        "q": "How much does Google Business Profile optimization cost?",
+        "q": "How much does Google My Business (GMB) optimization cost?",
         "a": "We quote it around your business and how much ongoing activity you'd like, then agree one clear fixed price up front with no retainers or hidden extras. A free call is the best way to get a real estimate, since we can look at your current listing together."
       },
       {
@@ -1987,14 +1987,14 @@ export const services: Service[] = [
       },
       {
         "q": "What's the difference between this and local SEO?",
-        "a": "Your Google Business Profile is one powerful piece of the local picture, this service makes that single listing work as hard as possible with photos, posts, reviews, and the right categories. Local SEO is the broader effort across your whole site and the web, and the two work beautifully together."
+        "a": "Your Google My Business (GMB) profile is one powerful piece of the local picture, this service makes that single listing work as hard as possible with photos, posts, reviews, and the right categories. Local SEO is the broader effort across your whole site and the web, and the two work beautifully together."
       },
       {
         "q": "Do you help manage and respond to reviews?",
         "a": "Yes, we set up a system to earn more genuine reviews and reply to them in a way that builds trust. Fresh, well-handled reviews reassure the people deciding whether to call or visit, and they help your profile show up more often too."
       }
     ],
-    "metaTitle": "Google Business Profile Optimization · Brandivibe",
+    "metaTitle": "Google My Business (GMB) Optimization · Brandivibe",
     "metaDescription": "We optimise your Google My Business (GMB) profile so nearby customers find you on search and maps and get in touch."
   },
   {

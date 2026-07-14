@@ -3,23 +3,22 @@ import type { Metadata } from "next";
 const SITE = "https://brandivibe.com";
 
 export const metadata: Metadata = {
-  title: "Free Founder Homepage Audit — 30-Point Analysis in 90 Seconds · Brandivibe",
+  title: "Free Homepage Review for Founders — an Honest Human Look · Brandivibe",
   description:
-    "Get a free 30-point audit of your founder homepage in 90 seconds. AI-powered analysis scores your design (out of 10), identifies your tech stack, and lists the three highest-impact fixes. No signup required.",
+    "Send your homepage and get a free, hand-written review from a real person — design, clarity, and the highest-impact fixes, emailed within one business day. No signup, no sales call.",
   alternates: { canonical: "/audit" },
   openGraph: {
-    title: "Free Founder Homepage Audit — 30-Point Analysis in 90 Seconds",
+    title: "Free Homepage Review for Founders — an Honest Human Look",
     description:
-      "AI-powered homepage audit: design score, tech stack detection, and three actionable fixes. Takes 90 seconds. No sales call, no signup wall.",
+      "A real person reviews your homepage by hand and emails you a few clear fixes. No signup wall, no sales call.",
     url: `${SITE}/audit`,
     type: "website",
     images: [{ url: `${SITE}/brand-og`, width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Free Founder Homepage Audit in 90 Seconds",
-    description:
-      "Design score, tech stack, 3 fixes. AI-powered analysis of your homepage. No signup.",
+    title: "Free Homepage Review for Founders",
+    description: "A hand-written homepage review, emailed within a business day. No signup.",
     images: [`${SITE}/brand-og`],
   },
 };
@@ -30,34 +29,34 @@ const FAQ_SCHEMA = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is a founder homepage audit?",
+      name: "What is Brandivibe's free homepage review?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "A founder homepage audit is an automated analysis of a startup or SaaS company's homepage. It scores visual design quality (0–10), detects the tech stack, identifies conversion blockers, and surfaces the highest-impact improvements. Brandivibe's audit runs in 90 seconds and delivers a 30-point report without requiring any signup.",
+        text: "It's a free, hand-written review of a startup or founder homepage. A real person on the Brandivibe team looks at your homepage the way a visitor would, then emails you an honest write-up of the design, what's working, and the few highest-impact things to fix. There's no signup wall and no sales call.",
       },
     },
     {
       "@type": "Question",
-      name: "How does Brandivibe's homepage audit work?",
+      name: "How does the homepage review work?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Enter your website URL and email address. The tool scrapes your homepage in real time, analyses the design and copy using the same AI engine Brandivibe uses before quoting a rebuild, then emails you a full report. The on-screen results are instant — typically 30 to 60 seconds.",
+        text: "Enter your website address and email. A member of the team reviews your homepage by hand — the same once-over Brandivibe does before quoting a rebuild — and replies by email, usually within one business day. It isn't an automated tool or a score; it's a person's honest read.",
       },
     },
     {
       "@type": "Question",
-      name: "Is the homepage audit free?",
+      name: "Is the homepage review free?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. The Brandivibe homepage audit is completely free. There is no signup wall, no sales call, and no follow-up phone call. You provide your website URL and one email address, and the report is delivered immediately on screen and by email.",
+        text: "Yes, completely free. There's no signup wall, no sales call, and no follow-up phone call. You give your website address and one email address, and the review comes back by email. You can unsubscribe with one click.",
       },
     },
     {
       "@type": "Question",
-      name: "What does the audit check?",
+      name: "What does the review look at?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "The audit checks 30 points across six categories: visual design quality (scored 0–10), technology stack identification, headline clarity and conversion copy, above-the-fold hierarchy, trust signals and social proof, and mobile/performance readiness. It produces a prioritised list of the three most impactful fixes.",
+        text: "The review looks at your homepage across the things that actually move visitors: visual design and hierarchy, headline clarity and conversion copy, what's above the fold, trust signals, and mobile readability. You get a short, prioritised list of the changes worth making first.",
       },
     },
     {
@@ -65,7 +64,7 @@ const FAQ_SCHEMA = {
       name: "How much does Brandivibe charge to rebuild a homepage?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Brandivibe rebuilds founder homepages on a per-project basis. Each engagement covers one dedicated designer, a production Next.js codebase you own outright, and a 6-week delivery timeline. There is no ongoing retainer. Reach out via the contact form for a tailored proposal.",
+        text: "Brandivibe rebuilds founder homepages on a per-project basis. Each engagement covers one dedicated designer, a production Next.js codebase you own outright, and roughly a 6-week delivery timeline. There's no ongoing retainer. Reach out via the contact form for a tailored proposal.",
       },
     },
   ],

@@ -5,14 +5,14 @@ import { WarmFooter } from "@/components/warm/WarmFooter";
 import { WarmContact } from "@/components/warm/WarmContact";
 
 export const metadata: Metadata = {
-  title: "Book a Free Call — Contact Brandivibe",
+  title: "Contact Brandivibe — Plan your project",
   description:
-    "Tell us about your project and book a free, no-pressure call. Friendly reply within a day — honest advice, a clear plan, and a fixed quote before anything starts.",
+    "Tell us about your project and we'll reply within a day with honest advice, a clear plan, and a fixed quote before anything starts. No pressure either way.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Book a free call · Brandivibe",
+    title: "Contact Brandivibe — Plan your project",
     description:
-      "Tell us about your project — we reply within a day with honest advice and times for a free call.",
+      "Tell us about your project — we reply within a day with honest advice and, if it's a fit, a clear plan and a fixed quote.",
     url: "/contact",
     type: "website",
   },
@@ -27,12 +27,12 @@ const STEPS = [
   {
     icon: Clock,
     title: "We reply within a day",
-    body: "A real person (not an autoresponder) reads it and comes back with honest first thoughts and a few times for a call.",
+    body: "A real person (not an autoresponder) reads it and comes back with honest first thoughts on your project.",
   },
   {
     icon: CalendarCheck,
-    title: "A free call — then a clear plan",
-    body: "We talk through your goals, and if we're a good fit you get a clear plan and a fixed quote. No pressure either way.",
+    title: "A clear plan and a fixed quote",
+    body: "If we're a good fit, you get a clear plan and a fixed quote — and we'll set up a call if that's useful. No pressure either way.",
   },
 ];
 
@@ -40,16 +40,17 @@ export default function ContactPage() {
   return (
     <>
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="pt-36 pb-8 px-5 sm:px-8">
           <div className="mx-auto max-w-[900px] text-center">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Let&apos;s talk</p>
             <h1 className="mt-4 font-display text-5xl md:text-6xl font-semibold tracking-tight text-balance">
-              Book your free call.
+              Tell us about your project.
             </h1>
             <p className="mt-6 text-lg text-foreground/70 max-w-[52ch] mx-auto leading-relaxed text-pretty">
-              Tell us about your project below. We reply within a day with honest thoughts and times
-              for a free, no-pressure call — even if the honest answer is that you don&apos;t need us yet.
+              Fill in the form below and we reply within a day with honest thoughts and, if it&apos;s
+              a fit, a clear plan and a fixed quote — even if the honest answer is that you don&apos;t
+              need us yet.
             </p>
           </div>
         </section>

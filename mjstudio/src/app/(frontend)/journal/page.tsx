@@ -63,7 +63,7 @@ export default async function JournalIndex() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- header ---- */}
         <section className="px-5 sm:px-8 pt-36 md:pt-40 pb-4">
           <div className="mx-auto max-w-[1200px]">
@@ -129,8 +129,6 @@ export default async function JournalIndex() {
                           month: "long",
                           day: "numeric",
                         })}
-                        {" · "}
-                        {featured.wordCount} words
                       </div>
                       <h2 className="font-display text-2xl md:text-4xl font-semibold tracking-tight mb-3 text-balance">
                         {featured.title}
@@ -175,8 +173,6 @@ export default async function JournalIndex() {
                               month: "short",
                               day: "numeric",
                             })}
-                            {" · "}
-                            {article.wordCount} words
                           </div>
                           <h2 className="font-display text-lg font-semibold tracking-tight mb-2 line-clamp-2 leading-snug">
                             {article.title}
