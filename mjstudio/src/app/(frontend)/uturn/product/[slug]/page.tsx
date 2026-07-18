@@ -26,6 +26,8 @@ export async function generateMetadata({ params }: Params) {
   return {
     title: `${product.name} — UTurn Store`,
     description: product.shortDescription,
+    // Fictional demo-store product — keep it out of the index.
+    robots: { index: false, follow: true },
   };
 }
 

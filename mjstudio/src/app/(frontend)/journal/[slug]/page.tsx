@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -42,13 +43,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/journal/${slug}`,
       type: "article",
       publishedTime: meta.publishedAt,
-      images: meta.heroImage ? [{ url: meta.heroImage }] : undefined,
+      // Fall back to the brand card so an article with no hero still shares an
+      // image (case studies already do this).
+      images: meta.heroImage ? [{ url: meta.heroImage }] : OG_IMAGE,
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.excerpt,
-      images: meta.heroImage ? [meta.heroImage] : undefined,
+      images: meta.heroImage ? [meta.heroImage] : ["https://brandivibe.com/brand-og"],
     },
   };
 }
@@ -187,16 +190,19 @@ export default async function ArticlePage({ params }: Props) {
           </header>
 
           {frontmatter.heroImage && (
-            // MDX frontmatter carries no intrinsic size, so this renders as a
-            // plain eager <img> — see ResponsiveMedia for why we don't guess.
-            <ResponsiveMedia
-              src={frontmatter.heroImage}
-              alt={frontmatter.title}
-              width={0}
-              height={0}
-              priority
-              className="rounded-2xl mb-14 border border-border"
-            />
+            // MDX frontmatter carries no intrinsic size, so ResponsiveMedia falls
+            // back to a plain <img>. Reserve the box with a fixed aspect-ratio
+            // wrapper so the LCP hero doesn't shift layout as it loads (CLS).
+            <div className="relative mb-14 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
+              <ResponsiveMedia
+                src={frontmatter.heroImage}
+                alt={frontmatter.title}
+                width={0}
+                height={0}
+                priority
+                className="absolute inset-0 h-full object-cover"
+              />
+            </div>
           )}
 
           <div

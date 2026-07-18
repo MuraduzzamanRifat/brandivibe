@@ -115,11 +115,19 @@ export function buildServiceIndustryPayload(
   // Never lowercase service.title here — it mangles acronyms in SERPs
   // ("Custom seo services…", "Custom crm systems…"). The tagline gives each
   // service a distinct sentence, so combos don't read as one template.
+  // The tagline is the same across all 8 industry variants of a service, so a
+  // description built from it alone reads as boilerplate. Anchor the tail to the
+  // industry's own conversion goal (authored per-industry, so each of the 8
+  // variants differs) — falling back to shorter forms to stay under 160 chars.
+  const frame = industry.conversionFrame.charAt(0).toLowerCase() + industry.conversionFrame.slice(1);
+  const withFrame = `${baseTitle} — built around what actually converts a ${industry.name} buyer: ${frame}.`;
   const candidate = `${baseTitle}: ${service.tagline}`;
   const metaDescription =
-    candidate.length <= 160
-      ? candidate
-      : `${baseTitle} — built around how ${industry.name} buyers decide. Fixed pricing, delivered in about six weeks.`;
+    withFrame.length <= 160
+      ? withFrame
+      : candidate.length <= 160
+        ? candidate
+        : `${baseTitle} — shaped around how ${industry.name} buyers decide. Fixed pricing, delivered in about six weeks.`;
 
   const canonical = `/services/${service.slug}/${industry.slug}`;
 

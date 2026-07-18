@@ -162,7 +162,6 @@ export default async function ServiceForIndustryPage({ params }: Props) {
                     src={img}
                     alt={`${service.title} for ${industryRecord.pluralName}`}
                     fill
-                    priority
                     sizes="(min-width: 1200px) 1200px, 100vw"
                     className="object-cover"
                   />

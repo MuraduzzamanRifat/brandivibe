@@ -57,13 +57,10 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Brandivibe — Digital Studio: Web, Software, Marketing & AI",
-    description:
-      "Websites, software, marketing, content, design, and AI — a friendly senior studio for growing businesses. You own everything we build.",
-    images: ["https://brandivibe.com/brand-og"],
-  },
+  // No root-level `twitter` block on purpose: a hardcoded card here is inherited
+  // by every sub-page (which only override `openGraph`), so an X/Slack unfurl of
+  // /services/seo-services showed the HOMEPAGE title. With it removed, Next
+  // derives each page's Twitter card from that page's own openGraph.
   robots: {
     index: true,
     follow: true,

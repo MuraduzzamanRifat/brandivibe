@@ -5,6 +5,7 @@ export const dynamic = "force-static";
 
 export const metadata = {
   title: "Order confirmed — UTurn Store",
+  robots: { index: false, follow: true },
 };
 
 export default function SuccessPage() {

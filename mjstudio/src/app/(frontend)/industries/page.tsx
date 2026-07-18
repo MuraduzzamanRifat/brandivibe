@@ -4,13 +4,14 @@ import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getIndustries, getAllServices } from "@/lib/content";
 import { industryImage } from "@/lib/section-images";
+import { OG_IMAGE } from "@/lib/seo";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Industries — WebGL, SEO, AI Automation by Vertical · Brandivibe",
+  title: "Industries — Web, SEO & AI by Vertical · Brandivibe",
   description:
     "Brandivibe ships premium WebGL websites, SEO, AI automation, marketing, and AI agents tailored to 8 industries — SaaS, e-commerce, real estate, hospitality, FinTech, Web3, agencies, and healthcare.",
   alternates: { canonical: "/industries" },
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
       "Premium digital builds tailored to your industry — every Brandivibe service, shaped for 8 verticals.",
     url: "/industries",
     type: "website",
+    images: OG_IMAGE,
   },
 };
 

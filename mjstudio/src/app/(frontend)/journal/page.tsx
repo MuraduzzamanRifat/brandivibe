@@ -11,7 +11,7 @@ import { CtaBand } from "@/components/warm/Cta";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Journal — Conversion-focused web design + AI automation · Brandivibe",
+  title: "Journal — Web Design & AI Automation Notes · Brandivibe",
   description:
     "Long-form essays on high-conversion websites, AI automation systems, SEO that compounds, and digital marketing strategy from Brandivibe.",
   alternates: { canonical: "/journal" },

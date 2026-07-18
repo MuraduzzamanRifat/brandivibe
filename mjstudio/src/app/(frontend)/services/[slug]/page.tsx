@@ -169,7 +169,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                     src={img}
                     alt={`${service.title} — ${service.tagline}`}
                     fill
-                    priority
                     sizes="(min-width: 1200px) 1200px, 100vw"
                     className="object-cover"
                   />

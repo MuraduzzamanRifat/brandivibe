@@ -102,7 +102,10 @@ export default async function GlossaryTermPage({ params }: Props) {
       name: "Brandivibe",
       url: SITE,
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    image: `${SITE}/brand-og`,
+    // Distinct @id from the DefinedTerm node (which owns the bare canonical),
+    // so the two different @types don't resolve to one identifier.
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${canonical}#webpage` },
     about: {
       "@type": "DefinedTerm",
       "@id": canonical,
