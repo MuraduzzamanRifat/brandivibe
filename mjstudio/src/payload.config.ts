@@ -45,6 +45,14 @@ import { EmailLists } from './collections/email/EmailLists'
 import { EmailTemplates } from './collections/email/EmailTemplates'
 import { EmailCampaigns } from './collections/email/EmailCampaigns'
 import { EmailEvents } from './collections/email/EmailEvents'
+// ERP
+import { RateCard } from './collections/erp/RateCard'
+import { Estimates } from './collections/erp/Estimates'
+import { SOWs } from './collections/erp/SOWs'
+import { ChangeOrders } from './collections/erp/ChangeOrders'
+import { Expenses } from './collections/erp/Expenses'
+import { Retainers } from './collections/erp/Retainers'
+import { TimeEntries } from './collections/erp/TimeEntries'
 // Globals
 import { Homepage } from './globals/Homepage'
 import { BrandGuidelines } from './globals/BrandGuidelines'
@@ -109,6 +117,14 @@ export default buildConfig({
     EmailTemplates,
     EmailCampaigns,
     EmailEvents,
+    // ERP
+    RateCard,
+    Estimates,
+    SOWs,
+    ChangeOrders,
+    Expenses,
+    Retainers,
+    TimeEntries,
   ],
   globals: [Homepage, BrandGuidelines],
   plugins: [
