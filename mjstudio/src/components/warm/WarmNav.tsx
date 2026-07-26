@@ -44,6 +44,14 @@ export function WarmNav() {
         scrolled ? "bg-[rgba(251,246,239,0.82)] backdrop-blur-xl border-b border-border" : "bg-transparent"
       }`}
     >
+      {/* Keyboard bypass (WCAG 2.4.1): first focusable element, hidden until
+          focused, jumps past the nav to each page's <main id="main-content">. */}
+      <a
+        href="#main-content"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[100] focus-visible:rounded-full focus-visible:bg-foreground focus-visible:px-5 focus-visible:py-2.5 focus-visible:text-background focus-visible:shadow-lg"
+      >
+        Skip to content
+      </a>
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8 h-[68px] flex items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2.5 group" aria-label="Brandivibe home">
           <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-xl bg-primary-strong text-white font-display font-semibold text-lg leading-none group-hover:rotate-6 transition-transform">b</span>
@@ -103,7 +111,7 @@ export function WarmNav() {
                       </span>
                     </Link>
                   ))}
-                  <Link href="/services" className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl py-2.5 text-sm font-medium text-primary-strong hover:bg-primary-soft transition-colors">
+                  <Link href="/services" className="col-span-2 mt-1 flex items-center justify-center gap-1.5 rounded-2xl py-2.5 text-sm font-medium text-primary-strong hover:bg-primary-soft/60 transition-colors">
                     View all services →
                   </Link>
                 </div>

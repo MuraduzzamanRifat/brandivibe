@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Star } from "lucide-react";
 import { getAllServices, getServiceBySlug, getServicesByPillar, getFeaturedTestimonials, pillars } from "@/lib/content";
+import { serviceImage } from "@/lib/section-images";
 import { PRIMARY_CTA } from "@/lib/cta";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
@@ -110,7 +112,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           }}
         />
       )}
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 pb-14 px-5 sm:px-8">
           <div
@@ -153,6 +155,28 @@ export default async function ServiceDetailPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* ---- hero image ----
+            Optional: a service with no file in public/services/<slug>.jpg simply
+            keeps the accent-gradient hero it had before. */}
+        {(() => {
+          const img = serviceImage(service.slug);
+          return img ? (
+            <section className="px-5 sm:px-8">
+              <div className="mx-auto max-w-[1200px]">
+                <div className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-border">
+                  <Image
+                    src={img}
+                    alt={`${service.title} — ${service.tagline}`}
+                    fill
+                    sizes="(min-width: 1200px) 1200px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </section>
+          ) : null;
+        })()}
 
         {/* ---- intro ---- */}
         <section className="px-5 sm:px-8 py-10">

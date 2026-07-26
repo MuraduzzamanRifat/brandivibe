@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function KindredPage() {
   return (
-    <main className="kindred min-h-screen">
+    <main id="main-content" tabIndex={-1} className="kindred min-h-screen">
       <Hero />
       <Products />
       <Story />

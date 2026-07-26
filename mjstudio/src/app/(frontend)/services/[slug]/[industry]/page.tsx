@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRight, Check, Star } from "lucide-react";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { serviceImage } from "@/lib/section-images";
 import { getFeaturedTestimonials } from "@/lib/content";
 import { buildServiceIndustryPayload } from "@/lib/programmatic-seo";
 import { PRIMARY_CTA } from "@/lib/cta";
@@ -88,7 +90,7 @@ export default async function ServiceForIndustryPage({ params }: Props) {
       />
 
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 md:pt-40 pb-14 px-5 sm:px-8">
           <div
@@ -147,6 +149,27 @@ export default async function ServiceForIndustryPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* ---- hero image ----
+            Inherits the parent service's artwork; absent file = no image band. */}
+        {(() => {
+          const img = serviceImage(service.slug);
+          return img ? (
+            <section className="px-5 sm:px-8">
+              <div className="mx-auto max-w-[1200px]">
+                <div className="relative aspect-[16/7] overflow-hidden rounded-3xl border border-border">
+                  <Image
+                    src={img}
+                    alt={`${service.title} for ${industryRecord.pluralName}`}
+                    fill
+                    sizes="(min-width: 1200px) 1200px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </section>
+          ) : null;
+        })()}
 
         {/* ---- in one sentence ---- */}
         <section className="px-5 sm:px-8 py-4">

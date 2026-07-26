@@ -11,7 +11,7 @@ export default function HelixPage() {
   return (
     <LenisProvider>
       <Navbar />
-      <main className="relative helix-main">
+      <main id="main-content" tabIndex={-1} className="relative helix-main">
         <Hero />
         <StatsBar />
         <HowItWorks />

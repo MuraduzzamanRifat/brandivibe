@@ -6,43 +6,28 @@ import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 import { CtaBand } from "@/components/warm/Cta";
 
-type AuditResult = {
-  ok: boolean;
-  company: string;
-  domain: string;
-  designScore: number;
-  techStackSummary: string;
-  industryName: string;
-  specificObservation: string;
-  observations: Array<{ title: string; fix: string }>;
-  topPriority: string;
-  weaknesses: string[];
-  emailSent: boolean;
-};
-
 export default function AuditPage() {
   const [url, setUrl] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<AuditResult | null>(null);
+  const [sent, setSent] = useState<{ domain: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setResult(null);
     try {
-      const res = await fetch("/api/audit/run", {
+      const res = await fetch("/audit/run", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, email }),
       });
       const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
-      setResult(json);
+      if (!res.ok) throw new Error(json.error ?? "Something went wrong. Please try again.");
+      setSent({ domain: json.domain || url });
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Audit failed. Try again in a moment.");
+      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -51,8 +36,7 @@ export default function AuditPage() {
   return (
     <>
       <WarmNav />
-      <main>
-        {/* ---- hero + form ---- */}
+      <main id="main-content" tabIndex={-1}>
         <section className="relative overflow-hidden pt-36 md:pt-40 pb-20 px-5 sm:px-8">
           <div
             aria-hidden
@@ -65,27 +49,32 @@ export default function AuditPage() {
             style={{ background: "radial-gradient(circle, rgba(15,165,152,0.22), rgba(15,165,152,0) 70%)" }}
           />
           <div className="relative mx-auto max-w-[760px]">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— A free homepage check-up</p>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— A free homepage review</p>
             <h1 className="mt-5 font-display text-[2.7rem] leading-[1.03] sm:text-6xl font-semibold tracking-tight text-balance">
-              See what your homepage is <span className="gradient-text">quietly costing you</span> — in about 90 seconds.
+              A friendly, human look at what your homepage is{" "}
+              <span className="gradient-text">quietly costing you</span>.
             </h1>
             <p className="mt-6 text-lg md:text-xl text-foreground/70 leading-relaxed text-pretty">
-              Pop in your web address and we&apos;ll take a friendly, 30-point look at your homepage — the same
-              once-over we do before any rebuild. We&apos;ll score the design, spot what&apos;s getting in your
-              visitors&apos; way, and hand you a few clear things to fix. No sales call, no signup wall, just one
-              email so we know where to send it.
+              Drop in your web address and we&apos;ll give your homepage the same honest once-over we do before any
+              rebuild — design, clarity, and the things getting in your visitors&apos; way. A real person reads it,
+              writes up a few clear fixes, and emails them to you. No automated score, no sales call, no signup wall —
+              just one email so we know where to send it.
             </p>
 
-            {!result && (
-              <form
-                onSubmit={submit}
-                className="mt-10 card-soft p-8 md:p-10 space-y-6"
-              >
+            {!sent && (
+              <form onSubmit={submit} className="mt-10 card-soft p-8 md:p-10 space-y-6">
+                {/* Honeypot: hidden from real users; bots fill it and get a silent no-op. */}
+                <input
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                  onChange={() => {}}
+                />
                 <div>
-                  <label
-                    htmlFor="audit-url"
-                    className="block font-mono text-xs uppercase tracking-[0.16em] text-muted mb-2"
-                  >
+                  <label htmlFor="audit-url" className="block font-mono text-xs uppercase tracking-[0.16em] text-muted mb-2">
                     Your website
                   </label>
                   <input
@@ -99,10 +88,7 @@ export default function AuditPage() {
                   />
                 </div>
                 <div>
-                  <label
-                    htmlFor="audit-email"
-                    className="block font-mono text-xs uppercase tracking-[0.16em] text-muted mb-2"
-                  >
+                  <label htmlFor="audit-email" className="block font-mono text-xs uppercase tracking-[0.16em] text-muted mb-2">
                     Where to send it
                   </label>
                   <input
@@ -120,12 +106,12 @@ export default function AuditPage() {
                   disabled={loading}
                   className="inline-flex items-center gap-2 rounded-full bg-primary-strong text-white px-7 py-4 font-medium hover:bg-primary-deep transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Taking a look…" : "Check my homepage"}
+                  {loading ? "Sending…" : "Send me my review"}
                   {!loading && <ArrowRight className="h-4 w-4" />}
                 </button>
                 <p className="text-sm text-muted leading-relaxed">
-                  We&apos;ll read your homepage live, just like a visitor would. No sign-up, no sales call, no
-                  surprise follow-ups — you&apos;ll get the report by email and can say goodbye with one click.
+                  We read your homepage the way a visitor would and reply by email — usually within one business day. No
+                  sign-up, no sales call, no surprise follow-ups, and you can say goodbye with one click.
                 </p>
               </form>
             )}
@@ -136,122 +122,46 @@ export default function AuditPage() {
               </div>
             )}
 
-            {loading && (
-              <div className="mt-10 text-center">
-                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong animate-pulse">
-                  Reading your page · Spotting the stack · Making notes
+            {sent && (
+              <div className="mt-10 space-y-10">
+                <div className="card-soft p-8 md:p-10">
+                  <div className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-primary-strong mb-4">
+                    <Check className="h-4 w-4" /> Got it
+                  </div>
+                  <h2 className="font-display text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-balance">
+                    We&apos;ll take a look at{" "}
+                    <span className="text-primary-strong">{sent.domain}</span>.
+                  </h2>
+                  <p className="text-foreground/70 text-lg leading-relaxed">
+                    A real person on the team will review your homepage by hand and email you a short write-up — the
+                    design, what&apos;s working, and the few things worth fixing first. Expect it within one business
+                    day. If it doesn&apos;t land, check your spam folder or just reply to say hello.
+                  </p>
                 </div>
-                <div className="mt-3 text-muted text-sm">This usually takes about 30–60 seconds — hang tight.</div>
+
+                <CtaBand
+                  title="Want a hand fixing it?"
+                  subtitle="We love rebuilding founder homepages — one designer on it, a clean Next.js codebase that's yours to keep, and no retainer afterwards. Roughly six friendly weeks, start to finish."
+                />
+
+                <div className="text-center pt-2">
+                  <button
+                    onClick={() => {
+                      setSent(null);
+                      setUrl("");
+                      setEmail("");
+                    }}
+                    className="text-muted hover:text-foreground transition-colors text-sm"
+                  >
+                    ← Send another site
+                  </button>
+                </div>
               </div>
             )}
           </div>
         </section>
-
-        {/* ---- results ---- */}
-        {result && (
-          <section className="px-5 sm:px-8 pb-4">
-            <div className="mx-auto max-w-[760px] space-y-10">
-              <div className="card-soft p-8 md:p-10">
-                <div className="font-mono text-xs uppercase tracking-[0.16em] text-primary-strong mb-4">
-                  — All done
-                </div>
-                <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight mb-6 text-balance">
-                  {result.company}{" "}
-                  <span className="text-muted">/ {result.domain}</span>
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                  <ScoreCard label="Design score" value={`${result.designScore}/10`} />
-                  <ScoreCard label="Industry read" value={result.industryName} />
-                  <ScoreCard label="Tech stack" value={result.techStackSummary} />
-                </div>
-                <div className="font-mono text-xs uppercase tracking-[0.16em] text-muted mb-2">
-                  The thing that jumped out
-                </div>
-                <p className="font-display text-xl md:text-2xl leading-snug text-balance">
-                  {result.specificObservation}
-                </p>
-              </div>
-
-              <div>
-                <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong mb-5">
-                  — Three things worth fixing first
-                </div>
-                <ul className="space-y-4">
-                  {result.observations.map((o, i) => (
-                    <li key={i} className="card-soft p-6">
-                      <div className="font-display text-lg mb-2 font-semibold text-foreground">
-                        {i + 1}. {o.title}
-                      </div>
-                      <div className="text-foreground/70 text-[0.95rem] leading-relaxed">
-                        <span className="text-primary-strong font-medium">Fix →</span> {o.fix}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 p-5 rounded-2xl border border-primary/25 bg-primary-soft">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary-deep mb-1">
-                    Start here
-                  </div>
-                  <div className="text-foreground/85">{result.topPriority}</div>
-                </div>
-              </div>
-
-              {result.weaknesses.length > 0 && (
-                <div>
-                  <div className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong mb-5">
-                    — Everything else we spotted
-                  </div>
-                  <ol className="space-y-2.5">
-                    {result.weaknesses.map((w, i) => (
-                      <li key={i} className="text-foreground/75 pl-7 relative leading-relaxed">
-                        <span className="absolute left-0 text-muted font-mono text-xs top-0.5">{i + 1}.</span>
-                        {w}
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-              )}
-
-              <div className="text-sm text-muted flex items-center justify-center gap-2">
-                <Check className="h-4 w-4" />
-                {result.emailSent
-                  ? "The full report is on its way to your inbox."
-                  : "Your full report is right here above (we skipped the email this time)."}
-              </div>
-
-              <CtaBand
-                title="Want a hand fixing it?"
-                subtitle="We love rebuilding founder homepages — one designer on it, a clean Next.js codebase that's yours to keep, and no retainer afterwards. Roughly six friendly weeks, start to finish."
-              />
-
-              <div className="text-center pt-2">
-                <button
-                  onClick={() => {
-                    setResult(null);
-                    setUrl("");
-                    setEmail("");
-                  }}
-                  className="text-muted hover:text-foreground transition-colors text-sm"
-                >
-                  ← Check another site
-                </button>
-              </div>
-            </div>
-          </section>
-        )}
       </main>
       <WarmFooter />
     </>
-  );
-}
-
-function ScoreCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-surface-2 p-4">
-      <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-        {label}
-      </div>
-      <div className="mt-2 font-display text-lg font-semibold text-foreground">{value}</div>
-    </div>
   );
 }

@@ -102,7 +102,10 @@ export default async function GlossaryTermPage({ params }: Props) {
       name: "Brandivibe",
       url: SITE,
     },
-    mainEntityOfPage: { "@type": "WebPage", "@id": canonical },
+    image: `${SITE}/brand-og`,
+    // Distinct @id from the DefinedTerm node (which owns the bare canonical),
+    // so the two different @types don't resolve to one identifier.
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${canonical}#webpage` },
     about: {
       "@type": "DefinedTerm",
       "@id": canonical,
@@ -136,7 +139,7 @@ export default async function GlossaryTermPage({ params }: Props) {
   return (
     <>
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(definedTermSchema) }}
@@ -173,7 +176,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           {/* H1 phrased as the question — high AI-extraction signal */}
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Glossary · Definition</p>
           <h1 className="mt-5 font-display text-4xl md:text-5xl font-semibold tracking-tight text-balance leading-[1.05]">
-            What is {entry.term.toLowerCase()}?
+            What is {entry.term}?
           </h1>
 
           {/* Lead definition block — THE line AI lifts. Self-contained,
@@ -183,7 +186,7 @@ export default async function GlossaryTermPage({ params }: Props) {
               Definition
             </div>
             <p className="text-xl md:text-2xl text-foreground leading-snug text-balance">
-              <span className="font-semibold">{entry.term}</span> is {entry.definition.replace(new RegExp(`^${entry.term}\\s+is\\s+`, "i"), "")}
+              {entry.definition}
             </p>
             {entry.alsoKnownAs.length > 0 && (
               <p className="mt-5 text-muted text-sm">
@@ -208,7 +211,7 @@ export default async function GlossaryTermPage({ params }: Props) {
           {/* Components / What it includes */}
           <section className="mt-12">
             <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
-              What {entry.term.toLowerCase()} includes
+              What {entry.term} includes
             </h2>
             <ul className="mt-5 space-y-3.5">
               {entry.components.map((c, i) => (
@@ -222,13 +225,13 @@ export default async function GlossaryTermPage({ params }: Props) {
 
           {/* Mid-page nudge */}
           <div className="mt-12 -mx-5 sm:-mx-8">
-            <CtaInline text={`Want ${entry.term.toLowerCase()} done properly? Let's talk it through.`} />
+            <CtaInline text={`Want ${entry.term} done properly? Let's talk it through.`} />
           </div>
 
           {/* When it applies */}
           <section className="mt-12">
             <h2 className="font-display text-2xl md:text-3xl font-semibold tracking-tight">
-              When a business needs {entry.term.toLowerCase()}
+              When a business needs {entry.term}
             </h2>
             <p className="mt-5 text-foreground/80 leading-relaxed text-lg">
               {entry.whenItApplies}
@@ -296,7 +299,7 @@ export default async function GlossaryTermPage({ params }: Props) {
 
         {/* CTA */}
         <CtaBand
-          title={`Want ${entry.term.toLowerCase()} built into your business?`}
+          title={`Want ${entry.term} built into your business?`}
           subtitle="Have a friendly chat with a small, senior team — honest advice and a clear plan, no pressure."
         />
       </main>

@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { getIndustries, getAllServices } from "@/lib/content";
+import { industryImage } from "@/lib/section-images";
+import { OG_IMAGE } from "@/lib/seo";
 import { WarmNav } from "@/components/warm/WarmNav";
 import { WarmFooter } from "@/components/warm/WarmFooter";
 
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Industries — WebGL, SEO, AI Automation by Vertical · Brandivibe",
+  title: "Industries — Web, SEO & AI by Vertical · Brandivibe",
   description:
     "Brandivibe ships premium WebGL websites, SEO, AI automation, marketing, and AI agents tailored to 8 industries — SaaS, e-commerce, real estate, hospitality, FinTech, Web3, agencies, and healthcare.",
   alternates: { canonical: "/industries" },
@@ -18,6 +21,7 @@ export const metadata: Metadata = {
       "Premium digital builds tailored to your industry — every Brandivibe service, shaped for 8 verticals.",
     url: "/industries",
     type: "website",
+    images: OG_IMAGE,
   },
 };
 
@@ -57,7 +61,7 @@ export default async function IndustriesHubPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 md:pt-40 pb-14 px-5 sm:px-8">
           <div
@@ -121,6 +125,22 @@ export default async function IndustriesHubPage() {
                 >
                   <div className="grid grid-cols-12 gap-6 md:gap-10">
                     <div className="col-span-12 md:col-span-4">
+                      {/* Artwork is optional — a missing file just leaves the
+                          column typographic, exactly as before. */}
+                      {(() => {
+                        const img = industryImage(industry.slug);
+                        return img ? (
+                          <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-border">
+                            <Image
+                              src={img}
+                              alt={`${industry.name} — the buyers and businesses we build for`}
+                              fill
+                              sizes="(min-width: 768px) 33vw, 100vw"
+                              className="object-cover"
+                            />
+                          </div>
+                        ) : null;
+                      })()}
                       <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted mb-3">
                         {industry.shortLabel}
                       </p>

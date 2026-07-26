@@ -26,6 +26,8 @@ export async function generateMetadata({ params }: Params) {
   return {
     title: `${product.name} — UTurn Store`,
     description: product.shortDescription,
+    // Fictional demo-store product — keep it out of the index.
+    robots: { index: false, follow: true },
   };
 }
 
@@ -40,7 +42,7 @@ export default async function ProductPage({ params }: Params) {
     <>
       <Loader />
       <Navbar />
-      <main className="relative pt-20 md:pt-24">
+      <main id="main-content" tabIndex={-1} className="relative pt-20 md:pt-24">
         {/* Breadcrumb */}
         <div className="mx-auto max-w-[1800px] px-6 md:px-10 py-6 hairline-b">
           <nav

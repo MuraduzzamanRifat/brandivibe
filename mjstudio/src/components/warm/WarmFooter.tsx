@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { pillars } from "@/data/services";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { CookieChoices } from "@/components/CookieChoices";
 
 const COMPANY = [
   { href: "/about", label: "About" },
@@ -65,6 +66,7 @@ export function WarmFooter() {
           <div className="flex gap-5">
             <Link href="/privacy-policy" className="hover:text-foreground">Privacy</Link>
             <Link href="/refund-policy" className="hover:text-foreground">Refunds</Link>
+            <CookieChoices />
           </div>
         </div>
       </div>

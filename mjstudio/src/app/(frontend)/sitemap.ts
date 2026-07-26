@@ -60,11 +60,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
       ...(c.publishedAt ? { lastModified: new Date(c.publishedAt) } : {}),
     })),
-    { url: `${SITE}/journal`, changeFrequency: "daily", priority: 0.9 },
+    { url: `${SITE}/journal`, changeFrequency: "weekly", priority: 0.9 },
     // Legal pages — the footer linked to these from every page while they 404'd.
     { url: `${SITE}/privacy-policy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE}/refund-policy`, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${SITE}/poster`, changeFrequency: "monthly", priority: 0.5 },
+    // /poster is a thin visual demo (48 words, no H1); it's noindex'd in its
+    // own metadata, so it's intentionally left out of the sitemap.
     // Demo/showcase pages: kept crawlable but below money pages — they
     // mostly dead-end and shouldn't outrank /about or the journal.
     ...PORTFOLIO_SLUGS.map((d) => ({

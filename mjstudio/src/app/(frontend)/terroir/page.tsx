@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function TerroirPage() {
   return (
-    <main className="terroir min-h-screen">
+    <main id="main-content" tabIndex={-1} className="terroir min-h-screen">
       <Hero />
       <Origins />
       <Subscribe />

@@ -66,7 +66,7 @@ export function buildServiceIndustryPayload(
 
   const intro = [
     industry.intro,
-    `That's why we shape our ${service.title.toLowerCase()} work around ${industry.pluralName} specifically. ${industryFraming}`,
+    `That's why we shape our ${service.title} work around ${industry.pluralName} specifically. ${industryFraming}`,
   ];
 
   // Combined pain points: lead with industry-specific pains (which the
@@ -87,7 +87,7 @@ export function buildServiceIndustryPayload(
       // appears verbatim in intro[1], and repeating it word-for-word on the
       // same page reads as broken templating (to people and to Google).
       q: `Why do ${industry.pluralName} need ${service.title} specifically?`,
-      a: `Because generic ${service.title.toLowerCase()} ignores how ${industry.pluralName} actually evaluate and buy — the conversion moment that matters here is ${industry.conversionFrame.charAt(0).toLowerCase()}${industry.conversionFrame.slice(1)}. We scope the engagement around that from day one, rather than adapting a one-size-fits-all playbook afterwards.`,
+      a: `Because a generic ${service.title} approach ignores how ${industry.pluralName} actually evaluate and buy — the conversion moment that matters here is ${industry.conversionFrame.charAt(0).toLowerCase()}${industry.conversionFrame.slice(1)}. We scope the engagement around that from day one, rather than adapting a one-size-fits-all playbook afterwards.`,
     },
     ...industry.industryFaqs,
     {
@@ -98,7 +98,7 @@ export function buildServiceIndustryPayload(
       q: `What's included in Brandivibe's ${service.title} for ${industry.pluralName}?`,
       a: `Each engagement covers ${service.capabilities
         .slice(0, 3)
-        .map((c) => c.title.toLowerCase())
+        .map((c) => c.title)
         .join(", ")}, plus ${service.deliverables.length}+ concrete deliverables you own outright — all framed for the buyer journey of ${industry.pluralName}.`,
     },
   ];
@@ -115,11 +115,19 @@ export function buildServiceIndustryPayload(
   // Never lowercase service.title here — it mangles acronyms in SERPs
   // ("Custom seo services…", "Custom crm systems…"). The tagline gives each
   // service a distinct sentence, so combos don't read as one template.
+  // The tagline is the same across all 8 industry variants of a service, so a
+  // description built from it alone reads as boilerplate. Anchor the tail to the
+  // industry's own conversion goal (authored per-industry, so each of the 8
+  // variants differs) — falling back to shorter forms to stay under 160 chars.
+  const frame = industry.conversionFrame.charAt(0).toLowerCase() + industry.conversionFrame.slice(1);
+  const withFrame = `${baseTitle} — built around what actually converts a ${industry.name} buyer: ${frame}.`;
   const candidate = `${baseTitle}: ${service.tagline}`;
   const metaDescription =
-    candidate.length <= 160
-      ? candidate
-      : `${baseTitle} — built around how ${industry.name} buyers decide. Fixed pricing, delivered in about six weeks.`;
+    withFrame.length <= 160
+      ? withFrame
+      : candidate.length <= 160
+        ? candidate
+        : `${baseTitle} — shaped around how ${industry.name} buyers decide. Fixed pricing, delivered in about six weeks.`;
 
   const canonical = `/services/${service.slug}/${industry.slug}`;
 

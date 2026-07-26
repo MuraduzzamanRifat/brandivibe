@@ -23,6 +23,10 @@ export async function generateStaticParams() {
 
 type Props = { params: Promise<{ slug: string }> };
 
+// OG and JSON-LD images must be absolute. Payload can return a relative media
+// URL, which is invalid for scrapers and Google — resolve it against the origin.
+const abs = (u: string) => (u.startsWith("http") ? u : `https://brandivibe.com${u}`);
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const cs = await getCaseStudyFull(slug);
@@ -36,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: cs.seoDescription,
       url: `/case-studies/${slug}`,
       type: "article",
-      images: cs.heroImage ? [{ url: cs.heroImage }] : OG_IMAGE,
+      images: cs.heroImage ? [{ url: abs(cs.heroImage) }] : OG_IMAGE,
     },
   };
 }
@@ -74,7 +78,7 @@ export default async function CaseStudyPage({ params }: Props) {
         author: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
         publisher: { "@type": "Organization", "@id": "https://brandivibe.com/#organization", name: "Brandivibe" },
         mainEntityOfPage: { "@type": "WebPage", "@id": `https://brandivibe.com/case-studies/${slug}` },
-        ...(cs.heroImage && { image: { "@type": "ImageObject", url: cs.heroImage } }),
+        ...(cs.heroImage && { image: { "@type": "ImageObject", url: abs(cs.heroImage) } }),
         ...(cs.client && { about: { "@type": "Organization", name: cs.client } }),
         articleSection: "Case study",
       },
@@ -93,7 +97,7 @@ export default async function CaseStudyPage({ params }: Props) {
     <>
       <WarmNav />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* ---- hero ---- */}
         <section className="relative overflow-hidden pt-36 pb-12 px-5 sm:px-8">
           <div

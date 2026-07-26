@@ -9,7 +9,7 @@ export default function AxiomPage() {
   return (
     <>
       <Navbar />
-      <main className="relative">
+      <main id="main-content" tabIndex={-1} className="relative">
         <Hero />
         <Ticker />
         <Rails />

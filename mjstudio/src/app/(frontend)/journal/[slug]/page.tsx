@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OG_IMAGE } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -42,13 +43,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `/journal/${slug}`,
       type: "article",
       publishedTime: meta.publishedAt,
-      images: meta.heroImage ? [{ url: meta.heroImage }] : undefined,
+      // Fall back to the brand card so an article with no hero still shares an
+      // image (case studies already do this).
+      images: meta.heroImage ? [{ url: meta.heroImage }] : OG_IMAGE,
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.excerpt,
-      images: meta.heroImage ? [meta.heroImage] : undefined,
+      images: meta.heroImage ? [meta.heroImage] : ["https://brandivibe.com/brand-og"],
     },
   };
 }
@@ -60,6 +63,11 @@ export default async function ArticlePage({ params }: Props) {
 
   const { frontmatter, html } = article;
   const meta = await getArticle(slug);
+
+  // Real word count from the rendered body. meta.wordCount is a stale legacy
+  // number for migrated posts (e.g. "77" on a ~1,000-word essay), so compute it
+  // from the actual HTML for the schema rather than trusting the seed value.
+  const wordCount = html.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   const moreArticles = (await getArticles()).filter((a) => a.slug !== slug).slice(0, 3);
 
   // Contextual internal links out of this essay (see lib/article-links.ts).
@@ -117,7 +125,7 @@ export default async function ArticlePage({ params }: Props) {
           },
         }),
         keywords: meta.secondaryKeywords?.join(", "),
-        wordCount: meta.wordCount,
+        wordCount,
         articleSection: "Website conversion & design",
         about: {
           "@type": "Thing",
@@ -149,7 +157,7 @@ export default async function ArticlePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <article className="journal-article mx-auto max-w-[760px] px-5 sm:px-8 pt-36 md:pt-40 pb-16">
           <header className="mb-10">
             <Link
@@ -182,16 +190,19 @@ export default async function ArticlePage({ params }: Props) {
           </header>
 
           {frontmatter.heroImage && (
-            // MDX frontmatter carries no intrinsic size, so this renders as a
-            // plain eager <img> — see ResponsiveMedia for why we don't guess.
-            <ResponsiveMedia
-              src={frontmatter.heroImage}
-              alt={frontmatter.title}
-              width={0}
-              height={0}
-              priority
-              className="rounded-2xl mb-14 border border-border"
-            />
+            // MDX frontmatter carries no intrinsic size, so ResponsiveMedia falls
+            // back to a plain <img>. Reserve the box with a fixed aspect-ratio
+            // wrapper so the LCP hero doesn't shift layout as it loads (CLS).
+            <div className="relative mb-14 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
+              <ResponsiveMedia
+                src={frontmatter.heroImage}
+                alt={frontmatter.title}
+                width={0}
+                height={0}
+                priority
+                className="absolute inset-0 h-full object-cover"
+              />
+            </div>
           )}
 
           <div

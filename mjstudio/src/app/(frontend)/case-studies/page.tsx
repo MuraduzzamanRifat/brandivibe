@@ -54,7 +54,7 @@ export default async function CaseStudiesPage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(hubSchema) }} />
       <WarmNav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <section className="pt-36 pb-14 px-5 sm:px-8">
           <div className="mx-auto max-w-[1200px]">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">— Our work</p>

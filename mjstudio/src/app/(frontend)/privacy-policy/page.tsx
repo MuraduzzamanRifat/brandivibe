@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <WarmNav />
-      <main className="px-5 sm:px-8 pt-36 pb-24">
+      <main id="main-content" tabIndex={-1} className="px-5 sm:px-8 pt-36 pb-24">
         <article className="mx-auto max-w-[760px]">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary-strong">
             — The legal bit, in plain English
@@ -34,6 +34,9 @@ export default function PrivacyPolicyPage() {
           <h1 className="mt-4 font-display text-4xl md:text-[3.4rem] font-semibold tracking-tight text-balance">
             Privacy Policy
           </h1>
+          <p className="mt-4 font-mono text-xs text-muted uppercase tracking-[0.16em]">
+            Last updated 13 July 2026
+          </p>
           <p className="mt-6 text-lg text-foreground/70 leading-relaxed">
             We collect as little as we can get away with, we never sell it, and you can
             have it deleted by sending one email. That&apos;s the whole policy — the
@@ -41,6 +44,21 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <div className="mt-12 space-y-10 text-foreground/80 leading-relaxed">
+            <section>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
+                Who we are
+              </h2>
+              <p className="mt-3">
+                Brandivibe is a digital studio operated by Muraduzzaman, based in Dhaka,
+                Bangladesh, working with founders worldwide. We are the data controller for
+                anything you send us. You can reach us any time at{" "}
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary-strong underline">
+                  {CONTACT_EMAIL}
+                </a>
+                .
+              </p>
+            </section>
+
             <section>
               <h2 className="font-display text-2xl font-semibold text-foreground">
                 What we collect
@@ -98,12 +116,55 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="font-display text-2xl font-semibold text-foreground">
+                Cookies &amp; analytics
+              </h2>
+              <p className="mt-3">
+                We use Google Analytics to understand which pages people find useful — how
+                many visitors a page gets, roughly where they came from, and what they
+                clicked. It sets a cookie (<code>_ga</code>) to tell one visit from another.
+                We look at it in aggregate; we&apos;re not trying to identify you, and we
+                never sell or share it.
+              </p>
+              <p className="mt-3">
+                We run no advertising or retargeting cookies. The only other storage we use
+                is the strictly-necessary kind that makes the site work — and, if you log in
+                to a client area, keeps you signed in.
+              </p>
+              <p className="mt-3">
+                If you&apos;re in the UK or EU, nothing is measured until you say yes — we
+                ask first, and analytics stays switched off until you accept. Everywhere
+                else you can turn it off with the same banner. Changed your mind? Hit{" "}
+                <strong className="font-medium text-foreground">Cookie choices</strong> at
+                the bottom of any page and pick again.
+              </p>
+              <p className="mt-3">
+                You can also opt out with Google&apos;s{" "}
+                <a
+                  href="https://tools.google.com/dlpage/gaoptout"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-medium text-primary-strong underline underline-offset-4 hover:text-primary-deep"
+                >
+                  browser add-on
+                </a>
+                , or by blocking cookies in your browser — the site works perfectly well
+                without them.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-display text-2xl font-semibold text-foreground">
                 Who we share it with
               </h2>
               <p className="mt-3">
                 The services that make the site run: Vercel (hosting) and Neon (database).
                 They process data on our behalf and cannot use it for their own purposes.
-                Nobody else.
+              </p>
+              <p className="mt-3">
+                Google Analytics also processes anonymised usage data — page views and
+                rough location — so we can see which pages are worth improving. Anything you
+                type into a form stays between us; it is never sent to Google. Nobody else
+                gets your data, and we never sell it.
               </p>
             </section>
 

@@ -9,7 +9,7 @@ export default function AtriumPage() {
   return (
     <>
       <Navbar />
-      <main className="relative">
+      <main id="main-content" tabIndex={-1} className="relative">
         <Hero />
         <Portfolio />
         <Thesis />
