@@ -54,54 +54,53 @@ The fix is a committed migration that creates the tables, plus a deploy step tha
 
 ---
 
-## Prerequisites (owner, one-time)
+## Database: Supabase (as of this build)
 
-1. **Restore the real `DATABASE_URI`** in local `.env` (copy from Vercel → Settings → Environment Variables). The value currently in `.env` is a placeholder and every DB command below will fail with `password authentication failed` until it's real.
-2. **Set `DATABASE_URI_MIGRATION`** to the Neon **direct** connection string (the host *without* `-pooler`). Neon dashboard → Connection Details → untick "Pooled connection".
-3. Confirm `PAYLOAD_SECRET` and `BLOB_READ_WRITE_TOKEN` are set in Vercel (Production + Preview).
-4. (Recommended, unrelated to this branch but overdue) rotate `PAYLOAD_SECRET` and the Neon password, since they were previously exposed.
+The platform now runs on a **Supabase** Postgres project (fresh start — the old Neon DB was left behind), and **the schema is already created there.**
+
+- **Project:** `jjasdpvycpeszxbnxuoz`, region **ap-northeast-1** (Tokyo).
+- **Connection — use the Session pooler, not the direct host or the Transaction pooler.**
+  - The **direct** host `db.<ref>.supabase.co` is **IPv6-only** on the free tier → `ENOTFOUND` from most machines and from Vercel. Don't use it.
+  - The **Transaction pooler** (`:6543`) does **not** support prepared statements → Payload/drizzle breaks. Don't use it.
+  - The **Session pooler** (`:5432`) is IPv4 and prepared-statement-safe. This is the one:
+    `postgresql://postgres.<ref>:<PASSWORD>@aws-0-ap-northeast-1.pooler.supabase.com:5432/postgres`
+  - **URL-encode the password** — `$`→`%24`, `%`→`%25`, etc. — or the driver misreads it.
+- **SSL:** `src/payload.config.ts` sets `pool.ssl = { rejectUnauthorized: false }` because Supabase's pooler presents a cert chain Node doesn't trust (`SELF_SIGNED_CERT_IN_CHAIN`). SSL is still on; the chain just isn't verified. Applies to dev push and prod.
+- **Schema creation:** done via **dev push** — booting `next dev` with `push:true` (dev only) created all **100 tables** (37 collections + their `_rels` join tables) directly in Supabase. Verified. So the database is ready; you do **not** need to run a migration to launch.
+
+### Node 24 note (why the migrate CLI wasn't used)
+
+`npm run migrate:create` fails on **Node 24** with `ERR_REQUIRE_ASYNC_MODULE` (Payload's CLI uses `tsx`'s `require()`, which can't load the Lexical editor's top-level `await`). The dev push sidesteps this entirely (Next's bundler loads the config, not `tsx`). For a proper committed migration later, run the CLI on **Node 20 or 22** (`nvm use 20`), or generate it in CI. Not needed for the initial launch since the tables already exist.
 
 ---
 
-## Ship it (in order)
+## Go to production on Supabase
+
+The code is ready and the tables exist. Two things left, both in the Vercel dashboard:
+
+1. **Point Vercel at Supabase.** Project → Settings → Environment Variables (Production + Preview):
+   - `DATABASE_URI` = the **Session pooler** string above (URL-encoded password).
+   - `DATABASE_URI_MIGRATION` = same string (only used if you later run migrations).
+   - Confirm `PAYLOAD_SECRET` is set. `BLOB_READ_WRITE_TOKEN` too if you want uploads on Vercel Blob (else uploads fall back to local disk, which won't persist on Vercel — set the token).
+2. **Deploy the platform.** Merge `feat/agency-platform` → `main` and push; Vercel builds and deploys. Production has `push:false`, so it just *connects and queries* — and the tables are already there, so it works with **no migration step**.
 
 ```bash
-git checkout feat/agency-platform
-
-# 0. This branch predates the audit/SEO/analytics/consent work now on main.
-#    Merge main in first so the platform ships WITH those fixes, not without them.
-#    Expect a small conflict in payload.config.ts (this branch adds the migration
-#    config + collections; keep both) — resolve by keeping this branch's db block
-#    and collection list, plus main's analytics.
-git merge main
-npx tsc --noEmit   # confirm the merge is clean
-
-# 1. Sanity: types must be clean (already run above)
-
-# 2. Generate the migration that creates all 22 tables + their _rels join tables.
-#    Runs against the DIRECT connection via the wrapper. Review the SQL it writes
-#    under src/migrations/ before committing — it should be all CREATE TABLE, no DROP.
-npm run migrate:create
-
-git add src/migrations
-git commit -m "feat(platform): initial migration for CRM/portal/email/ERP tables"
-
-# 3. Apply it to the database you're about to deploy against (staging or prod).
-npm run migrate
-npm run migrate:status   # should show the migration as run
-
-# 4. Add the deploy-time migration step so future schema changes ship automatically.
-#    In Vercel → Settings → Build & Development → Build Command:
-#        npm run migrate && next build
-#    (or keep `next build` and run `npm run migrate` from a Vercel deploy hook.)
-
-# 5. Merge and deploy.
 git checkout main
 git merge feat/agency-platform
-git push
+git push        # Vercel deploys; ensure the env vars above are set FIRST
 ```
 
-After deploy, verify: sign in at `/admin` as an admin, create a test client user + project, then open `/portal` in a private window as that client and confirm they see only their project.
+**Order matters:** set the Vercel `DATABASE_URI` to Supabase *before* the deploy. If you deploy the platform while Vercel still points at the old (empty-of-these-tables) DB, `/admin` and `/portal` 500.
+
+After deploy, verify: open `/admin`, create the first admin, add a test client user + project, then open `/portal` in a private window as that client and confirm they see only their own project.
+
+### Local dev (already working)
+
+`npm run dev` → `http://localhost:3000/admin`. First visit routes to **create-first-user**; make your admin account and the CRM / Client Portal / Email Marketing / ERP groups appear in the sidebar.
+
+### Future schema changes
+
+When you add or change a collection, dev push keeps local in sync automatically. For prod, generate a migration on Node 20/22 (`npm run migrate:create`), commit `src/migrations/`, and set the Vercel build command to `npm run migrate && next build` so it applies on deploy.
 
 ---
 

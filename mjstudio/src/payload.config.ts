@@ -173,15 +173,19 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    // Runtime queries go through the pooled endpoint (DATABASE_URI). Schema DDL
-    // needs a DIRECT, non-pooled connection — the `migrate` npm script sets
-    // DATABASE_URI to DATABASE_URI_MIGRATION (the Neon direct host) for that run.
+    // Runtime queries go through Supabase's Session pooler (DATABASE_URI) — IPv4
+    // and prepared-statement-safe (the Transaction pooler on :6543 is NOT).
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      // Supabase's pooler presents a cert chain Node doesn't trust out of the
+      // box (SELF_SIGNED_CERT_IN_CHAIN). SSL stays ON — we just don't verify the
+      // chain, which is the standard managed-Postgres setup and applies to both
+      // the dev schema push and prod runtime.
+      ssl: { rejectUnauthorized: false },
     },
     migrationDir: path.resolve(dirname, 'migrations'),
     // Auto-push schema ONLY in dev. In production the build runs no push, so
-    // the new tables must be created by committed migrations (see runbook at
+    // the tables must be created by committed migrations (see runbook at
     // docs/agency-platform-migration.md).
     push: process.env.NODE_ENV !== 'production',
   }),
