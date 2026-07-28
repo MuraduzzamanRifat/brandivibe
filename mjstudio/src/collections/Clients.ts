@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { slugField } from '../fields/slugField'
+import { isStaff } from '../access/roles'
 
 export const Clients: CollectionConfig = {
   slug: 'clients',
@@ -9,7 +10,12 @@ export const Clients: CollectionConfig = {
     group: 'People & Clients',
   },
   access: {
-    read: () => true,
+    // Staff-only. This is the tenant-anchor table (every portal permission keys
+    // off it) — it must NOT be world-readable, or one client could enumerate the
+    // whole customer roster via /api/clients. Nothing reads it publicly: the
+    // case-study renderer fetches client name/logo with overrideAccess. If a
+    // public logo wall is ever needed, fetch a scoped subset server-side.
+    read: isStaff,
   },
   fields: [
     {

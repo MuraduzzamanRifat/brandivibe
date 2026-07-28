@@ -4,25 +4,28 @@ import config from '@payload-config'
 import { verifyTrack } from '@/lib/email/tracking'
 
 /**
- * GET /e/click?t=<signed>&u=<dest>  — logs a click, then redirects to <dest>.
+ * GET /e/click?t=<signed>  — logs a click, then redirects.
  *
- * The redirect happens whether or not tracking succeeds, so a recipient always
- * reaches the link. `u` is validated to be an http(s) URL before redirecting so
- * the endpoint can't be abused as an open redirect to arbitrary schemes.
+ * The destination lives INSIDE the signed token (track.u), never in an unsigned
+ * query param, so this can't be abused as an open redirect: a missing/forged
+ * token — or a tampered destination — falls back to the site home. The redirect
+ * still fires whether or not the event write succeeds, so a valid link always
+ * reaches its target.
  */
 export async function GET(req: NextRequest) {
   const token = req.nextUrl.searchParams.get('t') || ''
-  const dest = req.nextUrl.searchParams.get('u') || ''
+  const track = verifyTrack(token)
 
   let safe = 'https://brandivibe.com'
-  try {
-    const u = new URL(dest)
-    if (u.protocol === 'http:' || u.protocol === 'https:') safe = u.toString()
-  } catch {
-    /* keep the safe default */
+  if (track?.u) {
+    try {
+      const u = new URL(track.u)
+      if (u.protocol === 'http:' || u.protocol === 'https:') safe = u.toString()
+    } catch {
+      /* keep the safe default */
+    }
   }
 
-  const track = verifyTrack(token)
   if (track) {
     try {
       const payload = await getPayload({ config })

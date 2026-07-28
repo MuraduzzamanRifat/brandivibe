@@ -148,12 +148,15 @@ export default buildConfig({
         return d?.slug ? `${base}/${path}/${d.slug}` : base
       },
     }),
-    // Persistent media storage on Vercel Blob (uploads survive deployments).
-    // Falls back to local-disk storage in dev when no token is present.
+    // Persistent upload storage on Vercel Blob (files survive deployments).
+    // BOTH upload collections must be listed — `media` (marketing) AND
+    // `project-files` (client deliverables). Without project-files here, portal
+    // uploads write to the serverless read-only/ephemeral FS and vanish on the
+    // next deploy. Falls back to local-disk storage in dev when no token is set.
     ...(process.env.BLOB_READ_WRITE_TOKEN
       ? [
           vercelBlobStorage({
-            collections: { media: true },
+            collections: { media: true, 'project-files': true },
             token: process.env.BLOB_READ_WRITE_TOKEN,
           }),
         ]

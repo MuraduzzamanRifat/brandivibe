@@ -2,6 +2,7 @@ import 'server-only'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { renderCampaignEmail, type Recipient } from './render'
+import { unsubscribeUrl } from './tracking'
 
 /**
  * The campaign send pipeline.
@@ -27,13 +28,26 @@ type SendResult = { ok: boolean; recipients: number; sent: number; failed: numbe
 export async function sendCampaign(campaignId: string): Promise<SendResult> {
   const payload = await getPayload({ config })
 
-  const campaign = await payload.findByID({ collection: 'email-campaigns', id: campaignId, depth: 0, overrideAccess: true })
-  if (!campaign) return { ok: false, recipients: 0, sent: 0, failed: 0, dryRun: !RESEND_KEY, error: 'Campaign not found' }
-  if (campaign.status === 'sending' || campaign.status === 'sent') {
-    return { ok: false, recipients: 0, sent: 0, failed: 0, dryRun: !RESEND_KEY, error: `Campaign already ${campaign.status}` }
-  }
+  const existing = await payload
+    .findByID({ collection: 'email-campaigns', id: campaignId, depth: 0, overrideAccess: true })
+    .catch(() => null)
+  if (!existing) return { ok: false, recipients: 0, sent: 0, failed: 0, dryRun: !RESEND_KEY, error: 'Campaign not found' }
 
-  await payload.update({ collection: 'email-campaigns', id: campaignId, data: { status: 'sending' }, overrideAccess: true })
+  // Atomically CLAIM the campaign: flip to `sending` only for a row that isn't
+  // already sending/sent. A concurrent second call (double-click, retry) matches
+  // zero rows and bails — no duplicate blast. We reuse the returned doc so the
+  // status guard and the read are one operation, not a TOCTOU pair.
+  const claim = await payload.update({
+    collection: 'email-campaigns',
+    where: { and: [{ id: { equals: campaignId } }, { status: { not_in: ['sending', 'sent'] } }] },
+    data: { status: 'sending' },
+    overrideAccess: true,
+  })
+  const claimed = (Array.isArray(claim?.docs) ? claim.docs : []) as Array<Record<string, unknown>>
+  if (claimed.length === 0) {
+    return { ok: false, recipients: 0, sent: 0, failed: 0, dryRun: !RESEND_KEY, error: `Campaign already ${existing.status}` }
+  }
+  const campaign = claimed[0] as typeof existing
 
   const listIds = (campaign.lists ?? []).map((l: unknown) => (typeof l === 'object' ? (l as { id: string }).id : l))
   // Resolve subscribers across all target lists, subscribed only.
@@ -78,6 +92,12 @@ export async function sendCampaign(campaignId: string): Promise<SendResult> {
                 subject: campaign.subject,
                 html,
                 text,
+                // One-click unsubscribe (RFC 8058) — the header URL is POSTed by
+                // compliant clients and improves deliverability.
+                headers: {
+                  'List-Unsubscribe': `<${unsubscribeUrl(r.unsubscribeToken)}>`,
+                  'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                },
               }),
             })
             if (!res.ok) throw new Error(await res.text())

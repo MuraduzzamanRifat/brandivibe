@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { APIError } from 'payload'
 import { isStaff, staffOrOwnViaProject, roleOf, clientIdOf, isSignedIn } from '../../access/roles'
 
 /**
@@ -39,9 +40,12 @@ export const ProjectMessages: CollectionConfig = {
             depth: 0,
             overrideAccess: true,
           })
-          const owner = typeof project.client === 'object' ? project.client.id : project.client
+          // Normalise to a string: with the Postgres adapter the FK is an
+          // integer while clientIdOf() always returns a string, so a raw `!==`
+          // (5 !== '5') would reject EVERY legitimate client message.
+          const owner = String(typeof project.client === 'object' ? project.client.id : project.client)
           if (!cid || owner !== cid) {
-            throw new Error('You can only message on your own project.')
+            throw new APIError('You can only message on your own project.', 403)
           }
         }
         return data

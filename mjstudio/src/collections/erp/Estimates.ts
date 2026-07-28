@@ -38,8 +38,11 @@ export const Estimates: CollectionConfig = {
         data.internalCost = internalCost
 
         const marginPct = Math.min(Math.max(Number(data.targetGrossMargin ?? 55), 0), 99)
-        // Floor = the lowest price that still hits the target margin.
-        data.floorPrice = marginPct < 99 ? Math.round(internalCost / (1 - marginPct / 100)) : internalCost
+        // Floor = the lowest price that still hits the target margin. Guard only
+        // the true singularity (100% ⇒ divide-by-zero), not 99 — the field max
+        // is 99, so `< 100` always computes and a 99% target yields ~100× cost,
+        // not `= cost` (which silently defeated the below-floor check).
+        data.floorPrice = marginPct < 100 ? Math.round(internalCost / (1 - marginPct / 100)) : internalCost
         data.floorPrice = Math.max(data.floorPrice, internalCost)
 
         const proposed = Number(data.proposedPrice ?? 0)

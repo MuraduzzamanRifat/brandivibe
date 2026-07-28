@@ -13,7 +13,7 @@ import crypto from 'crypto'
 
 const SECRET = process.env.PAYLOAD_SECRET || 'dev-only-insecure-secret'
 
-export type Track = { c: string; s: string } // campaign, subscriber
+export type Track = { c: string; s: string; u?: string } // campaign, subscriber, (click) dest
 
 export function signTrack(t: Track): string {
   const payload = Buffer.from(JSON.stringify(t)).toString('base64url')
@@ -31,7 +31,7 @@ export function verifyTrack(token: string): Track | null {
   }
   try {
     const obj = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'))
-    if (obj && typeof obj.c === 'string' && typeof obj.s === 'string') return obj
+    if (obj && typeof obj.c === 'string' && typeof obj.s === 'string') return obj as Track
   } catch {
     /* fallthrough */
   }
@@ -41,7 +41,10 @@ export function verifyTrack(token: string): Track | null {
 const SITE = 'https://brandivibe.com'
 
 export const openPixelUrl = (t: Track) => `${SITE}/e/open?t=${encodeURIComponent(signTrack(t))}`
+// The click destination is signed INTO the token (not a separate `&u=` param),
+// so /e/click can only ever redirect to a URL this system generated — closing
+// the open-redirect hole.
 export const clickUrl = (t: Track, dest: string) =>
-  `${SITE}/e/click?t=${encodeURIComponent(signTrack(t))}&u=${encodeURIComponent(dest)}`
+  `${SITE}/e/click?t=${encodeURIComponent(signTrack({ ...t, u: dest }))}`
 export const unsubscribeUrl = (unsubToken: string) =>
   `${SITE}/e/unsubscribe?t=${encodeURIComponent(unsubToken)}`
